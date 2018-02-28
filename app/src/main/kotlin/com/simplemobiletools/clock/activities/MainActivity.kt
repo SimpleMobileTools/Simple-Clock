@@ -1,24 +1,32 @@
 package com.simplemobiletools.clock.activities
 
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
 import com.simplemobiletools.clock.BuildConfig
 import com.simplemobiletools.clock.R
+import com.simplemobiletools.clock.adapters.ViewPagerAdapter
 import com.simplemobiletools.clock.extensions.config
-import com.simplemobiletools.commons.extensions.restartActivity
+import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.LICENSE_KOTLIN
 import com.simplemobiletools.commons.models.FAQItem
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : SimpleActivity() {
     private var storedUseEnglish = false
+    private var storedTextColor = 0
+    private var storedBackgroundColor = 0
+    private var storedPrimaryColor = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        appLaunched()
         storeStateVariables()
+        initFragments()
     }
 
     override fun onResume() {
@@ -26,6 +34,24 @@ class MainActivity : SimpleActivity() {
         if (storedUseEnglish != config.useEnglish) {
             restartActivity()
             return
+        }
+
+        val configTextColor = config.textColor
+        if (storedTextColor != configTextColor) {
+            getInactiveTabIndexes(viewpager.currentItem).forEach {
+                main_tabs_holder.getTabAt(it)?.icon?.applyColorFilter(configTextColor)
+            }
+        }
+
+        val configBackgroundColor = config.backgroundColor
+        if (storedBackgroundColor != configBackgroundColor) {
+            main_tabs_holder.background = ColorDrawable(configBackgroundColor)
+        }
+
+        val configPrimaryColor = config.primaryColor
+        if (storedPrimaryColor != configPrimaryColor) {
+            main_tabs_holder.setSelectedTabIndicatorColor(getAdjustedPrimaryColor())
+            main_tabs_holder.getTabAt(viewpager.currentItem)?.icon?.applyColorFilter(getAdjustedPrimaryColor())
         }
 
         if (config.preventPhoneFromSleeping) {
@@ -39,6 +65,11 @@ class MainActivity : SimpleActivity() {
         if (config.preventPhoneFromSleeping) {
             window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        config.lastUsedViewPagerPage = viewpager.currentItem
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -56,8 +87,51 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun storeStateVariables() {
-        storedUseEnglish = config.useEnglish
+        config.apply {
+            storedTextColor = textColor
+            storedBackgroundColor = backgroundColor
+            storedPrimaryColor = primaryColor
+            storedUseEnglish = useEnglish
+        }
     }
+
+    private fun initFragments() {
+        viewpager.adapter = ViewPagerAdapter(this)
+        viewpager.onPageChangeListener {
+            main_tabs_holder.getTabAt(it)?.select()
+        }
+
+        viewpager.currentItem = config.lastUsedViewPagerPage
+        main_tabs_holder.onTabSelectionChanged(
+                tabUnselectedAction = {
+                    it.icon?.applyColorFilter(config.textColor)
+                },
+                tabSelectedAction = {
+                    viewpager.currentItem = it.position
+                    it.icon?.applyColorFilter(getAdjustedPrimaryColor())
+                }
+        )
+
+        setupTabColors()
+    }
+
+    private fun setupTabColors() {
+        val lastUsedPage = config.lastUsedViewPagerPage
+        main_tabs_holder.apply {
+            background = ColorDrawable(config.backgroundColor)
+            setSelectedTabIndicatorColor(getAdjustedPrimaryColor())
+            getTabAt(lastUsedPage)?.apply {
+                select()
+                icon?.applyColorFilter(getAdjustedPrimaryColor())
+            }
+
+            getInactiveTabIndexes(lastUsedPage).forEach {
+                getTabAt(it)?.icon?.applyColorFilter(config.textColor)
+            }
+        }
+    }
+
+    private fun getInactiveTabIndexes(activeIndex: Int) = arrayListOf(0, 1, 2).filter { it != activeIndex }
 
     private fun launchSettings() {
         startActivity(Intent(applicationContext, SettingsActivity::class.java))
