@@ -13,7 +13,7 @@ import java.util.*
 class ClockFragment(context: Context, attributeSet: AttributeSet) : RelativeLayout(context, attributeSet) {
     private val ONE_SECOND = 1000L
     private var passedSeconds = 0
-    private val calendar = Calendar.getInstance()
+    private var calendar = Calendar.getInstance()
 
     private val updateHandler = Handler()
 
@@ -52,6 +52,7 @@ class ClockFragment(context: Context, attributeSet: AttributeSet) : RelativeLayo
     }
 
     private fun updateDate() {
+        calendar = Calendar.getInstance()
         val dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7    // make sure index 0 means monday
         val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
         val month = calendar.get(Calendar.MONTH)
