@@ -15,13 +15,18 @@ android {
         setProperty("archivesBaseName", "clock")
     }
 
+    signingConfigs {
+        release
+    }
+
     buildTypes {
         debug {
             applicationIdSuffix ".debug"
         }
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
@@ -37,4 +42,23 @@ android {
 
 dependencies {
     implementation 'com.simplemobiletools:commons:3.13.16'
+}
+
+Properties props = new Properties()
+def propFile = new File('signing.properties')
+if (propFile.canRead()) {
+    props.load(new FileInputStream(propFile))
+
+    if (props != null && props.containsKey('STORE_FILE') && props.containsKey('KEY_ALIAS') && props.containsKey('PASSWORD')) {
+        android.signingConfigs.release.storeFile = file(props['STORE_FILE'])
+        android.signingConfigs.release.storePassword = props['PASSWORD']
+        android.signingConfigs.release.keyAlias = props['KEY_ALIAS']
+        android.signingConfigs.release.keyPassword = props['PASSWORD']
+    } else {
+        println 'signing.properties found but some entries are missing'
+        android.buildTypes.release.signingConfig = null
+    }
+} else {
+    println 'signing.properties not found'
+    android.buildTypes.release.signingConfig = null
 }
