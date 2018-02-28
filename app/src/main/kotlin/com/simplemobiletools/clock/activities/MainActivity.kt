@@ -102,6 +102,7 @@ class MainActivity : SimpleActivity() {
         }
 
         viewpager.currentItem = config.lastUsedViewPagerPage
+        viewpager.offscreenPageLimit = 2
         main_tabs_holder.onTabSelectionChanged(
                 tabUnselectedAction = {
                     it.icon?.applyColorFilter(config.textColor)
