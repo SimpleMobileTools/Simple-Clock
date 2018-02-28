@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.commons.extensions.beVisibleIf
+import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
 import com.simplemobiletools.commons.extensions.updateTextColors
 import com.simplemobiletools.commons.extensions.useEnglishToggled
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -22,7 +23,16 @@ class SettingsActivity : SimpleActivity() {
         setupUseEnglish()
         setupAvoidWhatsNew()
         setupPreventPhoneFromSleeping()
+        setupShowSeconds()
         updateTextColors(settings_holder)
+        setupSectionColors()
+    }
+
+    private fun setupSectionColors() {
+        val adjustedPrimaryColor = getAdjustedPrimaryColor()
+        arrayListOf(clock_tab_label).forEach {
+            it.setTextColor(adjustedPrimaryColor)
+        }
     }
 
     private fun setupCustomizeColors() {
@@ -54,6 +64,14 @@ class SettingsActivity : SimpleActivity() {
         settings_prevent_phone_from_sleeping_holder.setOnClickListener {
             settings_prevent_phone_from_sleeping.toggle()
             config.preventPhoneFromSleeping = settings_prevent_phone_from_sleeping.isChecked
+        }
+    }
+
+    private fun setupShowSeconds() {
+        settings_show_seconds.isChecked = config.showSeconds
+        settings_show_seconds_holder.setOnClickListener {
+            settings_show_seconds.toggle()
+            config.showSeconds = settings_show_seconds.isChecked
         }
     }
 }

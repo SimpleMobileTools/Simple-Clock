@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Jednoduché hodinky</string>
+    <string name="app_launcher_name">Hodinky</string>
+
+    <!-- Settings -->
+    <string name="clock_tab">Okno s časom</string>
+    <string name="alarm_tab">Okno s budíkom</string>
+    <string name="stopwatch_tab">Okno so stopkami</string>
+    <string name="show_seconds">Zobraziť sekundy</string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>

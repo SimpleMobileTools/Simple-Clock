@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Handler
 import android.util.AttributeSet
 import android.widget.RelativeLayout
+import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.commons.extensions.updateTextColors
 import kotlinx.android.synthetic.main.fragment_clock.view.*
 import java.util.*
@@ -25,9 +26,17 @@ class ClockFragment(context: Context, attributeSet: AttributeSet) : RelativeLayo
     private fun updateCurrentTime() {
         val hours = (passedSeconds / 3600) % 24
         val minutes = (passedSeconds / 60) % 60
-        val seconds = passedSeconds % 60
-        val format = "%02d:%02d:%02d"
-        clock_time.text = String.format(format, hours, minutes, seconds)
+        var format = "%02d:%02d"
+
+        val formattedText = if (context.config.showSeconds) {
+            val seconds = passedSeconds % 60
+            format += ":%02d"
+            String.format(format, hours, minutes, seconds)
+        } else {
+            String.format(format, hours, minutes)
+        }
+
+        clock_time.text = formattedText
 
         updateHandler.postDelayed({
             passedSeconds++

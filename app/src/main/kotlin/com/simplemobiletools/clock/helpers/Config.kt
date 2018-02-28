@@ -7,4 +7,8 @@ class Config(context: Context) : BaseConfig(context) {
     companion object {
         fun newInstance(context: Context) = Config(context)
     }
+
+    var showSeconds: Boolean
+        get() = prefs.getBoolean(SHOW_SECONDS, true)
+        set(showSeconds) = prefs.edit().putBoolean(SHOW_SECONDS, showSeconds).apply()
 }
