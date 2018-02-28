@@ -10,6 +10,7 @@ import com.simplemobiletools.clock.BuildConfig
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.adapters.ViewPagerAdapter
 import com.simplemobiletools.clock.extensions.config
+import com.simplemobiletools.clock.helpers.TABS_COUNT
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.LICENSE_KOTLIN
 import com.simplemobiletools.commons.models.FAQItem
@@ -102,7 +103,7 @@ class MainActivity : SimpleActivity() {
         }
 
         viewpager.currentItem = config.lastUsedViewPagerPage
-        viewpager.offscreenPageLimit = 2
+        viewpager.offscreenPageLimit = TABS_COUNT - 1
         main_tabs_holder.onTabSelectionChanged(
                 tabUnselectedAction = {
                     it.icon?.applyColorFilter(config.textColor)
