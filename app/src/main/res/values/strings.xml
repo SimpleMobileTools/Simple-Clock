@@ -2,11 +2,16 @@
     <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Clock</string>
 
+    <!-- Time zones -->
+    <string name="time_zones_placeholder_1">Seems like you haven\'t selected any extra time zones.</string>
+    <string name="time_zones_placeholder_2">Add new time zones</string>
+
     <!-- Settings -->
     <string name="clock_tab">Clock tab</string>
     <string name="alarm_tab">Alarm tab</string>
     <string name="stopwatch_tab">Stopwatch tab</string>
     <string name="show_seconds">Show seconds</string>
+    <string name="display_other_time_zones">Allow displaying other time zones</string>
 
     <!--
         Haven't found some strings? There's more at

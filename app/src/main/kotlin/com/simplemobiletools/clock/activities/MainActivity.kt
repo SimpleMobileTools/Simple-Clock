@@ -58,6 +58,8 @@ class MainActivity : SimpleActivity() {
         if (config.preventPhoneFromSleeping) {
             window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         }
+
+        (viewpager.adapter as? ViewPagerAdapter)?.activityResumed()
     }
 
     override fun onPause() {

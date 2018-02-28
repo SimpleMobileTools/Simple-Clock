@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.simplemobiletools.clock.fragments.ClockFragment
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/clock_fragment"
     android:layout_width="match_parent"
@@ -24,4 +25,43 @@
         android:textSize="@dimen/big_text_size"
         tools:text="Mon, 1 January"/>
 
+    <RelativeLayout
+        android:id="@+id/time_zones_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/clock_date"
+        android:layout_marginTop="@dimen/medium_margin">
+
+        <com.simplemobiletools.commons.views.MyTextView
+            android:id="@+id/time_zones_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/activity_margin"
+            android:gravity="center"
+            android:paddingLeft="@dimen/activity_margin"
+            android:paddingRight="@dimen/activity_margin"
+            android:text="@string/time_zones_placeholder_1"
+            android:textSize="@dimen/bigger_text_size"/>
+
+        <com.simplemobiletools.commons.views.MyTextView
+            android:id="@+id/time_zones_placeholder_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/time_zones_placeholder"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:paddingTop="@dimen/medium_margin"
+            android:text="@string/time_zones_placeholder_2"
+            android:textSize="@dimen/bigger_text_size"/>
+
+        <com.simplemobiletools.commons.views.MyRecyclerView
+            android:id="@+id/time_zones_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:scrollbars="none"
+            android:visibility="gone"
+            app:layoutManager="com.simplemobiletools.commons.views.MyLinearLayoutManager"/>
+    </RelativeLayout>
 </com.simplemobiletools.clock.fragments.ClockFragment>

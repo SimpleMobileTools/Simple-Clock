@@ -2,11 +2,16 @@
     <string name="app_name">Jednoduché hodinky</string>
     <string name="app_launcher_name">Hodinky</string>
 
+    <!-- Time zones -->
+    <string name="time_zones_placeholder_1">Zdá sa, že ste nezvolil žiadne dodatočné časové pásma.</string>
+    <string name="time_zones_placeholder_2">Pridať nové časové pásma</string>
+
     <!-- Settings -->
     <string name="clock_tab">Okno s časom</string>
     <string name="alarm_tab">Okno s budíkom</string>
     <string name="stopwatch_tab">Okno so stopkami</string>
     <string name="show_seconds">Zobraziť sekundy</string>
+    <string name="display_other_time_zones">Povoliť zobrazenie dodatočných časových pásiem</string>
 
     <!--
         Haven't found some strings? There's more at

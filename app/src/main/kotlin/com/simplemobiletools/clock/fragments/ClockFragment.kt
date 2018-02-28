@@ -3,14 +3,16 @@ package com.simplemobiletools.clock.fragments
 import android.content.Context
 import android.os.Handler
 import android.util.AttributeSet
-import android.widget.RelativeLayout
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.config
+import com.simplemobiletools.commons.extensions.beVisibleIf
+import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
+import com.simplemobiletools.commons.extensions.underlineText
 import com.simplemobiletools.commons.extensions.updateTextColors
 import kotlinx.android.synthetic.main.fragment_clock.view.*
 import java.util.*
 
-class ClockFragment(context: Context, attributeSet: AttributeSet) : RelativeLayout(context, attributeSet) {
+class ClockFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet) {
     private val ONE_SECOND = 1000L
     private var passedSeconds = 0
     private var calendar = Calendar.getInstance()
@@ -19,11 +21,25 @@ class ClockFragment(context: Context, attributeSet: AttributeSet) : RelativeLayo
 
     override fun onFinishInflate() {
         super.onFinishInflate()
-        context.updateTextColors(clock_fragment)
         val offset = calendar.timeZone.rawOffset
         passedSeconds = ((calendar.timeInMillis + offset) / 1000).toInt()
         updateCurrentTime()
         updateDate()
+
+        time_zones_placeholder_2.apply {
+            underlineText()
+            setOnClickListener {
+                placeholderClicked()
+            }
+        }
+
+        setupViews()
+    }
+
+    private fun setupViews() {
+        time_zones_holder.beVisibleIf(context.config.displayOtherTimeZones)
+        context.updateTextColors(clock_fragment)
+        time_zones_placeholder_2.setTextColor(context.getAdjustedPrimaryColor())
     }
 
     private fun updateCurrentTime() {
@@ -68,5 +84,13 @@ class ClockFragment(context: Context, attributeSet: AttributeSet) : RelativeLayo
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         updateHandler.removeCallbacksAndMessages(null)
+    }
+
+    private fun placeholderClicked() {
+
+    }
+
+    override fun onActivityResume() {
+        setupViews()
     }
 }

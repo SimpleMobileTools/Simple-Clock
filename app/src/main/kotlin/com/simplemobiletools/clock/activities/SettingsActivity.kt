@@ -24,6 +24,7 @@ class SettingsActivity : SimpleActivity() {
         setupAvoidWhatsNew()
         setupPreventPhoneFromSleeping()
         setupShowSeconds()
+        setupDisplayOtherTimeZones()
         updateTextColors(settings_holder)
         setupSectionColors()
     }
@@ -72,6 +73,14 @@ class SettingsActivity : SimpleActivity() {
         settings_show_seconds_holder.setOnClickListener {
             settings_show_seconds.toggle()
             config.showSeconds = settings_show_seconds.isChecked
+        }
+    }
+
+    private fun setupDisplayOtherTimeZones() {
+        settings_display_other_timezones.isChecked = config.displayOtherTimeZones
+        settings_display_other_timezones_holder.setOnClickListener {
+            settings_display_other_timezones.toggle()
+            config.displayOtherTimeZones = settings_display_other_timezones.isChecked
         }
     }
 }
