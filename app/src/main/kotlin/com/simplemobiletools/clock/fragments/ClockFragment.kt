@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.simplemobiletools.clock.R
+import com.simplemobiletools.clock.activities.SimpleActivity
+import com.simplemobiletools.clock.dialogs.AddTimeZonesDialog
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.commons.extensions.beVisibleIf
 import com.simplemobiletools.commons.extensions.updateTextColors
@@ -99,6 +101,8 @@ class ClockFragment : Fragment() {
     }
 
     private fun fabClicked() {
+        AddTimeZonesDialog(activity as SimpleActivity) {
 
+        }
     }
 }

@@ -5,10 +5,11 @@ import com.simplemobiletools.clock.models.MyTimeZone
 // shared preferences
 const val SHOW_SECONDS = "show_seconds"
 const val DISPLAY_OTHER_TIME_ZONES = "display_other_time_zones"
+const val SELECTED_TIME_ZONES = "selected_time_zones"
 
 const val TABS_COUNT = 3
 
-val timezones = arrayListOf(
+fun getAllTimeZones() = arrayListOf(
         MyTimeZone(1, "GMT-11:00 Midway", "Pacific/Midway"),
         MyTimeZone(2, "GMT-10:00 Honolulu", "Pacific/Honolulu"),
         MyTimeZone(3, "GMT-09:00 Anchorage", "America/Anchorage"),
