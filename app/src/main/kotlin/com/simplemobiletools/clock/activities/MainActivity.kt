@@ -58,8 +58,6 @@ class MainActivity : SimpleActivity() {
         if (config.preventPhoneFromSleeping) {
             window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         }
-
-        (viewpager.adapter as? ViewPagerAdapter)?.activityResumed()
     }
 
     override fun onPause() {
@@ -99,7 +97,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun initFragments() {
-        viewpager.adapter = ViewPagerAdapter(this)
+        viewpager.adapter = ViewPagerAdapter(supportFragmentManager)
         viewpager.onPageChangeListener {
             main_tabs_holder.getTabAt(it)?.select()
         }

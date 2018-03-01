@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.simplemobiletools.clock.fragments.ClockFragment
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -51,4 +51,4 @@
         android:layout_margin="@dimen/activity_margin"
         android:src="@drawable/ic_plus"/>
 
-</com.simplemobiletools.clock.fragments.ClockFragment>
+</android.support.design.widget.CoordinatorLayout>

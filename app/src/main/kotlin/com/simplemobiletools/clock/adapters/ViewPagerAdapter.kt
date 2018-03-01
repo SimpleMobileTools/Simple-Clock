@@ -1,40 +1,34 @@
 package com.simplemobiletools.clock.adapters
 
-import android.support.v4.view.PagerAdapter
-import android.view.View
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentStatePagerAdapter
 import android.view.ViewGroup
-import com.simplemobiletools.clock.R
-import com.simplemobiletools.clock.activities.SimpleActivity
-import com.simplemobiletools.clock.fragments.MyViewPagerFragment
+import com.simplemobiletools.clock.fragments.AlarmFragment
+import com.simplemobiletools.clock.fragments.ClockFragment
+import com.simplemobiletools.clock.fragments.StopwatchFragment
 import com.simplemobiletools.clock.helpers.TABS_COUNT
 
-class ViewPagerAdapter(val activity: SimpleActivity) : PagerAdapter() {
-    private val fragments = HashMap<Int, MyViewPagerFragment>()
+class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+    private val fragments = HashMap<Int, Fragment>()
 
-    override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val layout = getFragment(position)
-        val fragment = activity.layoutInflater.inflate(layout, container, false) as MyViewPagerFragment
+    override fun getItem(position: Int): Fragment {
+        val fragment = getFragment(position)
         fragments[position] = fragment
-        container.addView(fragment)
         return fragment
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, item: Any) {
-        container.removeView(item as View)
+        fragments.remove(position)
+        super.destroyItem(container, position, item)
     }
 
     override fun getCount() = TABS_COUNT
-    override fun isViewFromObject(view: View, item: Any) = view == item
 
     private fun getFragment(position: Int) = when (position) {
-        0 -> R.layout.fragment_clock
-        1 -> R.layout.fragment_alarm
-        else -> R.layout.fragment_stopwatch
-    }
-
-    fun activityResumed() {
-        fragments.values.forEach {
-            it.onActivityResume()
-        }
+        0 -> ClockFragment()
+        1 -> AlarmFragment()
+        2 -> StopwatchFragment()
+        else -> throw RuntimeException("Trying to fetch unknown fragment id $position")
     }
 }

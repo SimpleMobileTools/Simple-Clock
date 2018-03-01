@@ -1,16 +1,17 @@
 package com.simplemobiletools.clock.fragments
 
-import android.content.Context
-import android.util.AttributeSet
-import com.simplemobiletools.commons.extensions.updateTextColors
-import kotlinx.android.synthetic.main.fragment_stopwatch.view.*
+import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.simplemobiletools.clock.R
 
-class StopwatchFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet) {
-    override fun onFinishInflate() {
-        super.onFinishInflate()
-        context.updateTextColors(stopwatch_fragment)
-    }
+class StopwatchFragment : Fragment() {
+    lateinit var view: ViewGroup
 
-    override fun onActivityResume() {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        view = inflater.inflate(R.layout.fragment_stopwatch, container, false) as ViewGroup
+        return view
     }
 }
