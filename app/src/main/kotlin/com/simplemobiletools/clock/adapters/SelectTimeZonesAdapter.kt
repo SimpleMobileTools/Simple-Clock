@@ -39,7 +39,7 @@ class SelectTimeZonesAdapter(val activity: SimpleActivity, val timeZones: ArrayL
             selectedPositions.remove(pos)
         }
 
-        itemViews[pos]?.time_zone_checkbox?.isChecked = select
+        itemViews[pos]?.add_time_zone_checkbox?.isChecked = select
     }
 
     private val adapterListener = object : MyAdapterListener {
@@ -74,12 +74,12 @@ class SelectTimeZonesAdapter(val activity: SimpleActivity, val timeZones: ArrayL
     class ViewHolder(view: View, val adapterListener: MyAdapterListener) : RecyclerView.ViewHolder(view) {
         fun bindView(timeZone: MyTimeZone, textColor: Int, primaryColor: Int, backgroundColor: Int): View {
             itemView.apply {
-                time_zone_title.text = timeZone.title
-                time_zone_title.setTextColor(textColor)
+                add_time_zone_title.text = timeZone.title
+                add_time_zone_title.setTextColor(textColor)
 
-                time_zone_checkbox.setColors(textColor, primaryColor, backgroundColor)
-                time_zone_holder.setOnClickListener {
-                    adapterListener.toggleItemSelectionAdapter(!time_zone_checkbox.isChecked, adapterPosition)
+                add_time_zone_checkbox.setColors(textColor, primaryColor, backgroundColor)
+                add_time_zone_holder.setOnClickListener {
+                    adapterListener.toggleItemSelectionAdapter(!add_time_zone_checkbox.isChecked, adapterPosition)
                 }
             }
 

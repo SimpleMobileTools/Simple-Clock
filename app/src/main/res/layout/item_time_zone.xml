@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/time_zone_frame"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="@drawable/selector">
+
+    <RelativeLayout
+        android:id="@+id/time_zone_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.simplemobiletools.commons.views.MyTextView
+            android:id="@+id/time_zone_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/time_zone_time"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:padding="@dimen/activity_margin"
+            android:textSize="@dimen/big_text_size"
+            tools:text="GMT-11:00 Midway"/>
+
+        <com.simplemobiletools.commons.views.MyTextView
+            android:id="@+id/time_zone_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/time_zone_title"
+            android:layout_alignParentRight="true"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:padding="@dimen/activity_margin"
+            android:textSize="@dimen/actionbar_text_size"
+            tools:text="11:00"/>
+
+    </RelativeLayout>
+</FrameLayout>
