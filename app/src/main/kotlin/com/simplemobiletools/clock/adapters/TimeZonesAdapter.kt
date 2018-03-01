@@ -5,14 +5,19 @@ import android.view.View
 import android.view.ViewGroup
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
+import com.simplemobiletools.clock.extensions.getFormattedDate
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
+import com.simplemobiletools.commons.extensions.beGone
+import com.simplemobiletools.commons.extensions.beVisible
 import com.simplemobiletools.commons.views.MyRecyclerView
 import kotlinx.android.synthetic.main.item_time_zone.view.*
 import java.util.*
 
 class TimeZonesAdapter(activity: SimpleActivity, var timeZones: ArrayList<MyTimeZone>, recyclerView: MyRecyclerView, itemClick: (Any) -> Unit) :
         MyRecyclerViewAdapter(activity, recyclerView, null, itemClick) {
+
+    var todayDateString = activity.getFormattedDate(Calendar.getInstance())
 
     override fun getActionMenuId() = R.menu.cab_timezones
 
@@ -58,6 +63,7 @@ class TimeZonesAdapter(activity: SimpleActivity, var timeZones: ArrayList<MyTime
         val minutes = (passedSeconds / 60) % 60
         val format = "%02d:%02d"
         val formattedTime = String.format(format, hours, minutes)
+        val formattedDate = activity.getFormattedDate(calendar)
 
         view.apply {
             time_zone_title.text = timeZone.title.substring(timeZone.title.indexOf(' '))
@@ -65,6 +71,14 @@ class TimeZonesAdapter(activity: SimpleActivity, var timeZones: ArrayList<MyTime
 
             time_zone_time.text = formattedTime
             time_zone_time.setTextColor(textColor)
+
+            if (formattedDate != todayDateString) {
+                time_zone_date.beVisible()
+                time_zone_date.text = formattedDate
+                time_zone_date.setTextColor(textColor)
+            } else {
+                time_zone_date.beGone()
+            }
         }
     }
 }

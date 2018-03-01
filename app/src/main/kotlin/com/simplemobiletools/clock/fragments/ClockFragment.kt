@@ -11,6 +11,7 @@ import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.adapters.TimeZonesAdapter
 import com.simplemobiletools.clock.dialogs.AddTimeZonesDialog
 import com.simplemobiletools.clock.extensions.config
+import com.simplemobiletools.clock.extensions.getFormattedDate
 import com.simplemobiletools.clock.helpers.getAllTimeZones
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.commons.extensions.beVisibleIf
@@ -87,12 +88,12 @@ class ClockFragment : Fragment() {
         view.clock_time.text = formattedText
 
         if (seconds == 0) {
-            if (displayOtherTimeZones) {
-                (view.time_zones_list.adapter as? TimeZonesAdapter)?.updateTimes()
-            }
-
             if (hours == 0 && minutes == 0) {
                 updateDate()
+            }
+
+            if (displayOtherTimeZones) {
+                (view.time_zones_list.adapter as? TimeZonesAdapter)?.updateTimes()
             }
         }
 
@@ -104,16 +105,12 @@ class ClockFragment : Fragment() {
 
     private fun updateDate() {
         calendar = Calendar.getInstance()
-        val dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7    // make sure index 0 means monday
-        val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
-        val month = calendar.get(Calendar.MONTH)
+        val formattedDate = context!!.getFormattedDate(calendar)
+        view.clock_date.text = formattedDate
 
-        val dayString = context!!.resources.getStringArray(R.array.week_days)[dayOfWeek]
-        val shortDayString = dayString.substring(0, Math.min(3, dayString.length))
-        val monthString = context!!.resources.getStringArray(R.array.months)[month]
-
-        val dateString = "$shortDayString, $dayOfMonth $monthString"
-        view.clock_date.text = dateString
+        if (displayOtherTimeZones) {
+            (view.time_zones_list.adapter as? TimeZonesAdapter)?.todayDateString = formattedDate
+        }
     }
 
     private fun updateTimeZones() {
