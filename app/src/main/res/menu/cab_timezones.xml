@@ -7,11 +7,6 @@
         android:title="@string/rename"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/cab_select_all"
-        android:icon="@drawable/ic_select_all"
-        android:title="@string/select_all"
-        app:showAsAction="ifRoom"/>
-    <item
         android:id="@+id/cab_remove"
         android:icon="@drawable/ic_minus_circle"
         android:title="@string/remove"

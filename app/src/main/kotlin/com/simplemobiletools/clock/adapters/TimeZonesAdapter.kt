@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
+import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.getFormattedDate
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
@@ -29,7 +30,15 @@ class TimeZonesAdapter(activity: SimpleActivity, var timeZones: ArrayList<MyTime
         view?.time_zone_frame?.isSelected = select
     }
 
-    override fun actionItemPressed(id: Int) {}
+    override fun actionItemPressed(id: Int) {
+        if (selectedPositions.isEmpty()) {
+            return
+        }
+
+        when (id) {
+            R.id.cab_remove -> removeItems()
+        }
+    }
 
     override fun getSelectableItemCount() = timeZones.size
 
@@ -53,6 +62,23 @@ class TimeZonesAdapter(activity: SimpleActivity, var timeZones: ArrayList<MyTime
 
     fun updateTimes() {
         notifyDataSetChanged()
+    }
+
+    private fun removeItems() {
+        val timeZonesToRemove = ArrayList<MyTimeZone>()
+        val timeZoneIDsToRemove = ArrayList<String>()
+        selectedPositions.sortedDescending().forEach {
+            val timeZone = timeZones[it]
+            timeZonesToRemove.add(timeZone)
+            timeZoneIDsToRemove.add(timeZone.id.toString())
+        }
+
+        timeZones.removeAll(timeZonesToRemove)
+        removeSelectedItems()
+
+        val selectedTimeZones = activity.config.selectedTimeZones
+        val newTimeZones = selectedTimeZones.filter { !timeZoneIDsToRemove.contains(it) }.toHashSet()
+        activity.config.selectedTimeZones = newTimeZones
     }
 
     private fun setupView(view: View, timeZone: MyTimeZone) {
