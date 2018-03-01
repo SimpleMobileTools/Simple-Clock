@@ -32,12 +32,7 @@ class ClockFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         view = inflater.inflate(R.layout.fragment_clock, container, false) as ViewGroup
-        val offset = calendar.timeZone.rawOffset
-        passedSeconds = ((calendar.timeInMillis + offset) / 1000).toInt()
-        displayOtherTimeZones = context!!.config.displayOtherTimeZones
-        updateCurrentTime()
-        updateDate()
-        setupViews()
+        setupDateTime()
         return view
     }
 
@@ -46,15 +41,25 @@ class ClockFragment : Fragment() {
 
         displayOtherTimeZones = context!!.config.displayOtherTimeZones
         if (!isFirstResume) {
-            setupViews()
+            setupDateTime()
         }
 
         isFirstResume = false
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onPause() {
+        super.onPause()
         updateHandler.removeCallbacksAndMessages(null)
+    }
+
+    private fun setupDateTime() {
+        calendar = Calendar.getInstance()
+        val offset = calendar.timeZone.rawOffset
+        passedSeconds = ((calendar.timeInMillis + offset) / 1000).toInt()
+        displayOtherTimeZones = context!!.config.displayOtherTimeZones
+        updateCurrentTime()
+        updateDate()
+        setupViews()
     }
 
     private fun setupViews() {
