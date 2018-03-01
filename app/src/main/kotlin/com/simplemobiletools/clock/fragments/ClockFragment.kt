@@ -7,8 +7,6 @@ import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.commons.extensions.beVisibleIf
-import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
-import com.simplemobiletools.commons.extensions.underlineText
 import com.simplemobiletools.commons.extensions.updateTextColors
 import kotlinx.android.synthetic.main.fragment_clock.view.*
 import java.util.*
@@ -26,21 +24,17 @@ class ClockFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerF
         passedSeconds = ((calendar.timeInMillis + offset) / 1000).toInt()
         updateCurrentTime()
         updateDate()
-
-        time_zones_placeholder_2.apply {
-            underlineText()
-            setOnClickListener {
-                placeholderClicked()
-            }
-        }
-
         setupViews()
     }
 
     private fun setupViews() {
-        time_zones_holder.beVisibleIf(context.config.displayOtherTimeZones)
         context.updateTextColors(clock_fragment)
-        time_zones_placeholder_2.setTextColor(context.getAdjustedPrimaryColor())
+        val displayOtherTimeZones = context.config.displayOtherTimeZones
+        time_zones_list.beVisibleIf(displayOtherTimeZones)
+        clock_fab.beVisibleIf(displayOtherTimeZones)
+        clock_fab.setOnClickListener {
+            fabClicked()
+        }
     }
 
     private fun updateCurrentTime() {
@@ -87,7 +81,7 @@ class ClockFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerF
         updateHandler.removeCallbacksAndMessages(null)
     }
 
-    private fun placeholderClicked() {
+    private fun fabClicked() {
 
     }
 

@@ -1,9 +1,9 @@
 package com.simplemobiletools.clock.fragments
 
 import android.content.Context
+import android.support.design.widget.CoordinatorLayout
 import android.util.AttributeSet
-import android.widget.RelativeLayout
 
-abstract class MyViewPagerFragment(context: Context, attributeSet: AttributeSet) : RelativeLayout(context, attributeSet) {
+abstract class MyViewPagerFragment(context: Context, attributeSet: AttributeSet) : CoordinatorLayout(context, attributeSet) {
     abstract fun onActivityResume()
 }
