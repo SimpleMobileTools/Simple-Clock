@@ -37,6 +37,7 @@
             android:layout_below="@+id/clock_date"
             android:layout_marginTop="@dimen/activity_margin"
             android:clipToPadding="false"
+            android:overScrollMode="ifContentScrolls"
             android:scrollbars="none"
             android:visibility="gone"
             app:layoutManager="com.simplemobiletools.commons.views.MyLinearLayoutManager"/>

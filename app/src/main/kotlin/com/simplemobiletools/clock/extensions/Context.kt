@@ -3,6 +3,10 @@ package com.simplemobiletools.clock.extensions
 import android.content.Context
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.helpers.Config
+import com.simplemobiletools.clock.helpers.EDITED_TIME_ZONE_SEPARATOR
+import com.simplemobiletools.clock.helpers.getAllTimeZones
+import com.simplemobiletools.clock.helpers.getDefaultTimeZoneTitle
+import com.simplemobiletools.clock.models.MyTimeZone
 import java.util.*
 
 val Context.config: Config get() = Config.newInstance(applicationContext)
@@ -17,3 +21,28 @@ fun Context.getFormattedDate(calendar: Calendar): String {
     val monthString = resources.getStringArray(R.array.months)[month]
     return "$shortDayString, $dayOfMonth $monthString"
 }
+
+fun Context.getEditedTimeZonesMap(): HashMap<Int, String> {
+    val editedTimeZoneTitles = config.editedTimeZoneTitles
+    val editedTitlesMap = HashMap<Int, String>()
+    editedTimeZoneTitles.forEach {
+        val parts = it.split(EDITED_TIME_ZONE_SEPARATOR.toRegex(), 2)
+        editedTitlesMap[parts[0].toInt()] = parts[1]
+    }
+    return editedTitlesMap
+}
+
+fun Context.getAllTimeZonesModified(): ArrayList<MyTimeZone> {
+    val timeZones = getAllTimeZones()
+    val editedTitlesMap = getEditedTimeZonesMap()
+    timeZones.forEach {
+        if (editedTitlesMap.keys.contains(it.id)) {
+            it.title = editedTitlesMap[it.id]!!
+        } else {
+            it.title = it.title.substring(it.title.indexOf(' ')).trim()
+        }
+    }
+    return timeZones
+}
+
+fun Context.getModifiedTimeZoneTitle(id: Int) = getAllTimeZonesModified().firstOrNull { it.id == id }?.title ?: getDefaultTimeZoneTitle(id)

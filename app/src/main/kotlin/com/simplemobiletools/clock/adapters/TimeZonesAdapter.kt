@@ -92,7 +92,7 @@ class TimeZonesAdapter(activity: SimpleActivity, var timeZones: ArrayList<MyTime
         val formattedDate = activity.getFormattedDate(calendar)
 
         view.apply {
-            time_zone_title.text = timeZone.title.substring(timeZone.title.indexOf(' '))
+            time_zone_title.text = timeZone.title
             time_zone_title.setTextColor(textColor)
 
             time_zone_time.text = formattedTime

@@ -1,3 +1,3 @@
 package com.simplemobiletools.clock.models
 
-data class MyTimeZone(val id: Int, val title: String, val zoneName: String)
+data class MyTimeZone(val id: Int, var title: String, val zoneName: String)

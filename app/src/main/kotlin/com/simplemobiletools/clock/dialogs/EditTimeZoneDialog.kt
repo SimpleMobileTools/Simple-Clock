@@ -4,6 +4,8 @@ import android.support.v7.app.AlertDialog
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.config
+import com.simplemobiletools.clock.extensions.getEditedTimeZonesMap
+import com.simplemobiletools.clock.extensions.getModifiedTimeZoneTitle
 import com.simplemobiletools.clock.helpers.EDITED_TIME_ZONE_SEPARATOR
 import com.simplemobiletools.clock.helpers.getDefaultTimeZoneTitle
 import com.simplemobiletools.clock.models.MyTimeZone
@@ -16,7 +18,7 @@ class EditTimeZoneDialog(val activity: SimpleActivity, val myTimeZone: MyTimeZon
 
     init {
         val view = activity.layoutInflater.inflate(R.layout.dialog_edit_time_zone, null).apply {
-            edit_time_zone_title.setText(myTimeZone.title)
+            edit_time_zone_title.setText(activity.getModifiedTimeZoneTitle(myTimeZone.id))
             edit_time_zone_value.text = getDefaultTimeZoneTitle(myTimeZone.id)
         }
 
@@ -31,12 +33,7 @@ class EditTimeZoneDialog(val activity: SimpleActivity, val myTimeZone: MyTimeZon
     }
 
     private fun dialogConfirmed(newTitle: String) {
-        val editedTimeZoneTitles = activity.config.editedTimeZoneTitles
-        val editedTitlesMap = HashMap<Int, String>()
-        editedTimeZoneTitles.forEach {
-            val parts = it.split(EDITED_TIME_ZONE_SEPARATOR.toRegex(), 2)
-            editedTitlesMap[parts[0].toInt()] = parts[1]
-        }
+        val editedTitlesMap = activity.getEditedTimeZonesMap()
 
         if (newTitle.isEmpty()) {
             editedTitlesMap.remove(myTimeZone.id)
