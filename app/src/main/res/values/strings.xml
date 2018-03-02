@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Clock</string>
+    <string name="time_zone">Time zone</string>
 
     <!-- Settings -->
     <string name="clock_tab">Clock tab</string>

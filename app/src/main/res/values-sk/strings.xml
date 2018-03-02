@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Jednoduché hodinky</string>
     <string name="app_launcher_name">Hodinky</string>
+    <string name="time_zone">Časové pásmo</string>
 
     <!-- Settings -->
     <string name="clock_tab">Okno s časom</string>

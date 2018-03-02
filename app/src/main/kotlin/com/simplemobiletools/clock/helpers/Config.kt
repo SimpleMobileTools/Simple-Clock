@@ -19,4 +19,8 @@ class Config(context: Context) : BaseConfig(context) {
     var selectedTimeZones: Set<String>
         get() = prefs.getStringSet(SELECTED_TIME_ZONES, HashSet())
         set(selectedTimeZones) = prefs.edit().putStringSet(SELECTED_TIME_ZONES, selectedTimeZones).apply()
+
+    var editedTimeZoneTitles: Set<String>
+        get() = prefs.getStringSet(EDITED_TIME_ZONE_TITLES, HashSet())
+        set(editedTimeZoneTitles) = prefs.edit().putStringSet(EDITED_TIME_ZONE_TITLES, editedTimeZoneTitles).apply()
 }

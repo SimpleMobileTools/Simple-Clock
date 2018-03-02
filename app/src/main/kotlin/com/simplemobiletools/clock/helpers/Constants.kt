@@ -6,8 +6,11 @@ import com.simplemobiletools.clock.models.MyTimeZone
 const val SHOW_SECONDS = "show_seconds"
 const val DISPLAY_OTHER_TIME_ZONES = "display_other_time_zones"
 const val SELECTED_TIME_ZONES = "selected_time_zones"
+const val EDITED_TIME_ZONE_TITLES = "edited_time_zone_titles"
 
 const val TABS_COUNT = 3
+
+fun getDefaultTimeZoneTitle(id: Int) = getAllTimeZones().firstOrNull { it.id == id }?.title ?: ""
 
 fun getAllTimeZones() = arrayListOf(
         MyTimeZone(1, "GMT-11:00 Midway", "Pacific/Midway"),

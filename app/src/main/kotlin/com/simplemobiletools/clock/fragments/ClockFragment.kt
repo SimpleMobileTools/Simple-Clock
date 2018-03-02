@@ -10,6 +10,7 @@ import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.adapters.TimeZonesAdapter
 import com.simplemobiletools.clock.dialogs.AddTimeZonesDialog
+import com.simplemobiletools.clock.dialogs.EditTimeZoneDialog
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.getFormattedDate
 import com.simplemobiletools.clock.helpers.getAllTimeZones
@@ -127,8 +128,13 @@ class ClockFragment : Fragment() {
         val timeZones = getAllTimeZones().filter { selectedTimeZoneIDs.contains(it.id) } as ArrayList<MyTimeZone>
         val currAdapter = view.time_zones_list.adapter
         if (currAdapter == null) {
-            val timeZonesAdapter = TimeZonesAdapter(activity as SimpleActivity, timeZones, view.time_zones_list) {}
-            view.time_zones_list.adapter = timeZonesAdapter
+            TimeZonesAdapter(activity as SimpleActivity, timeZones, view.time_zones_list) {
+                EditTimeZoneDialog(activity as SimpleActivity, it as MyTimeZone) {
+                    updateTimeZones()
+                }
+            }.apply {
+                view.time_zones_list.adapter = this
+            }
         } else {
             (currAdapter as TimeZonesAdapter).updateItems(timeZones)
         }
