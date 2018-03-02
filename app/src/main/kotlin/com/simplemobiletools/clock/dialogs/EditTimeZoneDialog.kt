@@ -4,6 +4,7 @@ import android.support.v7.app.AlertDialog
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.config
+import com.simplemobiletools.clock.helpers.EDITED_TIME_ZONE_SEPARATOR
 import com.simplemobiletools.clock.helpers.getDefaultTimeZoneTitle
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.commons.extensions.setupDialogStuff
@@ -33,8 +34,22 @@ class EditTimeZoneDialog(val activity: SimpleActivity, val myTimeZone: MyTimeZon
         val editedTimeZoneTitles = activity.config.editedTimeZoneTitles
         val editedTitlesMap = HashMap<Int, String>()
         editedTimeZoneTitles.forEach {
-            val parts = it.split(":".toRegex(), 2)
+            val parts = it.split(EDITED_TIME_ZONE_SEPARATOR.toRegex(), 2)
+            editedTitlesMap[parts[0].toInt()] = parts[1]
         }
+
+        if (newTitle.isEmpty()) {
+            editedTitlesMap.remove(myTimeZone.id)
+        } else {
+            editedTitlesMap[myTimeZone.id] = newTitle
+        }
+
+        val newTitlesSet = HashSet<String>()
+        for ((key, value) in editedTitlesMap) {
+            newTitlesSet.add("$key$EDITED_TIME_ZONE_SEPARATOR$value")
+        }
+
+        activity.config.editedTimeZoneTitles = newTitlesSet
         callback()
     }
 }
