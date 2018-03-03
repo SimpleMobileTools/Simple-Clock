@@ -11,6 +11,14 @@ const val EDITED_TIME_ZONE_TITLES = "edited_time_zone_titles"
 const val TABS_COUNT = 3
 const val EDITED_TIME_ZONE_SEPARATOR = ":"
 
+const val MONDAY_BIT = 1
+const val TUESDAY_BIT = 2
+const val WEDNESDAY_BIT = 4
+const val THURSDAY_BIT = 8
+const val FRIDAY_BIT = 16
+const val SATURDAY_BIT = 32
+const val SUNDAY_BIT = 64
+
 fun getDefaultTimeZoneTitle(id: Int) = getAllTimeZones().firstOrNull { it.id == id }?.title ?: ""
 
 fun getAllTimeZones() = arrayListOf(

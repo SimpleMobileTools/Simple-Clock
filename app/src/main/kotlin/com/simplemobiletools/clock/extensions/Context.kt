@@ -2,14 +2,13 @@ package com.simplemobiletools.clock.extensions
 
 import android.content.Context
 import com.simplemobiletools.clock.R
-import com.simplemobiletools.clock.helpers.Config
-import com.simplemobiletools.clock.helpers.EDITED_TIME_ZONE_SEPARATOR
-import com.simplemobiletools.clock.helpers.getAllTimeZones
-import com.simplemobiletools.clock.helpers.getDefaultTimeZoneTitle
+import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.clock.models.MyTimeZone
 import java.util.*
 
 val Context.config: Config get() = Config.newInstance(applicationContext)
+
+val Context.dbHelper: DBHelper get() = DBHelper.newInstance(applicationContext)
 
 fun Context.getFormattedDate(calendar: Calendar): String {
     val dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7    // make sure index 0 means monday
