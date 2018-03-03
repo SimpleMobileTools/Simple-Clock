@@ -58,7 +58,7 @@ class SelectTimeZonesAdapter(val activity: SimpleActivity, val timeZones: ArrayL
         return selectedItemsSet
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = activity.layoutInflater.inflate(R.layout.item_add_time_zone, parent, false)
         return ViewHolder(view, adapterListener)
     }
