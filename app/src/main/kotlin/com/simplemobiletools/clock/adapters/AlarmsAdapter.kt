@@ -8,6 +8,7 @@ import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.formatAlarmTime
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
+import com.simplemobiletools.commons.extensions.getSelectedDaysString
 import com.simplemobiletools.commons.views.MyRecyclerView
 import kotlinx.android.synthetic.main.item_alarm.view.*
 import java.util.*
@@ -71,7 +72,7 @@ class AlarmsAdapter(activity: SimpleActivity, var alarms: ArrayList<Alarm>, recy
             alarm_time.text = alarm.timeInMinutes.formatAlarmTime()
             alarm_time.setTextColor(textColor)
 
-            alarm_days.text = "Mon, Tue, Wed, Thu, Fri"
+            alarm_days.text = activity.getSelectedDaysString(alarm.days)
             alarm_days.setTextColor(textColor)
 
             alarm_switch.isChecked = alarm.isEnabled
