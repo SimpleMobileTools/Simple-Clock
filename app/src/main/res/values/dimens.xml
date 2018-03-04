@@ -1,3 +1,4 @@
 <resources>
     <dimen name="clock_text_size">70sp</dimen>
+    <dimen name="alarm_text_size">46sp</dimen>
 </resources>

@@ -2,9 +2,13 @@ package com.simplemobiletools.clock.helpers
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.simplemobiletools.clock.models.Alarm
+import com.simplemobiletools.commons.extensions.getIntValue
+import com.simplemobiletools.commons.extensions.getStringValue
+import java.util.*
 
 class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
     private val ALARMS_TABLE_NAME = "contacts"
@@ -41,11 +45,11 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
 
     private fun insertInitialAlarms(db: SQLiteDatabase) {
         val weekDays = MONDAY_BIT or TUESDAY_BIT or WEDNESDAY_BIT or THURSDAY_BIT or FRIDAY_BIT
-        val weekDaysAlarm = Alarm(420, weekDays, false, false, "", "")
+        val weekDaysAlarm = Alarm(0, 420, weekDays, false, false, "", "")
         insertAlarm(weekDaysAlarm, db)
 
         val weekEnd = SATURDAY_BIT or SUNDAY_BIT
-        val weekEndAlarm = Alarm(540, weekEnd, false, false, "", "")
+        val weekEndAlarm = Alarm(0, 540, weekEnd, false, false, "", "")
         insertAlarm(weekEndAlarm, db)
     }
 
@@ -63,5 +67,36 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
             put(COL_SOUND_URI, alarm.soundUri)
             put(COL_LABEL, alarm.label)
         }
+    }
+
+    fun getAlarms(): ArrayList<Alarm> {
+        val alarms = ArrayList<Alarm>()
+        val cols = arrayOf(COL_ID, COL_TIME_IN_MINUTES, COL_DAYS, COL_IS_ENABLED, COL_VIBRATE, COL_SOUND_URI, COL_LABEL)
+        var cursor: Cursor? = null
+        try {
+            cursor = mDb.query(ALARMS_TABLE_NAME, cols, null, null, null, null, null)
+            if (cursor?.moveToFirst() == true) {
+                do {
+                    try {
+                        val id = cursor.getIntValue(COL_ID)
+                        val timeInMinutes = cursor.getIntValue(COL_TIME_IN_MINUTES)
+                        val days = cursor.getIntValue(COL_DAYS)
+                        val isEnabled = cursor.getIntValue(COL_IS_ENABLED) == 1
+                        val vibrate = cursor.getIntValue(COL_VIBRATE) == 1
+                        val soundUri = cursor.getStringValue(COL_SOUND_URI)
+                        val label = cursor.getStringValue(COL_LABEL)
+
+                        val alarm = Alarm(id, timeInMinutes, days, isEnabled, vibrate, soundUri, label)
+                        alarms.add(alarm)
+                    } catch (e: Exception) {
+                        continue
+                    }
+                } while (cursor.moveToNext())
+            }
+        } finally {
+            cursor?.close()
+        }
+
+        return alarms
     }
 }

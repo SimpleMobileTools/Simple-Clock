@@ -36,7 +36,7 @@ class TimeZonesAdapter(activity: SimpleActivity, var timeZones: ArrayList<MyTime
         }
 
         when (id) {
-            R.id.cab_remove -> removeItems()
+            R.id.cab_delete -> deleteItems()
         }
     }
 
@@ -45,9 +45,9 @@ class TimeZonesAdapter(activity: SimpleActivity, var timeZones: ArrayList<MyTime
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = createViewHolder(R.layout.item_time_zone, parent)
 
     override fun onBindViewHolder(holder: MyRecyclerViewAdapter.ViewHolder, position: Int) {
-        val contact = timeZones[position]
-        val view = holder.bindView(contact, true) { itemView, layoutPosition ->
-            setupView(itemView, contact)
+        val timeZone = timeZones[position]
+        val view = holder.bindView(timeZone, true) { itemView, layoutPosition ->
+            setupView(itemView, timeZone)
         }
         bindViewHolder(holder, position, view)
     }
@@ -64,7 +64,7 @@ class TimeZonesAdapter(activity: SimpleActivity, var timeZones: ArrayList<MyTime
         notifyDataSetChanged()
     }
 
-    private fun removeItems() {
+    private fun deleteItems() {
         val timeZonesToRemove = ArrayList<MyTimeZone>()
         val timeZoneIDsToRemove = ArrayList<String>()
         selectedPositions.sortedDescending().forEach {
