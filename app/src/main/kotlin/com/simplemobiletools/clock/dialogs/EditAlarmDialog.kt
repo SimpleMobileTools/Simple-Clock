@@ -1,6 +1,7 @@
 package com.simplemobiletools.clock.dialogs
 
 import android.app.TimePickerDialog
+import android.graphics.drawable.Drawable
 import android.support.v7.app.AlertDialog
 import android.widget.TextView
 import com.simplemobiletools.clock.R
@@ -8,17 +9,14 @@ import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.formatAlarmTime
 import com.simplemobiletools.clock.models.Alarm
-import com.simplemobiletools.commons.extensions.applyColorFilter
-import com.simplemobiletools.commons.extensions.getDialogTheme
-import com.simplemobiletools.commons.extensions.moveLastItemToFront
-import com.simplemobiletools.commons.extensions.setupDialogStuff
+import com.simplemobiletools.commons.extensions.*
 import kotlinx.android.synthetic.main.dialog_edit_alarm.view.*
 
 class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callback: () -> Unit) {
     val view = activity.layoutInflater.inflate(R.layout.dialog_edit_alarm, null)
+    val textColor = activity.config.textColor
 
     init {
-        val textColor = activity.config.textColor
         updateAlarmTime()
 
         view.apply {
@@ -26,13 +24,13 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                 TimePickerDialog(context, context.getDialogTheme(), timeSetListener, alarm.timeInMinutes / 60, alarm.timeInMinutes % 60, context.config.use24hourFormat).show()
             }
 
-            colorLeftDrawable(edit_alarm_sound, textColor)
+            colorLeftDrawable(edit_alarm_sound)
             edit_alarm_sound.text = "Default alarm"
             edit_alarm_sound.setOnClickListener {
 
             }
 
-            colorLeftDrawable(edit_alarm_vibrate, textColor)
+            colorLeftDrawable(edit_alarm_vibrate)
             edit_alarm_vibrate.isChecked = alarm.vibrate
             edit_alarm_vibrate_holder.setOnClickListener {
                 edit_alarm_vibrate.toggle()
@@ -51,12 +49,20 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                 day.text = dayLetters[i]
 
                 val isDayChecked = alarm.days and pow != 0
-                val drawableId = if (isDayChecked) R.drawable.circle_background_filled else R.drawable.circle_background_stroke
-                val drawable = activity.resources.getDrawable(drawableId)
-                drawable.applyColorFilter(textColor)
-                day.background = drawable
+                day.background = getProperDayDrawable(isDayChecked)
 
                 day.setTextColor(if (isDayChecked) context.config.backgroundColor else textColor)
+                day.setOnClickListener {
+                    val selectDay = alarm.days and pow == 0
+                    if (selectDay) {
+                        alarm.days = alarm.days.addBit(pow)
+                    } else {
+                        alarm.days = alarm.days.removeBit(pow)
+                    }
+                    day.background = getProperDayDrawable(selectDay)
+                    day.setTextColor(if (selectDay) context.config.backgroundColor else textColor)
+                }
+
                 edit_alarm_days_holder.addView(day)
             }
         }
@@ -84,9 +90,16 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
         callback()
     }
 
-    private fun colorLeftDrawable(textView: TextView, color: Int) {
+    private fun colorLeftDrawable(textView: TextView) {
         val leftImage = textView.compoundDrawables.first()
-        leftImage.applyColorFilter(color)
+        leftImage.applyColorFilter(textColor)
         textView.setCompoundDrawables(leftImage, null, null, null)
+    }
+
+    private fun getProperDayDrawable(selected: Boolean): Drawable {
+        val drawableId = if (selected) R.drawable.circle_background_filled else R.drawable.circle_background_stroke
+        val drawable = activity.resources.getDrawable(drawableId)
+        drawable.applyColorFilter(textColor)
+        return drawable
     }
 }
