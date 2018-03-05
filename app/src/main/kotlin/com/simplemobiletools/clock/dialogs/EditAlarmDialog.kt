@@ -1,5 +1,6 @@
 package com.simplemobiletools.clock.dialogs
 
+import android.app.TimePickerDialog
 import android.support.v7.app.AlertDialog
 import android.widget.TextView
 import com.simplemobiletools.clock.R
@@ -8,6 +9,7 @@ import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.formatAlarmTime
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.applyColorFilter
+import com.simplemobiletools.commons.extensions.getDialogTheme
 import com.simplemobiletools.commons.extensions.moveLastItemToFront
 import com.simplemobiletools.commons.extensions.setupDialogStuff
 import kotlinx.android.synthetic.main.dialog_edit_alarm.view.*
@@ -17,10 +19,11 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
 
     init {
         val textColor = activity.config.textColor
-        view.apply {
-            edit_alarm_time.text = alarm.timeInMinutes.formatAlarmTime()
-            edit_alarm_time.setOnClickListener {
+        updateAlarmTime()
 
+        view.apply {
+            edit_alarm_time.setOnClickListener {
+                TimePickerDialog(context, context.getDialogTheme(), timeSetListener, alarm.timeInMinutes / 60, alarm.timeInMinutes % 60, context.config.use24hourFormat).show()
             }
 
             colorLeftDrawable(edit_alarm_sound, textColor)
@@ -66,6 +69,15 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
 
                     }
                 }
+    }
+
+    private val timeSetListener = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+        alarm.timeInMinutes = hourOfDay * 60 + minute
+        updateAlarmTime()
+    }
+
+    private fun updateAlarmTime() {
+        view.edit_alarm_time.text = alarm.timeInMinutes.formatAlarmTime()
     }
 
     private fun dialogConfirmed() {
