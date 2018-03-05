@@ -9,6 +9,7 @@ import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.adapters.AlarmsAdapter
 import com.simplemobiletools.clock.dialogs.EditAlarmDialog
+import com.simplemobiletools.clock.extensions.createNewAlarm
 import com.simplemobiletools.clock.extensions.dbHelper
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.updateTextColors
@@ -33,7 +34,7 @@ class AlarmFragment : Fragment() {
         view.apply {
             context!!.updateTextColors(alarm_fragment)
             alarm_fab.setOnClickListener {
-                val newAlarm = Alarm(0, DEFAULT_ALARM_MINUTES, 0, false, false, "", "")
+                val newAlarm = context.createNewAlarm(DEFAULT_ALARM_MINUTES, 0)
                 openEditAlarm(newAlarm)
             }
         }

@@ -13,8 +13,8 @@ import com.simplemobiletools.commons.extensions.*
 import kotlinx.android.synthetic.main.dialog_edit_alarm.view.*
 
 class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callback: () -> Unit) {
-    val view = activity.layoutInflater.inflate(R.layout.dialog_edit_alarm, null)
-    val textColor = activity.config.textColor
+    private val view = activity.layoutInflater.inflate(R.layout.dialog_edit_alarm, null)
+    private val textColor = activity.config.textColor
 
     init {
         updateAlarmTime()
@@ -25,7 +25,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
             }
 
             colorLeftDrawable(edit_alarm_sound)
-            edit_alarm_sound.text = "Default alarm"
+            edit_alarm_sound.text = alarm.soundTitle
             edit_alarm_sound.setOnClickListener {
 
             }

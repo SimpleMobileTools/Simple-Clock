@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.simplemobiletools.clock.extensions.createNewAlarm
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.getIntValue
 import com.simplemobiletools.commons.extensions.getStringValue
@@ -17,6 +18,7 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
     private val COL_DAYS = "days"
     private val COL_IS_ENABLED = "is_enabled"
     private val COL_VIBRATE = "vibrate"
+    private val COL_SOUND_TITLE = "sound_title"
     private val COL_SOUND_URI = "sound_uri"
     private val COL_LABEL = "label"
 
@@ -37,7 +39,7 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL("CREATE TABLE $ALARMS_TABLE_NAME ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_TIME_IN_MINUTES INTEGER, $COL_DAYS INTEGER, " +
-                "$COL_IS_ENABLED INTEGER, $COL_VIBRATE INTEGER, $COL_SOUND_URI TEXT, $COL_LABEL TEXT)")
+                "$COL_IS_ENABLED INTEGER, $COL_VIBRATE INTEGER, $COL_SOUND_TITLE TEXT, $COL_SOUND_URI TEXT, $COL_LABEL TEXT)")
         insertInitialAlarms(db)
     }
 
@@ -45,11 +47,11 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
 
     private fun insertInitialAlarms(db: SQLiteDatabase) {
         val weekDays = MONDAY_BIT or TUESDAY_BIT or WEDNESDAY_BIT or THURSDAY_BIT or FRIDAY_BIT
-        val weekDaysAlarm = Alarm(0, 420, weekDays, false, false, "", "")
+        val weekDaysAlarm = context.createNewAlarm(420, weekDays)
         insertAlarm(weekDaysAlarm, db)
 
         val weekEnd = SATURDAY_BIT or SUNDAY_BIT
-        val weekEndAlarm = Alarm(0, 540, weekEnd, false, false, "", "")
+        val weekEndAlarm = context.createNewAlarm(540, weekEnd)
         insertAlarm(weekEndAlarm, db)
     }
 
@@ -64,6 +66,7 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
             put(COL_DAYS, alarm.days)
             put(COL_IS_ENABLED, alarm.isEnabled)
             put(COL_VIBRATE, alarm.vibrate)
+            put(COL_SOUND_TITLE, alarm.soundTitle)
             put(COL_SOUND_URI, alarm.soundUri)
             put(COL_LABEL, alarm.label)
         }
@@ -71,7 +74,7 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
 
     fun getAlarms(): ArrayList<Alarm> {
         val alarms = ArrayList<Alarm>()
-        val cols = arrayOf(COL_ID, COL_TIME_IN_MINUTES, COL_DAYS, COL_IS_ENABLED, COL_VIBRATE, COL_SOUND_URI, COL_LABEL)
+        val cols = arrayOf(COL_ID, COL_TIME_IN_MINUTES, COL_DAYS, COL_IS_ENABLED, COL_VIBRATE, COL_SOUND_TITLE, COL_SOUND_URI, COL_LABEL)
         var cursor: Cursor? = null
         try {
             cursor = mDb.query(ALARMS_TABLE_NAME, cols, null, null, null, null, null)
@@ -83,10 +86,11 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
                         val days = cursor.getIntValue(COL_DAYS)
                         val isEnabled = cursor.getIntValue(COL_IS_ENABLED) == 1
                         val vibrate = cursor.getIntValue(COL_VIBRATE) == 1
+                        val soundTitle = cursor.getStringValue(COL_SOUND_TITLE)
                         val soundUri = cursor.getStringValue(COL_SOUND_URI)
                         val label = cursor.getStringValue(COL_LABEL)
 
-                        val alarm = Alarm(id, timeInMinutes, days, isEnabled, vibrate, soundUri, label)
+                        val alarm = Alarm(id, timeInMinutes, days, isEnabled, vibrate, soundTitle, soundUri, label)
                         alarms.add(alarm)
                     } catch (e: Exception) {
                         continue

@@ -1,8 +1,11 @@
 package com.simplemobiletools.clock.extensions
 
 import android.content.Context
+import android.media.RingtoneManager
+import android.net.Uri
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.helpers.*
+import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.clock.models.MyTimeZone
 import java.util.*
 
@@ -45,3 +48,24 @@ fun Context.getAllTimeZonesModified(): ArrayList<MyTimeZone> {
 }
 
 fun Context.getModifiedTimeZoneTitle(id: Int) = getAllTimeZonesModified().firstOrNull { it.id == id }?.title ?: getDefaultTimeZoneTitle(id)
+
+fun Context.getAlarms(): Map<String, String> {
+    val manager = RingtoneManager(this)
+    manager.setType(RingtoneManager.TYPE_ALARM)
+    val cursor = manager.cursor
+
+    val alarms = HashMap<String, String>()
+    while (cursor.moveToNext()) {
+        val title = cursor.getString(RingtoneManager.TITLE_COLUMN_INDEX)
+        val uri = Uri.parse("${cursor.getString(RingtoneManager.URI_COLUMN_INDEX)}/${cursor.getString(RingtoneManager.ID_COLUMN_INDEX)}").toString()
+        alarms[title] = uri
+    }
+
+    return alarms
+}
+
+private fun getDefaultAlarmUri() = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+
+private fun getDefaultAlarmTitle(context: Context) = RingtoneManager.getRingtone(context, getDefaultAlarmUri()).getTitle(context)
+
+fun Context.createNewAlarm(timeInMinutes: Int, weekDays: Int) = Alarm(0, timeInMinutes, weekDays, false, false, getDefaultAlarmTitle(this), getDefaultAlarmUri().toString(), "")
