@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.formatAlarmTime
+import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
 import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
@@ -14,8 +15,8 @@ import com.simplemobiletools.commons.views.MyRecyclerView
 import kotlinx.android.synthetic.main.item_alarm.view.*
 import java.util.*
 
-class AlarmsAdapter(activity: SimpleActivity, var alarms: ArrayList<Alarm>, recyclerView: MyRecyclerView, itemClick: (Any) -> Unit) :
-        MyRecyclerViewAdapter(activity, recyclerView, null, itemClick) {
+class AlarmsAdapter(activity: SimpleActivity, var alarms: ArrayList<Alarm>, val toggleAlarmInterface: ToggleAlarmInterface,
+                    recyclerView: MyRecyclerView, itemClick: (Any) -> Unit) : MyRecyclerViewAdapter(activity, recyclerView, null, itemClick) {
     private val adjustedPrimaryColor = activity.getAdjustedPrimaryColor()
 
     override fun getActionMenuId() = R.menu.cab_alarms
@@ -79,6 +80,9 @@ class AlarmsAdapter(activity: SimpleActivity, var alarms: ArrayList<Alarm>, recy
 
             alarm_switch.isChecked = alarm.isEnabled
             alarm_switch.setColors(textColor, adjustedPrimaryColor, backgroundColor)
+            alarm_switch.setOnClickListener {
+                toggleAlarmInterface.alarmToggled(alarm.id, alarm_switch.isChecked)
+            }
         }
     }
 }

@@ -67,6 +67,14 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
         return mDb.update(ALARMS_TABLE_NAME, values, selection, selectionArgs) == 1
     }
 
+    fun updateAlarmEnabledState(id: Int, isEnabled: Boolean): Boolean {
+        val selectionArgs = arrayOf(id.toString())
+        val values = ContentValues()
+        values.put(COL_IS_ENABLED, isEnabled)
+        val selection = "$COL_ID = ?"
+        return mDb.update(ALARMS_TABLE_NAME, values, selection, selectionArgs) == 1
+    }
+
     private fun fillAlarmContentValues(alarm: Alarm): ContentValues {
         return ContentValues().apply {
             put(COL_TIME_IN_MINUTES, alarm.timeInMinutes)

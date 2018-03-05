@@ -11,13 +11,16 @@ import com.simplemobiletools.clock.adapters.AlarmsAdapter
 import com.simplemobiletools.clock.dialogs.EditAlarmDialog
 import com.simplemobiletools.clock.extensions.createNewAlarm
 import com.simplemobiletools.clock.extensions.dbHelper
+import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
+import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.extensions.updateTextColors
 import kotlinx.android.synthetic.main.fragment_alarm.view.*
 
-class AlarmFragment : Fragment() {
+class AlarmFragment : Fragment(), ToggleAlarmInterface {
     private val DEFAULT_ALARM_MINUTES = 480
 
+    private var alarms = ArrayList<Alarm>()
     lateinit var view: ViewGroup
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -43,10 +46,10 @@ class AlarmFragment : Fragment() {
     }
 
     private fun setupAlarms() {
-        val alarms = context!!.dbHelper.getAlarms()
+        alarms = context!!.dbHelper.getAlarms()
         val currAdapter = view.alarms_list.adapter
         if (currAdapter == null) {
-            val alarmsAdapter = AlarmsAdapter(activity as SimpleActivity, alarms, view.alarms_list) {
+            val alarmsAdapter = AlarmsAdapter(activity as SimpleActivity, alarms, this, view.alarms_list) {
                 openEditAlarm(it as Alarm)
             }
             view.alarms_list.adapter = alarmsAdapter
@@ -58,6 +61,14 @@ class AlarmFragment : Fragment() {
     private fun openEditAlarm(alarm: Alarm) {
         EditAlarmDialog(activity as SimpleActivity, alarm) {
             setupAlarms()
+        }
+    }
+
+    override fun alarmToggled(id: Int, isEnabled: Boolean) {
+        if (context!!.dbHelper.updateAlarmEnabledState(id, isEnabled)) {
+            alarms.firstOrNull { it.id == id }?.isEnabled = isEnabled
+        } else {
+            activity!!.toast(R.string.unknown_error_occurred)
         }
     }
 }
