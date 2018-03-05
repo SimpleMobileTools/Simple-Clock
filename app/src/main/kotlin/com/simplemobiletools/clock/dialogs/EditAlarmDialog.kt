@@ -27,7 +27,11 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
             colorLeftDrawable(edit_alarm_sound)
             edit_alarm_sound.text = alarm.soundTitle
             edit_alarm_sound.setOnClickListener {
-
+                SelectAlarmSoundDialog(activity, alarm.soundUri) {
+                    alarm.soundTitle = it.title
+                    alarm.soundUri = it.uri
+                    edit_alarm_sound.text = it.title
+                }
             }
 
             colorLeftDrawable(edit_alarm_vibrate)

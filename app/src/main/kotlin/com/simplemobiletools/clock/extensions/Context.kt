@@ -6,6 +6,7 @@ import android.net.Uri
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.clock.models.Alarm
+import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.clock.models.MyTimeZone
 import java.util.*
 
@@ -49,16 +50,20 @@ fun Context.getAllTimeZonesModified(): ArrayList<MyTimeZone> {
 
 fun Context.getModifiedTimeZoneTitle(id: Int) = getAllTimeZonesModified().firstOrNull { it.id == id }?.title ?: getDefaultTimeZoneTitle(id)
 
-fun Context.getAlarms(): Map<String, String> {
+fun Context.getAlarms(): ArrayList<AlarmSound> {
     val manager = RingtoneManager(this)
     manager.setType(RingtoneManager.TYPE_ALARM)
     val cursor = manager.cursor
 
-    val alarms = HashMap<String, String>()
+    val alarms = ArrayList<AlarmSound>()
+    val defaultAlarm = AlarmSound(getDefaultAlarmTitle(this), getDefaultAlarmUri().toString())
+    alarms.add(defaultAlarm)
+
     while (cursor.moveToNext()) {
         val title = cursor.getString(RingtoneManager.TITLE_COLUMN_INDEX)
         val uri = Uri.parse("${cursor.getString(RingtoneManager.URI_COLUMN_INDEX)}/${cursor.getString(RingtoneManager.ID_COLUMN_INDEX)}").toString()
-        alarms[title] = uri
+        val alarmSound = AlarmSound(title, uri)
+        alarms.add(alarmSound)
     }
 
     return alarms
