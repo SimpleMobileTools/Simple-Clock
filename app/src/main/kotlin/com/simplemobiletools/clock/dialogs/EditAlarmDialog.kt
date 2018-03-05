@@ -34,6 +34,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
             edit_alarm_vibrate.isChecked = alarm.vibrate
             edit_alarm_vibrate_holder.setOnClickListener {
                 edit_alarm_vibrate.toggle()
+                alarm.vibrate = edit_alarm_vibrate.isChecked
             }
 
             edit_alarm_label_image.applyColorFilter(textColor)
@@ -71,9 +72,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                 .setPositiveButton(R.string.ok, { dialog, which -> dialogConfirmed() })
                 .setNegativeButton(R.string.cancel, null)
                 .create().apply {
-                    activity.setupDialogStuff(view, this) {
-
-                    }
+                    activity.setupDialogStuff(view, this)
                 }
     }
 
@@ -87,6 +86,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
     }
 
     private fun dialogConfirmed() {
+        alarm.label = view.edit_alarm_label.value
         callback()
     }
 
