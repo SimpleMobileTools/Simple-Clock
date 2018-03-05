@@ -8,11 +8,15 @@ import android.view.ViewGroup
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.adapters.AlarmsAdapter
+import com.simplemobiletools.clock.dialogs.EditAlarmDialog
 import com.simplemobiletools.clock.extensions.dbHelper
+import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.updateTextColors
 import kotlinx.android.synthetic.main.fragment_alarm.view.*
 
 class AlarmFragment : Fragment() {
+    private val DEFAULT_ALARM_MINUTES = 480
+
     lateinit var view: ViewGroup
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -29,7 +33,8 @@ class AlarmFragment : Fragment() {
         view.apply {
             context!!.updateTextColors(alarm_fragment)
             alarm_fab.setOnClickListener {
-                fabClicked()
+                val newAlarm = Alarm(0, DEFAULT_ALARM_MINUTES, 0, false, false, "", "")
+                openEditAlarm(newAlarm)
             }
         }
 
@@ -41,7 +46,7 @@ class AlarmFragment : Fragment() {
         val currAdapter = view.alarms_list.adapter
         if (currAdapter == null) {
             val alarmsAdapter = AlarmsAdapter(activity as SimpleActivity, alarms, view.alarms_list) {
-
+                openEditAlarm(it as Alarm)
             }
             view.alarms_list.adapter = alarmsAdapter
         } else {
@@ -49,7 +54,9 @@ class AlarmFragment : Fragment() {
         }
     }
 
-    private fun fabClicked() {
+    private fun openEditAlarm(alarm: Alarm) {
+        EditAlarmDialog(activity as SimpleActivity, alarm) {
 
+        }
     }
 }
