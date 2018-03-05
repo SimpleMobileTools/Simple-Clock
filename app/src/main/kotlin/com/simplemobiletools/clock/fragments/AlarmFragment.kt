@@ -16,6 +16,7 @@ import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.extensions.updateTextColors
 import kotlinx.android.synthetic.main.fragment_alarm.view.*
+import java.util.*
 
 class AlarmFragment : Fragment(), ToggleAlarmInterface {
     private val DEFAULT_ALARM_MINUTES = 480
@@ -66,9 +67,19 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
 
     override fun alarmToggled(id: Int, isEnabled: Boolean) {
         if (context!!.dbHelper.updateAlarmEnabledState(id, isEnabled)) {
-            alarms.firstOrNull { it.id == id }?.isEnabled = isEnabled
+            val alarm = alarms.firstOrNull { it.id == id } ?: return
+            alarm.isEnabled = isEnabled
+            if (isEnabled) {
+                getClosestTriggerTimestamp(alarm)
+            }
         } else {
             activity!!.toast(R.string.unknown_error_occurred)
         }
+    }
+
+    private fun getClosestTriggerTimestamp(alarm: Alarm) {
+        val calendar = Calendar.getInstance()
+        calendar.firstDayOfWeek = Calendar.MONDAY
+        val currentDay = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
     }
 }
