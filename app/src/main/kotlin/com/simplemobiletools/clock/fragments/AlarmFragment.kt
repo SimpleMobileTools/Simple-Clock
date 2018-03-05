@@ -57,7 +57,7 @@ class AlarmFragment : Fragment() {
 
     private fun openEditAlarm(alarm: Alarm) {
         EditAlarmDialog(activity as SimpleActivity, alarm) {
-
+            setupAlarms()
         }
     }
 }

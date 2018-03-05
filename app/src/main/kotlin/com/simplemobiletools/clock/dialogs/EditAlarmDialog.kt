@@ -7,6 +7,7 @@ import android.widget.TextView
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.config
+import com.simplemobiletools.clock.extensions.dbHelper
 import com.simplemobiletools.clock.extensions.formatAlarmTime
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.*
@@ -91,6 +92,9 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
 
     private fun dialogConfirmed() {
         alarm.label = view.edit_alarm_label.value
+        if (!activity.dbHelper.updateAlarm(alarm)) {
+            activity.toast(R.string.unknown_error_occurred)
+        }
         callback()
     }
 

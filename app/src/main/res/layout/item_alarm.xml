@@ -32,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/alarm_time"
             android:paddingBottom="@dimen/normal_margin"
+            android:paddingLeft="@dimen/tiny_margin"
             android:textSize="@dimen/big_text_size"
             tools:text="Mon, Tue, Wed, Thu, Fri"/>
 
