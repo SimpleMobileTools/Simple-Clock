@@ -1,37 +1,27 @@
 package com.simplemobiletools.clock.fragments
 
-import android.annotation.SuppressLint
-import android.app.AlarmManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.adapters.AlarmsAdapter
 import com.simplemobiletools.clock.dialogs.EditAlarmDialog
+import com.simplemobiletools.clock.extensions.cancelAlarmClock
 import com.simplemobiletools.clock.extensions.createNewAlarm
 import com.simplemobiletools.clock.extensions.dbHelper
-import com.simplemobiletools.clock.helpers.ALARM_ID
+import com.simplemobiletools.clock.extensions.scheduleNextAlarm
+import com.simplemobiletools.clock.helpers.DEFAULT_ALARM_MINUTES
 import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
-import com.simplemobiletools.clock.receivers.AlarmReceiver
 import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.extensions.updateTextColors
-import com.simplemobiletools.commons.helpers.isLollipopPlus
 import kotlinx.android.synthetic.main.fragment_alarm.view.*
 import java.util.*
-import kotlin.math.pow
 
 class AlarmFragment : Fragment(), ToggleAlarmInterface {
-    private val DEFAULT_ALARM_MINUTES = 480
-    private val DAY_MINUTES = 1440
-
     private var alarms = ArrayList<Alarm>()
     lateinit var view: ViewGroup
 
@@ -89,74 +79,9 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
 
     private fun checkAlarmState(alarm: Alarm) {
         if (alarm.isEnabled) {
-            getClosestTriggerTimestamp(alarm)
+            context!!.scheduleNextAlarm(alarm, true)
         } else {
-            cancelAlarmClock(alarm)
+            context!!.cancelAlarmClock(alarm)
         }
-    }
-
-    private fun getClosestTriggerTimestamp(alarm: Alarm) {
-        val calendar = Calendar.getInstance()
-        calendar.firstDayOfWeek = Calendar.MONDAY
-        for (i in 0..7) {
-            val currentDay = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
-            val isCorrectDay = alarm.days and 2.0.pow(currentDay).toInt() != 0
-            val currentTimeInMinutes = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE)
-            if (isCorrectDay && (alarm.timeInMinutes > currentTimeInMinutes || i > 0)) {
-                val triggerInMinutes = alarm.timeInMinutes - currentTimeInMinutes + (i * DAY_MINUTES)
-                showRemainingTimeMessage(triggerInMinutes)
-                setupAlarmClock(alarm, triggerInMinutes * 60 - calendar.get(Calendar.SECOND))
-                break
-            } else {
-                calendar.add(Calendar.DAY_OF_MONTH, 1)
-            }
-        }
-    }
-
-    private fun showRemainingTimeMessage(triggerInMinutes: Int) {
-        val days = triggerInMinutes / DAY_MINUTES
-        val hours = (triggerInMinutes % DAY_MINUTES) / 60
-        val minutes = triggerInMinutes % 60
-        val timesString = StringBuilder()
-        if (days > 0) {
-            val daysString = String.format(activity!!.resources.getQuantityString(R.plurals.days, days, days))
-            timesString.append("$daysString, ")
-        }
-
-        if (hours > 0) {
-            val hoursString = String.format(activity!!.resources.getQuantityString(R.plurals.hours, hours, hours))
-            timesString.append("$hoursString, ")
-        }
-
-        if (minutes > 0) {
-            val minutesString = String.format(activity!!.resources.getQuantityString(R.plurals.minutes, minutes, minutes))
-            timesString.append(minutesString)
-        }
-
-        val fullString = String.format(activity!!.getString(R.string.alarm_goes_off_in), timesString.toString().trim().trimEnd(','))
-        activity!!.toast(fullString, Toast.LENGTH_LONG)
-    }
-
-    @SuppressLint("NewApi")
-    private fun setupAlarmClock(alarm: Alarm, triggerInSeconds: Int) {
-        val alarmManager = context!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val targetMS = System.currentTimeMillis() + triggerInSeconds * 1000
-        val pendingIntent = getPendingIntent(alarm)
-
-        if (isLollipopPlus()) {
-            val info = AlarmManager.AlarmClockInfo(targetMS, pendingIntent)
-            alarmManager.setAlarmClock(info, pendingIntent)
-        }
-    }
-
-    private fun getPendingIntent(alarm: Alarm): PendingIntent {
-        val intent = Intent(context, AlarmReceiver::class.java)
-        intent.putExtra(ALARM_ID, alarm.id)
-        return PendingIntent.getBroadcast(context, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-    }
-
-    private fun cancelAlarmClock(alarm: Alarm) {
-        val alarmManager = context!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmManager.cancel(getPendingIntent(alarm))
     }
 }

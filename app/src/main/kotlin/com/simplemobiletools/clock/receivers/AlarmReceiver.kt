@@ -17,6 +17,7 @@ import com.simplemobiletools.clock.activities.SnoozeReminderActivity
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.dbHelper
 import com.simplemobiletools.clock.extensions.formatAlarmTime
+import com.simplemobiletools.clock.extensions.scheduleNextAlarm
 import com.simplemobiletools.clock.helpers.ALARM_ID
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.clock.services.SnoozeService
@@ -33,6 +34,8 @@ class AlarmReceiver : BroadcastReceiver() {
         val notification = getNotification(context, pendingIntent, alarm)
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.notify(alarm.id, notification)
+
+        context.scheduleNextAlarm(alarm, false)
     }
 
     @SuppressLint("NewApi")

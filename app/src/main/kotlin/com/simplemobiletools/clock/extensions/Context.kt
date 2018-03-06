@@ -1,14 +1,23 @@
 package com.simplemobiletools.clock.extensions
 
+import android.annotation.SuppressLint
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.media.RingtoneManager
 import android.net.Uri
+import android.widget.Toast
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.clock.models.MyTimeZone
+import com.simplemobiletools.clock.receivers.AlarmReceiver
+import com.simplemobiletools.commons.extensions.toast
+import com.simplemobiletools.commons.helpers.isLollipopPlus
 import java.util.*
+import kotlin.math.pow
 
 val Context.config: Config get() = Config.newInstance(applicationContext)
 
@@ -74,3 +83,71 @@ private fun getDefaultAlarmUri() = RingtoneManager.getDefaultUri(RingtoneManager
 private fun getDefaultAlarmTitle(context: Context) = RingtoneManager.getRingtone(context, getDefaultAlarmUri()).getTitle(context)
 
 fun Context.createNewAlarm(timeInMinutes: Int, weekDays: Int) = Alarm(0, timeInMinutes, weekDays, false, false, getDefaultAlarmTitle(this), getDefaultAlarmUri().toString(), "")
+
+fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
+    val calendar = Calendar.getInstance()
+    calendar.firstDayOfWeek = Calendar.MONDAY
+    for (i in 0..7) {
+        val currentDay = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
+        val isCorrectDay = alarm.days and 2.0.pow(currentDay).toInt() != 0
+        val currentTimeInMinutes = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE)
+        if (isCorrectDay && (alarm.timeInMinutes > currentTimeInMinutes || i > 0)) {
+            val triggerInMinutes = alarm.timeInMinutes - currentTimeInMinutes + (i * DAY_MINUTES)
+            setupAlarmClock(alarm, triggerInMinutes * 60 - calendar.get(Calendar.SECOND))
+
+            if (showToast) {
+                showRemainingTimeMessage(triggerInMinutes)
+            }
+            break
+        } else {
+            calendar.add(Calendar.DAY_OF_MONTH, 1)
+        }
+    }
+}
+
+fun Context.showRemainingTimeMessage(triggerInMinutes: Int) {
+    val days = triggerInMinutes / DAY_MINUTES
+    val hours = (triggerInMinutes % DAY_MINUTES) / 60
+    val minutes = triggerInMinutes % 60
+    val timesString = StringBuilder()
+    if (days > 0) {
+        val daysString = String.format(resources.getQuantityString(R.plurals.days, days, days))
+        timesString.append("$daysString, ")
+    }
+
+    if (hours > 0) {
+        val hoursString = String.format(resources.getQuantityString(R.plurals.hours, hours, hours))
+        timesString.append("$hoursString, ")
+    }
+
+    if (minutes > 0) {
+        val minutesString = String.format(resources.getQuantityString(R.plurals.minutes, minutes, minutes))
+        timesString.append(minutesString)
+    }
+
+    val fullString = String.format(getString(R.string.alarm_goes_off_in), timesString.toString().trim().trimEnd(','))
+    toast(fullString, Toast.LENGTH_LONG)
+}
+
+@SuppressLint("NewApi")
+fun Context.setupAlarmClock(alarm: Alarm, triggerInSeconds: Int) {
+    val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+    val targetMS = System.currentTimeMillis() + triggerInSeconds * 1000
+    val pendingIntent = getPendingIntent(alarm)
+
+    if (isLollipopPlus()) {
+        val info = AlarmManager.AlarmClockInfo(targetMS, pendingIntent)
+        alarmManager.setAlarmClock(info, pendingIntent)
+    }
+}
+
+fun Context.getPendingIntent(alarm: Alarm): PendingIntent {
+    val intent = Intent(this, AlarmReceiver::class.java)
+    intent.putExtra(ALARM_ID, alarm.id)
+    return PendingIntent.getBroadcast(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+}
+
+fun Context.cancelAlarmClock(alarm: Alarm) {
+    val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+    alarmManager.cancel(getPendingIntent(alarm))
+}
