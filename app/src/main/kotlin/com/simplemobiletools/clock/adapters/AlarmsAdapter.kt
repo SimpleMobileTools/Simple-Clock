@@ -5,10 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
+import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.formatAlarmTime
 import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
+import com.simplemobiletools.commons.dialogs.ConfirmationDialog
 import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
 import com.simplemobiletools.commons.extensions.getSelectedDaysString
 import com.simplemobiletools.commons.extensions.toast
@@ -83,7 +85,14 @@ class AlarmsAdapter(activity: SimpleActivity, var alarms: ArrayList<Alarm>, val 
             alarm_switch.setColors(textColor, adjustedPrimaryColor, backgroundColor)
             alarm_switch.setOnClickListener {
                 if (alarm.days > 0) {
-                    toggleAlarmInterface.alarmToggled(alarm.id, alarm_switch.isChecked)
+                    if (activity.config.wasAlarmWarningShown) {
+                        toggleAlarmInterface.alarmToggled(alarm.id, alarm_switch.isChecked)
+                    } else {
+                        ConfirmationDialog(activity, messageId = R.string.alarm_warning, positive = R.string.ok, negative = 0) {
+                            activity.config.wasAlarmWarningShown = true
+                            toggleAlarmInterface.alarmToggled(alarm.id, alarm_switch.isChecked)
+                        }
+                    }
                 } else {
                     activity.toast(R.string.no_days_selected)
                     alarm_switch.isChecked = false
