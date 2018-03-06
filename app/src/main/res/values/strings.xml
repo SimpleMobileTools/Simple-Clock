@@ -5,6 +5,7 @@
     <string name="vibrate">Vibrate</string>
     <string name="label">Label</string>
     <string name="no_days_selected">No days selected</string>
+    <string name="alarm">Alarm</string>
 
     <!-- Settings -->
     <string name="clock_tab">Clock tab</string>

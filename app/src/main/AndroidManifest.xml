@@ -4,6 +4,7 @@
     package="com.simplemobiletools.clock">
 
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:name=".App"
@@ -49,6 +50,12 @@
             android:name="com.simplemobiletools.commons.activities.FAQActivity"
             android:label="@string/frequently_asked_questions"
             android:parentActivityName="com.simplemobiletools.commons.activities.AboutActivity"/>
+
+        <activity
+            android:name=".activities.SnoozeReminderActivity"
+            android:theme="@style/Theme.Transparent"/>
+
+        <service android:name=".services.SnoozeService"/>
 
         <receiver android:name=".receivers.AlarmReceiver"/>
     </application>
