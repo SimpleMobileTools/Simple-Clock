@@ -73,6 +73,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     private fun openEditAlarm(alarm: Alarm) {
         EditAlarmDialog(activity as SimpleActivity, alarm) {
             setupAlarms()
+            checkAlarmState(alarm)
         }
     }
 
@@ -80,11 +81,17 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
         if (context!!.dbHelper.updateAlarmEnabledState(id, isEnabled)) {
             val alarm = alarms.firstOrNull { it.id == id } ?: return
             alarm.isEnabled = isEnabled
-            if (isEnabled) {
-                getClosestTriggerTimestamp(alarm)
-            }
+            checkAlarmState(alarm)
         } else {
             activity!!.toast(R.string.unknown_error_occurred)
+        }
+    }
+
+    private fun checkAlarmState(alarm: Alarm) {
+        if (alarm.isEnabled) {
+            getClosestTriggerTimestamp(alarm)
+        } else {
+            cancelAlarmClock(alarm)
         }
     }
 
@@ -146,5 +153,10 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
         val intent = Intent(context, AlarmReceiver::class.java)
         intent.putExtra(ALARM_ID, alarm.id)
         return PendingIntent.getBroadcast(context, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    }
+
+    private fun cancelAlarmClock(alarm: Alarm) {
+        val alarmManager = context!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.cancel(getPendingIntent(alarm))
     }
 }
