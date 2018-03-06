@@ -4,6 +4,7 @@
     <string name="time_zone">Time zone</string>
     <string name="vibrate">Vibrate</string>
     <string name="label">Label</string>
+    <string name="no_days_selected">No days selected</string>
 
     <!-- Settings -->
     <string name="clock_tab">Clock tab</string>

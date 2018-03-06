@@ -11,6 +11,7 @@ import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
 import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
 import com.simplemobiletools.commons.extensions.getSelectedDaysString
+import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.views.MyRecyclerView
 import kotlinx.android.synthetic.main.item_alarm.view.*
 import java.util.*
@@ -81,7 +82,12 @@ class AlarmsAdapter(activity: SimpleActivity, var alarms: ArrayList<Alarm>, val 
             alarm_switch.isChecked = alarm.isEnabled
             alarm_switch.setColors(textColor, adjustedPrimaryColor, backgroundColor)
             alarm_switch.setOnClickListener {
-                toggleAlarmInterface.alarmToggled(alarm.id, alarm_switch.isChecked)
+                if (alarm.days > 0) {
+                    toggleAlarmInterface.alarmToggled(alarm.id, alarm_switch.isChecked)
+                } else {
+                    activity.toast(R.string.no_days_selected)
+                    alarm_switch.isChecked = false
+                }
             }
         }
     }

@@ -92,6 +92,11 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
 
     private fun dialogConfirmed() {
         alarm.label = view.edit_alarm_label.value
+        if (alarm.days == 0) {
+            activity.toast(R.string.no_days_selected)
+            alarm.isEnabled = false
+        }
+
         if (!activity.dbHelper.updateAlarm(alarm)) {
             activity.toast(R.string.unknown_error_occurred)
         }

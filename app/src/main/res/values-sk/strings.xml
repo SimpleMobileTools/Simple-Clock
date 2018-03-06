@@ -4,6 +4,7 @@
     <string name="time_zone">Časové pásmo</string>
     <string name="vibrate">Vibrovanie</string>
     <string name="label">Štítok</string>
+    <string name="no_days_selected">Neboli označené žiadne dni</string>
 
     <!-- Settings -->
     <string name="clock_tab">Okno s časom</string>
