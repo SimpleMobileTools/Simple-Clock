@@ -3,6 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.simplemobiletools.clock">
 
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -47,5 +49,7 @@
             android:name="com.simplemobiletools.commons.activities.FAQActivity"
             android:label="@string/frequently_asked_questions"
             android:parentActivityName="com.simplemobiletools.commons.activities.AboutActivity"/>
+
+        <receiver android:name=".receivers.AlarmReceiver"/>
     </application>
 </manifest>

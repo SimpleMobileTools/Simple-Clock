@@ -1,5 +1,10 @@
 package com.simplemobiletools.clock.fragments
 
+import android.annotation.SuppressLint
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -12,10 +17,13 @@ import com.simplemobiletools.clock.adapters.AlarmsAdapter
 import com.simplemobiletools.clock.dialogs.EditAlarmDialog
 import com.simplemobiletools.clock.extensions.createNewAlarm
 import com.simplemobiletools.clock.extensions.dbHelper
+import com.simplemobiletools.clock.helpers.ALARM_ID
 import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
+import com.simplemobiletools.clock.receivers.AlarmReceiver
 import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.extensions.updateTextColors
+import com.simplemobiletools.commons.helpers.isLollipopPlus
 import kotlinx.android.synthetic.main.fragment_alarm.view.*
 import java.util.*
 import kotlin.math.pow
@@ -90,6 +98,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
             if (isCorrectDay && (alarm.timeInMinutes > currentTimeInMinutes || i > 0)) {
                 val triggerInMinutes = alarm.timeInMinutes - currentTimeInMinutes + (i * DAY_MINUTES)
                 showRemainingTimeMessage(triggerInMinutes)
+                setupAlarmClock(alarm, triggerInMinutes * 60 - calendar.get(Calendar.SECOND))
                 break
             } else {
                 calendar.add(Calendar.DAY_OF_MONTH, 1)
@@ -119,5 +128,23 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
 
         val fullString = String.format(activity!!.getString(R.string.alarm_goes_off_in), timesString.toString().trim().trimEnd(','))
         activity!!.toast(fullString, Toast.LENGTH_LONG)
+    }
+
+    @SuppressLint("NewApi")
+    private fun setupAlarmClock(alarm: Alarm, triggerInSeconds: Int) {
+        val alarmManager = context!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val targetMS = System.currentTimeMillis() + triggerInSeconds * 1000
+        val pendingIntent = getPendingIntent(alarm)
+
+        if (isLollipopPlus()) {
+            val info = AlarmManager.AlarmClockInfo(targetMS, pendingIntent)
+            alarmManager.setAlarmClock(info, pendingIntent)
+        }
+    }
+
+    private fun getPendingIntent(alarm: Alarm): PendingIntent {
+        val intent = Intent(context, AlarmReceiver::class.java)
+        intent.putExtra(ALARM_ID, alarm.id)
+        return PendingIntent.getBroadcast(context, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
     }
 }

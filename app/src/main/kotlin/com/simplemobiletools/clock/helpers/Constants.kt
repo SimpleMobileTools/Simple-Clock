@@ -10,6 +10,7 @@ const val EDITED_TIME_ZONE_TITLES = "edited_time_zone_titles"
 
 const val TABS_COUNT = 3
 const val EDITED_TIME_ZONE_SEPARATOR = ":"
+const val ALARM_ID = "alarm_id"
 
 fun getDefaultTimeZoneTitle(id: Int) = getAllTimeZones().firstOrNull { it.id == id }?.title ?: ""
 
