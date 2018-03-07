@@ -42,17 +42,7 @@ class StopwatchFragment : Fragment() {
             }
 
             stopwatch_reset.setOnClickListener {
-                updateHandler.removeCallbacksAndMessages(null)
-                isRunning = false
-                currentTicks = 0
-                totalTicks = 0
-                currentLap = 0
-                lapTicks = 0
-                laps.clear()
-                stopwatch_reset.beGone()
-                stopwatch_lap.beGone()
-                stopwatch_time.text = 0L.formatStopwatchTime(false)
-                updateIcons()
+                resetStopwatch()
             }
 
             stopwatch_lap.setOnClickListener {
@@ -116,6 +106,23 @@ class StopwatchFragment : Fragment() {
 
     private fun updateDisplayedText() {
         view.stopwatch_time.text = (totalTicks * UPDATE_INTERVAL).formatStopwatchTime(false)
+    }
+
+    private fun resetStopwatch() {
+        updateHandler.removeCallbacksAndMessages(null)
+        isRunning = false
+        currentTicks = 0
+        totalTicks = 0
+        currentLap = 0
+        lapTicks = 0
+        laps.clear()
+        updateIcons()
+
+        view.apply {
+            stopwatch_reset.beGone()
+            stopwatch_lap.beGone()
+            stopwatch_time.text = 0L.formatStopwatchTime(false)
+        }
     }
 
     private val updateRunnable = object : Runnable {
