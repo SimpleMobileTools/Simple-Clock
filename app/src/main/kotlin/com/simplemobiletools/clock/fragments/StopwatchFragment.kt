@@ -3,6 +3,8 @@ package com.simplemobiletools.clock.fragments
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
+import android.os.SystemClock
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,12 +16,15 @@ import com.simplemobiletools.commons.extensions.beVisibleIf
 import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
 import com.simplemobiletools.commons.extensions.getColoredDrawableWithColor
 import com.simplemobiletools.commons.extensions.updateTextColors
-import kotlinx.android.synthetic.main.fragment_stopwatch.*
 import kotlinx.android.synthetic.main.fragment_stopwatch.view.*
 
 class StopwatchFragment : Fragment() {
+    private val UPDATE_INTERVAL = 10L
+
     private val updateHandler = Handler()
-    private var currMS = 0L
+    private val mainLooper = Looper.getMainLooper()
+    private var uptimeAtStart = 0L
+    private var ticksCount = 0
     private var isRunning = false
 
     lateinit var view: ViewGroup
@@ -52,11 +57,11 @@ class StopwatchFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        updateHandler.removeCallbacksAndMessages(null)
+        isRunning = false
+        updateHandler.removeCallbacks(updateRunnable)
     }
 
     private fun setupStopwatch() {
-        stopwatch_time.text = currMS.formatStopwatchTime()
         setupViews()
     }
 
@@ -66,6 +71,7 @@ class StopwatchFragment : Fragment() {
             view.stopwatch_play_pause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, getAdjustedPrimaryColor())
         }
         updatePlayPauseIcon()
+        updateDisplayedText()
     }
 
     private fun updatePlayPauseIcon() {
@@ -78,5 +84,32 @@ class StopwatchFragment : Fragment() {
         isRunning = !isRunning
         updatePlayPauseIcon()
         view.stopwatch_lap.beVisibleIf(isRunning)
+
+        if (isRunning) {
+            updateHandler.post(updateRunnable)
+            uptimeAtStart = SystemClock.uptimeMillis()
+        } else {
+            val totalDuration = SystemClock.uptimeMillis() - uptimeAtStart
+            updateHandler.removeCallbacksAndMessages(null)
+            view.stopwatch_time.text = totalDuration.formatStopwatchTime(true)
+        }
+    }
+
+    private fun updateDisplayedText() {
+        view.stopwatch_time.text = (ticksCount * UPDATE_INTERVAL).formatStopwatchTime(false)
+    }
+
+    private val updateRunnable = object : Runnable {
+        override fun run() {
+            if (isRunning) {
+                ticksCount++
+                updateHandler.postAtTime(this, uptimeAtStart + ticksCount * UPDATE_INTERVAL)
+                if (ticksCount % 10 == 0) {
+                    mainLooper.run {
+                        updateDisplayedText()
+                    }
+                }
+            }
+        }
     }
 }
