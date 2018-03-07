@@ -25,8 +25,21 @@ class StopwatchFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         view = (inflater.inflate(R.layout.fragment_stopwatch, container, false) as ViewGroup).apply {
-            stopwatch_time.setOnClickListener { togglePlayPause() }
-            stopwatch_play_pause.setOnClickListener { togglePlayPause() }
+            stopwatch_time.setOnClickListener {
+                togglePlayPause()
+            }
+
+            stopwatch_play_pause.setOnClickListener {
+                togglePlayPause()
+            }
+
+            stopwatch_reset.setOnClickListener {
+
+            }
+
+            stopwatch_lap.setOnClickListener {
+
+            }
         }
         return view
     }
@@ -45,8 +58,8 @@ class StopwatchFragment : Fragment() {
         context!!.apply {
             updateTextColors(view.stopwatch_fragment)
             view.stopwatch_play_pause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, getAdjustedPrimaryColor())
-            updatePlayPauseIcon()
         }
+        updatePlayPauseIcon()
     }
 
     private fun updatePlayPauseIcon() {

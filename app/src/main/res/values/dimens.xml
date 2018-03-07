@@ -1,6 +1,9 @@
 <resources>
     <dimen name="alarm_day_size">38dp</dimen>
+    <dimen name="stopwatch_button_small_size">60dp</dimen>
+    <dimen name="stopwatch_button_size">64dp</dimen>
 
     <dimen name="clock_text_size">70sp</dimen>
     <dimen name="alarm_text_size">46sp</dimen>
+    <dimen name="stopwatch_text_size">60sp</dimen>
 </resources>

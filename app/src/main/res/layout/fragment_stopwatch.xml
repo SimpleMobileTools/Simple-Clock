@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/stopwatch_fragment"
     android:layout_width="match_parent"
@@ -8,23 +9,62 @@
 
     <com.simplemobiletools.commons.views.MyTextView
         android:id="@+id/stopwatch_time"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/normal_margin"
+        android:layout_marginTop="@dimen/medium_margin"
         android:background="?attr/selectableItemBackground"
-        android:padding="@dimen/activity_margin"
-        android:textSize="@dimen/alarm_text_size"
-        tools:text="00:00"/>
+        android:gravity="center_horizontal"
+        android:padding="@dimen/normal_margin"
+        android:textSize="@dimen/stopwatch_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="00.00"/>
+
+    <ImageView
+        android:id="@+id/stopwatch_reset"
+        style="@style/MyBorderlessBackgroundStyle"
+        android:layout_width="@dimen/stopwatch_button_small_size"
+        android:layout_height="@dimen/stopwatch_button_small_size"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/stopwatch_play_pause"
+        android:padding="@dimen/normal_margin"
+        android:src="@drawable/ic_reset"
+        app:layout_constraintBottom_toBottomOf="@+id/stopwatch_play_pause"
+        app:layout_constraintEnd_toStartOf="@+id/stopwatch_play_pause"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/stopwatch_play_pause"/>
 
     <ImageView
         android:id="@+id/stopwatch_play_pause"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="@dimen/stopwatch_button_size"
+        android:layout_height="@dimen/stopwatch_button_size"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/big_margin"
         android:padding="@dimen/normal_margin"
-        android:src="@drawable/ic_play"/>
+        android:src="@drawable/ic_play"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"/>
 
-</RelativeLayout>
+    <com.simplemobiletools.commons.views.MyTextView
+        android:id="@+id/stopwatch_lap"
+        style="@style/MyBorderlessBackgroundStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/stopwatch_button_small_size"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:letterSpacing="0.1"
+        android:paddingLeft="@dimen/activity_margin"
+        android:paddingRight="@dimen/activity_margin"
+        android:text="@string/lap"
+        android:textAllCaps="true"
+        android:textSize="@dimen/bigger_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/stopwatch_play_pause"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/stopwatch_play_pause"
+        app:layout_constraintTop_toTopOf="@+id/stopwatch_play_pause"/>
+
+</android.support.constraint.ConstraintLayout>

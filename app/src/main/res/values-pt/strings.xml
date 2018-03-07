@@ -6,6 +6,7 @@
     <string name="label">Label</string>
     <string name="no_days_selected">No days selected</string>
     <string name="alarm">Alarm</string>
+    <string name="lap">Lap</string>
 
     <!-- Settings -->
     <string name="clock_tab">Relógio</string>
