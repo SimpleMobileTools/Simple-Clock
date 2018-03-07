@@ -34,7 +34,6 @@ class AlarmReceiver : BroadcastReceiver() {
         val notification = getNotification(context, pendingIntent, alarm)
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.notify(alarm.id, notification)
-
         context.scheduleNextAlarm(alarm, false)
     }
 

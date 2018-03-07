@@ -2,6 +2,7 @@ package com.simplemobiletools.clock.extensions
 
 import android.annotation.SuppressLint
 import android.app.AlarmManager
+import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -132,4 +133,9 @@ fun Context.getPendingIntent(alarm: Alarm): PendingIntent {
 fun Context.cancelAlarmClock(alarm: Alarm) {
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
     alarmManager.cancel(getPendingIntent(alarm))
+}
+
+fun Context.hideNotification(id: Int) {
+    val manager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    manager.cancel(id)
 }
