@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.formatStopwatchTime
+import com.simplemobiletools.clock.models.StopwatchTime
 import com.simplemobiletools.commons.extensions.*
 import kotlinx.android.synthetic.main.fragment_stopwatch.view.*
 
@@ -23,7 +24,10 @@ class StopwatchFragment : Fragment() {
     private var uptimeAtStart = 0L
     private var totalTicks = 0
     private var currentTicks = 0    // ticks that reset at pause
+    private var lapTicks = 0
+    private var currentLap = 0
     private var isRunning = false
+    private var laps = ArrayList<StopwatchTime>()
 
     lateinit var view: ViewGroup
 
@@ -42,6 +46,9 @@ class StopwatchFragment : Fragment() {
                 isRunning = false
                 currentTicks = 0
                 totalTicks = 0
+                currentLap = 0
+                lapTicks = 0
+                laps.clear()
                 stopwatch_reset.beGone()
                 stopwatch_lap.beGone()
                 stopwatch_time.text = 0L.formatStopwatchTime(false)
@@ -49,7 +56,9 @@ class StopwatchFragment : Fragment() {
             }
 
             stopwatch_lap.setOnClickListener {
-
+                val lap = StopwatchTime(currentLap++, lapTicks * UPDATE_INTERVAL, totalTicks * UPDATE_INTERVAL)
+                laps.add(lap)
+                lapTicks = 0
             }
         }
         return view
@@ -119,6 +128,7 @@ class StopwatchFragment : Fragment() {
                 }
                 totalTicks++
                 currentTicks++
+                lapTicks++
                 updateHandler.postAtTime(this, uptimeAtStart + currentTicks * UPDATE_INTERVAL)
             }
         }
