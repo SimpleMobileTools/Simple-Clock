@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.formatStopwatchTime
+import com.simplemobiletools.commons.extensions.beVisibleIf
 import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
 import com.simplemobiletools.commons.extensions.getColoredDrawableWithColor
 import com.simplemobiletools.commons.extensions.updateTextColors
@@ -49,6 +50,11 @@ class StopwatchFragment : Fragment() {
         setupStopwatch()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        updateHandler.removeCallbacksAndMessages(null)
+    }
+
     private fun setupStopwatch() {
         stopwatch_time.text = currMS.formatStopwatchTime()
         setupViews()
@@ -71,5 +77,6 @@ class StopwatchFragment : Fragment() {
     private fun togglePlayPause() {
         isRunning = !isRunning
         updatePlayPauseIcon()
+        view.stopwatch_lap.beVisibleIf(isRunning)
     }
 }
