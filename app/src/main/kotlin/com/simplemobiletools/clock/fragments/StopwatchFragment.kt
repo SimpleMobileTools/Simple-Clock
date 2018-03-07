@@ -12,10 +12,7 @@ import android.view.ViewGroup
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.formatStopwatchTime
-import com.simplemobiletools.commons.extensions.beVisibleIf
-import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
-import com.simplemobiletools.commons.extensions.getColoredDrawableWithColor
-import com.simplemobiletools.commons.extensions.updateTextColors
+import com.simplemobiletools.commons.extensions.*
 import kotlinx.android.synthetic.main.fragment_stopwatch.view.*
 
 class StopwatchFragment : Fragment() {
@@ -41,7 +38,14 @@ class StopwatchFragment : Fragment() {
             }
 
             stopwatch_reset.setOnClickListener {
-
+                updateHandler.removeCallbacksAndMessages(null)
+                isRunning = false
+                currentTicks = 0
+                totalTicks = 0
+                stopwatch_reset.beGone()
+                stopwatch_lap.beGone()
+                stopwatch_time.text = 0L.formatStopwatchTime(false)
+                updateIcons()
             }
 
             stopwatch_lap.setOnClickListener {
@@ -70,12 +74,13 @@ class StopwatchFragment : Fragment() {
         context!!.apply {
             updateTextColors(view.stopwatch_fragment)
             view.stopwatch_play_pause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, getAdjustedPrimaryColor())
+            view.stopwatch_reset.applyColorFilter(config.textColor)
         }
-        updatePlayPauseIcon()
+        updateIcons()
         updateDisplayedText()
     }
 
-    private fun updatePlayPauseIcon() {
+    private fun updateIcons() {
         val drawableId = if (isRunning) R.drawable.ic_pause else R.drawable.ic_play
         val iconColor = if (context!!.getAdjustedPrimaryColor() == Color.WHITE) Color.BLACK else context!!.config.textColor
         view.stopwatch_play_pause.setImageDrawable(resources.getColoredDrawableWithColor(drawableId, iconColor))
@@ -83,12 +88,13 @@ class StopwatchFragment : Fragment() {
 
     private fun togglePlayPause() {
         isRunning = !isRunning
-        updatePlayPauseIcon()
+        updateIcons()
         view.stopwatch_lap.beVisibleIf(isRunning)
 
         if (isRunning) {
             updateHandler.post(updateRunnable)
             uptimeAtStart = SystemClock.uptimeMillis()
+            view.stopwatch_reset.beVisible()
         } else {
             val prevSessionsMS = (totalTicks - currentTicks) * UPDATE_INTERVAL
             val totalDuration = SystemClock.uptimeMillis() - uptimeAtStart + prevSessionsMS
