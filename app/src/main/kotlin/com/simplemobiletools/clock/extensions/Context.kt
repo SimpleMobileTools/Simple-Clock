@@ -14,6 +14,7 @@ import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.clock.receivers.AlarmReceiver
+import com.simplemobiletools.commons.extensions.formatMinutesToTimeString
 import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.helpers.isLollipopPlus
 import java.util.*
@@ -105,27 +106,8 @@ fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
     }
 }
 
-fun Context.showRemainingTimeMessage(triggerInMinutes: Int) {
-    val days = triggerInMinutes / DAY_MINUTES
-    val hours = (triggerInMinutes % DAY_MINUTES) / 60
-    val minutes = triggerInMinutes % 60
-    val timesString = StringBuilder()
-    if (days > 0) {
-        val daysString = String.format(resources.getQuantityString(R.plurals.days, days, days))
-        timesString.append("$daysString, ")
-    }
-
-    if (hours > 0) {
-        val hoursString = String.format(resources.getQuantityString(R.plurals.hours, hours, hours))
-        timesString.append("$hoursString, ")
-    }
-
-    if (minutes > 0) {
-        val minutesString = String.format(resources.getQuantityString(R.plurals.minutes, minutes, minutes))
-        timesString.append(minutesString)
-    }
-
-    val fullString = String.format(getString(R.string.alarm_goes_off_in), timesString.toString().trim().trimEnd(','))
+fun Context.showRemainingTimeMessage(totalMinutes: Int) {
+    val fullString = String.format(getString(R.string.alarm_goes_off_in), formatMinutesToTimeString(totalMinutes))
     toast(fullString, Toast.LENGTH_LONG)
 }
 

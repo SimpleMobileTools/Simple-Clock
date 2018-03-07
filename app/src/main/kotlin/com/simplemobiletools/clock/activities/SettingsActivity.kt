@@ -3,10 +3,7 @@ package com.simplemobiletools.clock.activities
 import android.os.Bundle
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.config
-import com.simplemobiletools.commons.extensions.beVisibleIf
-import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
-import com.simplemobiletools.commons.extensions.updateTextColors
-import com.simplemobiletools.commons.extensions.useEnglishToggled
+import com.simplemobiletools.commons.extensions.*
 import kotlinx.android.synthetic.main.activity_settings.*
 import java.util.*
 
@@ -25,13 +22,15 @@ class SettingsActivity : SimpleActivity() {
         setupPreventPhoneFromSleeping()
         setupShowSeconds()
         setupDisplayOtherTimeZones()
+        setupUseSameSnooze()
+        setupSnoozeTime()
         updateTextColors(settings_holder)
         setupSectionColors()
     }
 
     private fun setupSectionColors() {
         val adjustedPrimaryColor = getAdjustedPrimaryColor()
-        arrayListOf(clock_tab_label).forEach {
+        arrayListOf(clock_tab_label, alarm_tab_label).forEach {
             it.setTextColor(adjustedPrimaryColor)
         }
     }
@@ -82,5 +81,29 @@ class SettingsActivity : SimpleActivity() {
             settings_display_other_timezones.toggle()
             config.displayOtherTimeZones = settings_display_other_timezones.isChecked
         }
+    }
+
+    private fun setupUseSameSnooze() {
+        settings_snooze_time_holder.beVisibleIf(config.useSameSnooze)
+        settings_use_same_snooze.isChecked = config.useSameSnooze
+        settings_use_same_snooze_holder.setOnClickListener {
+            settings_use_same_snooze.toggle()
+            config.useSameSnooze = settings_use_same_snooze.isChecked
+            settings_snooze_time_holder.beVisibleIf(config.useSameSnooze)
+        }
+    }
+
+    private fun setupSnoozeTime() {
+        updateSnoozeText()
+        settings_snooze_time_holder.setOnClickListener {
+            showPickIntervalDialog(config.snoozeTime, true) {
+                config.snoozeTime = it
+                updateSnoozeText()
+            }
+        }
+    }
+
+    private fun updateSnoozeText() {
+        settings_snooze_time.text = formatMinutesToTimeString(config.snoozeTime)
     }
 }
