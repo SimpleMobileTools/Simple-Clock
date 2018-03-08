@@ -12,7 +12,6 @@ import com.simplemobiletools.clock.adapters.ViewPagerAdapter
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.helpers.TABS_COUNT
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.LICENSE_KOTLIN
 import com.simplemobiletools.commons.helpers.LICENSE_STETHO
 import com.simplemobiletools.commons.models.FAQItem
 import kotlinx.android.synthetic.main.activity_main.*
@@ -148,6 +147,6 @@ class MainActivity : SimpleActivity() {
                 FAQItem(R.string.faq_4_title_commons, R.string.faq_4_text_commons)
         )
 
-        startAboutActivity(R.string.app_name, LICENSE_KOTLIN or LICENSE_STETHO, BuildConfig.VERSION_NAME, faqItems)
+        startAboutActivity(R.string.app_name, LICENSE_STETHO, BuildConfig.VERSION_NAME, faqItems)
     }
 }

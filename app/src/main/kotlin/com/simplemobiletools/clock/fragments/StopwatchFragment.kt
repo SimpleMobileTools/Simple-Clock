@@ -54,7 +54,7 @@ class StopwatchFragment : Fragment() {
                 val lap = Lap(currentLap++, lapTicks * UPDATE_INTERVAL, totalTicks * UPDATE_INTERVAL)
                 laps.add(0, lap)
                 lapTicks = 0
-                (stopwatch_list.adapter as StopwatchAdapter).updateItems(laps)
+                updateLaps()
             }
 
             val stopwatchAdapter = StopwatchAdapter(activity as SimpleActivity, ArrayList(), stopwatch_list) {
@@ -62,6 +62,7 @@ class StopwatchFragment : Fragment() {
                     changeSorting(it)
                 }
             }
+            Lap.sorting = sorting
             stopwatch_list.adapter = stopwatchAdapter
         }
 
@@ -140,7 +141,19 @@ class StopwatchFragment : Fragment() {
     }
 
     private fun changeSorting(clickedValue: Int) {
+        sorting = if (sorting and clickedValue != 0) {
+            sorting.flipBit(SORT_DESCENDING)
+        } else {
+            clickedValue or SORT_DESCENDING
+        }
 
+        Lap.sorting = sorting
+        updateLaps()
+    }
+
+    private fun updateLaps() {
+        laps.sort()
+        (view.stopwatch_list.adapter as StopwatchAdapter).updateItems(laps)
     }
 
     private val updateRunnable = object : Runnable {
