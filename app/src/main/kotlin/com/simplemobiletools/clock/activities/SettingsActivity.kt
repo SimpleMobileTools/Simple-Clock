@@ -24,13 +24,14 @@ class SettingsActivity : SimpleActivity() {
         setupDisplayOtherTimeZones()
         setupUseSameSnooze()
         setupSnoozeTime()
+        setupVibrate()
         updateTextColors(settings_holder)
         setupSectionColors()
     }
 
     private fun setupSectionColors() {
         val adjustedPrimaryColor = getAdjustedPrimaryColor()
-        arrayListOf(clock_tab_label, alarm_tab_label).forEach {
+        arrayListOf(clock_tab_label, alarm_tab_label, stopwatch_tab_label).forEach {
             it.setTextColor(adjustedPrimaryColor)
         }
     }
@@ -100,6 +101,14 @@ class SettingsActivity : SimpleActivity() {
                 config.snoozeTime = it
                 updateSnoozeText()
             }
+        }
+    }
+
+    private fun setupVibrate() {
+        settings_vibrate.isChecked = config.vibrateOnButtonPress
+        settings_vibrate_holder.setOnClickListener {
+            settings_vibrate.toggle()
+            config.vibrateOnButtonPress = settings_vibrate.isChecked
         }
     }
 
