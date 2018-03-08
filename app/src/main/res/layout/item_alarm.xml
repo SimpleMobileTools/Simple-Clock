@@ -14,7 +14,9 @@
         android:id="@+id/alarm_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_margin">
+        android:paddingBottom="@dimen/normal_margin"
+        android:paddingLeft="@dimen/activity_margin"
+        android:paddingTop="@dimen/normal_margin">
 
         <com.simplemobiletools.commons.views.MyTextView
             android:id="@+id/alarm_time"
@@ -22,25 +24,38 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:paddingTop="@dimen/normal_margin"
             android:textSize="@dimen/alarm_text_size"
             tools:text="07:00"/>
 
         <com.simplemobiletools.commons.views.MyTextView
             android:id="@+id/alarm_days"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/alarm_time"
-            android:paddingBottom="@dimen/normal_margin"
+            android:layout_toLeftOf="@+id/alarm_switch"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:paddingLeft="@dimen/tiny_margin"
             android:textSize="@dimen/big_text_size"
             tools:text="Mon, Tue, Wed, Thu, Fri"/>
+
+        <com.simplemobiletools.commons.views.MyTextView
+            android:id="@+id/alarm_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/alarm_days"
+            android:layout_toLeftOf="@+id/alarm_switch"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/tiny_margin"
+            android:textSize="@dimen/big_text_size"
+            tools:text="Good morning!"/>
 
         <com.simplemobiletools.commons.views.MySwitchCompat
             android:id="@+id/alarm_switch"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignBottom="@id/alarm_days"
+            android:layout_alignBottom="@id/alarm_label"
             android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/alarm_time"
             android:paddingLeft="@dimen/activity_margin"

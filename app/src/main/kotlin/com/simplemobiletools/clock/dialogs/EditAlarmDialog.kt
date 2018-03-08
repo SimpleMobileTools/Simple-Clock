@@ -43,6 +43,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
             }
 
             edit_alarm_label_image.applyColorFilter(textColor)
+            edit_alarm_label.setText(alarm.label)
 
             val dayLetters = activity.resources.getStringArray(R.array.week_day_letters).toList() as ArrayList<String>
             if (activity.config.isSundayFirst) {

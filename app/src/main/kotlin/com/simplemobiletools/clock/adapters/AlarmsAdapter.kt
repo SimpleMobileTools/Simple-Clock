@@ -3,6 +3,7 @@ package com.simplemobiletools.clock.adapters
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.config
@@ -12,9 +13,7 @@ import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
 import com.simplemobiletools.commons.dialogs.ConfirmationDialog
-import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
-import com.simplemobiletools.commons.extensions.getSelectedDaysString
-import com.simplemobiletools.commons.extensions.toast
+import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.views.MyRecyclerView
 import kotlinx.android.synthetic.main.item_alarm.view.*
 import java.util.*
@@ -85,6 +84,10 @@ class AlarmsAdapter(activity: SimpleActivity, var alarms: ArrayList<Alarm>, val 
             alarm_days.text = activity.getSelectedDaysString(alarm.days)
             alarm_days.setTextColor(textColor)
 
+            alarm_label.text = alarm.label
+            alarm_label.setTextColor(textColor)
+            alarm_label.beVisibleIf(alarm.label.isNotEmpty())
+
             alarm_switch.isChecked = alarm.isEnabled
             alarm_switch.setColors(textColor, adjustedPrimaryColor, backgroundColor)
             alarm_switch.setOnClickListener {
@@ -102,6 +105,9 @@ class AlarmsAdapter(activity: SimpleActivity, var alarms: ArrayList<Alarm>, val 
                     alarm_switch.isChecked = false
                 }
             }
+
+            val layoutParams = alarm_switch.layoutParams as RelativeLayout.LayoutParams
+            layoutParams.addRule(RelativeLayout.ALIGN_BOTTOM, if (alarm_label.isVisible()) alarm_label.id else alarm_days.id)
         }
     }
 }
