@@ -2,7 +2,6 @@
     <dimen name="alarm_day_size">38dp</dimen>
     <dimen name="stopwatch_button_small_size">60dp</dimen>
     <dimen name="stopwatch_button_size">64dp</dimen>
-    <dimen name="lap_order_size">40dp</dimen>
     <dimen name="lap_time_size">80dp</dimen>
 
     <dimen name="clock_text_size">70sp</dimen>

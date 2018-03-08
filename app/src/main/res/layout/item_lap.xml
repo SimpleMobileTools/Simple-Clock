@@ -11,13 +11,12 @@
 
     <com.simplemobiletools.commons.views.MyTextView
         android:id="@+id/lap_order"
-        android:layout_width="@dimen/lap_order_size"
+        android:layout_width="@dimen/lap_time_size"
         android:layout_height="wrap_content"
         android:gravity="end"
         android:maxLines="1"
         android:textSize="@dimen/bigger_text_size"
         app:layout_constraintEnd_toStartOf="@+id/lap_lap_time"
-        app:layout_constraintHorizontal_bias="0.38"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="1"/>
@@ -38,6 +37,7 @@
         android:id="@+id/lap_total_time"
         android:layout_width="@dimen/lap_time_size"
         android:layout_height="wrap_content"
+        android:layout_marginRight="48dp"
         android:gravity="end"
         android:maxLines="1"
         android:textSize="@dimen/bigger_text_size"

@@ -85,11 +85,16 @@ class StopwatchFragment : Fragment() {
     }
 
     private fun setupViews() {
-        context!!.apply {
-            updateTextColors(view.stopwatch_fragment)
-            view.stopwatch_play_pause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, getAdjustedPrimaryColor())
-            view.stopwatch_reset.applyColorFilter(config.textColor)
+        val adjustedPrimaryColor = context!!.getAdjustedPrimaryColor()
+        view.apply {
+            context!!.updateTextColors(stopwatch_fragment)
+            stopwatch_play_pause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, adjustedPrimaryColor)
+            stopwatch_reset.applyColorFilter(context!!.config.textColor)
+            stopwatch_sorting_indicator_1.applyColorFilter(adjustedPrimaryColor)
+            stopwatch_sorting_indicator_2.applyColorFilter(adjustedPrimaryColor)
+            stopwatch_sorting_indicator_3.applyColorFilter(adjustedPrimaryColor)
         }
+
         updateIcons()
         updateDisplayedText()
     }
