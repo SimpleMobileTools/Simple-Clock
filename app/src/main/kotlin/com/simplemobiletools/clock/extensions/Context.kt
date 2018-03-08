@@ -67,7 +67,7 @@ fun Context.getAlarms(): ArrayList<AlarmSound> {
     val cursor = manager.cursor
 
     val alarms = ArrayList<AlarmSound>()
-    val defaultAlarm = AlarmSound(getDefaultAlarmTitle(this), getDefaultAlarmUri().toString())
+    val defaultAlarm = AlarmSound(getDefaultAlarmTitle(), getDefaultAlarmUri().toString())
     alarms.add(defaultAlarm)
 
     while (cursor.moveToNext()) {
@@ -80,11 +80,11 @@ fun Context.getAlarms(): ArrayList<AlarmSound> {
     return alarms
 }
 
-private fun getDefaultAlarmUri() = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+fun Context.getDefaultAlarmUri() = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
 
-private fun getDefaultAlarmTitle(context: Context) = RingtoneManager.getRingtone(context, getDefaultAlarmUri()).getTitle(context)
+fun Context.getDefaultAlarmTitle() = RingtoneManager.getRingtone(this, getDefaultAlarmUri()).getTitle(this)
 
-fun Context.createNewAlarm(timeInMinutes: Int, weekDays: Int) = Alarm(0, timeInMinutes, weekDays, false, false, getDefaultAlarmTitle(this), getDefaultAlarmUri().toString(), "")
+fun Context.createNewAlarm(timeInMinutes: Int, weekDays: Int) = Alarm(0, timeInMinutes, weekDays, false, false, getDefaultAlarmTitle(), getDefaultAlarmUri().toString(), "")
 
 fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
     val calendar = Calendar.getInstance()

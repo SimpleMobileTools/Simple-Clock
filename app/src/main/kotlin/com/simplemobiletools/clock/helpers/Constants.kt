@@ -7,7 +7,10 @@ const val SHOW_SECONDS = "show_seconds"
 const val DISPLAY_OTHER_TIME_ZONES = "display_other_time_zones"
 const val SELECTED_TIME_ZONES = "selected_time_zones"
 const val EDITED_TIME_ZONE_TITLES = "edited_time_zone_titles"
-const val LAST_TIMER_SECONDS = "last_timer_seconds"
+const val TIMER_SECONDS = "timer_seconds"
+const val TIMER_VIBRATE = "timer_vibrate"
+const val TIMER_SOUND_URI = "timer_sound_uri"
+const val TIMER_SOUND_TITLE = "timer_sound_title"
 
 const val TABS_COUNT = 4
 const val EDITED_TIME_ZONE_SEPARATOR = ":"

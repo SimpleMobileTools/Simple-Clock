@@ -1,6 +1,8 @@
 package com.simplemobiletools.clock.helpers
 
 import android.content.Context
+import com.simplemobiletools.clock.extensions.getDefaultAlarmTitle
+import com.simplemobiletools.clock.extensions.getDefaultAlarmUri
 import com.simplemobiletools.commons.helpers.BaseConfig
 
 class Config(context: Context) : BaseConfig(context) {
@@ -24,7 +26,19 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getStringSet(EDITED_TIME_ZONE_TITLES, HashSet())
         set(editedTimeZoneTitles) = prefs.edit().putStringSet(EDITED_TIME_ZONE_TITLES, editedTimeZoneTitles).apply()
 
-    var lastTimerSeconds: Int
-        get() = prefs.getInt(LAST_TIMER_SECONDS, 300)
-        set(lastTimerSeconds) = prefs.edit().putInt(LAST_TIMER_SECONDS, lastTimerSeconds).apply()
+    var timerSeconds: Int
+        get() = prefs.getInt(TIMER_SECONDS, 300)
+        set(lastTimerSeconds) = prefs.edit().putInt(TIMER_SECONDS, lastTimerSeconds).apply()
+
+    var timerVibrate: Boolean
+        get() = prefs.getBoolean(TIMER_VIBRATE, false)
+        set(timerVibrate) = prefs.edit().putBoolean(TIMER_VIBRATE, timerVibrate).apply()
+
+    var timerSoundUri: String
+        get() = prefs.getString(TIMER_SOUND_URI, context.getDefaultAlarmUri().toString())
+        set(timerSoundUri) = prefs.edit().putString(TIMER_SOUND_URI, timerSoundUri).apply()
+
+    var timerSoundTitle: String
+        get() = prefs.getString(TIMER_SOUND_TITLE, context.getDefaultAlarmTitle())
+        set(timerSoundTitle) = prefs.edit().putString(TIMER_SOUND_TITLE, timerSoundTitle).apply()
 }

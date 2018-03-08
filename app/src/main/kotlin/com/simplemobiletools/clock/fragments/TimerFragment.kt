@@ -46,6 +46,7 @@ class TimerFragment : Fragment() {
 
             timer_vibrate_holder.setOnClickListener {
                 timer_vibrate.toggle()
+                context!!.config.timerVibrate = timer_vibrate.isChecked
             }
 
             timer_sound.setOnClickListener {
@@ -53,7 +54,7 @@ class TimerFragment : Fragment() {
             }
         }
 
-        initialSecs = context!!.config.lastTimerSeconds
+        initialSecs = context!!.config.timerSeconds
         updateDisplayedText()
         return view
     }
@@ -70,13 +71,20 @@ class TimerFragment : Fragment() {
     }
 
     private fun setupViews() {
-        val textColor = context!!.config.textColor
+        val config = context!!.config
+        val textColor = config.textColor
         view.apply {
             context!!.updateTextColors(timer_fragment)
             timer_play_pause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, context!!.getAdjustedPrimaryColor())
             timer_reset.applyColorFilter(textColor)
+
+            timer_initial_time.text = config.timerSeconds.getFormattedDuration()
             timer_initial_time.colorLeftDrawable(textColor)
+
+            timer_vibrate.isChecked = config.timerVibrate
             timer_vibrate.colorLeftDrawable(textColor)
+
+            timer_sound.text = config.timerSoundTitle
             timer_sound.colorLeftDrawable(textColor)
         }
 
@@ -110,7 +118,7 @@ class TimerFragment : Fragment() {
         isRunning = false
         currentTicks = 0
         totalTicks = 0
-        initialSecs = context!!.config.lastTimerSeconds
+        initialSecs = context!!.config.timerSeconds
         updateDisplayedText()
         updateIcons()
         view.timer_reset.beGone()
