@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.simplemobiletools.clock.fragments.AlarmFragment
 import com.simplemobiletools.clock.fragments.ClockFragment
 import com.simplemobiletools.clock.fragments.StopwatchFragment
+import com.simplemobiletools.clock.fragments.TimerFragment
 import com.simplemobiletools.clock.helpers.TABS_COUNT
 
 class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
@@ -29,6 +30,7 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
         0 -> ClockFragment()
         1 -> AlarmFragment()
         2 -> StopwatchFragment()
+        3 -> TimerFragment()
         else -> throw RuntimeException("Trying to fetch unknown fragment id $position")
     }
 }

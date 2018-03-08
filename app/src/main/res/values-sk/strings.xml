@@ -12,6 +12,7 @@
     <string name="clock_tab">Okno s časom</string>
     <string name="alarm_tab">Okno s budíkom</string>
     <string name="stopwatch_tab">Okno so stopkami</string>
+    <string name="timer_tab">Okno s časovačom</string>
     <string name="show_seconds">Zobraziť sekundy</string>
     <string name="display_other_time_zones">Povoliť zobrazenie dodatočných časových pásiem</string>
 
@@ -27,11 +28,11 @@
 
         Hodinky vedia zobraziť aj čas iných časových pásiem, resp. ponúkajú jednoduchý, ale nastaviteľný widget. Farbu textu widgetu možno prispôsobiť, rovnako ako farbu a priehľadnosť pozadia.
 
-        Viete si jednoducho nastaviť aj časovač, aby vám nič neuniklo. Viete zmeniť jeho zvučku, alebo zapnúť vibrácie.
-
         Budík obsahuje všetky očakávané funkcie ako výber dní, prepínanie vibrácií, výber melódie, odloženie, ako aj pridanie štítka.
 
         So stopkami viete jednoducho zmerať nejaký časový interval, alebo jednotlivé okruhy. Okruhy viete zoradiť aj podľa ich času. Stopky obsahujú nastaviteľné vibrácie pri stlačení tlačidiel, aby vás to uistilo v ich stlačenie, aj keď sa neviete práve pozrieť na displej.
+
+        Viete si jednoducho nastaviť aj časovač, aby vám nič neuniklo. Viete zmeniť jeho zvučku, alebo zapnúť vibrácie.
 
         Ďalšími funkciami sú predídenie uspania zariadenia kým je apka v popredí, alebo zobrazenie okien v celoobrazovkovom režime.
 
