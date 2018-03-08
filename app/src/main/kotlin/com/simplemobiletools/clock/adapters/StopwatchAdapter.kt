@@ -3,6 +3,7 @@ package com.simplemobiletools.clock.adapters
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.formatStopwatchTime
@@ -17,6 +18,9 @@ import java.util.*
 
 class StopwatchAdapter(activity: SimpleActivity, var laps: ArrayList<Lap>, recyclerView: MyRecyclerView, itemClick: (Any) -> Unit) :
         MyRecyclerViewAdapter(activity, recyclerView, null, itemClick) {
+    private var lastLapTimeView: TextView? = null
+    private var lastTotalTimeView: TextView? = null
+    private var lastLapId = 0
 
     override fun getActionMenuId() = 0
 
@@ -43,9 +47,15 @@ class StopwatchAdapter(activity: SimpleActivity, var laps: ArrayList<Lap>, recyc
     override fun getItemCount() = laps.size
 
     fun updateItems(newItems: ArrayList<Lap>) {
+        lastLapId = 0
         laps = newItems
         notifyDataSetChanged()
         finishActMode()
+    }
+
+    fun updateLastField(lapTime: Long, totalTime: Long) {
+        lastLapTimeView?.text = lapTime.formatStopwatchTime(false)
+        lastTotalTimeView?.text = totalTime.formatStopwatchTime(false)
     }
 
     private fun setupView(view: View, lap: Lap) {
@@ -66,6 +76,12 @@ class StopwatchAdapter(activity: SimpleActivity, var laps: ArrayList<Lap>, recyc
             lap_total_time.setTextColor(textColor)
             lap_total_time.setOnClickListener {
                 itemClick(SORT_BY_TOTAL_TIME)
+            }
+
+            if (lap.id > lastLapId) {
+                lastLapTimeView = lap_lap_time
+                lastTotalTimeView = lap_total_time
+                lastLapId = lap.id
             }
         }
     }

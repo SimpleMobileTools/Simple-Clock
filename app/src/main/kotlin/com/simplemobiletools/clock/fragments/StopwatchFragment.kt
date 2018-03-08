@@ -38,6 +38,7 @@ class StopwatchFragment : Fragment() {
     private var sorting = SORT_BY_LAP or SORT_DESCENDING
     private var laps = ArrayList<Lap>()
 
+    lateinit var stopwatchAdapter: StopwatchAdapter
     lateinit var view: ViewGroup
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -74,7 +75,7 @@ class StopwatchFragment : Fragment() {
                 updateLaps()
             }
 
-            val stopwatchAdapter = StopwatchAdapter(activity as SimpleActivity, ArrayList(), stopwatch_list) {
+            stopwatchAdapter = StopwatchAdapter(activity as SimpleActivity, ArrayList(), stopwatch_list) {
                 if (it is Int) {
                     changeSorting(it)
                 }
@@ -141,6 +142,9 @@ class StopwatchFragment : Fragment() {
 
     private fun updateDisplayedText() {
         view.stopwatch_time.text = (totalTicks * UPDATE_INTERVAL).formatStopwatchTime(false)
+        if (currentLap > 1) {
+            stopwatchAdapter.updateLastField(lapTicks * UPDATE_INTERVAL, totalTicks * UPDATE_INTERVAL)
+        }
     }
 
     private fun resetStopwatch() {
@@ -197,7 +201,7 @@ class StopwatchFragment : Fragment() {
 
     private fun updateLaps() {
         laps.sort()
-        (view.stopwatch_list.adapter as StopwatchAdapter).updateItems(laps)
+        stopwatchAdapter.updateItems(laps)
     }
 
     private val updateRunnable = object : Runnable {
