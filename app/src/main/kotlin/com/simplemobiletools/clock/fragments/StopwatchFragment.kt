@@ -1,6 +1,8 @@
 package com.simplemobiletools.clock.fragments
 
+import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.Matrix
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -15,6 +17,8 @@ import com.simplemobiletools.clock.adapters.StopwatchAdapter
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.formatStopwatchTime
 import com.simplemobiletools.clock.helpers.SORT_BY_LAP
+import com.simplemobiletools.clock.helpers.SORT_BY_LAP_TIME
+import com.simplemobiletools.clock.helpers.SORT_BY_TOTAL_TIME
 import com.simplemobiletools.clock.models.Lap
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.SORT_DESCENDING
@@ -50,7 +54,20 @@ class StopwatchFragment : Fragment() {
                 resetStopwatch()
             }
 
+            stopwatch_sorting_indicator_1.setOnClickListener {
+                changeSorting(SORT_BY_LAP)
+            }
+
+            stopwatch_sorting_indicator_2.setOnClickListener {
+                changeSorting(SORT_BY_LAP_TIME)
+            }
+
+            stopwatch_sorting_indicator_3.setOnClickListener {
+                changeSorting(SORT_BY_TOTAL_TIME)
+            }
+
             stopwatch_lap.setOnClickListener {
+                stopwatch_sorting_indicators_holder.beVisible()
                 val lap = Lap(currentLap++, lapTicks * UPDATE_INTERVAL, totalTicks * UPDATE_INTERVAL)
                 laps.add(0, lap)
                 lapTicks = 0
@@ -66,6 +83,7 @@ class StopwatchFragment : Fragment() {
             stopwatch_list.adapter = stopwatchAdapter
         }
 
+        updateSortingIndicators()
         return view
     }
 
@@ -90,9 +108,6 @@ class StopwatchFragment : Fragment() {
             context!!.updateTextColors(stopwatch_fragment)
             stopwatch_play_pause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, adjustedPrimaryColor)
             stopwatch_reset.applyColorFilter(context!!.config.textColor)
-            stopwatch_sorting_indicator_1.applyColorFilter(adjustedPrimaryColor)
-            stopwatch_sorting_indicator_2.applyColorFilter(adjustedPrimaryColor)
-            stopwatch_sorting_indicator_3.applyColorFilter(adjustedPrimaryColor)
         }
 
         updateIcons()
@@ -142,6 +157,7 @@ class StopwatchFragment : Fragment() {
             stopwatch_reset.beGone()
             stopwatch_lap.beGone()
             stopwatch_time.text = 0L.formatStopwatchTime(false)
+            stopwatch_sorting_indicators_holder.beInvisible()
         }
     }
 
@@ -152,8 +168,31 @@ class StopwatchFragment : Fragment() {
             clickedValue or SORT_DESCENDING
         }
 
+        updateSortingIndicators()
         Lap.sorting = sorting
         updateLaps()
+    }
+
+    private fun updateSortingIndicators() {
+        var bitmap = context!!.resources.getColoredBitmap(R.drawable.ic_sorting_triangle, context!!.getAdjustedPrimaryColor())
+        view.apply {
+            stopwatch_sorting_indicator_1.beInvisibleIf(sorting and SORT_BY_LAP == 0)
+            stopwatch_sorting_indicator_2.beInvisibleIf(sorting and SORT_BY_LAP_TIME == 0)
+            stopwatch_sorting_indicator_3.beInvisibleIf(sorting and SORT_BY_TOTAL_TIME == 0)
+
+            val activeIndicator = when {
+                sorting and SORT_BY_LAP != 0 -> stopwatch_sorting_indicator_1
+                sorting and SORT_BY_LAP_TIME != 0 -> stopwatch_sorting_indicator_2
+                else -> stopwatch_sorting_indicator_3
+            }
+
+            if (sorting and SORT_DESCENDING == 0) {
+                val matrix = Matrix()
+                matrix.postScale(1f, -1f)
+                bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+            }
+            activeIndicator.setImageBitmap(bitmap)
+        }
     }
 
     private fun updateLaps() {

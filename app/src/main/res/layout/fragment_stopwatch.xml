@@ -25,13 +25,14 @@
         android:id="@+id/stopwatch_sorting_indicators_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="invisible"
         app:layout_constraintTop_toBottomOf="@+id/stopwatch_time">
 
         <ImageView
             android:id="@+id/stopwatch_sorting_indicator_1"
             android:layout_width="@dimen/lap_time_size"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_sorting_triangle"
+            android:visibility="invisible"
             app:layout_constraintEnd_toStartOf="@+id/stopwatch_sorting_indicator_2"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"/>
@@ -40,7 +41,7 @@
             android:id="@+id/stopwatch_sorting_indicator_2"
             android:layout_width="@dimen/lap_time_size"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_sorting_triangle"
+            android:visibility="invisible"
             app:layout_constraintEnd_toStartOf="@+id/stopwatch_sorting_indicator_3"
             app:layout_constraintStart_toEndOf="@+id/stopwatch_sorting_indicator_1"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -49,7 +50,7 @@
             android:id="@+id/stopwatch_sorting_indicator_3"
             android:layout_width="@dimen/lap_time_size"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_sorting_triangle"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/stopwatch_sorting_indicator_2"
             app:layout_constraintTop_toTopOf="parent"/>
