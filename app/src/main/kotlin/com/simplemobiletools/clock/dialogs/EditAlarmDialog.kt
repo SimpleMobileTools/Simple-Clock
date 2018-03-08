@@ -97,8 +97,14 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
             alarm.isEnabled = false
         }
 
-        if (!activity.dbHelper.updateAlarm(alarm)) {
-            activity.toast(R.string.unknown_error_occurred)
+        if (alarm.id == 0) {
+            if (!activity.dbHelper.insertAlarm(alarm)) {
+                activity.toast(R.string.unknown_error_occurred)
+            }
+        } else {
+            if (!activity.dbHelper.updateAlarm(alarm)) {
+                activity.toast(R.string.unknown_error_occurred)
+            }
         }
         callback()
     }

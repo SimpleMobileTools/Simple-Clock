@@ -57,9 +57,9 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
         insertAlarm(weekEndAlarm, db)
     }
 
-    private fun insertAlarm(alarm: Alarm, db: SQLiteDatabase) {
+    fun insertAlarm(alarm: Alarm, db: SQLiteDatabase = mDb): Boolean {
         val values = fillAlarmContentValues(alarm)
-        db.insert(ALARMS_TABLE_NAME, null, values)
+        return db.insert(ALARMS_TABLE_NAME, null, values) != -1L
     }
 
     fun updateAlarm(alarm: Alarm): Boolean {
