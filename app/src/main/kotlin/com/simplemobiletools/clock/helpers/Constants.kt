@@ -14,6 +14,10 @@ const val ALARM_ID = "alarm_id"
 const val DEFAULT_ALARM_MINUTES = 480
 const val DAY_MINUTES = 1440
 
+const val SORT_BY_LAP = 1
+const val SORT_BY_LAP_TIME = 2
+const val SORT_BY_TOTAL_TIME = 4
+
 fun getDefaultTimeZoneTitle(id: Int) = getAllTimeZones().firstOrNull { it.id == id }?.title ?: ""
 
 fun getAllTimeZones() = arrayListOf(

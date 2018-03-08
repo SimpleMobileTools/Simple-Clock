@@ -6,6 +6,9 @@ import android.view.ViewGroup
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.formatStopwatchTime
+import com.simplemobiletools.clock.helpers.SORT_BY_LAP
+import com.simplemobiletools.clock.helpers.SORT_BY_LAP_TIME
+import com.simplemobiletools.clock.helpers.SORT_BY_TOTAL_TIME
 import com.simplemobiletools.clock.models.Lap
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
 import com.simplemobiletools.commons.views.MyRecyclerView
@@ -31,7 +34,7 @@ class StopwatchAdapter(activity: SimpleActivity, var laps: ArrayList<Lap>, recyc
 
     override fun onBindViewHolder(holder: MyRecyclerViewAdapter.ViewHolder, position: Int) {
         val lap = laps[position]
-        val view = holder.bindView(lap, true) { itemView, layoutPosition ->
+        val view = holder.bindView(lap, false) { itemView, layoutPosition ->
             setupView(itemView, lap)
         }
         bindViewHolder(holder, position, view)
@@ -49,12 +52,21 @@ class StopwatchAdapter(activity: SimpleActivity, var laps: ArrayList<Lap>, recyc
         view.apply {
             lap_order.text = lap.id.toString()
             lap_order.setTextColor(textColor)
+            lap_order.setOnClickListener {
+                itemClick(SORT_BY_LAP)
+            }
 
             lap_lap_time.text = lap.lapTime.formatStopwatchTime(false)
             lap_lap_time.setTextColor(textColor)
+            lap_lap_time.setOnClickListener {
+                itemClick(SORT_BY_LAP_TIME)
+            }
 
             lap_total_time.text = lap.totalTime.formatStopwatchTime(false)
             lap_total_time.setTextColor(textColor)
+            lap_total_time.setOnClickListener {
+                itemClick(SORT_BY_TOTAL_TIME)
+            }
         }
     }
 }

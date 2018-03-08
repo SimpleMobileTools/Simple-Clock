@@ -14,8 +14,10 @@ import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.adapters.StopwatchAdapter
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.formatStopwatchTime
+import com.simplemobiletools.clock.helpers.SORT_BY_LAP
 import com.simplemobiletools.clock.models.Lap
 import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.helpers.SORT_DESCENDING
 import kotlinx.android.synthetic.main.fragment_stopwatch.view.*
 
 class StopwatchFragment : Fragment() {
@@ -29,6 +31,7 @@ class StopwatchFragment : Fragment() {
     private var lapTicks = 0
     private var currentLap = 1
     private var isRunning = false
+    private var sorting = SORT_BY_LAP or SORT_DESCENDING
     private var laps = ArrayList<Lap>()
 
     lateinit var view: ViewGroup
@@ -54,7 +57,11 @@ class StopwatchFragment : Fragment() {
                 (stopwatch_list.adapter as StopwatchAdapter).updateItems(laps)
             }
 
-            val stopwatchAdapter = StopwatchAdapter(activity as SimpleActivity, ArrayList(), stopwatch_list) { }
+            val stopwatchAdapter = StopwatchAdapter(activity as SimpleActivity, ArrayList(), stopwatch_list) {
+                if (it is Int) {
+                    changeSorting(it)
+                }
+            }
             stopwatch_list.adapter = stopwatchAdapter
         }
 
@@ -130,6 +137,10 @@ class StopwatchFragment : Fragment() {
             stopwatch_lap.beGone()
             stopwatch_time.text = 0L.formatStopwatchTime(false)
         }
+    }
+
+    private fun changeSorting(clickedValue: Int) {
+
     }
 
     private val updateRunnable = object : Runnable {
