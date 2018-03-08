@@ -121,12 +121,14 @@ class ClockFragment : Fragment() {
         val timeZones = context!!.getAllTimeZonesModified().filter { selectedTimeZoneIDs.contains(it.id) } as ArrayList<MyTimeZone>
         val currAdapter = view.time_zones_list.adapter
         if (currAdapter == null) {
-            val timeZonesAdapter = TimeZonesAdapter(activity as SimpleActivity, timeZones, view.time_zones_list) {
+            TimeZonesAdapter(activity as SimpleActivity, timeZones, view.time_zones_list) {
                 EditTimeZoneDialog(activity as SimpleActivity, it as MyTimeZone) {
                     updateTimeZones()
                 }
+            }.apply {
+                setupDragListener(true)
+                view.time_zones_list.adapter = this
             }
-            view.time_zones_list.adapter = timeZonesAdapter
         } else {
             (currAdapter as TimeZonesAdapter).updateItems(timeZones)
         }

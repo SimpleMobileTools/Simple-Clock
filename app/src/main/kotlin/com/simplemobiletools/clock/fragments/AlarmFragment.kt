@@ -51,10 +51,12 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
         alarms = context!!.dbHelper.getAlarms()
         val currAdapter = view.alarms_list.adapter
         if (currAdapter == null) {
-            val alarmsAdapter = AlarmsAdapter(activity as SimpleActivity, alarms, this, view.alarms_list) {
+            AlarmsAdapter(activity as SimpleActivity, alarms, this, view.alarms_list) {
                 openEditAlarm(it as Alarm)
+            }.apply {
+                setupDragListener(true)
+                view.alarms_list.adapter = this
             }
-            view.alarms_list.adapter = alarmsAdapter
         } else {
             (currAdapter as AlarmsAdapter).updateItems(alarms)
         }
