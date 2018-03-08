@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.graphics.Matrix
 import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
 import android.os.SystemClock
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -28,7 +27,6 @@ class StopwatchFragment : Fragment() {
     private val UPDATE_INTERVAL = 10L
 
     private val updateHandler = Handler()
-    private val mainLooper = Looper.getMainLooper()
     private var uptimeAtStart = 0L
     private var totalTicks = 0
     private var currentTicks = 0    // ticks that reset at pause
@@ -97,17 +95,13 @@ class StopwatchFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        setupStopwatch()
+        setupViews()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         isRunning = false
         updateHandler.removeCallbacks(updateRunnable)
-    }
-
-    private fun setupStopwatch() {
-        setupViews()
     }
 
     private fun setupViews() {
@@ -221,9 +215,7 @@ class StopwatchFragment : Fragment() {
         override fun run() {
             if (isRunning) {
                 if (totalTicks % 10 == 0) {
-                    mainLooper.run {
-                        updateDisplayedText()
-                    }
+                    updateDisplayedText()
                 }
                 totalTicks++
                 currentTicks++
