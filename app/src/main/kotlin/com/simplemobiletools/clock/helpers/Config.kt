@@ -23,4 +23,8 @@ class Config(context: Context) : BaseConfig(context) {
     var editedTimeZoneTitles: Set<String>
         get() = prefs.getStringSet(EDITED_TIME_ZONE_TITLES, HashSet())
         set(editedTimeZoneTitles) = prefs.edit().putStringSet(EDITED_TIME_ZONE_TITLES, editedTimeZoneTitles).apply()
+
+    var lastTimerSeconds: Int
+        get() = prefs.getInt(LAST_TIMER_SECONDS, 300)
+        set(lastTimerSeconds) = prefs.edit().putInt(LAST_TIMER_SECONDS, lastTimerSeconds).apply()
 }
