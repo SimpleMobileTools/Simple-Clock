@@ -10,9 +10,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.simplemobiletools.clock.R
+import com.simplemobiletools.clock.activities.SimpleActivity
+import com.simplemobiletools.clock.adapters.StopwatchAdapter
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.formatStopwatchTime
-import com.simplemobiletools.clock.models.StopwatchTime
+import com.simplemobiletools.clock.models.Lap
 import com.simplemobiletools.commons.extensions.*
 import kotlinx.android.synthetic.main.fragment_stopwatch.view.*
 
@@ -25,9 +27,9 @@ class StopwatchFragment : Fragment() {
     private var totalTicks = 0
     private var currentTicks = 0    // ticks that reset at pause
     private var lapTicks = 0
-    private var currentLap = 0
+    private var currentLap = 1
     private var isRunning = false
-    private var laps = ArrayList<StopwatchTime>()
+    private var laps = ArrayList<Lap>()
 
     lateinit var view: ViewGroup
 
@@ -46,11 +48,16 @@ class StopwatchFragment : Fragment() {
             }
 
             stopwatch_lap.setOnClickListener {
-                val lap = StopwatchTime(currentLap++, lapTicks * UPDATE_INTERVAL, totalTicks * UPDATE_INTERVAL)
-                laps.add(lap)
+                val lap = Lap(currentLap++, lapTicks * UPDATE_INTERVAL, totalTicks * UPDATE_INTERVAL)
+                laps.add(0, lap)
                 lapTicks = 0
+                (stopwatch_list.adapter as StopwatchAdapter).updateItems(laps)
             }
+
+            val stopwatchAdapter = StopwatchAdapter(activity as SimpleActivity, ArrayList(), stopwatch_list) { }
+            stopwatch_list.adapter = stopwatchAdapter
         }
+
         return view
     }
 
@@ -113,7 +120,7 @@ class StopwatchFragment : Fragment() {
         isRunning = false
         currentTicks = 0
         totalTicks = 0
-        currentLap = 0
+        currentLap = 1
         lapTicks = 0
         laps.clear()
         updateIcons()

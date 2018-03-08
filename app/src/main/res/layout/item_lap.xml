@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lap_holder"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:paddingLeft="@dimen/activity_margin">
+
+    <com.simplemobiletools.commons.views.MyTextView
+        android:id="@+id/lap_order"
+        android:layout_width="@dimen/lap_order_size"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:maxLines="1"
+        android:textSize="@dimen/bigger_text_size"
+        app:layout_constraintEnd_toStartOf="@+id/lap_lap_time"
+        app:layout_constraintHorizontal_bias="0.38"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="1"/>
+
+    <com.simplemobiletools.commons.views.MyTextView
+        android:id="@+id/lap_lap_time"
+        android:layout_width="@dimen/lap_time_size"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:maxLines="1"
+        android:textSize="@dimen/bigger_text_size"
+        app:layout_constraintEnd_toStartOf="@+id/lap_total_time"
+        app:layout_constraintStart_toEndOf="@+id/lap_order"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="0.00"/>
+
+    <com.simplemobiletools.commons.views.MyTextView
+        android:id="@+id/lap_total_time"
+        android:layout_width="@dimen/lap_time_size"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:maxLines="1"
+        android:textSize="@dimen/bigger_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lap_lap_time"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="0.00"/>
+
+</android.support.constraint.ConstraintLayout>
