@@ -21,6 +21,52 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="00:00"/>
 
+    <com.simplemobiletools.commons.views.MyTextView
+        android:id="@+id/timer_initial_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_margin"
+        android:background="?attr/selectableItemBackground"
+        android:drawableLeft="@drawable/ic_timer"
+        android:drawablePadding="@dimen/normal_margin"
+        android:padding="@dimen/activity_margin"
+        android:textSize="@dimen/bigger_text_size"
+        app:layout_constraintTop_toBottomOf="@+id/timer_time"
+        tools:text="05:00"/>
+
+    <RelativeLayout
+        android:id="@+id/timer_vibrate_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:padding="@dimen/activity_margin"
+        app:layout_constraintTop_toBottomOf="@+id/timer_initial_time">
+
+        <com.simplemobiletools.commons.views.MySwitchCompat
+            android:id="@+id/timer_vibrate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:clickable="false"
+            android:drawableLeft="@drawable/ic_vibrate"
+            android:drawablePadding="@dimen/normal_margin"
+            android:text="@string/vibrate"
+            android:textSize="@dimen/bigger_text_size"/>
+
+    </RelativeLayout>
+
+    <com.simplemobiletools.commons.views.MyTextView
+        android:id="@+id/timer_sound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:drawableLeft="@drawable/ic_bell"
+        android:drawablePadding="@dimen/normal_margin"
+        android:padding="@dimen/activity_margin"
+        android:textSize="@dimen/bigger_text_size"
+        app:layout_constraintTop_toBottomOf="@+id/timer_vibrate_holder"
+        tools:text="Default alarm"/>
+
     <ImageView
         android:id="@+id/timer_reset"
         style="@style/MyBorderlessBackgroundStyle"

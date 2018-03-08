@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.simplemobiletools.clock.R
+import com.simplemobiletools.clock.extensions.colorLeftDrawable
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.commons.extensions.*
 import kotlinx.android.synthetic.main.fragment_timer.view.*
@@ -38,6 +39,18 @@ class TimerFragment : Fragment() {
             timer_reset.setOnClickListener {
                 resetTimer()
             }
+
+            timer_initial_time.setOnClickListener {
+
+            }
+
+            timer_vibrate_holder.setOnClickListener {
+                timer_vibrate.toggle()
+            }
+
+            timer_sound.setOnClickListener {
+
+            }
         }
 
         initialSecs = context!!.config.lastTimerSeconds
@@ -57,10 +70,14 @@ class TimerFragment : Fragment() {
     }
 
     private fun setupViews() {
+        val textColor = context!!.config.textColor
         view.apply {
             context!!.updateTextColors(timer_fragment)
             timer_play_pause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, context!!.getAdjustedPrimaryColor())
-            timer_reset.applyColorFilter(context!!.config.textColor)
+            timer_reset.applyColorFilter(textColor)
+            timer_initial_time.colorLeftDrawable(textColor)
+            timer_vibrate.colorLeftDrawable(textColor)
+            timer_sound.colorLeftDrawable(textColor)
         }
 
         updateIcons()

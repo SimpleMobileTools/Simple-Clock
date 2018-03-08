@@ -6,6 +6,7 @@ import android.support.v7.app.AlertDialog
 import android.widget.TextView
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
+import com.simplemobiletools.clock.extensions.colorLeftDrawable
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.dbHelper
 import com.simplemobiletools.clock.extensions.formatAlarmTime
@@ -25,7 +26,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                 TimePickerDialog(context, context.getDialogTheme(), timeSetListener, alarm.timeInMinutes / 60, alarm.timeInMinutes % 60, context.config.use24hourFormat).show()
             }
 
-            colorLeftDrawable(edit_alarm_sound)
+            edit_alarm_sound.colorLeftDrawable(textColor)
             edit_alarm_sound.text = alarm.soundTitle
             edit_alarm_sound.setOnClickListener {
                 SelectAlarmSoundDialog(activity, alarm.soundUri) {
@@ -35,7 +36,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                 }
             }
 
-            colorLeftDrawable(edit_alarm_vibrate)
+            edit_alarm_vibrate.colorLeftDrawable(textColor)
             edit_alarm_vibrate.isChecked = alarm.vibrate
             edit_alarm_vibrate_holder.setOnClickListener {
                 edit_alarm_vibrate.toggle()
@@ -108,12 +109,6 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
             }
         }
         callback()
-    }
-
-    private fun colorLeftDrawable(textView: TextView) {
-        val leftImage = textView.compoundDrawables.first()
-        leftImage.applyColorFilter(textColor)
-        textView.setCompoundDrawables(leftImage, null, null, null)
     }
 
     private fun getProperDayDrawable(selected: Boolean): Drawable {
