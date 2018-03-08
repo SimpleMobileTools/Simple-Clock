@@ -6,7 +6,7 @@
     <string name="label">Štítok</string>
     <string name="no_days_selected">Neboli označené žiadne dni</string>
     <string name="alarm">Budík</string>
-    <string name="lap">Kolo</string>
+    <string name="lap">Okruh</string>
 
     <!-- Settings -->
     <string name="clock_tab">Okno s časom</string>
@@ -18,6 +18,27 @@
     <!-- FAQ -->
     <string name="faq_1_title">Ako viem zmeniť poradie kôl na okne so stopkami?</string>
     <string name="faq_1_text">Stačí, ak kliknete na niektorý stĺpec, to aktivuje triedenie podľa daného stĺpca. Ďalším kliknutím na daný stĺpec viete prepínať zostupné a vzostupné triedenie.</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">A combination of a clock, alarm, stopwatch and timer.</string>
+    <string name="app_long_description">
+        Apka obsahuje ivacero funkcií spojených s časom.
+
+        Hodinky vedia zobraziť aj čas iných časových pásiem, resp. ponúkajú jednoduchý, ale nastaviteľný widget. Farbu textu widgetu možno prispôsobiť, rovnako ako farbu a priehľadnosť pozadia.
+
+        Viete si jednoducho nastaviť aj časovač, aby vám nič neuniklo. Viete zmeniť jeho zvučku, alebo zapnúť vibrácie.
+
+        Budík obsahuje všetky očakávané funkcie ako výber dní, prepínanie vibrácií, výber melódie, odloženie, ako aj pridanie štítka.
+
+        So stopkami viete jednoducho zmerať nejaký časový interval, alebo jednotlivé okruhy. Okruhy viete zoradiť aj podľa ich času. Stopky obsahujú nastaviteľné vibrácie pri stlačení tlačidiel, aby vás to uistilo v ich stlačenie, aj keď sa neviete práve pozrieť na displej.
+
+        Ďalšími funkciami sú predídenie uspania zariadenia kým je apka v popredí, alebo zobrazenie okien v celoobrazovkovom režime.
+
+        Neobsahuje žiadne reklamy a nepotrebné oprávnenia. Je opensource, poskytuje možnosť zmeny farieb.
+
+        Táto aplikácia je iba jednou zo skupiny aplikácií. Ostatné viete nájsť na http://www.simplemobiletools.com
+    </string>
 
     <!--
         Haven't found some strings? There's more at
