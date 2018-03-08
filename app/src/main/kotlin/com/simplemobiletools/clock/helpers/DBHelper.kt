@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.text.TextUtils
 import com.simplemobiletools.clock.extensions.createNewAlarm
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.getIntValue
@@ -74,6 +75,12 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
         values.put(COL_IS_ENABLED, isEnabled)
         val selection = "$COL_ID = ?"
         return mDb.update(ALARMS_TABLE_NAME, values, selection, selectionArgs) == 1
+    }
+
+    fun deleteAlarms(ids: ArrayList<String>) {
+        val args = TextUtils.join(", ", ids)
+        val selection = "$ALARMS_TABLE_NAME.$COL_ID IN ($args)"
+        mDb.delete(ALARMS_TABLE_NAME, selection, null)
     }
 
     fun getAlarmWithId(id: Int) = getAlarms().firstOrNull { it.id == id }

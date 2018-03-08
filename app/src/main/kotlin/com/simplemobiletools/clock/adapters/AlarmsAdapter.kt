@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.config
+import com.simplemobiletools.clock.extensions.dbHelper
 import com.simplemobiletools.clock.extensions.formatAlarmTime
 import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
@@ -64,13 +65,16 @@ class AlarmsAdapter(activity: SimpleActivity, var alarms: ArrayList<Alarm>, val 
 
     private fun deleteItems() {
         val alarmsToRemove = ArrayList<Alarm>()
+        val alarmIDs = ArrayList<String>()
         selectedPositions.sortedDescending().forEach {
             val alarm = alarms[it]
+            alarmIDs.add(alarm.id.toString())
             alarmsToRemove.add(alarm)
         }
 
         alarms.removeAll(alarmsToRemove)
         removeSelectedItems()
+        activity.dbHelper.deleteAlarms(alarmIDs)
     }
 
     private fun setupView(view: View, alarm: Alarm) {
