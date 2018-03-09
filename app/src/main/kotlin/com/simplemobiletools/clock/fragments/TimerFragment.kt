@@ -30,6 +30,7 @@ class TimerFragment : Fragment() {
     lateinit var view: ViewGroup
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        val config = context!!.config
         view = (inflater.inflate(R.layout.fragment_timer, container, false) as ViewGroup).apply {
             timer_time.setOnClickListener {
                 togglePlayPause()
@@ -44,20 +45,30 @@ class TimerFragment : Fragment() {
             }
 
             timer_initial_time.setOnClickListener {
-
+                MyTimePickerDialogDialog(activity as SimpleActivity, config.timerSeconds) {
+                    config.timerSeconds = it
+                    timer_initial_time.text = it.getFormattedDuration()
+                    if (!isRunning) {
+                        resetTimer()
+                    }
+                }
             }
 
             timer_vibrate_holder.setOnClickListener {
                 timer_vibrate.toggle()
-                context!!.config.timerVibrate = timer_vibrate.isChecked
+                config.timerVibrate = timer_vibrate.isChecked
             }
 
             timer_sound.setOnClickListener {
-
+                SelectAlarmSoundDialog(activity as SimpleActivity, config.timerSoundUri) {
+                    config.timerSoundTitle = it.title
+                    config.timerSoundUri = it.uri
+                    timer_sound.text = it.title
+                }
             }
         }
 
-        initialSecs = context!!.config.timerSeconds
+        initialSecs = config.timerSeconds
         updateDisplayedText()
         return view
     }
@@ -86,28 +97,12 @@ class TimerFragment : Fragment() {
 
             timer_initial_time.text = config.timerSeconds.getFormattedDuration()
             timer_initial_time.colorLeftDrawable(textColor)
-            timer_initial_time.setOnClickListener {
-                MyTimePickerDialogDialog(activity as SimpleActivity, config.timerSeconds) {
-                    config.timerSeconds = it
-                    timer_initial_time.text = it.getFormattedDuration()
-                    if (!isRunning) {
-                        resetTimer()
-                    }
-                }
-            }
 
             timer_vibrate.isChecked = config.timerVibrate
             timer_vibrate.colorLeftDrawable(textColor)
 
             timer_sound.text = config.timerSoundTitle
             timer_sound.colorLeftDrawable(textColor)
-            timer_sound.setOnClickListener {
-                SelectAlarmSoundDialog(activity as SimpleActivity, config.timerSoundUri) {
-                    config.timerSoundTitle = it.title
-                    config.timerSoundUri = it.uri
-                    timer_sound.text = it.title
-                }
-            }
         }
 
         updateIcons()
