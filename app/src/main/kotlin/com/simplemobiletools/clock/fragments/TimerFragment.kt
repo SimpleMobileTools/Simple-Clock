@@ -84,7 +84,11 @@ class TimerFragment : Fragment() {
             timer_initial_time.colorLeftDrawable(textColor)
             timer_initial_time.setOnClickListener {
                 MyTimePickerDialogDialog(activity as SimpleActivity, config.timerSeconds) {
-
+                    config.timerSeconds = it
+                    timer_initial_time.text = it.getFormattedDuration()
+                    if (!isRunning) {
+                        resetTimer()
+                    }
                 }
             }
 
