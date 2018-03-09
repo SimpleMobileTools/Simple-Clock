@@ -69,6 +69,9 @@ class TimerFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+        if (isRunning) {
+            context?.toast(R.string.timer_stopped)
+        }
         isRunning = false
         updateHandler.removeCallbacks(updateRunnable)
     }

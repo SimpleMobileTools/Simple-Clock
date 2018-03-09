@@ -100,6 +100,9 @@ class StopwatchFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+        if (isRunning) {
+            context?.toast(R.string.stopwatch_stopped)
+        }
         isRunning = false
         updateHandler.removeCallbacks(updateRunnable)
     }

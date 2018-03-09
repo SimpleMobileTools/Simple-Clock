@@ -7,6 +7,8 @@
     <string name="no_days_selected">No days selected</string>
     <string name="alarm">Alarm</string>
     <string name="lap">Lap</string>
+    <string name="stopwatch_stopped">Stopwatch has been stopped</string>
+    <string name="timer_stopped">Timer has been stopped</string>
 
     <!-- Settings -->
     <string name="clock_tab">Clock tab</string>

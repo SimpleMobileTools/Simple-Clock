@@ -7,6 +7,8 @@
     <string name="no_days_selected">Neboli označené žiadne dni</string>
     <string name="alarm">Budík</string>
     <string name="lap">Okruh</string>
+    <string name="stopwatch_stopped">Stopky boli zastavené</string>
+    <string name="timer_stopped">Časovač bol zastavený</string>
 
     <!-- Settings -->
     <string name="clock_tab">Okno s časom</string>
