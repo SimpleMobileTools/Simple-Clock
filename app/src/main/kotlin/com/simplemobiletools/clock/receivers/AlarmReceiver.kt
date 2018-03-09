@@ -73,7 +73,7 @@ class AlarmReceiver : BroadcastReceiver() {
         }
 
         if (alarm.vibrate) {
-            val vibrateArray = LongArray(100) { 500 }
+            val vibrateArray = LongArray(1200) { 500 }
             builder.setVibrate(vibrateArray)
         }
 
