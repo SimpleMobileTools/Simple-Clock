@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.simplemobiletools.clock.R
+import com.simplemobiletools.clock.activities.SimpleActivity
+import com.simplemobiletools.clock.dialogs.MyTimePickerDialogDialog
 import com.simplemobiletools.clock.extensions.colorLeftDrawable
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.commons.extensions.*
@@ -80,6 +82,11 @@ class TimerFragment : Fragment() {
 
             timer_initial_time.text = config.timerSeconds.getFormattedDuration()
             timer_initial_time.colorLeftDrawable(textColor)
+            timer_initial_time.setOnClickListener {
+                MyTimePickerDialogDialog(activity as SimpleActivity, config.timerSeconds) {
+
+                }
+            }
 
             timer_vibrate.isChecked = config.timerVibrate
             timer_vibrate.colorLeftDrawable(textColor)
