@@ -10,14 +10,12 @@ import android.content.Context
 import android.content.Intent
 import android.media.AudioManager
 import android.net.Uri
+import android.os.Handler
 import android.support.v4.app.NotificationCompat
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.MainActivity
 import com.simplemobiletools.clock.activities.SnoozeReminderActivity
-import com.simplemobiletools.clock.extensions.config
-import com.simplemobiletools.clock.extensions.dbHelper
-import com.simplemobiletools.clock.extensions.formatAlarmTime
-import com.simplemobiletools.clock.extensions.scheduleNextAlarm
+import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.ALARM_ID
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.clock.services.SnoozeService
@@ -26,6 +24,8 @@ import com.simplemobiletools.commons.helpers.isLollipopPlus
 import com.simplemobiletools.commons.helpers.isOreoPlus
 
 class AlarmReceiver : BroadcastReceiver() {
+    private val NOTIFICATION_DISAPPEAR_MS = 600000L
+
     override fun onReceive(context: Context, intent: Intent) {
         val id = intent.getIntExtra(ALARM_ID, -1)
         val alarm = context.dbHelper.getAlarmWithId(id) ?: return
@@ -35,6 +35,10 @@ class AlarmReceiver : BroadcastReceiver() {
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.notify(alarm.id, notification)
         context.scheduleNextAlarm(alarm, false)
+
+        Handler().postDelayed({
+            context.hideNotification(id)
+        }, NOTIFICATION_DISAPPEAR_MS)
     }
 
     @SuppressLint("NewApi")
