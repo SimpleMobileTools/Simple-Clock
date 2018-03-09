@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.dialogs.MyTimePickerDialogDialog
+import com.simplemobiletools.clock.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.clock.extensions.colorLeftDrawable
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.commons.extensions.*
@@ -97,6 +98,13 @@ class TimerFragment : Fragment() {
 
             timer_sound.text = config.timerSoundTitle
             timer_sound.colorLeftDrawable(textColor)
+            timer_sound.setOnClickListener {
+                SelectAlarmSoundDialog(activity as SimpleActivity, config.timerSoundUri) {
+                    config.timerSoundTitle = it.title
+                    config.timerSoundUri = it.uri
+                    timer_sound.text = it.title
+                }
+            }
         }
 
         updateIcons()
