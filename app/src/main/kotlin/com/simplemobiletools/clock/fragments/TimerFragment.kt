@@ -147,7 +147,16 @@ class TimerFragment : Fragment() {
     }
 
     private fun updateDisplayedText() {
-        view.timer_time.text = (initialSecs - totalTicks).getFormattedDuration()
+        val diff = initialSecs - totalTicks
+        var formattedDuration = Math.abs(diff).getFormattedDuration()
+        if (diff < 0) {
+            formattedDuration = "-$formattedDuration"
+        }
+
+        view.timer_time.text = formattedDuration
+        if (diff == 0) {
+
+        }
     }
 
     private val updateRunnable = object : Runnable {
