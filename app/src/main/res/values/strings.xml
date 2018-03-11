@@ -6,9 +6,12 @@
     <string name="label">Label</string>
     <string name="no_days_selected">No days selected</string>
     <string name="alarm">Alarm</string>
+    <string name="timer">Timer</string>
     <string name="lap">Lap</string>
     <string name="stopwatch_stopped">Stopwatch has been stopped</string>
     <string name="timer_stopped">Timer has been stopped</string>
+    <string name="max_reminder_length">Max reminder length</string>
+    <string name="time_expired">Time expired</string>
 
     <!-- Settings -->
     <string name="clock_tab">Clock tab</string>

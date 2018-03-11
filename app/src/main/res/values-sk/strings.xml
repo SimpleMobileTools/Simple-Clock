@@ -6,9 +6,12 @@
     <string name="label">Štítok</string>
     <string name="no_days_selected">Neboli označené žiadne dni</string>
     <string name="alarm">Budík</string>
+    <string name="timer">Časovač</string>
     <string name="lap">Okruh</string>
     <string name="stopwatch_stopped">Stopky boli zastavené</string>
     <string name="timer_stopped">Časovač bol zastavený</string>
+    <string name="max_reminder_length">Maximálna dĺžka upozorňovania</string>
+    <string name="time_expired">Čas vypršal</string>
 
     <!-- Settings -->
     <string name="clock_tab">Okno s časom</string>

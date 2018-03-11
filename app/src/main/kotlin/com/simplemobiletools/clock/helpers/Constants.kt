@@ -17,6 +17,7 @@ const val EDITED_TIME_ZONE_SEPARATOR = ":"
 const val ALARM_ID = "alarm_id"
 const val DEFAULT_ALARM_MINUTES = 480
 const val DAY_MINUTES = 1440
+const val TIMER_NOTIF_ID = 9999
 
 const val SORT_BY_LAP = 1
 const val SORT_BY_LAP_TIME = 2

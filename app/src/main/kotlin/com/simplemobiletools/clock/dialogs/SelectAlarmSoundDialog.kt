@@ -1,6 +1,5 @@
 package com.simplemobiletools.clock.dialogs
 
-import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
 import android.support.v7.app.AlertDialog
@@ -14,7 +13,7 @@ import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.commons.extensions.setupDialogStuff
 import kotlinx.android.synthetic.main.dialog_select_alarm_sound.view.*
 
-class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: String, val callback: (alarmSound: AlarmSound) -> Unit) {
+class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: String, val audioStream: Int, val callback: (alarmSound: AlarmSound) -> Unit) {
     private val view = activity.layoutInflater.inflate(R.layout.dialog_select_alarm_sound, null)
     private val alarms = activity.getAlarms()
     private var mediaPlayer = MediaPlayer()
@@ -29,7 +28,7 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
                     setOnClickListener {
                         mediaPlayer.stop()
                         mediaPlayer = MediaPlayer().apply {
-                            setAudioStreamType(AudioManager.STREAM_ALARM)
+                            setAudioStreamType(audioStream)
                             setDataSource(context, Uri.parse(alarmSound.uri))
                             prepare()
                             start()
@@ -47,7 +46,7 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
                 .setNegativeButton(R.string.cancel, null)
                 .create().apply {
                     activity.setupDialogStuff(view, this)
-                    window.volumeControlStream = AudioManager.STREAM_ALARM
+                    window.volumeControlStream = audioStream
                 }
     }
 

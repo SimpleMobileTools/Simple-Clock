@@ -25,7 +25,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.MainActivity"/>
+        <activity
+            android:name=".activities.MainActivity"
+            android:launchMode="singleTop"/>
 
         <activity
             android:name=".activities.SettingsActivity"
@@ -59,6 +61,8 @@
         <service android:name=".services.SnoozeService"/>
 
         <receiver android:name=".receivers.AlarmReceiver"/>
+
+        <receiver android:name=".receivers.TimerReceiver"/>
 
         <receiver android:name=".receivers.BootCompletedReceiver">
             <intent-filter>

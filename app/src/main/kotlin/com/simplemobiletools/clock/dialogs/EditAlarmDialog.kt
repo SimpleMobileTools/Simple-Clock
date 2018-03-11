@@ -2,6 +2,7 @@ package com.simplemobiletools.clock.dialogs
 
 import android.app.TimePickerDialog
 import android.graphics.drawable.Drawable
+import android.media.AudioManager
 import android.support.v7.app.AlertDialog
 import android.widget.TextView
 import com.simplemobiletools.clock.R
@@ -29,7 +30,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
             edit_alarm_sound.colorLeftDrawable(textColor)
             edit_alarm_sound.text = alarm.soundTitle
             edit_alarm_sound.setOnClickListener {
-                SelectAlarmSoundDialog(activity, alarm.soundUri) {
+                SelectAlarmSoundDialog(activity, alarm.soundUri, AudioManager.STREAM_ALARM) {
                     alarm.soundTitle = it.title
                     alarm.soundUri = it.uri
                     edit_alarm_sound.text = it.title
