@@ -41,6 +41,7 @@ class TimerFragment : Fragment() {
     private var totalTicks = 0
     private var currentTicks = 0
     private var updateHandler = Handler()
+    private var isForegrounded = true
 
     lateinit var view: ViewGroup
 
@@ -88,9 +89,19 @@ class TimerFragment : Fragment() {
         return view
     }
 
+    override fun onStart() {
+        super.onStart()
+        isForegrounded = true
+    }
+
     override fun onResume() {
         super.onResume()
         setupViews()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        isForegrounded = false
     }
 
     override fun onDestroy() {
@@ -146,7 +157,7 @@ class TimerFragment : Fragment() {
     }
 
     private fun resetTimer() {
-        updateHandler.removeCallbacksAndMessages(null)
+        updateHandler.removeCallbacks(updateRunnable)
         isRunning = false
         currentTicks = 0
         totalTicks = 0
@@ -156,11 +167,15 @@ class TimerFragment : Fragment() {
         view.timer_reset.beGone()
     }
 
-    private fun updateDisplayedText() {
+    private fun updateDisplayedText(): Boolean {
         val diff = initialSecs - totalTicks
         var formattedDuration = Math.abs(diff).getFormattedDuration()
         if (diff < 0) {
             formattedDuration = "-$formattedDuration"
+            if (!isForegrounded) {
+                resetTimer()
+                return false
+            }
         }
 
         view.timer_time.text = formattedDuration
@@ -170,6 +185,7 @@ class TimerFragment : Fragment() {
             val notificationManager = context!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.notify(TIMER_NOTIF_ID, notification)
         }
+        return true
     }
 
     @SuppressLint("NewApi")
@@ -224,10 +240,11 @@ class TimerFragment : Fragment() {
     private val updateRunnable = object : Runnable {
         override fun run() {
             if (isRunning) {
-                updateDisplayedText()
-                currentTicks++
-                totalTicks++
-                updateHandler.postAtTime(this, uptimeAtStart + currentTicks * UPDATE_INTERVAL)
+                if (updateDisplayedText()) {
+                    currentTicks++
+                    totalTicks++
+                    updateHandler.postAtTime(this, uptimeAtStart + currentTicks * UPDATE_INTERVAL)
+                }
             }
         }
     }
