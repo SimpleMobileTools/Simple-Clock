@@ -12,6 +12,7 @@
     <string name="timer_stopped">Časovač bol zastavený</string>
     <string name="max_reminder_length">Maximálna dĺžka upozorňovania</string>
     <string name="time_expired">Čas vypršal</string>
+    <string name="digital_clock_and_date">Digitálne hodiny a dátum</string>
 
     <!-- Settings -->
     <string name="clock_tab">Okno s časom</string>

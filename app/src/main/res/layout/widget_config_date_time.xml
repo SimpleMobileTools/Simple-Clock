@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/config_date_time_holder"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_margin="@dimen/activity_margin">
+
+    <TextView
+        android:id="@+id/config_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/big_margin"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/clock_text_size"
+        tools:text="00:00"/>
+
+    <TextView
+        android:id="@+id/config_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/config_time"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/big_text_size"
+        tools:text="Mon, 1 January"/>
+
+    <Button
+        android:id="@+id/config_bg_color"
+        android:layout_width="@dimen/widget_colorpicker_size"
+        android:layout_height="@dimen/widget_colorpicker_size"
+        android:layout_above="@+id/config_text_color"/>
+
+    <RelativeLayout
+        android:id="@+id/config_bg_seekbar_holder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/config_bg_color"
+        android:layout_alignTop="@+id/config_bg_color"
+        android:layout_toRightOf="@+id/config_bg_color"
+        android:background="@android:color/white">
+
+        <com.simplemobiletools.commons.views.MySeekBar
+            android:id="@+id/config_bg_seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/activity_margin"
+            android:paddingRight="@dimen/activity_margin"/>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/config_text_color"
+        android:layout_width="@dimen/widget_colorpicker_size"
+        android:layout_height="@dimen/widget_colorpicker_size"
+        android:layout_alignParentBottom="true"/>
+
+    <Button
+        android:id="@+id/config_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:fontFamily="sans-serif-light"
+        android:paddingLeft="@dimen/activity_margin"
+        android:paddingRight="@dimen/activity_margin"
+        android:text="@string/ok"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/big_text_size"/>
+
+</RelativeLayout>

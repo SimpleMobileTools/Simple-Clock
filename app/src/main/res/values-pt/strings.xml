@@ -12,6 +12,7 @@
     <string name="timer_stopped">Timer has been stopped</string>
     <string name="max_reminder_length">Max reminder length</string>
     <string name="time_expired">Time expired</string>
+    <string name="digital_clock_and_date">Digital clock and date</string>
 
     <!-- Settings -->
     <string name="clock_tab">Relógio</string>

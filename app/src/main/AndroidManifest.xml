@@ -63,6 +63,15 @@
             android:name=".activities.SnoozeReminderActivity"
             android:theme="@style/Theme.Transparent"/>
 
+        <activity
+            android:name=".activities.WidgetDateTimeConfigureActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyWidgetConfigTheme">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+            </intent-filter>
+        </activity>
+
         <service android:name=".services.SnoozeService"/>
 
         <receiver android:name=".receivers.AlarmReceiver"/>
@@ -75,6 +84,18 @@
                 <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
                 <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
             </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".helpers.MyWidgetDateTimeProvider"
+            android:label="@string/digital_clock_and_date">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_date_time_info"/>
         </receiver>
     </application>
 </manifest>
