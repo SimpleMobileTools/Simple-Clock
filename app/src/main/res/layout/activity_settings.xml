@@ -204,7 +204,7 @@
                 android:layout_toStartOf="@+id/settings_alarm_max_reminder"
                 android:paddingLeft="@dimen/medium_margin"
                 android:paddingRight="@dimen/medium_margin"
-                android:text="@string/max_reminder_length"/>
+                android:text="@string/max_reminder_duration"/>
 
             <com.simplemobiletools.commons.views.MyTextView
                 android:id="@+id/settings_alarm_max_reminder"
@@ -355,7 +355,7 @@
                 android:layout_toStartOf="@+id/settings_timer_max_reminder"
                 android:paddingLeft="@dimen/medium_margin"
                 android:paddingRight="@dimen/medium_margin"
-                android:text="@string/max_reminder_length"/>
+                android:text="@string/max_reminder_duration"/>
 
             <com.simplemobiletools.commons.views.MyTextView
                 android:id="@+id/settings_timer_max_reminder"
