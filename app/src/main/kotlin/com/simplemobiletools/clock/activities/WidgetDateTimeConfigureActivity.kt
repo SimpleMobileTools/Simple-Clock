@@ -8,10 +8,12 @@ import android.os.Bundle
 import android.widget.SeekBar
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.config
+import com.simplemobiletools.clock.extensions.getFormattedDate
 import com.simplemobiletools.clock.helpers.MyWidgetDateTimeProvider
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.extensions.adjustAlpha
 import kotlinx.android.synthetic.main.widget_config_date_time.*
+import java.util.*
 
 class WidgetDateTimeConfigureActivity : SimpleActivity() {
     private var mBgAlpha = 0f
@@ -64,6 +66,19 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
         config_bg_seekbar.setOnSeekBarChangeListener(bgSeekbarChangeListener)
         config_bg_seekbar.progress = (mBgAlpha * 100).toInt()
         updateBgColor()
+        updateCurrentDateTime()
+    }
+
+    private fun updateCurrentDateTime() {
+        val calendar = Calendar.getInstance()
+        val offset = calendar.timeZone.rawOffset
+        val passedSeconds = ((calendar.timeInMillis + offset) / 1000).toInt()
+
+        val hours = (passedSeconds / 3600) % 24
+        val minutes = (passedSeconds / 60) % 60
+        val format = "%02d:%02d"
+        config_time.text = String.format(format, hours, minutes)
+        config_date.text = getFormattedDate(calendar)
     }
 
     private fun saveConfig() {
@@ -109,12 +124,15 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
         mTextColor = mTextColorWithoutTransparency
         config_text_color.setBackgroundColor(mTextColor)
         config_save.setTextColor(mTextColor)
+        config_time.setTextColor(mTextColor)
+        config_date.setTextColor(mTextColor)
     }
 
     private fun updateBgColor() {
         mBgColor = mBgColorWithoutTransparency.adjustAlpha(mBgAlpha)
         config_bg_color.setBackgroundColor(mBgColor)
         config_save.setBackgroundColor(mBgColor)
+        config_date_time_wrapper.setBackgroundColor(mBgColor)
     }
 
     private val bgSeekbarChangeListener = object : SeekBar.OnSeekBarChangeListener {

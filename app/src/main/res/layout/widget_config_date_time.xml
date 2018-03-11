@@ -8,23 +8,31 @@
     android:layout_centerHorizontal="true"
     android:layout_margin="@dimen/activity_margin">
 
-    <TextView
-        android:id="@+id/config_time"
+    <RelativeLayout
+        android:id="@+id/config_date_time_wrapper"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/big_margin"
-        android:gravity="center_horizontal"
-        android:textSize="@dimen/clock_text_size"
-        tools:text="00:00"/>
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/config_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/config_time"
-        android:gravity="center_horizontal"
-        android:textSize="@dimen/big_text_size"
-        tools:text="Mon, 1 January"/>
+        <TextView
+            android:id="@+id/config_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:textSize="@dimen/clock_text_size"
+            tools:text="00:00"/>
+
+        <TextView
+            android:id="@+id/config_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/config_time"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:paddingBottom="@dimen/small_margin"
+            android:textSize="@dimen/big_text_size"
+            tools:text="Mon, 1 January"/>
+    </RelativeLayout>
 
     <Button
         android:id="@+id/config_bg_color"
