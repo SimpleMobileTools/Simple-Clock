@@ -14,6 +14,7 @@ import com.simplemobiletools.clock.dialogs.EditTimeZoneDialog
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.getAllTimeZonesModified
 import com.simplemobiletools.clock.extensions.getFormattedDate
+import com.simplemobiletools.clock.extensions.getFormattedTime
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.commons.extensions.beVisibleIf
 import com.simplemobiletools.commons.extensions.updateTextColors
@@ -75,16 +76,7 @@ class ClockFragment : Fragment() {
         val hours = (passedSeconds / 3600) % 24
         val minutes = (passedSeconds / 60) % 60
         val seconds = passedSeconds % 60
-        var format = "%02d:%02d"
-
-        val formattedText = if (context!!.config.showSeconds) {
-            format += ":%02d"
-            String.format(format, hours, minutes, seconds)
-        } else {
-            String.format(format, hours, minutes)
-        }
-
-        view.clock_time.text = formattedText
+        view.clock_time.text = context!!.getFormattedTime(calendar, context!!.config.showSeconds)
 
         if (seconds == 0) {
             if (hours == 0 && minutes == 0) {
