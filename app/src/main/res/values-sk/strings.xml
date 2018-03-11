@@ -13,6 +13,7 @@
     <string name="max_reminder_duration">Maximálna dĺžka upozorňovania</string>
     <string name="time_expired">Čas vypršal</string>
     <string name="digital_clock_and_date">Digitálne hodiny a dátum</string>
+    <string name="use_text_shadow">Použiť tieňovanie písma</string>
 
     <!-- Settings -->
     <string name="clock_tab">Okno s časom</string>

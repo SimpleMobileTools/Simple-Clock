@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
@@ -155,4 +157,16 @@ fun Context.cancelAlarmClock(alarm: Alarm) {
 fun Context.hideNotification(id: Int) {
     val manager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     manager.cancel(id)
+}
+
+fun Context.updateWidgets() {
+    val widgetsCnt = AppWidgetManager.getInstance(applicationContext).getAppWidgetIds(ComponentName(applicationContext, MyWidgetDateTimeProvider::class.java))
+    if (widgetsCnt.isNotEmpty()) {
+        val ids = intArrayOf(R.xml.widget_date_time_info)
+        Intent(applicationContext, MyWidgetDateTimeProvider::class.java).apply {
+            action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+            putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
+            sendBroadcast(this)
+        }
+    }
 }

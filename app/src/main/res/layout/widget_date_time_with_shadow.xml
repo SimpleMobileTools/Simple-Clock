@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_date_time_holder"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/widget_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:includeFontPadding="false"
+        android:shadowColor="@android:color/black"
+        android:shadowDy="1"
+        android:shadowRadius="1"
+        android:textSize="@dimen/widget_time_text_size"
+        tools:text="00:00"/>
+
+    <TextView
+        android:id="@+id/widget_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/widget_time"
+        android:gravity="center_horizontal"
+        android:includeFontPadding="false"
+        android:paddingBottom="@dimen/normal_margin"
+        android:shadowColor="@android:color/black"
+        android:shadowDy="1"
+        android:shadowRadius="1"
+        android:textSize="@dimen/normal_text_size"
+        tools:text="Mon, 1 January"/>
+
+</RelativeLayout>

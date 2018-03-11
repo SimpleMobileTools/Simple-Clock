@@ -13,6 +13,7 @@
     <string name="max_reminder_duration">Max reminder duration</string>
     <string name="time_expired">Time expired</string>
     <string name="digital_clock_and_date">Digital clock and date</string>
+    <string name="use_text_shadow">Use text shadow</string>
 
     <!-- Settings -->
     <string name="clock_tab">Relógio</string>

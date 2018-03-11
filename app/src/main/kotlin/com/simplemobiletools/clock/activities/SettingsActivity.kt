@@ -3,6 +3,7 @@ package com.simplemobiletools.clock.activities
 import android.os.Bundle
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.config
+import com.simplemobiletools.clock.extensions.updateWidgets
 import com.simplemobiletools.clock.helpers.DEFAULT_MAX_ALARM_REMINDER_SECS
 import com.simplemobiletools.clock.helpers.DEFAULT_MAX_TIMER_REMINDER_SECS
 import com.simplemobiletools.commons.extensions.*
@@ -30,13 +31,14 @@ class SettingsActivity : SimpleActivity() {
         setupSnoozeTime()
         setupVibrate()
         setupTimerMaxReminder()
+        setupUseTextShadow()
         updateTextColors(settings_holder)
         setupSectionColors()
     }
 
     private fun setupSectionColors() {
         val adjustedPrimaryColor = getAdjustedPrimaryColor()
-        arrayListOf(clock_tab_label, alarm_tab_label, stopwatch_tab_label, timer_tab_label).forEach {
+        arrayListOf(clock_tab_label, alarm_tab_label, stopwatch_tab_label, timer_tab_label, widgets_label).forEach {
             it.setTextColor(adjustedPrimaryColor)
         }
     }
@@ -134,6 +136,15 @@ class SettingsActivity : SimpleActivity() {
                 config.timerMaxReminderSecs = if (it != 0) it else DEFAULT_MAX_TIMER_REMINDER_SECS
                 updateTimerMaxReminderText()
             }
+        }
+    }
+
+    private fun setupUseTextShadow() {
+        settings_use_text_shadow.isChecked = config.useTextShadow
+        settings_use_text_shadow_holder.setOnClickListener {
+            settings_use_text_shadow.toggle()
+            config.useTextShadow = settings_use_text_shadow.isChecked
+            updateWidgets()
         }
     }
 

@@ -22,7 +22,8 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
     private fun performUpdate(context: Context) {
         val appWidgetManager = AppWidgetManager.getInstance(context)
         appWidgetManager.getAppWidgetIds(getComponentName(context)).forEach {
-            RemoteViews(context.packageName, R.layout.widget_date_time).apply {
+            val layout = if (context.config.useTextShadow) R.layout.widget_date_time_with_shadow else R.layout.widget_date_time
+            RemoteViews(context.packageName, layout).apply {
                 updateTexts(context, this)
                 updateColors(context, this)
                 appWidgetManager.updateAppWidget(it, this)

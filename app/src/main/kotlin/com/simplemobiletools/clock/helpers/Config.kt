@@ -49,4 +49,8 @@ class Config(context: Context) : BaseConfig(context) {
     var alarmMaxReminderSecs: Int
         get() = prefs.getInt(ALARM_MAX_REMINDER_SECS, DEFAULT_MAX_ALARM_REMINDER_SECS)
         set(alarmMaxReminderSecs) = prefs.edit().putInt(ALARM_MAX_REMINDER_SECS, alarmMaxReminderSecs).apply()
+
+    var useTextShadow: Boolean
+        get() = prefs.getBoolean(USE_TEXT_SHADOW, true)
+        set(useTextShadow) = prefs.edit().putBoolean(USE_TEXT_SHADOW, useTextShadow).apply()
 }
