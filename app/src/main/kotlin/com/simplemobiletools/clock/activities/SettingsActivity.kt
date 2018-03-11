@@ -3,7 +3,9 @@ package com.simplemobiletools.clock.activities
 import android.os.Bundle
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.config
+import com.simplemobiletools.clock.helpers.DEFAULT_MAX_ALARM_REMINDER_SECS
 import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.helpers.MINUTE_SECONDS
 import kotlinx.android.synthetic.main.activity_settings.*
 import java.util.*
 
@@ -22,6 +24,7 @@ class SettingsActivity : SimpleActivity() {
         setupPreventPhoneFromSleeping()
         setupShowSeconds()
         setupDisplayOtherTimeZones()
+        setupAlarmMaxReminder()
         setupUseSameSnooze()
         setupSnoozeTime()
         setupVibrate()
@@ -84,6 +87,16 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    private fun setupAlarmMaxReminder() {
+        updateAlarmMaxReminderText()
+        settings_alarm_max_reminder_holder.setOnClickListener {
+            showPickSecondsDialog(config.alarmMaxReminderSecs, true, true) {
+                config.alarmMaxReminderSecs = if (it != 0) it else DEFAULT_MAX_ALARM_REMINDER_SECS
+                updateAlarmMaxReminderText()
+            }
+        }
+    }
+
     private fun setupUseSameSnooze() {
         settings_snooze_time_holder.beVisibleIf(config.useSameSnooze)
         settings_use_same_snooze.isChecked = config.useSameSnooze
@@ -97,8 +110,8 @@ class SettingsActivity : SimpleActivity() {
     private fun setupSnoozeTime() {
         updateSnoozeText()
         settings_snooze_time_holder.setOnClickListener {
-            showPickIntervalDialog(config.snoozeTime, true) {
-                config.snoozeTime = it
+            showPickSecondsDialog(config.snoozeTime * MINUTE_SECONDS, true) {
+                config.snoozeTime = it / MINUTE_SECONDS
                 updateSnoozeText()
             }
         }
@@ -110,6 +123,10 @@ class SettingsActivity : SimpleActivity() {
             settings_vibrate.toggle()
             config.vibrateOnButtonPress = settings_vibrate.isChecked
         }
+    }
+
+    private fun updateAlarmMaxReminderText() {
+        settings_alarm_max_reminder.text = formatSecondsToTimeString(config.alarmMaxReminderSecs)
     }
 
     private fun updateSnoozeText() {

@@ -24,8 +24,6 @@ import com.simplemobiletools.commons.helpers.isLollipopPlus
 import com.simplemobiletools.commons.helpers.isOreoPlus
 
 class AlarmReceiver : BroadcastReceiver() {
-    private val NOTIFICATION_DISAPPEAR_MS = 600000L
-
     override fun onReceive(context: Context, intent: Intent) {
         val id = intent.getIntExtra(ALARM_ID, -1)
         val alarm = context.dbHelper.getAlarmWithId(id) ?: return
@@ -38,7 +36,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
         Handler().postDelayed({
             context.hideNotification(id)
-        }, NOTIFICATION_DISAPPEAR_MS)
+        }, context.config.alarmMaxReminderSecs * 1000L)
     }
 
     @SuppressLint("NewApi")
@@ -73,7 +71,7 @@ class AlarmReceiver : BroadcastReceiver() {
         }
 
         if (alarm.vibrate) {
-            val vibrateArray = LongArray((NOTIFICATION_DISAPPEAR_MS / 500).toInt()) { 500 }
+            val vibrateArray = LongArray(context.config.alarmMaxReminderSecs * 2) { 500 }
             builder.setVibrate(vibrateArray)
         }
 

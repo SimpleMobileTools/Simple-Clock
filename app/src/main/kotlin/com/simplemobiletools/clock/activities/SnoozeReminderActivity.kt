@@ -7,7 +7,8 @@ import com.simplemobiletools.clock.extensions.dbHelper
 import com.simplemobiletools.clock.extensions.hideNotification
 import com.simplemobiletools.clock.extensions.setupAlarmClock
 import com.simplemobiletools.clock.helpers.ALARM_ID
-import com.simplemobiletools.commons.extensions.showPickIntervalDialog
+import com.simplemobiletools.commons.extensions.showPickSecondsDialog
+import com.simplemobiletools.commons.helpers.MINUTE_SECONDS
 
 class SnoozeReminderActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,9 +16,9 @@ class SnoozeReminderActivity : AppCompatActivity() {
         val id = intent.getIntExtra(ALARM_ID, -1)
         val alarm = dbHelper.getAlarmWithId(id) ?: return
         hideNotification(id)
-        showPickIntervalDialog(config.snoozeTime, true, cancelCallback = { dialogCancelled() }) {
-            config.snoozeTime = it
-            setupAlarmClock(alarm, it * 60)
+        showPickSecondsDialog(config.snoozeTime * MINUTE_SECONDS, true, cancelCallback = { dialogCancelled() }) {
+            config.snoozeTime = it * 60
+            setupAlarmClock(alarm, it)
             finishActivity()
         }
     }

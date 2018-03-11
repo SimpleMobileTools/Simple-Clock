@@ -41,4 +41,8 @@ class Config(context: Context) : BaseConfig(context) {
     var timerSoundTitle: String
         get() = prefs.getString(TIMER_SOUND_TITLE, context.getDefaultAlarmTitle())
         set(timerSoundTitle) = prefs.edit().putString(TIMER_SOUND_TITLE, timerSoundTitle).apply()
+
+    var alarmMaxReminderSecs: Int
+        get() = prefs.getInt(ALARM_MAX_REMINDER_SECS, DEFAULT_MAX_ALARM_REMINDER_SECS)
+        set(alarmMaxReminderSecs) = prefs.edit().putInt(ALARM_MAX_REMINDER_SECS, alarmMaxReminderSecs).apply()
 }
