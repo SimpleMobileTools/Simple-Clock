@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.helpers.DEFAULT_MAX_ALARM_REMINDER_SECS
+import com.simplemobiletools.clock.helpers.DEFAULT_MAX_TIMER_REMINDER_SECS
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.MINUTE_SECONDS
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -28,13 +29,14 @@ class SettingsActivity : SimpleActivity() {
         setupUseSameSnooze()
         setupSnoozeTime()
         setupVibrate()
+        setupTimerMaxReminder()
         updateTextColors(settings_holder)
         setupSectionColors()
     }
 
     private fun setupSectionColors() {
         val adjustedPrimaryColor = getAdjustedPrimaryColor()
-        arrayListOf(clock_tab_label, alarm_tab_label, stopwatch_tab_label).forEach {
+        arrayListOf(clock_tab_label, alarm_tab_label, stopwatch_tab_label, timer_tab_label).forEach {
             it.setTextColor(adjustedPrimaryColor)
         }
     }
@@ -125,11 +127,25 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
-    private fun updateAlarmMaxReminderText() {
-        settings_alarm_max_reminder.text = formatSecondsToTimeString(config.alarmMaxReminderSecs)
+    private fun setupTimerMaxReminder() {
+        updateTimerMaxReminderText()
+        settings_timer_max_reminder_holder.setOnClickListener {
+            showPickSecondsDialog(config.timerMaxReminderSecs, true, true) {
+                config.timerMaxReminderSecs = if (it != 0) it else DEFAULT_MAX_TIMER_REMINDER_SECS
+                updateTimerMaxReminderText()
+            }
+        }
     }
 
     private fun updateSnoozeText() {
         settings_snooze_time.text = formatMinutesToTimeString(config.snoozeTime)
+    }
+
+    private fun updateAlarmMaxReminderText() {
+        settings_alarm_max_reminder.text = formatSecondsToTimeString(config.alarmMaxReminderSecs)
+    }
+
+    private fun updateTimerMaxReminderText() {
+        settings_timer_max_reminder.text = formatSecondsToTimeString(config.timerMaxReminderSecs)
     }
 }

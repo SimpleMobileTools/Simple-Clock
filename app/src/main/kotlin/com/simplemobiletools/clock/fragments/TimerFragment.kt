@@ -25,6 +25,7 @@ import com.simplemobiletools.clock.dialogs.MyTimePickerDialogDialog
 import com.simplemobiletools.clock.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.clock.extensions.colorLeftDrawable
 import com.simplemobiletools.clock.extensions.config
+import com.simplemobiletools.clock.extensions.hideNotification
 import com.simplemobiletools.clock.helpers.TIMER_NOTIF_ID
 import com.simplemobiletools.clock.receivers.TimerReceiver
 import com.simplemobiletools.commons.extensions.*
@@ -184,6 +185,10 @@ class TimerFragment : Fragment() {
             val notification = getNotification(context!!, pendingIntent)
             val notificationManager = context!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.notify(TIMER_NOTIF_ID, notification)
+
+            Handler().postDelayed({
+                context!!.hideNotification(TIMER_NOTIF_ID)
+            }, context!!.config.timerMaxReminderSecs * 1000L)
         }
         return true
     }
