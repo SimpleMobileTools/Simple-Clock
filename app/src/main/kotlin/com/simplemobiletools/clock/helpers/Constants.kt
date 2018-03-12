@@ -27,7 +27,10 @@ const val OPEN_APP_INTENT_ID = 9998
 const val TIMER_NOTIF_ID = 9999
 
 const val OPEN_TAB = "open_tab"
+const val TAB_CLOCK = 0
 const val TAB_ALARM = 1
+const val TAB_STOPWATCH = 2
+const val TAB_TIMER = 3
 
 const val SORT_BY_LAP = 1
 const val SORT_BY_LAP_TIME = 2

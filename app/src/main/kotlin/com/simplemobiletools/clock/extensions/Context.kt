@@ -135,7 +135,7 @@ fun Context.showRemainingTimeMessage(totalMinutes: Int) {
 fun Context.setupAlarmClock(alarm: Alarm, triggerInSeconds: Int) {
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
     val targetMS = System.currentTimeMillis() + triggerInSeconds * 1000
-    val pendingIntent = getPendingIntent(alarm)
+    val pendingIntent = getOpenAppIntent(alarm)
 
     if (isLollipopPlus()) {
         val info = AlarmManager.AlarmClockInfo(targetMS, pendingIntent)
@@ -143,7 +143,7 @@ fun Context.setupAlarmClock(alarm: Alarm, triggerInSeconds: Int) {
     }
 }
 
-fun Context.getPendingIntent(alarm: Alarm): PendingIntent {
+fun Context.getOpenAppIntent(alarm: Alarm): PendingIntent {
     val intent = Intent(this, AlarmReceiver::class.java)
     intent.putExtra(ALARM_ID, alarm.id)
     return PendingIntent.getBroadcast(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
@@ -151,7 +151,7 @@ fun Context.getPendingIntent(alarm: Alarm): PendingIntent {
 
 fun Context.cancelAlarmClock(alarm: Alarm) {
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-    alarmManager.cancel(getPendingIntent(alarm))
+    alarmManager.cancel(getOpenAppIntent(alarm))
 }
 
 fun Context.hideNotification(id: Int) {

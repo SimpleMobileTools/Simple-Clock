@@ -13,10 +13,12 @@ import android.net.Uri
 import android.os.Handler
 import android.support.v4.app.NotificationCompat
 import com.simplemobiletools.clock.R
-import com.simplemobiletools.clock.activities.MainActivity
 import com.simplemobiletools.clock.activities.SnoozeReminderActivity
+import com.simplemobiletools.clock.activities.SplashActivity
 import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.ALARM_ID
+import com.simplemobiletools.clock.helpers.OPEN_TAB
+import com.simplemobiletools.clock.helpers.TAB_ALARM
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.clock.services.SnoozeService
 import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
@@ -28,7 +30,7 @@ class AlarmReceiver : BroadcastReceiver() {
         val id = intent.getIntExtra(ALARM_ID, -1)
         val alarm = context.dbHelper.getAlarmWithId(id) ?: return
 
-        val pendingIntent = getPendingIntent(context, alarm)
+        val pendingIntent = getOpenAppIntent(context, alarm)
         val notification = getNotification(context, pendingIntent, alarm)
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.notify(alarm.id, notification)
@@ -89,8 +91,9 @@ class AlarmReceiver : BroadcastReceiver() {
         }
     }
 
-    private fun getPendingIntent(context: Context, alarm: Alarm): PendingIntent {
-        val intent = Intent(context, MainActivity::class.java)
+    private fun getOpenAppIntent(context: Context, alarm: Alarm): PendingIntent {
+        val intent = Intent(context, SplashActivity::class.java)
+        intent.putExtra(OPEN_TAB, TAB_ALARM)
         return PendingIntent.getActivity(context, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
     }
 }

@@ -19,13 +19,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.simplemobiletools.clock.R
-import com.simplemobiletools.clock.activities.MainActivity
 import com.simplemobiletools.clock.activities.SimpleActivity
+import com.simplemobiletools.clock.activities.SplashActivity
 import com.simplemobiletools.clock.dialogs.MyTimePickerDialogDialog
 import com.simplemobiletools.clock.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.clock.extensions.colorLeftDrawable
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.hideNotification
+import com.simplemobiletools.clock.helpers.OPEN_TAB
+import com.simplemobiletools.clock.helpers.TAB_TIMER
 import com.simplemobiletools.clock.helpers.TIMER_NOTIF_ID
 import com.simplemobiletools.clock.receivers.TimerReceiver
 import com.simplemobiletools.commons.extensions.*
@@ -181,14 +183,14 @@ class TimerFragment : Fragment() {
 
         view.timer_time.text = formattedDuration
         if (diff == 0) {
-            val pendingIntent = getNotificationClickIntent(context!!)
+            val pendingIntent = getOpenAppIntent(context!!)
             val notification = getNotification(context!!, pendingIntent)
             val notificationManager = context!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.notify(TIMER_NOTIF_ID, notification)
 
             Handler().postDelayed({
-                context!!.hideNotification(TIMER_NOTIF_ID)
-            }, context!!.config.timerMaxReminderSecs * 1000L)
+                context?.hideNotification(TIMER_NOTIF_ID)
+            }, context?.config!!.timerMaxReminderSecs * 1000L)
         }
         return true
     }
@@ -237,8 +239,9 @@ class TimerFragment : Fragment() {
         return PendingIntent.getBroadcast(context, TIMER_NOTIF_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
     }
 
-    private fun getNotificationClickIntent(context: Context): PendingIntent {
-        val intent = Intent(context, MainActivity::class.java)
+    private fun getOpenAppIntent(context: Context): PendingIntent {
+        val intent = Intent(context, SplashActivity::class.java)
+        intent.putExtra(OPEN_TAB, TAB_TIMER)
         return PendingIntent.getActivity(context, TIMER_NOTIF_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
     }
 

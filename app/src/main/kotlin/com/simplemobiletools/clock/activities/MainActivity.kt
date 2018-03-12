@@ -12,6 +12,7 @@ import com.simplemobiletools.clock.adapters.ViewPagerAdapter
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.helpers.OPEN_TAB
 import com.simplemobiletools.clock.helpers.TABS_COUNT
+import com.simplemobiletools.clock.helpers.TAB_CLOCK
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.LICENSE_NUMBER_PICKER
 import com.simplemobiletools.commons.helpers.LICENSE_STETHO
@@ -87,6 +88,12 @@ class MainActivity : SimpleActivity() {
             else -> return super.onOptionsItemSelected(item)
         }
         return true
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        if (intent.extras?.containsKey(OPEN_TAB) == true) {
+            viewpager.setCurrentItem(intent.getIntExtra(OPEN_TAB, TAB_CLOCK), false)
+        }
     }
 
     private fun storeStateVariables() {

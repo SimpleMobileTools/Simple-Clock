@@ -22,6 +22,7 @@
 
         <activity
             android:name=".activities.SplashActivity"
+            android:launchMode="singleTask"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -37,7 +38,7 @@
 
         <activity
             android:name=".activities.MainActivity"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTask"/>
 
         <activity
             android:name=".activities.SettingsActivity"
