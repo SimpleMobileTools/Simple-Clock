@@ -1,11 +1,14 @@
 package com.simplemobiletools.clock.helpers
 
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
+import android.content.Intent
 import android.widget.RemoteViews
 import com.simplemobiletools.clock.R
+import com.simplemobiletools.clock.activities.SplashActivity
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.getFormattedDate
 import com.simplemobiletools.clock.extensions.getFormattedTime
@@ -26,6 +29,7 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
             RemoteViews(context.packageName, layout).apply {
                 updateTexts(context, this)
                 updateColors(context, this)
+                setupAppOpenIntent(context, this)
                 appWidgetManager.updateAppWidget(it, this)
             }
         }
@@ -52,4 +56,11 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
     }
 
     private fun getComponentName(context: Context) = ComponentName(context, this::class.java)
+
+    private fun setupAppOpenIntent(context: Context, views: RemoteViews) {
+        Intent(context, SplashActivity::class.java).apply {
+            val pendingIntent = PendingIntent.getActivity(context, OPEN_APP_INTENT_ID, this, 0)
+            views.setOnClickPendingIntent(R.id.widget_date_time_holder, pendingIntent)
+        }
+    }
 }
