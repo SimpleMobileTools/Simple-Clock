@@ -15,6 +15,7 @@ import com.simplemobiletools.clock.extensions.getFormattedTime
 import com.simplemobiletools.clock.extensions.scheduleNextWidgetUpdate
 import com.simplemobiletools.commons.extensions.setBackgroundColor
 import com.simplemobiletools.commons.extensions.setText
+import com.simplemobiletools.commons.extensions.setVisibleIf
 import java.util.*
 
 class MyWidgetDateTimeProvider : AppWidgetProvider() {
@@ -44,9 +45,19 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
 
     private fun updateTexts(context: Context, views: RemoteViews) {
         val calendar = Calendar.getInstance()
+        val use24HourFormat = context.config.use24HourFormat
+
+        val timeText = context.getFormattedTime(getPassedSeconds(), false, false).toString()
         views.apply {
-            setText(R.id.widget_time, context.getFormattedTime(getPassedSeconds(), false, false).toString())
+            if (use24HourFormat) {
+                setText(R.id.widget_time, timeText)
+            } else {
+                val timeParts = timeText.split(" ")
+                setText(R.id.widget_time, timeParts[0])
+                setText(R.id.widget_time_am_pm, " ${timeParts[1]}")
+            }
             setText(R.id.widget_date, context.getFormattedDate(calendar))
+            setVisibleIf(R.id.widget_time_am_pm, !use24HourFormat)
         }
     }
 
@@ -58,6 +69,7 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
         views.apply {
             setBackgroundColor(R.id.widget_date_time_holder, widgetBgColor)
             setTextColor(R.id.widget_time, widgetTextColor)
+            setTextColor(R.id.widget_time_am_pm, widgetTextColor)
             setTextColor(R.id.widget_date, widgetTextColor)
         }
     }

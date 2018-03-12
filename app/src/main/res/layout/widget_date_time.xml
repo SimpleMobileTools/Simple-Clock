@@ -8,12 +8,23 @@
 
     <TextView
         android:id="@+id/widget_time"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:includeFontPadding="false"
         android:textSize="@dimen/widget_time_text_size"
         tools:text="00:00"/>
+
+    <TextView
+        android:id="@+id/widget_time_am_pm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/widget_time"
+        android:layout_toRightOf="@+id/widget_time"
+        android:includeFontPadding="false"
+        android:textSize="@dimen/normal_text_size"
+        tools:text=" a.m."/>
 
     <TextView
         android:id="@+id/widget_date"

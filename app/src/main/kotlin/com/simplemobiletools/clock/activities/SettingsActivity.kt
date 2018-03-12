@@ -82,6 +82,7 @@ class SettingsActivity : SimpleActivity() {
         settings_hour_format_holder.setOnClickListener {
             settings_hour_format.toggle()
             config.use24HourFormat = settings_hour_format.isChecked
+            updateWidgets()
         }
     }
 
