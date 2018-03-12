@@ -10,8 +10,8 @@ import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.getFormattedDate
 import com.simplemobiletools.clock.extensions.getFormattedTime
-import com.simplemobiletools.clock.extensions.getPassedSeconds
 import com.simplemobiletools.clock.helpers.MyWidgetDateTimeProvider
+import com.simplemobiletools.clock.helpers.getPassedSeconds
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.extensions.adjustAlpha
 import kotlinx.android.synthetic.main.widget_config_date_time.*
@@ -73,7 +73,7 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
 
     private fun updateCurrentDateTime() {
         val calendar = Calendar.getInstance()
-        config_time.text = getFormattedTime(getPassedSeconds(), false)
+        config_time.text = getPassedSeconds().getFormattedTime(false)
         config_date.text = getFormattedDate(calendar)
 
         if (config.useTextShadow) {

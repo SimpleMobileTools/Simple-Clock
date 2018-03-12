@@ -17,8 +17,10 @@ import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.clock.receivers.AlarmReceiver
+import com.simplemobiletools.clock.receivers.DateTimeWidgetUpdateReceiver
 import com.simplemobiletools.commons.extensions.formatMinutesToTimeString
 import com.simplemobiletools.commons.extensions.toast
+import com.simplemobiletools.commons.helpers.isKitkatPlus
 import com.simplemobiletools.commons.helpers.isLollipopPlus
 import java.util.*
 import kotlin.math.pow
@@ -36,26 +38,6 @@ fun Context.getFormattedDate(calendar: Calendar): String {
     val shortDayString = dayString.substring(0, Math.min(3, dayString.length))
     val monthString = resources.getStringArray(R.array.months)[month]
     return "$shortDayString, $dayOfMonth $monthString"
-}
-
-fun Context.getPassedSeconds(): Int {
-    val calendar = Calendar.getInstance()
-    val offset = calendar.timeZone.rawOffset
-    return ((calendar.timeInMillis + offset) / 1000).toInt()
-}
-
-fun Context.getFormattedTime(passedSeconds: Int, showSeconds: Boolean): String {
-    val hours = (passedSeconds / 3600) % 24
-    val minutes = (passedSeconds / 60) % 60
-    val seconds = passedSeconds % 60
-    var format = "%02d:%02d"
-
-    return if (showSeconds) {
-        format += ":%02d"
-        String.format(format, hours, minutes, seconds)
-    } else {
-        String.format(format, hours, minutes)
-    }
 }
 
 fun Context.getEditedTimeZonesMap(): HashMap<Int, String> {
@@ -171,5 +153,23 @@ fun Context.updateWidgets() {
             putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
             sendBroadcast(this)
         }
+    }
+}
+
+@SuppressLint("NewApi")
+fun Context.scheduleNextWidgetUpdate() {
+    val widgetsCnt = AppWidgetManager.getInstance(applicationContext).getAppWidgetIds(ComponentName(applicationContext, MyWidgetDateTimeProvider::class.java))
+    if (widgetsCnt.isEmpty()) {
+        return
+    }
+
+    val intent = Intent(this, DateTimeWidgetUpdateReceiver::class.java)
+    val pendingIntent = PendingIntent.getBroadcast(this, UPDATE_WIDGET_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+    val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+    val triggerAtMillis = System.currentTimeMillis() + getMSTillNextMinute()
+    when {
+        isKitkatPlus() -> alarmManager.setExact(AlarmManager.RTC, triggerAtMillis, pendingIntent)
+        else -> alarmManager.set(AlarmManager.RTC, triggerAtMillis, pendingIntent)
     }
 }

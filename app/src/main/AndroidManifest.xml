@@ -84,6 +84,8 @@
 
         <receiver android:name=".receivers.TimerReceiver"/>
 
+        <receiver android:name=".receivers.DateTimeWidgetUpdateReceiver"/>
+
         <receiver android:name=".receivers.BootCompletedReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>

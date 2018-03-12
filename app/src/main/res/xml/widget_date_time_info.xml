@@ -6,4 +6,4 @@
     android:minHeight="@dimen/min_widget_height"
     android:minWidth="@dimen/min_widget_width"
     android:resizeMode="horizontal|vertical"
-    android:updatePeriodMillis="60000"/>
+    android:updatePeriodMillis="86400000"/>

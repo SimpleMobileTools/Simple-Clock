@@ -12,6 +12,7 @@ import com.simplemobiletools.clock.activities.SplashActivity
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.getFormattedDate
 import com.simplemobiletools.clock.extensions.getFormattedTime
+import com.simplemobiletools.clock.extensions.scheduleNextWidgetUpdate
 import com.simplemobiletools.commons.extensions.setBackgroundColor
 import com.simplemobiletools.commons.extensions.setText
 import java.util.*
@@ -20,6 +21,11 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
 
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
         performUpdate(context)
+    }
+
+    override fun onEnabled(context: Context) {
+        super.onEnabled(context)
+        context.scheduleNextWidgetUpdate()
     }
 
     private fun performUpdate(context: Context) {
@@ -38,7 +44,7 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
     private fun updateTexts(context: Context, views: RemoteViews) {
         val calendar = Calendar.getInstance()
         views.apply {
-            setText(R.id.widget_time, context.getFormattedTime(context.getPassedSeconds(), false))
+            setText(R.id.widget_time, getPassedSeconds().getFormattedTime(false))
             setText(R.id.widget_date, context.getFormattedDate(calendar))
         }
     }

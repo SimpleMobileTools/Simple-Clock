@@ -1,6 +1,7 @@
 package com.simplemobiletools.clock.helpers
 
 import com.simplemobiletools.clock.models.MyTimeZone
+import java.util.*
 
 // shared preferences
 const val SHOW_SECONDS = "show_seconds"
@@ -23,6 +24,7 @@ const val DAY_MINUTES = 1440
 const val DEFAULT_MAX_ALARM_REMINDER_SECS = 300
 const val DEFAULT_MAX_TIMER_REMINDER_SECS = 60
 
+const val UPDATE_WIDGET_INTENT_ID = 9997
 const val OPEN_APP_INTENT_ID = 9998
 const val TIMER_NOTIF_ID = 9999
 
@@ -37,6 +39,17 @@ const val SORT_BY_LAP_TIME = 2
 const val SORT_BY_TOTAL_TIME = 4
 
 fun getDefaultTimeZoneTitle(id: Int) = getAllTimeZones().firstOrNull { it.id == id }?.title ?: ""
+
+fun getMSTillNextMinute(): Long {
+    val calendar = Calendar.getInstance()
+    return 60000L - calendar.get(Calendar.MILLISECOND) - calendar.get(Calendar.SECOND) * 1000
+}
+
+fun getPassedSeconds(): Int {
+    val calendar = Calendar.getInstance()
+    val offset = calendar.timeZone.rawOffset
+    return ((calendar.timeInMillis + offset) / 1000).toInt()
+}
 
 fun getAllTimeZones() = arrayListOf(
         MyTimeZone(1, "GMT-11:00 Midway", "Pacific/Midway"),
