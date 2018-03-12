@@ -45,7 +45,7 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
     private fun updateTexts(context: Context, views: RemoteViews) {
         val calendar = Calendar.getInstance()
         views.apply {
-            setText(R.id.widget_time, getPassedSeconds().getFormattedTime(false))
+            setText(R.id.widget_time, context.getFormattedTime(getPassedSeconds(), false, false).toString())
             setText(R.id.widget_date, context.getFormattedDate(calendar))
         }
     }

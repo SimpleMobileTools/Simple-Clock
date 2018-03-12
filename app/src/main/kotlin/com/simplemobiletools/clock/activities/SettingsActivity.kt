@@ -24,6 +24,7 @@ class SettingsActivity : SimpleActivity() {
         setupUseEnglish()
         setupAvoidWhatsNew()
         setupPreventPhoneFromSleeping()
+        setupHourFormat()
         setupSundayFirst()
         setupShowSeconds()
         setupDisplayOtherTimeZones()
@@ -73,6 +74,14 @@ class SettingsActivity : SimpleActivity() {
         settings_prevent_phone_from_sleeping_holder.setOnClickListener {
             settings_prevent_phone_from_sleeping.toggle()
             config.preventPhoneFromSleeping = settings_prevent_phone_from_sleeping.isChecked
+        }
+    }
+
+    private fun setupHourFormat() {
+        settings_hour_format.isChecked = config.use24HourFormat
+        settings_hour_format_holder.setOnClickListener {
+            settings_hour_format.toggle()
+            config.use24HourFormat = settings_hour_format.isChecked
         }
     }
 

@@ -76,7 +76,11 @@ class ClockFragment : Fragment() {
         val hours = (passedSeconds / 3600) % 24
         val minutes = (passedSeconds / 60) % 60
         val seconds = passedSeconds % 60
-        view.clock_time.text = passedSeconds.getFormattedTime(context!!.config.showSeconds)
+        view.clock_time.text = context!!.getFormattedTime(passedSeconds, context!!.config.showSeconds, true)
+
+        if (!context!!.config.use24HourFormat) {
+            view.clock_time.textSize = resources.getDimension(R.dimen.clock_text_size_smaller) / resources.displayMetrics.density
+        }
 
         if (seconds == 0) {
             if (hours == 0 && minutes == 0) {

@@ -7,6 +7,7 @@
     <dimen name="min_widget_width">110dp</dimen>
 
     <dimen name="clock_text_size">70sp</dimen>
+    <dimen name="clock_text_size_smaller">60sp</dimen>
     <dimen name="alarm_text_size">46sp</dimen>
     <dimen name="stopwatch_text_size">60sp</dimen>
     <dimen name="widget_time_text_size">50sp</dimen>

@@ -24,7 +24,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
 
         view.apply {
             edit_alarm_time.setOnClickListener {
-                TimePickerDialog(context, context.getDialogTheme(), timeSetListener, alarm.timeInMinutes / 60, alarm.timeInMinutes % 60, context.config.use24hourFormat).show()
+                TimePickerDialog(context, context.getDialogTheme(), timeSetListener, alarm.timeInMinutes / 60, alarm.timeInMinutes % 60, context.config.use24HourFormat).show()
             }
 
             edit_alarm_sound.colorLeftDrawable(textColor)

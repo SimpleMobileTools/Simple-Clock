@@ -10,6 +10,8 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.net.Uri
+import android.text.SpannableString
+import android.text.style.RelativeSizeSpan
 import android.widget.Toast
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.helpers.*
@@ -171,5 +173,26 @@ fun Context.scheduleNextWidgetUpdate() {
     when {
         isKitkatPlus() -> alarmManager.setExact(AlarmManager.RTC, triggerAtMillis, pendingIntent)
         else -> alarmManager.set(AlarmManager.RTC, triggerAtMillis, pendingIntent)
+    }
+}
+
+fun Context.getFormattedTime(passedSeconds: Int, showSeconds: Boolean, makeAmPmSmaller: Boolean): SpannableString {
+    val use24HourFormat = config.use24HourFormat
+    val hours = (passedSeconds / 3600) % 24
+    val minutes = (passedSeconds / 60) % 60
+    val seconds = passedSeconds % 60
+
+    return if (!use24HourFormat) {
+        val appendable = getString(if (hours >= 12) R.string.p_m else R.string.a_m)
+        val newHours = if (hours == 0 || hours == 12) 12 else hours % 12
+        val formattedTime = "${formatTime(showSeconds, use24HourFormat, newHours, minutes, seconds)} $appendable"
+
+        val spannableTime = SpannableString(formattedTime)
+        val amPmMultiplier = if (makeAmPmSmaller) 0.4f else 1f
+        spannableTime.setSpan(RelativeSizeSpan(amPmMultiplier), spannableTime.length - 5, spannableTime.length, 0)
+        spannableTime
+    } else {
+        val formattedTime = formatTime(showSeconds, use24HourFormat, hours, minutes, seconds)
+        SpannableString(formattedTime)
     }
 }

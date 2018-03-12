@@ -51,6 +51,18 @@ fun getPassedSeconds(): Int {
     return ((calendar.timeInMillis + offset) / 1000).toInt()
 }
 
+fun formatTime(showSeconds: Boolean, use24HourFormat: Boolean, hours: Int, minutes: Int, seconds: Int): String {
+    val hoursFormat = if (use24HourFormat) "%02d" else "%01d"
+    var format = "$hoursFormat:%02d"
+
+    return if (showSeconds) {
+        format += ":%02d"
+        String.format(format, hours, minutes, seconds)
+    } else {
+        String.format(format, hours, minutes)
+    }
+}
+
 fun getAllTimeZones() = arrayListOf(
         MyTimeZone(1, "GMT-11:00 Midway", "Pacific/Midway"),
         MyTimeZone(2, "GMT-10:00 Honolulu", "Pacific/Honolulu"),

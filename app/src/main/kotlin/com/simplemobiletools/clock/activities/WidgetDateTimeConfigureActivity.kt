@@ -73,7 +73,7 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
 
     private fun updateCurrentDateTime() {
         val calendar = Calendar.getInstance()
-        config_time.text = getPassedSeconds().getFormattedTime(false)
+        config_time.text = getFormattedTime(getPassedSeconds(), false, false).toString()
         config_date.text = getFormattedDate(calendar)
 
         if (config.useTextShadow) {
