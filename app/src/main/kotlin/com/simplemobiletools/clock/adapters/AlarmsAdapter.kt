@@ -8,7 +8,7 @@ import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.dbHelper
-import com.simplemobiletools.clock.extensions.formatAlarmTime
+import com.simplemobiletools.clock.extensions.getFormattedTime
 import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
@@ -78,7 +78,7 @@ class AlarmsAdapter(activity: SimpleActivity, var alarms: ArrayList<Alarm>, val 
 
     private fun setupView(view: View, alarm: Alarm) {
         view.apply {
-            alarm_time.text = alarm.timeInMinutes.formatAlarmTime()
+            alarm_time.text = activity.getFormattedTime(alarm.timeInMinutes * 60, false, true)
             alarm_time.setTextColor(textColor)
 
             alarm_days.text = activity.getSelectedDaysString(alarm.days)

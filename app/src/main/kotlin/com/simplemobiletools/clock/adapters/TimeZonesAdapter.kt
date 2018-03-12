@@ -7,6 +7,7 @@ import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.getFormattedDate
+import com.simplemobiletools.clock.extensions.getFormattedTime
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
 import com.simplemobiletools.commons.extensions.beGone
@@ -85,10 +86,7 @@ class TimeZonesAdapter(activity: SimpleActivity, var timeZones: ArrayList<MyTime
         val calendar = Calendar.getInstance(TimeZone.getTimeZone(timeZone.zoneName))
         val offset = calendar.timeZone.rawOffset
         val passedSeconds = ((calendar.timeInMillis + offset) / 1000).toInt()
-        val hours = (passedSeconds / 3600) % 24
-        val minutes = (passedSeconds / 60) % 60
-        val format = "%02d:%02d"
-        val formattedTime = String.format(format, hours, minutes)
+        val formattedTime = activity.getFormattedTime(passedSeconds, false, false)
         val formattedDate = activity.getFormattedDate(calendar)
 
         view.apply {

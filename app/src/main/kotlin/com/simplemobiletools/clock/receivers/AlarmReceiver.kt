@@ -58,7 +58,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
         val builder = NotificationCompat.Builder(context)
                 .setContentTitle(context.getString(R.string.alarm))
-                .setContentText(alarm.timeInMinutes.formatAlarmTime())
+                .setContentText(context.getFormattedTime(alarm.timeInMinutes * 60, false, false))
                 .setSmallIcon(R.drawable.ic_alarm)
                 .setContentIntent(pendingIntent)
                 .setPriority(Notification.PRIORITY_HIGH)

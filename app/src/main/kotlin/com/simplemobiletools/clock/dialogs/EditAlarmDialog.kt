@@ -10,7 +10,7 @@ import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.colorLeftDrawable
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.dbHelper
-import com.simplemobiletools.clock.extensions.formatAlarmTime
+import com.simplemobiletools.clock.extensions.getFormattedTime
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.*
 import kotlinx.android.synthetic.main.dialog_edit_alarm.view.*
@@ -90,7 +90,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
     }
 
     private fun updateAlarmTime() {
-        view.edit_alarm_time.text = alarm.timeInMinutes.formatAlarmTime()
+        view.edit_alarm_time.text = activity.getFormattedTime(alarm.timeInMinutes * 60, false, true)
     }
 
     private fun dialogConfirmed() {
