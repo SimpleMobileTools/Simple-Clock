@@ -26,6 +26,9 @@ const val DEFAULT_MAX_TIMER_REMINDER_SECS = 60
 const val OPEN_APP_INTENT_ID = 9998
 const val TIMER_NOTIF_ID = 9999
 
+const val OPEN_TAB = "open_tab"
+const val TAB_ALARM = 1
+
 const val SORT_BY_LAP = 1
 const val SORT_BY_LAP_TIME = 2
 const val SORT_BY_TOTAL_TIME = 4

@@ -10,6 +10,7 @@ import com.simplemobiletools.clock.BuildConfig
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.adapters.ViewPagerAdapter
 import com.simplemobiletools.clock.extensions.config
+import com.simplemobiletools.clock.helpers.OPEN_TAB
 import com.simplemobiletools.clock.helpers.TABS_COUNT
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.LICENSE_NUMBER_PICKER
@@ -103,7 +104,9 @@ class MainActivity : SimpleActivity() {
             main_tabs_holder.getTabAt(it)?.select()
         }
 
-        viewpager.currentItem = config.lastUsedViewPagerPage
+        val tabToOpen = intent.getIntExtra(OPEN_TAB, config.lastUsedViewPagerPage)
+        intent.removeExtra(OPEN_TAB)
+        viewpager.currentItem = tabToOpen
         viewpager.offscreenPageLimit = TABS_COUNT - 1
         main_tabs_holder.onTabSelectionChanged(
                 tabUnselectedAction = {
@@ -115,20 +118,19 @@ class MainActivity : SimpleActivity() {
                 }
         )
 
-        setupTabColors()
+        setupTabColors(tabToOpen)
     }
 
-    private fun setupTabColors() {
-        val lastUsedPage = config.lastUsedViewPagerPage
+    private fun setupTabColors(lastUsedTab: Int) {
         main_tabs_holder.apply {
             background = ColorDrawable(config.backgroundColor)
             setSelectedTabIndicatorColor(getAdjustedPrimaryColor())
-            getTabAt(lastUsedPage)?.apply {
+            getTabAt(lastUsedTab)?.apply {
                 select()
                 icon?.applyColorFilter(getAdjustedPrimaryColor())
             }
 
-            getInactiveTabIndexes(lastUsedPage).forEach {
+            getInactiveTabIndexes(lastUsedTab).forEach {
                 getTabAt(it)?.icon?.applyColorFilter(config.textColor)
             }
         }
