@@ -1,0 +1,1 @@
+A combination of a clock, alarm, stopwatch and timer.
