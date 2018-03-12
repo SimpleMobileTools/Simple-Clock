@@ -24,6 +24,7 @@ class SettingsActivity : SimpleActivity() {
         setupUseEnglish()
         setupAvoidWhatsNew()
         setupPreventPhoneFromSleeping()
+        setupSundayFirst()
         setupShowSeconds()
         setupDisplayOtherTimeZones()
         setupAlarmMaxReminder()
@@ -72,6 +73,14 @@ class SettingsActivity : SimpleActivity() {
         settings_prevent_phone_from_sleeping_holder.setOnClickListener {
             settings_prevent_phone_from_sleeping.toggle()
             config.preventPhoneFromSleeping = settings_prevent_phone_from_sleeping.isChecked
+        }
+    }
+
+    private fun setupSundayFirst() {
+        settings_sunday_first.isChecked = config.isSundayFirst
+        settings_sunday_first_holder.setOnClickListener {
+            settings_sunday_first.toggle()
+            config.isSundayFirst = settings_sunday_first.isChecked
         }
     }
 
