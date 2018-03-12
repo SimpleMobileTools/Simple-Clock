@@ -38,10 +38,13 @@ fun Context.getFormattedDate(calendar: Calendar): String {
     return "$shortDayString, $dayOfMonth $monthString"
 }
 
-fun Context.getFormattedTime(calendar: Calendar, showSeconds: Boolean): String {
+fun Context.getPassedSeconds(): Int {
+    val calendar = Calendar.getInstance()
     val offset = calendar.timeZone.rawOffset
-    val passedSeconds = ((calendar.timeInMillis + offset) / 1000).toInt()
+    return ((calendar.timeInMillis + offset) / 1000).toInt()
+}
 
+fun Context.getFormattedTime(passedSeconds: Int, showSeconds: Boolean): String {
     val hours = (passedSeconds / 3600) % 24
     val minutes = (passedSeconds / 60) % 60
     val seconds = passedSeconds % 60
