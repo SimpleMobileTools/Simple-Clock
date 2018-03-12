@@ -21,6 +21,7 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
 
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
         performUpdate(context)
+        context.scheduleNextWidgetUpdate()
     }
 
     override fun onEnabled(context: Context) {
