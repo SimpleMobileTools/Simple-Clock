@@ -141,6 +141,7 @@ class TimerFragment : Fragment() {
     private fun togglePlayPause() {
         isRunning = !isRunning
         updateIcons()
+        hideTimerNotification()
 
         if (isRunning) {
             updateHandler.post(updateRunnable)
@@ -165,6 +166,7 @@ class TimerFragment : Fragment() {
         currentTicks = 0
         totalTicks = 0
         initialSecs = context!!.config.timerSeconds
+        hideTimerNotification()
         updateDisplayedText()
         updateIcons()
         view.timer_reset.beGone()
@@ -189,7 +191,7 @@ class TimerFragment : Fragment() {
             notificationManager.notify(TIMER_NOTIF_ID, notification)
 
             Handler().postDelayed({
-                context?.hideNotification(TIMER_NOTIF_ID)
+                hideTimerNotification()
             }, context?.config!!.timerMaxReminderSecs * 1000L)
         }
         return true
@@ -243,6 +245,10 @@ class TimerFragment : Fragment() {
         val intent = Intent(context, SplashActivity::class.java)
         intent.putExtra(OPEN_TAB, TAB_TIMER)
         return PendingIntent.getActivity(context, TIMER_NOTIF_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    }
+
+    private fun hideTimerNotification() {
+        context?.hideNotification(TIMER_NOTIF_ID)
     }
 
     private val updateRunnable = object : Runnable {
