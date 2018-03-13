@@ -71,7 +71,6 @@
 
         <activity
             android:name=".activities.WidgetDateTimeConfigureActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/MyWidgetConfigTheme">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
