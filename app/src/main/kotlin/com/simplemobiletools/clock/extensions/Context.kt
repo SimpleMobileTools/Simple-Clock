@@ -13,6 +13,7 @@ import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
 import android.widget.Toast
 import com.simplemobiletools.clock.R
+import com.simplemobiletools.clock.activities.MainActivity
 import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.clock.models.AlarmSound
@@ -125,15 +126,20 @@ fun Context.showRemainingTimeMessage(totalMinutes: Int) {
 fun Context.setupAlarmClock(alarm: Alarm, triggerInSeconds: Int) {
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
     val targetMS = System.currentTimeMillis() + triggerInSeconds * 1000
-    val pendingIntent = getOpenAppIntent(alarm)
 
     if (isLollipopPlus()) {
-        val info = AlarmManager.AlarmClockInfo(targetMS, pendingIntent)
-        alarmManager.setAlarmClock(info, pendingIntent)
+        val info = AlarmManager.AlarmClockInfo(targetMS, getOpenAppIntent())
+        alarmManager.setAlarmClock(info, getAlarmIntent(alarm))
     }
 }
 
-fun Context.getOpenAppIntent(alarm: Alarm): PendingIntent {
+fun Context.getOpenAppIntent(): PendingIntent {
+    val intent = Intent(this, MainActivity::class.java)
+    intent.putExtra(OPEN_TAB, TAB_ALARM)
+    return PendingIntent.getActivity(this, OPEN_ALARMS_TAB_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+}
+
+fun Context.getAlarmIntent(alarm: Alarm): PendingIntent {
     val intent = Intent(this, AlarmReceiver::class.java)
     intent.putExtra(ALARM_ID, alarm.id)
     return PendingIntent.getBroadcast(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
@@ -141,7 +147,7 @@ fun Context.getOpenAppIntent(alarm: Alarm): PendingIntent {
 
 fun Context.cancelAlarmClock(alarm: Alarm) {
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-    alarmManager.cancel(getOpenAppIntent(alarm))
+    alarmManager.cancel(getAlarmIntent(alarm))
 }
 
 fun Context.hideNotification(id: Int) {
