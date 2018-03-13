@@ -77,10 +77,31 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
         }
 
         AlertDialog.Builder(activity)
-                .setPositiveButton(R.string.ok, { dialog, which -> dialogConfirmed() })
+                .setPositiveButton(R.string.ok, null)
                 .setNegativeButton(R.string.cancel, null)
                 .create().apply {
-                    activity.setupDialogStuff(view, this)
+                    activity.setupDialogStuff(view, this) {
+                        getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+                            if (alarm.days == 0) {
+                                activity.toast(R.string.no_days_selected)
+                                return@setOnClickListener
+                            }
+
+                            alarm.label = view.edit_alarm_label.value
+
+                            if (alarm.id == 0) {
+                                if (!activity.dbHelper.insertAlarm(alarm)) {
+                                    activity.toast(R.string.unknown_error_occurred)
+                                }
+                            } else {
+                                if (!activity.dbHelper.updateAlarm(alarm)) {
+                                    activity.toast(R.string.unknown_error_occurred)
+                                }
+                            }
+                            callback()
+                            dismiss()
+                        }
+                    }
                 }
     }
 
@@ -91,25 +112,6 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
 
     private fun updateAlarmTime() {
         view.edit_alarm_time.text = activity.getFormattedTime(alarm.timeInMinutes * 60, false, true)
-    }
-
-    private fun dialogConfirmed() {
-        alarm.label = view.edit_alarm_label.value
-        if (alarm.days == 0) {
-            activity.toast(R.string.no_days_selected)
-            alarm.isEnabled = false
-        }
-
-        if (alarm.id == 0) {
-            if (!activity.dbHelper.insertAlarm(alarm)) {
-                activity.toast(R.string.unknown_error_occurred)
-            }
-        } else {
-            if (!activity.dbHelper.updateAlarm(alarm)) {
-                activity.toast(R.string.unknown_error_occurred)
-            }
-        }
-        callback()
     }
 
     private fun getProperDayDrawable(selected: Boolean): Drawable {
