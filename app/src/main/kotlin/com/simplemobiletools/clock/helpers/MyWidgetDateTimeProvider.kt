@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.provider.Settings
 import android.widget.RemoteViews
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SplashActivity
@@ -13,6 +14,7 @@ import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.getFormattedDate
 import com.simplemobiletools.clock.extensions.getFormattedTime
 import com.simplemobiletools.clock.extensions.scheduleNextWidgetUpdate
+import com.simplemobiletools.commons.extensions.getColoredBitmap
 import com.simplemobiletools.commons.extensions.setBackgroundColor
 import com.simplemobiletools.commons.extensions.setText
 import com.simplemobiletools.commons.extensions.setVisibleIf
@@ -58,6 +60,10 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
             }
             setText(R.id.widget_date, context.getFormattedDate(calendar))
             setVisibleIf(R.id.widget_time_am_pm, !use24HourFormat)
+
+            val nextAlarm = Settings.System.getString(context.contentResolver, Settings.System.NEXT_ALARM_FORMATTED)
+            setVisibleIf(R.id.widget_next_alarm, nextAlarm.isNotEmpty())
+            setText(R.id.widget_next_alarm, nextAlarm)
         }
     }
 
@@ -71,6 +77,8 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
             setTextColor(R.id.widget_time, widgetTextColor)
             setTextColor(R.id.widget_time_am_pm, widgetTextColor)
             setTextColor(R.id.widget_date, widgetTextColor)
+            setTextColor(R.id.widget_next_alarm, widgetTextColor)
+            setImageViewBitmap(R.id.widget_next_alarm_image, context.resources.getColoredBitmap(R.drawable.ic_clock, widgetTextColor))
         }
     }
 
