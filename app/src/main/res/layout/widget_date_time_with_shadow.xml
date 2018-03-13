@@ -5,7 +5,7 @@
     android:id="@+id/widget_date_time_holder"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/small_margin">
+    android:paddingBottom="@dimen/tiny_margin">
 
     <RelativeLayout
         android:id="@+id/widget_time_holder"
@@ -17,6 +17,7 @@
             android:id="@+id/widget_time"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/widget_time_height"
+            android:layout_marginTop="-2dp"
             android:includeFontPadding="false"
             android:shadowColor="@android:color/black"
             android:shadowDy="1"
@@ -55,7 +56,7 @@
     <RelativeLayout
         android:id="@+id/widget_alarm_holder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/widget_alarm_icon_size"
         android:layout_below="@+id/widget_date"
         android:gravity="center_horizontal">
 
@@ -69,6 +70,7 @@
             android:id="@+id/widget_next_alarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/widget_next_alarm_image"
             android:includeFontPadding="false"
             android:paddingLeft="@dimen/small_margin"

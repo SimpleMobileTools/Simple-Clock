@@ -59,8 +59,7 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
             setVisibleIf(R.id.widget_time_am_pm, !use24HourFormat)
 
             val nextAlarm = getFormattedNextAlarm(context)
-            setVisibleIf(R.id.widget_next_alarm, nextAlarm.isNotEmpty())
-            setVisibleIf(R.id.widget_next_alarm_image, nextAlarm.isNotEmpty())
+            setVisibleIf(R.id.widget_alarm_holder, nextAlarm.isNotEmpty())
             setText(R.id.widget_next_alarm, nextAlarm)
         }
     }
