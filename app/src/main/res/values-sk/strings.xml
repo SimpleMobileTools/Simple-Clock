@@ -29,7 +29,7 @@
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">A combination of a clock, alarm, stopwatch and timer.</string>
+    <string name="app_short_description">Kombinácia hodiniek, budíka, stopiek a časovača.</string>
     <string name="app_long_description">
         Apka obsahuje ivacero funkcií spojených s časom.
 
