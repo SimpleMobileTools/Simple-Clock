@@ -97,6 +97,8 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
         }
     }
 
+    fun getEnabledAlarms() = getAlarms().filter { it.isEnabled }
+
     fun getAlarms(): ArrayList<Alarm> {
         val alarms = ArrayList<Alarm>()
         val cols = arrayOf(COL_ID, COL_TIME_IN_MINUTES, COL_DAYS, COL_IS_ENABLED, COL_VIBRATE, COL_SOUND_TITLE, COL_SOUND_URI, COL_LABEL)

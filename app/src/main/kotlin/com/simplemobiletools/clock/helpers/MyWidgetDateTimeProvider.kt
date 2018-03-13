@@ -6,7 +6,6 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.provider.Settings
 import android.widget.RemoteViews
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SplashActivity
@@ -90,7 +89,7 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
     }
 
     private fun getFormattedNextAlarm(context: Context): String {
-        val nextAlarm = Settings.System.getString(context.contentResolver, Settings.System.NEXT_ALARM_FORMATTED)
+        val nextAlarm = context.getNextAlarm()
         if (nextAlarm.isEmpty()) {
             return ""
         }

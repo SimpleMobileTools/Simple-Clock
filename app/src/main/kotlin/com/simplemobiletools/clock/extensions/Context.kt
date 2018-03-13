@@ -9,6 +9,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
+import android.provider.Settings
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
 import android.widget.Toast
@@ -207,4 +208,12 @@ fun Context.formatTo12HourFormat(showSeconds: Boolean, hours: Int, minutes: Int,
     val appendable = getString(if (hours >= 12) R.string.p_m else R.string.a_m)
     val newHours = if (hours == 0 || hours == 12) 12 else hours % 12
     return "${formatTime(showSeconds, false, newHours, minutes, seconds)} $appendable"
+}
+
+fun Context.getNextAlarm() = Settings.System.getString(contentResolver, Settings.System.NEXT_ALARM_FORMATTED)
+
+fun Context.rescheduleEnabledAlarms() {
+    dbHelper.getEnabledAlarms().forEach {
+        scheduleNextAlarm(it, false)
+    }
 }
