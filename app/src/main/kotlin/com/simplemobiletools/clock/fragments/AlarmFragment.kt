@@ -9,10 +9,7 @@ import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.adapters.AlarmsAdapter
 import com.simplemobiletools.clock.dialogs.EditAlarmDialog
-import com.simplemobiletools.clock.extensions.cancelAlarmClock
-import com.simplemobiletools.clock.extensions.createNewAlarm
-import com.simplemobiletools.clock.extensions.dbHelper
-import com.simplemobiletools.clock.extensions.scheduleNextAlarm
+import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.DEFAULT_ALARM_MINUTES
 import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
@@ -77,6 +74,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
         } else {
             activity!!.toast(R.string.unknown_error_occurred)
         }
+        context!!.updateWidgets()
     }
 
     private fun checkAlarmState(alarm: Alarm) {

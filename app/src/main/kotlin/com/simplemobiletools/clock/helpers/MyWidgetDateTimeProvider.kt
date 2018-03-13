@@ -60,6 +60,7 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
 
             val nextAlarm = getFormattedNextAlarm(context)
             setVisibleIf(R.id.widget_next_alarm, nextAlarm.isNotEmpty())
+            setVisibleIf(R.id.widget_next_alarm_image, nextAlarm.isNotEmpty())
             setText(R.id.widget_next_alarm, nextAlarm)
         }
     }
