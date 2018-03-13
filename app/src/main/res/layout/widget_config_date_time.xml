@@ -11,12 +11,13 @@
     <RelativeLayout
         android:id="@+id/config_date_time_wrapper"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/small_margin">
 
         <TextView
             android:id="@+id/config_time"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/widget_time_height"
             android:gravity="center_horizontal"
             android:includeFontPadding="false"
             android:textSize="@dimen/widget_time_text_size"
