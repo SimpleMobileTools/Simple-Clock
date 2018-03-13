@@ -106,5 +106,13 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_date_time_info"/>
         </receiver>
+
+        <receiver android:name=".receivers.UpdateWidgetReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
+                <action android:name="android.app.action.NEXT_ALARM_CLOCK_CHANGED"/>
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>
