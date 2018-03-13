@@ -210,7 +210,7 @@ fun Context.formatTo12HourFormat(showSeconds: Boolean, hours: Int, minutes: Int,
     return "${formatTime(showSeconds, false, newHours, minutes, seconds)} $appendable"
 }
 
-fun Context.getNextAlarm() = Settings.System.getString(contentResolver, Settings.System.NEXT_ALARM_FORMATTED)
+fun Context.getNextAlarm() = Settings.System.getString(contentResolver, Settings.System.NEXT_ALARM_FORMATTED) ?: ""
 
 fun Context.rescheduleEnabledAlarms() {
     dbHelper.getEnabledAlarms().forEach {
