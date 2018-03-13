@@ -29,9 +29,12 @@ class ClockFragment : Fragment() {
     private var calendar = Calendar.getInstance()
     private val updateHandler = Handler()
 
+    private var storedTextColor = 0
+
     lateinit var view: ViewGroup
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        storeStateVariables()
         view = inflater.inflate(R.layout.fragment_clock, container, false) as ViewGroup
         return view
     }
@@ -40,11 +43,21 @@ class ClockFragment : Fragment() {
         super.onResume()
         displayOtherTimeZones = context!!.config.displayOtherTimeZones
         setupDateTime()
+
+        val configTextColor = context!!.config.textColor
+        if (storedTextColor != configTextColor) {
+            (view.time_zones_list.adapter as? TimeZonesAdapter)?.updateTextColor(configTextColor)
+        }
     }
 
     override fun onPause() {
         super.onPause()
         updateHandler.removeCallbacksAndMessages(null)
+        storeStateVariables()
+    }
+
+    private fun storeStateVariables() {
+        storedTextColor = context!!.config.textColor
     }
 
     private fun setupDateTime() {

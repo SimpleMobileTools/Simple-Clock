@@ -36,10 +36,13 @@ class StopwatchFragment : Fragment() {
     private var sorting = SORT_BY_LAP or SORT_DESCENDING
     private var laps = ArrayList<Lap>()
 
+    private var storedTextColor = 0
+
     lateinit var stopwatchAdapter: StopwatchAdapter
     lateinit var view: ViewGroup
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        storeStateVariables()
         view = (inflater.inflate(R.layout.fragment_stopwatch, container, false) as ViewGroup).apply {
             stopwatch_time.setOnClickListener {
                 togglePlayPause()
@@ -96,6 +99,16 @@ class StopwatchFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         setupViews()
+
+        val configTextColor = context!!.config.textColor
+        if (storedTextColor != configTextColor) {
+            stopwatchAdapter.updateTextColor(configTextColor)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        storeStateVariables()
     }
 
     override fun onDestroy() {
@@ -105,6 +118,10 @@ class StopwatchFragment : Fragment() {
         }
         isRunning = false
         updateHandler.removeCallbacks(updateRunnable)
+    }
+
+    private fun storeStateVariables() {
+        storedTextColor = context!!.config.textColor
     }
 
     private fun setupViews() {

@@ -20,9 +20,13 @@ import java.util.*
 
 class AlarmFragment : Fragment(), ToggleAlarmInterface {
     private var alarms = ArrayList<Alarm>()
+
+    private var storedTextColor = 0
+
     lateinit var view: ViewGroup
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        storeStateVariables()
         view = inflater.inflate(R.layout.fragment_alarm, container, false) as ViewGroup
         return view
     }
@@ -30,6 +34,20 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     override fun onResume() {
         super.onResume()
         setupViews()
+
+        val configTextColor = context!!.config.textColor
+        if (storedTextColor != configTextColor) {
+            (view.alarms_list.adapter as AlarmsAdapter).updateTextColor(configTextColor)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        storeStateVariables()
+    }
+
+    private fun storeStateVariables() {
+        storedTextColor = context!!.config.textColor
     }
 
     private fun setupViews() {
