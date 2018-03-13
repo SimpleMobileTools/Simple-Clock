@@ -9,7 +9,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
-import android.net.Uri
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
 import android.widget.Toast
@@ -78,7 +77,11 @@ fun Context.getAlarms(): ArrayList<AlarmSound> {
 
     while (cursor.moveToNext()) {
         val title = cursor.getString(RingtoneManager.TITLE_COLUMN_INDEX)
-        val uri = Uri.parse("${cursor.getString(RingtoneManager.URI_COLUMN_INDEX)}/${cursor.getString(RingtoneManager.ID_COLUMN_INDEX)}").toString()
+        var uri = cursor.getString(RingtoneManager.URI_COLUMN_INDEX)
+        val id = cursor.getString(RingtoneManager.ID_COLUMN_INDEX)
+        if (!uri.endsWith(id)) {
+            uri += "/$id"
+        }
         val alarmSound = AlarmSound(title, uri)
         alarms.add(alarmSound)
     }
