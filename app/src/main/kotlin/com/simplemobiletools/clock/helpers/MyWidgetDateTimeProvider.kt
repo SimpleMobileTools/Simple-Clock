@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.graphics.*
 import android.widget.RemoteViews
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SplashActivity
@@ -74,7 +75,13 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
             setTextColor(R.id.widget_time_am_pm, widgetTextColor)
             setTextColor(R.id.widget_date, widgetTextColor)
             setTextColor(R.id.widget_next_alarm, widgetTextColor)
-            setImageViewBitmap(R.id.widget_next_alarm_image, context.resources.getColoredBitmap(R.drawable.ic_clock, widgetTextColor))
+
+            if (context.config.useTextShadow) {
+                val bitmap = getMultiplyColoredBitmap(R.drawable.ic_clock_shadowed, widgetTextColor, context)
+                setImageViewBitmap(R.id.widget_next_alarm_image, bitmap)
+            } else {
+                setImageViewBitmap(R.id.widget_next_alarm_image, context.resources.getColoredBitmap(R.drawable.ic_clock, widgetTextColor))
+            }
         }
     }
 
@@ -120,5 +127,17 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
             }
             else -> nextAlarm
         }
+    }
+
+    fun getMultiplyColoredBitmap(resourceId: Int, newColor: Int, context: Context): Bitmap {
+        val options = BitmapFactory.Options()
+        options.inMutable = true
+        val bmp = BitmapFactory.decodeResource(context.resources, resourceId, options)
+        val paint = Paint()
+        val filter = PorterDuffColorFilter(newColor, PorterDuff.Mode.MULTIPLY)
+        paint.colorFilter = filter
+        val canvas = Canvas(bmp)
+        canvas.drawBitmap(bmp, 0f, 0f, paint)
+        return bmp
     }
 }
