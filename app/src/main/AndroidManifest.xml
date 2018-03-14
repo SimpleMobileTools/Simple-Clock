@@ -85,7 +85,9 @@
 
         <receiver android:name=".receivers.AlarmReceiver"/>
 
-        <receiver android:name=".receivers.TimerReceiver"/>
+        <receiver android:name=".receivers.HideTimerReceiver"/>
+
+        <receiver android:name=".receivers.HideAlarmReceiver"/>
 
         <receiver android:name=".receivers.DateTimeWidgetUpdateReceiver"/>
 

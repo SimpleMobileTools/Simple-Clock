@@ -25,7 +25,8 @@ import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.clock.receivers.AlarmReceiver
 import com.simplemobiletools.clock.receivers.DateTimeWidgetUpdateReceiver
-import com.simplemobiletools.clock.receivers.TimerReceiver
+import com.simplemobiletools.clock.receivers.HideAlarmReceiver
+import com.simplemobiletools.clock.receivers.HideTimerReceiver
 import com.simplemobiletools.clock.services.SnoozeService
 import com.simplemobiletools.commons.extensions.formatMinutesToTimeString
 import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
@@ -277,7 +278,7 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
             .setAutoCancel(true)
             .setSound(Uri.parse(config.timerSoundUri), AudioManager.STREAM_SYSTEM)
             .setChannelId(channelId)
-            .addAction(R.drawable.ic_cross, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getTimerPendingIntent())
+            .addAction(R.drawable.ic_cross, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getHideTimerPendingIntent())
 
     if (addDeleteIntent) {
         builder.setDeleteIntent(reminderActivityIntent)
@@ -297,9 +298,14 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
     return notification
 }
 
-fun Context.getTimerPendingIntent(): PendingIntent {
-    val intent = Intent(this, TimerReceiver::class.java)
+fun Context.getHideTimerPendingIntent(): PendingIntent {
+    val intent = Intent(this, HideTimerReceiver::class.java)
     return PendingIntent.getBroadcast(this, TIMER_NOTIF_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+}
+
+fun Context.getHideAlarmPendingIntent(alarm: Alarm): PendingIntent {
+    val intent = Intent(this, HideAlarmReceiver::class.java)
+    return PendingIntent.getBroadcast(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }
 
 @SuppressLint("NewApi")
@@ -328,6 +334,7 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm, add
             .setAutoCancel(true)
             .setSound(Uri.parse(alarm.soundUri), AudioManager.STREAM_ALARM)
             .setChannelId(channelId)
+            .addAction(R.drawable.ic_cross, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getHideAlarmPendingIntent(alarm))
             .addAction(R.drawable.ic_snooze, getString(R.string.snooze), getSnoozePendingIntent(alarm, addDeleteIntent))
 
     if (addDeleteIntent) {
