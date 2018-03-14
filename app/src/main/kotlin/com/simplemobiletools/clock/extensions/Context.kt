@@ -305,6 +305,7 @@ fun Context.getHideTimerPendingIntent(): PendingIntent {
 
 fun Context.getHideAlarmPendingIntent(alarm: Alarm): PendingIntent {
     val intent = Intent(this, HideAlarmReceiver::class.java)
+    intent.putExtra(ALARM_ID, alarm.id)
     return PendingIntent.getBroadcast(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }
 

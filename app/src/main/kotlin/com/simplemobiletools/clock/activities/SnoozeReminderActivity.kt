@@ -19,7 +19,7 @@ class SnoozeReminderActivity : AppCompatActivity() {
         val alarm = dbHelper.getAlarmWithId(id) ?: return
         hideNotification(id)
         showPickSecondsDialog(config.snoozeTime * MINUTE_SECONDS, true, cancelCallback = { dialogCancelled() }) {
-            config.snoozeTime = it * 60
+            config.snoozeTime = it / MINUTE_SECONDS
             setupAlarmClock(alarm, it)
             finishActivity()
         }

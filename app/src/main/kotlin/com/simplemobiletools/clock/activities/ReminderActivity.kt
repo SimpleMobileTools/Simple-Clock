@@ -8,6 +8,7 @@ import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.ALARM_ID
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.helpers.MINUTE_SECONDS
 import kotlinx.android.synthetic.main.activity_reminder.*
 
 class ReminderActivity : SimpleActivity() {
@@ -70,6 +71,20 @@ class ReminderActivity : SimpleActivity() {
     }
 
     private fun snoozeClicked() {
+        if (config.useSameSnooze) {
+            setupAlarmClock(alarm!!, config.snoozeTime * MINUTE_SECONDS)
+            finishActivity()
+        } else {
+            showPickSecondsDialog(config.snoozeTime * MINUTE_SECONDS, true, cancelCallback = { finishActivity() }) {
+                config.snoozeTime = it / MINUTE_SECONDS
+                setupAlarmClock(alarm!!, it)
+                finishActivity()
+            }
+        }
+    }
 
+    private fun finishActivity() {
+        finish()
+        overridePendingTransition(0, 0)
     }
 }
