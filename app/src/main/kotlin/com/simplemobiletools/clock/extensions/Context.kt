@@ -9,6 +9,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
+import android.os.PowerManager
 import android.provider.Settings
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
@@ -217,3 +218,5 @@ fun Context.rescheduleEnabledAlarms() {
         scheduleNextAlarm(it, false)
     }
 }
+
+fun Context.isScreenOn() = (getSystemService(Context.POWER_SERVICE) as PowerManager).isScreenOn

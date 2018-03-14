@@ -19,6 +19,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.simplemobiletools.clock.R
+import com.simplemobiletools.clock.activities.ReminderActivity
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.activities.SplashActivity
 import com.simplemobiletools.clock.dialogs.MyTimePickerDialogDialog
@@ -26,6 +27,7 @@ import com.simplemobiletools.clock.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.clock.extensions.colorLeftDrawable
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.hideNotification
+import com.simplemobiletools.clock.extensions.isScreenOn
 import com.simplemobiletools.clock.helpers.OPEN_TAB
 import com.simplemobiletools.clock.helpers.TAB_TIMER
 import com.simplemobiletools.clock.helpers.TIMER_NOTIF_ID
@@ -34,6 +36,7 @@ import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.isLollipopPlus
 import com.simplemobiletools.commons.helpers.isOreoPlus
 import kotlinx.android.synthetic.main.fragment_timer.view.*
+
 
 class TimerFragment : Fragment() {
     private val UPDATE_INTERVAL = 1000L
@@ -185,14 +188,20 @@ class TimerFragment : Fragment() {
 
         view.timer_time.text = formattedDuration
         if (diff == 0) {
-            val pendingIntent = getOpenAppIntent(context!!)
-            val notification = getNotification(context!!, pendingIntent)
-            val notificationManager = context!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.notify(TIMER_NOTIF_ID, notification)
+            if (context?.isScreenOn() == true) {
+                val pendingIntent = getOpenAppIntent(context!!)
+                val notification = getNotification(context!!, pendingIntent)
+                val notificationManager = context!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                notificationManager.notify(TIMER_NOTIF_ID, notification)
 
-            Handler().postDelayed({
-                hideTimerNotification()
-            }, context?.config!!.timerMaxReminderSecs * 1000L)
+                Handler().postDelayed({
+                    hideTimerNotification()
+                }, context?.config!!.timerMaxReminderSecs * 1000L)
+            } else {
+                Intent(context, ReminderActivity::class.java).apply {
+                    activity?.startActivity(this)
+                }
+            }
         }
         return true
     }
