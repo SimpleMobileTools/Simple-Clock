@@ -11,6 +11,7 @@ import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.getAlarms
 import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.commons.extensions.setupDialogStuff
+import com.simplemobiletools.commons.extensions.showErrorToast
 import kotlinx.android.synthetic.main.dialog_select_alarm_sound.view.*
 
 class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: String, val audioStream: Int, val callback: (alarmSound: AlarmSound) -> Unit) {
@@ -26,12 +27,16 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
                     isChecked = alarmSound.uri == currentUri
                     id = index
                     setOnClickListener {
-                        mediaPlayer.stop()
-                        mediaPlayer = MediaPlayer().apply {
-                            setAudioStreamType(audioStream)
-                            setDataSource(context, Uri.parse(alarmSound.uri))
-                            prepare()
-                            start()
+                        try {
+                            mediaPlayer.stop()
+                            mediaPlayer = MediaPlayer().apply {
+                                setAudioStreamType(audioStream)
+                                setDataSource(context, Uri.parse(alarmSound.uri))
+                                prepare()
+                                start()
+                            }
+                        } catch (e: Exception) {
+                            activity.showErrorToast(e)
                         }
                     }
                 }
