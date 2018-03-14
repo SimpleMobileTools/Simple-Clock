@@ -48,7 +48,11 @@ fun getMSTillNextMinute(): Long {
 
 fun getPassedSeconds(): Int {
     val calendar = Calendar.getInstance()
-    val offset = calendar.timeZone.rawOffset
+    val isDaylightSavingActive = TimeZone.getDefault().inDaylightTime(Date())
+    var offset = calendar.timeZone.rawOffset
+    if (isDaylightSavingActive) {
+        offset += TimeZone.getDefault().dstSavings
+    }
     return ((calendar.timeInMillis + offset) / 1000).toInt()
 }
 

@@ -15,6 +15,7 @@ import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.getAllTimeZonesModified
 import com.simplemobiletools.clock.extensions.getFormattedDate
 import com.simplemobiletools.clock.extensions.getFormattedTime
+import com.simplemobiletools.clock.helpers.getPassedSeconds
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.commons.extensions.beVisibleIf
 import com.simplemobiletools.commons.extensions.updateTextColors
@@ -62,8 +63,7 @@ class ClockFragment : Fragment() {
 
     private fun setupDateTime() {
         calendar = Calendar.getInstance()
-        val offset = calendar.timeZone.rawOffset
-        passedSeconds = ((calendar.timeInMillis + offset) / 1000).toInt()
+        passedSeconds = getPassedSeconds()
         displayOtherTimeZones = context!!.config.displayOtherTimeZones
         updateCurrentTime()
         updateDate()

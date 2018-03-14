@@ -83,8 +83,13 @@ class TimeZonesAdapter(activity: SimpleActivity, var timeZones: ArrayList<MyTime
     }
 
     private fun setupView(view: View, timeZone: MyTimeZone) {
-        val calendar = Calendar.getInstance(TimeZone.getTimeZone(timeZone.zoneName))
-        val offset = calendar.timeZone.rawOffset
+        val currTimeZone = TimeZone.getTimeZone(timeZone.zoneName)
+        val calendar = Calendar.getInstance(currTimeZone)
+        var offset = calendar.timeZone.rawOffset
+        val isDaylightSavingActive = currTimeZone.inDaylightTime(Date())
+        if (isDaylightSavingActive) {
+            offset += currTimeZone.dstSavings
+        }
         val passedSeconds = ((calendar.timeInMillis + offset) / 1000).toInt()
         val formattedTime = activity.getFormattedTime(passedSeconds, false, false)
         val formattedDate = activity.getFormattedDate(calendar)
