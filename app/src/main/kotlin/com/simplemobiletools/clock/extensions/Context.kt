@@ -11,6 +11,7 @@ import android.media.RingtoneManager
 import android.net.Uri
 import android.os.PowerManager
 import android.provider.Settings
+import android.support.v4.app.AlarmManagerCompat
 import android.support.v4.app.NotificationCompat
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
@@ -132,15 +133,10 @@ fun Context.showRemainingTimeMessage(totalMinutes: Int) {
     toast(fullString, Toast.LENGTH_LONG)
 }
 
-@SuppressLint("NewApi")
 fun Context.setupAlarmClock(alarm: Alarm, triggerInSeconds: Int) {
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
     val targetMS = System.currentTimeMillis() + triggerInSeconds * 1000
-
-    if (isLollipopPlus()) {
-        val info = AlarmManager.AlarmClockInfo(targetMS, getOpenAlarmTabIntent())
-        alarmManager.setAlarmClock(info, getAlarmIntent(alarm))
-    }
+    AlarmManagerCompat.setAlarmClock(alarmManager, targetMS, getOpenAlarmTabIntent(), getAlarmIntent(alarm))
 }
 
 fun Context.getOpenAlarmTabIntent(): PendingIntent {
