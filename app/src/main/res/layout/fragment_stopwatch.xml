@@ -105,7 +105,6 @@
         style="@style/MyBorderlessBackgroundStyle"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/stopwatch_button_small_size"
-        android:layout_alignParentBottom="true"
         android:gravity="center"
         android:letterSpacing="0.1"
         android:paddingLeft="@dimen/activity_margin"

@@ -7,9 +7,7 @@ import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.ALARM_ID
 import com.simplemobiletools.clock.models.Alarm
-import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
-import com.simplemobiletools.commons.extensions.getColoredDrawableWithColor
-import com.simplemobiletools.commons.extensions.updateTextColors
+import com.simplemobiletools.commons.extensions.*
 import kotlinx.android.synthetic.main.activity_reminder.*
 
 class ReminderActivity : SimpleActivity() {
@@ -34,6 +32,12 @@ class ReminderActivity : SimpleActivity() {
         reminder_stop.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, getAdjustedPrimaryColor())
         reminder_stop.setOnClickListener {
             finish()
+        }
+
+        reminder_snooze.beVisibleIf(isAlarmReminder)
+        reminder_snooze.applyColorFilter(config.textColor)
+        reminder_snooze.setOnClickListener {
+            snoozeClicked()
         }
 
         Handler().postDelayed({
@@ -63,5 +67,9 @@ class ReminderActivity : SimpleActivity() {
             hideTimerNotification()
         }
         hideNotificationHandler.removeCallbacksAndMessages(null)
+    }
+
+    private fun snoozeClicked() {
+
     }
 }
