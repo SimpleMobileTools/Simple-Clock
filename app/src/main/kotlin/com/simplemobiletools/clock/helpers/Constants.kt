@@ -5,7 +5,6 @@ import java.util.*
 
 // shared preferences
 const val SHOW_SECONDS = "show_seconds"
-const val DISPLAY_OTHER_TIME_ZONES = "display_other_time_zones"
 const val SELECTED_TIME_ZONES = "selected_time_zones"
 const val EDITED_TIME_ZONE_TITLES = "edited_time_zone_titles"
 const val TIMER_SECONDS = "timer_seconds"

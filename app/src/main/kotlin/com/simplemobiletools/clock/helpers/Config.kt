@@ -14,10 +14,6 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getBoolean(SHOW_SECONDS, true)
         set(showSeconds) = prefs.edit().putBoolean(SHOW_SECONDS, showSeconds).apply()
 
-    var displayOtherTimeZones: Boolean
-        get() = prefs.getBoolean(DISPLAY_OTHER_TIME_ZONES, true)
-        set(displayOtherTimeZones) = prefs.edit().putBoolean(DISPLAY_OTHER_TIME_ZONES, displayOtherTimeZones).apply()
-
     var selectedTimeZones: Set<String>
         get() = prefs.getStringSet(SELECTED_TIME_ZONES, HashSet())
         set(selectedTimeZones) = prefs.edit().putStringSet(SELECTED_TIME_ZONES, selectedTimeZones).apply()

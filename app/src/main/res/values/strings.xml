@@ -21,7 +21,6 @@
     <string name="stopwatch_tab">Stopwatch tab</string>
     <string name="timer_tab">Timer tab</string>
     <string name="show_seconds">Show seconds</string>
-    <string name="display_other_time_zones">Allow displaying other time zones</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">How can I change lap sorting at the stopwatch tab?</string>

@@ -26,7 +26,6 @@ class ClockFragment : Fragment() {
     private val ONE_SECOND = 1000L
 
     private var passedSeconds = 0
-    private var displayOtherTimeZones = false
     private var calendar = Calendar.getInstance()
     private val updateHandler = Handler()
 
@@ -42,7 +41,6 @@ class ClockFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        displayOtherTimeZones = context!!.config.displayOtherTimeZones
         setupDateTime()
 
         val configTextColor = context!!.config.textColor
@@ -64,7 +62,6 @@ class ClockFragment : Fragment() {
     private fun setupDateTime() {
         calendar = Calendar.getInstance()
         passedSeconds = getPassedSeconds()
-        displayOtherTimeZones = context!!.config.displayOtherTimeZones
         updateCurrentTime()
         updateDate()
         setupViews()
@@ -73,15 +70,11 @@ class ClockFragment : Fragment() {
     private fun setupViews() {
         view.apply {
             context!!.updateTextColors(clock_fragment)
-            time_zones_list.beVisibleIf(displayOtherTimeZones)
-            clock_fab.beVisibleIf(displayOtherTimeZones)
             clock_fab.setOnClickListener {
                 fabClicked()
             }
 
-            if (displayOtherTimeZones) {
-                updateTimeZones()
-            }
+            updateTimeZones()
         }
     }
 
@@ -100,9 +93,7 @@ class ClockFragment : Fragment() {
                 updateDate()
             }
 
-            if (displayOtherTimeZones) {
-                (view.time_zones_list.adapter as? TimeZonesAdapter)?.updateTimes()
-            }
+            (view.time_zones_list.adapter as? TimeZonesAdapter)?.updateTimes()
         }
 
         updateHandler.postDelayed({
@@ -115,18 +106,17 @@ class ClockFragment : Fragment() {
         calendar = Calendar.getInstance()
         val formattedDate = context!!.getFormattedDate(calendar)
         view.clock_date.text = formattedDate
-
-        if (displayOtherTimeZones) {
-            (view.time_zones_list.adapter as? TimeZonesAdapter)?.todayDateString = formattedDate
-        }
+        (view.time_zones_list.adapter as? TimeZonesAdapter)?.todayDateString = formattedDate
     }
 
     private fun updateTimeZones() {
-        if (!displayOtherTimeZones) {
+        val selectedTimeZones = context!!.config.selectedTimeZones
+        view.time_zones_list.beVisibleIf(selectedTimeZones.isNotEmpty())
+        if (selectedTimeZones.isEmpty()) {
             return
         }
 
-        val selectedTimeZoneIDs = context!!.config.selectedTimeZones.map { it.toInt() }
+        val selectedTimeZoneIDs = selectedTimeZones.map { it.toInt() }
         val timeZones = context!!.getAllTimeZonesModified().filter { selectedTimeZoneIDs.contains(it.id) } as ArrayList<MyTimeZone>
         val currAdapter = view.time_zones_list.adapter
         if (currAdapter == null) {

@@ -21,7 +21,6 @@
     <string name="stopwatch_tab">Cronómetro</string>
     <string name="timer_tab">Timer tab</string>
     <string name="show_seconds">Mostrar segundos</string>
-    <string name="display_other_time_zones">Mostrar outros fusos horários</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">How can I change lap sorting at the stopwatch tab?</string>
