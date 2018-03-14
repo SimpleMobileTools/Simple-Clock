@@ -1,5 +1,6 @@
 package com.simplemobiletools.clock.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import com.simplemobiletools.clock.R
@@ -39,7 +40,7 @@ class ReminderActivity : SimpleActivity() {
             if (isAlarmReminder) {
                 showAlarmNotification(alarm!!)
             } else {
-                showTimerNotification()
+                showTimerNotification(true)
             }
 
             val maxDuration = if (isAlarmReminder) config.alarmMaxReminderSecs else config.timerMaxReminderSecs
@@ -47,6 +48,11 @@ class ReminderActivity : SimpleActivity() {
                 finish()
             }, maxDuration * 1000L)
         }, 1000L)
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        finish()
     }
 
     override fun onStop() {

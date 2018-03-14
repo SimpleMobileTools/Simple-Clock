@@ -40,7 +40,9 @@
             android:name=".activities.MainActivity"
             android:launchMode="singleTask"/>
 
-        <activity android:name=".activities.ReminderActivity"/>
+        <activity
+            android:name=".activities.ReminderActivity"
+            android:launchMode="singleTask"/>
 
         <activity
             android:name=".activities.SettingsActivity"

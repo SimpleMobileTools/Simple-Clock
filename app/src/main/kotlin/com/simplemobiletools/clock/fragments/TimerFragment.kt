@@ -170,7 +170,7 @@ class TimerFragment : Fragment() {
         view.timer_time.text = formattedDuration
         if (diff == 0) {
             if (context?.isScreenOn() == true) {
-                context!!.showTimerNotification()
+                context!!.showTimerNotification(false)
                 Handler().postDelayed({
                     context?.hideTimerNotification()
                 }, context?.config!!.timerMaxReminderSecs * 1000L)

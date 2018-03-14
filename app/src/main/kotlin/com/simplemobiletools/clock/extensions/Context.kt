@@ -16,6 +16,7 @@ import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
 import android.widget.Toast
 import com.simplemobiletools.clock.R
+import com.simplemobiletools.clock.activities.ReminderActivity
 import com.simplemobiletools.clock.activities.SnoozeReminderActivity
 import com.simplemobiletools.clock.activities.SplashActivity
 import com.simplemobiletools.clock.helpers.*
@@ -243,15 +244,15 @@ fun Context.showAlarmNotification(alarm: Alarm) {
     scheduleNextAlarm(alarm, false)
 }
 
-fun Context.showTimerNotification() {
+fun Context.showTimerNotification(addDeleteIntent: Boolean) {
     val pendingIntent = getOpenTimerTabIntent()
-    val notification = getTimerNotification(pendingIntent)
+    val notification = getTimerNotification(pendingIntent, addDeleteIntent)
     val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     notificationManager.notify(TIMER_NOTIF_ID, notification)
 }
 
 @SuppressLint("NewApi")
-fun Context.getTimerNotification(pendingIntent: PendingIntent): Notification {
+fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: Boolean): Notification {
     val channelId = "timer_channel"
     if (isOreoPlus()) {
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -265,6 +266,7 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent): Notification {
         }
     }
 
+    val reminderActivityIntent = getReminderActivityIntent()
     val builder = NotificationCompat.Builder(this)
             .setContentTitle(getString(R.string.timer))
             .setContentText(getString(R.string.time_expired))
@@ -275,7 +277,11 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent): Notification {
             .setAutoCancel(true)
             .setSound(Uri.parse(config.timerSoundUri), AudioManager.STREAM_SYSTEM)
             .setChannelId(channelId)
-            .addAction(R.drawable.ic_cross, getString(R.string.dismiss), getTimerPendingIntent())
+            .addAction(R.drawable.ic_cross, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getTimerPendingIntent())
+
+    if (addDeleteIntent) {
+        builder.setDeleteIntent(reminderActivityIntent)
+    }
 
     if (isLollipopPlus()) {
         builder.setVisibility(Notification.VISIBILITY_PUBLIC)
@@ -346,4 +352,9 @@ fun Context.getSnoozePendingIntent(alarm: Alarm): PendingIntent {
     } else {
         PendingIntent.getActivity(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
     }
+}
+
+fun Context.getReminderActivityIntent(): PendingIntent {
+    val intent = Intent(this, ReminderActivity::class.java)
+    return PendingIntent.getActivity(this, REMINDER_ACTIVITY_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }
