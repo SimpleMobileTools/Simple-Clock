@@ -162,6 +162,8 @@ fun Context.hideNotification(id: Int) {
     manager.cancel(id)
 }
 
+fun Context.hideTimerNotification() = hideNotification(TIMER_NOTIF_ID)
+
 fun Context.updateWidgets() {
     val widgetsCnt = AppWidgetManager.getInstance(applicationContext).getAppWidgetIds(ComponentName(applicationContext, MyWidgetDateTimeProvider::class.java))
     if (widgetsCnt.isNotEmpty()) {
@@ -225,6 +227,13 @@ fun Context.rescheduleEnabledAlarms() {
 }
 
 fun Context.isScreenOn() = (getSystemService(Context.POWER_SERVICE) as PowerManager).isScreenOn
+
+fun Context.showTimerNotification() {
+    val pendingIntent = getOpenTimerTabIntent()
+    val notification = getTimerNotification(pendingIntent)
+    val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    notificationManager.notify(TIMER_NOTIF_ID, notification)
+}
 
 @SuppressLint("NewApi")
 fun Context.getTimerNotification(pendingIntent: PendingIntent): Notification {

@@ -1,7 +1,5 @@
 package com.simplemobiletools.clock.fragments
 
-import android.app.NotificationManager
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.media.AudioManager
@@ -18,7 +16,6 @@ import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.dialogs.MyTimePickerDialogDialog
 import com.simplemobiletools.clock.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.clock.extensions.*
-import com.simplemobiletools.clock.helpers.TIMER_NOTIF_ID
 import com.simplemobiletools.commons.extensions.*
 import kotlinx.android.synthetic.main.fragment_timer.view.*
 
@@ -48,6 +45,7 @@ class TimerFragment : Fragment() {
             }
 
             timer_reset.setOnClickListener {
+                context!!.hideTimerNotification()
                 resetTimer()
             }
 
@@ -129,7 +127,7 @@ class TimerFragment : Fragment() {
     private fun togglePlayPause() {
         isRunning = !isRunning
         updateIcons()
-        hideTimerNotification()
+        context!!.hideTimerNotification()
 
         if (isRunning) {
             updateHandler.post(updateRunnable)
@@ -154,7 +152,6 @@ class TimerFragment : Fragment() {
         currentTicks = 0
         totalTicks = 0
         initialSecs = context!!.config.timerSeconds
-        hideTimerNotification()
         updateDisplayedText()
         updateIcons()
         view.timer_reset.beGone()
@@ -174,13 +171,9 @@ class TimerFragment : Fragment() {
         view.timer_time.text = formattedDuration
         if (diff == 0) {
             if (context?.isScreenOn() == true) {
-                val pendingIntent = context!!.getOpenTimerTabIntent()
-                val notification = context!!.getTimerNotification(pendingIntent)
-                val notificationManager = context!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-                notificationManager.notify(TIMER_NOTIF_ID, notification)
-
+                context!!.showTimerNotification()
                 Handler().postDelayed({
-                    hideTimerNotification()
+                    context?.hideTimerNotification()
                 }, context?.config!!.timerMaxReminderSecs * 1000L)
             } else {
                 Intent(context, ReminderActivity::class.java).apply {
@@ -189,10 +182,6 @@ class TimerFragment : Fragment() {
             }
         }
         return true
-    }
-
-    private fun hideTimerNotification() {
-        context?.hideNotification(TIMER_NOTIF_ID)
     }
 
     private val updateRunnable = object : Runnable {
