@@ -14,15 +14,16 @@
         android:id="@+id/alarm_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/normal_margin"
+        android:paddingBottom="@dimen/medium_margin"
         android:paddingLeft="@dimen/activity_margin"
-        android:paddingTop="@dimen/normal_margin">
+        android:paddingTop="@dimen/medium_margin">
 
         <com.simplemobiletools.commons.views.MyTextView
             android:id="@+id/alarm_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
+            android:includeFontPadding="false"
             android:maxLines="1"
             android:textSize="@dimen/alarm_text_size"
             tools:text="07:00"/>
@@ -34,9 +35,10 @@
             android:layout_below="@+id/alarm_time"
             android:layout_toLeftOf="@+id/alarm_switch"
             android:ellipsize="end"
+            android:includeFontPadding="false"
             android:maxLines="1"
             android:paddingLeft="@dimen/tiny_margin"
-            android:textSize="@dimen/big_text_size"
+            android:textSize="@dimen/bigger_text_size"
             tools:text="Mon, Tue, Wed, Thu, Fri"/>
 
         <com.simplemobiletools.commons.views.MyTextView
@@ -46,9 +48,10 @@
             android:layout_below="@+id/alarm_days"
             android:layout_toLeftOf="@+id/alarm_switch"
             android:ellipsize="end"
+            android:includeFontPadding="false"
             android:maxLines="1"
             android:paddingLeft="@dimen/tiny_margin"
-            android:textSize="@dimen/big_text_size"
+            android:textSize="@dimen/bigger_text_size"
             tools:text="Good morning!"/>
 
         <com.simplemobiletools.commons.views.MySwitchCompat
