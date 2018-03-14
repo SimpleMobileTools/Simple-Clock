@@ -327,7 +327,7 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm, add
     val reminderActivityIntent = getReminderActivityIntent()
     val builder = NotificationCompat.Builder(this)
             .setContentTitle(getString(R.string.alarm))
-            .setContentText(getFormattedTime(alarm.timeInMinutes * 60, false, false))
+            .setContentText(getFormattedTime(getPassedSeconds(), false, false))
             .setSmallIcon(R.drawable.ic_alarm)
             .setContentIntent(pendingIntent)
             .setPriority(Notification.PRIORITY_HIGH)

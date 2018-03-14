@@ -6,6 +6,7 @@ import android.os.Handler
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.ALARM_ID
+import com.simplemobiletools.clock.helpers.getPassedSeconds
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.MINUTE_SECONDS
@@ -29,7 +30,7 @@ class ReminderActivity : SimpleActivity() {
         }
 
         reminder_title.text = getString(if (isAlarmReminder) R.string.alarm else R.string.timer)
-        reminder_text.text = if (isAlarmReminder) getFormattedTime(alarm!!.timeInMinutes * 60, false, false) else getString(R.string.time_expired)
+        reminder_text.text = if (isAlarmReminder) getFormattedTime(getPassedSeconds(), false, false) else getString(R.string.time_expired)
         reminder_stop.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, getAdjustedPrimaryColor())
         reminder_stop.setOnClickListener {
             finish()
