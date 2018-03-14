@@ -19,7 +19,6 @@ import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.commons.extensions.*
 import kotlinx.android.synthetic.main.fragment_timer.view.*
 
-
 class TimerFragment : Fragment() {
     private val UPDATE_INTERVAL = 1000L
 

@@ -25,4 +25,14 @@
         android:textSize="@dimen/big_text_size"
         tools:text="14:00"/>
 
+    <ImageView
+        android:id="@+id/reminder_stop"
+        android:layout_width="@dimen/stopwatch_button_size"
+        android:layout_height="@dimen/stopwatch_button_size"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/big_margin"
+        android:padding="@dimen/normal_margin"
+        android:src="@drawable/ic_stop"/>
+
 </RelativeLayout>
