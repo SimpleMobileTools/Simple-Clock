@@ -38,7 +38,7 @@ class ReminderActivity : SimpleActivity() {
 
         Handler().postDelayed({
             if (isAlarmReminder) {
-                showAlarmNotification(alarm!!)
+                showAlarmNotification(alarm!!, true)
             } else {
                 showTimerNotification(true)
             }
