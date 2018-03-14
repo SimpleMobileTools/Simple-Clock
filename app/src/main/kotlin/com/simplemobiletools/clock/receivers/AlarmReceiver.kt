@@ -73,11 +73,13 @@ class AlarmReceiver : BroadcastReceiver() {
         }
 
         if (alarm.vibrate) {
-            val vibrateArray = LongArray(context.config.alarmMaxReminderSecs * 2) { 500 }
+            val vibrateArray = LongArray(2) { 500 }
             builder.setVibrate(vibrateArray)
         }
 
-        return builder.build()
+        val notification = builder.build()
+        notification.flags = notification.flags or Notification.FLAG_INSISTENT
+        return notification
     }
 
     private fun getSnoozePendingIntent(context: Context, alarm: Alarm): PendingIntent {

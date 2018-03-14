@@ -229,11 +229,13 @@ class TimerFragment : Fragment() {
         }
 
         if (context.config.timerVibrate) {
-            val vibrateArray = LongArray(120) { 500 }
+            val vibrateArray = LongArray(2) { 500 }
             builder.setVibrate(vibrateArray)
         }
 
-        return builder.build()
+        val notification = builder.build()
+        notification.flags = notification.flags or Notification.FLAG_INSISTENT
+        return notification
     }
 
     private fun getTimerPendingIntent(context: Context): PendingIntent {
