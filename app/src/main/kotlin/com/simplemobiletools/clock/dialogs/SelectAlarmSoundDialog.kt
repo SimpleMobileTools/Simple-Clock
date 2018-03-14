@@ -32,6 +32,7 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
                             mediaPlayer = MediaPlayer().apply {
                                 setAudioStreamType(audioStream)
                                 setDataSource(context, Uri.parse(alarmSound.uri))
+                                isLooping = true
                                 prepare()
                                 start()
                             }
