@@ -3,6 +3,7 @@ package com.simplemobiletools.clock.activities
 import android.os.Bundle
 import android.os.Handler
 import com.simplemobiletools.clock.R
+import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.hideTimerNotification
 import com.simplemobiletools.clock.extensions.showOverLockscreen
 import com.simplemobiletools.clock.extensions.showTimerNotification
@@ -12,6 +13,7 @@ import com.simplemobiletools.commons.extensions.updateTextColors
 import kotlinx.android.synthetic.main.activity_reminder.*
 
 class ReminderActivity : SimpleActivity() {
+    private val hideNotificationHandler = Handler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,11 +30,16 @@ class ReminderActivity : SimpleActivity() {
 
         Handler().postDelayed({
             showTimerNotification()
+
+            hideNotificationHandler.postDelayed({
+                finish()
+            }, config.timerMaxReminderSecs * 1000L)
         }, 1000L)
     }
 
     override fun onStop() {
         super.onStop()
         hideTimerNotification()
+        hideNotificationHandler.removeCallbacksAndMessages(null)
     }
 }
