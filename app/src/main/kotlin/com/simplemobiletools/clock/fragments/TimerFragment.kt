@@ -28,9 +28,7 @@ import com.simplemobiletools.clock.extensions.colorLeftDrawable
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.hideNotification
 import com.simplemobiletools.clock.extensions.isScreenOn
-import com.simplemobiletools.clock.helpers.OPEN_TAB
-import com.simplemobiletools.clock.helpers.TAB_TIMER
-import com.simplemobiletools.clock.helpers.TIMER_NOTIF_ID
+import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.clock.receivers.TimerReceiver
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.isLollipopPlus
@@ -199,6 +197,8 @@ class TimerFragment : Fragment() {
                 }, context?.config!!.timerMaxReminderSecs * 1000L)
             } else {
                 Intent(context, ReminderActivity::class.java).apply {
+                    putExtra(REMINDER_TITLE, context!!.getString(R.string.timer))
+                    putExtra(REMINDER_TEXT, context!!.getString(R.string.time_expired))
                     activity?.startActivity(this)
                 }
             }

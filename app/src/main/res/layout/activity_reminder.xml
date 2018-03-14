@@ -1,8 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/reminder_holder"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <com.simplemobiletools.commons.views.MyTextView
+        android:id="@+id/reminder_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:textSize="@dimen/extra_big_text_size"
+        tools:text="Timer expired"/>
+
+    <com.simplemobiletools.commons.views.MyTextView
+        android:id="@+id/reminder_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reminder_title"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="@dimen/activity_margin"
+        android:textSize="@dimen/big_text_size"
+        tools:text="14:00"/>
 
 </RelativeLayout>
