@@ -22,7 +22,6 @@ import com.simplemobiletools.clock.activities.SnoozeReminderActivity
 import com.simplemobiletools.clock.activities.SplashActivity
 import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.clock.models.Alarm
-import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.clock.receivers.AlarmReceiver
 import com.simplemobiletools.clock.receivers.DateTimeWidgetUpdateReceiver
@@ -77,29 +76,6 @@ fun Context.getAllTimeZonesModified(): ArrayList<MyTimeZone> {
 }
 
 fun Context.getModifiedTimeZoneTitle(id: Int) = getAllTimeZonesModified().firstOrNull { it.id == id }?.title ?: getDefaultTimeZoneTitle(id)
-
-fun Context.getAlarms(): ArrayList<AlarmSound> {
-    val manager = RingtoneManager(this)
-    manager.setType(RingtoneManager.TYPE_ALARM)
-    val cursor = manager.cursor
-
-    val alarms = ArrayList<AlarmSound>()
-    val defaultAlarm = AlarmSound(getDefaultAlarmTitle(), getDefaultAlarmUri().toString())
-    alarms.add(defaultAlarm)
-
-    while (cursor.moveToNext()) {
-        val title = cursor.getString(RingtoneManager.TITLE_COLUMN_INDEX)
-        var uri = cursor.getString(RingtoneManager.URI_COLUMN_INDEX)
-        val id = cursor.getString(RingtoneManager.ID_COLUMN_INDEX)
-        if (!uri.endsWith(id)) {
-            uri += "/$id"
-        }
-        val alarmSound = AlarmSound(title, uri)
-        alarms.add(alarmSound)
-    }
-
-    return alarms
-}
 
 fun Context.getDefaultAlarmUri() = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
 
