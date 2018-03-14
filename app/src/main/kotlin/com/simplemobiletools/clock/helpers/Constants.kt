@@ -22,8 +22,6 @@ const val DEFAULT_ALARM_MINUTES = 480
 const val DAY_MINUTES = 1440
 const val DEFAULT_MAX_ALARM_REMINDER_SECS = 300
 const val DEFAULT_MAX_TIMER_REMINDER_SECS = 60
-const val REMINDER_TITLE = "reminder_title"
-const val REMINDER_TEXT = "reminder_text"
 
 const val OPEN_ALARMS_TAB_INTENT_ID = 9996
 const val UPDATE_WIDGET_INTENT_ID = 9997

@@ -1,38 +1,25 @@
 package com.simplemobiletools.clock.fragments
 
-import android.annotation.SuppressLint
-import android.app.Notification
-import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.media.AudioManager
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.SystemClock
 import android.support.v4.app.Fragment
-import android.support.v4.app.NotificationCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.ReminderActivity
 import com.simplemobiletools.clock.activities.SimpleActivity
-import com.simplemobiletools.clock.activities.SplashActivity
 import com.simplemobiletools.clock.dialogs.MyTimePickerDialogDialog
 import com.simplemobiletools.clock.dialogs.SelectAlarmSoundDialog
-import com.simplemobiletools.clock.extensions.colorLeftDrawable
-import com.simplemobiletools.clock.extensions.config
-import com.simplemobiletools.clock.extensions.hideNotification
-import com.simplemobiletools.clock.extensions.isScreenOn
-import com.simplemobiletools.clock.helpers.*
-import com.simplemobiletools.clock.receivers.TimerReceiver
+import com.simplemobiletools.clock.extensions.*
+import com.simplemobiletools.clock.helpers.TIMER_NOTIF_ID
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.isLollipopPlus
-import com.simplemobiletools.commons.helpers.isOreoPlus
 import kotlinx.android.synthetic.main.fragment_timer.view.*
 
 
@@ -187,8 +174,8 @@ class TimerFragment : Fragment() {
         view.timer_time.text = formattedDuration
         if (diff == 0) {
             if (context?.isScreenOn() == true) {
-                val pendingIntent = getOpenAppIntent(context!!)
-                val notification = getNotification(context!!, pendingIntent)
+                val pendingIntent = context!!.getOpenTimerTabIntent()
+                val notification = context!!.getTimerNotification(pendingIntent)
                 val notificationManager = context!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
                 notificationManager.notify(TIMER_NOTIF_ID, notification)
 
@@ -197,65 +184,11 @@ class TimerFragment : Fragment() {
                 }, context?.config!!.timerMaxReminderSecs * 1000L)
             } else {
                 Intent(context, ReminderActivity::class.java).apply {
-                    putExtra(REMINDER_TITLE, context!!.getString(R.string.timer))
-                    putExtra(REMINDER_TEXT, context!!.getString(R.string.time_expired))
                     activity?.startActivity(this)
                 }
             }
         }
         return true
-    }
-
-    @SuppressLint("NewApi")
-    private fun getNotification(context: Context, pendingIntent: PendingIntent): Notification {
-        val channelId = "timer_channel"
-        if (isOreoPlus()) {
-            val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            val name = context.resources.getString(R.string.timer)
-            val importance = NotificationManager.IMPORTANCE_HIGH
-            NotificationChannel(channelId, name, importance).apply {
-                enableLights(true)
-                lightColor = context.getAdjustedPrimaryColor()
-                enableVibration(context.config.timerVibrate)
-                notificationManager.createNotificationChannel(this)
-            }
-        }
-
-        val builder = NotificationCompat.Builder(context)
-                .setContentTitle(context.getString(R.string.timer))
-                .setContentText(context.getString(R.string.time_expired))
-                .setSmallIcon(R.drawable.ic_timer)
-                .setContentIntent(pendingIntent)
-                .setPriority(Notification.PRIORITY_HIGH)
-                .setDefaults(Notification.DEFAULT_LIGHTS)
-                .setAutoCancel(true)
-                .setSound(Uri.parse(context.config.timerSoundUri), AudioManager.STREAM_SYSTEM)
-                .setChannelId(channelId)
-                .addAction(R.drawable.ic_cross, context.getString(R.string.dismiss), getTimerPendingIntent(context))
-
-        if (isLollipopPlus()) {
-            builder.setVisibility(Notification.VISIBILITY_PUBLIC)
-        }
-
-        if (context.config.timerVibrate) {
-            val vibrateArray = LongArray(2) { 500 }
-            builder.setVibrate(vibrateArray)
-        }
-
-        val notification = builder.build()
-        notification.flags = notification.flags or Notification.FLAG_INSISTENT
-        return notification
-    }
-
-    private fun getTimerPendingIntent(context: Context): PendingIntent {
-        val intent = Intent(context, TimerReceiver::class.java)
-        return PendingIntent.getBroadcast(context, TIMER_NOTIF_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-    }
-
-    private fun getOpenAppIntent(context: Context): PendingIntent {
-        val intent = Intent(context, SplashActivity::class.java)
-        intent.putExtra(OPEN_TAB, TAB_TIMER)
-        return PendingIntent.getActivity(context, TIMER_NOTIF_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
     }
 
     private fun hideTimerNotification() {

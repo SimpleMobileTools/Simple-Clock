@@ -3,8 +3,6 @@ package com.simplemobiletools.clock.activities
 import android.os.Bundle
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.showOverLockscreen
-import com.simplemobiletools.clock.helpers.REMINDER_TEXT
-import com.simplemobiletools.clock.helpers.REMINDER_TITLE
 import com.simplemobiletools.commons.extensions.updateTextColors
 import kotlinx.android.synthetic.main.activity_reminder.*
 
@@ -15,7 +13,7 @@ class ReminderActivity : SimpleActivity() {
         setContentView(R.layout.activity_reminder)
         showOverLockscreen()
         updateTextColors(reminder_holder)
-        reminder_title.text = intent.getStringExtra(REMINDER_TITLE)
-        reminder_text.text = intent.getStringExtra(REMINDER_TEXT)
+        reminder_title.text = getString(R.string.timer)
+        reminder_text.text = getString(R.string.time_expired)
     }
 }

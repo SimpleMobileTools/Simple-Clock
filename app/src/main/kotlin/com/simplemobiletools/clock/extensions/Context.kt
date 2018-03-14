@@ -1,31 +1,36 @@
 package com.simplemobiletools.clock.extensions
 
 import android.annotation.SuppressLint
-import android.app.AlarmManager
-import android.app.NotificationManager
-import android.app.PendingIntent
+import android.app.*
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.media.AudioManager
 import android.media.RingtoneManager
+import android.net.Uri
 import android.os.PowerManager
 import android.provider.Settings
+import android.support.v4.app.NotificationCompat
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
 import android.widget.Toast
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.MainActivity
+import com.simplemobiletools.clock.activities.SplashActivity
 import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.clock.receivers.AlarmReceiver
 import com.simplemobiletools.clock.receivers.DateTimeWidgetUpdateReceiver
+import com.simplemobiletools.clock.receivers.TimerReceiver
 import com.simplemobiletools.commons.extensions.formatMinutesToTimeString
+import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
 import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.helpers.isKitkatPlus
 import com.simplemobiletools.commons.helpers.isLollipopPlus
+import com.simplemobiletools.commons.helpers.isOreoPlus
 import java.util.*
 import kotlin.math.pow
 
@@ -130,12 +135,12 @@ fun Context.setupAlarmClock(alarm: Alarm, triggerInSeconds: Int) {
     val targetMS = System.currentTimeMillis() + triggerInSeconds * 1000
 
     if (isLollipopPlus()) {
-        val info = AlarmManager.AlarmClockInfo(targetMS, getOpenAppIntent())
+        val info = AlarmManager.AlarmClockInfo(targetMS, getOpenAlarmTabIntent())
         alarmManager.setAlarmClock(info, getAlarmIntent(alarm))
     }
 }
 
-fun Context.getOpenAppIntent(): PendingIntent {
+fun Context.getOpenAlarmTabIntent(): PendingIntent {
     val intent = Intent(this, MainActivity::class.java)
     intent.putExtra(OPEN_TAB, TAB_ALARM)
     return PendingIntent.getActivity(this, OPEN_ALARMS_TAB_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
@@ -220,3 +225,55 @@ fun Context.rescheduleEnabledAlarms() {
 }
 
 fun Context.isScreenOn() = (getSystemService(Context.POWER_SERVICE) as PowerManager).isScreenOn
+
+@SuppressLint("NewApi")
+fun Context.getTimerNotification(pendingIntent: PendingIntent): Notification {
+    val channelId = "timer_channel"
+    if (isOreoPlus()) {
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val name = getString(R.string.timer)
+        val importance = NotificationManager.IMPORTANCE_HIGH
+        NotificationChannel(channelId, name, importance).apply {
+            enableLights(true)
+            lightColor = getAdjustedPrimaryColor()
+            enableVibration(config.timerVibrate)
+            notificationManager.createNotificationChannel(this)
+        }
+    }
+
+    val builder = NotificationCompat.Builder(this)
+            .setContentTitle(getString(R.string.timer))
+            .setContentText(getString(R.string.time_expired))
+            .setSmallIcon(R.drawable.ic_timer)
+            .setContentIntent(pendingIntent)
+            .setPriority(Notification.PRIORITY_HIGH)
+            .setDefaults(Notification.DEFAULT_LIGHTS)
+            .setAutoCancel(true)
+            .setSound(Uri.parse(config.timerSoundUri), AudioManager.STREAM_SYSTEM)
+            .setChannelId(channelId)
+            .addAction(R.drawable.ic_cross, getString(R.string.dismiss), getTimerPendingIntent())
+
+    if (isLollipopPlus()) {
+        builder.setVisibility(Notification.VISIBILITY_PUBLIC)
+    }
+
+    if (config.timerVibrate) {
+        val vibrateArray = LongArray(2) { 500 }
+        builder.setVibrate(vibrateArray)
+    }
+
+    val notification = builder.build()
+    notification.flags = notification.flags or Notification.FLAG_INSISTENT
+    return notification
+}
+
+fun Context.getTimerPendingIntent(): PendingIntent {
+    val intent = Intent(this, TimerReceiver::class.java)
+    return PendingIntent.getBroadcast(this, TIMER_NOTIF_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+}
+
+fun Context.getOpenTimerTabIntent(): PendingIntent {
+    val intent = Intent(this, SplashActivity::class.java)
+    intent.putExtra(OPEN_TAB, TAB_TIMER)
+    return PendingIntent.getActivity(this, TIMER_NOTIF_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+}
