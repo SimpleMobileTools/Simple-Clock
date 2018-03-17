@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Simple Clock</string>
+    <string name="lap">Runde</string>
+    <string name="faq_1_text">Tap auf eine Spalte sortiert die Runden nach dieser. Erneutes Berühren wechselt zwischen auf- und absteigender Sortierung.</string>
+    <string name="time_zone">Zeitzone</string>
+    <string name="clock_and_date">Datum und Uhrzeit</string>
+    <string name="clock_tab">Uhr</string>
+    <string name="time_expired">Zeit abgelaufen</string>
+    <string name="max_reminder_duration">Maximale Erinnerungszeit</string>
+    <string name="no_days_selected">Keine Tage ausgewählt</string>
+    <string name="label">Bezeichnung</string>
+    <string name="stopwatch_stopped">Stoppuhr angehalten</string>
+    <string name="stopwatch_tab">Stoppuhr</string>
+    <string name="faq_1_title">Wie kan ich die Sortierung der Rundenzeiten der Stoppuhr ändern?</string>
+    <string name="app_launcher_name">Uhr</string>
+    <string name="app_short_description">Eine Kombination aus Uhr, Wecker, Stoppuhr und Timer.</string>
+    <string name="timer">Timer</string>
+    <string name="timer_stopped">Timer angehalten</string>
+    <string name="timer_tab">Timer</string>
+    <string name="vibrate">Vibration</string>
+    <string name="show_seconds">Sekunden anzeigen</string>
+    <string name="alarm">Wecker</string>
+    <string name="alarm_tab">Wecker</string>
+    <string name="use_text_shadow">Text mit Schlagschatten</string>
+</resources>
