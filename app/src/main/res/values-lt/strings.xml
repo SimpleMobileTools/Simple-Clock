@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Paprastas Laikrodis</string>
+    <string name="app_launcher_name">Laikrodis</string>
+    <string name="time_zone">Laiko juosta</string>
+    <string name="vibrate">Vibruoti</string>
+    <string name="label">Etiketė</string>
+    <string name="no_days_selected">Nepasirinkta nė vienos dienos</string>
+    <string name="alarm">Žadintuvas</string>
+    <string name="timer">Laikmatis</string>
+    <string name="lap">Etapas</string>
+    <string name="stopwatch_stopped">Chronometras buvo sustabdytas</string>
+    <string name="timer_stopped">Laikmatis buvo sustabdytas</string>
+    <string name="max_reminder_duration">Maksimali prisiminimo trukmė</string>
+    <string name="time_expired">Laikas pasibaigė</string>
+    <string name="clock_and_date">Laikrodis ir data</string>
+    <string name="use_text_shadow">Naudoti teksto šešėlį</string>
+
+    <!-- Settings -->
+    <string name="clock_tab">Laikrodžio skirtukas</string>
+    <string name="alarm_tab">Žadintuvo skirtukas</string>
+    <string name="stopwatch_tab">Chronometro skirtukas</string>
+    <string name="timer_tab">Laikmačio skirtukas</string>
+    <string name="show_seconds">Rodyti sekundes</string>
+
+    <!-- FAQ -->
+    <string name="faq_1_title">Kaip aš galiu pakeisti etapų rikiavimą chronometro auselėje?</string>
+    <string name="faq_1_text">Spustelėkite ant bet kurio stulpelio, tai surikiuos etapus pagal tą stulpelį. Su papildomais paspaudimais Jūs galite pasirinkti tarp rikiavimo mažėjančia arba didėjančia tvarka.</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Laikrodžio, žadintuvo, chronometro ir laikmačio rinkinys.</string>
+    <string name="app_long_description">
+        Programėlė turi keletą funkcijų susijusių su laiko apskaita.
+
+        Laikrodyje Jūs galite pasirinkti laiko atvaizdavimą keliose laiko zonose, arba naudoti paprastą, bet tinkinamą laikrodžio skydelį. Teksto spalva skydelyje gali būti pasirenkama, taip pat kaip ir pagrindinė arba fono spalvos.
+
+        Žadintuvas turi visus pageidaujmus privalumus, kaip dienos pasirinkimas, vibracijos pasirinkimas, žadintuvo tono pasirinkimas, snaudimas arba tinkintos etiketės pridėjimas.
+
+        WSu chronometru Jūs galite pamatuoti ilgesnius laiko periodus, arba individualius etapus. Galite surikiuoti etapus pagal etapų laiką, chronometras taip pat turi vibracijas kai paspaudžiamas mygtukas, kad žinotumėte ar tikrai paspaudėte mygtuką, net kai negalite žiūrėti į savo įrenginį.
+
+        Jūs galite lengvai nustatyti laimatį kad žinotumėte tam tikro norimo etapo trukmę. Jūs taip pat galite nustatyti laikmačio skambėjimo toną, arba pasirinkti vibraciją.
+
+        Papildomi privalumai susideda iš pavyzdžiui iš neleidimo įrenginiui miegoti kol programėlė veikia fone.
+
+        Nėra jokių reklamų ar nereikalingų leidimų. Tai pilnai atviro kodo programėlė, leidžia keisti spalvas.
+
+        Ši programėlė yra tik viena dalelė iš kelių mūsų programėlių. Jūs galite rasti likusias programėles čia http://www.simplemobiletools.com
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
