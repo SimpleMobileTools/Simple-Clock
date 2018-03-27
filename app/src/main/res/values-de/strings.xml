@@ -1,26 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Simple Clock</string>
-    <string name="lap">Runde</string>
-    <string name="faq_1_text">Tap auf eine Spalte sortiert die Runden nach dieser. Erneutes Berühren wechselt zwischen auf- und absteigender Sortierung.</string>
+    <string name="app_launcher_name">Clock</string>
     <string name="time_zone">Zeitzone</string>
-    <string name="clock_and_date">Datum und Uhrzeit</string>
-    <string name="clock_tab">Uhr</string>
-    <string name="time_expired">Zeit abgelaufen</string>
-    <string name="max_reminder_duration">Maximale Erinnerungszeit</string>
-    <string name="no_days_selected">Keine Tage ausgewählt</string>
-    <string name="label">Bezeichnung</string>
-    <string name="stopwatch_stopped">Stoppuhr angehalten</string>
-    <string name="stopwatch_tab">Stoppuhr</string>
-    <string name="faq_1_title">Wie kan ich die Sortierung der Rundenzeiten der Stoppuhr ändern?</string>
-    <string name="app_launcher_name">Uhr</string>
-    <string name="app_short_description">Eine Kombination aus Uhr, Wecker, Stoppuhr und Timer.</string>
-    <string name="timer">Timer</string>
-    <string name="timer_stopped">Timer angehalten</string>
-    <string name="timer_tab">Timer</string>
     <string name="vibrate">Vibration</string>
-    <string name="show_seconds">Sekunden anzeigen</string>
+    <string name="label">Label</string>
+    <string name="no_days_selected">Keine Tage ausgewählt</string>
     <string name="alarm">Wecker</string>
-    <string name="alarm_tab">Wecker</string>
+    <string name="timer">Timer</string>
+    <string name="lap">Runde</string>
+    <string name="stopwatch_stopped">Die Stoppuhr wurde angehalten</string>
+    <string name="timer_stopped">Der Timer wurde angehalten</string>
+    <string name="max_reminder_duration">Maximale Zeitdauer der Erinnerungsfunktion</string>
+    <string name="time_expired">Zeit abgelaufen</string>
+    <string name="clock_and_date">Uhrzeit und Datum</string>
     <string name="use_text_shadow">Text mit Schlagschatten</string>
+
+    <!-- Settings -->
+    <string name="clock_tab">Uhr</string>
+    <string name="alarm_tab">Wecker</string>
+    <string name="stopwatch_tab">Stoppuhr</string>
+    <string name="timer_tab">Timer</string>
+    <string name="show_seconds">Sekunden anzeigen</string>
+
+    <!-- FAQ -->
+    <string name="faq_1_title">How can I change lap sorting at the stopwatch tab?</string>
+    <string name="faq_1_text">Just click on any of the columns, that will make the laps be sorted by the given column. With additional clicks you can toggle between ascending and descending sorting.</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">A combination of a clock, alarm, stopwatch and timer.</string>
+    <string name="app_long_description">
+        The app has multiple functions related to timing.
+
+        At the clock you can enable displaying times from other timezones, or use the simple, but customizable clock widget. The text color of the widget can be customized, as well as the color and the alpha of the background.
+
+        The alarm contains all the expected features as day selecting, vibration toggling, ringtone selecting, snooze or adding a custom label.
+
+        With the stopwatch you can easily measure a longer period of time, or individual laps. You can sort the laps by lap time, it contains optional vibrations on button presses too, just to let you know that the button was pressed, even if you cannot look at the device.
+
+        You can easily setup a timer to be notified of some event. You can both change its ringtone, or toggle vibrations.
+
+        Additional features include for example preventing the device from falling asleep while the app is in foreground.
+
+        Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
+
+        This app is just one piece of a bigger series of apps. You can find the rest of them at http://www.simplemobiletools.com
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
 </resources>
