@@ -2,24 +2,24 @@
     <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Relógio</string>
     <string name="time_zone">Fuso horário</string>
-    <string name="vibrate">Vibrate</string>
-    <string name="label">Label</string>
-    <string name="no_days_selected">No days selected</string>
-    <string name="alarm">Alarm</string>
-    <string name="timer">Timer</string>
-    <string name="lap">Lap</string>
-    <string name="stopwatch_stopped">Stopwatch has been stopped</string>
-    <string name="timer_stopped">Timer has been stopped</string>
-    <string name="max_reminder_duration">Max reminder duration</string>
-    <string name="time_expired">Time expired</string>
-    <string name="clock_and_date">Clock and date</string>
-    <string name="use_text_shadow">Use text shadow</string>
+    <string name="vibrate">Vibrar</string>
+    <string name="label">Legenda</string>
+    <string name="no_days_selected">Nenhum dia selecionado</string>
+    <string name="alarm">Alarme</string>
+    <string name="timer">Temporizador</string>
+    <string name="lap">Volta</string>
+    <string name="stopwatch_stopped">Cronómetro parado</string>
+    <string name="timer_stopped">Temporizador parado/string>
+    <string name="max_reminder_duration">Duração máxima do lembrete</string>
+    <string name="time_expired">Tempo expirado</string>
+    <string name="clock_and_date">Relógio e data</string>
+    <string name="use_text_shadow">Utilizar sombras/string>
 
     <!-- Settings -->
     <string name="clock_tab">Relógio</string>
     <string name="alarm_tab">Alarme</string>
     <string name="stopwatch_tab">Cronómetro</string>
-    <string name="timer_tab">Timer tab</string>
+    <string name="timer_tab">Temporizador</string>
     <string name="show_seconds">Mostrar segundos</string>
 
     <!-- FAQ -->
@@ -28,9 +28,9 @@
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">A combination of a clock, alarm, stopwatch and timer.</string>
+    <string name="app_short_description">Uma combinação entre relógio, alarme, cronómetro e temporizador.</string>
     <string name="app_long_description">
-        The app has multiple functions related to timing.
+        Uma aplicação com diversas ações relacionadas com data e hora.
 
         At the clock you can enable displaying times from other timezones, or use the simple, but customizable clock widget. The text color of the widget can be customized, as well as the color and the alpha of the background.
 
@@ -44,7 +44,7 @@
 
         Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
 
-        This app is just one piece of a bigger series of apps. You can find the rest of them at http://www.simplemobiletools.com
+        Esta aplicação é apenas parte de um conjunto mais vasto de aplicações. Saiba mais em https://www.simplemobiletools.com
     </string>
 
     <!--
