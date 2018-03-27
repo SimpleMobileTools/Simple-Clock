@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Jednostavan sat</string>
+    <string name="app_launcher_name">Sat</string>
+    <string name="time_zone">Vremenska zona</string>
+    <string name="vibrate">Vibriraj</string>
+    <string name="label">Oznaka</string>
+    <string name="no_days_selected">Nije odabran nijedan dan</string>
+    <string name="alarm">Alarm</string>
+    <string name="timer">Brojač</string>
+    <string name="lap">Krug</string>
+    <string name="stopwatch_stopped">Štoperica je zaustavljena</string>
+    <string name="timer_stopped">Brojač je zaustavljen</string>
+    <string name="max_reminder_duration">Maksimalno trajanje podsjetnika</string>
+    <string name="time_expired">Vrijeme je isteklo</string>
+    <string name="clock_and_date">Datum i vrijeme</string>
+    <string name="use_text_shadow">Upotrijebite sjenu teksta</string>
+
+    <!-- Settings -->
+    <string name="clock_tab">Kartica sata</string>
+    <string name="alarm_tab">Kartica alarma</string>
+    <string name="stopwatch_tab">Kartica štoperice</string>
+    <string name="timer_tab">Kartica brojača</string>
+    <string name="show_seconds">Prikaži sekunde</string>
+
+    <!-- FAQ -->
+    <string name="faq_1_title">Kako mogu promijeniti sortiranje krugova na kartici štoperice?</string>
+    <string name="faq_1_text">Jednostavno kliknite bilo koji od stupaca, time će krugovi biti razvrstani po danom stupcu. Uz dodatne klikove možete prebacivati između uzlaznog i silaznog sortiranja.</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Kombinacija sata, alarma, štoperice i brojača.</string>
+    <string name="app_long_description">
+        Aplikacija ima više funkcija povezanih s vremenom.
+
+        Sat vam omogućuje prikaz vremena u nekoliko vremenskih zona. To uključuje jednostavan i prilagodljiv widget, gdje je moguće promijeniti boju fonta, pozadinu, kao i transparentnost.
+
+        Alarm sadrži sve očekivane značajke kao odabir dana, uključivanje/isključivanje vibracije, odabir zvona, odgodu ili dodavanje prilagođene oznake.
+
+        Štoperica mjeri bilo jedno vrijeme ili vrijeme kruga. Moguće je sortirati po trajanju kruga, a Vaš uređaj može vibrirati kod pritiska na gumb, kako bi Vas obavijestio da je gumb pritisnut bez gledanja na zaslon.
+
+        Jednostavno možete podesiti brojač koji će Vas obavijestiti o nekom događaju. Možete promijeniti i njegov zvuk zvona ili uključiti/isključiti vibracije.
+
+        Aplikacija također ima neke dodatne funkcije, kao što je sprečavanje spavanja uređaja sve dok se aplikacija nalazi u prvom planu.
+
+        Ne sadrži oglase ili nepotrebne dozvole. Aplikacije je otvorenog koda, pruža prilagodljive boje.
+
+        Ova je aplikacija samo dio većeg broja aplikacija. Možete pronaći ostatak na http://www.simplemobiletools.com
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
