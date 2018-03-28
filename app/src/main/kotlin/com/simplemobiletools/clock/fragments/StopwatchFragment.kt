@@ -222,7 +222,6 @@ class StopwatchFragment : Fragment() {
     }
 
     private fun updateLaps() {
-        laps.sort()
         stopwatchAdapter.updateItems(laps)
     }
 
