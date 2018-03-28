@@ -79,7 +79,7 @@ fun Context.getModifiedTimeZoneTitle(id: Int) = getAllTimeZonesModified().firstO
 
 fun Context.getDefaultAlarmUri() = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
 
-fun Context.getDefaultAlarmTitle() = RingtoneManager.getRingtone(this, getDefaultAlarmUri()).getTitle(this)
+fun Context.getDefaultAlarmTitle() = RingtoneManager.getRingtone(this, getDefaultAlarmUri())?.getTitle(this) ?: getString(R.string.alarm)
 
 fun Context.createNewAlarm(timeInMinutes: Int, weekDays: Int) = Alarm(0, timeInMinutes, weekDays, false, false, getDefaultAlarmTitle(), getDefaultAlarmUri().toString(), "")
 
