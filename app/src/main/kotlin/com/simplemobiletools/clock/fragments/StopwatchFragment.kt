@@ -76,6 +76,17 @@ class StopwatchFragment : Fragment() {
 
             stopwatch_lap.setOnClickListener {
                 stopwatch_sorting_indicators_holder.beVisible()
+                if (laps.isEmpty()) {
+                    val lap = Lap(currentLap++, lapTicks * UPDATE_INTERVAL, totalTicks * UPDATE_INTERVAL)
+                    laps.add(0, lap)
+                    lapTicks = 0
+                } else {
+                    laps.first().apply {
+                        lapTime = lapTicks * UPDATE_INTERVAL
+                        totalTime = totalTicks * UPDATE_INTERVAL
+                    }
+                }
+
                 val lap = Lap(currentLap++, lapTicks * UPDATE_INTERVAL, totalTicks * UPDATE_INTERVAL)
                 laps.add(0, lap)
                 lapTicks = 0
