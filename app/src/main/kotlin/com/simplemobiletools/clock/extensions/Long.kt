@@ -14,11 +14,11 @@ fun Long.formatStopwatchTime(useLongerMSFormat: Boolean): String {
 
     return when {
         hours > 0 -> {
-            val format = "%02d:%02d:%d.$MSFormat"
+            val format = "%02d:%02d:%02d.$MSFormat"
             String.format(format, hours, minutes, seconds, ms)
         }
         minutes > 0 -> {
-            val format = "%02d:%d.$MSFormat"
+            val format = "%02d:%02d.$MSFormat"
             String.format(format, minutes, seconds, ms)
         }
         else -> {
