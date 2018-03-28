@@ -284,9 +284,10 @@ fun Context.getHideAlarmPendingIntent(alarm: Alarm): PendingIntent {
 @SuppressLint("NewApi")
 fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm, addDeleteIntent: Boolean): Notification {
     val channelId = "alarm_channel"
+    val label = if (alarm.label.isNotEmpty()) alarm.label else getString(R.string.alarm)
     if (isOreoPlus()) {
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val name = getString(R.string.alarm)
+        val name = label
         val importance = NotificationManager.IMPORTANCE_HIGH
         NotificationChannel(channelId, name, importance).apply {
             enableLights(true)
@@ -298,7 +299,7 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm, add
 
     val reminderActivityIntent = getReminderActivityIntent()
     val builder = NotificationCompat.Builder(this)
-            .setContentTitle(getString(R.string.alarm))
+            .setContentTitle(label)
             .setContentText(getFormattedTime(getPassedSeconds(), false, false))
             .setSmallIcon(R.drawable.ic_alarm)
             .setContentIntent(pendingIntent)

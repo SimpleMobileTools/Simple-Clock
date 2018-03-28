@@ -29,7 +29,17 @@ class ReminderActivity : SimpleActivity() {
             alarm = dbHelper.getAlarmWithId(id) ?: return
         }
 
-        reminder_title.text = getString(if (isAlarmReminder) R.string.alarm else R.string.timer)
+        val label = if (isAlarmReminder) {
+            if (alarm!!.label.isEmpty()) {
+                getString(R.string.alarm)
+            } else {
+                alarm!!.label
+            }
+        } else {
+            getString(R.string.timer)
+        }
+
+        reminder_title.text = label
         reminder_text.text = if (isAlarmReminder) getFormattedTime(getPassedSeconds(), false, false) else getString(R.string.time_expired)
         reminder_stop.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, getAdjustedPrimaryColor())
         reminder_stop.setOnClickListener {
