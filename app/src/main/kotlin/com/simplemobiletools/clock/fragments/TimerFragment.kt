@@ -50,8 +50,9 @@ class TimerFragment : Fragment() {
 
             timer_initial_time.setOnClickListener {
                 MyTimePickerDialogDialog(activity as SimpleActivity, config.timerSeconds) {
-                    config.timerSeconds = it
-                    timer_initial_time.text = it.getFormattedDuration()
+                    val seconds = if (it <= 0) 10 else it
+                    config.timerSeconds = seconds
+                    timer_initial_time.text = seconds.getFormattedDuration()
                     if (!isRunning) {
                         resetTimer()
                     }
