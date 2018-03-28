@@ -46,10 +46,9 @@ fun Context.getFormattedDate(calendar: Calendar): String {
     val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
     val month = calendar.get(Calendar.MONTH)
 
-    val dayString = resources.getStringArray(R.array.week_days)[dayOfWeek]
-    val shortDayString = dayString.substring(0, Math.min(3, dayString.length))
+    val dayString = resources.getStringArray(R.array.week_days_short)[dayOfWeek]
     val monthString = resources.getStringArray(R.array.months)[month]
-    return "$shortDayString, $dayOfMonth $monthString"
+    return "$dayString, $dayOfMonth $monthString"
 }
 
 fun Context.getEditedTimeZonesMap(): HashMap<Int, String> {
