@@ -14,7 +14,7 @@ import com.simplemobiletools.commons.extensions.setupDialogStuff
 import com.simplemobiletools.commons.extensions.showErrorToast
 import kotlinx.android.synthetic.main.dialog_select_alarm_sound.view.*
 
-class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: String, val audioStream: Int, val callback: (alarmSound: AlarmSound) -> Unit) {
+class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: String, val audioStream: Int, val callback: (alarmSound: AlarmSound?) -> Unit) {
     private val view = activity.layoutInflater.inflate(R.layout.dialog_select_alarm_sound, null)
     private val alarms = activity.getAlarms()
     private var mediaPlayer = MediaPlayer()
@@ -58,6 +58,10 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
 
     private fun dialogConfirmed() {
         val checkedId = view.dialog_select_alarm_radio.checkedRadioButtonId
-        callback(alarms[checkedId])
+        if (checkedId == -1) {
+            callback(null)
+        } else {
+            callback(alarms[checkedId])
+        }
     }
 }

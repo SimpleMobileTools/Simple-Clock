@@ -66,9 +66,11 @@ class TimerFragment : Fragment() {
 
             timer_sound.setOnClickListener {
                 SelectAlarmSoundDialog(activity as SimpleActivity, config.timerSoundUri, AudioManager.STREAM_SYSTEM) {
-                    config.timerSoundTitle = it.title
-                    config.timerSoundUri = it.uri
-                    timer_sound.text = it.title
+                    if (it != null) {
+                        config.timerSoundTitle = it.title
+                        config.timerSoundUri = it.uri
+                        timer_sound.text = it.title
+                    }
                 }
             }
         }

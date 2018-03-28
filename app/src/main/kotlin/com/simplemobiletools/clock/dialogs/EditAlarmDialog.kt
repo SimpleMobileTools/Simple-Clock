@@ -31,9 +31,11 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
             edit_alarm_sound.text = alarm.soundTitle
             edit_alarm_sound.setOnClickListener {
                 SelectAlarmSoundDialog(activity, alarm.soundUri, AudioManager.STREAM_ALARM) {
-                    alarm.soundTitle = it.title
-                    alarm.soundUri = it.uri
-                    edit_alarm_sound.text = it.title
+                    if (it != null) {
+                        alarm.soundTitle = it.title
+                        alarm.soundUri = it.uri
+                        edit_alarm_sound.text = it.title
+                    }
                 }
             }
 
