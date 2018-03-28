@@ -64,16 +64,14 @@ class AlarmsAdapter(activity: SimpleActivity, var alarms: ArrayList<Alarm>, val 
 
     private fun deleteItems() {
         val alarmsToRemove = ArrayList<Alarm>()
-        val alarmIDs = ArrayList<String>()
         selectedPositions.sortedDescending().forEach {
             val alarm = alarms[it]
-            alarmIDs.add(alarm.id.toString())
             alarmsToRemove.add(alarm)
         }
 
         alarms.removeAll(alarmsToRemove)
         removeSelectedItems()
-        activity.dbHelper.deleteAlarms(alarmIDs)
+        activity.dbHelper.deleteAlarms(alarmsToRemove)
     }
 
     private fun setupView(view: View, alarm: Alarm) {
