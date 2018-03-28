@@ -38,7 +38,7 @@
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/reminder_stop"
         android:padding="@dimen/normal_margin"
-        android:src="@drawable/ic_snooze"
+        android:src="@drawable/ic_snooze_big"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/reminder_stop"
         app:layout_constraintEnd_toStartOf="@+id/reminder_stop"
