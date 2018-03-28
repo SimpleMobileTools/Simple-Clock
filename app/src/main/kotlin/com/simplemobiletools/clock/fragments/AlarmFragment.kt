@@ -55,6 +55,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
             context!!.updateTextColors(alarm_fragment)
             alarm_fab.setOnClickListener {
                 val newAlarm = context.createNewAlarm(DEFAULT_ALARM_MINUTES, 0)
+                newAlarm.isEnabled = true
                 openEditAlarm(newAlarm)
             }
         }
