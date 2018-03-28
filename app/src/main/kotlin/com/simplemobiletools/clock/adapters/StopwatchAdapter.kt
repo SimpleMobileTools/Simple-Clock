@@ -48,7 +48,8 @@ class StopwatchAdapter(activity: SimpleActivity, var laps: ArrayList<Lap>, recyc
 
     fun updateItems(newItems: ArrayList<Lap>) {
         lastLapId = 0
-        laps = newItems
+        laps = newItems.clone() as ArrayList<Lap>
+        laps.sort()
         notifyDataSetChanged()
         finishActMode()
     }

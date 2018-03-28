@@ -177,6 +177,7 @@ class StopwatchFragment : Fragment() {
         lapTicks = 0
         laps.clear()
         updateIcons()
+        stopwatchAdapter.updateItems(laps)
 
         view.apply {
             stopwatch_reset.beGone()
