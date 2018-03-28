@@ -159,6 +159,7 @@ class TimerFragment : Fragment() {
     private fun updateDisplayedText(): Boolean {
         val diff = initialSecs - totalTicks
         var formattedDuration = Math.abs(diff).getFormattedDuration()
+
         if (diff < 0) {
             formattedDuration = "-$formattedDuration"
             if (!isForegrounded) {
