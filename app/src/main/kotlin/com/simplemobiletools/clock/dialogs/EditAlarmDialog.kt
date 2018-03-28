@@ -48,14 +48,15 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
             edit_alarm_label.setText(alarm.label)
 
             val dayLetters = activity.resources.getStringArray(R.array.week_day_letters).toList() as ArrayList<String>
+            val dayIndexes = arrayListOf(0, 1, 2, 3, 4, 5, 6)
             if (activity.config.isSundayFirst) {
-                dayLetters.moveLastItemToFront()
+                dayIndexes.moveLastItemToFront()
             }
 
-            for (i in 0..6) {
-                val pow = Math.pow(2.0, i.toDouble()).toInt()
+            dayIndexes.forEach {
+                val pow = Math.pow(2.0, it.toDouble()).toInt()
                 val day = activity.layoutInflater.inflate(R.layout.alarm_day, edit_alarm_days_holder, false) as TextView
-                day.text = dayLetters[i]
+                day.text = dayLetters[it]
 
                 val isDayChecked = alarm.days and pow != 0
                 day.background = getProperDayDrawable(isDayChecked)
