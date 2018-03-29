@@ -42,7 +42,7 @@
     </android.support.design.widget.TabLayout>
 
     <com.booking.rtlviewpager.RtlViewPager
-        android:id="@+id/viewpager"
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/main_tabs_holder"/>

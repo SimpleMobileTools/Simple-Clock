@@ -9,6 +9,7 @@ import com.simplemobiletools.clock.fragments.ClockFragment
 import com.simplemobiletools.clock.fragments.StopwatchFragment
 import com.simplemobiletools.clock.fragments.TimerFragment
 import com.simplemobiletools.clock.helpers.TABS_COUNT
+import com.simplemobiletools.clock.helpers.TAB_ALARM
 import com.simplemobiletools.clock.helpers.TAB_TIMER
 import com.simplemobiletools.clock.models.AlarmSound
 
@@ -36,7 +37,11 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
         else -> throw RuntimeException("Trying to fetch unknown fragment id $position")
     }
 
-    fun updateTimerAlarmSound(alarmSound: AlarmSound) {
+    fun updateAlarmTabAlarmSound(alarmSound: AlarmSound) {
+        (fragments[TAB_ALARM] as AlarmFragment).updateAlarmSound(alarmSound)
+    }
+
+    fun updateTimerTabAlarmSound(alarmSound: AlarmSound) {
         (fragments[TAB_TIMER] as TimerFragment).updateAlarmSound(alarmSound)
     }
 }

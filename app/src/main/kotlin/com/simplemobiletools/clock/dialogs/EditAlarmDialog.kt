@@ -12,6 +12,7 @@ import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.dbHelper
 import com.simplemobiletools.clock.extensions.getFormattedTime
 import com.simplemobiletools.clock.models.Alarm
+import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.commons.extensions.*
 import kotlinx.android.synthetic.main.dialog_edit_alarm.view.*
 
@@ -32,9 +33,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
             edit_alarm_sound.setOnClickListener {
                 SelectAlarmSoundDialog(activity, alarm.soundUri, AudioManager.STREAM_ALARM) {
                     if (it != null) {
-                        alarm.soundTitle = it.title
-                        alarm.soundUri = it.uri
-                        edit_alarm_sound.text = it.title
+                        alarmSoundUpdated(it)
                     }
                 }
             }
@@ -122,5 +121,15 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
         val drawable = activity.resources.getDrawable(drawableId)
         drawable.applyColorFilter(textColor)
         return drawable
+    }
+
+    private fun alarmSoundUpdated(alarmSound: AlarmSound) {
+        alarm.soundTitle = alarmSound.title
+        alarm.soundUri = alarmSound.uri
+        view.edit_alarm_sound.text = alarmSound.title
+    }
+
+    fun updateSelectedAlarmSound(alarmSound: AlarmSound) {
+        alarmSoundUpdated(alarmSound)
     }
 }

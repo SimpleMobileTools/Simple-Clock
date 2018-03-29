@@ -61,7 +61,7 @@ class MainActivity : SimpleActivity() {
 
         val configTextColor = config.textColor
         if (storedTextColor != configTextColor) {
-            getInactiveTabIndexes(viewpager.currentItem).forEach {
+            getInactiveTabIndexes(view_pager.currentItem).forEach {
                 main_tabs_holder.getTabAt(it)?.icon?.applyColorFilter(configTextColor)
             }
         }
@@ -74,7 +74,7 @@ class MainActivity : SimpleActivity() {
         val configPrimaryColor = config.primaryColor
         if (storedPrimaryColor != configPrimaryColor) {
             main_tabs_holder.setSelectedTabIndicatorColor(getAdjustedPrimaryColor())
-            main_tabs_holder.getTabAt(viewpager.currentItem)?.icon?.applyColorFilter(getAdjustedPrimaryColor())
+            main_tabs_holder.getTabAt(view_pager.currentItem)?.icon?.applyColorFilter(getAdjustedPrimaryColor())
         }
 
         if (config.preventPhoneFromSleeping) {
@@ -92,7 +92,7 @@ class MainActivity : SimpleActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        config.lastUsedViewPagerPage = viewpager.currentItem
+        config.lastUsedViewPagerPage = view_pager.currentItem
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -111,7 +111,7 @@ class MainActivity : SimpleActivity() {
 
     override fun onNewIntent(intent: Intent) {
         if (intent.extras?.containsKey(OPEN_TAB) == true) {
-            viewpager.setCurrentItem(intent.getIntExtra(OPEN_TAB, TAB_CLOCK), false)
+            view_pager.setCurrentItem(intent.getIntExtra(OPEN_TAB, TAB_CLOCK), false)
         }
     }
 
@@ -153,27 +153,30 @@ class MainActivity : SimpleActivity() {
             contentResolver.takePersistableUriPermission(uri, takeFlags)
         }
 
-        when (viewpager.currentItem) {
-            TAB_TIMER -> (viewpager.adapter as? ViewPagerAdapter)?.updateTimerAlarmSound(newAlarmSound)
+        when (view_pager.currentItem) {
+            TAB_ALARM -> getViewPagerAdapter()?.updateAlarmTabAlarmSound(newAlarmSound)
+            TAB_TIMER -> getViewPagerAdapter()?.updateTimerTabAlarmSound(newAlarmSound)
         }
     }
 
+    private fun getViewPagerAdapter() = view_pager.adapter as? ViewPagerAdapter
+
     private fun initFragments() {
-        viewpager.adapter = ViewPagerAdapter(supportFragmentManager)
-        viewpager.onPageChangeListener {
+        view_pager.adapter = ViewPagerAdapter(supportFragmentManager)
+        view_pager.onPageChangeListener {
             main_tabs_holder.getTabAt(it)?.select()
         }
 
         val tabToOpen = intent.getIntExtra(OPEN_TAB, config.lastUsedViewPagerPage)
         intent.removeExtra(OPEN_TAB)
-        viewpager.currentItem = tabToOpen
-        viewpager.offscreenPageLimit = TABS_COUNT - 1
+        view_pager.currentItem = tabToOpen
+        view_pager.offscreenPageLimit = TABS_COUNT - 1
         main_tabs_holder.onTabSelectionChanged(
                 tabUnselectedAction = {
                     it.icon?.applyColorFilter(config.textColor)
                 },
                 tabSelectedAction = {
-                    viewpager.currentItem = it.position
+                    view_pager.currentItem = it.position
                     it.icon?.applyColorFilter(getAdjustedPrimaryColor())
                 }
         )
