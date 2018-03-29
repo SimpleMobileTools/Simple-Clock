@@ -1,8 +1,10 @@
 package com.simplemobiletools.clock.dialogs
 
+import android.annotation.TargetApi
 import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
+import android.os.Build
 import android.support.v7.app.AlertDialog
 import android.view.ViewGroup
 import android.widget.RadioGroup
@@ -82,6 +84,7 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
         holder.addView(radioButton, RadioGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
     }
 
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     private fun alarmClicked(alarmSound: AlarmSound) {
         if (alarmSound.id == ADD_NEW_SOUND_ID) {
             val action = if (isKitkatPlus()) Intent.ACTION_OPEN_DOCUMENT else Intent.ACTION_GET_CONTENT

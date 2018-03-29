@@ -1,8 +1,10 @@
 package com.simplemobiletools.clock.activities
 
+import android.annotation.TargetApi
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -129,6 +131,7 @@ class MainActivity : SimpleActivity() {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     private fun storeNewAlarmSound(uri: Uri) {
         var filename = getFilenameFromUri(uri)
         if (filename.isEmpty()) {

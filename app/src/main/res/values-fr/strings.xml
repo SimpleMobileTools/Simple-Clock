@@ -22,11 +22,6 @@
     <string name="timer_tab">Minuteur</string>
     <string name="show_seconds">Montrer les secondes</string>
 
-    <!-- Alarms -->
-    <string name="system_sounds">System sounds</string>
-    <string name="your_sounds">Your sounds</string>
-    <string name="add_new_sound">Add a new sound</string>
-
     <!-- FAQ -->
     <string name="faq_1_title">Comment changer l\'ordre de tri des tours dans l\'onglet chronomètre ?</string>
     <string name="faq_1_text">Il suffit d\'appuyer sur les colonnes, les tours seront alors triés selon la colonne sur laquelle vous avez appuyer. Appuyer de nouveau permet d\'inverser l\'ordre (croissant/décroissant).</string>
