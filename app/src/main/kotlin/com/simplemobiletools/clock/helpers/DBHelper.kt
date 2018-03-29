@@ -90,6 +90,8 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
 
     fun getAlarmWithId(id: Int) = getAlarms().firstOrNull { it.id == id }
 
+    fun getAlarmsWithUri(uri: String) = getAlarms().filter { it.soundUri == uri }
+
     private fun fillAlarmContentValues(alarm: Alarm): ContentValues {
         return ContentValues().apply {
             put(COL_TIME_IN_MINUTES, alarm.timeInMinutes)

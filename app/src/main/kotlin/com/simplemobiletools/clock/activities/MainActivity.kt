@@ -155,11 +155,15 @@ class MainActivity : SimpleActivity() {
 
         when (view_pager.currentItem) {
             TAB_ALARM -> getViewPagerAdapter()?.updateAlarmTabAlarmSound(newAlarmSound)
-            TAB_TIMER -> getViewPagerAdapter()?.updateTimerTabAlarmSound(newAlarmSound)
+            TAB_TIMER -> updateTimerTabAlarmSound(newAlarmSound)
         }
     }
 
     private fun getViewPagerAdapter() = view_pager.adapter as? ViewPagerAdapter
+
+    fun updateTimerTabAlarmSound(alarmSound: AlarmSound) {
+        getViewPagerAdapter()?.updateTimerTabAlarmSound(alarmSound)
+    }
 
     private fun initFragments() {
         view_pager.adapter = ViewPagerAdapter(supportFragmentManager)

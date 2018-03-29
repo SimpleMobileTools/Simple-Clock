@@ -11,9 +11,9 @@ import android.widget.RadioGroup
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.simplemobiletools.clock.R
+import com.simplemobiletools.clock.activities.MainActivity
 import com.simplemobiletools.clock.activities.SimpleActivity
-import com.simplemobiletools.clock.extensions.config
-import com.simplemobiletools.clock.extensions.getAlarmSounds
+import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.PICK_AUDIO_FILE_INTENT_ID
 import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.commons.dialogs.RadioGroupDialog
@@ -142,6 +142,21 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
         if (alarmSound.id == view.dialog_select_alarm_your_radio.checkedRadioButtonId) {
             view.dialog_select_alarm_your_radio.clearCheck()
             view.dialog_select_alarm_system_radio.check(systemAlarmSounds.firstOrNull()?.id ?: 0)
+        }
+
+        val defaultAlarm = AlarmSound(0, activity.getDefaultAlarmTitle(), activity.getDefaultAlarmUri().toString())
+        val defaultTitle = defaultAlarm.title
+        val defaultUri = defaultAlarm.uri
+        if (config.timerSoundUri == alarmSound.uri) {
+            config.timerSoundTitle = defaultTitle
+            config.timerSoundUri = defaultUri
+            (activity as MainActivity).updateTimerTabAlarmSound(defaultAlarm)
+        }
+
+        activity.dbHelper.getAlarmsWithUri(alarmSound.uri).forEach {
+            it.soundTitle = defaultTitle
+            it.soundUri = defaultUri
+            activity.dbHelper.updateAlarm(it)
         }
     }
 
