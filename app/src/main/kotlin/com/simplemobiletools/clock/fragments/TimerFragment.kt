@@ -16,6 +16,7 @@ import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.dialogs.MyTimePickerDialogDialog
 import com.simplemobiletools.clock.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.clock.extensions.*
+import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.commons.extensions.*
 import kotlinx.android.synthetic.main.fragment_timer.view.*
 
@@ -67,9 +68,7 @@ class TimerFragment : Fragment() {
             timer_sound.setOnClickListener {
                 SelectAlarmSoundDialog(activity as SimpleActivity, config.timerSoundUri, AudioManager.STREAM_SYSTEM) {
                     if (it != null) {
-                        config.timerSoundTitle = it.title
-                        config.timerSoundUri = it.uri
-                        timer_sound.text = it.title
+                        updateAlarmSound(it)
                     }
                 }
             }
@@ -102,6 +101,12 @@ class TimerFragment : Fragment() {
         }
         isRunning = false
         updateHandler.removeCallbacks(updateRunnable)
+    }
+
+    fun updateAlarmSound(alarmSound: AlarmSound) {
+        context!!.config.timerSoundTitle = alarmSound.title
+        context!!.config.timerSoundUri = alarmSound.uri
+        view.timer_sound.text = alarmSound.title
     }
 
     private fun setupViews() {

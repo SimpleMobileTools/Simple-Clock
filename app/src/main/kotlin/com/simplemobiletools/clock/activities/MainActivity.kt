@@ -141,8 +141,9 @@ class MainActivity : SimpleActivity() {
         val token = object : TypeToken<ArrayList<AlarmSound>>() {}.type
         val yourAlarmSounds = Gson().fromJson<ArrayList<AlarmSound>>(config.yourAlarmSounds, token) ?: ArrayList()
         val newAlarmSoundId = (yourAlarmSounds.maxBy { it.id }?.id ?: YOUR_ALARM_SOUNDS_MIN_ID) + 1
+        val newAlarmSound = AlarmSound(newAlarmSoundId, filename, uri.toString())
         if (yourAlarmSounds.firstOrNull { it.uri == uri.toString() } == null) {
-            yourAlarmSounds.add(AlarmSound(newAlarmSoundId, filename, uri.toString()))
+            yourAlarmSounds.add(newAlarmSound)
         }
 
         config.yourAlarmSounds = Gson().toJson(yourAlarmSounds)
@@ -150,6 +151,10 @@ class MainActivity : SimpleActivity() {
         if (isKitkatPlus()) {
             val takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION
             contentResolver.takePersistableUriPermission(uri, takeFlags)
+        }
+
+        when (viewpager.currentItem) {
+            TAB_TIMER -> (viewpager.adapter as? ViewPagerAdapter)?.updateTimerAlarmSound(newAlarmSound)
         }
     }
 

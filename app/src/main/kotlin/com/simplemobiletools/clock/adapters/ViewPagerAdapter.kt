@@ -9,6 +9,8 @@ import com.simplemobiletools.clock.fragments.ClockFragment
 import com.simplemobiletools.clock.fragments.StopwatchFragment
 import com.simplemobiletools.clock.fragments.TimerFragment
 import com.simplemobiletools.clock.helpers.TABS_COUNT
+import com.simplemobiletools.clock.helpers.TAB_TIMER
+import com.simplemobiletools.clock.models.AlarmSound
 
 class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
     private val fragments = HashMap<Int, Fragment>()
@@ -32,5 +34,9 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
         2 -> StopwatchFragment()
         3 -> TimerFragment()
         else -> throw RuntimeException("Trying to fetch unknown fragment id $position")
+    }
+
+    fun updateTimerAlarmSound(alarmSound: AlarmSound) {
+        (fragments[TAB_TIMER] as TimerFragment).updateAlarmSound(alarmSound)
     }
 }
