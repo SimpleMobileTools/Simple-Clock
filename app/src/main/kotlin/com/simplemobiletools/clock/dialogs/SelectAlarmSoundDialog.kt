@@ -33,6 +33,9 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
         view.dialog_select_alarm_your_label.setTextColor(activity.getAdjustedPrimaryColor())
         view.dialog_select_alarm_system_label.setTextColor(activity.getAdjustedPrimaryColor())
 
+        val newAlarmSound = AlarmSound(ADD_NEW_SOUND_ID, activity.getString(R.string.add_new_sound), "")
+        addAlarmSound(newAlarmSound, view.dialog_select_alarm_your_radio)
+
         AlertDialog.Builder(activity)
                 .setOnDismissListener { mediaPlayer.stop() }
                 .setPositiveButton(R.string.ok, { dialog, which -> dialogConfirmed() })
@@ -56,22 +59,30 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
             id = alarmSound.id
             setColors(config.textColor, activity.getAdjustedPrimaryColor(), config.backgroundColor)
             setOnClickListener {
-                try {
-                    mediaPlayer.stop()
-                    mediaPlayer = MediaPlayer().apply {
-                        setAudioStreamType(audioStream)
-                        setDataSource(context, Uri.parse(alarmSound.uri))
-                        isLooping = true
-                        prepare()
-                        start()
-                    }
-                } catch (e: Exception) {
-                    activity.showErrorToast(e)
-                }
+                alarmClicked(alarmSound)
             }
         }
 
         holder.addView(radioButton, RadioGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
+    }
+
+    private fun alarmClicked(alarmSound: AlarmSound) {
+        if (alarmSound.id == ADD_NEW_SOUND_ID) {
+
+        } else {
+            try {
+                mediaPlayer.stop()
+                mediaPlayer = MediaPlayer().apply {
+                    setAudioStreamType(audioStream)
+                    setDataSource(activity, Uri.parse(alarmSound.uri))
+                    isLooping = true
+                    prepare()
+                    start()
+                }
+            } catch (e: Exception) {
+                activity.showErrorToast(e)
+            }
+        }
     }
 
     private fun dialogConfirmed() {
