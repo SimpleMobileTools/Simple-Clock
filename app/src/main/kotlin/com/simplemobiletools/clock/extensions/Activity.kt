@@ -4,7 +4,9 @@ import android.app.Activity
 import android.media.RingtoneManager
 import android.view.WindowManager
 import com.simplemobiletools.clock.models.AlarmSound
+import com.simplemobiletools.commons.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.extensions.showErrorToast
+import com.simplemobiletools.commons.helpers.PERMISSION_READ_STORAGE
 import java.util.*
 
 fun Activity.showOverLockscreen() {
@@ -14,7 +16,7 @@ fun Activity.showOverLockscreen() {
             WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
 }
 
-fun Activity.getAlarms(): ArrayList<AlarmSound> {
+fun BaseSimpleActivity.getAlarms(callback: (ArrayList<AlarmSound>) -> Unit) {
     val alarms = ArrayList<AlarmSound>()
     val manager = RingtoneManager(this)
     manager.setType(RingtoneManager.TYPE_ALARM)
@@ -34,9 +36,20 @@ fun Activity.getAlarms(): ArrayList<AlarmSound> {
             val alarmSound = AlarmSound(title, uri)
             alarms.add(alarmSound)
         }
+        callback(alarms)
     } catch (e: Exception) {
-        showErrorToast(e)
+        if (e is SecurityException) {
+            handlePermission(PERMISSION_READ_STORAGE) {
+                if (it) {
+                    getAlarms(callback)
+                } else {
+                    showErrorToast(e)
+                    callback(ArrayList())
+                }
+            }
+        } else {
+            showErrorToast(e)
+            callback(ArrayList())
+        }
     }
-
-    return alarms
 }
