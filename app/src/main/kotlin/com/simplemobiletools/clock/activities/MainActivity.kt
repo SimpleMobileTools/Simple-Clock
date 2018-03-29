@@ -2,10 +2,13 @@ package com.simplemobiletools.clock.activities
 
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.simplemobiletools.clock.BuildConfig
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.adapters.ViewPagerAdapter
@@ -13,14 +16,14 @@ import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.dbHelper
 import com.simplemobiletools.clock.extensions.getNextAlarm
 import com.simplemobiletools.clock.extensions.rescheduleEnabledAlarms
-import com.simplemobiletools.clock.helpers.OPEN_TAB
-import com.simplemobiletools.clock.helpers.TABS_COUNT
-import com.simplemobiletools.clock.helpers.TAB_CLOCK
+import com.simplemobiletools.clock.helpers.*
+import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.LICENSE_NUMBER_PICKER
 import com.simplemobiletools.commons.helpers.LICENSE_STETHO
 import com.simplemobiletools.commons.models.FAQItem
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : SimpleActivity() {
     private var storedUseEnglish = false
@@ -116,6 +119,26 @@ class MainActivity : SimpleActivity() {
             storedPrimaryColor = primaryColor
             storedUseEnglish = useEnglish
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {
+        super.onActivityResult(requestCode, resultCode, resultData)
+        if (requestCode == PICK_AUDIO_FILE_INTENT_ID && resultCode == RESULT_OK && resultData != null) {
+            storeNewAlarmSound(resultData.data)
+        }
+    }
+
+    private fun storeNewAlarmSound(uri: Uri) {
+        var filename = getFilenameFromUri(uri)
+        if (filename.isEmpty()) {
+            filename = getString(R.string.alarm)
+        }
+
+        val token = object : TypeToken<LinkedHashSet<AlarmSound>>() {}.type
+        val yourAlarmSounds = Gson().fromJson<LinkedHashSet<AlarmSound>>(config.yourAlarmSounds, token) ?: LinkedHashSet()
+        val newAlarmSoundId = (yourAlarmSounds.maxBy { it.id }?.id ?: YOUR_ALARM_SOUNDS_MIN_ID)
+        yourAlarmSounds.add(AlarmSound(newAlarmSoundId, filename, uri.toString()))
+        config.yourAlarmSounds = Gson().toJson(yourAlarmSounds)
     }
 
     private fun initFragments() {

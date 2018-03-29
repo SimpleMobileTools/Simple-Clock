@@ -1,5 +1,6 @@
 package com.simplemobiletools.clock.dialogs
 
+import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
 import android.support.v7.app.AlertDialog
@@ -9,6 +10,7 @@ import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.getAlarmSounds
+import com.simplemobiletools.clock.helpers.PICK_AUDIO_FILE_INTENT_ID
 import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
 import com.simplemobiletools.commons.extensions.setupDialogStuff
@@ -23,6 +25,7 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
     private var alarmSounds = ArrayList<AlarmSound>()
     private var mediaPlayer = MediaPlayer()
     private val config = activity.config
+    private val dialog: AlertDialog
 
     init {
         activity.getAlarmSounds {
@@ -36,7 +39,7 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
         val newAlarmSound = AlarmSound(ADD_NEW_SOUND_ID, activity.getString(R.string.add_new_sound), "")
         addAlarmSound(newAlarmSound, view.dialog_select_alarm_your_radio)
 
-        AlertDialog.Builder(activity)
+        dialog = AlertDialog.Builder(activity)
                 .setOnDismissListener { mediaPlayer.stop() }
                 .setPositiveButton(R.string.ok, { dialog, which -> dialogConfirmed() })
                 .setNegativeButton(R.string.cancel, null)
@@ -68,7 +71,11 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
 
     private fun alarmClicked(alarmSound: AlarmSound) {
         if (alarmSound.id == ADD_NEW_SOUND_ID) {
-
+            Intent(Intent.ACTION_GET_CONTENT).apply {
+                type = "audio/*"
+                activity.startActivityForResult(this, PICK_AUDIO_FILE_INTENT_ID)
+            }
+            dialog.dismiss()
         } else {
             try {
                 mediaPlayer.stop()

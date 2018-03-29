@@ -14,6 +14,7 @@ const val TIMER_SOUND_TITLE = "timer_sound_title"
 const val TIMER_MAX_REMINDER_SECS = "timer_max_reminder_secs"
 const val ALARM_MAX_REMINDER_SECS = "alarm_max_reminder_secs"
 const val USE_TEXT_SHADOW = "use_text_shadow"
+const val YOUR_ALARM_SOUNDS = "your_alarm_sounds"
 
 const val TABS_COUNT = 4
 const val EDITED_TIME_ZONE_SEPARATOR = ":"
@@ -23,7 +24,9 @@ const val DAY_MINUTES = 1440
 const val DEFAULT_MAX_ALARM_REMINDER_SECS = 300
 const val DEFAULT_MAX_TIMER_REMINDER_SECS = 60
 const val HIDE_REMINDER_ACTIVITY = "hide_reminder_activity"
+const val YOUR_ALARM_SOUNDS_MIN_ID = 1000
 
+const val PICK_AUDIO_FILE_INTENT_ID = 9994
 const val REMINDER_ACTIVITY_INTENT_ID = 9995
 const val OPEN_ALARMS_TAB_INTENT_ID = 9996
 const val UPDATE_WIDGET_INTENT_ID = 9997

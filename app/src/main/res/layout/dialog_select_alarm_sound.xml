@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/bigger_margin"
-            android:paddingTop="@dimen/bigger_margin"
+            android:paddingTop="@dimen/medium_margin"
             android:text="@string/system_sounds"/>
 
         <RadioGroup

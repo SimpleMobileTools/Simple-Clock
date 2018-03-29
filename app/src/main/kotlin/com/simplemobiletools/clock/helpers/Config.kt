@@ -49,4 +49,8 @@ class Config(context: Context) : BaseConfig(context) {
     var useTextShadow: Boolean
         get() = prefs.getBoolean(USE_TEXT_SHADOW, true)
         set(useTextShadow) = prefs.edit().putBoolean(USE_TEXT_SHADOW, useTextShadow).apply()
+
+    var yourAlarmSounds: String
+        get() = prefs.getString(YOUR_ALARM_SOUNDS, "")
+        set(yourAlarmSounds) = prefs.edit().putString(YOUR_ALARM_SOUNDS, yourAlarmSounds).apply()
 }
