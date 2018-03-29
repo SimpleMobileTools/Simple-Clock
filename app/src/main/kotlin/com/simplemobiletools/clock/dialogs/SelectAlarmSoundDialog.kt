@@ -16,10 +16,12 @@ import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.getAlarmSounds
 import com.simplemobiletools.clock.helpers.PICK_AUDIO_FILE_INTENT_ID
 import com.simplemobiletools.clock.models.AlarmSound
+import com.simplemobiletools.commons.dialogs.RadioGroupDialog
 import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
 import com.simplemobiletools.commons.extensions.setupDialogStuff
 import com.simplemobiletools.commons.extensions.showErrorToast
 import com.simplemobiletools.commons.helpers.isKitkatPlus
+import com.simplemobiletools.commons.models.RadioItem
 import com.simplemobiletools.commons.views.MyCompatRadioButton
 import kotlinx.android.synthetic.main.dialog_select_alarm_sound.view.*
 
@@ -55,6 +57,7 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
     }
 
     private fun addYourAlarms() {
+        view.dialog_select_alarm_your_radio.removeAllViews()
         val token = object : TypeToken<ArrayList<AlarmSound>>() {}.type
         yourAlarmSounds = Gson().fromJson<ArrayList<AlarmSound>>(config.yourAlarmSounds, token) ?: ArrayList()
         yourAlarmSounds.add(AlarmSound(ADD_NEW_SOUND_ID, activity.getString(R.string.add_new_sound), ""))
@@ -82,6 +85,17 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
                     view.dialog_select_alarm_your_radio.clearCheck()
                 } else {
                     view.dialog_select_alarm_system_radio.clearCheck()
+                }
+            }
+
+            if (alarmSound.id != -2 && holder == view.dialog_select_alarm_your_radio) {
+                setOnLongClickListener {
+                    val items = arrayListOf(RadioItem(1, context.getString(R.string.remove)))
+
+                    RadioGroupDialog(activity, items) {
+                        removeAlarmSound(alarmSound)
+                    }
+                    true
                 }
             }
         }
@@ -115,6 +129,19 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
             } catch (e: Exception) {
                 activity.showErrorToast(e)
             }
+        }
+    }
+
+    private fun removeAlarmSound(alarmSound: AlarmSound) {
+        val token = object : TypeToken<ArrayList<AlarmSound>>() {}.type
+        yourAlarmSounds = Gson().fromJson<ArrayList<AlarmSound>>(config.yourAlarmSounds, token) ?: ArrayList()
+        yourAlarmSounds.remove(alarmSound)
+        config.yourAlarmSounds = Gson().toJson(yourAlarmSounds)
+        addYourAlarms()
+
+        if (alarmSound.id == view.dialog_select_alarm_your_radio.checkedRadioButtonId) {
+            view.dialog_select_alarm_your_radio.clearCheck()
+            view.dialog_select_alarm_system_radio.check(systemAlarmSounds.firstOrNull()?.id ?: 0)
         }
     }
 
