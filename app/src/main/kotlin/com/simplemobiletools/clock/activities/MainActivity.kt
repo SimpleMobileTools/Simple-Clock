@@ -1,10 +1,8 @@
 package com.simplemobiletools.clock.activities
 
-import android.annotation.TargetApi
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -23,6 +21,7 @@ import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.LICENSE_NUMBER_PICKER
 import com.simplemobiletools.commons.helpers.LICENSE_STETHO
+import com.simplemobiletools.commons.helpers.isKitkatPlus
 import com.simplemobiletools.commons.models.FAQItem
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
@@ -130,7 +129,6 @@ class MainActivity : SimpleActivity() {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     private fun storeNewAlarmSound(uri: Uri) {
         var filename = getFilenameFromUri(uri)
         if (filename.isEmpty()) {
@@ -143,8 +141,10 @@ class MainActivity : SimpleActivity() {
         yourAlarmSounds.add(AlarmSound(newAlarmSoundId, filename, uri.toString()))
         config.yourAlarmSounds = Gson().toJson(yourAlarmSounds)
 
-        val takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-        contentResolver.takePersistableUriPermission(uri, takeFlags)
+        if (isKitkatPlus()) {
+            val takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+            contentResolver.takePersistableUriPermission(uri, takeFlags)
+        }
     }
 
     private fun initFragments() {

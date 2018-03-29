@@ -17,6 +17,7 @@ import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
 import com.simplemobiletools.commons.extensions.setupDialogStuff
 import com.simplemobiletools.commons.extensions.showErrorToast
+import com.simplemobiletools.commons.helpers.isKitkatPlus
 import com.simplemobiletools.commons.views.MyCompatRadioButton
 import kotlinx.android.synthetic.main.dialog_select_alarm_sound.view.*
 import java.util.LinkedHashSet
@@ -83,10 +84,14 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
 
     private fun alarmClicked(alarmSound: AlarmSound) {
         if (alarmSound.id == ADD_NEW_SOUND_ID) {
-            Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+            val action = if (isKitkatPlus()) Intent.ACTION_OPEN_DOCUMENT else Intent.ACTION_GET_CONTENT
+            Intent(action).apply {
                 type = "audio/*"
                 activity.startActivityForResult(this, PICK_AUDIO_FILE_INTENT_ID)
-                flags = flags or Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
+
+                if (isKitkatPlus()) {
+                    flags = flags or Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
+                }
             }
             dialog.dismiss()
         } else {
