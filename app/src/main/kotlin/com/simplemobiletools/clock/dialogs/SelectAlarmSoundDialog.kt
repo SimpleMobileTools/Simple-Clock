@@ -8,7 +8,7 @@ import android.widget.RadioGroup
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.config
-import com.simplemobiletools.clock.extensions.getAlarms
+import com.simplemobiletools.clock.extensions.getAlarmSounds
 import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
 import com.simplemobiletools.commons.extensions.setupDialogStuff
@@ -17,16 +17,20 @@ import com.simplemobiletools.commons.views.MyCompatRadioButton
 import kotlinx.android.synthetic.main.dialog_select_alarm_sound.view.*
 
 class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: String, val audioStream: Int, val callback: (alarmSound: AlarmSound?) -> Unit) {
+    private val ADD_NEW_SOUND_ID = -1
+
     private val view = activity.layoutInflater.inflate(R.layout.dialog_select_alarm_sound, null)
-    private var alarms = ArrayList<AlarmSound>()
+    private var alarmSounds = ArrayList<AlarmSound>()
     private var mediaPlayer = MediaPlayer()
+    private val config = activity.config
 
     init {
-        activity.getAlarms {
-            alarms = it
-            gotAlarms()
+        activity.getAlarmSounds {
+            alarmSounds = it
+            gotSystemAlarms()
         }
 
+        view.dialog_select_alarm_your_label.setTextColor(activity.getAdjustedPrimaryColor())
         view.dialog_select_alarm_system_label.setTextColor(activity.getAdjustedPrimaryColor())
 
         AlertDialog.Builder(activity)
@@ -39,42 +43,43 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
                 }
     }
 
-    private fun gotAlarms() {
-        val config = activity.config
-        view.dialog_select_alarm_radio.apply {
-            alarms.forEachIndexed { index, alarmSound ->
-                val radioButton = (activity.layoutInflater.inflate(R.layout.item_select_alarm, null) as MyCompatRadioButton).apply {
-                    text = alarmSound.title
-                    isChecked = alarmSound.uri == currentUri
-                    id = index
-                    setColors(config.textColor, activity.getAdjustedPrimaryColor(), config.backgroundColor)
-                    setOnClickListener {
-                        try {
-                            mediaPlayer.stop()
-                            mediaPlayer = MediaPlayer().apply {
-                                setAudioStreamType(audioStream)
-                                setDataSource(context, Uri.parse(alarmSound.uri))
-                                isLooping = true
-                                prepare()
-                                start()
-                            }
-                        } catch (e: Exception) {
-                            activity.showErrorToast(e)
-                        }
-                    }
-                }
-
-                addView(radioButton, RadioGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
-            }
+    private fun gotSystemAlarms() {
+        alarmSounds.forEach {
+            addAlarmSound(it, view.dialog_select_alarm_system_radio)
         }
     }
 
+    private fun addAlarmSound(alarmSound: AlarmSound, holder: ViewGroup) {
+        val radioButton = (activity.layoutInflater.inflate(R.layout.item_select_alarm, null) as MyCompatRadioButton).apply {
+            text = alarmSound.title
+            isChecked = alarmSound.uri == currentUri
+            id = alarmSound.id
+            setColors(config.textColor, activity.getAdjustedPrimaryColor(), config.backgroundColor)
+            setOnClickListener {
+                try {
+                    mediaPlayer.stop()
+                    mediaPlayer = MediaPlayer().apply {
+                        setAudioStreamType(audioStream)
+                        setDataSource(context, Uri.parse(alarmSound.uri))
+                        isLooping = true
+                        prepare()
+                        start()
+                    }
+                } catch (e: Exception) {
+                    activity.showErrorToast(e)
+                }
+            }
+        }
+
+        holder.addView(radioButton, RadioGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
+    }
+
     private fun dialogConfirmed() {
-        val checkedId = view.dialog_select_alarm_radio.checkedRadioButtonId
+        val checkedId = view.dialog_select_alarm_system_radio.checkedRadioButtonId
         if (checkedId == -1) {
             callback(null)
         } else {
-            callback(alarms[checkedId])
+            callback(alarmSounds.firstOrNull { it.id == checkedId })
         }
     }
 }

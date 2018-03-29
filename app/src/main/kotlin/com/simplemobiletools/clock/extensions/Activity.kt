@@ -16,16 +16,17 @@ fun Activity.showOverLockscreen() {
             WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
 }
 
-fun BaseSimpleActivity.getAlarms(callback: (ArrayList<AlarmSound>) -> Unit) {
+fun BaseSimpleActivity.getAlarmSounds(callback: (ArrayList<AlarmSound>) -> Unit) {
     val alarms = ArrayList<AlarmSound>()
     val manager = RingtoneManager(this)
     manager.setType(RingtoneManager.TYPE_ALARM)
 
     try {
         val cursor = manager.cursor
-        val defaultAlarm = AlarmSound(getDefaultAlarmTitle(), getDefaultAlarmUri().toString())
+        val defaultAlarm = AlarmSound(0, getDefaultAlarmTitle(), getDefaultAlarmUri().toString())
         alarms.add(defaultAlarm)
 
+        var curId = 1
         while (cursor.moveToNext()) {
             val title = cursor.getString(RingtoneManager.TITLE_COLUMN_INDEX)
             var uri = cursor.getString(RingtoneManager.URI_COLUMN_INDEX)
@@ -33,7 +34,7 @@ fun BaseSimpleActivity.getAlarms(callback: (ArrayList<AlarmSound>) -> Unit) {
             if (!uri.endsWith(id)) {
                 uri += "/$id"
             }
-            val alarmSound = AlarmSound(title, uri)
+            val alarmSound = AlarmSound(curId++, title, uri)
             alarms.add(alarmSound)
         }
         callback(alarms)
@@ -41,7 +42,7 @@ fun BaseSimpleActivity.getAlarms(callback: (ArrayList<AlarmSound>) -> Unit) {
         if (e is SecurityException) {
             handlePermission(PERMISSION_READ_STORAGE) {
                 if (it) {
-                    getAlarms(callback)
+                    getAlarmSounds(callback)
                 } else {
                     showErrorToast(e)
                     callback(ArrayList())

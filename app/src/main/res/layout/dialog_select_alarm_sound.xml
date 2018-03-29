@@ -12,6 +12,22 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/dialog_select_alarm_your_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/bigger_margin"
+            android:paddingTop="@dimen/bigger_margin"
+            android:text="@string/your_sounds"/>
+
+        <RadioGroup
+            android:id="@+id/dialog_select_alarm_your_radio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/activity_margin"
+            android:paddingRight="@dimen/activity_margin"
+            android:paddingTop="@dimen/medium_margin"/>
+
+        <TextView
             android:id="@+id/dialog_select_alarm_system_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -20,7 +36,7 @@
             android:text="@string/system_sounds"/>
 
         <RadioGroup
-            android:id="@+id/dialog_select_alarm_radio"
+            android:id="@+id/dialog_select_alarm_system_radio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/activity_margin"
