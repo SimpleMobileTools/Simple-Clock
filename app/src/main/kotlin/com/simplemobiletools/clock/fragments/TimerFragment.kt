@@ -75,6 +75,7 @@ class TimerFragment : Fragment() {
                         val defaultAlarm = AlarmSound(0, context.getDefaultAlarmTitle(), context.getDefaultAlarmUri().toString())
                         updateAlarmSound(defaultAlarm)
                     }
+                    context.checkAlarmsWithDeletedSoundUri(it.uri)
                 })
             }
         }

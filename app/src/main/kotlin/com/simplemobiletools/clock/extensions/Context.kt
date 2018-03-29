@@ -22,6 +22,7 @@ import com.simplemobiletools.clock.activities.SnoozeReminderActivity
 import com.simplemobiletools.clock.activities.SplashActivity
 import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.clock.models.Alarm
+import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.clock.receivers.AlarmReceiver
 import com.simplemobiletools.clock.receivers.DateTimeWidgetUpdateReceiver
@@ -353,4 +354,13 @@ fun Context.getSnoozePendingIntent(alarm: Alarm, hideReminderActivity: Boolean):
 fun Context.getReminderActivityIntent(): PendingIntent {
     val intent = Intent(this, ReminderActivity::class.java)
     return PendingIntent.getActivity(this, REMINDER_ACTIVITY_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+}
+
+fun Context.checkAlarmsWithDeletedSoundUri(uri: String) {
+    val defaultAlarm = AlarmSound(0, getDefaultAlarmTitle(), getDefaultAlarmUri().toString())
+    dbHelper.getAlarmsWithUri(uri).forEach {
+        it.soundTitle = defaultAlarm.title
+        it.soundUri = defaultAlarm.uri
+        dbHelper.updateAlarm(it)
+    }
 }

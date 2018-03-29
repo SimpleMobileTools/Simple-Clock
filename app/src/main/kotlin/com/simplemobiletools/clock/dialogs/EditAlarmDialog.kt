@@ -33,16 +33,11 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                         updateSelectedAlarmSound(it)
                     }
                 }, onAlarmSoundDeleted = {
-                    val defaultAlarm = AlarmSound(0, context.getDefaultAlarmTitle(), context.getDefaultAlarmUri().toString())
                     if (alarm.soundUri == it.uri) {
+                        val defaultAlarm = AlarmSound(0, context.getDefaultAlarmTitle(), context.getDefaultAlarmUri().toString())
                         updateSelectedAlarmSound(defaultAlarm)
                     }
-
-                    activity.dbHelper.getAlarmsWithUri(it.uri).forEach {
-                        it.soundTitle = defaultAlarm.title
-                        it.soundUri = defaultAlarm.uri
-                        activity.dbHelper.updateAlarm(it)
-                    }
+                    activity.checkAlarmsWithDeletedSoundUri(it.uri)
                 })
             }
 
