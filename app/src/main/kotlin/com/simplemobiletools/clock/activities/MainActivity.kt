@@ -135,10 +135,13 @@ class MainActivity : SimpleActivity() {
             filename = getString(R.string.alarm)
         }
 
-        val token = object : TypeToken<LinkedHashSet<AlarmSound>>() {}.type
-        val yourAlarmSounds = Gson().fromJson<LinkedHashSet<AlarmSound>>(config.yourAlarmSounds, token) ?: LinkedHashSet()
+        val token = object : TypeToken<ArrayList<AlarmSound>>() {}.type
+        val yourAlarmSounds = Gson().fromJson<ArrayList<AlarmSound>>(config.yourAlarmSounds, token) ?: ArrayList()
         val newAlarmSoundId = (yourAlarmSounds.maxBy { it.id }?.id ?: YOUR_ALARM_SOUNDS_MIN_ID) + 1
-        yourAlarmSounds.add(AlarmSound(newAlarmSoundId, filename, uri.toString()))
+        if (yourAlarmSounds.firstOrNull { it.uri == uri.toString() } == null) {
+            yourAlarmSounds.add(AlarmSound(newAlarmSoundId, filename, uri.toString()))
+        }
+
         config.yourAlarmSounds = Gson().toJson(yourAlarmSounds)
 
         if (isKitkatPlus()) {
