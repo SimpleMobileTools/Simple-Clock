@@ -27,6 +27,8 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
             gotAlarms()
         }
 
+        view.dialog_select_alarm_system_label.setTextColor(activity.getAdjustedPrimaryColor())
+
         AlertDialog.Builder(activity)
                 .setOnDismissListener { mediaPlayer.stop() }
                 .setPositiveButton(R.string.ok, { dialog, which -> dialogConfirmed() })

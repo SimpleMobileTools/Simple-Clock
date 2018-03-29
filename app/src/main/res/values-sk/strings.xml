@@ -22,6 +22,11 @@
     <string name="timer_tab">Okno s časovačom</string>
     <string name="show_seconds">Zobraziť sekundy</string>
 
+    <!-- Alarms -->
+    <string name="system_sounds">Systémové zvuky</string>
+    <string name="your_sounds">Vaše zvuky</string>
+    <string name="add_new_sound">Pridať nový zvuk</string>
+
     <!-- FAQ -->
     <string name="faq_1_title">Ako viem zmeniť poradie kôl na okne so stopkami?</string>
     <string name="faq_1_text">Stačí, ak kliknete na niektorý stĺpec, to aktivuje triedenie podľa daného stĺpca. Ďalším kliknutím na daný stĺpec viete prepínať zostupné a vzostupné triedenie.</string>

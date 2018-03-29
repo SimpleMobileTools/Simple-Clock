@@ -22,6 +22,11 @@
     <string name="timer_tab">計時器頁面</string>
     <string name="show_seconds">顯示秒數</string>
 
+    <!-- Alarms -->
+    <string name="system_sounds">System sounds</string>
+    <string name="your_sounds">Your sounds</string>
+    <string name="add_new_sound">Add a new sound</string>
+
     <!-- FAQ -->
     <string name="faq_1_title">碼錶頁面分段的排序如何變更?</string>
     <string name="faq_1_text">只要點擊任一欄位，就會依選定的欄位做排序。再多點一下，還能切換遞增或遞減的排序。</string>
