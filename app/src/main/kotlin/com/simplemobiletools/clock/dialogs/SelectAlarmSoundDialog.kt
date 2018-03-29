@@ -83,9 +83,10 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
 
     private fun alarmClicked(alarmSound: AlarmSound) {
         if (alarmSound.id == ADD_NEW_SOUND_ID) {
-            Intent(Intent.ACTION_GET_CONTENT).apply {
+            Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
                 type = "audio/*"
                 activity.startActivityForResult(this, PICK_AUDIO_FILE_INTENT_ID)
+                flags = flags or Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
             }
             dialog.dismiss()
         } else {
