@@ -22,21 +22,20 @@ import com.simplemobiletools.commons.extensions.showErrorToast
 import com.simplemobiletools.commons.helpers.isKitkatPlus
 import com.simplemobiletools.commons.views.MyCompatRadioButton
 import kotlinx.android.synthetic.main.dialog_select_alarm_sound.view.*
-import java.util.LinkedHashSet
-import kotlin.collections.ArrayList
 
 class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: String, val audioStream: Int, val callback: (alarmSound: AlarmSound?) -> Unit) {
-    private val ADD_NEW_SOUND_ID = -1
+    private val ADD_NEW_SOUND_ID = -2
 
     private val view = activity.layoutInflater.inflate(R.layout.dialog_select_alarm_sound, null)
-    private var alarmSounds = ArrayList<AlarmSound>()
+    private var systemAlarmSounds = ArrayList<AlarmSound>()
+    private var yourAlarmSounds = ArrayList<AlarmSound>()
     private var mediaPlayer = MediaPlayer()
     private val config = activity.config
     private val dialog: AlertDialog
 
     init {
         activity.getAlarmSounds {
-            alarmSounds = it
+            systemAlarmSounds = it
             gotSystemAlarms()
         }
 
@@ -56,8 +55,8 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
     }
 
     private fun addYourAlarms() {
-        val token = object : TypeToken<LinkedHashSet<AlarmSound>>() {}.type
-        val yourAlarmSounds = Gson().fromJson<LinkedHashSet<AlarmSound>>(config.yourAlarmSounds, token) ?: LinkedHashSet()
+        val token = object : TypeToken<ArrayList<AlarmSound>>() {}.type
+        yourAlarmSounds = Gson().fromJson<ArrayList<AlarmSound>>(config.yourAlarmSounds, token) ?: ArrayList()
         yourAlarmSounds.add(AlarmSound(ADD_NEW_SOUND_ID, activity.getString(R.string.add_new_sound), ""))
         yourAlarmSounds.forEach {
             addAlarmSound(it, view.dialog_select_alarm_your_radio)
@@ -65,7 +64,7 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
     }
 
     private fun gotSystemAlarms() {
-        alarmSounds.forEach {
+        systemAlarmSounds.forEach {
             addAlarmSound(it, view.dialog_select_alarm_system_radio)
         }
     }
@@ -78,6 +77,12 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
             setColors(config.textColor, activity.getAdjustedPrimaryColor(), config.backgroundColor)
             setOnClickListener {
                 alarmClicked(alarmSound)
+
+                if (holder == view.dialog_select_alarm_system_radio) {
+                    view.dialog_select_alarm_your_radio.clearCheck()
+                } else {
+                    view.dialog_select_alarm_system_radio.clearCheck()
+                }
             }
         }
 
@@ -114,11 +119,12 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
     }
 
     private fun dialogConfirmed() {
-        val checkedId = view.dialog_select_alarm_system_radio.checkedRadioButtonId
-        if (checkedId == -1) {
-            callback(null)
+        if (view.dialog_select_alarm_your_radio.checkedRadioButtonId != -1) {
+            val checkedId = view.dialog_select_alarm_your_radio.checkedRadioButtonId
+            callback(yourAlarmSounds.firstOrNull { it.id == checkedId })
         } else {
-            callback(alarmSounds.firstOrNull { it.id == checkedId })
+            val checkedId = view.dialog_select_alarm_system_radio.checkedRadioButtonId
+            callback(systemAlarmSounds.firstOrNull { it.id == checkedId })
         }
     }
 }

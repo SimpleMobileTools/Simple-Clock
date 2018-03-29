@@ -296,6 +296,12 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm, add
         }
     }
 
+    try {
+        // ensure custom reminder sounds play well
+        grantUriPermission("com.android.systemui", Uri.parse(alarm.soundUri), Intent.FLAG_GRANT_READ_URI_PERMISSION)
+    } catch (ignored: Exception) {
+    }
+
     val reminderActivityIntent = getReminderActivityIntent()
     val builder = NotificationCompat.Builder(this)
             .setContentTitle(label)
