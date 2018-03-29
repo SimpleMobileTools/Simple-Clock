@@ -10,8 +10,8 @@ android {
         applicationId "com.simplemobiletools.clock"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 3
-        versionName "3.1.1"
+        versionCode 4
+        versionName "3.1.2"
         setProperty("archivesBaseName", "clock")
     }
 
