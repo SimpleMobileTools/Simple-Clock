@@ -6,6 +6,8 @@ import android.net.Uri
 import android.support.v7.app.AlertDialog
 import android.view.ViewGroup
 import android.widget.RadioGroup
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.config
@@ -17,6 +19,8 @@ import com.simplemobiletools.commons.extensions.setupDialogStuff
 import com.simplemobiletools.commons.extensions.showErrorToast
 import com.simplemobiletools.commons.views.MyCompatRadioButton
 import kotlinx.android.synthetic.main.dialog_select_alarm_sound.view.*
+import java.util.LinkedHashSet
+import kotlin.collections.ArrayList
 
 class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: String, val audioStream: Int, val callback: (alarmSound: AlarmSound?) -> Unit) {
     private val ADD_NEW_SOUND_ID = -1
@@ -36,8 +40,7 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
         view.dialog_select_alarm_your_label.setTextColor(activity.getAdjustedPrimaryColor())
         view.dialog_select_alarm_system_label.setTextColor(activity.getAdjustedPrimaryColor())
 
-        val newAlarmSound = AlarmSound(ADD_NEW_SOUND_ID, activity.getString(R.string.add_new_sound), "")
-        addAlarmSound(newAlarmSound, view.dialog_select_alarm_your_radio)
+        addYourAlarms()
 
         dialog = AlertDialog.Builder(activity)
                 .setOnDismissListener { mediaPlayer.stop() }
@@ -47,6 +50,15 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
                     activity.setupDialogStuff(view, this)
                     window.volumeControlStream = audioStream
                 }
+    }
+
+    private fun addYourAlarms() {
+        val token = object : TypeToken<LinkedHashSet<AlarmSound>>() {}.type
+        val yourAlarmSounds = Gson().fromJson<LinkedHashSet<AlarmSound>>(config.yourAlarmSounds, token) ?: LinkedHashSet()
+        yourAlarmSounds.add(AlarmSound(ADD_NEW_SOUND_ID, activity.getString(R.string.add_new_sound), ""))
+        yourAlarmSounds.forEach {
+            addAlarmSound(it, view.dialog_select_alarm_your_radio)
+        }
     }
 
     private fun gotSystemAlarms() {

@@ -136,7 +136,7 @@ class MainActivity : SimpleActivity() {
 
         val token = object : TypeToken<LinkedHashSet<AlarmSound>>() {}.type
         val yourAlarmSounds = Gson().fromJson<LinkedHashSet<AlarmSound>>(config.yourAlarmSounds, token) ?: LinkedHashSet()
-        val newAlarmSoundId = (yourAlarmSounds.maxBy { it.id }?.id ?: YOUR_ALARM_SOUNDS_MIN_ID)
+        val newAlarmSoundId = (yourAlarmSounds.maxBy { it.id }?.id ?: YOUR_ALARM_SOUNDS_MIN_ID) + 1
         yourAlarmSounds.add(AlarmSound(newAlarmSoundId, filename, uri.toString()))
         config.yourAlarmSounds = Gson().toJson(yourAlarmSounds)
     }
