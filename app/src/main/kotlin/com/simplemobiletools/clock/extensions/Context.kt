@@ -238,6 +238,7 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
         }
     }
 
+    grantReadUriPermission(config.timerSoundUri)
     val reminderActivityIntent = getReminderActivityIntent()
     val builder = NotificationCompat.Builder(this)
             .setContentTitle(getString(R.string.timer))
@@ -269,6 +270,14 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
     return notification
 }
 
+fun Context.grantReadUriPermission(uriString: String) {
+    try {
+        // ensure custom reminder sounds play well
+        grantUriPermission("com.android.systemui", Uri.parse(uriString), Intent.FLAG_GRANT_READ_URI_PERMISSION)
+    } catch (ignored: Exception) {
+    }
+}
+
 fun Context.getHideTimerPendingIntent(): PendingIntent {
     val intent = Intent(this, HideTimerReceiver::class.java)
     return PendingIntent.getBroadcast(this, TIMER_NOTIF_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
@@ -296,12 +305,7 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm, add
         }
     }
 
-    try {
-        // ensure custom reminder sounds play well
-        grantUriPermission("com.android.systemui", Uri.parse(alarm.soundUri), Intent.FLAG_GRANT_READ_URI_PERMISSION)
-    } catch (ignored: Exception) {
-    }
-
+    grantReadUriPermission(alarm.soundUri)
     val reminderActivityIntent = getReminderActivityIntent()
     val builder = NotificationCompat.Builder(this)
             .setContentTitle(label)
