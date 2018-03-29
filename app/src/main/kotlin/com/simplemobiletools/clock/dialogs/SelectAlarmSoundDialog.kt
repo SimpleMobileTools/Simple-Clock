@@ -11,9 +11,9 @@ import android.widget.RadioGroup
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.simplemobiletools.clock.R
-import com.simplemobiletools.clock.activities.MainActivity
 import com.simplemobiletools.clock.activities.SimpleActivity
-import com.simplemobiletools.clock.extensions.*
+import com.simplemobiletools.clock.extensions.config
+import com.simplemobiletools.clock.extensions.getAlarmSounds
 import com.simplemobiletools.clock.helpers.PICK_AUDIO_FILE_INTENT_ID
 import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.commons.dialogs.RadioGroupDialog
@@ -25,7 +25,8 @@ import com.simplemobiletools.commons.models.RadioItem
 import com.simplemobiletools.commons.views.MyCompatRadioButton
 import kotlinx.android.synthetic.main.dialog_select_alarm_sound.view.*
 
-class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: String, val audioStream: Int, val callback: (alarmSound: AlarmSound?) -> Unit) {
+class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: String, val audioStream: Int, val onAlarmPicked: (alarmSound: AlarmSound?) -> Unit,
+                             val onAlarmSoundDeleted: (alarmSound: AlarmSound) -> Unit) {
     private val ADD_NEW_SOUND_ID = -2
 
     private val view = activity.layoutInflater.inflate(R.layout.dialog_select_alarm_sound, null)
@@ -144,29 +145,16 @@ class SelectAlarmSoundDialog(val activity: SimpleActivity, val currentUri: Strin
             view.dialog_select_alarm_system_radio.check(systemAlarmSounds.firstOrNull()?.id ?: 0)
         }
 
-        val defaultAlarm = AlarmSound(0, activity.getDefaultAlarmTitle(), activity.getDefaultAlarmUri().toString())
-        val defaultTitle = defaultAlarm.title
-        val defaultUri = defaultAlarm.uri
-        if (config.timerSoundUri == alarmSound.uri) {
-            config.timerSoundTitle = defaultTitle
-            config.timerSoundUri = defaultUri
-            (activity as MainActivity).updateTimerTabAlarmSound(defaultAlarm)
-        }
-
-        activity.dbHelper.getAlarmsWithUri(alarmSound.uri).forEach {
-            it.soundTitle = defaultTitle
-            it.soundUri = defaultUri
-            activity.dbHelper.updateAlarm(it)
-        }
+        onAlarmSoundDeleted(alarmSound)
     }
 
     private fun dialogConfirmed() {
         if (view.dialog_select_alarm_your_radio.checkedRadioButtonId != -1) {
             val checkedId = view.dialog_select_alarm_your_radio.checkedRadioButtonId
-            callback(yourAlarmSounds.firstOrNull { it.id == checkedId })
+            onAlarmPicked(yourAlarmSounds.firstOrNull { it.id == checkedId })
         } else {
             val checkedId = view.dialog_select_alarm_system_radio.checkedRadioButtonId
-            callback(systemAlarmSounds.firstOrNull { it.id == checkedId })
+            onAlarmPicked(systemAlarmSounds.firstOrNull { it.id == checkedId })
         }
     }
 }

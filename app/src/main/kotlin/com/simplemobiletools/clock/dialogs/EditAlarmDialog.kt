@@ -7,10 +7,7 @@ import android.support.v7.app.AlertDialog
 import android.widget.TextView
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
-import com.simplemobiletools.clock.extensions.colorLeftDrawable
-import com.simplemobiletools.clock.extensions.config
-import com.simplemobiletools.clock.extensions.dbHelper
-import com.simplemobiletools.clock.extensions.getFormattedTime
+import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.commons.extensions.*
@@ -31,11 +28,22 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
             edit_alarm_sound.colorLeftDrawable(textColor)
             edit_alarm_sound.text = alarm.soundTitle
             edit_alarm_sound.setOnClickListener {
-                SelectAlarmSoundDialog(activity, alarm.soundUri, AudioManager.STREAM_ALARM) {
+                SelectAlarmSoundDialog(activity, alarm.soundUri, AudioManager.STREAM_ALARM, onAlarmPicked = {
                     if (it != null) {
-                        alarmSoundUpdated(it)
+                        updateSelectedAlarmSound(it)
                     }
-                }
+                }, onAlarmSoundDeleted = {
+                    val defaultAlarm = AlarmSound(0, context.getDefaultAlarmTitle(), context.getDefaultAlarmUri().toString())
+                    if (alarm.soundUri == it.uri) {
+                        updateSelectedAlarmSound(defaultAlarm)
+                    }
+
+                    activity.dbHelper.getAlarmsWithUri(it.uri).forEach {
+                        it.soundTitle = defaultAlarm.title
+                        it.soundUri = defaultAlarm.uri
+                        activity.dbHelper.updateAlarm(it)
+                    }
+                })
             }
 
             edit_alarm_vibrate.colorLeftDrawable(textColor)
@@ -123,13 +131,9 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
         return drawable
     }
 
-    private fun alarmSoundUpdated(alarmSound: AlarmSound) {
+    fun updateSelectedAlarmSound(alarmSound: AlarmSound) {
         alarm.soundTitle = alarmSound.title
         alarm.soundUri = alarmSound.uri
         view.edit_alarm_sound.text = alarmSound.title
-    }
-
-    fun updateSelectedAlarmSound(alarmSound: AlarmSound) {
-        alarmSoundUpdated(alarmSound)
     }
 }

@@ -66,11 +66,16 @@ class TimerFragment : Fragment() {
             }
 
             timer_sound.setOnClickListener {
-                SelectAlarmSoundDialog(activity as SimpleActivity, config.timerSoundUri, AudioManager.STREAM_SYSTEM) {
+                SelectAlarmSoundDialog(activity as SimpleActivity, config.timerSoundUri, AudioManager.STREAM_SYSTEM, onAlarmPicked = {
                     if (it != null) {
                         updateAlarmSound(it)
                     }
-                }
+                }, onAlarmSoundDeleted = {
+                    if (config.timerSoundUri == it.uri) {
+                        val defaultAlarm = AlarmSound(0, context.getDefaultAlarmTitle(), context.getDefaultAlarmUri().toString())
+                        updateAlarmSound(defaultAlarm)
+                    }
+                })
             }
         }
 
