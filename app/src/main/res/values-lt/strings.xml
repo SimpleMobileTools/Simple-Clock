@@ -5,7 +5,6 @@
     <string name="vibrate">Vibruoti</string>
     <string name="label">Etiketė</string>
     <string name="no_days_selected">Nepasirinkta nė vienos dienos</string>
-    <string name="alarm">Žadintuvas</string>
     <string name="timer">Laikmatis</string>
     <string name="lap">Etapas</string>
     <string name="stopwatch_stopped">Chronometras buvo sustabdytas</string>

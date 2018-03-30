@@ -7,7 +7,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.media.AudioManager
-import android.media.RingtoneManager
 import android.net.Uri
 import android.os.PowerManager
 import android.provider.Settings
@@ -22,19 +21,17 @@ import com.simplemobiletools.clock.activities.SnoozeReminderActivity
 import com.simplemobiletools.clock.activities.SplashActivity
 import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.clock.models.Alarm
-import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.clock.receivers.AlarmReceiver
 import com.simplemobiletools.clock.receivers.DateTimeWidgetUpdateReceiver
 import com.simplemobiletools.clock.receivers.HideAlarmReceiver
 import com.simplemobiletools.clock.receivers.HideTimerReceiver
 import com.simplemobiletools.clock.services.SnoozeService
-import com.simplemobiletools.commons.extensions.formatMinutesToTimeString
-import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
-import com.simplemobiletools.commons.extensions.toast
+import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.isKitkatPlus
 import com.simplemobiletools.commons.helpers.isLollipopPlus
 import com.simplemobiletools.commons.helpers.isOreoPlus
+import com.simplemobiletools.commons.models.AlarmSound
 import java.util.*
 import kotlin.math.pow
 
@@ -77,11 +74,7 @@ fun Context.getAllTimeZonesModified(): ArrayList<MyTimeZone> {
 
 fun Context.getModifiedTimeZoneTitle(id: Int) = getAllTimeZonesModified().firstOrNull { it.id == id }?.title ?: getDefaultTimeZoneTitle(id)
 
-fun Context.getDefaultAlarmUri() = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-
-fun Context.getDefaultAlarmTitle() = RingtoneManager.getRingtone(this, getDefaultAlarmUri())?.getTitle(this) ?: getString(R.string.alarm)
-
-fun Context.createNewAlarm(timeInMinutes: Int, weekDays: Int) = Alarm(0, timeInMinutes, weekDays, false, false, getDefaultAlarmTitle(), getDefaultAlarmUri().toString(), "")
+fun Context.createNewAlarm(timeInMinutes: Int, weekDays: Int) = Alarm(0, timeInMinutes, weekDays, false, false, getDefaultAlarmTitle(getString(R.string.alarm)), getDefaultAlarmUri().toString(), "")
 
 fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
     val calendar = Calendar.getInstance()
@@ -271,14 +264,6 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
     return notification
 }
 
-fun Context.grantReadUriPermission(uriString: String) {
-    try {
-        // ensure custom reminder sounds play well
-        grantUriPermission("com.android.systemui", Uri.parse(uriString), Intent.FLAG_GRANT_READ_URI_PERMISSION)
-    } catch (ignored: Exception) {
-    }
-}
-
 fun Context.getHideTimerPendingIntent(): PendingIntent {
     val intent = Intent(this, HideTimerReceiver::class.java)
     return PendingIntent.getBroadcast(this, TIMER_NOTIF_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
@@ -357,7 +342,7 @@ fun Context.getReminderActivityIntent(): PendingIntent {
 }
 
 fun Context.checkAlarmsWithDeletedSoundUri(uri: String) {
-    val defaultAlarm = AlarmSound(0, getDefaultAlarmTitle(), getDefaultAlarmUri().toString())
+    val defaultAlarm = AlarmSound(0, getDefaultAlarmTitle(getString(R.string.alarm)), getDefaultAlarmUri().toString())
     dbHelper.getAlarmsWithUri(uri).forEach {
         it.soundTitle = defaultAlarm.title
         it.soundUri = defaultAlarm.uri

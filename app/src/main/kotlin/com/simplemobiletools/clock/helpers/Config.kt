@@ -1,8 +1,9 @@
 package com.simplemobiletools.clock.helpers
 
 import android.content.Context
-import com.simplemobiletools.clock.extensions.getDefaultAlarmTitle
-import com.simplemobiletools.clock.extensions.getDefaultAlarmUri
+import com.simplemobiletools.clock.R
+import com.simplemobiletools.commons.extensions.getDefaultAlarmTitle
+import com.simplemobiletools.commons.extensions.getDefaultAlarmUri
 import com.simplemobiletools.commons.helpers.BaseConfig
 
 class Config(context: Context) : BaseConfig(context) {
@@ -35,7 +36,7 @@ class Config(context: Context) : BaseConfig(context) {
         set(timerSoundUri) = prefs.edit().putString(TIMER_SOUND_URI, timerSoundUri).apply()
 
     var timerSoundTitle: String
-        get() = prefs.getString(TIMER_SOUND_TITLE, context.getDefaultAlarmTitle())
+        get() = prefs.getString(TIMER_SOUND_TITLE, context.getDefaultAlarmTitle(context.getString(R.string.alarm)))
         set(timerSoundTitle) = prefs.edit().putString(TIMER_SOUND_TITLE, timerSoundTitle).apply()
 
     var timerMaxReminderSecs: Int
@@ -49,8 +50,4 @@ class Config(context: Context) : BaseConfig(context) {
     var useTextShadow: Boolean
         get() = prefs.getBoolean(USE_TEXT_SHADOW, true)
         set(useTextShadow) = prefs.edit().putBoolean(USE_TEXT_SHADOW, useTextShadow).apply()
-
-    var yourAlarmSounds: String
-        get() = prefs.getString(YOUR_ALARM_SOUNDS, "")
-        set(yourAlarmSounds) = prefs.edit().putString(YOUR_ALARM_SOUNDS, yourAlarmSounds).apply()
 }

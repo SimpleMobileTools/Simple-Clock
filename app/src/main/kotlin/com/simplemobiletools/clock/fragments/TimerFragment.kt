@@ -14,10 +14,11 @@ import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.ReminderActivity
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.dialogs.MyTimePickerDialogDialog
-import com.simplemobiletools.clock.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.clock.extensions.*
-import com.simplemobiletools.clock.models.AlarmSound
+import com.simplemobiletools.clock.helpers.PICK_AUDIO_FILE_INTENT_ID
+import com.simplemobiletools.commons.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.models.AlarmSound
 import kotlinx.android.synthetic.main.fragment_timer.view.*
 
 class TimerFragment : Fragment() {
@@ -66,13 +67,13 @@ class TimerFragment : Fragment() {
             }
 
             timer_sound.setOnClickListener {
-                SelectAlarmSoundDialog(activity as SimpleActivity, config.timerSoundUri, AudioManager.STREAM_SYSTEM, onAlarmPicked = {
+                SelectAlarmSoundDialog(activity as SimpleActivity, config.timerSoundUri, AudioManager.STREAM_SYSTEM, PICK_AUDIO_FILE_INTENT_ID, onAlarmPicked = {
                     if (it != null) {
                         updateAlarmSound(it)
                     }
                 }, onAlarmSoundDeleted = {
                     if (config.timerSoundUri == it.uri) {
-                        val defaultAlarm = AlarmSound(0, context.getDefaultAlarmTitle(), context.getDefaultAlarmUri().toString())
+                        val defaultAlarm = AlarmSound(0, context.getDefaultAlarmTitle(getString(R.string.alarm)), context.getDefaultAlarmUri().toString())
                         updateAlarmSound(defaultAlarm)
                     }
                     context.checkAlarmsWithDeletedSoundUri(it.uri)

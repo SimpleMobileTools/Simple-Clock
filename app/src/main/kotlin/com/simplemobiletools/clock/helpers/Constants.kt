@@ -14,7 +14,6 @@ const val TIMER_SOUND_TITLE = "timer_sound_title"
 const val TIMER_MAX_REMINDER_SECS = "timer_max_reminder_secs"
 const val ALARM_MAX_REMINDER_SECS = "alarm_max_reminder_secs"
 const val USE_TEXT_SHADOW = "use_text_shadow"
-const val YOUR_ALARM_SOUNDS = "your_alarm_sounds"
 
 const val TABS_COUNT = 4
 const val EDITED_TIME_ZONE_SEPARATOR = ":"

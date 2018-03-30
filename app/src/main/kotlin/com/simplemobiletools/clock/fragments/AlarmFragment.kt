@@ -13,9 +13,9 @@ import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.DEFAULT_ALARM_MINUTES
 import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
-import com.simplemobiletools.clock.models.AlarmSound
 import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.extensions.updateTextColors
+import com.simplemobiletools.commons.models.AlarmSound
 import kotlinx.android.synthetic.main.fragment_alarm.view.*
 import java.util.*
 
