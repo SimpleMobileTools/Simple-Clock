@@ -37,7 +37,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                     }
                 }, onAlarmSoundDeleted = {
                     if (alarm.soundUri == it.uri) {
-                        val defaultAlarm = context.getDefaultAlarmSound(ALARM_SOUND_TYPE_ALARM, context.getString(R.string.alarm))
+                        val defaultAlarm = context.getDefaultAlarmSound(ALARM_SOUND_TYPE_ALARM)
                         updateSelectedAlarmSound(defaultAlarm)
                     }
                     activity.checkAlarmsWithDeletedSoundUri(it.uri)

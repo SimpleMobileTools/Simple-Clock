@@ -75,7 +75,7 @@ class TimerFragment : Fragment() {
                     }
                 }, onAlarmSoundDeleted = {
                     if (config.timerSoundUri == it.uri) {
-                        val defaultAlarm = context.getDefaultAlarmSound(ALARM_SOUND_TYPE_ALARM, getString(R.string.alarm))
+                        val defaultAlarm = context.getDefaultAlarmSound(ALARM_SOUND_TYPE_ALARM)
                         updateAlarmSound(defaultAlarm)
                     }
                     context.checkAlarmsWithDeletedSoundUri(it.uri)

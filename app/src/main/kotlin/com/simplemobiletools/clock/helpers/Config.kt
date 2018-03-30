@@ -1,7 +1,6 @@
 package com.simplemobiletools.clock.helpers
 
 import android.content.Context
-import com.simplemobiletools.clock.R
 import com.simplemobiletools.commons.extensions.getDefaultAlarmTitle
 import com.simplemobiletools.commons.extensions.getDefaultAlarmUri
 import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
@@ -37,7 +36,7 @@ class Config(context: Context) : BaseConfig(context) {
         set(timerSoundUri) = prefs.edit().putString(TIMER_SOUND_URI, timerSoundUri).apply()
 
     var timerSoundTitle: String
-        get() = prefs.getString(TIMER_SOUND_TITLE, context.getDefaultAlarmTitle(ALARM_SOUND_TYPE_ALARM, context.getString(R.string.alarm)))
+        get() = prefs.getString(TIMER_SOUND_TITLE, context.getDefaultAlarmTitle(ALARM_SOUND_TYPE_ALARM))
         set(timerSoundTitle) = prefs.edit().putString(TIMER_SOUND_TITLE, timerSoundTitle).apply()
 
     var timerMaxReminderSecs: Int

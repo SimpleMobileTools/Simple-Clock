@@ -75,7 +75,7 @@ fun Context.getAllTimeZonesModified(): ArrayList<MyTimeZone> {
 fun Context.getModifiedTimeZoneTitle(id: Int) = getAllTimeZonesModified().firstOrNull { it.id == id }?.title ?: getDefaultTimeZoneTitle(id)
 
 fun Context.createNewAlarm(timeInMinutes: Int, weekDays: Int): Alarm {
-    val defaultAlarmSound = getDefaultAlarmSound(ALARM_SOUND_TYPE_ALARM, getString(R.string.alarm))
+    val defaultAlarmSound = getDefaultAlarmSound(ALARM_SOUND_TYPE_ALARM)
     return Alarm(0, timeInMinutes, weekDays, false, false, defaultAlarmSound.title, defaultAlarmSound.uri, "")
 }
 
@@ -345,7 +345,7 @@ fun Context.getReminderActivityIntent(): PendingIntent {
 }
 
 fun Context.checkAlarmsWithDeletedSoundUri(uri: String) {
-    val defaultAlarmSound = getDefaultAlarmSound(ALARM_SOUND_TYPE_ALARM, getString(R.string.alarm))
+    val defaultAlarmSound = getDefaultAlarmSound(ALARM_SOUND_TYPE_ALARM)
     dbHelper.getAlarmsWithUri(uri).forEach {
         it.soundTitle = defaultAlarmSound.title
         it.soundUri = defaultAlarmSound.uri

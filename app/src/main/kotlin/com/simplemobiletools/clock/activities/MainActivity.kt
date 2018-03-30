@@ -3,14 +3,11 @@ package com.simplemobiletools.clock.activities
 import android.annotation.TargetApi
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.simplemobiletools.clock.BuildConfig
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.adapters.ViewPagerAdapter
@@ -22,11 +19,8 @@ import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.LICENSE_NUMBER_PICKER
 import com.simplemobiletools.commons.helpers.LICENSE_STETHO
-import com.simplemobiletools.commons.helpers.isKitkatPlus
-import com.simplemobiletools.commons.models.AlarmSound
 import com.simplemobiletools.commons.models.FAQItem
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
 
 class MainActivity : SimpleActivity() {
     private var storedUseEnglish = false
@@ -127,31 +121,13 @@ class MainActivity : SimpleActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {
         super.onActivityResult(requestCode, resultCode, resultData)
         if (requestCode == PICK_AUDIO_FILE_INTENT_ID && resultCode == RESULT_OK && resultData != null) {
-            storeNewAlarmSound(resultData.data)
+            storeNewAlarmSound(resultData)
         }
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
-    private fun storeNewAlarmSound(uri: Uri) {
-        var filename = getFilenameFromUri(uri)
-        if (filename.isEmpty()) {
-            filename = getString(R.string.alarm)
-        }
-
-        val token = object : TypeToken<ArrayList<AlarmSound>>() {}.type
-        val yourAlarmSounds = Gson().fromJson<ArrayList<AlarmSound>>(config.yourAlarmSounds, token) ?: ArrayList()
-        val newAlarmSoundId = (yourAlarmSounds.maxBy { it.id }?.id ?: YOUR_ALARM_SOUNDS_MIN_ID) + 1
-        val newAlarmSound = AlarmSound(newAlarmSoundId, filename, uri.toString())
-        if (yourAlarmSounds.firstOrNull { it.uri == uri.toString() } == null) {
-            yourAlarmSounds.add(newAlarmSound)
-        }
-
-        config.yourAlarmSounds = Gson().toJson(yourAlarmSounds)
-
-        if (isKitkatPlus()) {
-            val takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-            contentResolver.takePersistableUriPermission(uri, takeFlags)
-        }
+    private fun storeNewAlarmSound(resultData: Intent) {
+        val newAlarmSound = storeNewYourAlarmSound(resultData)
 
         when (view_pager.currentItem) {
             TAB_ALARM -> getViewPagerAdapter()?.updateAlarmTabAlarmSound(newAlarmSound)
