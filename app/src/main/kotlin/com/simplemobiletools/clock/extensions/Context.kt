@@ -28,10 +28,10 @@ import com.simplemobiletools.clock.receivers.HideAlarmReceiver
 import com.simplemobiletools.clock.receivers.HideTimerReceiver
 import com.simplemobiletools.clock.services.SnoozeService
 import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
 import com.simplemobiletools.commons.helpers.isKitkatPlus
 import com.simplemobiletools.commons.helpers.isLollipopPlus
 import com.simplemobiletools.commons.helpers.isOreoPlus
-import com.simplemobiletools.commons.models.AlarmSound
 import java.util.*
 import kotlin.math.pow
 
@@ -74,7 +74,10 @@ fun Context.getAllTimeZonesModified(): ArrayList<MyTimeZone> {
 
 fun Context.getModifiedTimeZoneTitle(id: Int) = getAllTimeZonesModified().firstOrNull { it.id == id }?.title ?: getDefaultTimeZoneTitle(id)
 
-fun Context.createNewAlarm(timeInMinutes: Int, weekDays: Int) = Alarm(0, timeInMinutes, weekDays, false, false, getDefaultAlarmTitle(getString(R.string.alarm)), getDefaultAlarmUri().toString(), "")
+fun Context.createNewAlarm(timeInMinutes: Int, weekDays: Int): Alarm {
+    val defaultAlarmSound = getDefaultAlarmSound(ALARM_SOUND_TYPE_ALARM, getString(R.string.alarm))
+    return Alarm(0, timeInMinutes, weekDays, false, false, defaultAlarmSound.title, defaultAlarmSound.uri, "")
+}
 
 fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
     val calendar = Calendar.getInstance()
@@ -342,10 +345,10 @@ fun Context.getReminderActivityIntent(): PendingIntent {
 }
 
 fun Context.checkAlarmsWithDeletedSoundUri(uri: String) {
-    val defaultAlarm = AlarmSound(0, getDefaultAlarmTitle(getString(R.string.alarm)), getDefaultAlarmUri().toString())
+    val defaultAlarmSound = getDefaultAlarmSound(ALARM_SOUND_TYPE_ALARM, getString(R.string.alarm))
     dbHelper.getAlarmsWithUri(uri).forEach {
-        it.soundTitle = defaultAlarm.title
-        it.soundUri = defaultAlarm.uri
+        it.soundTitle = defaultAlarmSound.title
+        it.soundUri = defaultAlarmSound.uri
         dbHelper.updateAlarm(it)
     }
 }

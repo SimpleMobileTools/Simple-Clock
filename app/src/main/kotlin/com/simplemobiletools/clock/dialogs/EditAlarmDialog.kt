@@ -12,6 +12,7 @@ import com.simplemobiletools.clock.helpers.PICK_AUDIO_FILE_INTENT_ID
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
 import com.simplemobiletools.commons.models.AlarmSound
 import kotlinx.android.synthetic.main.dialog_edit_alarm.view.*
 
@@ -30,13 +31,13 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
             edit_alarm_sound.colorLeftDrawable(textColor)
             edit_alarm_sound.text = alarm.soundTitle
             edit_alarm_sound.setOnClickListener {
-                SelectAlarmSoundDialog(activity, alarm.soundUri, AudioManager.STREAM_ALARM, PICK_AUDIO_FILE_INTENT_ID, onAlarmPicked = {
+                SelectAlarmSoundDialog(activity, alarm.soundUri, AudioManager.STREAM_ALARM, PICK_AUDIO_FILE_INTENT_ID, ALARM_SOUND_TYPE_ALARM, onAlarmPicked = {
                     if (it != null) {
                         updateSelectedAlarmSound(it)
                     }
                 }, onAlarmSoundDeleted = {
                     if (alarm.soundUri == it.uri) {
-                        val defaultAlarm = AlarmSound(0, context.getDefaultAlarmTitle(context.getString(R.string.alarm)), context.getDefaultAlarmUri().toString())
+                        val defaultAlarm = context.getDefaultAlarmSound(ALARM_SOUND_TYPE_ALARM, context.getString(R.string.alarm))
                         updateSelectedAlarmSound(defaultAlarm)
                     }
                     activity.checkAlarmsWithDeletedSoundUri(it.uri)

@@ -18,6 +18,7 @@ import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.PICK_AUDIO_FILE_INTENT_ID
 import com.simplemobiletools.commons.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
 import com.simplemobiletools.commons.models.AlarmSound
 import kotlinx.android.synthetic.main.fragment_timer.view.*
 
@@ -67,13 +68,14 @@ class TimerFragment : Fragment() {
             }
 
             timer_sound.setOnClickListener {
-                SelectAlarmSoundDialog(activity as SimpleActivity, config.timerSoundUri, AudioManager.STREAM_SYSTEM, PICK_AUDIO_FILE_INTENT_ID, onAlarmPicked = {
+                SelectAlarmSoundDialog(activity as SimpleActivity, config.timerSoundUri, AudioManager.STREAM_SYSTEM, PICK_AUDIO_FILE_INTENT_ID,
+                        ALARM_SOUND_TYPE_ALARM, onAlarmPicked = {
                     if (it != null) {
                         updateAlarmSound(it)
                     }
                 }, onAlarmSoundDeleted = {
                     if (config.timerSoundUri == it.uri) {
-                        val defaultAlarm = AlarmSound(0, context.getDefaultAlarmTitle(getString(R.string.alarm)), context.getDefaultAlarmUri().toString())
+                        val defaultAlarm = context.getDefaultAlarmSound(ALARM_SOUND_TYPE_ALARM, getString(R.string.alarm))
                         updateAlarmSound(defaultAlarm)
                     }
                     context.checkAlarmsWithDeletedSoundUri(it.uri)
