@@ -31,11 +31,12 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
             edit_alarm_sound.colorLeftDrawable(textColor)
             edit_alarm_sound.text = alarm.soundTitle
             edit_alarm_sound.setOnClickListener {
-                SelectAlarmSoundDialog(activity, alarm.soundUri, AudioManager.STREAM_ALARM, PICK_AUDIO_FILE_INTENT_ID, ALARM_SOUND_TYPE_ALARM, onAlarmPicked = {
-                    if (it != null) {
-                        updateSelectedAlarmSound(it)
-                    }
-                }, onAlarmSoundDeleted = {
+                SelectAlarmSoundDialog(activity, alarm.soundUri, AudioManager.STREAM_ALARM, PICK_AUDIO_FILE_INTENT_ID, ALARM_SOUND_TYPE_ALARM, true,
+                        onAlarmPicked = {
+                            if (it != null) {
+                                updateSelectedAlarmSound(it)
+                            }
+                        }, onAlarmSoundDeleted = {
                     if (alarm.soundUri == it.uri) {
                         val defaultAlarm = context.getDefaultAlarmSound(ALARM_SOUND_TYPE_ALARM)
                         updateSelectedAlarmSound(defaultAlarm)

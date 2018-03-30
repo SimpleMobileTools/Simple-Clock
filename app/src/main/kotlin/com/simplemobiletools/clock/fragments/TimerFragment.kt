@@ -69,7 +69,7 @@ class TimerFragment : Fragment() {
 
             timer_sound.setOnClickListener {
                 SelectAlarmSoundDialog(activity as SimpleActivity, config.timerSoundUri, AudioManager.STREAM_SYSTEM, PICK_AUDIO_FILE_INTENT_ID,
-                        ALARM_SOUND_TYPE_ALARM, onAlarmPicked = {
+                        ALARM_SOUND_TYPE_ALARM, true, onAlarmPicked = {
                     if (it != null) {
                         updateAlarmSound(it)
                     }
