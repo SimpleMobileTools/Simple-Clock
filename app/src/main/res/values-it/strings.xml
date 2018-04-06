@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">Simple Clock</string>
+    <string name="app_launcher_name">Orologio</string>
+    <string name="time_zone">Fuso orario</string>
+    <string name="vibrate">Vibrazione</string>
+    <string name="label">Etichetta</string>
+    <string name="no_days_selected">Nessun giorno selezionato</string>
+    <string name="timer">Timer</string>
+    <string name="lap">Giro</string>
+    <string name="stopwatch_stopped">Il cronometro è stato fermato</string>
+    <string name="timer_stopped">Il timer è stato fermato</string>
+    <string name="max_reminder_duration">Durata suoneria</string>
+    <string name="time_expired">Tempo scaduto</string>
+    <string name="clock_and_date">Data e ora</string>
+    <string name="use_text_shadow">Usa ombra del testo</string>
+
+    <!-- Settings -->
+    <string name="clock_tab">Scheda orologio</string>
+    <string name="alarm_tab">Scheda sveglia</string>
+    <string name="stopwatch_tab">Scheda cronometro</string>
+    <string name="timer_tab">Scheda timer</string>
+    <string name="show_seconds">Mostra secondi</string>
+
+    <!-- FAQ -->
+    <string name="faq_1_title">Come posso cambiare l\'ordinamento dei giri nel cronometro?</string>
+    <string name="faq_1_text">Pigia su una delle colonne, i giri saranno ordinati in base alla colonna selezionata. Pigiando nuovamente potrai ordinare con andamento ascendente o discendente.</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Un\'unione di orologio, sveglia, cronometro e timer.</string>
+    <string name="app_long_description">
+        L\'app ha diverse funzioni per la gestione del tempo.
+
+        Puoi controllare l\'orario di altri fusi orari o usare il widget orologio, semplice ma personalizzabile. Il colore del testo del widget, così come il colore ed il livello di transparenza dello sfondo possono essere personalizzati.
+
+        La sveglia dispone di tutte le funzioni essenziali. Puoi selezionare il giorno, attivare la vibrazione, scegliere la suoneria, posporre la sveglia o aggiungere un\'etichetta.
+
+        Con il cronometro puoi misurare facilmente un lungo periodo di tempo, o singoli giri, ordinabili in base al tempo. Puoi attivare la vibrazione alla pressione dei tasti per sapere che qualcosa è stato schiacciato, anche se non puoi vedere il dispositivo.
+
+        Altre funzioni possono essere, ad esempio, prevenire il dispositivo dall\'andare in standby mentre l\'app è in primo piano.
+
+        Non contiene annunci e non richiede permessi non necessari. È totalmente open source e permette di personalizzare i colori.
+
+        Quest\'app è solo una piccola parte di una grande serie di app. Puoi trovarle a https://www.simplemobiletools.com
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
