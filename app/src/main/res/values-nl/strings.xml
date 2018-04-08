@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Eenvoudige Klok</string>
+    <string name="app_launcher_name">Klok</string>
+    <string name="time_zone">Tijd zone</string>
+    <string name="vibrate">Trillen</string>
+    <string name="label">Label</string>
+    <string name="no_days_selected">Geen dagen geselecteerd</string>
+    <string name="timer">Timer</string>
+    <string name="lap">Ronde</string>
+    <string name="stopwatch_stopped">Stopwatch is gestopt</string>
+    <string name="timer_stopped">Timer is gestopt</string>
+    <string name="max_reminder_duration">Max duur van herinnering</string>
+    <string name="time_expired">Tijd verstreken</string>
+    <string name="clock_and_date">Klok en datum</string>
+    <string name="use_text_shadow">Gebruik tekst schaduw</string>
+
+    <!-- Settings -->
+    <string name="clock_tab">Klok tab</string>
+    <string name="alarm_tab">Alarm tab</string>
+    <string name="stopwatch_tab">Stopwatch tab</string>
+    <string name="timer_tab">Timer tab</string>
+    <string name="show_seconds">Laat seconden zien</string>
+
+    <!-- FAQ -->
+    <string name="faq_1_title">Hoe kan ik ronde tijden sorteren op de stopwatch tab?</string>
+    <string name="faq_1_text">Klik gewoon op een van de kolommen, dat maakt de ronden gesorteerd naar de geselecteerde kolom. Door nogmaals op een kolom te klikken wissel je tussen aflopend en oplopend sorteren.</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Een combinatie van een klok, alarm, stopwatch en timer.</string>
+    <string name="app_long_description">
+        De app heeft verschillende tijd gerelateerde functies.
+
+        Bij de klok kun je tijden van steden in andere tijd zones weergeven, of de simpele maar aanpasbare klok widget gebruiken. De tekst kleur van de widget kan worden aangepast, alsook de kleur en de alpha van de achtergrond.
+
+        Het alarm bevat alle verwachte functies als dag selectie, trillen, beltoon selectie, alarm uitstellen of toevoegen van een tekst label.
+
+        Met de stopwatch kun je makkelijk een langere tijdsduur meten, of individuele ronden. Je kunt de rondes op tijd sorteren, het bevat optioneel trillen bij het indrukken van knoppen zodat je weet of er gedrukt is, zelfs als je niet naar het toestel kunt kijken.
+
+        Je kunt makkelijk een timer instellen om op de hoogte gebracht te worden van een gebeurtenis. Je kunt de beltoon en het trillen aanpassen.
+
+        Aanvullende functies omvatten bijvoorbeeld het voorkomen dat het toestel gaat slapen met de app op de voorgrond.
+
+        Bevat geen advertenties of onnodige permissies. Volledig open-source. Kleuren van de app kunnen worden aangepast.
+
+        Deze app is onderdeel van een grotere verzameling. Vind de andere apps op https://www.simplemobiletools.com
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
