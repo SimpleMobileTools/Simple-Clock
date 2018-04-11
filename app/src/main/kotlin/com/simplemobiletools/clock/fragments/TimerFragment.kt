@@ -24,6 +24,9 @@ import kotlinx.android.synthetic.main.fragment_timer.view.*
 
 class TimerFragment : Fragment() {
     private val UPDATE_INTERVAL = 1000L
+    private val WAS_RUNNING = "was_running"
+    private val CURRENT_TICKS = "current_ticks"
+    private val TOTAL_TICKS = "total_ticks"
 
     private var isRunning = false
     private var uptimeAtStart = 0L
@@ -105,11 +108,34 @@ class TimerFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (isRunning) {
+        if (isRunning && activity?.isChangingConfigurations == false) {
             context?.toast(R.string.timer_stopped)
         }
         isRunning = false
         updateHandler.removeCallbacks(updateRunnable)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.apply {
+            putBoolean(WAS_RUNNING, isRunning)
+            putInt(TOTAL_TICKS, totalTicks)
+            putInt(CURRENT_TICKS, currentTicks)
+        }
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        savedInstanceState?.apply {
+            isRunning = getBoolean(WAS_RUNNING, false)
+            totalTicks = getInt(TOTAL_TICKS, 0)
+            currentTicks = getInt(CURRENT_TICKS, 0)
+
+            if (isRunning) {
+                uptimeAtStart = SystemClock.uptimeMillis() - currentTicks * UPDATE_INTERVAL
+                updateTimerState(false)
+            }
+        }
     }
 
     fun updateAlarmSound(alarmSound: AlarmSound) {
@@ -142,13 +168,19 @@ class TimerFragment : Fragment() {
 
     private fun togglePlayPause() {
         isRunning = !isRunning
+        updateTimerState(true)
+    }
+
+    private fun updateTimerState(setUptimeAtStart: Boolean) {
         updateIcons()
         context!!.hideTimerNotification()
 
         if (isRunning) {
             updateHandler.post(updateRunnable)
-            uptimeAtStart = SystemClock.uptimeMillis()
             view.timer_reset.beVisible()
+            if (setUptimeAtStart) {
+                uptimeAtStart = SystemClock.uptimeMillis()
+            }
         } else {
             updateHandler.removeCallbacksAndMessages(null)
             currentTicks = 0
