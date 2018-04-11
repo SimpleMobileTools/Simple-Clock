@@ -25,6 +25,10 @@ import kotlinx.android.synthetic.main.fragment_stopwatch.view.*
 
 class StopwatchFragment : Fragment() {
     private val UPDATE_INTERVAL = 10L
+    private val WAS_RUNNING = "was_running"
+    private val TOTAL_TICKS = "total_ticks"
+    private val CURRENT_TICKS = "current_ticks"
+    private val LAP_TICKS = "lap_ticks"
 
     private val updateHandler = Handler()
     private var uptimeAtStart = 0L
@@ -124,7 +128,7 @@ class StopwatchFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (isRunning) {
+        if (isRunning && activity?.isChangingConfigurations == false) {
             context?.toast(R.string.stopwatch_stopped)
         }
         isRunning = false
@@ -133,6 +137,28 @@ class StopwatchFragment : Fragment() {
 
     private fun storeStateVariables() {
         storedTextColor = context!!.config.textColor
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putBoolean(WAS_RUNNING, isRunning)
+        outState.putInt(TOTAL_TICKS, totalTicks)
+        outState.putInt(CURRENT_TICKS, currentTicks)
+        outState.putInt(LAP_TICKS, lapTicks)
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        if (savedInstanceState != null) {
+            isRunning = savedInstanceState.getBoolean(WAS_RUNNING, false)
+            totalTicks = savedInstanceState.getInt(TOTAL_TICKS, 0)
+            currentTicks = savedInstanceState.getInt(CURRENT_TICKS, 0)
+            lapTicks = savedInstanceState.getInt(LAP_TICKS, 0)
+            if (isRunning) {
+                uptimeAtStart = SystemClock.uptimeMillis() - currentTicks * UPDATE_INTERVAL
+                updateStopwatchState(false)
+            }
+        }
     }
 
     private fun setupViews() {
@@ -155,13 +181,19 @@ class StopwatchFragment : Fragment() {
 
     private fun togglePlayPause() {
         isRunning = !isRunning
+        updateStopwatchState(true)
+    }
+
+    private fun updateStopwatchState(setUptimeAtStart: Boolean) {
         updateIcons()
         view.stopwatch_lap.beVisibleIf(isRunning)
 
         if (isRunning) {
             updateHandler.post(updateRunnable)
-            uptimeAtStart = SystemClock.uptimeMillis()
             view.stopwatch_reset.beVisible()
+            if (setUptimeAtStart) {
+                uptimeAtStart = SystemClock.uptimeMillis()
+            }
         } else {
             val prevSessionsMS = (totalTicks - currentTicks) * UPDATE_INTERVAL
             val totalDuration = SystemClock.uptimeMillis() - uptimeAtStart + prevSessionsMS
