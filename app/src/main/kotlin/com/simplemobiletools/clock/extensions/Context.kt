@@ -248,7 +248,7 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
         grantReadUriPermission(soundUri)
     }
 
-    val channelId = "my_timer_channel"
+    val channelId = "simple_timer_channel_$soundUri"
     if (isOreoPlus()) {
         val audioAttributes = AudioAttributes.Builder()
                 .setUsage(AudioAttributes.USAGE_NOTIFICATION)
@@ -320,7 +320,7 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm, add
         grantReadUriPermission(soundUri)
     }
 
-    val channelId = "my_alarm_channel"
+    val channelId = "simple_alarm_channel_$soundUri"
     val label = if (alarm.label.isNotEmpty()) alarm.label else getString(R.string.alarm)
     if (isOreoPlus()) {
         val audioAttributes = AudioAttributes.Builder()
