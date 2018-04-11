@@ -33,6 +33,7 @@ class StopwatchFragment : Fragment() {
     private val LAP_TICKS = "lap_ticks"
     private val CURRENT_LAP = "current_lap"
     private val LAPS = "laps"
+    private val SORTING = "sorting"
 
     private val updateHandler = Handler()
     private var uptimeAtStart = 0L
@@ -150,6 +151,7 @@ class StopwatchFragment : Fragment() {
             putInt(CURRENT_TICKS, currentTicks)
             putInt(LAP_TICKS, lapTicks)
             putInt(CURRENT_LAP, currentLap)
+            putInt(SORTING, sorting)
             putString(LAPS, Gson().toJson(laps))
             super.onSaveInstanceState(this)
         }
@@ -163,10 +165,15 @@ class StopwatchFragment : Fragment() {
             currentTicks = getInt(CURRENT_TICKS, 0)
             lapTicks = getInt(LAP_TICKS, 0)
             currentLap = getInt(CURRENT_LAP, 0)
+            sorting = getInt(SORTING, SORT_BY_LAP or SORT_DESCENDING)
 
             val lapsToken = object : TypeToken<List<Lap>>() {}.type
             laps = Gson().fromJson<ArrayList<Lap>>(getString(LAPS), lapsToken)
-            updateLaps()
+
+            if (laps.isNotEmpty()) {
+                view.stopwatch_sorting_indicators_holder.beVisibleIf(laps.isNotEmpty())
+                updateSorting()
+            }
 
             if (isRunning) {
                 uptimeAtStart = SystemClock.uptimeMillis() - currentTicks * UPDATE_INTERVAL
@@ -250,7 +257,10 @@ class StopwatchFragment : Fragment() {
         } else {
             clickedValue or SORT_DESCENDING
         }
+        updateSorting()
+    }
 
+    private fun updateSorting() {
         updateSortingIndicators()
         Lap.sorting = sorting
         updateLaps()
