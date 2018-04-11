@@ -8,8 +8,10 @@ import android.content.Context
 import android.content.Intent
 import android.media.AudioManager
 import android.net.Uri
+import android.os.Build
 import android.os.PowerManager
 import android.provider.Settings
+import android.support.annotation.RequiresApi
 import android.support.v4.app.AlarmManagerCompat
 import android.support.v4.app.NotificationCompat
 import android.text.SpannableString
@@ -192,7 +194,26 @@ fun Context.formatTo12HourFormat(showSeconds: Boolean, hours: Int, minutes: Int,
     return "${formatTime(showSeconds, false, newHours, minutes, seconds)} $appendable"
 }
 
-fun Context.getNextAlarm() = Settings.System.getString(contentResolver, Settings.System.NEXT_ALARM_FORMATTED) ?: ""
+@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+fun Context.getNextAlarm(): String {
+    return if (isLollipopPlus()) {
+        val milliseconds = (getSystemService(Context.ALARM_SERVICE) as AlarmManager).nextAlarmClock.triggerTime
+        val calendar = Calendar.getInstance()
+        val isDaylightSavingActive = TimeZone.getDefault().inDaylightTime(Date())
+        var offset = calendar.timeZone.rawOffset
+        if (isDaylightSavingActive) {
+            offset += TimeZone.getDefault().dstSavings
+        }
+
+        calendar.timeInMillis = milliseconds
+        val dayOfWeekIndex = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
+        val dayOfWeek = resources.getStringArray(R.array.week_days_short)[dayOfWeekIndex]
+        val formatted = getFormattedTime(((milliseconds + offset) / 1000L).toInt(), false, false)
+        "$dayOfWeek $formatted"
+    } else {
+        Settings.System.getString(contentResolver, Settings.System.NEXT_ALARM_FORMATTED) ?: ""
+    }
+}
 
 fun Context.rescheduleEnabledAlarms() {
     dbHelper.getEnabledAlarms().forEach {
