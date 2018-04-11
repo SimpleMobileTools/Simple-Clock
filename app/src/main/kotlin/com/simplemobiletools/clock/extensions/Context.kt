@@ -196,8 +196,8 @@ fun Context.formatTo12HourFormat(showSeconds: Boolean, hours: Int, minutes: Int,
 
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 fun Context.getNextAlarm(): String {
-    return if (isLollipopPlus()) {
-        val milliseconds = (getSystemService(Context.ALARM_SERVICE) as AlarmManager).nextAlarmClock.triggerTime
+    if (isLollipopPlus()) {
+        val milliseconds = (getSystemService(Context.ALARM_SERVICE) as AlarmManager).nextAlarmClock?.triggerTime ?: return ""
         val calendar = Calendar.getInstance()
         val isDaylightSavingActive = TimeZone.getDefault().inDaylightTime(Date())
         var offset = calendar.timeZone.rawOffset
@@ -209,9 +209,9 @@ fun Context.getNextAlarm(): String {
         val dayOfWeekIndex = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
         val dayOfWeek = resources.getStringArray(R.array.week_days_short)[dayOfWeekIndex]
         val formatted = getFormattedTime(((milliseconds + offset) / 1000L).toInt(), false, false)
-        "$dayOfWeek $formatted"
+        return "$dayOfWeek $formatted"
     } else {
-        Settings.System.getString(contentResolver, Settings.System.NEXT_ALARM_FORMATTED) ?: ""
+        return Settings.System.getString(contentResolver, Settings.System.NEXT_ALARM_FORMATTED) ?: ""
     }
 }
 
