@@ -232,11 +232,11 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
         }
     }
 
-    var uri = config.timerSoundUri
-    if (uri == SILENT) {
-        uri = ""
+    var soundUri = config.timerSoundUri
+    if (soundUri == SILENT) {
+        soundUri = ""
     } else {
-        grantReadUriPermission(uri)
+        grantReadUriPermission(soundUri)
     }
 
     val reminderActivityIntent = getReminderActivityIntent()
@@ -248,7 +248,7 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
             .setPriority(Notification.PRIORITY_HIGH)
             .setDefaults(Notification.DEFAULT_LIGHTS)
             .setAutoCancel(true)
-            .setSound(Uri.parse(uri), AudioManager.STREAM_SYSTEM)
+            .setSound(Uri.parse(soundUri), AudioManager.STREAM_SYSTEM)
             .setChannelId(channelId)
             .addAction(R.drawable.ic_cross, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getHideTimerPendingIntent())
 
@@ -297,11 +297,11 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm, add
         }
     }
 
-    var uri = alarm.soundUri
-    if (uri == SILENT) {
-        uri = ""
+    var soundUri = alarm.soundUri
+    if (soundUri == SILENT) {
+        soundUri = ""
     } else {
-        grantReadUriPermission(uri)
+        grantReadUriPermission(soundUri)
     }
 
     val reminderActivityIntent = getReminderActivityIntent()
@@ -313,7 +313,7 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm, add
             .setPriority(Notification.PRIORITY_HIGH)
             .setDefaults(Notification.DEFAULT_LIGHTS)
             .setAutoCancel(true)
-            .setSound(Uri.parse(uri), AudioManager.STREAM_ALARM)
+            .setSound(Uri.parse(soundUri), AudioManager.STREAM_ALARM)
             .setChannelId(channelId)
             .addAction(R.drawable.ic_cross, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getHideAlarmPendingIntent(alarm))
             .addAction(R.drawable.ic_snooze, getString(R.string.snooze), getSnoozePendingIntent(alarm, addDeleteIntent))
