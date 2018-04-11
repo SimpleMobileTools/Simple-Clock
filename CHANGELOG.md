@@ -1,6 +1,13 @@
 Changelog
 ==========
 
+Version 3.1.3 *(2018-04-11)*
+----------------------------
+
+ * Do not reset stopwatch and timer at device rotation
+ * Fix notification sounds on Android 8+
+ * Adding a No Sound option at notification sounds
+
 Version 3.1.2 *(2018-03-29)*
 ----------------------------
 
