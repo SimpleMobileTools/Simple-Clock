@@ -10,6 +10,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.adapters.StopwatchAdapter
@@ -29,6 +31,8 @@ class StopwatchFragment : Fragment() {
     private val TOTAL_TICKS = "total_ticks"
     private val CURRENT_TICKS = "current_ticks"
     private val LAP_TICKS = "lap_ticks"
+    private val CURRENT_LAP = "current_lap"
+    private val LAPS = "laps"
 
     private val updateHandler = Handler()
     private var uptimeAtStart = 0L
@@ -145,6 +149,8 @@ class StopwatchFragment : Fragment() {
             putInt(TOTAL_TICKS, totalTicks)
             putInt(CURRENT_TICKS, currentTicks)
             putInt(LAP_TICKS, lapTicks)
+            putInt(CURRENT_LAP, currentLap)
+            putString(LAPS, Gson().toJson(laps))
             super.onSaveInstanceState(this)
         }
     }
@@ -156,6 +162,12 @@ class StopwatchFragment : Fragment() {
             totalTicks = getInt(TOTAL_TICKS, 0)
             currentTicks = getInt(CURRENT_TICKS, 0)
             lapTicks = getInt(LAP_TICKS, 0)
+            currentLap = getInt(CURRENT_LAP, 0)
+
+            val lapsToken = object : TypeToken<List<Lap>>() {}.type
+            laps = Gson().fromJson<ArrayList<Lap>>(getString(LAPS), lapsToken)
+            updateLaps()
+
             if (isRunning) {
                 uptimeAtStart = SystemClock.uptimeMillis() - currentTicks * UPDATE_INTERVAL
                 updateStopwatchState(false)
