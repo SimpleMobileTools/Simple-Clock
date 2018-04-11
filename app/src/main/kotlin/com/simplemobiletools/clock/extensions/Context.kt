@@ -28,10 +28,7 @@ import com.simplemobiletools.clock.receivers.HideAlarmReceiver
 import com.simplemobiletools.clock.receivers.HideTimerReceiver
 import com.simplemobiletools.clock.services.SnoozeService
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
-import com.simplemobiletools.commons.helpers.isKitkatPlus
-import com.simplemobiletools.commons.helpers.isLollipopPlus
-import com.simplemobiletools.commons.helpers.isOreoPlus
+import com.simplemobiletools.commons.helpers.*
 import java.util.*
 import kotlin.math.pow
 
@@ -235,7 +232,13 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
         }
     }
 
-    grantReadUriPermission(config.timerSoundUri)
+    var uri = config.timerSoundUri
+    if (uri == SILENT) {
+        uri = ""
+    } else {
+        grantReadUriPermission(uri)
+    }
+
     val reminderActivityIntent = getReminderActivityIntent()
     val builder = NotificationCompat.Builder(this)
             .setContentTitle(getString(R.string.timer))
@@ -245,7 +248,7 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
             .setPriority(Notification.PRIORITY_HIGH)
             .setDefaults(Notification.DEFAULT_LIGHTS)
             .setAutoCancel(true)
-            .setSound(Uri.parse(config.timerSoundUri), AudioManager.STREAM_SYSTEM)
+            .setSound(Uri.parse(uri), AudioManager.STREAM_SYSTEM)
             .setChannelId(channelId)
             .addAction(R.drawable.ic_cross, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getHideTimerPendingIntent())
 
@@ -294,7 +297,13 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm, add
         }
     }
 
-    grantReadUriPermission(alarm.soundUri)
+    var uri = alarm.soundUri
+    if (uri == SILENT) {
+        uri = ""
+    } else {
+        grantReadUriPermission(uri)
+    }
+
     val reminderActivityIntent = getReminderActivityIntent()
     val builder = NotificationCompat.Builder(this)
             .setContentTitle(label)
@@ -304,7 +313,7 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm, add
             .setPriority(Notification.PRIORITY_HIGH)
             .setDefaults(Notification.DEFAULT_LIGHTS)
             .setAutoCancel(true)
-            .setSound(Uri.parse(alarm.soundUri), AudioManager.STREAM_ALARM)
+            .setSound(Uri.parse(uri), AudioManager.STREAM_ALARM)
             .setChannelId(channelId)
             .addAction(R.drawable.ic_cross, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getHideAlarmPendingIntent(alarm))
             .addAction(R.drawable.ic_snooze, getString(R.string.snooze), getSnoozePendingIntent(alarm, addDeleteIntent))

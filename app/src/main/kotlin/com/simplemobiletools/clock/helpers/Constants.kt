@@ -19,7 +19,6 @@ const val TABS_COUNT = 4
 const val EDITED_TIME_ZONE_SEPARATOR = ":"
 const val ALARM_ID = "alarm_id"
 const val DEFAULT_ALARM_MINUTES = 480
-const val DAY_MINUTES = 1440
 const val DEFAULT_MAX_ALARM_REMINDER_SECS = 300
 const val DEFAULT_MAX_TIMER_REMINDER_SECS = 60
 const val HIDE_REMINDER_ACTIVITY = "hide_reminder_activity"
