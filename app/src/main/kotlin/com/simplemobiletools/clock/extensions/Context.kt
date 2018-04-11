@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.media.AudioAttributes
 import android.media.AudioManager
 import android.net.Uri
 import android.os.Build
@@ -240,8 +241,22 @@ fun Context.showTimerNotification(addDeleteIntent: Boolean) {
 
 @SuppressLint("NewApi")
 fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: Boolean): Notification {
-    val channelId = "timer_channel"
+    var soundUri = config.timerSoundUri
+    if (soundUri == SILENT) {
+        soundUri = ""
+    } else {
+        grantReadUriPermission(soundUri)
+    }
+
+    val channelId = "my_timer_channel"
     if (isOreoPlus()) {
+        val audioAttributes = AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .setLegacyStreamType(AudioManager.STREAM_SYSTEM)
+                .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
+                .build()
+
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val name = getString(R.string.timer)
         val importance = NotificationManager.IMPORTANCE_HIGH
@@ -249,15 +264,9 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
             enableLights(true)
             lightColor = getAdjustedPrimaryColor()
             enableVibration(config.timerVibrate)
+            setSound(Uri.parse(soundUri), audioAttributes)
             notificationManager.createNotificationChannel(this)
         }
-    }
-
-    var soundUri = config.timerSoundUri
-    if (soundUri == SILENT) {
-        soundUri = ""
-    } else {
-        grantReadUriPermission(soundUri)
     }
 
     val reminderActivityIntent = getReminderActivityIntent()
@@ -266,7 +275,7 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
             .setContentText(getString(R.string.time_expired))
             .setSmallIcon(R.drawable.ic_timer)
             .setContentIntent(pendingIntent)
-            .setPriority(Notification.PRIORITY_HIGH)
+            .setPriority(Notification.PRIORITY_LOW)
             .setDefaults(Notification.DEFAULT_LIGHTS)
             .setAutoCancel(true)
             .setSound(Uri.parse(soundUri), AudioManager.STREAM_SYSTEM)
@@ -304,9 +313,23 @@ fun Context.getHideAlarmPendingIntent(alarm: Alarm): PendingIntent {
 
 @SuppressLint("NewApi")
 fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm, addDeleteIntent: Boolean): Notification {
-    val channelId = "alarm_channel"
+    var soundUri = alarm.soundUri
+    if (soundUri == SILENT) {
+        soundUri = ""
+    } else {
+        grantReadUriPermission(soundUri)
+    }
+
+    val channelId = "my_alarm_channel"
     val label = if (alarm.label.isNotEmpty()) alarm.label else getString(R.string.alarm)
     if (isOreoPlus()) {
+        val audioAttributes = AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .setLegacyStreamType(AudioManager.STREAM_SYSTEM)
+                .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
+                .build()
+
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val name = label
         val importance = NotificationManager.IMPORTANCE_HIGH
@@ -314,15 +337,9 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm, add
             enableLights(true)
             lightColor = getAdjustedPrimaryColor()
             enableVibration(alarm.vibrate)
+            setSound(Uri.parse(soundUri), audioAttributes)
             notificationManager.createNotificationChannel(this)
         }
-    }
-
-    var soundUri = alarm.soundUri
-    if (soundUri == SILENT) {
-        soundUri = ""
-    } else {
-        grantReadUriPermission(soundUri)
     }
 
     val reminderActivityIntent = getReminderActivityIntent()
