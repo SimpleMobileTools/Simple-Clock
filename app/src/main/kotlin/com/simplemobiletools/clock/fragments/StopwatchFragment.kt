@@ -140,20 +140,22 @@ class StopwatchFragment : Fragment() {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putBoolean(WAS_RUNNING, isRunning)
-        outState.putInt(TOTAL_TICKS, totalTicks)
-        outState.putInt(CURRENT_TICKS, currentTicks)
-        outState.putInt(LAP_TICKS, lapTicks)
-        super.onSaveInstanceState(outState)
+        outState.apply {
+            putBoolean(WAS_RUNNING, isRunning)
+            putInt(TOTAL_TICKS, totalTicks)
+            putInt(CURRENT_TICKS, currentTicks)
+            putInt(LAP_TICKS, lapTicks)
+            super.onSaveInstanceState(this)
+        }
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
-        if (savedInstanceState != null) {
-            isRunning = savedInstanceState.getBoolean(WAS_RUNNING, false)
-            totalTicks = savedInstanceState.getInt(TOTAL_TICKS, 0)
-            currentTicks = savedInstanceState.getInt(CURRENT_TICKS, 0)
-            lapTicks = savedInstanceState.getInt(LAP_TICKS, 0)
+        savedInstanceState?.apply {
+            isRunning = getBoolean(WAS_RUNNING, false)
+            totalTicks = getInt(TOTAL_TICKS, 0)
+            currentTicks = getInt(CURRENT_TICKS, 0)
+            lapTicks = getInt(LAP_TICKS, 0)
             if (isRunning) {
                 uptimeAtStart = SystemClock.uptimeMillis() - currentTicks * UPDATE_INTERVAL
                 updateStopwatchState(false)
