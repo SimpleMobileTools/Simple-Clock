@@ -72,7 +72,6 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
             AlarmsAdapter(activity as SimpleActivity, alarms, this, view.alarms_list) {
                 openEditAlarm(it as Alarm)
             }.apply {
-                setupDragListener(true)
                 view.alarms_list.adapter = this
             }
         } else {

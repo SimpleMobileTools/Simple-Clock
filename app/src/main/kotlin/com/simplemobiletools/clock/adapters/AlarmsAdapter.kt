@@ -22,6 +22,10 @@ class AlarmsAdapter(activity: SimpleActivity, var alarms: ArrayList<Alarm>, val 
                     recyclerView: MyRecyclerView, itemClick: (Any) -> Unit) : MyRecyclerViewAdapter(activity, recyclerView, null, itemClick) {
     private val adjustedPrimaryColor = activity.getAdjustedPrimaryColor()
 
+    init {
+        setupDragListener(true)
+    }
+
     override fun getActionMenuId() = R.menu.cab_alarms
 
     override fun prepareActionMode(menu: Menu) {}

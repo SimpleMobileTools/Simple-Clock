@@ -125,7 +125,6 @@ class ClockFragment : Fragment() {
                     updateTimeZones()
                 }
             }.apply {
-                setupDragListener(true)
                 view.time_zones_list.adapter = this
             }
         } else {

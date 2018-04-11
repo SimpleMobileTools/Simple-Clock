@@ -21,6 +21,10 @@ class TimeZonesAdapter(activity: SimpleActivity, var timeZones: ArrayList<MyTime
 
     var todayDateString = activity.getFormattedDate(Calendar.getInstance())
 
+    init {
+        setupDragListener(true)
+    }
+
     override fun getActionMenuId() = R.menu.cab_timezones
 
     override fun prepareActionMode(menu: Menu) {}

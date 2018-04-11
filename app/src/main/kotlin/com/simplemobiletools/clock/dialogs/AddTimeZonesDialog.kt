@@ -19,8 +19,8 @@ class AddTimeZonesDialog(val activity: SimpleActivity, private val callback: () 
                 .setPositiveButton(R.string.ok, { dialog, which -> dialogConfirmed() })
                 .setNegativeButton(R.string.cancel, null)
                 .create().apply {
-            activity.setupDialogStuff(view, this)
-        }
+                    activity.setupDialogStuff(view, this)
+                }
     }
 
     private fun dialogConfirmed() {

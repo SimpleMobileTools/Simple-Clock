@@ -23,7 +23,6 @@ import com.simplemobiletools.commons.models.FAQItem
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : SimpleActivity() {
-    private var storedUseEnglish = false
     private var storedTextColor = 0
     private var storedBackgroundColor = 0
     private var storedPrimaryColor = 0
@@ -48,11 +47,6 @@ class MainActivity : SimpleActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (storedUseEnglish != config.useEnglish) {
-            restartActivity()
-            return
-        }
-
         val configTextColor = config.textColor
         if (storedTextColor != configTextColor) {
             getInactiveTabIndexes(view_pager.currentItem).forEach {
@@ -114,7 +108,6 @@ class MainActivity : SimpleActivity() {
             storedTextColor = textColor
             storedBackgroundColor = backgroundColor
             storedPrimaryColor = primaryColor
-            storedUseEnglish = useEnglish
         }
     }
 
