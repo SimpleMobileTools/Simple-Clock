@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Simple Clock</string>
+    <string name="app_launcher_name">Ur</string>
+    <string name="time_zone">Tidszone</string>
+    <string name="vibrate">Vibrer</string>
+    <string name="label">Etiket</string>
+    <string name="no_days_selected">Der er ikke valgt nogen dage</string>
+    <string name="timer">Æggeur</string>
+    <string name="lap">Mellemtid</string>
+    <string name="stopwatch_stopped">Stopuret er standset</string>
+    <string name="timer_stopped">Æggeuret er standset</string>
+    <string name="max_reminder_duration">Længste varighed af påmindelse</string>
+    <string name="time_expired">Tiden er udløbet</string>
+    <string name="clock_and_date">Clock and date</string>
+    <string name="use_text_shadow">Anvend tekstskygge</string>
+
+    <!-- Settings -->
+    <string name="clock_tab">Ur</string>
+    <string name="alarm_tab">Alarm</string>
+    <string name="stopwatch_tab">Stopur</string>
+    <string name="timer_tab">Æggeur</string>
+    <string name="show_seconds">Vis sekunder</string>
+
+    <!-- FAQ -->
+    <string name="faq_1_title">Hvordan kan jeg ændre sortering af mellemtider i stopuret?</string>
+    <string name="faq_1_text">Klik på den kolonne der skal sorteres efter. Med flere klik kan du skifte mellem stigende og faldende rækkefølge.</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">En kombination af ur, vækkeur, stopur og æggeur.</string>
+    <string name="app_long_description">
+        Appen har flere funktioner relateret til tider.
+
+        Uret kan sættes til at vise tider i andre tidszoner eller vise den simple widget. Widget\'ens tekstfarve kan ændres, og det kan baggrundens farve og alfa også.
+
+        Vækkeuret har alle de forventede funktioner såsom valg af ugedag(e), vibrering, valg af ringetone, udsættelse af alarm og oprettelse af en etiket.
+
+        Med stopuret kan du nemt måle en længere tidsperiode samt individuelle mellemtider. Du kan sortere mellemtider efter varighed, vælge vibration ved tryk på knapper for at tydeliggøre at knappen blev aktiveret selv hvis du ikke kan se på din enhed.
+
+        Du kan nemt opsætte en timer med æggeuret og blive underrettet efter et valgt tidsrum. Du kan vælge underretningslyd og til- eller fravælge vibration.
+
+        Ekstra funktioner omfatter også at forhindre enheden i at falde i søvn når appen er i forgrunden.
+
+        Indeholder ingen reklamer eller unødvendige tilladelser. Den er helt igennem open source, og du kan selv bestemme farverne.
+
+        Denne app er en enkelt del af en større serie apps. Du kan finde dem alle på siden https://www.simplemobiletools.com
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
