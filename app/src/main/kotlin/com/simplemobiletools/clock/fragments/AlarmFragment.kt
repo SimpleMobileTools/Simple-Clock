@@ -101,9 +101,9 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
 
     private fun checkAlarmState(alarm: Alarm) {
         if (alarm.isEnabled) {
-            context!!.scheduleNextAlarm(alarm, true)
+            context?.scheduleNextAlarm(alarm, true)
         } else {
-            context!!.cancelAlarmClock(alarm)
+            context?.cancelAlarmClock(alarm)
         }
     }
 

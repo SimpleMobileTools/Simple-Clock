@@ -1,6 +1,7 @@
 package com.simplemobiletools.clock.extensions
 
 import android.annotation.SuppressLint
+import android.annotation.TargetApi
 import android.app.*
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
@@ -12,7 +13,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.PowerManager
 import android.provider.Settings
-import android.support.annotation.RequiresApi
 import android.support.v4.app.AlarmManagerCompat
 import android.support.v4.app.NotificationCompat
 import android.text.SpannableString
@@ -195,7 +195,7 @@ fun Context.formatTo12HourFormat(showSeconds: Boolean, hours: Int, minutes: Int,
     return "${formatTime(showSeconds, false, newHours, minutes, seconds)} $appendable"
 }
 
-@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 fun Context.getNextAlarm(): String {
     if (isLollipopPlus()) {
         val milliseconds = (getSystemService(Context.ALARM_SERVICE) as AlarmManager).nextAlarmClock?.triggerTime ?: return ""
