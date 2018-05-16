@@ -1,6 +1,14 @@
 Changelog
 ==========
 
+Version 4.0.0 *(2018-05-16)*
+----------------------------
+
+ * Allow changing the app launcher icon color
+ * Use bigger text size at widget, when made higher
+ * Show the next alarm at the clock fragment, if set
+ * Add a settings button for customizing widget color without recreating it
+
 Version 3.1.3 *(2018-04-11)*
 ----------------------------
 
