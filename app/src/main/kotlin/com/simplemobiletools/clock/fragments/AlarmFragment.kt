@@ -81,11 +81,11 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
 
     private fun openEditAlarm(alarm: Alarm) {
         currentEditAlarmDialog = EditAlarmDialog(activity as SimpleActivity, alarm) {
+            alarm.id = it
             currentEditAlarmDialog = null
             setupAlarms()
             checkAlarmState(alarm)
         }
-
     }
 
     override fun alarmToggled(id: Int, isEnabled: Boolean) {

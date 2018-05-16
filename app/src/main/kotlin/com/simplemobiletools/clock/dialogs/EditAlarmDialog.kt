@@ -16,7 +16,7 @@ import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
 import com.simplemobiletools.commons.models.AlarmSound
 import kotlinx.android.synthetic.main.dialog_edit_alarm.view.*
 
-class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callback: () -> Unit) {
+class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callback: (alarmId: Int) -> Unit) {
     private val view = activity.layoutInflater.inflate(R.layout.dialog_edit_alarm, null)
     private val textColor = activity.config.textColor
 
@@ -98,8 +98,10 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
 
                             alarm.label = view.edit_alarm_label.value
 
+                            var alarmId = alarm.id
                             if (alarm.id == 0) {
-                                if (!activity.dbHelper.insertAlarm(alarm)) {
+                                alarmId = activity.dbHelper.insertAlarm(alarm)
+                                if (alarmId == -1) {
                                     activity.toast(R.string.unknown_error_occurred)
                                 }
                             } else {
@@ -107,7 +109,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                                     activity.toast(R.string.unknown_error_occurred)
                                 }
                             }
-                            callback()
+                            callback(alarmId)
                             dismiss()
                         }
                     }
