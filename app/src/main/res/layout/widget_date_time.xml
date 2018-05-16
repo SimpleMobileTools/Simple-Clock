@@ -17,7 +17,6 @@
             android:id="@+id/widget_time"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/widget_time_height"
-            android:layout_marginTop="-2dp"
             android:includeFontPadding="false"
             android:textSize="@dimen/widget_time_text_size"
             tools:text="00:00"/>

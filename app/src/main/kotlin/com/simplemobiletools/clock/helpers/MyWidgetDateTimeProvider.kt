@@ -126,7 +126,7 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
         }
     }
 
-    fun getMultiplyColoredBitmap(resourceId: Int, newColor: Int, context: Context): Bitmap {
+    private fun getMultiplyColoredBitmap(resourceId: Int, newColor: Int, context: Context): Bitmap {
         val options = BitmapFactory.Options()
         options.inMutable = true
         val bmp = BitmapFactory.decodeResource(context.resources, resourceId, options)
