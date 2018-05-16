@@ -11,10 +11,7 @@ import android.widget.RemoteViews
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SplashActivity
 import com.simplemobiletools.clock.extensions.*
-import com.simplemobiletools.commons.extensions.getColoredBitmap
-import com.simplemobiletools.commons.extensions.setBackgroundColor
-import com.simplemobiletools.commons.extensions.setText
-import com.simplemobiletools.commons.extensions.setVisibleIf
+import com.simplemobiletools.commons.extensions.*
 import java.util.*
 
 class MyWidgetDateTimeProvider : AppWidgetProvider() {
@@ -88,7 +85,7 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
     private fun getComponentName(context: Context) = ComponentName(context, this::class.java)
 
     private fun setupAppOpenIntent(context: Context, views: RemoteViews) {
-        Intent(context, SplashActivity::class.java).apply {
+        (context.getLaunchIntent() ?: Intent(context, SplashActivity::class.java)).apply {
             putExtra(OPEN_TAB, TAB_CLOCK)
             val pendingIntent = PendingIntent.getActivity(context, OPEN_APP_INTENT_ID, this, PendingIntent.FLAG_UPDATE_CURRENT)
             views.setOnClickPendingIntent(R.id.widget_date_time_holder, pendingIntent)
