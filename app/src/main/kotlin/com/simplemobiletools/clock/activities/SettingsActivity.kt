@@ -1,5 +1,6 @@
 package com.simplemobiletools.clock.activities
 
+import android.content.Intent
 import android.os.Bundle
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.config
@@ -7,6 +8,7 @@ import com.simplemobiletools.clock.extensions.updateWidgets
 import com.simplemobiletools.clock.helpers.DEFAULT_MAX_ALARM_REMINDER_SECS
 import com.simplemobiletools.clock.helpers.DEFAULT_MAX_TIMER_REMINDER_SECS
 import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.commons.helpers.MINUTE_SECONDS
 import kotlinx.android.synthetic.main.activity_settings.*
 import java.util.*
@@ -33,6 +35,7 @@ class SettingsActivity : SimpleActivity() {
         setupVibrate()
         setupTimerMaxReminder()
         setupUseTextShadow()
+        setupCustomizeWidgetColors()
         updateTextColors(settings_holder)
         setupSectionColors()
     }
@@ -168,5 +171,14 @@ class SettingsActivity : SimpleActivity() {
 
     private fun updateTimerMaxReminderText() {
         settings_timer_max_reminder.text = formatSecondsToTimeString(config.timerMaxReminderSecs)
+    }
+
+    private fun setupCustomizeWidgetColors() {
+        settings_customize_widget_colors_holder.setOnClickListener {
+            Intent(this, WidgetDateTimeConfigureActivity::class.java).apply {
+                putExtra(IS_CUSTOMIZING_COLORS, true)
+                startActivity(this)
+            }
+        }
     }
 }

@@ -14,6 +14,8 @@ import com.simplemobiletools.clock.helpers.MyWidgetDateTimeProvider
 import com.simplemobiletools.clock.helpers.getPassedSeconds
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.extensions.adjustAlpha
+import com.simplemobiletools.commons.extensions.setFillWithStroke
+import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import kotlinx.android.synthetic.main.widget_config_date_time.*
 import java.util.*
 
@@ -24,6 +26,7 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
     private var mBgColor = 0
     private var mTextColorWithoutTransparency = 0
     private var mTextColor = 0
+    private var mIsCustomizingColors = false
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         useDynamicTheme = false
@@ -32,12 +35,12 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
         setContentView(R.layout.widget_config_date_time)
         initVariables()
 
-        val extras = intent.extras
-        if (extras != null)
-            mWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
+        mIsCustomizingColors = intent.extras?.getBoolean(IS_CUSTOMIZING_COLORS) ?: false
+        mWidgetId = intent.extras?.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID) ?: AppWidgetManager.INVALID_APPWIDGET_ID
 
-        if (mWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID)
+        if (mWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID && !mIsCustomizingColors) {
             finish()
+        }
 
         config_save.setOnClickListener { saveConfig() }
         config_bg_color.setOnClickListener { pickBackgroundColor() }
@@ -123,7 +126,7 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
 
     private fun updateColors() {
         mTextColor = mTextColorWithoutTransparency
-        config_text_color.setBackgroundColor(mTextColor)
+        config_text_color.setFillWithStroke(mTextColor, Color.BLACK)
         config_save.setTextColor(mTextColor)
         config_time.setTextColor(mTextColor)
         config_date.setTextColor(mTextColor)
@@ -131,7 +134,7 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
 
     private fun updateBgColor() {
         mBgColor = mBgColorWithoutTransparency.adjustAlpha(mBgAlpha)
-        config_bg_color.setBackgroundColor(mBgColor)
+        config_bg_color.setFillWithStroke(mBgColor, Color.BLACK)
         config_save.setBackgroundColor(mBgColor)
         config_date_time_wrapper.setBackgroundColor(mBgColor)
     }
