@@ -7,6 +7,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.graphics.*
+import android.os.Bundle
 import android.widget.RemoteViews
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SplashActivity
@@ -29,9 +30,13 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
     private fun performUpdate(context: Context) {
         val appWidgetManager = AppWidgetManager.getInstance(context)
         appWidgetManager.getAppWidgetIds(getComponentName(context)).forEach {
+            val bundle = appWidgetManager.getAppWidgetOptions(it)
+            val minHeight = bundle.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT)
+            val isSmallLayout = getCellsForSize(minHeight) == 1
+
             val layout = if (context.config.useTextShadow) R.layout.widget_date_time_with_shadow else R.layout.widget_date_time
             RemoteViews(context.packageName, layout).apply {
-                updateTexts(context, this)
+                updateTexts(context, this, isSmallLayout)
                 updateColors(context, this)
                 setupAppOpenIntent(context, this)
                 appWidgetManager.updateAppWidget(it, this)
@@ -39,12 +44,19 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
         }
     }
 
-    private fun updateTexts(context: Context, views: RemoteViews) {
+    private fun updateTexts(context: Context, views: RemoteViews, isSmallLayout: Boolean) {
         val calendar = Calendar.getInstance()
         val use24HourFormat = context.config.use24HourFormat
 
         val timeText = context.getFormattedTime(getPassedSeconds(), false, false).toString()
+        val dimenResource = if (isSmallLayout) R.dimen.widget_time_text_size_small else R.dimen.widget_time_text_size_big
+        val timeTextSize = context.resources.getDimension(dimenResource) / context.resources.displayMetrics.density
+
+        val topPadding = if (isSmallLayout) 0 else context.resources.getDimension(R.dimen.tiny_margin).toInt()
+        val bottomPadding = context.resources.getDimension(if (isSmallLayout) R.dimen.tiny_margin else R.dimen.medium_margin).toInt()
+
         views.apply {
+            setViewPadding(R.id.widget_date_time_holder, 0, topPadding, 0, bottomPadding)
             if (use24HourFormat) {
                 setText(R.id.widget_time, timeText)
             } else {
@@ -53,6 +65,7 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
                 setText(R.id.widget_time_am_pm, " ${timeParts[1]}")
             }
             setText(R.id.widget_date, context.getFormattedDate(calendar))
+            setTextSize(R.id.widget_time, timeTextSize)
             setVisibleIf(R.id.widget_time_am_pm, !use24HourFormat)
 
             val nextAlarm = getFormattedNextAlarm(context)
@@ -126,6 +139,11 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
         }
     }
 
+    override fun onAppWidgetOptionsChanged(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int, newOptions: Bundle?) {
+        performUpdate(context)
+        super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions)
+    }
+
     private fun getMultiplyColoredBitmap(resourceId: Int, newColor: Int, context: Context): Bitmap {
         val options = BitmapFactory.Options()
         options.inMutable = true
@@ -136,5 +154,13 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
         val canvas = Canvas(bmp)
         canvas.drawBitmap(bmp, 0f, 0f, paint)
         return bmp
+    }
+
+    private fun getCellsForSize(size: Int): Int {
+        var n = 2
+        while (70 * n - 30 < size) {
+            ++n
+        }
+        return n - 1
     }
 }
