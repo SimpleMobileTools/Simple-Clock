@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.simplemobiletools.clock.R
+import com.simplemobiletools.clock.activities.MainActivity
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.adapters.AlarmsAdapter
 import com.simplemobiletools.clock.dialogs.EditAlarmDialog
@@ -105,6 +106,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
         } else {
             context?.cancelAlarmClock(alarm)
         }
+        (activity as? MainActivity)?.updateClockTabAlarm()
     }
 
     fun updateAlarmSound(alarmSound: AlarmSound) {

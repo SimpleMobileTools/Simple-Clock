@@ -11,10 +11,7 @@ import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.adapters.TimeZonesAdapter
 import com.simplemobiletools.clock.dialogs.AddTimeZonesDialog
 import com.simplemobiletools.clock.dialogs.EditTimeZoneDialog
-import com.simplemobiletools.clock.extensions.config
-import com.simplemobiletools.clock.extensions.getAllTimeZonesModified
-import com.simplemobiletools.clock.extensions.getFormattedDate
-import com.simplemobiletools.clock.extensions.getFormattedTime
+import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.getPassedSeconds
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.commons.extensions.beVisibleIf
@@ -64,6 +61,7 @@ class ClockFragment : Fragment() {
         passedSeconds = getPassedSeconds()
         updateCurrentTime()
         updateDate()
+        updateAlarm()
         setupViews()
     }
 
@@ -107,6 +105,15 @@ class ClockFragment : Fragment() {
         val formattedDate = context!!.getFormattedDate(calendar)
         view.clock_date.text = formattedDate
         (view.time_zones_list.adapter as? TimeZonesAdapter)?.todayDateString = formattedDate
+    }
+
+    fun updateAlarm() {
+        view.apply {
+            val nextAlarm = context!!.getNextAlarm()
+            clock_alarm.beVisibleIf(nextAlarm.isNotEmpty())
+            clock_alarm.text = nextAlarm
+            clock_alarm.colorLeftDrawable(context!!.config.textColor)
+        }
     }
 
     private fun updateTimeZones() {

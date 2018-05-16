@@ -128,6 +128,10 @@ class MainActivity : SimpleActivity() {
         }
     }
 
+    fun updateClockTabAlarm() {
+        getViewPagerAdapter()?.updateClockTabAlarm()
+    }
+
     private fun getViewPagerAdapter() = view_pager.adapter as? ViewPagerAdapter
 
     private fun initFragments() {
