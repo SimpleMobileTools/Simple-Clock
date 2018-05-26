@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Simple Clock</string>
+    <string name="app_launcher_name">Klokke</string>
+    <string name="time_zone">Tidssone</string>
+    <string name="vibrate">Vibrer</string>
+    <string name="label">Påskrift</string>
+    <string name="no_days_selected">Ingen dager valgte</string>
+    <string name="timer">Timer</string>
+    <string name="lap">Runde</string>
+    <string name="stopwatch_stopped">Stoppeklokke er stoppet</string>
+    <string name="timer_stopped">Timer er stoppet</string>
+    <string name="max_reminder_duration">Maksimum påminnelsesvarighet</string>
+    <string name="time_expired">Tid utløpt</string>
+    <string name="clock_and_date">Klokke og dato</string>
+    <string name="use_text_shadow">Bruk tekstskygge</string>
+
+    <!-- Settings -->
+    <string name="clock_tab">Klokke</string>
+    <string name="alarm_tab">Alarm</string>
+    <string name="stopwatch_tab">Stoppeklokke</string>
+    <string name="timer_tab">Timer</string>
+    <string name="show_seconds">Vis sekunder</string>
+
+    <!-- FAQ -->
+    <string name="faq_1_title">How can I change lap sorting at the stopwatch tab?</string>
+    <string name="faq_1_text">Just click on any of the columns, that will make the laps be sorted by the given column. With additional clicks you can toggle between ascending and descending sorting.</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">A combination of a clock, alarm, stopwatch and timer.</string>
+    <string name="app_long_description">
+        The app has multiple functions related to timing.
+
+        At the clock you can enable displaying times from other timezones, or use the simple, but customizable clock widget. The text color of the widget can be customized, as well as the color and the alpha of the background.
+
+        The alarm contains all the expected features as day selecting, vibration toggling, ringtone selecting, snooze or adding a custom label.
+
+        With the stopwatch you can easily measure a longer period of time, or individual laps. You can sort the laps by lap time, it contains optional vibrations on button presses too, just to let you know that the button was pressed, even if you cannot look at the device.
+
+        You can easily setup a timer to be notified of some event. You can both change its ringtone, or toggle vibrations.
+
+        Additional features include for example preventing the device from falling asleep while the app is in foreground.
+
+        Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
+
+        This app is just one piece of a bigger series of apps. You can find the rest of them at https://www.simplemobiletools.com
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
