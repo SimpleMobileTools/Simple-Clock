@@ -261,6 +261,7 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
         val name = getString(R.string.timer)
         val importance = NotificationManager.IMPORTANCE_HIGH
         NotificationChannel(channelId, name, importance).apply {
+            setBypassDnd(true)
             enableLights(true)
             lightColor = getAdjustedPrimaryColor()
             enableVibration(config.timerVibrate)
@@ -331,9 +332,9 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm, add
                 .build()
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val name = label
         val importance = NotificationManager.IMPORTANCE_HIGH
-        NotificationChannel(channelId, name, importance).apply {
+        NotificationChannel(channelId, label, importance).apply {
+            setBypassDnd(true)
             enableLights(true)
             lightColor = getAdjustedPrimaryColor()
             enableVibration(alarm.vibrate)
@@ -353,8 +354,8 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm, add
             .setAutoCancel(true)
             .setSound(Uri.parse(soundUri), AudioManager.STREAM_ALARM)
             .setChannelId(channelId)
-            .addAction(R.drawable.ic_cross, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getHideAlarmPendingIntent(alarm))
             .addAction(R.drawable.ic_snooze, getString(R.string.snooze), getSnoozePendingIntent(alarm, addDeleteIntent))
+            .addAction(R.drawable.ic_cross, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getHideAlarmPendingIntent(alarm))
 
     if (addDeleteIntent) {
         builder.setDeleteIntent(reminderActivityIntent)
