@@ -1,6 +1,13 @@
 Changelog
 ==========
 
+Version 4.0.1 *(2018-05-27)*
+----------------------------
+
+ * Improve alarm reliability
+ * Play the timer sound at the Alarm sound stream
+ * Couple stability and UX improvements
+
 Version 4.0.0 *(2018-05-16)*
 ----------------------------
 
