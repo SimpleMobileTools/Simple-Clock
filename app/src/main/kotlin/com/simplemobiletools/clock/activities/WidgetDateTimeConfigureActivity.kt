@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.widget.SeekBar
 import com.simplemobiletools.clock.R
+import com.simplemobiletools.clock.R.id.*
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.getFormattedDate
 import com.simplemobiletools.clock.extensions.getFormattedTime
@@ -26,7 +27,6 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
     private var mBgColor = 0
     private var mTextColorWithoutTransparency = 0
     private var mTextColor = 0
-    private var mIsCustomizingColors = false
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         useDynamicTheme = false
@@ -35,10 +35,10 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
         setContentView(R.layout.widget_config_date_time)
         initVariables()
 
-        mIsCustomizingColors = intent.extras?.getBoolean(IS_CUSTOMIZING_COLORS) ?: false
+        val isCustomizingColors = intent.extras?.getBoolean(IS_CUSTOMIZING_COLORS) ?: false
         mWidgetId = intent.extras?.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID) ?: AppWidgetManager.INVALID_APPWIDGET_ID
 
-        if (mWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID && !mIsCustomizingColors) {
+        if (mWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID && !isCustomizingColors) {
             finish()
         }
 
