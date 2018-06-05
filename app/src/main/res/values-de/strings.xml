@@ -29,7 +29,7 @@
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Eine Kombination einer Uhr, eines Alarms, einer Stoppuhr und eines Timers.</string>
     <string name="app_long_description">
-        Diese Anwendung hat zahlreiche Zeitfunktionalitäten.
+        Diese App hat zahlreiche Zeitfunktionalitäten.
 
         Auf der Uhr können Sie die Anzeige von Zeiten aus anderen Zeitzonen aktivieren oder das einfache, aber anpassbare Uhr-Widget verwenden. Die Textfarbe des Widgets kann angepasst werden, sowie Farbe und Alpha des Hintergrunds.
 
@@ -43,7 +43,7 @@
 
         Beinhaltet keine Werbung oder unnötige Berechtigungen. Sie ist komplett Open Source, alle verwendeten Farben sind anpassbar.
 
-        Diese Anwendung ist nur eine aus einer größeren Serie. Der Rest davon findet sich auf https://www.simplemobiletools.com
+        Diese App ist nur eine aus einer größeren Serie. Der Rest davon findet sich auf https://www.simplemobiletools.com
     </string>
 
     <!--
