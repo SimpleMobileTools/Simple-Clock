@@ -20,6 +20,7 @@
     <string name="stopwatch_tab">Stopur</string>
     <string name="timer_tab">Æggeur</string>
     <string name="show_seconds">Vis sekunder</string>
+    <string name="increase_volume_gradually">Increase volume gradually</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">Hvordan kan jeg ændre sortering af mellemtider i stopuret?</string>

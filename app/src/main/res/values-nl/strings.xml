@@ -20,6 +20,7 @@
     <string name="stopwatch_tab">Stopwatch tab</string>
     <string name="timer_tab">Timer tab</string>
     <string name="show_seconds">Laat seconden zien</string>
+    <string name="increase_volume_gradually">Increase volume gradually</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">Hoe kan ik ronde tijden sorteren op de stopwatch tab?</string>

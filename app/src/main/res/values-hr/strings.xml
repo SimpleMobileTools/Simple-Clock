@@ -20,6 +20,7 @@
     <string name="stopwatch_tab">Kartica štoperice</string>
     <string name="timer_tab">Kartica brojača</string>
     <string name="show_seconds">Prikaži sekunde</string>
+    <string name="increase_volume_gradually">Increase volume gradually</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">Kako mogu promijeniti sortiranje krugova na kartici štoperice?</string>

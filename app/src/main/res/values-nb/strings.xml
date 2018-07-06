@@ -20,6 +20,7 @@
     <string name="stopwatch_tab">Stoppeklokke</string>
     <string name="timer_tab">Timer</string>
     <string name="show_seconds">Vis sekunder</string>
+    <string name="increase_volume_gradually">Increase volume gradually</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">How can I change lap sorting at the stopwatch tab?</string>

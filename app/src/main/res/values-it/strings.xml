@@ -20,6 +20,7 @@
     <string name="stopwatch_tab">Scheda cronometro</string>
     <string name="timer_tab">Scheda timer</string>
     <string name="show_seconds">Mostra secondi</string>
+    <string name="increase_volume_gradually">Increase volume gradually</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">Come posso cambiare l\'ordinamento dei giri nel cronometro?</string>

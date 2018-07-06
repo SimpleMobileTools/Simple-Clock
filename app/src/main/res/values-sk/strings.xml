@@ -20,6 +20,7 @@
     <string name="stopwatch_tab">Okno so stopkami</string>
     <string name="timer_tab">Okno s časovačom</string>
     <string name="show_seconds">Zobraziť sekundy</string>
+    <string name="increase_volume_gradually">Zvyšovať hlasitosť postupne</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">Ako viem zmeniť poradie kôl na okne so stopkami?</string>

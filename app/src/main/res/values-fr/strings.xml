@@ -20,6 +20,7 @@
     <string name="stopwatch_tab">Chronomètre</string>
     <string name="timer_tab">Minuteur</string>
     <string name="show_seconds">Montrer les secondes</string>
+    <string name="increase_volume_gradually">Increase volume gradually</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">Comment changer l\'ordre de tri des tours dans l\'onglet chronomètre ?</string>

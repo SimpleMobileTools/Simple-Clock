@@ -20,6 +20,7 @@
     <string name="stopwatch_tab">碼錶頁面</string>
     <string name="timer_tab">計時器頁面</string>
     <string name="show_seconds">顯示秒數</string>
+    <string name="increase_volume_gradually">Increase volume gradually</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">碼錶頁面分段的排序如何變更?</string>

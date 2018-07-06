@@ -20,6 +20,7 @@
     <string name="stopwatch_tab">Fliken Stoppur</string>
     <string name="timer_tab">Fliken Timer</string>
     <string name="show_seconds">Visa sekunder</string>
+    <string name="increase_volume_gradually">Increase volume gradually</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">How can I change lap sorting at the stopwatch tab?</string>

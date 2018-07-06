@@ -20,6 +20,7 @@
     <string name="stopwatch_tab">Stoppuhr</string>
     <string name="timer_tab">Timer</string>
     <string name="show_seconds">Sekunden anzeigen</string>
+    <string name="increase_volume_gradually">Increase volume gradually</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">Wie kann die Sortierung der Laschen der Stoppuhr geändert werden?</string>
