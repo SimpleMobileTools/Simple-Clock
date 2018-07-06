@@ -26,19 +26,21 @@ class StopwatchAdapter(activity: SimpleActivity, var laps: ArrayList<Lap>, recyc
 
     override fun prepareActionMode(menu: Menu) {}
 
-    override fun prepareItemSelection(view: View) {}
+    override fun prepareItemSelection(viewHolder: ViewHolder) {}
 
-    override fun markItemSelection(select: Boolean, view: View?) {}
+    override fun markViewHolderSelection(select: Boolean, viewHolder: ViewHolder?) {}
 
     override fun actionItemPressed(id: Int) {}
 
     override fun getSelectableItemCount() = laps.size
 
+    override fun getIsItemSelectable(position: Int) = false
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = createViewHolder(R.layout.item_lap, parent)
 
     override fun onBindViewHolder(holder: MyRecyclerViewAdapter.ViewHolder, position: Int) {
         val lap = laps[position]
-        val view = holder.bindView(lap, false) { itemView, layoutPosition ->
+        val view = holder.bindView(lap, false, false) { itemView, layoutPosition ->
             setupView(itemView, lap)
         }
         bindViewHolder(holder, position, view)

@@ -29,10 +29,10 @@ class TimeZonesAdapter(activity: SimpleActivity, var timeZones: ArrayList<MyTime
 
     override fun prepareActionMode(menu: Menu) {}
 
-    override fun prepareItemSelection(view: View) {}
+    override fun prepareItemSelection(viewHolder: ViewHolder) {}
 
-    override fun markItemSelection(select: Boolean, view: View?) {
-        view?.time_zone_frame?.isSelected = select
+    override fun markViewHolderSelection(select: Boolean, viewHolder: ViewHolder?) {
+        viewHolder?.itemView?.time_zone_frame?.isSelected = select
     }
 
     override fun actionItemPressed(id: Int) {
@@ -47,11 +47,13 @@ class TimeZonesAdapter(activity: SimpleActivity, var timeZones: ArrayList<MyTime
 
     override fun getSelectableItemCount() = timeZones.size
 
+    override fun getIsItemSelectable(position: Int) = true
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = createViewHolder(R.layout.item_time_zone, parent)
 
     override fun onBindViewHolder(holder: MyRecyclerViewAdapter.ViewHolder, position: Int) {
         val timeZone = timeZones[position]
-        val view = holder.bindView(timeZone, true) { itemView, layoutPosition ->
+        val view = holder.bindView(timeZone, true, true) { itemView, layoutPosition ->
             setupView(itemView, timeZone)
         }
         bindViewHolder(holder, position, view)
