@@ -50,4 +50,8 @@ class Config(context: Context) : BaseConfig(context) {
     var useTextShadow: Boolean
         get() = prefs.getBoolean(USE_TEXT_SHADOW, true)
         set(useTextShadow) = prefs.edit().putBoolean(USE_TEXT_SHADOW, useTextShadow).apply()
+
+    var increaseVolumeGradually: Boolean
+        get() = prefs.getBoolean(INCREASE_VOLUME_GRADUALLY, true)
+        set(increaseVolumeGradually) = prefs.edit().putBoolean(INCREASE_VOLUME_GRADUALLY, increaseVolumeGradually).apply()
 }

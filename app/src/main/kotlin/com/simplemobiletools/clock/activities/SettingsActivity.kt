@@ -34,6 +34,7 @@ class SettingsActivity : SimpleActivity() {
         setupSnoozeTime()
         setupVibrate()
         setupTimerMaxReminder()
+        setupIncreaseVolumeGradually()
         setupUseTextShadow()
         setupCustomizeWidgetColors()
         updateTextColors(settings_holder)
@@ -149,6 +150,14 @@ class SettingsActivity : SimpleActivity() {
                 config.timerMaxReminderSecs = if (it != 0) it else DEFAULT_MAX_TIMER_REMINDER_SECS
                 updateTimerMaxReminderText()
             }
+        }
+    }
+
+    private fun setupIncreaseVolumeGradually() {
+        settings_increase_volume_gradually.isChecked = config.increaseVolumeGradually
+        settings_increase_volume_gradually_holder.setOnClickListener {
+            settings_increase_volume_gradually.toggle()
+            config.increaseVolumeGradually = settings_increase_volume_gradually.isChecked
         }
     }
 
