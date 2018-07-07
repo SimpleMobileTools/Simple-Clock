@@ -16,7 +16,7 @@ import com.simplemobiletools.commons.helpers.MINUTE_SECONDS
 import kotlinx.android.synthetic.main.activity_reminder.*
 
 class ReminderActivity : SimpleActivity() {
-    private val INCREASE_VOLUME_DELAY = 1000L
+    private val INCREASE_VOLUME_DELAY = 3000L
 
     private val increaseVolumeHandler = Handler()
     private val maxReminderDurationHandler = Handler()
@@ -97,8 +97,8 @@ class ReminderActivity : SimpleActivity() {
         finish()
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onDestroy() {
+        super.onDestroy()
         increaseVolumeHandler.removeCallbacksAndMessages(null)
         maxReminderDurationHandler.removeCallbacksAndMessages(null)
         destroyPlayer()
