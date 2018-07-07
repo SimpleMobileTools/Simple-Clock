@@ -14,7 +14,7 @@ class AlarmReceiver : BroadcastReceiver() {
         val alarm = context.dbHelper.getAlarmWithId(id) ?: return
 
         if (context.isScreenOn()) {
-            context.showAlarmNotification(alarm, false)
+            context.showAlarmNotification(alarm)
             Handler().postDelayed({
                 context.hideNotification(id)
             }, context.config.alarmMaxReminderSecs * 1000L)

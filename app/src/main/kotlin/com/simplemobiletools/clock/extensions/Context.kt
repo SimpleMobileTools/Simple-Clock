@@ -224,9 +224,9 @@ fun Context.rescheduleEnabledAlarms() {
 
 fun Context.isScreenOn() = (getSystemService(Context.POWER_SERVICE) as PowerManager).isScreenOn
 
-fun Context.showAlarmNotification(alarm: Alarm, addDeleteIntent: Boolean) {
+fun Context.showAlarmNotification(alarm: Alarm) {
     val pendingIntent = getOpenAlarmTabIntent()
-    val notification = getAlarmNotification(pendingIntent, alarm, addDeleteIntent)
+    val notification = getAlarmNotification(pendingIntent, alarm)
     val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     notificationManager.notify(alarm.id, notification)
     scheduleNextAlarm(alarm, false)
@@ -313,7 +313,7 @@ fun Context.getHideAlarmPendingIntent(alarm: Alarm): PendingIntent {
 }
 
 @SuppressLint("NewApi")
-fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm, addDeleteIntent: Boolean): Notification {
+fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): Notification {
     var soundUri = alarm.soundUri
     if (soundUri == SILENT) {
         soundUri = ""
@@ -354,12 +354,8 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm, add
             .setAutoCancel(true)
             .setSound(Uri.parse(soundUri), AudioManager.STREAM_ALARM)
             .setChannelId(channelId)
-            .addAction(R.drawable.ic_snooze, getString(R.string.snooze), getSnoozePendingIntent(alarm, addDeleteIntent))
-            .addAction(R.drawable.ic_cross, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getHideAlarmPendingIntent(alarm))
-
-    if (addDeleteIntent) {
-        builder.setDeleteIntent(reminderActivityIntent)
-    }
+            .addAction(R.drawable.ic_snooze, getString(R.string.snooze), getSnoozePendingIntent(alarm))
+            .addAction(R.drawable.ic_cross, getString(R.string.dismiss), getHideAlarmPendingIntent(alarm))
 
     if (isLollipopPlus()) {
         builder.setVisibility(Notification.VISIBILITY_PUBLIC)
@@ -375,11 +371,10 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm, add
     return notification
 }
 
-fun Context.getSnoozePendingIntent(alarm: Alarm, hideReminderActivity: Boolean): PendingIntent {
+fun Context.getSnoozePendingIntent(alarm: Alarm): PendingIntent {
     val snoozeClass = if (config.useSameSnooze) SnoozeService::class.java else SnoozeReminderActivity::class.java
     val intent = Intent(this, snoozeClass).setAction("Snooze")
     intent.putExtra(ALARM_ID, alarm.id)
-    intent.putExtra(HIDE_REMINDER_ACTIVITY, hideReminderActivity)
     return if (config.useSameSnooze) {
         PendingIntent.getService(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
     } else {
