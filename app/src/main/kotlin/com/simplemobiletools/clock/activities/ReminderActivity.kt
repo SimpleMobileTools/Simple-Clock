@@ -1,6 +1,9 @@
 package com.simplemobiletools.clock.activities
 
 import android.content.Intent
+import android.media.AudioManager
+import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import com.simplemobiletools.clock.R
@@ -14,8 +17,10 @@ import kotlinx.android.synthetic.main.activity_reminder.*
 
 class ReminderActivity : SimpleActivity() {
     private val hideNotificationHandler = Handler()
+    private val maxReminderDurationHandler = Handler()
     private var isAlarmReminder = false
     private var alarm: Alarm? = null
+    private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,18 +57,19 @@ class ReminderActivity : SimpleActivity() {
             snoozeClicked()
         }
 
-        Handler().postDelayed({
-            if (isAlarmReminder) {
-                showAlarmNotification(alarm!!)
-            } else {
-                showTimerNotification(true)
-            }
+        val maxDuration = if (isAlarmReminder) config.alarmMaxReminderSecs else config.timerMaxReminderSecs
+        maxReminderDurationHandler.postDelayed({
+            finishActivity()
+        }, maxDuration * 1000L)
 
-            val maxDuration = if (isAlarmReminder) config.alarmMaxReminderSecs else config.timerMaxReminderSecs
-            hideNotificationHandler.postDelayed({
-                finish()
-            }, maxDuration * 1000L)
-        }, 1000L)
+        val soundUri = Uri.parse(if (alarm != null) alarm!!.soundUri else config.timerSoundUri)
+        mediaPlayer = MediaPlayer().apply {
+            setAudioStreamType(AudioManager.STREAM_ALARM)
+            setDataSource(this@ReminderActivity, soundUri)
+            isLooping = true
+            prepare()
+            start()
+        }
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -73,12 +79,15 @@ class ReminderActivity : SimpleActivity() {
 
     override fun onStop() {
         super.onStop()
-        if (isAlarmReminder) {
-            hideNotification(alarm?.id ?: 0)
-        } else {
-            hideTimerNotification()
-        }
         hideNotificationHandler.removeCallbacksAndMessages(null)
+        maxReminderDurationHandler.removeCallbacksAndMessages(null)
+        destroyPlayer()
+    }
+
+    private fun destroyPlayer() {
+        mediaPlayer?.stop()
+        mediaPlayer?.release()
+        mediaPlayer = null
     }
 
     private fun snoozeClicked() {
@@ -95,6 +104,7 @@ class ReminderActivity : SimpleActivity() {
     }
 
     private fun finishActivity() {
+        destroyPlayer()
         finish()
         overridePendingTransition(0, 0)
     }
