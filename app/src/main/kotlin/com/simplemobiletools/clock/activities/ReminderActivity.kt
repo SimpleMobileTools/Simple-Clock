@@ -16,11 +16,14 @@ import com.simplemobiletools.commons.helpers.MINUTE_SECONDS
 import kotlinx.android.synthetic.main.activity_reminder.*
 
 class ReminderActivity : SimpleActivity() {
-    private val hideNotificationHandler = Handler()
+    private val INCREASE_VOLUME_DELAY = 1000L
+
+    private val increaseVolumeHandler = Handler()
     private val maxReminderDurationHandler = Handler()
     private var isAlarmReminder = false
     private var alarm: Alarm? = null
     private var mediaPlayer: MediaPlayer? = null
+    private var lastVolumeValue = 0.1f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,14 +65,31 @@ class ReminderActivity : SimpleActivity() {
             finishActivity()
         }, maxDuration * 1000L)
 
+        if (!isAlarmReminder || !config.increaseVolumeGradually) {
+            lastVolumeValue = 1f
+        }
+
         val soundUri = Uri.parse(if (alarm != null) alarm!!.soundUri else config.timerSoundUri)
         mediaPlayer = MediaPlayer().apply {
             setAudioStreamType(AudioManager.STREAM_ALARM)
             setDataSource(this@ReminderActivity, soundUri)
+            setVolume(lastVolumeValue, lastVolumeValue)
             isLooping = true
             prepare()
             start()
         }
+
+        if (config.increaseVolumeGradually) {
+            scheduleVolumeIncrease()
+        }
+    }
+
+    private fun scheduleVolumeIncrease() {
+        increaseVolumeHandler.postDelayed({
+            lastVolumeValue = Math.min(lastVolumeValue + 0.1f, 1f)
+            mediaPlayer?.setVolume(lastVolumeValue, lastVolumeValue)
+            scheduleVolumeIncrease()
+        }, INCREASE_VOLUME_DELAY)
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -79,7 +99,7 @@ class ReminderActivity : SimpleActivity() {
 
     override fun onStop() {
         super.onStop()
-        hideNotificationHandler.removeCallbacksAndMessages(null)
+        increaseVolumeHandler.removeCallbacksAndMessages(null)
         maxReminderDurationHandler.removeCallbacksAndMessages(null)
         destroyPlayer()
     }
