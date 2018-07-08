@@ -65,8 +65,19 @@ class ReminderActivity : SimpleActivity() {
     }
 
     private fun setupButtons() {
+        if (isAlarmReminder) {
+            setupAlarmButtons()
+        } else {
+            setupTimerButtons()
+        }
+    }
+
+    private fun setupAlarmButtons() {
+        reminder_stop.beGone()
         reminder_draggable_background.startAnimation(AnimationUtils.loadAnimation(this, R.anim.pulsing_animation))
         reminder_draggable_background.applyColorFilter(getAdjustedPrimaryColor())
+        reminder_snooze.applyColorFilter(config.textColor)
+
         var minDragX = 0f
         var maxDragX = 0f
         var initialDraggableX = 0f
@@ -116,9 +127,17 @@ class ReminderActivity : SimpleActivity() {
             }
             true
         }
+    }
 
-        reminder_snooze.beVisibleIf(isAlarmReminder)
-        reminder_snooze.applyColorFilter(config.textColor)
+    private fun setupTimerButtons() {
+        reminder_stop.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, getAdjustedPrimaryColor())
+        arrayOf(reminder_snooze, reminder_draggable_background, reminder_draggable, reminder_dismiss).forEach {
+            it.beGone()
+        }
+
+        reminder_stop.setOnClickListener {
+            finish()
+        }
     }
 
     private fun setupAudio() {
