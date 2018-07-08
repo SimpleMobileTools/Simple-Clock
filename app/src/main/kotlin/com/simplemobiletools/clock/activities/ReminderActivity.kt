@@ -85,6 +85,7 @@ class ReminderActivity : SimpleActivity() {
                 MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                     dragDownX = 0f
                     if (!didVibrate) {
+                        toast(R.string.swipe_right_to_dismiss)
                         reminder_draggable.animate().x(initialDraggableX).withEndAction {
                             reminder_draggable_background.animate().alpha(0.2f)
                         }
