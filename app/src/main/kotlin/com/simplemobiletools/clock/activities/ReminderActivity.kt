@@ -119,7 +119,7 @@ class ReminderActivity : SimpleActivity() {
             setupAlarmClock(alarm!!, config.snoozeTime * MINUTE_SECONDS)
             finishActivity()
         } else {
-            showPickSecondsDialog(config.snoozeTime * MINUTE_SECONDS, true, cancelCallback = { finishActivity() }) {
+            showPickSecondsDialog(config.snoozeTime * MINUTE_SECONDS, true) {
                 config.snoozeTime = it / MINUTE_SECONDS
                 setupAlarmClock(alarm!!, it)
                 finishActivity()
