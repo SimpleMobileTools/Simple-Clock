@@ -51,6 +51,17 @@ class ReminderActivity : SimpleActivity() {
 
         reminder_title.text = label
         reminder_text.text = if (isAlarmReminder) getFormattedTime(getPassedSeconds(), false, false) else getString(R.string.time_expired)
+
+        val maxDuration = if (isAlarmReminder) config.alarmMaxReminderSecs else config.timerMaxReminderSecs
+        maxReminderDurationHandler.postDelayed({
+            finishActivity()
+        }, maxDuration * 1000L)
+
+        setupButtons()
+        setupAudio()
+    }
+
+    private fun setupButtons() {
         reminder_draggable_background.startAnimation(AnimationUtils.loadAnimation(this, R.anim.pulsing_animation))
         reminder_draggable_background.applyColorFilter(getAdjustedPrimaryColor())
 
@@ -63,12 +74,9 @@ class ReminderActivity : SimpleActivity() {
         reminder_snooze.setOnClickListener {
             snoozeClicked()
         }
+    }
 
-        val maxDuration = if (isAlarmReminder) config.alarmMaxReminderSecs else config.timerMaxReminderSecs
-        maxReminderDurationHandler.postDelayed({
-            finishActivity()
-        }, maxDuration * 1000L)
-
+    private fun setupAudio() {
         if (!isAlarmReminder || !config.increaseVolumeGradually) {
             lastVolumeValue = 1f
         }
