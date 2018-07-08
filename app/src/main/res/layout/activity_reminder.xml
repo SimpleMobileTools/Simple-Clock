@@ -44,6 +44,20 @@
         app:layout_constraintTop_toTopOf="@+id/reminder_draggable"/>
 
     <ImageView
+        android:id="@+id/reminder_draggable_background"
+        android:layout_width="@dimen/reminder_background_min_size"
+        android:layout_height="@dimen/reminder_background_min_size"
+        android:layout_marginBottom="@dimen/activity_margin"
+        android:alpha="0.2"
+        android:padding="@dimen/normal_margin"
+        android:src="@drawable/pulsing_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/reminder_stop"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/reminder_snooze"
+        app:layout_constraintTop_toBottomOf="@+id/reminder_text"/>
+
+    <ImageView
         android:id="@+id/reminder_draggable"
         android:layout_width="@dimen/stopwatch_button_small_size"
         android:layout_height="@dimen/stopwatch_button_small_size"
