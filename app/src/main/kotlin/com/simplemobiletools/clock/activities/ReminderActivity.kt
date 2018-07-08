@@ -6,6 +6,7 @@ import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.view.MotionEvent
 import android.view.animation.AnimationUtils
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.*
@@ -16,7 +17,6 @@ import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.MINUTE_SECONDS
 import kotlinx.android.synthetic.main.activity_reminder.*
 
-
 class ReminderActivity : SimpleActivity() {
     private val INCREASE_VOLUME_DELAY = 3000L
 
@@ -26,6 +26,7 @@ class ReminderActivity : SimpleActivity() {
     private var alarm: Alarm? = null
     private var mediaPlayer: MediaPlayer? = null
     private var lastVolumeValue = 0.1f
+    private var dragDownX = 0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,8 +65,26 @@ class ReminderActivity : SimpleActivity() {
     private fun setupButtons() {
         reminder_draggable_background.startAnimation(AnimationUtils.loadAnimation(this, R.anim.pulsing_animation))
         reminder_draggable_background.applyColorFilter(getAdjustedPrimaryColor())
+        var minDragX = 0f
+        var maxDragX = 0f
 
-        reminder_stop.setOnClickListener {
+        reminder_dismiss.onGlobalLayout {
+            minDragX = reminder_snooze.left.toFloat()
+            maxDragX = reminder_dismiss.left.toFloat()
+        }
+
+        reminder_draggable.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> dragDownX = event.x
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> dragDownX = 0f
+                MotionEvent.ACTION_MOVE -> {
+                    reminder_draggable.x = Math.min(maxDragX, Math.max(minDragX, event.rawX - dragDownX))
+                }
+            }
+            true
+        }
+
+        reminder_dismiss.setOnClickListener {
             finish()
         }
 
