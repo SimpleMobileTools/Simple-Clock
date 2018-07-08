@@ -13,6 +13,7 @@
     <string name="time_expired">Laikas pasibaigė</string>
     <string name="clock_and_date">Laikrodis ir data</string>
     <string name="use_text_shadow">Naudoti teksto šešėlį</string>
+    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze</string>
 
     <!-- Settings -->
     <string name="clock_tab">Laikrodžio skirtukas</string>

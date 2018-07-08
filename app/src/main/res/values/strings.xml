@@ -13,6 +13,7 @@
     <string name="time_expired">Time expired</string>
     <string name="clock_and_date">Clock and date</string>
     <string name="use_text_shadow">Use text shadow</string>
+    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze</string>
 
     <!-- Settings -->
     <string name="clock_tab">Clock tab</string>

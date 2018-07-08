@@ -13,6 +13,7 @@
     <string name="time_expired">Čas vypršal</string>
     <string name="clock_and_date">Hodiny a dátum</string>
     <string name="use_text_shadow">Použiť tieňovanie písma</string>
+    <string name="swipe_right_to_dismiss">Potiahnite vpravo na odstránenie, alebo vľavo na odloženie</string>
 
     <!-- Settings -->
     <string name="clock_tab">Okno s časom</string>

@@ -13,6 +13,7 @@
     <string name="time_expired">Vrijeme je isteklo</string>
     <string name="clock_and_date">Datum i vrijeme</string>
     <string name="use_text_shadow">Upotrijebite sjenu teksta</string>
+    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze</string>
 
     <!-- Settings -->
     <string name="clock_tab">Kartica sata</string>

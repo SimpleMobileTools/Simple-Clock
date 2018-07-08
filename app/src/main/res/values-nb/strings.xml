@@ -13,6 +13,7 @@
     <string name="time_expired">Tid utløpt</string>
     <string name="clock_and_date">Klokke og dato</string>
     <string name="use_text_shadow">Bruk tekstskygge</string>
+    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze</string>
 
     <!-- Settings -->
     <string name="clock_tab">Klokke</string>

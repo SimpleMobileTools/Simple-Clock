@@ -13,6 +13,7 @@
     <string name="time_expired">時間結束</string>
     <string name="clock_and_date">時鐘和日期</string>
     <string name="use_text_shadow">使用文字陰影</string>
+    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze</string>
 
     <!-- Settings -->
     <string name="clock_tab">時鐘頁面</string>
