@@ -95,15 +95,15 @@ class ReminderActivity : SimpleActivity() {
                     if (reminder_draggable.x >= maxDragX - 50f) {
                         if (!didVibrate) {
                             reminder_draggable.performHapticFeedback()
+                            didVibrate = true
+                            finishActivity()
                         }
-                        didVibrate = true
-                        finishActivity()
                     } else if (reminder_draggable.x <= minDragX + 50f) {
                         if (!didVibrate) {
                             reminder_draggable.performHapticFeedback()
+                            didVibrate = true
+                            snoozeAlarm()
                         }
-                        didVibrate = true
-                        snoozeAlarm()
                     }
                 }
             }
