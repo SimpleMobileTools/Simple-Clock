@@ -83,4 +83,15 @@
         app:layout_constraintStart_toEndOf="@+id/reminder_draggable"
         app:layout_constraintTop_toTopOf="@+id/reminder_draggable"/>
 
+    <com.simplemobiletools.commons.views.MyTextView
+        android:id="@+id/reminder_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        android:text="@string/swipe_right_to_dismiss"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reminder_draggable"/>
+
 </android.support.constraint.ConstraintLayout>

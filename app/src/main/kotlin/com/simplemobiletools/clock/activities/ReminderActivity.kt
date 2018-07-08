@@ -22,6 +22,7 @@ class ReminderActivity : SimpleActivity() {
 
     private val increaseVolumeHandler = Handler()
     private val maxReminderDurationHandler = Handler()
+    private val swipeGuideFadeHandler = Handler()
     private var isAlarmReminder = false
     private var didVibrate = false
     private var alarm: Alarm? = null
@@ -88,6 +89,12 @@ class ReminderActivity : SimpleActivity() {
                         reminder_draggable.animate().x(initialDraggableX).withEndAction {
                             reminder_draggable_background.animate().alpha(0.2f)
                         }
+
+                        reminder_guide.animate().alpha(1f).start()
+                        swipeGuideFadeHandler.removeCallbacksAndMessages(null)
+                        swipeGuideFadeHandler.postDelayed({
+                            reminder_guide.animate().alpha(0f).start()
+                        }, 2000L)
                     }
                 }
                 MotionEvent.ACTION_MOVE -> {
@@ -151,6 +158,7 @@ class ReminderActivity : SimpleActivity() {
         super.onDestroy()
         increaseVolumeHandler.removeCallbacksAndMessages(null)
         maxReminderDurationHandler.removeCallbacksAndMessages(null)
+        swipeGuideFadeHandler.removeCallbacksAndMessages(null)
         destroyPlayer()
     }
 
