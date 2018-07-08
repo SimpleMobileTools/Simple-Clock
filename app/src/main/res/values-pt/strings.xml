@@ -13,7 +13,7 @@
     <string name="time_expired">Tempo expirado</string>
     <string name="clock_and_date">Relógio e data</string>
     <string name="use_text_shadow">Utilizar sombras</string>
-    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze</string>
+    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze.</string>
 
     <!-- Settings -->
     <string name="clock_tab">Relógio</string>

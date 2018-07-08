@@ -13,7 +13,7 @@
     <string name="time_expired">Tempo scaduto</string>
     <string name="clock_and_date">Data e ora</string>
     <string name="use_text_shadow">Usa ombra del testo</string>
-    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze</string>
+    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze.</string>
 
     <!-- Settings -->
     <string name="clock_tab">Scheda orologio</string>
