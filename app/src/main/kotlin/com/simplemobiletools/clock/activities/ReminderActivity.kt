@@ -136,7 +136,7 @@ class ReminderActivity : SimpleActivity() {
         }
 
         reminder_stop.setOnClickListener {
-            finish()
+            finishActivity()
         }
     }
 
