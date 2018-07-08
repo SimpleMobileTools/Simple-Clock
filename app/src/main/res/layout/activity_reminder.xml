@@ -35,26 +35,37 @@
         style="@style/MyBorderlessBackgroundStyle"
         android:layout_width="@dimen/stopwatch_button_small_size"
         android:layout_height="@dimen/stopwatch_button_small_size"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/reminder_stop"
         android:padding="@dimen/normal_margin"
         android:src="@drawable/ic_snooze_big"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/reminder_stop"
-        app:layout_constraintEnd_toStartOf="@+id/reminder_stop"
+        app:layout_constraintBottom_toBottomOf="@+id/reminder_draggable"
+        app:layout_constraintEnd_toStartOf="@+id/reminder_draggable"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/reminder_stop"/>
+        app:layout_constraintTop_toTopOf="@+id/reminder_draggable"/>
+
+    <ImageView
+        android:id="@+id/reminder_draggable"
+        android:layout_width="@dimen/stopwatch_button_small_size"
+        android:layout_height="@dimen/stopwatch_button_small_size"
+        android:layout_marginBottom="16dp"
+        android:padding="@dimen/normal_margin"
+        android:src="@drawable/ic_alarm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/reminder_stop"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/reminder_snooze"
+        app:layout_constraintTop_toBottomOf="@+id/reminder_text"/>
 
     <ImageView
         android:id="@+id/reminder_stop"
-        android:layout_width="@dimen/stopwatch_button_size"
-        android:layout_height="@dimen/stopwatch_button_size"
-        android:layout_marginBottom="@dimen/big_margin"
+        android:layout_width="@dimen/stopwatch_button_small_size"
+        android:layout_height="@dimen/stopwatch_button_small_size"
         android:padding="@dimen/normal_margin"
-        android:src="@drawable/ic_stop"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/ic_dismiss_alarm_big"
+        app:layout_constraintBottom_toBottomOf="@+id/reminder_draggable"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toEndOf="@+id/reminder_draggable"
+        app:layout_constraintTop_toTopOf="@+id/reminder_draggable"/>
 
 </android.support.constraint.ConstraintLayout>
