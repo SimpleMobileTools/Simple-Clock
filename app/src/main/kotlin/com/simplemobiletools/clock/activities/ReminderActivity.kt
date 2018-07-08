@@ -23,6 +23,7 @@ class ReminderActivity : SimpleActivity() {
     private val increaseVolumeHandler = Handler()
     private val maxReminderDurationHandler = Handler()
     private var isAlarmReminder = false
+    private var didVibrate = false
     private var alarm: Alarm? = null
     private var mediaPlayer: MediaPlayer? = null
     private var lastVolumeValue = 0.1f
@@ -67,32 +68,50 @@ class ReminderActivity : SimpleActivity() {
         reminder_draggable_background.applyColorFilter(getAdjustedPrimaryColor())
         var minDragX = 0f
         var maxDragX = 0f
+        var initialDraggableX = 0f
 
         reminder_dismiss.onGlobalLayout {
             minDragX = reminder_snooze.left.toFloat()
             maxDragX = reminder_dismiss.left.toFloat()
+            initialDraggableX = reminder_draggable.left.toFloat()
         }
 
         reminder_draggable.setOnTouchListener { v, event ->
             when (event.action) {
-                MotionEvent.ACTION_DOWN -> dragDownX = event.x
-                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> dragDownX = 0f
+                MotionEvent.ACTION_DOWN -> {
+                    dragDownX = event.x
+                    reminder_draggable_background.animate().alpha(0f)
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    dragDownX = 0f
+                    if (!didVibrate) {
+                        reminder_draggable.animate().x(initialDraggableX).withEndAction {
+                            reminder_draggable_background.animate().alpha(0.2f)
+                        }
+                    }
+                }
                 MotionEvent.ACTION_MOVE -> {
                     reminder_draggable.x = Math.min(maxDragX, Math.max(minDragX, event.rawX - dragDownX))
+                    if (reminder_draggable.x >= maxDragX - 50f) {
+                        if (!didVibrate) {
+                            reminder_draggable.performHapticFeedback()
+                        }
+                        didVibrate = true
+                        finishActivity()
+                    } else if (reminder_draggable.x <= minDragX + 50f) {
+                        if (!didVibrate) {
+                            reminder_draggable.performHapticFeedback()
+                        }
+                        didVibrate = true
+                        snoozeAlarm()
+                    }
                 }
             }
             true
         }
 
-        reminder_dismiss.setOnClickListener {
-            finish()
-        }
-
         reminder_snooze.beVisibleIf(isAlarmReminder)
         reminder_snooze.applyColorFilter(config.textColor)
-        reminder_snooze.setOnClickListener {
-            snoozeClicked()
-        }
     }
 
     private fun setupAudio() {
@@ -125,7 +144,7 @@ class ReminderActivity : SimpleActivity() {
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        finish()
+        finishActivity()
     }
 
     override fun onDestroy() {
@@ -141,12 +160,13 @@ class ReminderActivity : SimpleActivity() {
         mediaPlayer = null
     }
 
-    private fun snoozeClicked() {
+    private fun snoozeAlarm() {
+        destroyPlayer()
         if (config.useSameSnooze) {
             setupAlarmClock(alarm!!, config.snoozeTime * MINUTE_SECONDS)
             finishActivity()
         } else {
-            showPickSecondsDialog(config.snoozeTime * MINUTE_SECONDS, true) {
+            showPickSecondsDialog(config.snoozeTime * MINUTE_SECONDS, true, cancelCallback = { finishActivity() }) {
                 config.snoozeTime = it / MINUTE_SECONDS
                 setupAlarmClock(alarm!!, it)
                 finishActivity()

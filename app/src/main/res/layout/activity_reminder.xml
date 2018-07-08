@@ -32,9 +32,10 @@
 
     <ImageView
         android:id="@+id/reminder_snooze"
-        android:layout_width="@dimen/stopwatch_button_small_size"
-        android:layout_height="@dimen/stopwatch_button_small_size"
-        android:padding="@dimen/normal_margin"
+        android:layout_width="@dimen/reminder_background_min_size"
+        android:layout_height="@dimen/reminder_background_min_size"
+        android:clickable="false"
+        android:padding="@dimen/activity_margin"
         android:src="@drawable/ic_snooze_big"
         app:layout_constraintBottom_toBottomOf="@+id/reminder_draggable"
         app:layout_constraintEnd_toStartOf="@+id/reminder_draggable"
@@ -48,7 +49,7 @@
         android:layout_height="@dimen/reminder_background_min_size"
         android:layout_marginBottom="@dimen/activity_margin"
         android:alpha="0.2"
-        android:padding="@dimen/normal_margin"
+        android:padding="@dimen/medium_margin"
         android:src="@drawable/pulsing_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/reminder_dismiss"
@@ -58,10 +59,10 @@
 
     <ImageView
         android:id="@+id/reminder_draggable"
-        android:layout_width="@dimen/stopwatch_button_small_size"
-        android:layout_height="@dimen/stopwatch_button_small_size"
+        android:layout_width="@dimen/reminder_background_min_size"
+        android:layout_height="@dimen/reminder_background_min_size"
         android:layout_marginBottom="@dimen/activity_margin"
-        android:padding="@dimen/normal_margin"
+        android:padding="@dimen/activity_margin"
         android:src="@drawable/ic_alarm_big"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/reminder_dismiss"
@@ -71,9 +72,10 @@
 
     <ImageView
         android:id="@+id/reminder_dismiss"
-        android:layout_width="@dimen/stopwatch_button_small_size"
-        android:layout_height="@dimen/stopwatch_button_small_size"
-        android:padding="@dimen/normal_margin"
+        android:layout_width="@dimen/reminder_background_min_size"
+        android:layout_height="@dimen/reminder_background_min_size"
+        android:clickable="false"
+        android:padding="@dimen/activity_margin"
         android:src="@drawable/ic_dismiss_alarm_big"
         app:layout_constraintBottom_toBottomOf="@+id/reminder_draggable"
         app:layout_constraintEnd_toEndOf="parent"
