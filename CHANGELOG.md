@@ -1,6 +1,13 @@
 Changelog
 ==========
 
+Version 4.1.0 *(2018-07-08)*
+----------------------------
+
+ * Adding a toggle for gradual volume increasing
+ * Rework the Alarm screen to use swipe to left/right for snooze/dismiss
+ * Couple other UX improvements
+
 Version 4.0.1 *(2018-05-27)*
 ----------------------------
 
