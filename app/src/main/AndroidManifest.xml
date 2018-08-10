@@ -25,11 +25,6 @@
             android:name=".activities.SplashActivity"
             android:launchMode="singleTask"
             android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
 
             <intent-filter>
                 <action android:name="android.intent.action.SHOW_ALARMS"/>
@@ -120,19 +115,6 @@
                 <action android:name="android.app.action.NEXT_ALARM_CLOCK_CHANGED"/>
             </intent-filter>
         </receiver>
-
-        <!-- Do not append ".Orange" to the default alias "name", it would remove the old homescreen launcher of users at upgrade -->
-        <activity-alias
-            android:name=".activities.SplashActivity"
-            android:enabled="true"
-            android:icon="@mipmap/ic_launcher"
-            android:roundIcon="@mipmap/ic_launcher"
-            android:targetActivity=".activities.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity-alias>
 
         <activity-alias
             android:name=".activities.SplashActivity.Red"
@@ -310,6 +292,18 @@
             android:roundIcon="@mipmap/ic_launcher_amber"
             android:targetActivity=".activities.SplashActivity">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name=".activities.SplashActivity.Orange"
+            android:enabled="true"
+            android:icon="@mipmap/ic_launcher"
+            android:roundIcon="@mipmap/ic_launcher"
+            android:targetActivity=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

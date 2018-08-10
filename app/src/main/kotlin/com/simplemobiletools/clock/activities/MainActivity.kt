@@ -179,6 +179,8 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun launchAbout() {
+        val licenses = LICENSE_STETHO or LICENSE_NUMBER_PICKER
+
         val faqItems = arrayListOf(
                 FAQItem(R.string.faq_1_title, R.string.faq_1_text),
                 FAQItem(R.string.faq_1_title_commons, R.string.faq_1_text_commons),
@@ -186,6 +188,6 @@ class MainActivity : SimpleActivity() {
                 FAQItem(R.string.faq_2_title_commons, R.string.faq_2_text_commons)
         )
 
-        startAboutActivity(R.string.app_name, LICENSE_STETHO or LICENSE_NUMBER_PICKER, BuildConfig.VERSION_NAME, faqItems)
+        startAboutActivity(R.string.app_name, licenses, BuildConfig.VERSION_NAME, faqItems, true)
     }
 }
