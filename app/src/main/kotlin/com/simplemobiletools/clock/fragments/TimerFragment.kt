@@ -1,12 +1,19 @@
 package com.simplemobiletools.clock.fragments
 
+import android.annotation.TargetApi
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.media.AudioManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.SystemClock
 import android.support.v4.app.Fragment
+import android.support.v4.app.NotificationCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,9 +23,12 @@ import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.dialogs.MyTimePickerDialogDialog
 import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.PICK_AUDIO_FILE_INTENT_ID
+import com.simplemobiletools.clock.helpers.TIMER_NOTIF_ID
 import com.simplemobiletools.commons.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
+import com.simplemobiletools.commons.helpers.isLollipopPlus
+import com.simplemobiletools.commons.helpers.isOreoPlus
 import com.simplemobiletools.commons.models.AlarmSound
 import kotlinx.android.synthetic.main.fragment_timer.view.*
 
@@ -104,6 +114,7 @@ class TimerFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         isForegrounded = false
+        context!!.hideNotification(TIMER_NOTIF_ID)
     }
 
     override fun onDestroy() {
@@ -229,8 +240,40 @@ class TimerFragment : Fragment() {
                     activity?.startActivity(this)
                 }
             }
+        } else if (!isForegrounded) {
+            showNotification(formattedDuration)
         }
+
         return true
+    }
+
+    @TargetApi(Build.VERSION_CODES.O)
+    private fun showNotification(formattedDuration: String) {
+        val channelId = "simple_alarm_timer"
+        val label = getString(R.string.timer)
+        val notificationManager = context!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (isOreoPlus()) {
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            NotificationChannel(channelId, label, importance).apply {
+                notificationManager.createNotificationChannel(this)
+            }
+        }
+
+        val builder = NotificationCompat.Builder(context)
+                .setContentTitle(label)
+                .setContentText(formattedDuration)
+                .setSmallIcon(R.drawable.ic_timer)
+                .setContentIntent(context!!.getOpenTimerTabIntent())
+                .setPriority(Notification.PRIORITY_DEFAULT)
+                .setOngoing(true)
+                .setAutoCancel(true)
+                .setChannelId(channelId)
+
+        if (isLollipopPlus()) {
+            builder.setVisibility(Notification.VISIBILITY_PUBLIC)
+        }
+
+        notificationManager.notify(TIMER_NOTIF_ID, builder.build())
     }
 
     private val updateRunnable = object : Runnable {

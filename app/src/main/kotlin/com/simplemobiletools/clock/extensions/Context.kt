@@ -343,7 +343,6 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
         }
     }
 
-    val reminderActivityIntent = getReminderActivityIntent()
     val builder = NotificationCompat.Builder(this)
             .setContentTitle(label)
             .setContentText(getFormattedTime(getPassedSeconds(), false, false))
