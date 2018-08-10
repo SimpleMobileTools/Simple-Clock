@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Ordulari sinplea</string>
+    <string name="app_launcher_name">Ordularia</string>
+    <string name="time_zone">Ordu eremua</string>
+    <string name="vibrate">Bibratu</string>
+    <string name="label">Etiketa</string>
+    <string name="no_days_selected">Ez duzu egunik hautatu</string>
+    <string name="timer">Tenporizagailua</string>
+    <string name="lap">Bira</string>
+    <string name="stopwatch_stopped">Kronometroa gelditu da</string>
+    <string name="timer_stopped">Tenporizagailua gelditu da</string>
+    <string name="max_reminder_duration">Oroigarriaren gehienezko iraupena</string>
+    <string name="time_expired">Denbora bukatu da</string>
+    <string name="clock_and_date">Erlojua eta data</string>
+    <string name="use_text_shadow">Erabili testu itzala</string>
+    <string name="swipe_right_to_dismiss">Pasatu eskumara desaktibatzeko edo ezkerrera ahazteko.</string>
+
+    <!-- Settings -->
+    <string name="clock_tab">Erloju fitxa</string>
+    <string name="alarm_tab">Alarma fitxa</string>
+    <string name="stopwatch_tab">Kronometro fitxa</string>
+    <string name="timer_tab">Tenporizagailu fitxa</string>
+    <string name="show_seconds">Erakutsi segunduak</string>
+    <string name="increase_volume_gradually">Bolumena gradualki igo</string>
+
+    <!-- FAQ -->
+    <string name="faq_1_title">Nola aldatu daiteke biren sailkapena kronometroaren fitxan?</string>
+    <string name="faq_1_text">Sakatu zutaberen bat, birak zutabe horren arabera sailkatzeko. Gehiagotan sakatuz ordena gorakor edo beherakorrean sailkatu dezakezu</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Konbinatutako ordulari, alarma, kronometro eta tenporizagailua.</string>
+    <string name="app_long_description">Aplikazio honek denborarekin zerikusia duten hainbat funtzio ditu.\n
+   Ordularian beste ordu eremuetako orduak aktibatu ditzakezu, edo trepeta sinplea baina pertsonalizagarria erabili. Trepetaren letra kolorea eta atzekaldearen kolorea eta alfa aldatu daitezke.\n
+   Alarmak espero diren ezaugarri guztiak ditu: egun hautaketa, bibrazioa (des)aktibatzea, doinu hautaketa edo etiketak gehitzea.\n
+   Kronometroarekin epe luze bat edo hainbat bira neurtu daitezke. Birak denboraren arabera sailkatu daitezke, aukerako bibrazioa dauka botoia sakatzerakoan, begiratu behar barik jakin dezazun botoia ondo sakatu duzula.\n
+   Erraza da tenporizagailuarekin gertaera ezberdinetaz jakinarazia izatea.\n
+   Gainontzeko ezaugarrien artean, ekiditzen du telefonoa lotara joatea aplikazioa aurrekaldean dagoen artean.\n
+   Ez dauka iragarkirik, ezta beharrezkoak ez diren baimenak. Iturri irekikoa da guztiz eta kolore pertsonalizagarriak ditu.\n
+   Aplikazio hau sorta handiago bateko zati bat baino ez da. Gainontzeko tresnak https://www.simplemobiletools.com webgunean aurkitu ditzakezu.</string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
