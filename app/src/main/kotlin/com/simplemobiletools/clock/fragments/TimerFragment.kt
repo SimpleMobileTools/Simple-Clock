@@ -240,7 +240,7 @@ class TimerFragment : Fragment() {
                     activity?.startActivity(this)
                 }
             }
-        } else if (!isForegrounded) {
+        } else if (diff > 0 && !isForegrounded && isRunning) {
             showNotification(formattedDuration)
         }
 
@@ -253,8 +253,9 @@ class TimerFragment : Fragment() {
         val label = getString(R.string.timer)
         val notificationManager = context!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (isOreoPlus()) {
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val importance = NotificationManager.IMPORTANCE_HIGH
             NotificationChannel(channelId, label, importance).apply {
+                setSound(null, null)
                 notificationManager.createNotificationChannel(this)
             }
         }
@@ -264,7 +265,8 @@ class TimerFragment : Fragment() {
                 .setContentText(formattedDuration)
                 .setSmallIcon(R.drawable.ic_timer)
                 .setContentIntent(context!!.getOpenTimerTabIntent())
-                .setPriority(Notification.PRIORITY_DEFAULT)
+                .setPriority(Notification.PRIORITY_HIGH)
+                .setSound(null)
                 .setOngoing(true)
                 .setAutoCancel(true)
                 .setChannelId(channelId)
