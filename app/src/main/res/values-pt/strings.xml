@@ -13,7 +13,7 @@
     <string name="time_expired">Tempo expirado</string>
     <string name="clock_and_date">Relógio e data</string>
     <string name="use_text_shadow">Utilizar sombras</string>
-    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze.</string>
+    <string name="swipe_right_to_dismiss">Deslize à direita para descartar e à esquerda para suspender.</string>
 
     <!-- Settings -->
     <string name="clock_tab">Relógio</string>
@@ -21,7 +21,7 @@
     <string name="stopwatch_tab">Cronómetro</string>
     <string name="timer_tab">Temporizador</string>
     <string name="show_seconds">Mostrar segundos</string>
-    <string name="increase_volume_gradually">Increase volume gradually</string>
+    <string name="increase_volume_gradually">Aumentar volume gradualmente</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">How can I change lap sorting at the stopwatch tab?</string>
