@@ -146,13 +146,17 @@ class ReminderActivity : SimpleActivity() {
         }
 
         val soundUri = Uri.parse(if (alarm != null) alarm!!.soundUri else config.timerSoundUri)
-        mediaPlayer = MediaPlayer().apply {
-            setAudioStreamType(AudioManager.STREAM_ALARM)
-            setDataSource(this@ReminderActivity, soundUri)
-            setVolume(lastVolumeValue, lastVolumeValue)
-            isLooping = true
-            prepare()
-            start()
+        try {
+            mediaPlayer = MediaPlayer().apply {
+                setAudioStreamType(AudioManager.STREAM_ALARM)
+                setDataSource(this@ReminderActivity, soundUri)
+                setVolume(lastVolumeValue, lastVolumeValue)
+                isLooping = true
+                prepare()
+                start()
+            }
+        } catch (e: Exception) {
+            showErrorToast(e)
         }
 
         if (config.increaseVolumeGradually) {
