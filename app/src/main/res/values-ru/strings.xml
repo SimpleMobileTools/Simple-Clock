@@ -13,7 +13,7 @@
     <string name="time_expired">Время вышло</string>
     <string name="clock_and_date">Часы и дата</string>
     <string name="use_text_shadow">Использовать затенение текста</string>
-    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze.</string>
+    <string name="swipe_right_to_dismiss">Свайп вправо — скрыть, влево — отложить.</string>
 
     <!-- Settings -->
     <string name="clock_tab">Часы</string>
@@ -21,11 +21,11 @@
     <string name="stopwatch_tab">Секундомер</string>
     <string name="timer_tab">Таймер</string>
     <string name="show_seconds">Показывать секунды</string>
-    <string name="increase_volume_gradually">Increase volume gradually</string>
+    <string name="increase_volume_gradually">Увеличивать громкость постепенно</string>
 
     <!-- FAQ -->
-    <string name="faq_1_title">How can I change lap sorting at the stopwatch tab?</string>
-    <string name="faq_1_text">Just click on any of the columns, that will make the laps be sorted by the given column. With additional clicks you can toggle between ascending and descending sorting.</string>
+    <string name="faq_1_title">Как я могу изменить сортировку кругов во вкладке секундомера?</string>
+    <string name="faq_1_text">Просто нажмите на любую из колонок, и круги отсортируются по этой колонке. Дополнительными кликами можно переключаться между сортировкой по возрастанию и по убыванию.</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- Short description has to have less than 80 chars -->
