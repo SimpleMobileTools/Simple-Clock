@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Sadə Saat</string>
+    <string name="app_launcher_name">Saat</string>
+    <string name="time_zone">Vaxt zonası</string>
+    <string name="vibrate">Titrət</string>
+    <string name="label">Etiket</string>
+    <string name="no_days_selected">Gün seçilməyib</string>
+    <string name="timer">Sayğac</string>
+    <string name="lap">Dövrə</string>
+    <string name="stopwatch_stopped">Saniyəölçən dayandı</string>
+    <string name="timer_stopped">Sayğaç dayandı</string>
+    <string name="max_reminder_duration">Maks. xatırladıcı müddəti</string>
+    <string name="time_expired">Vaxt bitdi</string>
+    <string name="clock_and_date">Saat və zaman</string>
+    <string name="use_text_shadow">Mətn kölgəsini işlət</string>
+    <string name="swipe_right_to_dismiss">Buraxmaq üçün sağa, Dondurmaq üçün sola sürüşdür.</string>
+
+    <!-- Settings -->
+    <string name="clock_tab">Saat bölməsi</string>
+    <string name="alarm_tab">Siqnal bölməsi</string>
+    <string name="stopwatch_tab">Saniyəölçən bölməsi</string>
+    <string name="timer_tab">Sayğaç bölməsi</string>
+    <string name="show_seconds">Saniyələri göstər</string>
+    <string name="increase_volume_gradually">Səsi aramla yüksəlt</string>
+
+    <!-- FAQ -->
+    <string name="faq_1_title">How can I change lap sorting at the stopwatch tab?</string>
+    <string name="faq_1_text">Just click on any of the columns, that will make the laps be sorted by the given column. With additional clicks you can toggle between ascending and descending sorting.</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Saat, sayğaç və saniyəölçənin birləşməsi.</string>
+    <string name="app_long_description">
+        Bu tətbiqin zamanla əlaqədar bir çox xüsusiyyəti mövcuddur.
+
+        At the clock you can enable displaying times from other timezones, or use the simple, but customizable clock widget. The text color of the widget can be customized, as well as the color and the alpha of the background.
+
+        The alarm contains all the expected features as day selecting, vibration toggling, ringtone selecting, snooze or adding a custom label.
+
+        With the stopwatch you can easily measure a longer period of time, or individual laps. You can sort the laps by lap time, it contains optional vibrations on button presses too, just to let you know that the button was pressed, even if you cannot look at the device.
+
+        You can easily setup a timer to be notified of some event. You can both change its ringtone, or toggle vibrations.
+
+        Additional features include for example preventing the device from falling asleep while the app is in foreground.
+
+        Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
+
+        This app is just one piece of a bigger series of apps. You can find the rest of them at https://www.simplemobiletools.com
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
