@@ -7,7 +7,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.widget.SeekBar
 import com.simplemobiletools.clock.R
-import com.simplemobiletools.clock.R.id.*
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.getFormattedDate
 import com.simplemobiletools.clock.extensions.getFormattedTime
@@ -105,15 +104,19 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
 
     private fun pickBackgroundColor() {
         ColorPickerDialog(this, mBgColorWithoutTransparency) { wasPositivePressed, color ->
-            mBgColorWithoutTransparency = color
-            updateBgColor()
+            if (wasPositivePressed) {
+                mBgColorWithoutTransparency = color
+                updateBgColor()
+            }
         }
     }
 
     private fun pickTextColor() {
         ColorPickerDialog(this, mTextColor) { wasPositivePressed, color ->
-            mTextColorWithoutTransparency = color
-            updateColors()
+            if (wasPositivePressed) {
+                mTextColorWithoutTransparency = color
+                updateColors()
+            }
         }
     }
 
