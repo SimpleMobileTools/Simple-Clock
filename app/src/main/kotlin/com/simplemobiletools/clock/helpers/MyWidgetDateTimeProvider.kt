@@ -13,6 +13,7 @@ import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SplashActivity
 import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.helpers.isOreoPlus
 import java.util.*
 
 class MyWidgetDateTimeProvider : AppWidgetProvider() {
@@ -31,13 +32,26 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
     private fun performUpdate(context: Context) {
         val appWidgetManager = AppWidgetManager.getInstance(context)
         appWidgetManager.getAppWidgetIds(getComponentName(context)).forEach {
-            val layout = if (context.config.useTextShadow) R.layout.widget_date_time_with_shadow else R.layout.widget_date_time
-            RemoteViews(context.packageName, layout).apply {
+            RemoteViews(context.packageName, getProperLayout(context)).apply {
                 updateTexts(context, this)
                 updateColors(context, this)
                 setupAppOpenIntent(context, this)
                 appWidgetManager.updateAppWidget(it, this)
             }
+        }
+    }
+
+    private fun getProperLayout(context: Context) = if (context.config.useTextShadow) {
+        if (isOreoPlus()) {
+            R.layout.widget_date_time_with_shadow
+        } else {
+            R.layout.widget_date_time_with_shadow_pre_oreo
+        }
+    } else {
+        if (isOreoPlus()) {
+            R.layout.widget_date_time
+        } else {
+            R.layout.widget_date_time_pre_oreo
         }
     }
 

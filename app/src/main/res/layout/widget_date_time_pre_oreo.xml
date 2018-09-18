@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_date_time_holder"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/small_margin"
+    android:paddingLeft="@dimen/small_margin"
+    android:paddingRight="@dimen/small_margin">
+
+    <TextView
+        android:id="@+id/widget_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:textSize="@dimen/widget_time_text_size_small"
+        tools:text="00:00"/>
+
+    <TextView
+        android:id="@+id/widget_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:textSize="@dimen/actionbar_text_size"
+        tools:text="Mon, 1 January"/>
+
+    <RelativeLayout
+        android:id="@+id/widget_alarm_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:id="@+id/widget_next_alarm_image"
+            android:layout_width="@dimen/widget_alarm_icon_size"
+            android:layout_height="@dimen/widget_alarm_icon_size"
+            android:layout_alignBottom="@+id/widget_next_alarm"
+            android:layout_alignTop="@+id/widget_next_alarm"
+            android:src="@drawable/ic_clock"/>
+
+        <TextView
+            android:id="@+id/widget_next_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/widget_next_alarm_image"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/small_margin"
+            android:textSize="@dimen/actionbar_text_size"
+            tools:text="Tue, 18:30"/>
+
+    </RelativeLayout>
+</LinearLayout>

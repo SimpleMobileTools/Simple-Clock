@@ -15,7 +15,6 @@
     <dimen name="alarm_text_size">44sp</dimen>
     <dimen name="stopwatch_text_size">60sp</dimen>
     <dimen name="widget_time_text_size_small">48sp</dimen>
-    <dimen name="widget_time_text_size_big">64sp</dimen>
     <dimen name="widget_details_text_size">14sp</dimen>
     <dimen name="reminder_activity_title_size">32sp</dimen>
     <dimen name="reminder_activity_text_size">26sp</dimen>
