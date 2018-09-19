@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 4.3.0 *(2018-09-19)*
+----------------------------
+
+ * Rewrote the widget to scale text size dynamically on Android 8+
+ * Couple stability and translation improvements
+
 Version 4.2.0 *(2018-08-10)*
 ----------------------------
 
