@@ -31,7 +31,7 @@
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Une horloge qui fait aussi minuteur, chronomètre et réveil.</string>
     <string name="app_long_description">
-        Cette application contient plusieurs fonctions liées au temps.          
+        Cette application contient plusieurs fonctions liées au temps.
 
         L\'horloge permet d\'afficher l\'heure sur plusieurs fuseaux horaires. Elle inclut un widget simple et personnalisable, où il est possible de modifier la couleur de la police d\'écriture, le fond, ainsi que la transparence.
 
