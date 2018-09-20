@@ -13,7 +13,7 @@
     <string name="time_expired">Temps écoulé</string>
     <string name="clock_and_date">Date et heure</string>
     <string name="use_text_shadow">Texte ombragé</string>
-    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze.</string>
+    <string name="swipe_right_to_dismiss">Balayez vers la droite pour rejeter ou vers la gauche pour dormir.</string>
 
     <!-- Settings -->
     <string name="clock_tab">Horloge</string>
@@ -21,7 +21,7 @@
     <string name="stopwatch_tab">Chronomètre</string>
     <string name="timer_tab">Minuteur</string>
     <string name="show_seconds">Montrer les secondes</string>
-    <string name="increase_volume_gradually">Increase volume gradually</string>
+    <string name="increase_volume_gradually">Augmenter progressivement le volume</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">Comment changer l\'ordre de tri des tours dans l\'onglet chronomètre ?</string>
@@ -42,7 +42,7 @@
         Vous pouvez utiliser le minuteur pour être averti d\'un événement, soit par sonnerie, soit par vibration.
 
         L\'application possède aussi quelques fonctions supplémentaires, comme par exemple empêcher la mise en veille de l\'appareil tant que l\'application est en premier plan.
-		
+
         Tout cela sans publicité, ni permission inutile. Cette application, opensource, permet aussi la personnalisation des couleurs.
 
         Cette application fait partie d\'une suite d\'applications. Vous pouvez trouver les autres sur https://www.simplemobiletools.com
