@@ -13,7 +13,7 @@
     <string name="time_expired">Tiden har löpt ut</string>
     <string name="clock_and_date">Klocka och datum</string>
     <string name="use_text_shadow">Använd textskugga</string>
-    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze.</string>
+    <string name="swipe_right_to_dismiss">Dra åt höger för att Stänga av eller åt vänster för att Snooza.</string>
 
     <!-- Settings -->
     <string name="clock_tab">Fliken Klocka</string>
