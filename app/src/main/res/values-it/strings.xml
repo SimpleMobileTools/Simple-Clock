@@ -13,7 +13,7 @@
     <string name="time_expired">Tempo scaduto</string>
     <string name="clock_and_date">Data e ora</string>
     <string name="use_text_shadow">Usa ombra del testo</string>
-    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze.</string>
+    <string name="swipe_right_to_dismiss">Scorri a destra per rimuovere, a sinistra per posporre.</string>
 
     <!-- Settings -->
     <string name="clock_tab">Scheda orologio</string>
@@ -21,7 +21,7 @@
     <string name="stopwatch_tab">Scheda cronometro</string>
     <string name="timer_tab">Scheda timer</string>
     <string name="show_seconds">Mostra secondi</string>
-    <string name="increase_volume_gradually">Increase volume gradually</string>
+    <string name="increase_volume_gradually">Incrementa il volume gradualmente</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">Come posso cambiare l\'ordinamento dei giri nel cronometro?</string>
