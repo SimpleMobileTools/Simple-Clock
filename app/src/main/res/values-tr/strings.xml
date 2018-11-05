@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Basit Saat</string>
+    <string name="app_launcher_name">Saat</string>
+    <string name="time_zone">Saat dilimi</string>
+    <string name="vibrate">Titret</string>
+    <string name="label">Etiket</string>
+    <string name="no_days_selected">Hiçbir gün seçilmedi</string>
+    <string name="timer">Zamanlayıcı</string>
+    <string name="lap">Tur</string>
+    <string name="stopwatch_stopped">Kronometre durduruldu</string>
+    <string name="timer_stopped">Zamanlayıcı durduruldu</string>
+    <string name="max_reminder_duration">Maksimum hatırlatma süresi</string>
+    <string name="time_expired">Zaman doldu</string>
+    <string name="clock_and_date">Saat ve tarih</string>
+    <string name="use_text_shadow">Metin gölgesi kullan</string>
+
+    <!-- Settings -->
+    <string name="clock_tab">Saat sekmesi</string>
+    <string name="alarm_tab">Alarm sekmesi</string>
+    <string name="stopwatch_tab">Kronometre sekmesi</string>
+    <string name="timer_tab">Zamanlayıcı sekmesi</string>
+    <string name="show_seconds">Saniye göster</string>
+    <string name="increase_volume_gradually">Sesi kademeli olarak artır</string>
+
+    <!-- FAQ -->
+    <string name="faq_1_title">Kronometre sekmesinde tur sıralamayı nasıl değiştirebilirim?</string>
+    <string name="faq_1_text">Sütunların herhangi birini tıklatarak, turların belirtilen sütuna göre sıralanmasını sağlayabilirsiniz. Ek tıklamalarla, artan ve azalan sıralama arasında geçiş yapabilirsiniz.</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Saat, alarm, kronometre ve zamanlayıcı bir arada.</string>
+    <string name="app_long_description">
+        Uygulama zamanlama ile ilgili birçok işleve sahiptir.
+
+        Saatte diğer saat dilimlerinden saat gösterme özelliğini etkinleştirebilir veya basit, ancak özelleştirilebilir saat widget\'ını kullanabilirsiniz. Widget\'ın metin renginin yanı sıra arka planın rengi ve alfa özelleştirilebilir.
+
+        Alarm, gün seçme, titreşim açma/kapama, zil sesi seçme, erteleme veya özel etiket ekleme gibi beklenen tüm özellikleri içerir.
+
+        Kronometre ile daha uzun süre veya bireysel turları kolayca ölçebilirsiniz. Turları tur zamanına göre sıralayabilirsiniz, düğmeye basıldığında isteğe bağlı titreşimleri de içerir, cihaza bakamıyor olsanız bile, düğmeye basıldığını bilmenizi sağlar.
+
+        Bazı etkinliklerden haberdar olmak için kolayca bir zamanlayıcı ayarlayabilirsiniz. Hem zil sesini değiştirebilir hem de titreşimleri açıp kapatabilirsiniz.
+
+        Ek özellikler, örneğin uygulama ön planda iken cihazın uykuya dalmasını önlemektir.
+
+        Reklam veya gereksiz izinler içermez. Tamamen açık kaynaktır, özelleştirilebilir renkler sunar.
+
+        Bu uygulama, daha büyük bir uygulama serisinden sadece bir parça. Geri kalanı http://www.simplemobiletools.com adresinde bulabilirsiniz
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
