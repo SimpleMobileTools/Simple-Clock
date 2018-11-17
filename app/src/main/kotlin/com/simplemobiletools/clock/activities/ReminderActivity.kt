@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.ALARM_ID
+import com.simplemobiletools.clock.helpers.SystemSound
 import com.simplemobiletools.clock.helpers.getPassedSeconds
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.*
@@ -18,17 +19,14 @@ import com.simplemobiletools.commons.helpers.MINUTE_SECONDS
 import kotlinx.android.synthetic.main.activity_reminder.*
 
 class ReminderActivity : SimpleActivity() {
-    private val INCREASE_VOLUME_DELAY = 3000L
 
-    private val increaseVolumeHandler = Handler()
     private val maxReminderDurationHandler = Handler()
     private val swipeGuideFadeHandler = Handler()
     private var isAlarmReminder = false
     private var didVibrate = false
     private var alarm: Alarm? = null
-    private var mediaPlayer: MediaPlayer? = null
-    private var lastVolumeValue = 0.1f
     private var dragDownX = 0f
+    private var systemSound: SystemSound? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -141,36 +139,11 @@ class ReminderActivity : SimpleActivity() {
     }
 
     private fun setupAudio() {
-        if (!isAlarmReminder || !config.increaseVolumeGradually) {
-            lastVolumeValue = 1f
-        }
-
         val soundUri = Uri.parse(if (alarm != null) alarm!!.soundUri else config.timerSoundUri)
-        try {
-            mediaPlayer = MediaPlayer().apply {
-                setAudioStreamType(AudioManager.STREAM_ALARM)
-                setDataSource(this@ReminderActivity, soundUri)
-                setVolume(lastVolumeValue, lastVolumeValue)
-                isLooping = true
-                prepare()
-                start()
-            }
-        } catch (e: Exception) {
-            showErrorToast(e)
-        }
-
-        if (config.increaseVolumeGradually) {
-            scheduleVolumeIncrease()
-        }
+        systemSound = SystemSound(this, soundUri);
+        systemSound?.start()
     }
 
-    private fun scheduleVolumeIncrease() {
-        increaseVolumeHandler.postDelayed({
-            lastVolumeValue = Math.min(lastVolumeValue + 0.1f, 1f)
-            mediaPlayer?.setVolume(lastVolumeValue, lastVolumeValue)
-            scheduleVolumeIncrease()
-        }, INCREASE_VOLUME_DELAY)
-    }
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
@@ -179,20 +152,14 @@ class ReminderActivity : SimpleActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        increaseVolumeHandler.removeCallbacksAndMessages(null)
         maxReminderDurationHandler.removeCallbacksAndMessages(null)
         swipeGuideFadeHandler.removeCallbacksAndMessages(null)
-        destroyPlayer()
     }
 
-    private fun destroyPlayer() {
-        mediaPlayer?.stop()
-        mediaPlayer?.release()
-        mediaPlayer = null
-    }
+
 
     private fun snoozeAlarm() {
-        destroyPlayer()
+        systemSound?.kill()
         if (config.useSameSnooze) {
             setupAlarmClock(alarm!!, config.snoozeTime * MINUTE_SECONDS)
             finishActivity()
@@ -206,7 +173,7 @@ class ReminderActivity : SimpleActivity() {
     }
 
     private fun finishActivity() {
-        destroyPlayer()
+        systemSound?.kill()
         finish()
         overridePendingTransition(0, 0)
     }

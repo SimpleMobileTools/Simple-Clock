@@ -23,6 +23,7 @@ class SystemSound(val context: Context, val toPlay: Uri) {
     private val mVolumeHandler: Handler = Handler();
     private val INCREASE_VOLUME_DELAY = 3000L
 
+
     // Core Functions: start and stop
 
     // This function starts playing the sound if appropriate.
@@ -34,7 +35,12 @@ class SystemSound(val context: Context, val toPlay: Uri) {
             } else {
                 mMediaPlayer.start();
             }
-            if (context.config.increaseVolumeGradually) {scheduleVolumeIncrease()}
+            if (context.config.increaseVolumeGradually) {
+                scheduleVolumeIncrease()
+            } else {
+                mVolume = 1f
+                mMediaPlayer.setVolume(mVolume, mVolume)
+            }
         } else {}
     }
 
