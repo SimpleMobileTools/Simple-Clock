@@ -102,7 +102,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                             if (alarm.id == 0) {
                                 alarmId = activity.dbHelper.insertAlarm(alarm)
                                 if (alarmId == -1) {
-                                    activity.toast(R.string.unknown_error_occurred)
+                                    activity.toast(R.string.unknown_error_occurred) // unreachable code !
                                 }
                             } else {
                                 if (!activity.dbHelper.updateAlarm(alarm)) {

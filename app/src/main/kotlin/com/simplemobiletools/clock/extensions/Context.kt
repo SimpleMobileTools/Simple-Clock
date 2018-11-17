@@ -224,6 +224,7 @@ fun Context.rescheduleEnabledAlarms() {
 
 fun Context.isScreenOn() = (getSystemService(Context.POWER_SERVICE) as PowerManager).isScreenOn
 
+
 fun Context.showAlarmNotification(alarm: Alarm) {
     val pendingIntent = getOpenAlarmTabIntent()
     val notification = getAlarmNotification(pendingIntent, alarm)
@@ -311,6 +312,7 @@ fun Context.getHideAlarmPendingIntent(alarm: Alarm): PendingIntent {
     intent.putExtra(ALARM_ID, alarm.id)
     return PendingIntent.getBroadcast(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }
+
 
 @SuppressLint("NewApi")
 fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): Notification {

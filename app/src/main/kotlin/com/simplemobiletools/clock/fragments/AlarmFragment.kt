@@ -80,6 +80,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
         }
     }
 
+    // TODO
     private fun openEditAlarm(alarm: Alarm) {
         currentEditAlarmDialog = EditAlarmDialog(activity as SimpleActivity, alarm) {
             alarm.id = it

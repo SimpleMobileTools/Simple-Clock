@@ -8,6 +8,7 @@ import com.simplemobiletools.clock.activities.ReminderActivity
 import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.ALARM_ID
 
+
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val id = intent.getIntExtra(ALARM_ID, -1)

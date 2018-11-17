@@ -11,6 +11,11 @@ class Config(context: Context) : BaseConfig(context) {
         fun newInstance(context: Context) = Config(context)
     }
 
+    // If True, then we must use headphones to make any noise.
+    var headphonesOnly: Boolean
+        get() = prefs.getBoolean(HEADPHONES_ONLY, false)
+        set(bool) = prefs.edit().putBoolean(HEADPHONES_ONLY, bool).apply()
+
     var showSeconds: Boolean
         get() = prefs.getBoolean(SHOW_SECONDS, true)
         set(showSeconds) = prefs.edit().putBoolean(SHOW_SECONDS, showSeconds).apply()

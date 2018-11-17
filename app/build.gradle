@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.simplemobiletools.clock"
-        minSdkVersion 16
+        minSdkVersion 23
         targetSdkVersion 28
         versionCode 10
         versionName "4.3.0"

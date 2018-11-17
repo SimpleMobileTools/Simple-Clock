@@ -26,6 +26,7 @@ class SettingsActivity : SimpleActivity() {
         setupCustomizeColors()
         setupUseEnglish()
         setupAvoidWhatsNew()
+        setupHeadphonesOnly()
         setupPreventPhoneFromSleeping()
         setupHourFormat()
         setupSundayFirst()
@@ -77,6 +78,15 @@ class SettingsActivity : SimpleActivity() {
         settings_avoid_whats_new_holder.setOnClickListener {
             settings_avoid_whats_new.toggle()
             config.avoidWhatsNew = settings_avoid_whats_new.isChecked
+        }
+    }
+
+
+    private fun setupHeadphonesOnly() {
+        settings_headphones_only.isChecked = config.headphonesOnly
+        settings_headphones_only_holder.setOnClickListener {
+            settings_headphones_only.toggle()
+            config.headphonesOnly = settings_headphones_only.isChecked
         }
     }
 
