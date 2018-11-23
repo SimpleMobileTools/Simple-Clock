@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">Simple Horloge</string>
+    <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Horloge</string>
     <string name="time_zone">Fuseau Horaire</string>
     <string name="vibrate">Vibrer</string>
     <string name="label">Titre</string>
-    <string name="no_days_selected">Aucun jour choisi !</string>
+    <string name="no_days_selected">Aucun jour sélectionné</string>
     <string name="timer">Minuteur</string>
     <string name="lap">Tour</string>
     <string name="stopwatch_stopped">Chronomètre arrêté</string>
@@ -13,39 +13,39 @@
     <string name="time_expired">Temps écoulé</string>
     <string name="clock_and_date">Date et heure</string>
     <string name="use_text_shadow">Texte ombragé</string>
-    <string name="swipe_right_to_dismiss">Balayez vers la droite pour rejeter ou vers la gauche pour dormir.</string>
+    <string name="swipe_right_to_dismiss">Balayez vers la droite pour arrêter ou vers la gauche pour répéter</string>
 
     <!-- Settings -->
     <string name="clock_tab">Horloge</string>
     <string name="alarm_tab">Réveil</string>
     <string name="stopwatch_tab">Chronomètre</string>
     <string name="timer_tab">Minuteur</string>
-    <string name="show_seconds">Montrer les secondes</string>
+    <string name="show_seconds">Afficher les secondes</string>
     <string name="increase_volume_gradually">Augmenter progressivement le volume</string>
 
     <!-- FAQ -->
-    <string name="faq_1_title">Comment changer l\'ordre de tri des tours dans l\'onglet chronomètre ?</string>
-    <string name="faq_1_text">Il suffit d\'appuyer sur les colonnes, les tours seront alors triés selon la colonne sur laquelle vous avez appuyer. Appuyer de nouveau permet d\'inverser l\'ordre (croissant/décroissant).</string>
+    <string name="faq_1_title">Comment changer l\'ordre de tri des temps dans l\'onglet chronomètre ?</string>
+    <string name="faq_1_text">Il suffit d\'appuyer sur les colonnes, les temps seront alors triés selon la colonne sur laquelle vous avez appuyé. Appuyer de nouveau permet d\'inverser l\'ordre (croissant/décroissant).</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Une horloge qui fait aussi minuteur, chronomètre et réveil.</string>
     <string name="app_long_description">
-        Cette application contient plusieurs fonctions liées au temps.
+        Cette application propose plusieurs fonctions liées aux horaires.
 
-        L\'horloge permet d\'afficher l\'heure sur plusieurs fuseaux horaires. Elle inclut un widget simple et personnalisable, où il est possible de modifier la couleur de la police d\'écriture, le fond, ainsi que la transparence.
+        L\'horloge permet d\'afficher l\'heure sur plusieurs fuseaux horaires. Cette application comprend un widget simple et personnalisable, dans lequel il est possible de modifier les couleurs de la police d\'écriture et de l\'arrière-plan, ainsi que  son opacité.
 
         Le réveil possède toutes les fonctions classiques : vibration, sonnerie, répétition et titre de l\'alarme.
 
-        Le chronomètre permet de mesurer soit un temps unique, soit un temps par tour. Il est possible de trier les tours, et votre périphérique peut vibrer lors de l\'appui sur un bouton, pour vous informer que le bouton a été déclenché sans regarger l\'écran.
+        Le chronomètre permet de mesurer soit un temps unique, soit un temps par tour. Il est possible de trier les tours, et votre périphérique peut vibrer lors de l\'appui sur un bouton, pour vous informer que le bouton a été déclenché sans avoir à regarder l\'écran.
 
         Vous pouvez utiliser le minuteur pour être averti d\'un événement, soit par sonnerie, soit par vibration.
 
         L\'application possède aussi quelques fonctions supplémentaires, comme par exemple empêcher la mise en veille de l\'appareil tant que l\'application est en premier plan.
 
-        Tout cela sans publicité, ni permission inutile. Cette application, opensource, permet aussi la personnalisation des couleurs.
-
-        Cette application fait partie d\'une suite d\'applications. Vous pouvez trouver les autres sur https://www.simplemobiletools.com
+        L\'application ne contient ni publicité, ni autorisation inutile. Elle est totalement opensource et est également fournie avec des couleurs personnalisables.
+          
+        Cette application fait partie d\'une plus grande suite. Vous pouvez trouver les autres applications sur https://www.simplemobiletools.com
     </string>
 
     <!--
