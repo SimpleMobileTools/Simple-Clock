@@ -2,6 +2,7 @@ package com.simplemobiletools.clock.activities
 
 import android.annotation.TargetApi
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
@@ -16,6 +17,7 @@ import com.simplemobiletools.clock.extensions.dbHelper
 import com.simplemobiletools.clock.extensions.getNextAlarm
 import com.simplemobiletools.clock.extensions.rescheduleEnabledAlarms
 import com.simplemobiletools.clock.helpers.*
+import com.simplemobiletools.clock.receivers.HeadphonesUnplugged
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.LICENSE_NUMBER_PICKER
 import com.simplemobiletools.commons.helpers.LICENSE_STETHO
@@ -34,6 +36,10 @@ class MainActivity : SimpleActivity() {
 
         // just get a reference to the database to make sure it is created properly
         dbHelper
+
+        // Make a receiver to respond to headphone unplugs.
+        val headphonesFilter = IntentFilter(Intent.ACTION_HEADSET_PLUG)
+        this.registerReceiver(HeadphonesUnplugged(), headphonesFilter)
 
         storeStateVariables()
         initFragments()

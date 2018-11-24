@@ -24,6 +24,18 @@ const val DEFAULT_ALARM_MINUTES = 480
 const val DEFAULT_MAX_ALARM_REMINDER_SECS = 300
 const val DEFAULT_MAX_TIMER_REMINDER_SECS = 60
 
+const val NOISE_MAKER = "noiseMaker"
+const val NOISE_CONTROL_RECEIVER = "noise_control_receiver"
+const val NOISE_CONTROL_UID = "noise_control_uid"
+const val NOISE_CONTROL_COMMAND = "noise_control_command"
+const val NOISE_CONTROL_START = "noise_control_command_start"
+const val NOISE_CONTROL_KILL = "noise_control_command_kill"
+const val NOISE_CONTROL_PAUSE = "noise_control_command_pause"
+const val UID_ALARM_NOTIFICATION = "uid_alarm_notification"
+const val UID_TIMER_NOTIFICATION = "uid_timer_notification"
+
+
+
 const val PICK_AUDIO_FILE_INTENT_ID = 9994
 const val REMINDER_ACTIVITY_INTENT_ID = 9995
 const val OPEN_ALARMS_TAB_INTENT_ID = 9996

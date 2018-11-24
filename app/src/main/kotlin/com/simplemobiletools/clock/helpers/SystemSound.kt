@@ -2,6 +2,7 @@ package com.simplemobiletools.clock.helpers
 
 import android.app.Activity
 import android.content.Context
+import android.media.AudioAttributes
 import android.media.AudioDeviceInfo
 import android.media.AudioDeviceInfo.TYPE_WIRED_HEADPHONES
 import android.media.AudioManager
@@ -11,12 +12,17 @@ import android.os.Build
 import android.os.Handler
 import android.support.annotation.RequiresApi
 import com.simplemobiletools.clock.extensions.config
+import java.io.Serializable
 
 
 class SystemSound(val context: Context, val toPlay: Uri) {
     // Sound state
-    private val mMediaPlayer: MediaPlayer = MediaPlayer();
-    private var mIsKilledOrExpired: Boolean = false;
+    private val mMediaPlayer: MediaPlayer = MediaPlayer()
+    private val PLAYER_DEAD = "player_dead"
+    private val PLAYER_PAUSED = "player_paused"
+    private val PLAYER_INIT = "player_init"
+    private var mPlayerState: String = PLAYER_INIT
+
 
     // Volume
     private var mVolume: Float = 0.1f;
@@ -28,22 +34,30 @@ class SystemSound(val context: Context, val toPlay: Uri) {
 
     // This function starts playing the sound if appropriate.
     fun start(): Unit {
-        if (!mIsKilledOrExpired){
-            initMediaPlayer()
-            if (context.config.headphonesOnly){
-                headphoneStartMediaPlayer()
-            } else {
-                mMediaPlayer.start();
+        when (mPlayerState) {
+            PLAYER_INIT -> {
+                initMediaPlayer()
+                playNoise()
             }
-            if (context.config.increaseVolumeGradually) {
-                scheduleVolumeIncrease()
-            } else {
-                mVolume = 1f
-                mMediaPlayer.setVolume(mVolume, mVolume)
-            }
-        } else {}
+            PLAYER_PAUSED -> playNoise()
+            PLAYER_DEAD -> {}
+            else -> {}
+        }
     }
 
+    private fun playNoise(): Unit {
+        if (context.config.headphonesOnly) {
+            headphoneStartMediaPlayer()
+        } else {
+            mMediaPlayer.start();
+        }
+        if (context.config.increaseVolumeGradually) {
+            scheduleVolumeIncrease()
+        } else {
+            mVolume = 1f
+            mMediaPlayer.setVolume(mVolume, mVolume)
+        }
+    }
 
     /** This function kills the SystemSound that may have been playing and destroys any
      * used resources.
@@ -55,8 +69,8 @@ class SystemSound(val context: Context, val toPlay: Uri) {
      * and the actual starting, this function behaves properly.
      */
     fun kill(): Unit {
-        if (!mIsKilledOrExpired){
-            mIsKilledOrExpired = true;
+        if (mPlayerState != PLAYER_DEAD){
+            mPlayerState = PLAYER_DEAD
             mMediaPlayer.stop()
             mMediaPlayer.release()
             mVolumeHandler.removeCallbacksAndMessages(null)
@@ -64,14 +78,23 @@ class SystemSound(val context: Context, val toPlay: Uri) {
     }
 
 
+    fun pause(): Unit {
+        mPlayerState = PLAYER_PAUSED
+        mMediaPlayer.pause()
+    }
 
     /**
      * These are a collection of helper functions.
      */
 
     private fun initMediaPlayer(): Unit {
+        var settings: AudioAttributes = AudioAttributes.Builder().apply {
+            // Note: media defaults to playing on headphones when possible
+            setUsage(AudioAttributes.USAGE_MEDIA)
+            setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+        }.build();
         mMediaPlayer.apply {
-            setAudioStreamType(AudioManager.STREAM_ALARM)
+            setAudioAttributes(settings)
             setDataSource(context, toPlay);
             setVolume(mVolume, mVolume)
             isLooping = true
@@ -85,8 +108,6 @@ class SystemSound(val context: Context, val toPlay: Uri) {
 
         val maybeHeadphones: AudioDeviceInfo? = areHeadphonesIn();
         if (maybeHeadphones != null){
-            val headphones: AudioDeviceInfo = maybeHeadphones;
-            mMediaPlayer.setPreferredDevice(headphones)
             mMediaPlayer.start()
         } else {} // Can't play b/c no headphones and in only-headphones mode.
     }
@@ -116,3 +137,11 @@ class SystemSound(val context: Context, val toPlay: Uri) {
     }
 
 }
+
+
+class CloseSound(private val systemSound: SystemSound) : Serializable {
+    fun run() : Unit {
+        systemSound.kill()
+    }
+}
+

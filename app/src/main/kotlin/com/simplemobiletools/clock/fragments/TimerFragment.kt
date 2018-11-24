@@ -1,3 +1,4 @@
+
 package com.simplemobiletools.clock.fragments
 
 import android.annotation.TargetApi
@@ -6,8 +7,10 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.Color
 import android.media.AudioManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -22,8 +25,8 @@ import com.simplemobiletools.clock.activities.ReminderActivity
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.dialogs.MyTimePickerDialogDialog
 import com.simplemobiletools.clock.extensions.*
-import com.simplemobiletools.clock.helpers.PICK_AUDIO_FILE_INTENT_ID
-import com.simplemobiletools.clock.helpers.TIMER_NOTIF_ID
+import com.simplemobiletools.clock.helpers.*
+import com.simplemobiletools.clock.receivers.NoiseControlReceiver
 import com.simplemobiletools.commons.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
@@ -178,6 +181,9 @@ class TimerFragment : Fragment() {
     }
 
     private fun togglePlayPause() {
+        if (isRunning) {
+            context!!.sendNoiseControlIntent(UID_TIMER_NOTIFICATION, NOISE_CONTROL_KILL, null)
+        }
         isRunning = !isRunning
         updateTimerState(true)
     }
@@ -232,6 +238,7 @@ class TimerFragment : Fragment() {
         if (diff == 0) {
             if (context?.isScreenOn() == true) {
                 context!!.showTimerNotification(false)
+                setupNoise()
                 Handler().postDelayed({
                     context?.hideTimerNotification()
                 }, context?.config!!.timerMaxReminderSecs * 1000L)
@@ -245,6 +252,14 @@ class TimerFragment : Fragment() {
         }
 
         return true
+    }
+
+    private fun setupNoise(){
+        val noiseMaker = SystemSound(context!!, Uri.parse(context!!.config.timerSoundUri))
+        val receiver: NoiseControlReceiver = NoiseControlReceiver(noiseMaker, UID_TIMER_NOTIFICATION, null)
+        val filter: IntentFilter = IntentFilter(NOISE_CONTROL_RECEIVER)
+        context!!.registerReceiver(receiver, filter)
+        noiseMaker.start()
     }
 
     @TargetApi(Build.VERSION_CODES.O)

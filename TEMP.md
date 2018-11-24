@@ -14,18 +14,20 @@ Note from git:
 
 # TODO
 
-## MUST
 
- * Start the reciever in SystemSound's headphoneStartMediaPlayer
+* Support all the languages for the resource string "headphones_only"
 
-## EVENTUALLY
-* Support all the lanaguages for the resrouce string "headphones_only"
+* If needed change this: right now, if headphones are plugged in, it defaults to
+  using them, even if my setting is off.
 
 
 # Sources
 
 * The last answer [here](https://stackoverflow.com/questions/16395054/check-whether-headphones-are-plugged-in).
 This is used in SystemSound's areHeadphonesIn() function.
+
+
+
 
 
 

@@ -7,6 +7,7 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.media.AudioAttributes
 import android.media.AudioManager
 import android.net.Uri
@@ -25,10 +26,7 @@ import com.simplemobiletools.clock.activities.SplashActivity
 import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.clock.models.MyTimeZone
-import com.simplemobiletools.clock.receivers.AlarmReceiver
-import com.simplemobiletools.clock.receivers.DateTimeWidgetUpdateReceiver
-import com.simplemobiletools.clock.receivers.HideAlarmReceiver
-import com.simplemobiletools.clock.receivers.HideTimerReceiver
+import com.simplemobiletools.clock.receivers.*
 import com.simplemobiletools.clock.services.SnoozeService
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
@@ -79,7 +77,7 @@ fun Context.createNewAlarm(timeInMinutes: Int, weekDays: Int): Alarm {
     return Alarm(0, timeInMinutes, weekDays, false, false, defaultAlarmSound.title, defaultAlarmSound.uri, "")
 }
 
-fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
+fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean, isNewAlarm: Boolean) {
     val calendar = Calendar.getInstance()
     calendar.firstDayOfWeek = Calendar.MONDAY
     for (i in 0..7) {
@@ -88,7 +86,7 @@ fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
         val currentTimeInMinutes = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE)
         if (isCorrectDay && (alarm.timeInMinutes > currentTimeInMinutes || i > 0)) {
             val triggerInMinutes = alarm.timeInMinutes - currentTimeInMinutes + (i * DAY_MINUTES)
-            setupAlarmClock(alarm, triggerInMinutes * 60 - calendar.get(Calendar.SECOND))
+            setupAlarmClock(alarm, triggerInMinutes * 60 - calendar.get(Calendar.SECOND),isNewAlarm)
 
             if (showToast) {
                 showRemainingTimeMessage(triggerInMinutes)
@@ -105,11 +103,19 @@ fun Context.showRemainingTimeMessage(totalMinutes: Int) {
     toast(fullString, Toast.LENGTH_LONG)
 }
 
-fun Context.setupAlarmClock(alarm: Alarm, triggerInSeconds: Int) {
+fun Context.setupAlarmClock(alarm: Alarm, triggerInSeconds: Int, isNewAlarm: Boolean) {
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
     val targetMS = System.currentTimeMillis() + triggerInSeconds * 1000
     AlarmManagerCompat.setAlarmClock(alarmManager, targetMS, getOpenAlarmTabIntent(), getAlarmIntent(alarm))
+    if (isNewAlarm){
+        val noiseMaker = SystemSound(this, Uri.parse(alarm.soundUri))
+        val receiver = NoiseControlReceiver(noiseMaker, UID_ALARM_NOTIFICATION, alarm.id)
+        val filter = IntentFilter(NOISE_CONTROL_RECEIVER)
+        this.registerReceiver(receiver, filter)
+    }
 }
+
+
 
 fun Context.getOpenAlarmTabIntent(): PendingIntent {
     val intent = getLaunchIntent() ?: Intent(this, SplashActivity::class.java)
@@ -218,19 +224,19 @@ fun Context.getNextAlarm(): String {
 
 fun Context.rescheduleEnabledAlarms() {
     dbHelper.getEnabledAlarms().forEach {
-        scheduleNextAlarm(it, false)
+        scheduleNextAlarm(it, false, false)
     }
 }
 
 fun Context.isScreenOn() = (getSystemService(Context.POWER_SERVICE) as PowerManager).isScreenOn
-
 
 fun Context.showAlarmNotification(alarm: Alarm) {
     val pendingIntent = getOpenAlarmTabIntent()
     val notification = getAlarmNotification(pendingIntent, alarm)
     val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     notificationManager.notify(alarm.id, notification)
-    scheduleNextAlarm(alarm, false)
+    this.sendNoiseControlIntent(UID_ALARM_NOTIFICATION, NOISE_CONTROL_START, alarm.id)
+    scheduleNextAlarm(alarm, false, false)
 }
 
 fun Context.showTimerNotification(addDeleteIntent: Boolean) {
@@ -240,16 +246,14 @@ fun Context.showTimerNotification(addDeleteIntent: Boolean) {
     notificationManager.notify(TIMER_NOTIF_ID, notification)
 }
 
+
+
+/*
+
+* */
 @SuppressLint("NewApi")
 fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: Boolean): Notification {
-    var soundUri = config.timerSoundUri
-    if (soundUri == SILENT) {
-        soundUri = ""
-    } else {
-        grantReadUriPermission(soundUri)
-    }
-
-    val channelId = "simple_timer_channel_$soundUri"
+    val channelId = "simple_timer_channel"
     if (isOreoPlus()) {
         val audioAttributes = AudioAttributes.Builder()
                 .setUsage(AudioAttributes.USAGE_ALARM)
@@ -260,18 +264,18 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val name = getString(R.string.timer)
-        val importance = NotificationManager.IMPORTANCE_HIGH
+        val importance = NotificationManager.IMPORTANCE_NONE
         NotificationChannel(channelId, name, importance).apply {
             setBypassDnd(true)
             enableLights(true)
             lightColor = getAdjustedPrimaryColor()
             enableVibration(config.timerVibrate)
-            setSound(Uri.parse(soundUri), audioAttributes)
             notificationManager.createNotificationChannel(this)
         }
     }
 
     val reminderActivityIntent = getReminderActivityIntent()
+    val theAction =  if (addDeleteIntent) reminderActivityIntent else getHideTimerPendingIntent()
     val builder = NotificationCompat.Builder(this)
             .setContentTitle(getString(R.string.timer))
             .setContentText(getString(R.string.time_expired))
@@ -280,13 +284,9 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
             .setPriority(Notification.PRIORITY_LOW)
             .setDefaults(Notification.DEFAULT_LIGHTS)
             .setAutoCancel(true)
-            .setSound(Uri.parse(soundUri), AudioManager.STREAM_ALARM)
             .setChannelId(channelId)
-            .addAction(R.drawable.ic_cross, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getHideTimerPendingIntent())
+            .addAction(R.drawable.ic_cross, getString(R.string.dismiss), theAction)
 
-    if (addDeleteIntent) {
-        builder.setDeleteIntent(reminderActivityIntent)
-    }
 
     if (isLollipopPlus()) {
         builder.setVisibility(Notification.VISIBILITY_PUBLIC)
@@ -313,17 +313,9 @@ fun Context.getHideAlarmPendingIntent(alarm: Alarm): PendingIntent {
     return PendingIntent.getBroadcast(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }
 
-
 @SuppressLint("NewApi")
 fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): Notification {
-    var soundUri = alarm.soundUri
-    if (soundUri == SILENT) {
-        soundUri = ""
-    } else {
-        grantReadUriPermission(soundUri)
-    }
-
-    val channelId = "simple_alarm_channel_$soundUri"
+    val channelId = "simple_alarm_channel"
     val label = if (alarm.label.isNotEmpty()) alarm.label else getString(R.string.alarm)
     if (isOreoPlus()) {
         val audioAttributes = AudioAttributes.Builder()
@@ -334,13 +326,12 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
                 .build()
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val importance = NotificationManager.IMPORTANCE_HIGH
+        val importance = NotificationManager.IMPORTANCE_NONE
         NotificationChannel(channelId, label, importance).apply {
             setBypassDnd(true)
             enableLights(true)
             lightColor = getAdjustedPrimaryColor()
             enableVibration(alarm.vibrate)
-            setSound(Uri.parse(soundUri), audioAttributes)
             notificationManager.createNotificationChannel(this)
         }
     }
@@ -350,10 +341,9 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
             .setContentText(getFormattedTime(getPassedSeconds(), false, false))
             .setSmallIcon(R.drawable.ic_alarm)
             .setContentIntent(pendingIntent)
-            .setPriority(Notification.PRIORITY_HIGH)
+            //.setPriority(Notification.PRIORITY_HIGH)
             .setDefaults(Notification.DEFAULT_LIGHTS)
             .setAutoCancel(true)
-            .setSound(Uri.parse(soundUri), AudioManager.STREAM_ALARM)
             .setChannelId(channelId)
             .addAction(R.drawable.ic_snooze, getString(R.string.snooze), getSnoozePendingIntent(alarm))
             .addAction(R.drawable.ic_cross, getString(R.string.dismiss), getHideAlarmPendingIntent(alarm))
@@ -395,4 +385,15 @@ fun Context.checkAlarmsWithDeletedSoundUri(uri: String) {
         it.soundUri = defaultAlarmSound.uri
         dbHelper.updateAlarm(it)
     }
+}
+
+// The command should be NOISE_CONTROL_(START|KILL|PAUSE) and
+// uid should be UID_(TIMER|ALARM)_NOTIFICATION.
+fun Context.sendNoiseControlIntent(uid: String, command: String, alarmId: Int?) : Unit {
+    val intent: Intent = Intent()
+    intent.putExtra(NOISE_CONTROL_COMMAND, command);
+    intent.putExtra(NOISE_CONTROL_UID, uid)
+    intent.putExtra(ALARM_ID, alarmId)
+    intent.setAction(NOISE_CONTROL_RECEIVER)
+    this.sendBroadcast(intent)
 }

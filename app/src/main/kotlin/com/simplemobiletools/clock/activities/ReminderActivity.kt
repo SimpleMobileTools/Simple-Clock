@@ -159,14 +159,15 @@ class ReminderActivity : SimpleActivity() {
 
 
     private fun snoozeAlarm() {
-        systemSound?.kill()
+        systemSound?.pause()
+
         if (config.useSameSnooze) {
-            setupAlarmClock(alarm!!, config.snoozeTime * MINUTE_SECONDS)
+            setupAlarmClock(alarm!!, config.snoozeTime * MINUTE_SECONDS, false)
             finishActivity()
         } else {
             showPickSecondsDialog(config.snoozeTime * MINUTE_SECONDS, true, cancelCallback = { finishActivity() }) {
                 config.snoozeTime = it / MINUTE_SECONDS
-                setupAlarmClock(alarm!!, it)
+                setupAlarmClock(alarm!!, it, false)
                 finishActivity()
             }
         }
