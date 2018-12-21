@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Simple Clock</string>
+    <string name="app_name">Semplice Orologio</string>
     <string name="app_launcher_name">Orologio</string>
     <string name="time_zone">Fuso orario</string>
     <string name="vibrate">Vibrazione</string>
