@@ -3,7 +3,7 @@ package com.simplemobiletools.clock.dialogs
 import android.app.TimePickerDialog
 import android.graphics.drawable.Drawable
 import android.media.AudioManager
-import android.support.v7.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import android.widget.TextView
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity

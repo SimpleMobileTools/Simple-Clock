@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/small_margin"
     android:paddingLeft="@dimen/small_margin"
-    android:paddingRight="@dimen/small_margin">
+    android:paddingRight="@dimen/small_margin"
+    android:paddingBottom="@dimen/small_margin">
 
     <TextView
         android:id="@+id/widget_time"
@@ -46,9 +46,9 @@
             android:id="@+id/widget_next_alarm_image"
             android:layout_width="@dimen/widget_alarm_icon_size"
             android:layout_height="@dimen/widget_alarm_icon_size"
-            android:layout_alignBottom="@+id/widget_next_alarm"
             android:layout_alignTop="@+id/widget_next_alarm"
-            android:src="@drawable/ic_clock"/>
+            android:layout_alignBottom="@+id/widget_next_alarm"
+            android:src="@drawable/ic_alarm"/>
 
         <TextView
             android:id="@+id/widget_next_alarm"

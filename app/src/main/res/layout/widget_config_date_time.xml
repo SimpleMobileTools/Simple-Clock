@@ -45,8 +45,8 @@
         android:id="@+id/config_bg_seekbar_holder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignBottom="@+id/config_bg_color"
         android:layout_alignTop="@+id/config_bg_color"
+        android:layout_alignBottom="@+id/config_bg_color"
         android:layout_toRightOf="@+id/config_bg_color"
         android:background="@android:color/white">
 
@@ -69,8 +69,8 @@
         android:id="@+id/config_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:fontFamily="sans-serif-light"
         android:paddingLeft="@dimen/activity_margin"
         android:paddingRight="@dimen/activity_margin"

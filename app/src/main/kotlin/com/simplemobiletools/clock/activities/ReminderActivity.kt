@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.view.MotionEvent
+import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.*
@@ -34,7 +35,7 @@ class ReminderActivity : SimpleActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reminder)
         showOverLockscreen()
-        updateTextColors(reminder_holder)
+        updateTextColors(reminder_holder as ViewGroup)
 
         val id = intent.getIntExtra(ALARM_ID, -1)
         isAlarmReminder = id != -1

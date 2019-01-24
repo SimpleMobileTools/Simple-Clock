@@ -1,6 +1,6 @@
 package com.simplemobiletools.clock.dialogs
 
-import android.support.v7.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.adapters.SelectTimeZonesAdapter
@@ -16,7 +16,7 @@ class AddTimeZonesDialog(val activity: SimpleActivity, private val callback: () 
         view.select_time_zones_list.adapter = SelectTimeZonesAdapter(activity, getAllTimeZones())
 
         AlertDialog.Builder(activity)
-                .setPositiveButton(R.string.ok, { dialog, which -> dialogConfirmed() })
+                .setPositiveButton(R.string.ok) { dialog, which -> dialogConfirmed() }
                 .setNegativeButton(R.string.cancel, null)
                 .create().apply {
                     activity.setupDialogStuff(view, this)
@@ -24,7 +24,8 @@ class AddTimeZonesDialog(val activity: SimpleActivity, private val callback: () 
     }
 
     private fun dialogConfirmed() {
-        val selectedTimeZones = (view?.select_time_zones_list?.adapter as? SelectTimeZonesAdapter)?.getSelectedItemsSet() ?: LinkedHashSet()
+        val adapter = view?.select_time_zones_list?.adapter as? SelectTimeZonesAdapter
+        val selectedTimeZones = adapter?.selectedKeys?.map { it.toString() }?.toHashSet() ?: LinkedHashSet()
         activity.config.selectedTimeZones = selectedTimeZones
         callback()
     }

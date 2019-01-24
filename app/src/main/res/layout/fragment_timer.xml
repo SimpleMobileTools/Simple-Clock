@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -69,11 +69,11 @@
 
     <ImageView
         android:id="@+id/timer_reset"
-        style="@style/MyBorderlessBackgroundStyle"
         android:layout_width="@dimen/stopwatch_button_small_size"
         android:layout_height="@dimen/stopwatch_button_small_size"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/timer_play_pause"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:padding="@dimen/normal_margin"
         android:src="@drawable/ic_reset"
         android:visibility="gone"
@@ -96,4 +96,4 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"/>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

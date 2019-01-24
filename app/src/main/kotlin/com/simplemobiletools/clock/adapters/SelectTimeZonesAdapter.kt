@@ -1,89 +1,75 @@
 package com.simplemobiletools.clock.adapters
 
-import android.support.v7.widget.RecyclerView
-import android.util.SparseArray
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
-import com.simplemobiletools.commons.interfaces.MyAdapterListener
 import kotlinx.android.synthetic.main.item_add_time_zone.view.*
 import java.util.*
 
 class SelectTimeZonesAdapter(val activity: SimpleActivity, val timeZones: ArrayList<MyTimeZone>) : RecyclerView.Adapter<SelectTimeZonesAdapter.ViewHolder>() {
-    private val itemViews = SparseArray<View>()
-    private val selectedPositions = HashSet<Int>()
     private val config = activity.config
     private val textColor = config.textColor
     private val backgroundColor = config.backgroundColor
     private val primaryColor = activity.getAdjustedPrimaryColor()
+    var selectedKeys = HashSet<Int>()
 
     init {
         val selectedTimeZones = config.selectedTimeZones
         timeZones.forEachIndexed { index, myTimeZone ->
             if (selectedTimeZones.contains(myTimeZone.id.toString())) {
-                selectedPositions.add(index)
+                selectedKeys.add(myTimeZone.id)
             }
         }
     }
 
     private fun toggleItemSelection(select: Boolean, pos: Int) {
+        val itemKey = timeZones.getOrNull(pos)?.id ?: return
+
         if (select) {
-            if (itemViews[pos] != null) {
-                selectedPositions.add(pos)
-            }
+            selectedKeys.add(itemKey)
         } else {
-            selectedPositions.remove(pos)
+            selectedKeys.remove(itemKey)
         }
 
-        itemViews[pos]?.add_time_zone_checkbox?.isChecked = select
-    }
-
-    private val adapterListener = object : MyAdapterListener {
-        override fun toggleItemSelectionAdapter(select: Boolean, position: Int) {
-            toggleItemSelection(select, position)
-        }
-
-        override fun getSelectedPositions() = selectedPositions
-
-        override fun itemLongClicked(position: Int) {}
-    }
-
-    fun getSelectedItemsSet(): HashSet<String> {
-        val selectedItemsSet = HashSet<String>(selectedPositions.size)
-        selectedPositions.forEach { selectedItemsSet.add(timeZones[it].id.toString()) }
-        return selectedItemsSet
+        notifyItemChanged(pos)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = activity.layoutInflater.inflate(R.layout.item_add_time_zone, parent, false)
-        return ViewHolder(view, adapterListener)
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val timeZone = timeZones[position]
-        itemViews.put(position, holder.bindView(timeZone, textColor, primaryColor, backgroundColor))
-        toggleItemSelection(selectedPositions.contains(position), position)
+        holder.bindView(timeZones[position], textColor, primaryColor, backgroundColor)
     }
 
     override fun getItemCount() = timeZones.size
 
-    class ViewHolder(view: View, val adapterListener: MyAdapterListener) : RecyclerView.ViewHolder(view) {
-        fun bindView(timeZone: MyTimeZone, textColor: Int, primaryColor: Int, backgroundColor: Int): View {
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        fun bindView(myTimeZone: MyTimeZone, textColor: Int, primaryColor: Int, backgroundColor: Int): View {
+            val isSelected = selectedKeys.contains(myTimeZone.id)
             itemView.apply {
-                add_time_zone_title.text = timeZone.title
+                add_time_zone_checkbox.isChecked = isSelected
+                add_time_zone_title.text = myTimeZone.title
                 add_time_zone_title.setTextColor(textColor)
 
                 add_time_zone_checkbox.setColors(textColor, primaryColor, backgroundColor)
                 add_time_zone_holder.setOnClickListener {
-                    adapterListener.toggleItemSelectionAdapter(!add_time_zone_checkbox.isChecked, adapterPosition)
+                    viewClicked(myTimeZone)
                 }
             }
 
             return itemView
+        }
+
+        private fun viewClicked(myTimeZone: MyTimeZone) {
+            val isSelected = selectedKeys.contains(myTimeZone.id)
+            toggleItemSelection(!isSelected, adapterPosition)
         }
     }
 }

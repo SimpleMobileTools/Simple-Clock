@@ -1,7 +1,7 @@
 package com.simplemobiletools.clock.activities
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.dbHelper
 import com.simplemobiletools.clock.extensions.hideNotification

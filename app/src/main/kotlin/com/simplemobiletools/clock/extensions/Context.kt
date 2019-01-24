@@ -1,7 +1,6 @@
 package com.simplemobiletools.clock.extensions
 
 import android.annotation.SuppressLint
-import android.annotation.TargetApi
 import android.app.*
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
@@ -10,14 +9,12 @@ import android.content.Intent
 import android.media.AudioAttributes
 import android.media.AudioManager
 import android.net.Uri
-import android.os.Build
 import android.os.PowerManager
-import android.provider.Settings
-import android.support.v4.app.AlarmManagerCompat
-import android.support.v4.app.NotificationCompat
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
 import android.widget.Toast
+import androidx.core.app.AlarmManagerCompat
+import androidx.core.app.NotificationCompat
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.ReminderActivity
 import com.simplemobiletools.clock.activities.SnoozeReminderActivity
@@ -31,7 +28,10 @@ import com.simplemobiletools.clock.receivers.HideAlarmReceiver
 import com.simplemobiletools.clock.receivers.HideTimerReceiver
 import com.simplemobiletools.clock.services.SnoozeService
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.*
+import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
+import com.simplemobiletools.commons.helpers.DAY_MINUTES
+import com.simplemobiletools.commons.helpers.SILENT
+import com.simplemobiletools.commons.helpers.isOreoPlus
 import java.util.*
 import kotlin.math.pow
 
@@ -165,10 +165,7 @@ fun Context.scheduleNextWidgetUpdate() {
 
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
     val triggerAtMillis = System.currentTimeMillis() + getMSTillNextMinute()
-    when {
-        isKitkatPlus() -> alarmManager.setExact(AlarmManager.RTC, triggerAtMillis, pendingIntent)
-        else -> alarmManager.set(AlarmManager.RTC, triggerAtMillis, pendingIntent)
-    }
+    alarmManager.setExact(AlarmManager.RTC, triggerAtMillis, pendingIntent)
 }
 
 fun Context.getFormattedTime(passedSeconds: Int, showSeconds: Boolean, makeAmPmSmaller: Boolean): SpannableString {
@@ -195,25 +192,20 @@ fun Context.formatTo12HourFormat(showSeconds: Boolean, hours: Int, minutes: Int,
     return "${formatTime(showSeconds, false, newHours, minutes, seconds)} $appendable"
 }
 
-@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 fun Context.getNextAlarm(): String {
-    if (isLollipopPlus()) {
-        val milliseconds = (getSystemService(Context.ALARM_SERVICE) as AlarmManager).nextAlarmClock?.triggerTime ?: return ""
-        val calendar = Calendar.getInstance()
-        val isDaylightSavingActive = TimeZone.getDefault().inDaylightTime(Date())
-        var offset = calendar.timeZone.rawOffset
-        if (isDaylightSavingActive) {
-            offset += TimeZone.getDefault().dstSavings
-        }
-
-        calendar.timeInMillis = milliseconds
-        val dayOfWeekIndex = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
-        val dayOfWeek = resources.getStringArray(R.array.week_days_short)[dayOfWeekIndex]
-        val formatted = getFormattedTime(((milliseconds + offset) / 1000L).toInt(), false, false)
-        return "$dayOfWeek $formatted"
-    } else {
-        return Settings.System.getString(contentResolver, Settings.System.NEXT_ALARM_FORMATTED) ?: ""
+    val milliseconds = (getSystemService(Context.ALARM_SERVICE) as AlarmManager).nextAlarmClock?.triggerTime ?: return ""
+    val calendar = Calendar.getInstance()
+    val isDaylightSavingActive = TimeZone.getDefault().inDaylightTime(Date())
+    var offset = calendar.timeZone.rawOffset
+    if (isDaylightSavingActive) {
+        offset += TimeZone.getDefault().dstSavings
     }
+
+    calendar.timeInMillis = milliseconds
+    val dayOfWeekIndex = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
+    val dayOfWeek = resources.getStringArray(R.array.week_days_short)[dayOfWeekIndex]
+    val formatted = getFormattedTime(((milliseconds + offset) / 1000L).toInt(), false, false)
+    return "$dayOfWeek $formatted"
 }
 
 fun Context.rescheduleEnabledAlarms() {
@@ -287,9 +279,7 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
         builder.setDeleteIntent(reminderActivityIntent)
     }
 
-    if (isLollipopPlus()) {
-        builder.setVisibility(Notification.VISIBILITY_PUBLIC)
-    }
+    builder.setVisibility(Notification.VISIBILITY_PUBLIC)
 
     if (config.timerVibrate) {
         val vibrateArray = LongArray(2) { 500 }
@@ -356,9 +346,7 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
             .addAction(R.drawable.ic_snooze, getString(R.string.snooze), getSnoozePendingIntent(alarm))
             .addAction(R.drawable.ic_cross, getString(R.string.dismiss), getHideAlarmPendingIntent(alarm))
 
-    if (isLollipopPlus()) {
-        builder.setVisibility(Notification.VISIBILITY_PUBLIC)
-    }
+    builder.setVisibility(Notification.VISIBILITY_PUBLIC)
 
     if (alarm.vibrate) {
         val vibrateArray = LongArray(2) { 500 }

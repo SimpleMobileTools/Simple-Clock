@@ -14,9 +14,9 @@
         android:id="@+id/alarm_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/medium_margin"
         android:paddingLeft="@dimen/activity_margin"
-        android:paddingTop="@dimen/medium_margin">
+        android:paddingTop="@dimen/medium_margin"
+        android:paddingBottom="@dimen/medium_margin">
 
         <com.simplemobiletools.commons.views.MyTextView
             android:id="@+id/alarm_time"
@@ -58,9 +58,9 @@
             android:id="@+id/alarm_switch"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_alignTop="@+id/alarm_time"
             android:layout_alignBottom="@id/alarm_label"
             android:layout_alignParentRight="true"
-            android:layout_alignTop="@+id/alarm_time"
             android:paddingLeft="@dimen/activity_margin"
             android:paddingRight="@dimen/medium_margin"/>
 

@@ -7,6 +7,8 @@ import com.simplemobiletools.clock.helpers.TAB_CLOCK
 import com.simplemobiletools.commons.activities.BaseSplashActivity
 
 class SplashActivity : BaseSplashActivity() {
+    override fun getAppPackageName() = packageName
+
     override fun initActivity() {
         when {
             intent?.action == "android.intent.action.SHOW_ALARMS" -> {

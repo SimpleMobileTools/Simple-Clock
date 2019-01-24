@@ -25,9 +25,9 @@
         android:id="@+id/add_time_zone_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_alignTop="@+id/add_time_zone_title"
         android:layout_alignBottom="@+id/add_time_zone_title"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/add_time_zone_title"
         android:layout_marginRight="@dimen/activity_margin"
         android:clickable="false"
         android:gravity="center"/>

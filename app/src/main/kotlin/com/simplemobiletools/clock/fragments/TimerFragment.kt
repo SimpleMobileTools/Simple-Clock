@@ -12,11 +12,11 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.SystemClock
-import android.support.v4.app.Fragment
-import android.support.v4.app.NotificationCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.NotificationCompat
+import androidx.fragment.app.Fragment
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.ReminderActivity
 import com.simplemobiletools.clock.activities.SimpleActivity
@@ -27,7 +27,6 @@ import com.simplemobiletools.clock.helpers.TIMER_NOTIF_ID
 import com.simplemobiletools.commons.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
-import com.simplemobiletools.commons.helpers.isLollipopPlus
 import com.simplemobiletools.commons.helpers.isOreoPlus
 import com.simplemobiletools.commons.models.AlarmSound
 import kotlinx.android.synthetic.main.fragment_timer.view.*
@@ -271,10 +270,7 @@ class TimerFragment : Fragment() {
                 .setAutoCancel(true)
                 .setChannelId(channelId)
 
-        if (isLollipopPlus()) {
-            builder.setVisibility(Notification.VISIBILITY_PUBLIC)
-        }
-
+        builder.setVisibility(Notification.VISIBILITY_PUBLIC)
         notificationManager.notify(TIMER_NOTIF_ID, builder.build())
     }
 

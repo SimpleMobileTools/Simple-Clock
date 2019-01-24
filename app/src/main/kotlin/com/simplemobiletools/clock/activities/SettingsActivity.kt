@@ -25,7 +25,6 @@ class SettingsActivity : SimpleActivity() {
         setupPurchaseThankYou()
         setupCustomizeColors()
         setupUseEnglish()
-        setupAvoidWhatsNew()
         setupPreventPhoneFromSleeping()
         setupHourFormat()
         setupSundayFirst()
@@ -69,14 +68,6 @@ class SettingsActivity : SimpleActivity() {
             settings_use_english.toggle()
             config.useEnglish = settings_use_english.isChecked
             System.exit(0)
-        }
-    }
-
-    private fun setupAvoidWhatsNew() {
-        settings_avoid_whats_new.isChecked = config.avoidWhatsNew
-        settings_avoid_whats_new_holder.setOnClickListener {
-            settings_avoid_whats_new.toggle()
-            config.avoidWhatsNew = settings_avoid_whats_new.isChecked
         }
     }
 

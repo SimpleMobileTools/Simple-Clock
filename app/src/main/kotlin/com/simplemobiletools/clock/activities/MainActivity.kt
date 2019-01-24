@@ -1,9 +1,7 @@
 package com.simplemobiletools.clock.activities
 
-import android.annotation.TargetApi
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -18,6 +16,7 @@ import com.simplemobiletools.clock.extensions.rescheduleEnabledAlarms
 import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.LICENSE_NUMBER_PICKER
+import com.simplemobiletools.commons.helpers.LICENSE_RTL
 import com.simplemobiletools.commons.helpers.LICENSE_STETHO
 import com.simplemobiletools.commons.models.FAQItem
 import kotlinx.android.synthetic.main.activity_main.*
@@ -118,7 +117,6 @@ class MainActivity : SimpleActivity() {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     private fun storeNewAlarmSound(resultData: Intent) {
         val newAlarmSound = storeNewYourAlarmSound(resultData)
 
@@ -179,7 +177,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun launchAbout() {
-        val licenses = LICENSE_STETHO or LICENSE_NUMBER_PICKER
+        val licenses = LICENSE_STETHO or LICENSE_NUMBER_PICKER or LICENSE_RTL
 
         val faqItems = arrayListOf(
                 FAQItem(R.string.faq_1_title, R.string.faq_1_text),

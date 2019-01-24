@@ -11,7 +11,7 @@
     android:focusable="true"
     android:foreground="@drawable/selector">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/time_zone_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -58,5 +58,5 @@
             app:layout_constraintTop_toBottomOf="@+id/time_zone_time"
             tools:text="Mon, 1 January"/>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

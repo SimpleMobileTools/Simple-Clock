@@ -18,18 +18,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
             android:background="?attr/selectableItemBackground"
-            android:paddingBottom="@dimen/activity_margin"
             android:paddingLeft="@dimen/normal_margin"
+            android:paddingTop="@dimen/activity_margin"
             android:paddingRight="@dimen/normal_margin"
-            android:paddingTop="@dimen/activity_margin">
+            android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MyTextView
                 android:id="@+id/settings_purchase_thank_you"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:paddingLeft="@dimen/medium_margin"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingLeft="@dimen/medium_margin"
                 android:text="@string/purchase_simple_thank_you"/>
 
         </RelativeLayout>
@@ -40,18 +40,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
             android:background="?attr/selectableItemBackground"
-            android:paddingBottom="@dimen/activity_margin"
             android:paddingLeft="@dimen/normal_margin"
+            android:paddingTop="@dimen/activity_margin"
             android:paddingRight="@dimen/normal_margin"
-            android:paddingTop="@dimen/activity_margin">
+            android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MyTextView
                 android:id="@+id/settings_customize_colors"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:paddingLeft="@dimen/medium_margin"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingLeft="@dimen/medium_margin"
                 android:text="@string/customize_colors"/>
 
         </RelativeLayout>
@@ -62,10 +62,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
             android:background="?attr/selectableItemBackground"
-            android:paddingBottom="@dimen/activity_margin"
             android:paddingLeft="@dimen/normal_margin"
+            android:paddingTop="@dimen/activity_margin"
             android:paddingRight="@dimen/normal_margin"
-            android:paddingTop="@dimen/activity_margin">
+            android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
                 android:id="@+id/settings_use_english"
@@ -73,33 +73,9 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
-                android:paddingLeft="@dimen/medium_margin"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingLeft="@dimen/medium_margin"
                 android:text="@string/use_english_language"
-                app:switchPadding="@dimen/medium_margin"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/settings_avoid_whats_new_holder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_margin"
-            android:background="?attr/selectableItemBackground"
-            android:paddingBottom="@dimen/activity_margin"
-            android:paddingLeft="@dimen/normal_margin"
-            android:paddingRight="@dimen/normal_margin"
-            android:paddingTop="@dimen/activity_margin">
-
-            <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/settings_avoid_whats_new"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:clickable="false"
-                android:paddingLeft="@dimen/medium_margin"
-                android:paddingStart="@dimen/medium_margin"
-                android:text="@string/avoid_whats_new"
                 app:switchPadding="@dimen/medium_margin"/>
 
         </RelativeLayout>
@@ -110,10 +86,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
             android:background="?attr/selectableItemBackground"
-            android:paddingBottom="@dimen/activity_margin"
             android:paddingLeft="@dimen/normal_margin"
+            android:paddingTop="@dimen/activity_margin"
             android:paddingRight="@dimen/normal_margin"
-            android:paddingTop="@dimen/activity_margin">
+            android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
                 android:id="@+id/settings_prevent_phone_from_sleeping"
@@ -121,8 +97,8 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
-                android:paddingLeft="@dimen/medium_margin"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingLeft="@dimen/medium_margin"
                 android:text="@string/prevent_phone_from_sleeping"
                 app:switchPadding="@dimen/medium_margin"/>
 
@@ -134,10 +110,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
             android:background="?attr/selectableItemBackground"
-            android:paddingBottom="@dimen/activity_margin"
             android:paddingLeft="@dimen/normal_margin"
+            android:paddingTop="@dimen/activity_margin"
             android:paddingRight="@dimen/normal_margin"
-            android:paddingTop="@dimen/activity_margin">
+            android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
                 android:id="@+id/settings_hour_format"
@@ -145,8 +121,8 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
-                android:paddingLeft="@dimen/medium_margin"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingLeft="@dimen/medium_margin"
                 android:text="@string/use_24_hour_time_format"
                 app:switchPadding="@dimen/medium_margin"/>
 
@@ -158,10 +134,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
             android:background="?attr/selectableItemBackground"
-            android:paddingBottom="@dimen/activity_margin"
             android:paddingLeft="@dimen/normal_margin"
+            android:paddingTop="@dimen/activity_margin"
             android:paddingRight="@dimen/normal_margin"
-            android:paddingTop="@dimen/activity_margin">
+            android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
                 android:id="@+id/settings_sunday_first"
@@ -169,8 +145,8 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
-                android:paddingLeft="@dimen/medium_margin"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingLeft="@dimen/medium_margin"
                 android:text="@string/sunday_first"
                 app:switchPadding="@dimen/medium_margin"/>
 
@@ -187,8 +163,8 @@
             android:id="@+id/clock_tab_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/bigger_margin"
             android:layout_marginStart="@dimen/bigger_margin"
+            android:layout_marginLeft="@dimen/bigger_margin"
             android:layout_marginTop="@dimen/activity_margin"
             android:text="@string/clock_tab"
             android:textAllCaps="true"
@@ -200,10 +176,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
             android:background="?attr/selectableItemBackground"
-            android:paddingBottom="@dimen/activity_margin"
             android:paddingLeft="@dimen/normal_margin"
+            android:paddingTop="@dimen/activity_margin"
             android:paddingRight="@dimen/normal_margin"
-            android:paddingTop="@dimen/activity_margin">
+            android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
                 android:id="@+id/settings_show_seconds"
@@ -211,8 +187,8 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
-                android:paddingLeft="@dimen/medium_margin"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingLeft="@dimen/medium_margin"
                 android:text="@string/show_seconds"
                 app:switchPadding="@dimen/medium_margin"/>
 
@@ -229,8 +205,8 @@
             android:id="@+id/alarm_tab_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/bigger_margin"
             android:layout_marginStart="@dimen/bigger_margin"
+            android:layout_marginLeft="@dimen/bigger_margin"
             android:layout_marginTop="@dimen/activity_margin"
             android:text="@string/alarm_tab"
             android:textAllCaps="true"
@@ -242,18 +218,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
             android:background="?attr/selectableItemBackground"
-            android:paddingBottom="@dimen/bigger_margin"
             android:paddingLeft="@dimen/normal_margin"
+            android:paddingTop="@dimen/bigger_margin"
             android:paddingRight="@dimen/normal_margin"
-            android:paddingTop="@dimen/bigger_margin">
+            android:paddingBottom="@dimen/bigger_margin">
 
             <com.simplemobiletools.commons.views.MyTextView
                 android:id="@+id/settings_alarm_max_reminder_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/settings_alarm_max_reminder"
                 android:layout_toStartOf="@+id/settings_alarm_max_reminder"
+                android:layout_toLeftOf="@+id/settings_alarm_max_reminder"
                 android:paddingLeft="@dimen/medium_margin"
                 android:paddingRight="@dimen/medium_margin"
                 android:text="@string/max_reminder_duration"/>
@@ -277,10 +253,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
             android:background="?attr/selectableItemBackground"
-            android:paddingBottom="@dimen/activity_margin"
             android:paddingLeft="@dimen/normal_margin"
+            android:paddingTop="@dimen/activity_margin"
             android:paddingRight="@dimen/normal_margin"
-            android:paddingTop="@dimen/activity_margin">
+            android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
                 android:id="@+id/settings_increase_volume_gradually"
@@ -288,8 +264,8 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
-                android:paddingLeft="@dimen/medium_margin"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingLeft="@dimen/medium_margin"
                 android:text="@string/increase_volume_gradually"
                 app:switchPadding="@dimen/medium_margin"/>
 
@@ -301,10 +277,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
             android:background="?attr/selectableItemBackground"
-            android:paddingBottom="@dimen/activity_margin"
             android:paddingLeft="@dimen/normal_margin"
+            android:paddingTop="@dimen/activity_margin"
             android:paddingRight="@dimen/normal_margin"
-            android:paddingTop="@dimen/activity_margin">
+            android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
                 android:id="@+id/settings_use_same_snooze"
@@ -312,8 +288,8 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
-                android:paddingLeft="@dimen/medium_margin"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingLeft="@dimen/medium_margin"
                 android:text="@string/use_same_snooze"
                 app:switchPadding="@dimen/medium_margin"/>
 
@@ -325,18 +301,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
             android:background="?attr/selectableItemBackground"
-            android:paddingBottom="@dimen/bigger_margin"
             android:paddingLeft="@dimen/normal_margin"
+            android:paddingTop="@dimen/bigger_margin"
             android:paddingRight="@dimen/normal_margin"
-            android:paddingTop="@dimen/bigger_margin">
+            android:paddingBottom="@dimen/bigger_margin">
 
             <com.simplemobiletools.commons.views.MyTextView
                 android:id="@+id/settings_snooze_time_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/settings_snooze_time"
                 android:layout_toStartOf="@+id/settings_snooze_time"
+                android:layout_toLeftOf="@+id/settings_snooze_time"
                 android:paddingLeft="@dimen/medium_margin"
                 android:paddingRight="@dimen/medium_margin"
                 android:text="@string/snooze_time"/>
@@ -365,8 +341,8 @@
             android:id="@+id/stopwatch_tab_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/bigger_margin"
             android:layout_marginStart="@dimen/bigger_margin"
+            android:layout_marginLeft="@dimen/bigger_margin"
             android:layout_marginTop="@dimen/activity_margin"
             android:text="@string/stopwatch_tab"
             android:textAllCaps="true"
@@ -378,10 +354,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
             android:background="?attr/selectableItemBackground"
-            android:paddingBottom="@dimen/activity_margin"
             android:paddingLeft="@dimen/normal_margin"
+            android:paddingTop="@dimen/activity_margin"
             android:paddingRight="@dimen/normal_margin"
-            android:paddingTop="@dimen/activity_margin">
+            android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
                 android:id="@+id/settings_vibrate"
@@ -389,8 +365,8 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
-                android:paddingLeft="@dimen/medium_margin"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingLeft="@dimen/medium_margin"
                 android:text="@string/vibrate_on_button_press"
                 app:switchPadding="@dimen/medium_margin"/>
         </RelativeLayout>
@@ -406,8 +382,8 @@
             android:id="@+id/timer_tab_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/bigger_margin"
             android:layout_marginStart="@dimen/bigger_margin"
+            android:layout_marginLeft="@dimen/bigger_margin"
             android:layout_marginTop="@dimen/activity_margin"
             android:text="@string/timer_tab"
             android:textAllCaps="true"
@@ -419,18 +395,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
             android:background="?attr/selectableItemBackground"
-            android:paddingBottom="@dimen/bigger_margin"
             android:paddingLeft="@dimen/normal_margin"
+            android:paddingTop="@dimen/bigger_margin"
             android:paddingRight="@dimen/normal_margin"
-            android:paddingTop="@dimen/bigger_margin">
+            android:paddingBottom="@dimen/bigger_margin">
 
             <com.simplemobiletools.commons.views.MyTextView
                 android:id="@+id/settings_timer_max_reminder_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/settings_timer_max_reminder"
                 android:layout_toStartOf="@+id/settings_timer_max_reminder"
+                android:layout_toLeftOf="@+id/settings_timer_max_reminder"
                 android:paddingLeft="@dimen/medium_margin"
                 android:paddingRight="@dimen/medium_margin"
                 android:text="@string/max_reminder_duration"/>
@@ -459,8 +435,8 @@
             android:id="@+id/widgets_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/bigger_margin"
             android:layout_marginStart="@dimen/bigger_margin"
+            android:layout_marginLeft="@dimen/bigger_margin"
             android:layout_marginTop="@dimen/activity_margin"
             android:text="@string/widgets"
             android:textAllCaps="true"
@@ -472,10 +448,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
             android:background="?attr/selectableItemBackground"
-            android:paddingBottom="@dimen/activity_margin"
             android:paddingLeft="@dimen/normal_margin"
+            android:paddingTop="@dimen/activity_margin"
             android:paddingRight="@dimen/normal_margin"
-            android:paddingTop="@dimen/activity_margin">
+            android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MySwitchCompat
                 android:id="@+id/settings_use_text_shadow"
@@ -483,8 +459,8 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:clickable="false"
-                android:paddingLeft="@dimen/medium_margin"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingLeft="@dimen/medium_margin"
                 android:text="@string/use_text_shadow"
                 app:switchPadding="@dimen/medium_margin"/>
         </RelativeLayout>
@@ -495,18 +471,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
             android:background="?attr/selectableItemBackground"
-            android:paddingBottom="@dimen/activity_margin"
             android:paddingLeft="@dimen/normal_margin"
+            android:paddingTop="@dimen/activity_margin"
             android:paddingRight="@dimen/normal_margin"
-            android:paddingTop="@dimen/activity_margin">
+            android:paddingBottom="@dimen/activity_margin">
 
             <com.simplemobiletools.commons.views.MyTextView
                 android:id="@+id/settings_customize_widget_colors_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:paddingLeft="@dimen/medium_margin"
                 android:paddingStart="@dimen/medium_margin"
+                android:paddingLeft="@dimen/medium_margin"
                 android:text="@string/customize_widget_colors"/>
 
         </RelativeLayout>
