@@ -7,6 +7,7 @@ import android.widget.RelativeLayout
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.config
+import com.simplemobiletools.clock.extensions.dbHelper
 import com.simplemobiletools.clock.extensions.getFormattedTime
 import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
@@ -67,15 +68,17 @@ class AlarmsAdapter(activity: SimpleActivity, var alarms: ArrayList<Alarm>, val 
 
     private fun deleteItems() {
         val alarmsToRemove = ArrayList<Alarm>()
-        /*selectedPositions.sortedDescending().forEach {
-            val alarm = alarms[it]
-            alarmsToRemove.add(alarm)
+        val positions = getSelectedItemPositions()
+        getSelectedItems().forEach {
+            alarmsToRemove.add(it)
         }
 
         alarms.removeAll(alarmsToRemove)
-        removeSelectedItems()
-        activity.dbHelper.deleteAlarms(alarmsToRemove)*/
+        removeSelectedItems(positions)
+        activity.dbHelper.deleteAlarms(alarmsToRemove)
     }
+
+    private fun getSelectedItems() = alarms.filter { selectedKeys.contains(it.id) } as ArrayList<Alarm>
 
     private fun setupView(view: View, alarm: Alarm) {
         val isSelected = selectedKeys.contains(alarm.id)
