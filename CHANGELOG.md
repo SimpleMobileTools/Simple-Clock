@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.0.0 *(2019-01-24)*
+----------------------------
+
+ * Increased the minimal required Android OS version to 5
+ * Fixed a few alarm related glitches
+
 Version 4.3.0 *(2018-09-19)*
 ----------------------------
 
