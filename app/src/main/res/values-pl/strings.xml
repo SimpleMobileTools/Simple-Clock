@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Prosty Zegar</string>
+    <string name="app_launcher_name">Zegar</string>
+    <string name="time_zone">Strefa czasowa</string>
+    <string name="vibrate">Wibracje</string>
+    <string name="label">Etykieta</string>
+    <string name="no_days_selected">Nie wybrano dni</string>
+    <string name="timer">Minutnik</string>
+    <string name="lap">Okrążenie</string>
+    <string name="stopwatch_stopped">Stoper został zatrzymany</string>
+    <string name="timer_stopped">Minutnik został zatrzymany</string>
+    <string name="max_reminder_duration">Maksymalny okres przypominania</string>
+    <string name="time_expired">Koniec czasu</string>
+    <string name="clock_and_date">Czas i data</string>
+    <string name="use_text_shadow">Używaj cienia napisu</string>
+    <string name="swipe_right_to_dismiss">Przeeciągnij w prawo, aby wyłączyć, lub w lewo, aby włączyć drzemkę.</string>
+
+    <!-- Settings -->
+    <string name="clock_tab">Zegar</string>
+    <string name="alarm_tab">Alarm</string>
+    <string name="stopwatch_tab">Stoper</string>
+    <string name="timer_tab">Minutnik</string>
+    <string name="show_seconds">Pokazuj sekundy</string>
+    <string name="increase_volume_gradually">Zwiększaj głośność stopniowo</string>
+
+    <!-- FAQ -->
+    <string name="faq_1_title">Jak mogę zmienić sortowanie okrążeń w sekcji stopera?</string>
+    <string name="faq_1_text">Po prostu kliknij na którąkolwiek kolumnę, co sprawi, że okrążenia będą posortowane według wybranej kolumny. Dzięki dodatkowym kliknięciom możesz przełączać się między rosnącym a malejącym sortowaniem.</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Połączenie zegara, alarmu, stopera i minutnika.</string>
+    <string name="app_long_description">
+        Aplikacja posiada wiele funkcji związanych z mierzeniem czasu.
+
+        W zegarze możesz włączyć wyświetlanie godzin z innych stref czasowych lub użyć prostego, lecz personalizowanego widżetu zegara. Kolor tekstu widżetu może być zmieniany, tak samo jak kolor i alfa tła.
+
+        Alarm zawiera wszystkie spodziewane funkcje takie, jak wybieranie dni, przełączanie wibracji, wybieranie dzwonka, drzemka czy dodawanie własnej etykiety.
+
+        Ze stoperem możesz łatwo mierzyć dłuższe okresy czasu czy indywidualne okrążenia. Możesz sortować okrążenia według czasu okrążenia, zawiera także opcjonalne wibracje przy naciśnięciach przycisku, co pozwoli Tobie wiedzieć, że przycisk został naciśnięty, nawet jeżeli nie możesz spojrzeć na urządzenie.
+
+        Możesz łątwo ustawić minutnik, aby być powiadomiony o jakimś wydarzeniu. Możesz zmieniać jednocześnie jego dzwonek lub przełączać wibracje.
+        
+        Dodatkowe funkcje zawierają na przykład zapobieganie urządzenia przed uśpieniem, kiedy aplikacja jest w tle.
+
+        Nie zawiera reklam oraz niekoniecznych uprawnień. Jest w pełni otwartoźródłowa i w pełni podatna na kolorowanie.
+
+        Ta aplikacja jesst tylko częścią większej serii aplikacji. Możesz znaleźć pozostałe na https://www.simplemobiletools.com
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
