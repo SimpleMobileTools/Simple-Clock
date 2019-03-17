@@ -13,7 +13,7 @@
     <string name="time_expired">Tid utløpt</string>
     <string name="clock_and_date">Klokke og dato</string>
     <string name="use_text_shadow">Bruk tekstskygge</string>
-    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze.</string>
+    <string name="swipe_right_to_dismiss">Sveip til høyre for å avvise eller til venstre for Snooze.</string>
 
     <!-- Settings -->
     <string name="clock_tab">Klokke</string>
@@ -21,7 +21,7 @@
     <string name="stopwatch_tab">Stoppeklokke</string>
     <string name="timer_tab">Timer</string>
     <string name="show_seconds">Vis sekunder</string>
-    <string name="increase_volume_gradually">Increase volume gradually</string>
+    <string name="increase_volume_gradually">Øk volum gradvis</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">How can I change lap sorting at the stopwatch tab?</string>
