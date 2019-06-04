@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Простий Годинник</string>
+    <string name="app_launcher_name">Годинник</string>
+    <string name="time_zone">Часовий пояс</string>
+    <string name="vibrate">Вібрувати</string>
+    <string name="label">Мітка</string>
+    <string name="no_days_selected">Дні не обрано</string>
+    <string name="timer">Таймер</string>
+    <string name="lap">Інтервал</string>
+    <string name="stopwatch_stopped">Секундомір зупинено</string>
+    <string name="timer_stopped">Таймер зупинено</string>
+    <string name="max_reminder_duration">Максимальна тривалість нагадування</string>
+    <string name="time_expired">Час сплив</string>
+    <string name="clock_and_date">Годинник і дата</string>
+    <string name="use_text_shadow">Застосовувати ефект тіні у тексті</string>
+    <string name="swipe_right_to_dismiss">Свайп вправо, щоб відхилити, або вліво, щоб відкласти.</string>
+
+    <!-- Settings -->
+    <string name="clock_tab">Годинник</string>
+    <string name="alarm_tab">Будильник</string>
+    <string name="stopwatch_tab">Секундомір</string>
+    <string name="timer_tab">Таймер</string>
+    <string name="show_seconds">Показувати з точністю до секунд</string>
+    <string name="increase_volume_gradually">Поступово підвищувати гучність</string>
+
+    <!-- FAQ -->
+    <string name="faq_1_title">Як я можу відсортувати інтервали часу у вкладці секундоміра?</string>
+    <string name="faq_1_text">Просто натисність на будь-якій з колонок, так ви відсортуєте інтервали за значеннями у даній колонці. Додатково натиснувши, ви зміните сортування за зростанням чи спаданням.</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Поєднує годинник, будильник, секундомір і таймер.</string>
+    <string name="app_long_description">
+        Додаток містить численні функції, пов'язані з вимірюванням часу.
+
+        Ви можете додати можливість бачити час інших часових поясів у вкладці годинника; або можете використовувати простий віджет годинника, який легко налаштувати, зокрема колір тексту, колір фону та прозорість.
+
+        Будильник містить всі очікувані функції, як-от вибір днів тижня, вібрування, вибір сигналу, можливість відкладення і додавання позначки користувача.
+
+        З допомогою секундоміра ви легко виміряєте тривалий період часу або окремі інтервали. Ви можете сортувати інтервали за тривалістю; також є можливість активувати вібрації з натиском кнопки, що повідомить вам, чи кнопка натиснена, навіть якщо ви не можете поглянути на пристрій.
+
+        Ви можете налаштувати таймер, що повідомить про якусь подію, змінити сигнал повідомлення і ввімкнути вібрування.
+
+        Серед додаткових функцій зокрема деактивація режиму сну, якщо додаток відкритий.
+
+        Цей додаток не буде показувати рекламу; потрібні лише найнеобхідніші дозволи. Додаток має повністю відкритий програмний код, кольори оформлення можна легко налаштувати.
+
+        Простий Годинник - це один із ряду додатків від Simple Mobile Tools. Інші додатки можна знайти тут: https://www.simplemobiletools.com
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
