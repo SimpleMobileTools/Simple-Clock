@@ -68,6 +68,20 @@
         tools:text="Default alarm"/>
 
     <ImageView
+        android:id="@+id/timer_play_pause"
+        android:layout_width="@dimen/stopwatch_button_size"
+        android:layout_height="@dimen/stopwatch_button_size"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/big_margin"
+        android:padding="@dimen/normal_margin"
+        android:src="@drawable/ic_play"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
         android:id="@+id/timer_reset"
         android:layout_width="@dimen/stopwatch_button_small_size"
         android:layout_height="@dimen/stopwatch_button_small_size"
@@ -81,19 +95,5 @@
         app:layout_constraintEnd_toStartOf="@+id/timer_play_pause"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/timer_play_pause"/>
-
-    <ImageView
-        android:id="@+id/timer_play_pause"
-        android:layout_width="@dimen/stopwatch_button_size"
-        android:layout_height="@dimen/stopwatch_button_size"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/big_margin"
-        android:padding="@dimen/normal_margin"
-        android:src="@drawable/ic_play"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
