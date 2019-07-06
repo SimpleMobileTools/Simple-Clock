@@ -50,8 +50,8 @@ android {
 }
 
 dependencies {
-    implementation 'com.simplemobiletools:commons:5.11.3'
+    implementation 'com.simplemobiletools:commons:5.14.12'
     implementation 'com.facebook.stetho:stetho:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
     implementation 'com.shawnlin:number-picker:2.4.6'
 }
