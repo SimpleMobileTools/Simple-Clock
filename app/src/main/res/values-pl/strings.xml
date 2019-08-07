@@ -12,8 +12,8 @@
     <string name="max_reminder_duration">Maksymalny okres przypominania</string>
     <string name="time_expired">Koniec czasu</string>
     <string name="clock_and_date">Czas i data</string>
-    <string name="use_text_shadow">Używaj cienia napisu</string>
-    <string name="swipe_right_to_dismiss">Przeeciągnij w prawo, aby wyłączyć, lub w lewo, aby włączyć drzemkę.</string>
+    <string name="use_text_shadow">Wycieniuj tekst</string>
+    <string name="swipe_right_to_dismiss">Przeciągnij w prawo, aby wyłączyć, lub w lewo, aby włączyć drzemkę.</string>
 
     <!-- Settings -->
     <string name="clock_tab">Zegar</string>
