@@ -336,7 +336,7 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
     val builder = NotificationCompat.Builder(this)
             .setContentTitle(label)
             .setContentText(getFormattedTime(getPassedSeconds(), false, false))
-            .setSmallIcon(R.drawable.ic_alarm)
+            .setSmallIcon(R.drawable.ic_alarm_vector)
             .setContentIntent(pendingIntent)
             .setPriority(Notification.PRIORITY_HIGH)
             .setDefaults(Notification.DEFAULT_LIGHTS)

@@ -63,7 +63,7 @@
         android:layout_height="@dimen/reminder_background_min_size"
         android:layout_marginBottom="@dimen/activity_margin"
         android:padding="@dimen/activity_margin"
-        android:src="@drawable/ic_alarm_big"
+        android:src="@drawable/ic_alarm_vector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/reminder_dismiss"
         app:layout_constraintHorizontal_bias="0.5"

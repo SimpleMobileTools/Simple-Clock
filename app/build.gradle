@@ -17,6 +17,7 @@ android {
         versionCode 13
         versionName "5.0.2"
         setProperty("archivesBaseName", "clock")
+        vectorDrawables.useSupportLibrary = true
     }
 
     signingConfigs {

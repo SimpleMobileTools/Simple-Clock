@@ -42,7 +42,7 @@
             android:layout_height="@dimen/widget_alarm_icon_size"
             android:layout_alignTop="@+id/widget_next_alarm"
             android:layout_alignBottom="@+id/widget_next_alarm"
-            android:src="@drawable/ic_alarm"/>
+            android:src="@drawable/ic_alarm_vector"/>
 
         <TextView
             android:id="@+id/widget_next_alarm"

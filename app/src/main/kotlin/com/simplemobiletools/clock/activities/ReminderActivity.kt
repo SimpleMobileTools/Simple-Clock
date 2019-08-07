@@ -77,6 +77,9 @@ class ReminderActivity : SimpleActivity() {
         reminder_stop.beGone()
         reminder_draggable_background.startAnimation(AnimationUtils.loadAnimation(this, R.anim.pulsing_animation))
         reminder_draggable_background.applyColorFilter(getAdjustedPrimaryColor())
+
+        reminder_dismiss.applyColorFilter(config.textColor)
+        reminder_draggable.applyColorFilter(config.textColor)
         reminder_snooze.applyColorFilter(config.textColor)
 
         var minDragX = 0f

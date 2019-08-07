@@ -26,7 +26,7 @@
             android:id="@+id/tab_alarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@drawable/ic_alarm"/>
+            android:icon="@drawable/ic_alarm_vector"/>
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tab_stopwatch"
