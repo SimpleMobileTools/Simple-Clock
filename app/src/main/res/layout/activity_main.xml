@@ -20,7 +20,7 @@
             android:id="@+id/tab_clock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@drawable/ic_clock"/>
+            android:icon="@drawable/ic_clock_vector"/>
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tab_alarm"

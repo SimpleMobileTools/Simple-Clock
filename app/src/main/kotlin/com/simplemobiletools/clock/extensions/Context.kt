@@ -273,7 +273,7 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
             .setAutoCancel(true)
             .setSound(Uri.parse(soundUri), AudioManager.STREAM_ALARM)
             .setChannelId(channelId)
-            .addAction(R.drawable.ic_cross, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getHideTimerPendingIntent())
+            .addAction(R.drawable.ic_cross_vector, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getHideTimerPendingIntent())
 
     if (addDeleteIntent) {
         builder.setDeleteIntent(reminderActivityIntent)
@@ -343,8 +343,8 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
             .setAutoCancel(true)
             .setSound(Uri.parse(soundUri), AudioManager.STREAM_ALARM)
             .setChannelId(channelId)
-            .addAction(R.drawable.ic_snooze, getString(R.string.snooze), getSnoozePendingIntent(alarm))
-            .addAction(R.drawable.ic_cross, getString(R.string.dismiss), getHideAlarmPendingIntent(alarm))
+            .addAction(R.drawable.ic_snooze_vector, getString(R.string.snooze), getSnoozePendingIntent(alarm))
+            .addAction(R.drawable.ic_cross_vector, getString(R.string.dismiss), getHideAlarmPendingIntent(alarm))
 
     builder.setVisibility(Notification.VISIBILITY_PUBLIC)
 

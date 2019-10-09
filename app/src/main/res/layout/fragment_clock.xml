@@ -37,7 +37,7 @@
             android:layout_below="@+id/clock_date"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/medium_margin"
-            android:drawableLeft="@drawable/ic_clock"
+            android:drawableLeft="@drawable/ic_clock_vector"
             android:drawablePadding="@dimen/small_margin"
             android:gravity="center_horizontal"
             android:textSize="@dimen/big_text_size"
@@ -63,6 +63,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/activity_margin"
-        android:src="@drawable/ic_plus"/>
+        android:src="@drawable/ic_plus_vector"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

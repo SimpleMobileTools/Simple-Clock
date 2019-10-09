@@ -199,7 +199,7 @@ class TimerFragment : Fragment() {
     }
 
     private fun updateIcons() {
-        val drawableId = if (isRunning) R.drawable.ic_pause else R.drawable.ic_play
+        val drawableId = if (isRunning) R.drawable.ic_pause_vector else R.drawable.ic_play_vector
         val iconColor = if (context!!.getAdjustedPrimaryColor() == Color.WHITE) Color.BLACK else context!!.config.textColor
         view.timer_play_pause.setImageDrawable(resources.getColoredDrawableWithColor(drawableId, iconColor))
     }
