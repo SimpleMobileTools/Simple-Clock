@@ -24,8 +24,8 @@
     <string name="increase_volume_gradually">Aumentar volume gradualmente</string>
 
     <!-- FAQ -->
-    <string name="faq_1_title">How can I change lap sorting at the stopwatch tab?</string>
-    <string name="faq_1_text">Just click on any of the columns, that will make the laps be sorted by the given column. With additional clicks you can toggle between ascending and descending sorting.</string>
+    <string name="faq_1_title">Como posso alterar a classificação das voltas na guia Cronômetro?</string>
+    <string name="faq_1_text">Basta clicar em qualquer uma das colunas e isso fará com que as voltas sejam classificadas pela coluna especificada. Com cliques adicionais, você pode alternar a ordem de classificação entre crescente e decrescente.</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- Short description has to have less than 80 chars -->
@@ -33,17 +33,17 @@
     <string name="app_long_description">
         Uma aplicação com diversas ações relacionadas com data e hora.
 
-        At the clock you can enable displaying times from other timezones, or use the simple, but customizable clock widget. The text color of the widget can be customized, as well as the color and the alpha of the background.
+        No relógio, você pode ativar a exibição de horários em outros fusos ou usar o widget de relógio simples, mas personalizável. A cor do texto do widget pode ser personalizada, assim como a cor e a transparência (escala alfa) do plano de fundo.
 
-        The alarm contains all the expected features as day selecting, vibration toggling, ringtone selecting, snooze or adding a custom label.
+        O alarme contém todos os recursos esperados, como seleção do dia, alternância de vibração, seleção de toque, soneca ou adição de um rótulo personalizado.
 
-        With the stopwatch you can easily measure a longer period of time, or individual laps. You can sort the laps by lap time, it contains optional vibrations on button presses too, just to let you know that the button was pressed, even if you cannot look at the device.
+        Com o cronômetro, você pode medir facilmente um longo período de tempo ou voltas individuais. Você pode classificar as voltas pelo tempo da volta - essa funcionalidade também contém vibrações opcionais ao pressionar os botões, apenas para informar que o botão foi pressionado, mesmo que você não consiga olhar o dispositivo.
 
-        You can easily setup a timer to be notified of some event. You can both change its ringtone, or toggle vibrations.
+        Você pode configurar facilmente um alarme para notificar algum evento. Além disso, você pode alterar o toque ou alternar as vibrações.
 
-        Additional features include for example preventing the device from falling asleep while the app is in foreground.
+        Recursos adicionais incluem, por exemplo, impedir que o dispositivo hiberne enquanto o aplicativo está em primeiro plano.
 
-        Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
+        Não contém anúncios ou permissões desnecessárias. Possui código totalmente aberto, oferece cores personalizáveis.
 
         Esta aplicação é apenas parte de um conjunto mais vasto de aplicações. Saiba mais em https://www.simplemobiletools.com
     </string>
