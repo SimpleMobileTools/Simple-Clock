@@ -1,0 +1,1 @@
+Połączenie zegara, alarmu, stopera i minutnika.

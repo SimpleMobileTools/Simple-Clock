@@ -1,0 +1,15 @@
+Programėlė turi keletą funkcijų susijusių su laiko apskaita.
+
+Laikrodyje Jūs galite pasirinkti laiko atvaizdavimą keliose laiko zonose, arba naudoti paprastą, bet tinkinamą laikrodžio skydelį. Teksto spalva skydelyje gali būti pasirenkama, taip pat kaip ir pagrindinė arba fono spalvos.
+
+Žadintuvas turi visus pageidaujmus privalumus, kaip dienos pasirinkimas, vibracijos pasirinkimas, žadintuvo tono pasirinkimas, snaudimas arba tinkintos etiketės pridėjimas.
+
+WSu chronometru Jūs galite pamatuoti ilgesnius laiko periodus, arba individualius etapus. Galite surikiuoti etapus pagal etapų laiką, chronometras taip pat turi vibracijas kai paspaudžiamas mygtukas, kad žinotumėte ar tikrai paspaudėte mygtuką, net kai negalite žiūrėti į savo įrenginį.
+
+Jūs galite lengvai nustatyti laimatį kad žinotumėte tam tikro norimo etapo trukmę. Jūs taip pat galite nustatyti laikmačio skambėjimo toną, arba pasirinkti vibraciją.
+
+Papildomi privalumai susideda iš pavyzdžiui iš neleidimo įrenginiui miegoti kol programėlė veikia fone.
+
+Nėra jokių reklamų ar nereikalingų leidimų. Tai pilnai atviro kodo programėlė, leidžia keisti spalvas.
+
+Ši programėlė yra tik viena dalelė iš kelių mūsų programėlių. Jūs galite rasti likusias programėles čia https://www.simplemobiletools.com

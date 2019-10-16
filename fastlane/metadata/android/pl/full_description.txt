@@ -1,0 +1,15 @@
+Aplikacja posiada wiele funkcji związanych z mierzeniem czasu.
+
+W zegarze możesz włączyć wyświetlanie godzin z innych stref czasowych lub użyć prostego, lecz personalizowanego widżetu zegara. Kolor tekstu widżetu może być zmieniany, tak samo jak kolor i alfa tła.
+
+Alarm zawiera wszystkie spodziewane funkcje takie, jak wybieranie dni, przełączanie wibracji, wybieranie dzwonka, drzemka czy dodawanie własnej etykiety.
+
+Ze stoperem możesz łatwo mierzyć dłuższe okresy czasu czy indywidualne okrążenia. Możesz sortować okrążenia według czasu okrążenia, zawiera także opcjonalne wibracje przy naciśnięciach przycisku, co pozwoli Tobie wiedzieć, że przycisk został naciśnięty, nawet jeżeli nie możesz spojrzeć na urządzenie.
+
+Możesz łątwo ustawić minutnik, aby być powiadomiony o jakimś wydarzeniu. Możesz zmieniać jednocześnie jego dzwonek lub przełączać wibracje.
+
+Dodatkowe funkcje zawierają na przykład zapobieganie urządzenia przed uśpieniem, kiedy aplikacja jest w tle.
+
+Nie zawiera reklam oraz niekoniecznych uprawnień. Jest w pełni otwartoźródłowa i w pełni podatna na kolorowanie.
+
+Ta aplikacja jesst tylko częścią większej serii aplikacji. Możesz znaleźć pozostałe na https://www.simplemobiletools.com

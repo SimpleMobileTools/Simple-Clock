@@ -1,0 +1,15 @@
+Aplikasi ini memiliki beberapa fungsi yang terkait dengan waktu.
+
+Pada tab jam, anda bisa menampilkan waktu dari zona yang berbeda, atau gunakan widget jam yang sederhana, tetapi mudah disesuaikan. Warna teks widget juga bisa disesuaikan, begitu juga warna dan transparasi latar belakang.
+
+Tab alarm berisi semua fitur yang diperlukan, seperti pemilihan hari, getar, nada dering, penundaan dan menambahkan label khusus.
+
+Dengan stopwatch anda bisa mengukur periode waktu satu atau lebih putaran. Anda bisa mengurutkan waktu putaran, juga secara opsional bergetar saat tombol di tekan, supaya anda tahu bahwa tombol telah ditekan, walaupun anda tidak melihat ke arah perangkat.
+
+Anda bisa dengan mudah mengatur timer untuk mengingatkan hal-hal tertentu. Anda bisa mengubah nada dering, atau mengaktifkan getaran atau keduanya.
+
+Fitur tambahan termasuk mencegah perangkat anda masuk ke mode tidur saat aplikasi digunakan.
+
+Sama sekali tidak berisi iklan dan tidak membutuhkan perizinan yang tidak perlu. Sepenuhnya bersumber terbuka, dengan warna yang bisa disesuaikan.
+
+Aplikasi ini hanya salah satu bagian dari rangkaian aplikasi yang lebih besar. Anda bisa menemukan yang lainnya di https://www.simplemobiletools.com

@@ -1,0 +1,15 @@
+Aplikacija ima više funkcija povezanih s vremenom.
+
+Sat vam omogućuje prikaz vremena u nekoliko vremenskih zona. To uključuje jednostavan i prilagodljiv widget, gdje je moguće promijeniti boju fonta, pozadinu, kao i transparentnost.
+
+Alarm sadrži sve očekivane značajke kao odabir dana, uključivanje/isključivanje vibracije, odabir zvona, odgodu ili dodavanje prilagođene oznake.
+
+Štoperica mjeri bilo jedno vrijeme ili vrijeme kruga. Moguće je sortirati po trajanju kruga, a Vaš uređaj može vibrirati kod pritiska na gumb, kako bi Vas obavijestio da je gumb pritisnut bez gledanja na zaslon.
+
+Jednostavno možete podesiti brojač koji će Vas obavijestiti o nekom događaju. Možete promijeniti i njegov zvuk zvona ili uključiti/isključiti vibracije.
+
+Aplikacija također ima neke dodatne funkcije, kao što je sprečavanje spavanja uređaja sve dok se aplikacija nalazi u prvom planu.
+
+Ne sadrži oglase ili nepotrebne dozvole. Aplikacije je otvorenog koda, pruža prilagodljive boje.
+
+Ova je aplikacija samo dio većeg broja aplikacija. Možete pronaći ostatak na https://www.simplemobiletools.com

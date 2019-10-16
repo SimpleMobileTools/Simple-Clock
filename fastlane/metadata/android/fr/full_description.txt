@@ -1,0 +1,15 @@
+Cette application propose plusieurs fonctions liées aux horaires.
+
+L'horloge permet d'afficher l'heure sur plusieurs fuseaux horaires. Cette application comprend un widget simple et personnalisable, dans lequel il est possible de modifier les couleurs de la police d'écriture et de l'arrière-plan, ainsi que  son opacité.
+
+Le réveil possède toutes les fonctions classiques : vibration, sonnerie, répétition et titre de l'alarme.
+
+Le chronomètre permet de mesurer soit un temps unique, soit un temps par tour. Il est possible de trier les tours, et votre périphérique peut vibrer lors de l'appui sur un bouton, pour vous informer que le bouton a été déclenché sans avoir à regarder l'écran.
+
+Vous pouvez utiliser le minuteur pour être averti d'un événement, soit par sonnerie, soit par vibration.
+
+L'application possède aussi quelques fonctions supplémentaires, comme par exemple empêcher la mise en veille de l'appareil tant que l'application est en premier plan.
+
+L'application ne contient ni publicité, ni autorisation inutile. Elle est totalement opensource et est également fournie avec des couleurs personnalisables.
+  
+Cette application fait partie d'une plus grande suite. Vous pouvez trouver les autres applications sur https://www.simplemobiletools.com

@@ -1,0 +1,15 @@
+Aplikazio honek denborarekin zerikusia duten hainbat funtzio ditu.
+
+Ordularian beste ordu eremuetako orduak aktibatu ditzakezu, edo trepeta sinplea baina pertsonalizagarria erabili. Trepetaren letra kolorea eta atzekaldearen kolorea eta alfa aldatu daitezke.
+
+Alarmak espero diren ezaugarri guztiak ditu: egun hautaketa, bibrazioa (des)aktibatzea, doinu hautaketa edo etiketak gehitzea.
+
+Kronometroarekin epe luze bat edo hainbat bira neurtu daitezke. Birak denboraren arabera sailkatu daitezke, aukerako bibrazioa dauka botoia sakatzerakoan, begiratu behar barik jakin dezazun botoia ondo sakatu duzula.
+
+Erraza da tenporizagailuarekin gertaera ezberdinetaz jakinarazia izatea.
+
+Gainontzeko ezaugarrien artean, ekiditzen du telefonoa lotara joatea aplikazioa aurrekaldean dagoen artean.
+
+Ez dauka iragarkirik, ezta beharrezkoak ez diren baimenak. Iturri irekikoa da guztiz eta kolore pertsonalizagarriak ditu.
+
+Aplikazio hau sorta handiago bateko zati bat baino ez da. Gainontzeko tresnak https://www.simplemobiletools.com webgunean aurkitu ditzakezu.

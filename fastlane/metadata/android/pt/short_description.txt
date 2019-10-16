@@ -1,0 +1,1 @@
+Uma combinação entre relógio, alarme, cronómetro e temporizador.

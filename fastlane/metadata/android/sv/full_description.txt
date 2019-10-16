@@ -1,0 +1,15 @@
+Appen har flera tidsrelaterade funktioner.
+
+Du kan visa tider i andra tidszoner vid klockan, eller använda den enkla och anpassningsbara klockwidgeten. Du kan anpassa widgetens textfärg, bakgrundsfärg och bakgrundsgenomskinlighet.
+
+Alarmet har alla förväntade funktioner. Du kan välja dagar, aktivera eller inaktivera vibrationer, välja en ringsignal, snooza och lägga till en anpassad etikett.
+
+Med stoppuret kan du enkelt mäta en längre tidsperiod eller enskilda varv. Du kan också sortera varven efter varvtid och aktivera vibrationer vid knapptryckningar.
+
+Du kan enkelt ställa in en timer som meddelar dig om en händelse. Du kan ändra timerns ringsignal och aktivera eller inaktivera vibrationer.
+
+Du kan också hindra att viloläget aktiveras när appen körs i förgrunden.
+
+Innehåller ingen reklam eller onödiga behörigheter. Den har helt öppen källkod och anpassningsbara färger.
+
+Denna app är bara en del av en större serie appar. Du hittar resten av dem på https://www.simplemobiletools.com

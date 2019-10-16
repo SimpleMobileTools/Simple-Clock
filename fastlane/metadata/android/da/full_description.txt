@@ -1,0 +1,15 @@
+Appen har flere funktioner relateret til tider.
+
+Uret kan sættes til at vise tider i andre tidszoner eller vise den simple widget. Widget'ens tekstfarve kan ændres, og det kan baggrundens farve og alfa også.
+
+Vækkeuret har alle de forventede funktioner såsom valg af ugedag(e), vibrering, valg af ringetone, udsættelse af alarm og oprettelse af en etiket.
+
+Med stopuret kan du nemt måle en længere tidsperiode samt individuelle mellemtider. Du kan sortere mellemtider efter varighed, vælge vibration ved tryk på knapper for at tydeliggøre at knappen blev aktiveret selv hvis du ikke kan se på din enhed.
+
+Du kan nemt opsætte en timer med æggeuret og blive underrettet efter et valgt tidsrum. Du kan vælge underretningslyd og til- eller fravælge vibration.
+
+Ekstra funktioner omfatter også at forhindre enheden i at falde i søvn når appen er i forgrunden.
+
+Indeholder ingen reklamer eller unødvendige tilladelser. Den er helt igennem open source, og du kan selv bestemme farverne.
+
+Denne app er en enkelt del af en større serie apps. Du kan finde dem alle på siden https://www.simplemobiletools.com

@@ -1,0 +1,15 @@
+Diese App hat zahlreiche Zeitfunktionalitäten.
+
+Auf der Uhr können Sie die Anzeige von Zeiten aus anderen Zeitzonen aktivieren oder das einfache, aber anpassbare Uhr-Widget verwenden. Die Textfarbe des Widgets kann angepasst werden, sowie Farbe und Transparenz des Hintergrunds.
+
+Der Alarm enthält alle erwarteten Funktionen wie Tagesauswahl, Vibrationsumschaltung, Klingeltonauswahl, Schlummerfunktion oder Hinzufügen eines benutzerdefinierten Labels.
+
+Mit der Stoppuhr können Sie einfach einen längeren Zeitraum oder einzelne Runden messen. Sie können die Runden nach Rundenzeiten sortieren. Optional können Sie die Vibration für den Knopfdruck aktivieren, der Sie wissen lässt, dass die Taste gedrückt wurde, auch wenn Sie das Gerät gerade nicht betrachten können.
+
+Sie können einen Timer einrichten, der über ein Ereignis informiert. Sie können den Klingelton ändern oder die Vibration umschalten.
+
+Zusätzliche Funktionen umfassen beispielsweise das Verhindern des Einschlafens des Geräts, während sich die App im Vordergrund befindet oder die Anpassung aller verwendeten Farben.
+
+Die App beinhaltet keine Werbung oder unnötige Berechtigungen und ist komplett Open Source.
+
+Diese App ist nur eine aus einer größeren Serie von schlichten Apps, welche Sie auf https://www.simplemobiletools.com finden können.

@@ -1,0 +1,13 @@
+L'app ha diverse funzioni per la gestione del tempo.
+
+Si può controllare l'orario di altri fusi orari o usare il widget orologio, semplice ma personalizzabile. Tale widget può essere personalizzato come si vuole, sia nei colori che nella trasparenza dello sfondo.
+
+La sveglia dispone di tutte le funzioni essenziali. Si può selezionare il giorno, attivare la vibrazione, scegliere la suoneria, rinviare la sveglia o aggiungere un'etichetta.
+
+Con il cronometro si può misurare facilmente un lungo periodo di tempo, o singoli tempi parziali ordinabili. Si può attivare la vibrazione dei tasti per sapere se un pulsante è stato premuto, utile quando non si può guardare il dispositivo.
+
+Fra le altre funzionalità incluse, c'è la possibilità di prevenire che il dispositivi vada in standby mentre l'applicazione è in primo piano.
+
+L'applicazione non contiene pubblicità o permessi non necessari; è completamente opensource e la si può personalizzare con i propri colori preferiti.
+
+Questa è solamente una delle tante applicazioni della serie Simple Mobile Tools. Si possono trovare le altre su https://www.simplemobiletools.com

@@ -1,0 +1,15 @@
+De app heeft verschillende functies gerelateerd aan tijd.
+
+De wereldklok kan de tijden van verschillende steden tonen. Er is ook een eenvoudige, maar aan te passen widget. De tekstkleur van de widget kan worden aangepast, evenals de kleur en transparantie van de achtergrond.
+
+Het alarm bevat alle te verwachten functies, zoals dagen kiezen, trillen, beltoon kiezen, alarm uitstellen of het toevoegen van een tekstlabel.
+
+De stopwatch kan gemakkelijk een langere tijdsduur meten, of individuele rondes, die op tijd te sorteren zijn. Met de optie om bij het indrukken van knoppen te trillen hoeft er niet naar het toestel gekeken te worden voor feedback.
+
+Timers zijn eenvoudig in te stellen om op de hoogte gebracht te worden van een gebeurtenis. het geluidssignaal en het trillen zijn aan te passen.
+
+Verdere functies zijn bijvoorbeeld het voorkomen van de slaapstand zolang de app op de voorgrond blijft.
+
+Bevat geen advertenties of onnodige machtigingen. Volledig open-source. Kleuren van de app kunnen worden aangepast.
+
+Deze app is onderdeel van een grotere verzameling. Vind de andere apps op https://www.simplemobiletools.com

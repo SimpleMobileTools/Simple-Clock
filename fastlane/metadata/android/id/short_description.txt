@@ -1,0 +1,1 @@
+Kombinasi dari jam, alarm, stopwatch dan timer.
