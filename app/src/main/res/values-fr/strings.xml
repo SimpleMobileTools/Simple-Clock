@@ -28,6 +28,8 @@
     <string name="faq_1_text">Il suffit d\'appuyer sur les colonnes, les temps seront alors triés selon la colonne sur laquelle vous avez appuyé. Appuyer de nouveau permet d\'inverser l\'ordre (croissant/décroissant).</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Simple Clock - A flexible multifunctional app</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Une horloge qui fait aussi minuteur, chronomètre et réveil.</string>
     <string name="app_long_description">

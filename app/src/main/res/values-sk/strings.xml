@@ -28,6 +28,8 @@
     <string name="faq_1_text">Stačí, ak kliknete na niektorý stĺpec, to aktivuje triedenie podľa daného stĺpca. Ďalším kliknutím na daný stĺpec viete prepínať zostupné a vzostupné triedenie.</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Simple Clock - A flexible multifunctional app</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Kombinácia hodiniek, budíka, stopiek a časovača.</string>
     <string name="app_long_description">

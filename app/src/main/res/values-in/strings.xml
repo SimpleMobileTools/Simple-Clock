@@ -28,6 +28,8 @@
     <string name="faq_1_text">Cukup klik salah satu kolom, dan putaran akan diurutkan menurut kolom tersebut, dari yang terlama ke tercepat atau yang tercepat ke terlama.</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Simple Clock - A flexible multifunctional app</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Kombinasi dari jam, alarm, stopwatch dan timer.</string>
     <string name="app_long_description">

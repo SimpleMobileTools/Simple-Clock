@@ -28,6 +28,8 @@
     <string name="faq_1_text">Basta clicar em qualquer uma das colunas e isso fará com que as voltas sejam classificadas pela coluna especificada. Com cliques adicionais, você pode alternar a ordem de classificação entre crescente e decrescente.</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Simple Clock - A flexible multifunctional app</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Uma combinação entre relógio, alarme, cronómetro e temporizador.</string>
     <string name="app_long_description">

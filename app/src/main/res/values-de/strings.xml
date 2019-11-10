@@ -28,6 +28,8 @@
     <string name="faq_1_text">Einfach auf eine der Spalten klicken, das wird die Sortierung entsprechend der Spalte anpassen. Weitere Klicks schalten zwischen auf- und absteigender Sortierung um.</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Simple Clock - A flexible multifunctional app</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Die Kombination einer Uhr, eines Alarms, einer Stoppuhr und eines Timers.</string>
     <string name="app_long_description">

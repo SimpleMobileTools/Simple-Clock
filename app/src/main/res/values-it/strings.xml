@@ -28,8 +28,9 @@
     <string name="faq_1_text">Premendo una volta su qualsiasi colonna, i giri verranno ordinati per tale colonna. Premendo nuovamente si potrà cambiare il tipo di ordinamento, ascendente o discendente.</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Simple Clock - A flexible multifunctional app</string>
     <!-- Short description has to have less than 80 chars -->
-    <!-- The last two lines are translated in the same way in other applications. -->
     <string name="app_short_description">Un\'unione di orologio, sveglia, cronometro e timer.</string>
     <string name="app_long_description">
         L\'app ha diverse funzioni per la gestione del tempo.

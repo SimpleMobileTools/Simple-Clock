@@ -28,6 +28,8 @@
     <string name="faq_1_text">Sakatu zutaberen bat, birak zutabe horren arabera sailkatzeko. Gehiagotan sakatuz ordena gorakor edo beherakorrean sailkatu dezakezu</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Simple Clock - A flexible multifunctional app</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Konbinatutako ordulari, alarma, kronometro eta tenporizagailua.</string>
     <string name="app_long_description">

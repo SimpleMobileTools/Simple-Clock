@@ -1,1 +1,1 @@
-Simple Clock
+Simple Clock - A flexible multifunctional app
