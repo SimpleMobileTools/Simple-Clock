@@ -1,15 +1,15 @@
 Uma aplicação com diversas ações relacionadas com data e hora.
 
-No relógio, você pode ativar a exibição de horários em outros fusos ou usar o widget de relógio simples, mas personalizável. A cor do texto do widget pode ser personalizada, assim como a cor e a transparência (escala alfa) do plano de fundo.
+No relógio, você pode ativar a exibição de horários em outros fusos ou usar o widget de relógio simples, mas personalizável. A cor do texto do widget pode ser personalizada, assim como a cor e a transparência (escala alfa) do fundo.
 
-O alarme contém todos os recursos esperados, como seleção do dia, alternância de vibração, seleção de toque, soneca ou adição de um rótulo personalizado.
+O alarme contém todos as funções esperadas, como seleção do dia, alternância de vibração, seleção de toque, snooze ou adição de um rótulo personalizado.
 
-Com o cronômetro, você pode medir facilmente um longo período de tempo ou voltas individuais. Você pode classificar as voltas pelo tempo da volta - essa funcionalidade também contém vibrações opcionais ao pressionar os botões, apenas para informar que o botão foi pressionado, mesmo que você não consiga olhar o dispositivo.
+Com o cronómetro, pode medir facilmente um longo período de tempo ou voltas individuais. Pode classificar as voltas pelo tempo da volta - essa funcionalidade também contém vibrações opcionais ao pressionar os botões, apenas para informar que o botão foi pressionado, mesmo que não seja possível ver o dispositivo.
 
-Você pode configurar facilmente um alarme para notificar algum evento. Além disso, você pode alterar o toque ou alternar as vibrações.
+Pode configurar facilmente um alarme para notificar algum evento. Além disso, pode alterar o toque ou alternar as vibrações.
 
-Recursos adicionais incluem, por exemplo, impedir que o dispositivo hiberne enquanto o aplicativo está em primeiro plano.
+Outras funcionalidades incluem, por exemplo, impedir que o dispositivo hiberne enquanto a aplicação está em primeiro plano.
 
-Não contém anúncios ou permissões desnecessárias. Possui código totalmente aberto, oferece cores personalizáveis.
+Não contém anúncios nem permissões desnecessárias. Possui código totalmente aberto e oferece cores personalizáveis.
 
 Esta aplicação é apenas parte de um conjunto mais vasto de aplicações. Saiba mais em https://www.simplemobiletools.com
