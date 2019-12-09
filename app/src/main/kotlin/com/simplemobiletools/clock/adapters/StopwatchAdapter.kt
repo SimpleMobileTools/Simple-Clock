@@ -36,6 +36,10 @@ class StopwatchAdapter(activity: SimpleActivity, var laps: ArrayList<Lap>, recyc
 
     override fun getItemKeyPosition(key: Int) = laps.indexOfFirst { it.id == key }
 
+    override fun onActionModeCreated() {}
+
+    override fun onActionModeDestroyed() {}
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = createViewHolder(R.layout.item_lap, parent)
 
     override fun onBindViewHolder(holder: MyRecyclerViewAdapter.ViewHolder, position: Int) {

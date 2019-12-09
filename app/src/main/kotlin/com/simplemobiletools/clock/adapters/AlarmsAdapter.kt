@@ -48,6 +48,10 @@ class AlarmsAdapter(activity: SimpleActivity, var alarms: ArrayList<Alarm>, val 
 
     override fun getItemKeyPosition(key: Int) = alarms.indexOfFirst { it.id == key }
 
+    override fun onActionModeCreated() {}
+
+    override fun onActionModeDestroyed() {}
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = createViewHolder(R.layout.item_alarm, parent)
 
     override fun onBindViewHolder(holder: MyRecyclerViewAdapter.ViewHolder, position: Int) {

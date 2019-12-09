@@ -47,6 +47,10 @@ class TimeZonesAdapter(activity: SimpleActivity, var timeZones: ArrayList<MyTime
 
     override fun getItemKeyPosition(key: Int) = timeZones.indexOfFirst { it.id == key }
 
+    override fun onActionModeCreated() {}
+
+    override fun onActionModeDestroyed() {}
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = createViewHolder(R.layout.item_time_zone, parent)
 
     override fun onBindViewHolder(holder: MyRecyclerViewAdapter.ViewHolder, position: Int) {
