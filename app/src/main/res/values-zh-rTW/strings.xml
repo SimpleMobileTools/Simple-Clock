@@ -29,7 +29,7 @@
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Clock - A flexible multifunctional app</string>
+    <string name="app_title">簡易時鐘 - 一個泛用的多功能應用程式</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">結合了時鐘、鬧鐘、碼錶和計時器。</string>
     <string name="app_long_description">
