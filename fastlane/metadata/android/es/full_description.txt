@@ -1,0 +1,15 @@
+Esta aplicación tiene multiples funciones relacionadas al tiempo.
+
+En el reloj, puedes activar el mostrar horas de otras zonas horarias, o usar el simple, pero personalizable widget de reloj. El color de texto de widget puede ser personalizado, así como el color y transparencia del fondo.
+
+La alarma contiene todas las características esperadas como seleccionar el día, alternación de la vibración, selección de tono, posponer o añadir una etiqueta personalizada.
+
+Con el cronómetro, puedes fácilmente medir un largo periodo de tiempo, o vueltas individuales. Puedes ordenar als vueltas por tiempo de vuelta, Contiene vibraciones opcionales al presionar el botón también, para ahcerte saber que el botón fue presionado, incluso si no estás viendo el dispositivo.
+
+Puedes fácilmente configurar un temporizador para notificarte de algún evento. Puedes cambiar su tono o vibración.
+
+Características adicionales incluyen, por ejemplo, evitar que el dispositivo se bloquee mientras la aplicación esté en primer plano.
+
+No contiene anuncios o permisos innecesarios. Es completamente de código abierto, provee colores personalizables.
+
+TEsta es solo una aplicación de una serie de aplicaciones más grande. Puedes encontrar el resto en https://www.simplemobiletools.com
