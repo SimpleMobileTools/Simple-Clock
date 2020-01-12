@@ -1,53 +1,53 @@
 <resources>
     <string name="app_name">Simple Clock</string>
-    <string name="app_launcher_name">Clock</string>
-    <string name="time_zone">Time zone</string>
-    <string name="vibrate">Vibrate</string>
-    <string name="label">Label</string>
-    <string name="no_days_selected">No days selected</string>
-    <string name="timer">Timer</string>
-    <string name="lap">Lap</string>
-    <string name="stopwatch_stopped">Stopwatch has been stopped</string>
-    <string name="timer_stopped">Timer has been stopped</string>
-    <string name="max_reminder_duration">Max reminder duration</string>
-    <string name="time_expired">Time expired</string>
-    <string name="clock_and_date">Clock and date</string>
-    <string name="use_text_shadow">Use text shadow</string>
-    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze.</string>
+    <string name="app_launcher_name">Reloj</string>
+    <string name="time_zone">Zona horaria</string>
+    <string name="vibrate">Vibrar</string>
+    <string name="label">Etiqueta</string>
+    <string name="no_days_selected">Ningún día seleccionado</string>
+    <string name="timer">Temporizador</string>
+    <string name="lap">Vuelta</string>
+    <string name="stopwatch_stopped">El cronómetro s eha detenido</string>
+    <string name="timer_stopped">El temporizador se ha detenido</string>
+    <string name="max_reminder_duration">Máxima duración de recordatorio</string>
+    <string name="time_expired">Tiempo terminado</string>
+    <string name="clock_and_date">Fecha y hora</string>
+    <string name="use_text_shadow">Usar sombra de texto</string>
+    <string name="swipe_right_to_dismiss">Desliza a la derecha para descartar, o a la izquierda para posponer.</string>
 
     <!-- Settings -->
-    <string name="clock_tab">Clock tab</string>
-    <string name="alarm_tab">Alarm tab</string>
-    <string name="stopwatch_tab">Stopwatch tab</string>
-    <string name="timer_tab">Timer tab</string>
-    <string name="show_seconds">Show seconds</string>
-    <string name="increase_volume_gradually">Increase volume gradually</string>
+    <string name="clock_tab">Pestaña de reloj</string>
+    <string name="alarm_tab">Pestaña de alarma</string>
+    <string name="stopwatch_tab">Pestaña de cronómetro</string>
+    <string name="timer_tab">Pestaña de temporizador</string>
+    <string name="show_seconds">Mostrar segundos</string>
+    <string name="increase_volume_gradually">Aumentar volumen gradualmente</string>
 
     <!-- FAQ -->
-    <string name="faq_1_title">How can I change lap sorting at the stopwatch tab?</string>
-    <string name="faq_1_text">Just click on any of the columns, that will make the laps be sorted by the given column. With additional clicks you can toggle between ascending and descending sorting.</string>
+    <string name="faq_1_title">¿Cómo puedo cambiar el orden de las vueltas en la pestaña de cronómetro?</string>
+    <string name="faq_1_text">Solo toca cualquiera de las columnas, eso hará que las vueltas sean ordenados por la columna seleccionada. Con toques adicionales, puedes cambiar entre ordenar ascendente o descendentemente.</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Clock - A flexible multifunctional app</string>
+    <string name="app_title">Simple Clock - Una app multifuncional</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">A combination of a clock, alarm, stopwatch and timer.</string>
+    <string name="app_short_description">Una combinación de reloj, alarma, temporizador y cronómetro</string>
     <string name="app_long_description">
-        The app has multiple functions related to timing.
+        Esta aplicación tiene multiples funciones relacionadas al tiempo.
 
-        At the clock you can enable displaying times from other timezones, or use the simple, but customizable clock widget. The text color of the widget can be customized, as well as the color and the alpha of the background.
+        En el reloj, puedes activar el mostrar horas de otras zonas horarias, o usar el simple, pero personalizable widget de reloj. El color de texto de widget puede ser personalizado, así como el color y transparencia del fondo.
 
-        The alarm contains all the expected features as day selecting, vibration toggling, ringtone selecting, snooze or adding a custom label.
+        La alarma contiene todas las características esperadas como seleccionar el día, alternación de la vibración, selección de tono, posponer o añadir una etiqueta personalizada.
 
-        With the stopwatch you can easily measure a longer period of time, or individual laps. You can sort the laps by lap time, it contains optional vibrations on button presses too, just to let you know that the button was pressed, even if you cannot look at the device.
+        Con el cronómetro, puedes fácilmente medir un largo periodo de tiempo, o vueltas individuales. Puedes ordenar als vueltas por tiempo de vuelta, Contiene vibraciones opcionales al presionar el botón también, para ahcerte saber que el botón fue presionado, incluso si no estás viendo el dispositivo.
 
-        You can easily setup a timer to be notified of some event. You can both change its ringtone, or toggle vibrations.
+        Puedes fácilmente configurar un temporizador para notificarte de algún evento. Puedes cambiar su tono o vibración.
 
-        Additional features include for example preventing the device from falling asleep while the app is in foreground.
+        Características adicionales incluyen, por ejemplo, evitar que el dispositivo se bloquee mientras la aplicación esté en primer plano.
 
-        Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
+        No contiene anuncios o permisos innecesarios. Es completamente de código abierto, provee colores personalizables.
 
-        This app is just one piece of a bigger series of apps. You can find the rest of them at https://www.simplemobiletools.com
+        TEsta es solo una aplicación de una serie de aplicaciones más grande. Puedes encontrar el resto en https://www.simplemobiletools.com
     </string>
 
     <!--
