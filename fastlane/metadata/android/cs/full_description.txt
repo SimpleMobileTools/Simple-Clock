@@ -1,0 +1,15 @@
+Aplikace obsahuje vícero funkcí spojených s časem.
+
+Hodiny umí zobrazit i čas jiných časových pásem, resp. nabízejí jednoduchý, ale nastavitelný widget. Barvu textu widgetu lze přizpůsobit, stejně jaku barvu a průhlednost pozadí.
+
+Budík obsahuje všechny očekávané funkce jako výběr dnů, přepínání vibrací, výběr melodie, odložení, jakož i přiřazení štítku.
+
+Se stopkami dokážete jednoduše změřit nějaký časový interval, či jednotlivé okruhy. Okruhy můžete seřadit i podle jejich času. Stopky obsahují nastavitelné vibrace při stisku tlačítek, abyste měli jistotu, že jste je stiskli, i když se právě nemůžete dívat na displej.
+
+Můžete si jednoduše nastavit i časovač, aby vám nic neuniklo. Můžete změnit jeho znělku nebo zapnout vibrace.
+
+Další funkce zahrnují například odložení uspání zařízení, když je aplikace v popředí.
+
+Neobsahuje žádné reklamy a nepotřebná oprávnění. Je opensource, poskytuje možnost změny barev.
+
+Tato aplikace je pouze jednou ze skupiny aplikací. Ostatní můžete najít na https://www.simplemobiletools.com
