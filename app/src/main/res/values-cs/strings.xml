@@ -2,30 +2,30 @@
     <string name="app_name">Jednoduché hodiny</string>
     <string name="app_launcher_name">Hodiny</string>
     <string name="time_zone">Časové pásmo</string>
-    <string name="vibrate">Vibrace</string>
+    <string name="vibrate">Vibrovat</string>
     <string name="label">Štítek</string>
     <string name="no_days_selected">Nebyly označeny žádné dny</string>
     <string name="timer">Časovač</string>
-    <string name="lap">Okruh</string>
+    <string name="lap">Mezičas</string>
     <string name="stopwatch_stopped">Stopky byly zastaveny</string>
     <string name="timer_stopped">Časovač byl zastaven</string>
-    <string name="max_reminder_duration">Maximální doba upozornění</string>
+    <string name="max_reminder_duration">Maximální délka upozornění</string>
     <string name="time_expired">Čas vypršel</string>
     <string name="clock_and_date">Hodiny a datum</string>
     <string name="use_text_shadow">Použít stínování písma</string>
-    <string name="swipe_right_to_dismiss">Potáhněte vpravo pro odstranění, nebo vlevo pro odložení.</string>
+    <string name="swipe_right_to_dismiss">Potáhněte vpravo pro zrušení, nebo vlevo pro odložení.</string>
 
     <!-- Settings -->
-    <string name="clock_tab">Okno s časem</string>
-    <string name="alarm_tab">Okno s budíkem</string>
-    <string name="stopwatch_tab">Okno se stopkami</string>
-    <string name="timer_tab">Okno s časovačem</string>
+    <string name="clock_tab">Záložka hodin</string>
+    <string name="alarm_tab">Záložka budíku</string>
+    <string name="stopwatch_tab">Záložka stopek</string>
+    <string name="timer_tab">Záložka časovače</string>
     <string name="show_seconds">Zobrazit sekundy</string>
     <string name="increase_volume_gradually">Postupně zvyšovat hlasitost</string>
 
     <!-- FAQ -->
-    <string name="faq_1_title">Jak mohu změnit pořadí kol v okně se stopkami?</string>
-    <string name="faq_1_text">Stačí, když klepnete na některý sloupec, to aktivuje řazení podle daného sloupce. Dalším klepnutím na daný sloupec můžete přepínat mezi vzestupným a sestupným řazením.</string>
+    <string name="faq_1_title">Jak změním pořadí mezičasů na záložce se stopkami?</string>
+    <string name="faq_1_text">Stačí se dotknout některého sloupce, to aktivuje řazení podle daného sloupce. Dalšími doteky na daný sloupec přepínáte mezi vzestupným a sestupným pořadím.</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
@@ -35,19 +35,19 @@
     <string name="app_long_description">
         Aplikace obsahuje vícero funkcí spojených s časem.
 
-        Hodiny umí zobrazit i čas jiných časových pásem, resp. nabízejí jednoduchý, ale nastavitelný widget. Barvu textu widgetu lze přizpůsobit, stejně jaku barvu a průhlednost pozadí.
+        Hodiny umí zobrazit i čas jiných časových pásem, resp. nabízejí jednoduchý, ale nastavitelný widget. Barvu textu widgetu lze přizpůsobit, stejně jako i barvu a průhlednost pozadí.
 
         Budík obsahuje všechny očekávané funkce jako výběr dnů, přepínání vibrací, výběr melodie, odložení, jakož i přiřazení štítku.
 
-        Se stopkami dokážete jednoduše změřit nějaký časový interval, či jednotlivé okruhy. Okruhy můžete seřadit i podle jejich času. Stopky obsahují nastavitelné vibrace při stisku tlačítek, abyste měli jistotu, že jste je stiskli, i když se právě nemůžete dívat na displej.
+        Se stopkami dokážete jednoduše změřit časový interval včetně mezičasů. Mezičasy lze seřadit i podle doby trvání. Volitelně lze zapnout vibrace při stisku tlačítek, abyste měli jistotu, že jste je stiskli, i když se právě nemůžete dívat na displej.
 
-        Můžete si jednoduše nastavit i časovač, aby vám nic neuniklo. Můžete změnit jeho znělku nebo zapnout vibrace.
+        Můžete si jednoduše nastavit i časovač, aby vám nic neuniklo. Můžete změnit jeho zvuk, nebo zapnout vibrace.
 
-        Další funkce zahrnují například odložení uspání zařízení, když je aplikace v popředí.
+        Další funkce zahrnují například zabránění uspání zařízení, když je aplikace v popředí.
 
-        Neobsahuje žádné reklamy a nepotřebná oprávnění. Je opensource, poskytuje možnost změny barev.
+        Neobsahuje žádné reklamy, ani nepotřebná oprávnění. Má plně otevřený zdrojový kód a možnost změny barev.
 
-        Tato aplikace je pouze jednou ze skupiny aplikací. Ostatní můžete najít na https://www.simplemobiletools.com
+        Tato aplikace je jen jednou z většího celku aplikací. Ostatní z nich naleznete na https://www.simplemobiletools.com
     </string>
 
     <!--
