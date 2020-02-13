@@ -27,40 +27,28 @@ class AlarmReceiver : BroadcastReceiver() {
                 context.hideNotification(id)
             }, context.config.alarmMaxReminderSecs * 1000L)
         } else {
-
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
-                val mgr = context.getSystemService(NotificationManager::class.java)
-
-                if (mgr.getNotificationChannel("Alarm") == null ) {
+                val notificationManager = context.getSystemService(NotificationManager::class.java)
+                if (notificationManager.getNotificationChannel("Alarm") == null ) {
                     val channel = NotificationChannel("Alarm","Alarm", NotificationManager.IMPORTANCE_HIGH)
                     channel.setBypassDnd(true)
-                    mgr.createNotificationChannel(channel)
-
+                    notificationManager.createNotificationChannel(channel)
                 }
-
-                val pi = PendingIntent.getActivity(
-                        context,
-                        0,
-                        Intent(context, ReminderActivity::class.java).apply{
-                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                            putExtra(ALARM_ID, id)
-                        },
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                )
+                val pendingIntent = PendingIntent.getActivity(context,0,Intent(context, ReminderActivity::class.java).apply{
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    putExtra(ALARM_ID, id)
+                }, PendingIntent.FLAG_UPDATE_CURRENT)
 
                 val builder = NotificationCompat.Builder(context, "Alarm")
-                        .setSmallIcon(R.drawable.ic_alarm_vector)
-                        .setContentTitle("Alarm Active")
-                        .setAutoCancel(true)
-                        .setPriority(NotificationCompat.PRIORITY_HIGH)
-                        .setCategory(NotificationCompat.CATEGORY_ALARM)
-                        .setFullScreenIntent(pi, true)
+                    .setSmallIcon(R.drawable.ic_alarm_vector)
+                    .setContentTitle("Alarm Active")
+                    .setAutoCancel(true)
+                    .setPriority(NotificationCompat.PRIORITY_HIGH)
+                    .setCategory(NotificationCompat.CATEGORY_ALARM)
+                    .setFullScreenIntent(pendingIntent, true)
 
-
-                mgr.notify(1337, builder.build())
-            }
-            else {
+                notificationManager.notify(1337, builder.build())
+            } else {
                 Intent(context, ReminderActivity::class.java).apply {
                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     putExtra(ALARM_ID, id)

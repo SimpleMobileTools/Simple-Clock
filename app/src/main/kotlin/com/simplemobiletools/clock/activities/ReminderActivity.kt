@@ -128,8 +128,8 @@ class ReminderActivity : SimpleActivity() {
                         }
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                             val context = applicationContext
-                            val mgr = context.getSystemService(NotificationManager::class.java)
-                            mgr.cancelAll()
+                            val notificationManager = context.getSystemService(NotificationManager::class.java)
+                            notificationManager.cancelAll()
                         }
                     } else if (reminder_draggable.x <= minDragX + 50f) {
                         if (!didVibrate) {
@@ -139,10 +139,9 @@ class ReminderActivity : SimpleActivity() {
                         }
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                             val context = applicationContext
-                            val mgr = context.getSystemService(NotificationManager::class.java)
-                            mgr.cancelAll()
+                            val notificationManager = context.getSystemService(NotificationManager::class.java)
+                            notificationManager.cancelAll()
                         }
-
                     }
                 }
             }
