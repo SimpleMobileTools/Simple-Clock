@@ -1,6 +1,13 @@
 Changelog
 ==========
 
+Version 5.1.0 *(2020-02-14)*
+----------------------------
+
+ * Fixed a glitch with all alarms turning on/off wrongly
+ * Properly display the alarm snooze screen on Android 8+ (by coxtor)
+ * Some stability and translation improvements
+
 Version 5.0.4 *(2019-10-31)*
 ----------------------------
 

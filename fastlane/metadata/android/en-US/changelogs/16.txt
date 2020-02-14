@@ -1,0 +1,3 @@
+ * Fixed a glitch with all alarms turning on/off wrongly
+ * Properly display the alarm snooze screen on Android 8+ (by coxtor)
+ * Some stability and translation improvements
