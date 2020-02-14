@@ -100,7 +100,7 @@ class AlarmsAdapter(activity: SimpleActivity, var alarms: ArrayList<Alarm>, val 
 
             alarm_switch.isChecked = alarm.isEnabled
             alarm_switch.setColors(textColor, adjustedPrimaryColor, backgroundColor)
-            alarm_switch.setOnCheckedChangeListener { buttonView, isChecked ->
+            alarm_switch.setOnClickListener {
                 if (alarm.days > 0) {
                     if (activity.config.wasAlarmWarningShown) {
                         toggleAlarmInterface.alarmToggled(alarm.id, alarm_switch.isChecked)
