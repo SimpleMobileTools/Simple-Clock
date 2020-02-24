@@ -10,7 +10,6 @@ import com.simplemobiletools.clock.BuildConfig
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.adapters.ViewPagerAdapter
 import com.simplemobiletools.clock.extensions.config
-import com.simplemobiletools.clock.extensions.dbHelper
 import com.simplemobiletools.clock.extensions.getNextAlarm
 import com.simplemobiletools.clock.extensions.rescheduleEnabledAlarms
 import com.simplemobiletools.clock.helpers.*
@@ -30,9 +29,6 @@ class MainActivity : SimpleActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         appLaunched(BuildConfig.APPLICATION_ID)
-
-        // just get a reference to the database to make sure it is created properly
-        dbHelper
 
         storeStateVariables()
         initFragments()

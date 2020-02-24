@@ -57,7 +57,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.simplemobiletools:commons:5.22.10'
+    implementation 'com.simplemobiletools:commons:5.22.14'
     implementation 'com.facebook.stetho:stetho:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
     implementation 'com.shawnlin:number-picker:2.4.6'
