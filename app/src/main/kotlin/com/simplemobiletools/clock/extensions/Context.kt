@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.media.AudioAttributes
 import android.media.AudioManager
 import android.net.Uri
@@ -15,6 +16,7 @@ import android.text.style.RelativeSizeSpan
 import android.widget.Toast
 import androidx.core.app.AlarmManagerCompat
 import androidx.core.app.NotificationCompat
+import androidx.preference.PreferenceManager
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.ReminderActivity
 import com.simplemobiletools.clock.activities.SnoozeReminderActivity
@@ -382,3 +384,5 @@ fun Context.checkAlarmsWithDeletedSoundUri(uri: String) {
         dbHelper.updateAlarm(it)
     }
 }
+
+val Context.preferences: SharedPreferences get() = PreferenceManager.getDefaultSharedPreferences(this)
