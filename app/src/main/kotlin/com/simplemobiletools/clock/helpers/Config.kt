@@ -5,6 +5,7 @@ import com.simplemobiletools.commons.extensions.getDefaultAlarmTitle
 import com.simplemobiletools.commons.extensions.getDefaultAlarmUri
 import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
 import com.simplemobiletools.commons.helpers.BaseConfig
+import java.util.concurrent.TimeUnit
 
 class Config(context: Context) : BaseConfig(context) {
     companion object {
@@ -26,6 +27,10 @@ class Config(context: Context) : BaseConfig(context) {
     var timerSeconds: Int
         get() = prefs.getInt(TIMER_SECONDS, 300)
         set(lastTimerSeconds) = prefs.edit().putInt(TIMER_SECONDS, lastTimerSeconds).apply()
+
+    var timerTimeStamp: Long
+        get() = prefs.getLong(TIMER_TIMESTAMP, System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(timerSeconds.toLong()))
+        set(timestamp) = prefs.edit().putLong(TIMER_TIMESTAMP, timestamp).apply()
 
     var timerVibrate: Boolean
         get() = prefs.getBoolean(TIMER_VIBRATE, false)
