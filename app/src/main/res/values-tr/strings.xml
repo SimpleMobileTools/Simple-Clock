@@ -13,6 +13,7 @@
     <string name="time_expired">Zaman doldu</string>
     <string name="clock_and_date">Saat ve tarih</string>
     <string name="use_text_shadow">Metin gölgesi kullan</string>
+    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze.</string>
 
     <!-- Settings -->
     <string name="clock_tab">Saat sekmesi</string>
@@ -46,7 +47,14 @@
 
         Reklam veya gereksiz izinler içermez. Tamamen açık kaynaktır, özelleştirilebilir renkler sunar.
 
-        Bu uygulama, daha büyük bir uygulama serisinden sadece bir parça. Geri kalanı https://www.simplemobiletools.com adresinde bulabilirsiniz.
+        <b>Check out the full suite of Simple Tools here:</b>
+        https://www.simplemobiletools.com
+
+        <b>Facebook:</b>
+        https://www.facebook.com/simplemobiletools
+
+        <b>Reddit:</b>
+        https://www.reddit.com/r/SimpleMobileTools
     </string>
 
     <!--
