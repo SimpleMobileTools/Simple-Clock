@@ -28,7 +28,7 @@
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Clock - A flexible multifunctional app</string>
+    <string name="app_title">Basit Saat - Esnek, çok işlevli bir uygulama</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Saat, alarm, kronometre ve zamanlayıcı bir arada.</string>
     <string name="app_long_description">
@@ -46,7 +46,7 @@
 
         Reklam veya gereksiz izinler içermez. Tamamen açık kaynaktır, özelleştirilebilir renkler sunar.
 
-        Bu uygulama, daha büyük bir uygulama serisinden sadece bir parça. Geri kalanı https://www.simplemobiletools.com adresinde bulabilirsiniz
+        Bu uygulama, daha büyük bir uygulama serisinden sadece bir parça. Geri kalanı https://www.simplemobiletools.com adresinde bulabilirsiniz.
     </string>
 
     <!--
