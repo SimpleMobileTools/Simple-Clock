@@ -226,13 +226,6 @@ fun Context.showAlarmNotification(alarm: Alarm) {
     scheduleNextAlarm(alarm, false)
 }
 
-fun Context.showTimerNotification(addDeleteIntent: Boolean) {
-    val pendingIntent = getOpenTimerTabIntent()
-    val notification = getTimerNotification(pendingIntent, addDeleteIntent)
-    val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-    notificationManager.notify(TIMER_NOTIF_ID, notification)
-}
-
 @SuppressLint("NewApi")
 fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: Boolean): Notification {
     var soundUri = config.timerSoundUri

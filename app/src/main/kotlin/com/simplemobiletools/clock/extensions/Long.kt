@@ -36,3 +36,6 @@ fun Long.timestampFormat(format: String = "dd. MM. yyyy"): String {
 
     return DateFormat.format(format, calendar).toString()
 }
+
+val Long.secondsToMillis get() = TimeUnit.SECONDS.toMillis(this)
+val Long.millisToSeconds get() = TimeUnit.MILLISECONDS.toSeconds(this)

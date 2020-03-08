@@ -1,10 +1,15 @@
 package com.simplemobiletools.clock.helpers
 
 import android.content.Context
+import app.common.gson
+import com.google.gson.Gson
+import com.simplemobiletools.clock.services.StateWrapper
+import com.simplemobiletools.clock.services.TimerState
 import com.simplemobiletools.commons.extensions.getDefaultAlarmTitle
 import com.simplemobiletools.commons.extensions.getDefaultAlarmUri
 import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
 import com.simplemobiletools.commons.helpers.BaseConfig
+import java.sql.Time
 
 class Config(context: Context) : BaseConfig(context) {
     companion object {
@@ -27,13 +32,11 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getInt(TIMER_SECONDS, 300)
         set(lastTimerSeconds) = prefs.edit().putInt(TIMER_SECONDS, lastTimerSeconds).apply()
 
-    var timerStartStamp: Long
-        get() = prefs.getLong(TIMER_START_TIMESTAMP, 0L)
-        set(timestamp) = prefs.edit().putLong(TIMER_START_TIMESTAMP, timestamp).apply()
-
-    var timerTickStamp: Long
-        get() = prefs.getLong(TIMER_TICK_TIMESTAMP, 0L)
-        set(timestamp) = prefs.edit().putLong(TIMER_TICK_TIMESTAMP, timestamp).apply()
+    var timerState: TimerState
+        get() = prefs.getString(TIMER_STATE, null)?.let { state ->
+            gson.fromJson(state, StateWrapper::class.java)
+        }?.state ?: TimerState.Idle
+        set(state) = prefs.edit().putString(TIMER_STATE, gson.toJson(StateWrapper(state))).apply()
 
     var timerVibrate: Boolean
         get() = prefs.getBoolean(TIMER_VIBRATE, false)
