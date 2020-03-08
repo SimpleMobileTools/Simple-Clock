@@ -10,7 +10,6 @@ import android.media.AudioManager
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,10 +25,7 @@ import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.Config
 import com.simplemobiletools.clock.helpers.PICK_AUDIO_FILE_INTENT_ID
 import com.simplemobiletools.clock.helpers.TIMER_NOTIF_ID
-import com.simplemobiletools.clock.workers.TIMER_WORKER_KEY
-import com.simplemobiletools.clock.workers.cancelTimerWorker
-import com.simplemobiletools.clock.workers.enqueueTimerWorker
-import com.simplemobiletools.clock.workers.timerRequestId
+import com.simplemobiletools.clock.workers.*
 import com.simplemobiletools.commons.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
@@ -38,24 +34,53 @@ import com.simplemobiletools.commons.models.AlarmSound
 import kotlinx.android.synthetic.main.fragment_timer.view.*
 import java.util.concurrent.TimeUnit
 
+
 class TimerFragment : Fragment() {
 
     lateinit var view: ViewGroup
     private var timer: CountDownTimer? = null
+    private var isRunning = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val config = requiredActivity.config
         view = (inflater.inflate(R.layout.fragment_timer, container, false) as ViewGroup).apply {
+            val config = requiredActivity.config
+            val textColor = config.textColor
+
+            requiredActivity.updateTextColors(timer_fragment)
+            timer_play_pause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, context!!.getAdjustedPrimaryColor())
+            timer_reset.applyColorFilter(textColor)
+
+            timer_initial_time.text = config.timerSeconds.getFormattedDuration()
+            timer_initial_time.colorLeftDrawable(textColor)
+
+            timer_vibrate.isChecked = config.timerVibrate
+            timer_vibrate.colorLeftDrawable(textColor)
+
+            timer_sound.text = config.timerSoundTitle
+            timer_sound.colorLeftDrawable(textColor)
+
             timer_time.setOnClickListener {
-                startTimer(config)
+                if (isRunning) {
+                    pauseTimer(config)
+                } else {
+                    startTimer(config)
+                }
             }
 
             timer_play_pause.setOnClickListener {
-                startTimer(config)
+                if (isRunning) {
+                    pauseTimer(config)
+                } else {
+                    startTimer(config)
+                }
             }
 
             timer_reset.setOnClickListener {
                 cancelTimerWorker()
+                requiredActivity.hideTimerNotification()
+
+                config.timerTickStamp = 0L
+                config.timerStartStamp = 0L
                 requiredActivity.toast(R.string.timer_stopped)
             }
 
@@ -63,7 +88,6 @@ class TimerFragment : Fragment() {
                 MyTimePickerDialogDialog(activity as SimpleActivity, config.timerSeconds) { seconds ->
                     val timerSeconds = if (seconds <= 0) 10 else seconds
                     config.timerSeconds = timerSeconds
-                    config.timerTimeStamp = System.currentTimeMillis() + timerSeconds
                     timer_initial_time.text = timerSeconds.getFormattedDuration()
                 }
             }
@@ -92,15 +116,20 @@ class TimerFragment : Fragment() {
             }
 
             WorkManager.getInstance(requiredActivity).getWorkInfosByTagLiveData(TIMER_WORKER_KEY).observe(requiredActivity, Observer { workInfo ->
-                workInfo.log("log")
-
                 val workerState = workInfo?.firstOrNull()?.state
+                isRunning = (workerState == WorkInfo.State.ENQUEUED)
+
+                updateIcons(isRunning)
+                timer_reset.beVisibleIf(isRunning)
+                timer?.cancel()
+
                 when (workerState) {
                     WorkInfo.State.ENQUEUED -> {
-                        timer?.cancel()
-                        timer = object : CountDownTimer(config.timerSeconds.toLong().times(1000), 1000) {
+                        val duration = config.timerSeconds.toLong() * 1000 //MS
+
+                        timer = object : CountDownTimer(duration, 1000) {
                             override fun onTick(millisUntilFinished: Long) {
-                                timer_time.text = millisUntilFinished.div(1000).toInt().getFormattedDuration()
+                                timer_time.text = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished).toInt().getFormattedDuration()
                             }
 
                             override fun onFinish() {}
@@ -111,64 +140,52 @@ class TimerFragment : Fragment() {
                         timer_time.text = 0.getFormattedDuration()
                     }
                 }
-
-                updateIcons(workerState == WorkInfo.State.ENQUEUED)
-                timer_reset.beVisibleIf(workerState == WorkInfo.State.ENQUEUED)
             })
+
+            cancelTimerWorker()
         }
 
         return view
     }
 
     private fun startTimer(config: Config) {
-        val selectedDuration = config.timerSeconds
-        val formattedTimestamp = config.timerTimeStamp.timestampFormat("HH:mm:ss")
-        enqueueTimerWorker(TimeUnit.SECONDS.toMillis(selectedDuration.toLong()))
-        showNotification("(${selectedDuration.getFormattedDuration()}) $formattedTimestamp")
+        val isTimerNoTick = config.timerTickStamp == 0L
+
+        if (isTimerNoTick) {
+            config.timerStartStamp = System.currentTimeMillis()
+
+            val selectedDuration = config.timerSeconds
+            val formattedTimestamp = config.timerStartStamp.timestampFormat("HH:mm:ss")
+
+            enqueueTimerWorker(TimeUnit.SECONDS.toMillis(selectedDuration.toLong()))
+            showNotification("(${selectedDuration.getFormattedDuration()}) $formattedTimestamp")
+        } else {
+            val duration = config.timerSeconds.toLong() * 1000 //MS
+            val selectedDuration = (config.timerStartStamp + duration) - (config.timerTickStamp - config.timerStartStamp)
+            val formattedTimestamp = config.timerStartStamp.timestampFormat("HH:mm:ss")
+
+            enqueueTimerWorker(TimeUnit.SECONDS.toMillis(selectedDuration.toLong()))
+            showNotification("(${selectedDuration.toInt().getFormattedDuration()}) $formattedTimestamp")
+        }
     }
 
-    override fun onResume() {
-        super.onResume()
-        setupViews()
-    }
+    private fun pauseTimer(config: Config) {
+        cancelTimerWorker()
+        requiredActivity.hideTimerNotification()
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState.apply {})
-    }
+        config.timerTickStamp = System.currentTimeMillis()
 
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        savedInstanceState?.apply {}
+        val tick = config.timerTickStamp
+        val duration = config.timerSeconds.toLong() * 1000 //MS
+        val startedAt = config.timerStartStamp
+        val distance = duration - (tick - startedAt)
+        view.timer_time.text = distance.toInt().getFormattedDuration()
     }
 
     fun updateAlarmSound(alarmSound: AlarmSound) {
         requiredActivity.config.timerSoundTitle = alarmSound.title
         requiredActivity.config.timerSoundUri = alarmSound.uri
         view.timer_sound.text = alarmSound.title
-    }
-
-//    private val isRunning
-//        get(): Boolean =
-//            WorkManager.getInstance(requiredActivity).getWorkInfosByTagLiveData(TIMER_WORKER_KEY).value?.firstOrNull()?.state == WorkInfo.State.ENQUEUED
-
-    private fun setupViews() {
-        val config = requiredActivity.config
-        val textColor = config.textColor
-
-        view.apply {
-            requiredActivity.updateTextColors(timer_fragment)
-            timer_play_pause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, context!!.getAdjustedPrimaryColor())
-            timer_reset.applyColorFilter(textColor)
-
-            timer_initial_time.text = config.timerSeconds.getFormattedDuration()
-            timer_initial_time.colorLeftDrawable(textColor)
-
-            timer_vibrate.isChecked = config.timerVibrate
-            timer_vibrate.colorLeftDrawable(textColor)
-
-            timer_sound.text = config.timerSoundTitle
-            timer_sound.colorLeftDrawable(textColor)
-        }
     }
 
     private fun updateIcons(isRunning: Boolean) {
