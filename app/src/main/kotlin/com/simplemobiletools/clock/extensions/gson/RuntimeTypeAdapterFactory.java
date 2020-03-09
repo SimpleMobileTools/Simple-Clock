@@ -167,7 +167,7 @@ public final class RuntimeTypeAdapterFactory<T> implements TypeAdapterFactory {
      * sensitive.
      *
      * @throws IllegalArgumentException if either {@code type} or {@code label}
-     *     have already been registered on this type adapter.
+     *                                  have already been registered on this type adapter.
      */
     public RuntimeTypeAdapterFactory<T> registerSubtype(Class<? extends T> type, String label) {
         if (type == null || label == null) {
@@ -186,7 +186,7 @@ public final class RuntimeTypeAdapterFactory<T> implements TypeAdapterFactory {
      * name}. Labels are case sensitive.
      *
      * @throws IllegalArgumentException if either {@code type} or its simple name
-     *     have already been registered on this type adapter.
+     *                                  have already been registered on this type adapter.
      */
     public RuntimeTypeAdapterFactory<T> registerSubtype(Class<? extends T> type) {
         return registerSubtype(type, type.getSimpleName());

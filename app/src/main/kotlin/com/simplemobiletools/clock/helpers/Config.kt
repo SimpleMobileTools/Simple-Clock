@@ -1,15 +1,13 @@
 package com.simplemobiletools.clock.helpers
 
 import android.content.Context
-import app.common.gson
-import com.google.gson.Gson
+import com.simplemobiletools.clock.extensions.gson.gson
 import com.simplemobiletools.clock.services.StateWrapper
 import com.simplemobiletools.clock.services.TimerState
 import com.simplemobiletools.commons.extensions.getDefaultAlarmTitle
 import com.simplemobiletools.commons.extensions.getDefaultAlarmUri
 import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
 import com.simplemobiletools.commons.helpers.BaseConfig
-import java.sql.Time
 
 class Config(context: Context) : BaseConfig(context) {
     companion object {

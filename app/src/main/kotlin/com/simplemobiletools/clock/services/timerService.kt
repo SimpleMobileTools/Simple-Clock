@@ -12,7 +12,10 @@ import android.os.CountDownTimer
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import com.simplemobiletools.clock.R
-import com.simplemobiletools.clock.extensions.*
+import com.simplemobiletools.clock.extensions.config
+import com.simplemobiletools.clock.extensions.getOpenTimerTabIntent
+import com.simplemobiletools.clock.extensions.getTimerNotification
+import com.simplemobiletools.clock.extensions.secondsToMillis
 import com.simplemobiletools.clock.helpers.TIMER_NOTIF_ID
 import com.simplemobiletools.clock.helpers.TIMER_RUNNING_NOTIF_ID
 import com.simplemobiletools.commons.extensions.getFormattedDuration
@@ -87,7 +90,6 @@ class TimerService : Service() {
         val pendingIntent = getOpenTimerTabIntent()
         val notification = getTimerNotification(pendingIntent, false) //MAYBE IN FUTURE ADD TIME TO NOTIFICATION
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
         notificationManager.notify(TIMER_NOTIF_ID, notification)
 
         bus.post(TimerState.Idle)

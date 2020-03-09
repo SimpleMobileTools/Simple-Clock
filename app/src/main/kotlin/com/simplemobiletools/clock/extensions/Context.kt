@@ -377,5 +377,3 @@ fun Context.checkAlarmsWithDeletedSoundUri(uri: String) {
         dbHelper.updateAlarm(it)
     }
 }
-
-val Context.preferences: SharedPreferences get() = PreferenceManager.getDefaultSharedPreferences(this)

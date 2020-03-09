@@ -26,18 +26,9 @@ import org.greenrobot.eventbus.ThreadMode
 class TimerFragment : Fragment() {
 
     lateinit var view: ViewGroup
-    private var timerState: TimerState = TimerState.Idle
-
-    override fun onResume() {
-        super.onResume()
-
-        timerState = requiredActivity.config.timerState
-        updateViewStates(timerState)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         EventBus.getDefault().register(this)
     }
 
@@ -67,9 +58,7 @@ class TimerFragment : Fragment() {
             timer_sound.colorLeftDrawable(textColor)
 
             timer_time.setOnClickListener {
-                EventBus.getDefault().post(TimerState.Idle)
-                requiredActivity.hideTimerNotification()
-                requiredActivity.toast(R.string.timer_stopped)
+                stopTimer()
             }
 
             timer_play_pause.setOnClickListener {
@@ -77,9 +66,7 @@ class TimerFragment : Fragment() {
             }
 
             timer_reset.setOnClickListener {
-                EventBus.getDefault().post(TimerState.Idle)
-                requiredActivity.hideTimerNotification()
-                requiredActivity.toast(R.string.timer_stopped)
+                stopTimer()
             }
 
             timer_initial_time.setOnClickListener {
@@ -115,6 +102,12 @@ class TimerFragment : Fragment() {
         }
 
         return view
+    }
+
+    private fun stopTimer() {
+        EventBus.getDefault().post(TimerState.Idle)
+        requiredActivity.hideTimerNotification()
+        requiredActivity.toast(R.string.timer_stopped)
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
