@@ -13,7 +13,6 @@ import com.simplemobiletools.clock.dialogs.MyTimePickerDialogDialog
 import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.PICK_AUDIO_FILE_INTENT_ID
 import com.simplemobiletools.clock.services.TimerState
-import com.simplemobiletools.clock.services.startTimerService
 import com.simplemobiletools.commons.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
@@ -22,6 +21,7 @@ import kotlinx.android.synthetic.main.fragment_timer.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import kotlin.math.roundToInt
 
 class TimerFragment : Fragment() {
 
@@ -62,7 +62,27 @@ class TimerFragment : Fragment() {
             }
 
             timer_play_pause.setOnClickListener {
-                context.startTimerService()
+                val state = config.timerState
+
+                when (state) {
+                    is TimerState.Idle -> {
+                        EventBus.getDefault().post(TimerState.Start(config.timerSeconds.secondsToMillis))
+                    }
+
+                    is TimerState.Paused -> {
+                        EventBus.getDefault().post(TimerState.Start(state.tick))
+                    }
+
+                    is TimerState.Running -> {
+                        EventBus.getDefault().post(TimerState.Pause(state.tick))
+                    }
+
+                    is TimerState.Finished -> {
+                        EventBus.getDefault().post(TimerState.Start(config.timerSeconds.secondsToMillis))
+                    }
+
+                    else -> {}
+                }
             }
 
             timer_reset.setOnClickListener {
@@ -118,7 +138,7 @@ class TimerFragment : Fragment() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(state: TimerState.Running) {
-        view.timer_time.text = state.tick.div(1000).toInt().getFormattedDuration()
+        view.timer_time.text = state.tick.div(1000F).roundToInt().getFormattedDuration()
         updateViewStates(state)
     }
 
@@ -127,22 +147,28 @@ class TimerFragment : Fragment() {
         updateViewStates(state)
     }
 
-    private fun updateViewStates(timerState: TimerState) {
-        view.timer_reset.beVisibleIf(timerState is TimerState.Running || timerState is TimerState.Paused)
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(state: TimerState.Finished) {
+        view.timer_time.text = 0.getFormattedDuration()
+        updateViewStates(state)
+    }
 
-        val drawableId =
-                if (timerState is TimerState.Running) {
-                    R.drawable.ic_pause_vector
-                } else {
-                    R.drawable.ic_play_vector
-                }
+    private fun updateViewStates(state: TimerState) {
 
-        val iconColor =
-                if (requiredActivity.getAdjustedPrimaryColor() == Color.WHITE) {
-                    Color.BLACK
-                } else {
-                    requiredActivity.config.textColor
-                }
+        val resetPossible = state is TimerState.Running || state is TimerState.Paused || state is TimerState.Finished
+        view.timer_reset.beVisibleIf(resetPossible)
+
+        val drawableId = if (state is TimerState.Running) {
+            R.drawable.ic_pause_vector
+        } else {
+            R.drawable.ic_play_vector
+        }
+
+        val iconColor = if (requiredActivity.getAdjustedPrimaryColor() == Color.WHITE) {
+            Color.BLACK
+        } else {
+            requiredActivity.config.textColor
+        }
 
         view.timer_play_pause.setImageDrawable(resources.getColoredDrawableWithColor(drawableId, iconColor))
     }

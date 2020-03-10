@@ -12,6 +12,7 @@ val timerStates = valueOf<TimerState>()
         .registerSubtype(TimerState.Pause::class.java)
         .registerSubtype(TimerState.Paused::class.java)
         .registerSubtype(TimerState.Finish::class.java)
+        .registerSubtype(TimerState.Finished::class.java)
 
 inline fun <reified T : Any> valueOf(): RuntimeTypeAdapterFactory<T> = RuntimeTypeAdapterFactory.of(T::class.java)
 
