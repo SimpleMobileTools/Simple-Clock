@@ -12,7 +12,7 @@ import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.dialogs.MyTimePickerDialogDialog
 import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.PICK_AUDIO_FILE_INTENT_ID
-import com.simplemobiletools.clock.services.TimerState
+import com.simplemobiletools.clock.models.TimerState
 import com.simplemobiletools.commons.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
@@ -65,23 +65,12 @@ class TimerFragment : Fragment() {
                 val state = config.timerState
 
                 when (state) {
-                    is TimerState.Idle -> {
-                        EventBus.getDefault().post(TimerState.Start(config.timerSeconds.secondsToMillis))
+                    is TimerState.Idle -> EventBus.getDefault().post(TimerState.Start(config.timerSeconds.secondsToMillis))
+                    is TimerState.Paused -> EventBus.getDefault().post(TimerState.Start(state.tick))
+                    is TimerState.Running -> EventBus.getDefault().post(TimerState.Pause(state.tick))
+                    is TimerState.Finished -> EventBus.getDefault().post(TimerState.Start(config.timerSeconds.secondsToMillis))
+                    else -> {
                     }
-
-                    is TimerState.Paused -> {
-                        EventBus.getDefault().post(TimerState.Start(state.tick))
-                    }
-
-                    is TimerState.Running -> {
-                        EventBus.getDefault().post(TimerState.Pause(state.tick))
-                    }
-
-                    is TimerState.Finished -> {
-                        EventBus.getDefault().post(TimerState.Start(config.timerSeconds.secondsToMillis))
-                    }
-
-                    else -> {}
                 }
             }
 
@@ -154,7 +143,6 @@ class TimerFragment : Fragment() {
     }
 
     private fun updateViewStates(state: TimerState) {
-
         val resetPossible = state is TimerState.Running || state is TimerState.Paused || state is TimerState.Finished
         view.timer_reset.beVisibleIf(resetPossible)
 

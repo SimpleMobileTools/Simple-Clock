@@ -21,15 +21,6 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-@RequiresApi(Build.VERSION_CODES.O)
-fun startTimerService(context: Context) {
-    if (isOreoPlus()) {
-        context.startForegroundService(Intent(context, TimerService::class.java))
-    } else {
-        context.startService(Intent(context, TimerService::class.java))
-    }
-}
-
 class TimerService : Service() {
 
     private val bus = EventBus.getDefault()
@@ -97,18 +88,13 @@ class TimerService : Service() {
     }
 }
 
-data class StateWrapper(val state: TimerState)
-
-object TimerStopService
-
-sealed class TimerState {
-    object Idle : TimerState()
-    data class Start(val duration: Long) : TimerState()
-    data class Running(val duration: Long, val tick: Long) : TimerState()
-    data class Pause(val duration: Long) : TimerState()
-    data class Paused(val duration: Long, val tick: Long) : TimerState()
-    data class Finish(val duration: Long) : TimerState()
-    object Finished : TimerState()
+@RequiresApi(Build.VERSION_CODES.O)
+fun startTimerService(context: Context) {
+    if (isOreoPlus()) {
+        context.startForegroundService(Intent(context, TimerService::class.java))
+    } else {
+        context.startService(Intent(context, TimerService::class.java))
+    }
 }
 
-
+object TimerStopService

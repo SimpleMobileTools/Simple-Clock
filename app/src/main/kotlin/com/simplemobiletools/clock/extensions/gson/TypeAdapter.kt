@@ -3,7 +3,7 @@ package com.simplemobiletools.clock.extensions.gson
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.TypeAdapterFactory
-import com.simplemobiletools.clock.services.TimerState
+import com.simplemobiletools.clock.models.TimerState
 
 val timerStates = valueOf<TimerState>()
         .registerSubtype(TimerState.Idle::class.java)

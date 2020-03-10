@@ -15,7 +15,7 @@ import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.getOpenTimerTabIntent
 import com.simplemobiletools.clock.extensions.getTimerNotification
 import com.simplemobiletools.clock.helpers.TIMER_NOTIF_ID
-import com.simplemobiletools.clock.services.TimerState
+import com.simplemobiletools.clock.models.TimerState
 import com.simplemobiletools.clock.services.TimerStopService
 import com.simplemobiletools.clock.services.startTimerService
 import com.simplemobiletools.commons.extensions.checkUseEnglish

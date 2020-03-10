@@ -2,8 +2,8 @@ package com.simplemobiletools.clock.helpers
 
 import android.content.Context
 import com.simplemobiletools.clock.extensions.gson.gson
-import com.simplemobiletools.clock.services.StateWrapper
-import com.simplemobiletools.clock.services.TimerState
+import com.simplemobiletools.clock.models.StateWrapper
+import com.simplemobiletools.clock.models.TimerState
 import com.simplemobiletools.commons.extensions.getDefaultAlarmTitle
 import com.simplemobiletools.commons.extensions.getDefaultAlarmUri
 import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
