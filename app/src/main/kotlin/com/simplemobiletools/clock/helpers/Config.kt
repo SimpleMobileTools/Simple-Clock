@@ -1,6 +1,9 @@
 package com.simplemobiletools.clock.helpers
 
 import android.content.Context
+import com.simplemobiletools.clock.extensions.gson.gson
+import com.simplemobiletools.clock.services.StateWrapper
+import com.simplemobiletools.clock.services.TimerState
 import com.simplemobiletools.commons.extensions.getDefaultAlarmTitle
 import com.simplemobiletools.commons.extensions.getDefaultAlarmUri
 import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
@@ -26,6 +29,12 @@ class Config(context: Context) : BaseConfig(context) {
     var timerSeconds: Int
         get() = prefs.getInt(TIMER_SECONDS, 300)
         set(lastTimerSeconds) = prefs.edit().putInt(TIMER_SECONDS, lastTimerSeconds).apply()
+
+    var timerState: TimerState
+        get() = prefs.getString(TIMER_STATE, null)?.let { state ->
+            gson.fromJson(state, StateWrapper::class.java)
+        }?.state ?: TimerState.Idle
+        set(state) = prefs.edit().putString(TIMER_STATE, gson.toJson(StateWrapper(state))).apply()
 
     var timerVibrate: Boolean
         get() = prefs.getBoolean(TIMER_VIBRATE, false)

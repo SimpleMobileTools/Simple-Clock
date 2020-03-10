@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.media.AudioAttributes
 import android.media.AudioManager
 import android.net.Uri
@@ -15,6 +16,7 @@ import android.text.style.RelativeSizeSpan
 import android.widget.Toast
 import androidx.core.app.AlarmManagerCompat
 import androidx.core.app.NotificationCompat
+import androidx.preference.PreferenceManager
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.ReminderActivity
 import com.simplemobiletools.clock.activities.SnoozeReminderActivity
@@ -222,13 +224,6 @@ fun Context.showAlarmNotification(alarm: Alarm) {
     val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     notificationManager.notify(alarm.id, notification)
     scheduleNextAlarm(alarm, false)
-}
-
-fun Context.showTimerNotification(addDeleteIntent: Boolean) {
-    val pendingIntent = getOpenTimerTabIntent()
-    val notification = getTimerNotification(pendingIntent, addDeleteIntent)
-    val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-    notificationManager.notify(TIMER_NOTIF_ID, notification)
 }
 
 @SuppressLint("NewApi")

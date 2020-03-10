@@ -1,5 +1,7 @@
 package com.simplemobiletools.clock.extensions
 
+import android.text.format.DateFormat
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 fun Long.formatStopwatchTime(useLongerMSFormat: Boolean): String {
@@ -27,3 +29,13 @@ fun Long.formatStopwatchTime(useLongerMSFormat: Boolean): String {
         }
     }
 }
+
+fun Long.timestampFormat(format: String = "dd. MM. yyyy"): String {
+    val calendar = Calendar.getInstance(Locale.getDefault())
+    calendar.timeInMillis = this
+
+    return DateFormat.format(format, calendar).toString()
+}
+
+val Long.secondsToMillis get() = TimeUnit.SECONDS.toMillis(this)
+val Long.millisToSeconds get() = TimeUnit.MILLISECONDS.toSeconds(this)

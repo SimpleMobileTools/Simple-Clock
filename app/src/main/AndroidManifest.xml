@@ -79,6 +79,7 @@
         </activity>
 
         <service android:name=".services.SnoozeService"/>
+        <service android:name=".services.TimerService" />
 
         <receiver android:name=".receivers.AlarmReceiver"/>
 
