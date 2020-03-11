@@ -21,6 +21,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
     private val textColor = activity.config.textColor
 
     init {
+        restoreLastAlarm()
         updateAlarmTime()
 
         view.apply {
@@ -109,11 +110,26 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                                     activity.toast(R.string.unknown_error_occurred)
                                 }
                             }
+
+                            activity.config.alarmLastConfig = alarm
                             callback(alarmId)
                             dismiss()
                         }
                     }
                 }
+    }
+
+    private fun restoreLastAlarm() {
+        if (alarm.id == 0) {
+            activity.config.alarmLastConfig?.let { lastConfig ->
+                alarm.label = lastConfig.label
+                alarm.days = lastConfig.days
+                alarm.soundTitle = lastConfig.soundTitle
+                alarm.soundUri = lastConfig.soundUri
+                alarm.timeInMinutes = lastConfig.timeInMinutes
+                alarm.vibrate = lastConfig.vibrate
+            }
+        }
     }
 
     private val timeSetListener = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->

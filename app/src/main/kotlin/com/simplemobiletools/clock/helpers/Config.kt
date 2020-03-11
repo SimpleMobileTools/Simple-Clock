@@ -2,6 +2,7 @@ package com.simplemobiletools.clock.helpers
 
 import android.content.Context
 import com.simplemobiletools.clock.extensions.gson.gson
+import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.clock.models.StateWrapper
 import com.simplemobiletools.clock.models.TimerState
 import com.simplemobiletools.commons.extensions.getDefaultAlarmTitle
@@ -63,4 +64,10 @@ class Config(context: Context) : BaseConfig(context) {
     var increaseVolumeGradually: Boolean
         get() = prefs.getBoolean(INCREASE_VOLUME_GRADUALLY, true)
         set(increaseVolumeGradually) = prefs.edit().putBoolean(INCREASE_VOLUME_GRADUALLY, increaseVolumeGradually).apply()
+
+    var alarmLastConfig: Alarm?
+        get() = prefs.getString(ALARM_LAST_CONFIG, null)?.let { lastAlarm ->
+            gson.fromJson(lastAlarm, Alarm::class.java)
+        }
+        set(alarm) = prefs.edit().putString(ALARM_LAST_CONFIG, gson.toJson(alarm)).apply()
 }
