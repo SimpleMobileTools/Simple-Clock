@@ -46,6 +46,7 @@ class TimerFragment : Fragment() {
 
             requiredActivity.updateTextColors(timer_fragment)
             timer_play_pause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, context!!.getAdjustedPrimaryColor())
+            timer_play_pause.applyColorFilter(if (context!!.getAdjustedPrimaryColor() == Color.WHITE) Color.BLACK else Color.WHITE)
             timer_reset.applyColorFilter(textColor)
 
             timer_initial_time.text = config.timerSeconds.getFormattedDuration()
