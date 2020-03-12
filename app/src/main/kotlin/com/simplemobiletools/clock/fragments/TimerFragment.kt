@@ -117,7 +117,6 @@ class TimerFragment : Fragment() {
     private fun stopTimer() {
         EventBus.getDefault().post(TimerState.Idle)
         requiredActivity.hideTimerNotification()
-        requiredActivity.toast(R.string.timer_stopped)
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
