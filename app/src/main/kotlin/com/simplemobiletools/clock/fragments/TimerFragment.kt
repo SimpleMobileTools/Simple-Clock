@@ -155,7 +155,7 @@ class TimerFragment : Fragment() {
         val iconColor = if (requiredActivity.getAdjustedPrimaryColor() == Color.WHITE) {
             Color.BLACK
         } else {
-            requiredActivity.config.textColor
+            Color.WHITE
         }
 
         view.timer_play_pause.setImageDrawable(resources.getColoredDrawableWithColor(drawableId, iconColor))
