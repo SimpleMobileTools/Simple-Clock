@@ -42,7 +42,7 @@ class TimerFragment : Fragment() {
             val config = requiredActivity.config
             val textColor = config.textColor
 
-            timer_time.text = 0.getFormattedDuration()
+            timer_time.text = config.timerSeconds.getFormattedDuration()
 
             requiredActivity.updateTextColors(timer_fragment)
             timer_play_pause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, context!!.getAdjustedPrimaryColor())
@@ -121,7 +121,7 @@ class TimerFragment : Fragment() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(state: TimerState.Idle) {
-        view.timer_time.text = 0.getFormattedDuration()
+        view.timer_time.text = requiredActivity.config.timerSeconds.getFormattedDuration()
         updateViewStates(state)
     }
 
