@@ -196,7 +196,7 @@ class StopwatchFragment : Fragment() {
 
     private fun updateIcons() {
         val drawableId = if (isRunning) R.drawable.ic_pause_vector else R.drawable.ic_play_vector
-        val iconColor = if (context!!.getAdjustedPrimaryColor() == Color.WHITE) Color.BLACK else context!!.config.textColor
+        val iconColor = if (context!!.getAdjustedPrimaryColor() == Color.WHITE) Color.BLACK else Color.WHITE
         view.stopwatch_play_pause.setImageDrawable(resources.getColoredDrawableWithColor(drawableId, iconColor))
     }
 
