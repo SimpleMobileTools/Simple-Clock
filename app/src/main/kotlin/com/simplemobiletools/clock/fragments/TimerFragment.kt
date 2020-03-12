@@ -117,6 +117,7 @@ class TimerFragment : Fragment() {
     private fun stopTimer() {
         EventBus.getDefault().post(TimerState.Idle)
         requiredActivity.hideTimerNotification()
+        view.timer_time.text = requiredActivity.config.timerSeconds.getFormattedDuration()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
