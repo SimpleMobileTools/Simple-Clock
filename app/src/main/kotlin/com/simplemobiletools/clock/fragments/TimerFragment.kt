@@ -43,6 +43,7 @@ class TimerFragment : Fragment() {
             val textColor = config.textColor
 
             timer_time.text = config.timerSeconds.getFormattedDuration()
+            timer_label.setText(config.timerLabel)
 
             requiredActivity.updateTextColors(timer_fragment)
             timer_play_pause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, context!!.getAdjustedPrimaryColor())
@@ -108,6 +109,10 @@ class TimerFragment : Fragment() {
 
                             context.checkAlarmsWithDeletedSoundUri(sound.uri)
                         })
+            }
+
+            timer_label.onTextChangeListener { text ->
+                config.timerLabel = text
             }
         }
 
