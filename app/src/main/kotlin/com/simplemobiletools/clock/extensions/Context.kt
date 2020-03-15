@@ -9,6 +9,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.media.AudioAttributes
 import android.media.AudioManager
+import android.media.AudioManager.STREAM_ALARM
 import android.net.Uri
 import android.os.PowerManager
 import android.text.SpannableString
@@ -235,24 +236,36 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
         grantReadUriPermission(soundUri)
     }
 
-    val channelId = "simple_timer_channel_$soundUri"
+    val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    val channelId = config.timerChannelId ?: "simple_timer_channel_${soundUri}_${System.currentTimeMillis()}"
+    config.timerChannelId = channelId
+
     if (isOreoPlus()) {
+        try {
+            notificationManager.deleteNotificationChannel(channelId)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
         val audioAttributes = AudioAttributes.Builder()
                 .setUsage(AudioAttributes.USAGE_ALARM)
                 .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                .setLegacyStreamType(AudioManager.STREAM_ALARM)
-                .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
+                .setLegacyStreamType(STREAM_ALARM)
                 .build()
 
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val name = getString(R.string.timer)
         val importance = NotificationManager.IMPORTANCE_HIGH
         NotificationChannel(channelId, name, importance).apply {
             setBypassDnd(true)
             enableLights(true)
             lightColor = getAdjustedPrimaryColor()
-            enableVibration(config.timerVibrate)
             setSound(Uri.parse(soundUri), audioAttributes)
+
+            if (!config.timerVibrate) {
+                vibrationPattern = longArrayOf(0L)
+            }
+
+            enableVibration(true)
             notificationManager.createNotificationChannel(this)
         }
     }
@@ -263,8 +276,9 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
             .setContentText(getString(R.string.time_expired))
             .setSmallIcon(R.drawable.ic_timer)
             .setContentIntent(pendingIntent)
-            .setPriority(Notification.PRIORITY_LOW)
+            .setPriority(NotificationCompat.PRIORITY_MAX)
             .setDefaults(Notification.DEFAULT_LIGHTS)
+            .setCategory(Notification.CATEGORY_EVENT)
             .setAutoCancel(true)
             .setSound(Uri.parse(soundUri), AudioManager.STREAM_ALARM)
             .setChannelId(channelId)
@@ -274,7 +288,7 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
         builder.setDeleteIntent(reminderActivityIntent)
     }
 
-    builder.setVisibility(Notification.VISIBILITY_PUBLIC)
+    builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
 
     if (config.timerVibrate) {
         val vibrateArray = LongArray(2) { 500 }

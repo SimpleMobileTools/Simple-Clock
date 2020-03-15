@@ -91,6 +91,7 @@ class TimerFragment : Fragment() {
             timer_vibrate_holder.setOnClickListener {
                 timer_vibrate.toggle()
                 config.timerVibrate = timer_vibrate.isChecked
+                config.timerChannelId = null
             }
 
             timer_sound.setOnClickListener {

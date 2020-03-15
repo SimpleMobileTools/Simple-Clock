@@ -74,4 +74,9 @@ class Config(context: Context) : BaseConfig(context) {
             gson.fromJson(lastAlarm, Alarm::class.java)
         }
         set(alarm) = prefs.edit().putString(ALARM_LAST_CONFIG, gson.toJson(alarm)).apply()
+
+    var timerChannelId: String?
+        get() = prefs.getString(TIMER_CHANNEL_ID, null)
+        set(id) = prefs.edit().putString(TIMER_CHANNEL_ID, id).apply()
+
 }
