@@ -30,10 +30,7 @@ import com.simplemobiletools.clock.receivers.HideAlarmReceiver
 import com.simplemobiletools.clock.receivers.HideTimerReceiver
 import com.simplemobiletools.clock.services.SnoozeService
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
-import com.simplemobiletools.commons.helpers.DAY_MINUTES
-import com.simplemobiletools.commons.helpers.SILENT
-import com.simplemobiletools.commons.helpers.isOreoPlus
+import com.simplemobiletools.commons.helpers.*
 import java.util.*
 import kotlin.math.pow
 
@@ -170,13 +167,8 @@ fun Context.scheduleNextWidgetUpdate() {
     val triggerAtMillis = System.currentTimeMillis() + getMSTillNextMinute()
 
     when {
-        Build.VERSION.SDK_INT >= Build.VERSION_CODES.M -> {
-            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC, triggerAtMillis, pendingIntent)
-        }
-
-        else -> {
-            alarmManager.setExact(AlarmManager.RTC, triggerAtMillis, pendingIntent) //MAYBE RTC_WAKEUP
-        }
+        isMarshmallowPlus() -> alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC, triggerAtMillis, pendingIntent)
+        else -> alarmManager.setExact(AlarmManager.RTC, triggerAtMillis, pendingIntent) //MAYBE RTC_WAKEUP
     }
 }
 
