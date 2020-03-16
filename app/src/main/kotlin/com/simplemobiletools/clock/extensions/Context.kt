@@ -6,18 +6,17 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.media.AudioAttributes
 import android.media.AudioManager
 import android.media.AudioManager.STREAM_ALARM
 import android.net.Uri
+import android.os.Build
 import android.os.PowerManager
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
 import android.widget.Toast
 import androidx.core.app.AlarmManagerCompat
 import androidx.core.app.NotificationCompat
-import androidx.preference.PreferenceManager
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.ReminderActivity
 import com.simplemobiletools.clock.activities.SnoozeReminderActivity
@@ -31,12 +30,10 @@ import com.simplemobiletools.clock.receivers.HideAlarmReceiver
 import com.simplemobiletools.clock.receivers.HideTimerReceiver
 import com.simplemobiletools.clock.services.SnoozeService
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
-import com.simplemobiletools.commons.helpers.DAY_MINUTES
-import com.simplemobiletools.commons.helpers.SILENT
-import com.simplemobiletools.commons.helpers.isOreoPlus
+import com.simplemobiletools.commons.helpers.*
 import java.util.*
 import kotlin.math.pow
+
 
 val Context.config: Config get() = Config.newInstance(applicationContext)
 
@@ -168,7 +165,11 @@ fun Context.scheduleNextWidgetUpdate() {
 
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
     val triggerAtMillis = System.currentTimeMillis() + getMSTillNextMinute()
-    alarmManager.setExact(AlarmManager.RTC, triggerAtMillis, pendingIntent)
+
+    when {
+        isMarshmallowPlus() -> alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC, triggerAtMillis, pendingIntent)
+        else -> alarmManager.setExact(AlarmManager.RTC, triggerAtMillis, pendingIntent) //MAYBE RTC_WAKEUP
+    }
 }
 
 fun Context.getFormattedTime(passedSeconds: Int, showSeconds: Boolean, makeAmPmSmaller: Boolean): SpannableString {
