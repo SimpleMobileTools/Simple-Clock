@@ -1,6 +1,15 @@
 Changelog
 ==========
 
+Version 5.2.0 *(2020-03-18)*
+----------------------------
+
+ * Make sure the timer doesn't stop if the app gets closed
+ * Try making the widget more reliable
+ * Adding a label field  to the timer
+ * Remember last used Alarm related values, use them at new ones
+ * Couple other UI and translation improvements
+
 Version 5.1.0 *(2020-02-14)*
 ----------------------------
 
