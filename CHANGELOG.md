@@ -1,6 +1,11 @@
 Changelog
 ==========
 
+Version 5.2.1 *(2020-03-20)*
+----------------------------
+
+ * Removing some extra unwanted permissions
+
 Version 5.2.0 *(2020-03-18)*
 ----------------------------
 

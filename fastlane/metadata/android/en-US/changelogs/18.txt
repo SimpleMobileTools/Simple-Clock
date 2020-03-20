@@ -1,0 +1,1 @@
+ * Removing some extra unwanted permissions
