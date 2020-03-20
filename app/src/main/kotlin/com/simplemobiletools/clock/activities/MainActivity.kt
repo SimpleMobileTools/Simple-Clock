@@ -17,6 +17,7 @@ import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.LICENSE_NUMBER_PICKER
 import com.simplemobiletools.commons.helpers.LICENSE_RTL
 import com.simplemobiletools.commons.helpers.LICENSE_STETHO
+import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.models.FAQItem
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -34,9 +35,9 @@ class MainActivity : SimpleActivity() {
         initFragments()
 
         if (getNextAlarm().isEmpty()) {
-            Thread {
+            ensureBackgroundThread {
                 rescheduleEnabledAlarms()
-            }.start()
+            }
         }
     }
 
