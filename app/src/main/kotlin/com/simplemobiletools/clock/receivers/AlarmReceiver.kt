@@ -7,6 +7,8 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.media.AudioAttributes
+import android.net.Uri
 import android.os.Handler
 import androidx.core.app.NotificationCompat
 import com.simplemobiletools.clock.R
@@ -30,11 +32,18 @@ class AlarmReceiver : BroadcastReceiver() {
             }, context.config.alarmMaxReminderSecs * 1000L)
         } else {
             if (isOreoPlus()) {
+                val audioAttributes = AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_ALARM)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build()
+
                 val notificationManager = context.getSystemService(NotificationManager::class.java)
                 if (notificationManager.getNotificationChannel("Alarm") == null) {
-                    val channel = NotificationChannel("Alarm", "Alarm", NotificationManager.IMPORTANCE_HIGH)
-                    channel.setBypassDnd(true)
-                    notificationManager.createNotificationChannel(channel)
+                    NotificationChannel("Alarm", "Alarm", NotificationManager.IMPORTANCE_HIGH).apply {
+                        setBypassDnd(true)
+                        setSound(Uri.parse(alarm.soundUri), audioAttributes)
+                        notificationManager.createNotificationChannel(this)
+                    }
                 }
 
                 val pendingIntent = PendingIntent.getActivity(context, 0, Intent(context, ReminderActivity::class.java).apply {
@@ -43,12 +52,12 @@ class AlarmReceiver : BroadcastReceiver() {
                 }, PendingIntent.FLAG_UPDATE_CURRENT)
 
                 val builder = NotificationCompat.Builder(context, "Alarm")
-                        .setSmallIcon(R.drawable.ic_alarm_vector)
-                        .setContentTitle(context.getString(R.string.alarm))
-                        .setAutoCancel(true)
-                        .setPriority(NotificationCompat.PRIORITY_HIGH)
-                        .setCategory(NotificationCompat.CATEGORY_ALARM)
-                        .setFullScreenIntent(pendingIntent, true)
+                    .setSmallIcon(R.drawable.ic_alarm_vector)
+                    .setContentTitle(context.getString(R.string.alarm))
+                    .setAutoCancel(true)
+                    .setPriority(NotificationCompat.PRIORITY_HIGH)
+                    .setCategory(NotificationCompat.CATEGORY_ALARM)
+                    .setFullScreenIntent(pendingIntent, true)
 
                 notificationManager.notify(ALARM_NOTIF_ID, builder.build())
             } else {
