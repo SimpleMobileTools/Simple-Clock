@@ -22,10 +22,9 @@ import java.util.*
 class WidgetDateTimeConfigureActivity : SimpleActivity() {
     private var mBgAlpha = 0f
     private var mWidgetId = 0
-    private var mBgColorWithoutTransparency = 0
     private var mBgColor = 0
-    private var mTextColorWithoutTransparency = 0
     private var mTextColor = 0
+    private var mBgColorWithoutTransparency = 0
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         useDynamicTheme = false
@@ -55,22 +54,17 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
     }
 
     private fun initVariables() {
-        mTextColorWithoutTransparency = config.widgetTextColor
-        updateColors()
-
         mBgColor = config.widgetBgColor
-        if (mBgColor == 1) {
-            mBgColor = Color.BLACK
-            mBgAlpha = .2f
-        } else {
-            mBgAlpha = Color.alpha(mBgColor) / 255.toFloat()
-        }
-
+        mBgAlpha = Color.alpha(mBgColor) / 255.toFloat()
         mBgColorWithoutTransparency = Color.rgb(Color.red(mBgColor), Color.green(mBgColor), Color.blue(mBgColor))
+
         config_bg_seekbar.setOnSeekBarChangeListener(bgSeekbarChangeListener)
         config_bg_seekbar.progress = (mBgAlpha * 100).toInt()
-        updateBgColor()
+        updateBackgroundColor()
         updateCurrentDateTime()
+
+        mTextColor = config.widgetTextColor
+        updateTextColor()
     }
 
     private fun updateCurrentDateTime() {
@@ -98,7 +92,7 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
     private fun storeWidgetColors() {
         config.apply {
             widgetBgColor = mBgColor
-            widgetTextColor = mTextColorWithoutTransparency
+            widgetTextColor = mTextColor
         }
     }
 
@@ -106,7 +100,7 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
         ColorPickerDialog(this, mBgColorWithoutTransparency) { wasPositivePressed, color ->
             if (wasPositivePressed) {
                 mBgColorWithoutTransparency = color
-                updateBgColor()
+                updateBackgroundColor()
             }
         }
     }
@@ -114,8 +108,8 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
     private fun pickTextColor() {
         ColorPickerDialog(this, mTextColor) { wasPositivePressed, color ->
             if (wasPositivePressed) {
-                mTextColorWithoutTransparency = color
-                updateColors()
+                mTextColor = color
+                updateTextColor()
             }
         }
     }
@@ -127,15 +121,14 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
         }
     }
 
-    private fun updateColors() {
-        mTextColor = mTextColorWithoutTransparency
+    private fun updateTextColor() {
         config_text_color.setFillWithStroke(mTextColor, Color.BLACK)
         config_save.setTextColor(mTextColor)
         config_time.setTextColor(mTextColor)
         config_date.setTextColor(mTextColor)
     }
 
-    private fun updateBgColor() {
+    private fun updateBackgroundColor() {
         mBgColor = mBgColorWithoutTransparency.adjustAlpha(mBgAlpha)
         config_bg_color.setFillWithStroke(mBgColor, Color.BLACK)
         config_save.setBackgroundColor(mBgColor)
@@ -145,15 +138,11 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
     private val bgSeekbarChangeListener = object : SeekBar.OnSeekBarChangeListener {
         override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
             mBgAlpha = progress.toFloat() / 100.toFloat()
-            updateBgColor()
+            updateBackgroundColor()
         }
 
-        override fun onStartTrackingTouch(seekBar: SeekBar) {
+        override fun onStartTrackingTouch(seekBar: SeekBar) {}
 
-        }
-
-        override fun onStopTrackingTouch(seekBar: SeekBar) {
-
-        }
+        override fun onStopTrackingTouch(seekBar: SeekBar) {}
     }
 }
