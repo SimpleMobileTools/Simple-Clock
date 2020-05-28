@@ -68,11 +68,10 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
 
     private fun updateColors(context: Context, views: RemoteViews) {
         val config = context.config
-        val widgetBgColor = config.widgetBgColor
         val widgetTextColor = config.widgetTextColor
 
         views.apply {
-            setBackgroundColor(R.id.widget_date_time_holder, widgetBgColor)
+            applyColorFilter(R.id.widget_background, config.widgetBgColor)
             setTextColor(R.id.widget_time, widgetTextColor)
             setTextColor(R.id.widget_date, widgetTextColor)
             setTextColor(R.id.widget_next_alarm, widgetTextColor)
