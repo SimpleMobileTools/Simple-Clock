@@ -10,7 +10,6 @@ import android.media.AudioAttributes
 import android.media.AudioManager
 import android.media.AudioManager.STREAM_ALARM
 import android.net.Uri
-import android.os.Build
 import android.os.PowerManager
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
@@ -249,10 +248,10 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
         }
 
         val audioAttributes = AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_ALARM)
-                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                .setLegacyStreamType(STREAM_ALARM)
-                .build()
+            .setUsage(AudioAttributes.USAGE_ALARM)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .setLegacyStreamType(STREAM_ALARM)
+            .build()
 
         val name = getString(R.string.timer)
         val importance = NotificationManager.IMPORTANCE_HIGH
@@ -273,17 +272,17 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
 
     val reminderActivityIntent = getReminderActivityIntent()
     val builder = NotificationCompat.Builder(this)
-            .setContentTitle(getString(R.string.timer))
-            .setContentText(getString(R.string.time_expired))
-            .setSmallIcon(R.drawable.ic_timer)
-            .setContentIntent(pendingIntent)
-            .setPriority(NotificationCompat.PRIORITY_MAX)
-            .setDefaults(Notification.DEFAULT_LIGHTS)
-            .setCategory(Notification.CATEGORY_EVENT)
-            .setAutoCancel(true)
-            .setSound(Uri.parse(soundUri), AudioManager.STREAM_ALARM)
-            .setChannelId(channelId)
-            .addAction(R.drawable.ic_cross_vector, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getHideTimerPendingIntent())
+        .setContentTitle(getString(R.string.timer))
+        .setContentText(getString(R.string.time_expired))
+        .setSmallIcon(R.drawable.ic_timer)
+        .setContentIntent(pendingIntent)
+        .setPriority(NotificationCompat.PRIORITY_MAX)
+        .setDefaults(Notification.DEFAULT_LIGHTS)
+        .setCategory(Notification.CATEGORY_EVENT)
+        .setAutoCancel(true)
+        .setSound(Uri.parse(soundUri), AudioManager.STREAM_ALARM)
+        .setChannelId(channelId)
+        .addAction(R.drawable.ic_cross_vector, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getHideTimerPendingIntent())
 
     if (addDeleteIntent) {
         builder.setDeleteIntent(reminderActivityIntent)
@@ -325,11 +324,11 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
     val label = if (alarm.label.isNotEmpty()) alarm.label else getString(R.string.alarm)
     if (isOreoPlus()) {
         val audioAttributes = AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_ALARM)
-                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                .setLegacyStreamType(AudioManager.STREAM_ALARM)
-                .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
-                .build()
+            .setUsage(AudioAttributes.USAGE_ALARM)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .setLegacyStreamType(AudioManager.STREAM_ALARM)
+            .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
+            .build()
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val importance = NotificationManager.IMPORTANCE_HIGH
@@ -344,17 +343,17 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
     }
 
     val builder = NotificationCompat.Builder(this)
-            .setContentTitle(label)
-            .setContentText(getFormattedTime(getPassedSeconds(), false, false))
-            .setSmallIcon(R.drawable.ic_alarm_vector)
-            .setContentIntent(pendingIntent)
-            .setPriority(Notification.PRIORITY_HIGH)
-            .setDefaults(Notification.DEFAULT_LIGHTS)
-            .setAutoCancel(true)
-            .setSound(Uri.parse(soundUri), AudioManager.STREAM_ALARM)
-            .setChannelId(channelId)
-            .addAction(R.drawable.ic_snooze_vector, getString(R.string.snooze), getSnoozePendingIntent(alarm))
-            .addAction(R.drawable.ic_cross_vector, getString(R.string.dismiss), getHideAlarmPendingIntent(alarm))
+        .setContentTitle(label)
+        .setContentText(getFormattedTime(getPassedSeconds(), false, false))
+        .setSmallIcon(R.drawable.ic_alarm_vector)
+        .setContentIntent(pendingIntent)
+        .setPriority(Notification.PRIORITY_HIGH)
+        .setDefaults(Notification.DEFAULT_LIGHTS)
+        .setAutoCancel(true)
+        .setSound(Uri.parse(soundUri), AudioManager.STREAM_ALARM)
+        .setChannelId(channelId)
+        .addAction(R.drawable.ic_snooze_vector, getString(R.string.snooze), getSnoozePendingIntent(alarm))
+        .addAction(R.drawable.ic_cross_vector, getString(R.string.dismiss), getHideAlarmPendingIntent(alarm))
 
     builder.setVisibility(Notification.VISIBILITY_PUBLIC)
 

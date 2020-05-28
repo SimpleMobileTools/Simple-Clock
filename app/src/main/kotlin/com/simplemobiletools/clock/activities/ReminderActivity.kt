@@ -1,7 +1,6 @@
 package com.simplemobiletools.clock.activities
 
 import android.annotation.SuppressLint
-import android.app.NotificationManager
 import android.content.Intent
 import android.media.AudioManager
 import android.media.MediaPlayer
@@ -126,7 +125,7 @@ class ReminderActivity : SimpleActivity() {
                         }
 
                         if (isOreoPlus()) {
-                            getSystemService(NotificationManager::class.java).cancelAll()
+                            notificationManager.cancelAll()
                         }
                     } else if (reminder_draggable.x <= minDragX + 50f) {
                         if (!didVibrate) {
@@ -136,7 +135,7 @@ class ReminderActivity : SimpleActivity() {
                         }
 
                         if (isOreoPlus()) {
-                            getSystemService(NotificationManager::class.java).cancelAll()
+                            notificationManager.cancelAll()
                         }
                     }
                 }
@@ -222,6 +221,10 @@ class ReminderActivity : SimpleActivity() {
     }
 
     private fun finishActivity() {
+        if (alarm != null) {
+            scheduleNextAlarm(alarm!!, false)
+        }
+
         destroyPlayer()
         finish()
         overridePendingTransition(0, 0)
