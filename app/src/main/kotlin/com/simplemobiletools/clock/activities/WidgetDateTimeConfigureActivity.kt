@@ -14,6 +14,7 @@ import com.simplemobiletools.clock.helpers.MyWidgetDateTimeProvider
 import com.simplemobiletools.clock.helpers.getPassedSeconds
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.extensions.adjustAlpha
+import com.simplemobiletools.commons.extensions.applyColorFilter
 import com.simplemobiletools.commons.extensions.setFillWithStroke
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import kotlinx.android.synthetic.main.widget_config_date_time.*
@@ -131,8 +132,8 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
     private fun updateBackgroundColor() {
         mBgColor = mBgColorWithoutTransparency.adjustAlpha(mBgAlpha)
         config_bg_color.setFillWithStroke(mBgColor, Color.BLACK)
+        config_background.applyColorFilter(mBgColor)
         config_save.setBackgroundColor(mBgColor)
-        config_date_time_wrapper.setBackgroundColor(mBgColor)
     }
 
     private val bgSeekbarChangeListener = object : SeekBar.OnSeekBarChangeListener {
