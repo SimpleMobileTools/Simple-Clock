@@ -1,6 +1,13 @@
 Changelog
 ==========
 
+Version 5.2.2 *(2020-05-28)*
+----------------------------
+
+ * Use rounded corners at the widget
+ * Properly reschedule new alarm when dismissed
+ * Added some other UI and translation improvements
+
 Version 5.2.1 *(2020-03-20)*
 ----------------------------
 

@@ -1,0 +1,3 @@
+ * Use rounded corners at the widget
+ * Properly reschedule new alarm when dismissed
+ * Added some other UI and translation improvements
