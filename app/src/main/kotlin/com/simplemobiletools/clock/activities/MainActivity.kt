@@ -140,13 +140,13 @@ class MainActivity : SimpleActivity() {
         view_pager.currentItem = tabToOpen
         view_pager.offscreenPageLimit = TABS_COUNT - 1
         main_tabs_holder.onTabSelectionChanged(
-                tabUnselectedAction = {
-                    it.icon?.applyColorFilter(config.textColor)
-                },
-                tabSelectedAction = {
-                    view_pager.currentItem = it.position
-                    it.icon?.applyColorFilter(getAdjustedPrimaryColor())
-                }
+            tabUnselectedAction = {
+                it.icon?.applyColorFilter(config.textColor)
+            },
+            tabSelectedAction = {
+                view_pager.currentItem = it.position
+                it.icon?.applyColorFilter(getAdjustedPrimaryColor())
+            }
         )
 
         setupTabColors(tabToOpen)
@@ -177,11 +177,11 @@ class MainActivity : SimpleActivity() {
         val licenses = LICENSE_STETHO or LICENSE_NUMBER_PICKER or LICENSE_RTL
 
         val faqItems = arrayListOf(
-                FAQItem(R.string.faq_1_title, R.string.faq_1_text),
-                FAQItem(R.string.faq_1_title_commons, R.string.faq_1_text_commons),
-                FAQItem(R.string.faq_4_title_commons, R.string.faq_4_text_commons),
-                FAQItem(R.string.faq_2_title_commons, R.string.faq_2_text_commons),
-                FAQItem(R.string.faq_6_title_commons, R.string.faq_6_text_commons)
+            FAQItem(R.string.faq_1_title, R.string.faq_1_text),
+            FAQItem(R.string.faq_1_title_commons, R.string.faq_1_text_commons),
+            FAQItem(R.string.faq_4_title_commons, R.string.faq_4_text_commons),
+            FAQItem(R.string.faq_2_title_commons, R.string.faq_2_text_commons),
+            FAQItem(R.string.faq_6_title_commons, R.string.faq_6_text_commons)
         )
 
         startAboutActivity(R.string.app_name, licenses, BuildConfig.VERSION_NAME, faqItems, true)

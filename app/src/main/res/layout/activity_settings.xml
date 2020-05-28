@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/settings_scrollview"
     android:layout_width="match_parent"
@@ -29,8 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:paddingStart="@dimen/medium_margin"
-                android:paddingLeft="@dimen/medium_margin"
-                android:text="@string/purchase_simple_thank_you"/>
+                android:text="@string/purchase_simple_thank_you" />
 
         </RelativeLayout>
 
@@ -51,8 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:paddingStart="@dimen/medium_margin"
-                android:paddingLeft="@dimen/medium_margin"
-                android:text="@string/customize_colors"/>
+                android:text="@string/customize_colors" />
 
         </RelativeLayout>
 
@@ -74,9 +71,8 @@
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
-                android:paddingLeft="@dimen/medium_margin"
                 android:text="@string/use_english_language"
-                app:switchPadding="@dimen/medium_margin"/>
+                app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
@@ -98,9 +94,8 @@
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
-                android:paddingLeft="@dimen/medium_margin"
                 android:text="@string/prevent_phone_from_sleeping"
-                app:switchPadding="@dimen/medium_margin"/>
+                app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
@@ -122,9 +117,8 @@
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
-                android:paddingLeft="@dimen/medium_margin"
                 android:text="@string/use_24_hour_time_format"
-                app:switchPadding="@dimen/medium_margin"/>
+                app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
@@ -146,9 +140,8 @@
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
-                android:paddingLeft="@dimen/medium_margin"
                 android:text="@string/sunday_first"
-                app:switchPadding="@dimen/medium_margin"/>
+                app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
@@ -157,11 +150,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/bigger_margin"
-            android:layout_marginLeft="@dimen/bigger_margin"
             android:layout_marginTop="@dimen/section_margin"
             android:text="@string/clock_tab"
             android:textAllCaps="true"
-            android:textSize="@dimen/smaller_text_size"/>
+            android:textSize="@dimen/smaller_text_size" />
 
         <RelativeLayout
             android:id="@+id/settings_show_seconds_holder"
@@ -181,9 +173,8 @@
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
-                android:paddingLeft="@dimen/medium_margin"
                 android:text="@string/show_seconds"
-                app:switchPadding="@dimen/medium_margin"/>
+                app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
@@ -192,11 +183,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/bigger_margin"
-            android:layout_marginLeft="@dimen/bigger_margin"
             android:layout_marginTop="@dimen/section_margin"
             android:text="@string/alarm_tab"
             android:textAllCaps="true"
-            android:textSize="@dimen/smaller_text_size"/>
+            android:textSize="@dimen/smaller_text_size" />
 
         <RelativeLayout
             android:id="@+id/settings_alarm_max_reminder_holder"
@@ -215,21 +205,18 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@+id/settings_alarm_max_reminder"
-                android:layout_toLeftOf="@+id/settings_alarm_max_reminder"
                 android:paddingLeft="@dimen/medium_margin"
                 android:paddingRight="@dimen/medium_margin"
-                android:text="@string/max_reminder_duration"/>
+                android:text="@string/max_reminder_duration" />
 
             <com.simplemobiletools.commons.views.MyTextView
                 android:id="@+id/settings_alarm_max_reminder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:layout_marginEnd="@dimen/small_margin"
-                android:layout_marginRight="@dimen/small_margin"
                 android:background="@null"
-                android:clickable="false"/>
+                android:clickable="false" />
 
         </RelativeLayout>
 
@@ -251,9 +238,8 @@
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
-                android:paddingLeft="@dimen/medium_margin"
                 android:text="@string/increase_volume_gradually"
-                app:switchPadding="@dimen/medium_margin"/>
+                app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
@@ -275,9 +261,8 @@
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
-                android:paddingLeft="@dimen/medium_margin"
                 android:text="@string/use_same_snooze"
-                app:switchPadding="@dimen/medium_margin"/>
+                app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>
 
@@ -298,21 +283,18 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@+id/settings_snooze_time"
-                android:layout_toLeftOf="@+id/settings_snooze_time"
                 android:paddingLeft="@dimen/medium_margin"
                 android:paddingRight="@dimen/medium_margin"
-                android:text="@string/snooze_time"/>
+                android:text="@string/snooze_time" />
 
             <com.simplemobiletools.commons.views.MyTextView
                 android:id="@+id/settings_snooze_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:layout_marginEnd="@dimen/small_margin"
-                android:layout_marginRight="@dimen/small_margin"
                 android:background="@null"
-                android:clickable="false"/>
+                android:clickable="false" />
 
         </RelativeLayout>
 
@@ -321,11 +303,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/bigger_margin"
-            android:layout_marginLeft="@dimen/bigger_margin"
             android:layout_marginTop="@dimen/section_margin"
             android:text="@string/stopwatch_tab"
             android:textAllCaps="true"
-            android:textSize="@dimen/smaller_text_size"/>
+            android:textSize="@dimen/smaller_text_size" />
 
         <RelativeLayout
             android:id="@+id/settings_vibrate_holder"
@@ -345,9 +326,8 @@
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
-                android:paddingLeft="@dimen/medium_margin"
                 android:text="@string/vibrate_on_button_press"
-                app:switchPadding="@dimen/medium_margin"/>
+                app:switchPadding="@dimen/medium_margin" />
         </RelativeLayout>
 
         <com.simplemobiletools.commons.views.MyTextView
@@ -355,11 +335,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/bigger_margin"
-            android:layout_marginLeft="@dimen/bigger_margin"
             android:layout_marginTop="@dimen/section_margin"
             android:text="@string/timer_tab"
             android:textAllCaps="true"
-            android:textSize="@dimen/smaller_text_size"/>
+            android:textSize="@dimen/smaller_text_size" />
 
         <RelativeLayout
             android:id="@+id/settings_timer_max_reminder_holder"
@@ -378,21 +357,18 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@+id/settings_timer_max_reminder"
-                android:layout_toLeftOf="@+id/settings_timer_max_reminder"
                 android:paddingLeft="@dimen/medium_margin"
                 android:paddingRight="@dimen/medium_margin"
-                android:text="@string/max_reminder_duration"/>
+                android:text="@string/max_reminder_duration" />
 
             <com.simplemobiletools.commons.views.MyTextView
                 android:id="@+id/settings_timer_max_reminder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:layout_marginEnd="@dimen/small_margin"
-                android:layout_marginRight="@dimen/small_margin"
                 android:background="@null"
-                android:clickable="false"/>
+                android:clickable="false" />
 
         </RelativeLayout>
 
@@ -401,11 +377,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/bigger_margin"
-            android:layout_marginLeft="@dimen/bigger_margin"
             android:layout_marginTop="@dimen/section_margin"
             android:text="@string/widgets"
             android:textAllCaps="true"
-            android:textSize="@dimen/smaller_text_size"/>
+            android:textSize="@dimen/smaller_text_size" />
 
         <RelativeLayout
             android:id="@+id/settings_use_text_shadow_holder"
@@ -425,9 +400,8 @@
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
-                android:paddingLeft="@dimen/medium_margin"
                 android:text="@string/use_text_shadow"
-                app:switchPadding="@dimen/medium_margin"/>
+                app:switchPadding="@dimen/medium_margin" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -447,8 +421,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:paddingStart="@dimen/medium_margin"
-                android:paddingLeft="@dimen/medium_margin"
-                android:text="@string/customize_widget_colors"/>
+                android:text="@string/customize_widget_colors" />
 
         </RelativeLayout>
     </LinearLayout>
