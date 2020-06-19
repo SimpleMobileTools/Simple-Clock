@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/stopwatch_fragment"
@@ -19,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="00.00"/>
+        tools:text="00.00" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/stopwatch_sorting_indicators_holder"
@@ -35,7 +34,7 @@
             android:visibility="invisible"
             app:layout_constraintEnd_toStartOf="@+id/stopwatch_sorting_indicator_2"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:id="@+id/stopwatch_sorting_indicator_2"
@@ -44,7 +43,7 @@
             android:visibility="invisible"
             app:layout_constraintEnd_toStartOf="@+id/stopwatch_sorting_indicator_3"
             app:layout_constraintStart_toEndOf="@+id/stopwatch_sorting_indicator_1"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/stopwatch_sorting_indicator_3"
@@ -53,7 +52,7 @@
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/stopwatch_sorting_indicator_2"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -69,7 +68,7 @@
         app:layout_constraintBottom_toTopOf="@+id/stopwatch_play_pause"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stopwatch_sorting_indicators_holder"/>
+        app:layout_constraintTop_toBottomOf="@+id/stopwatch_sorting_indicators_holder" />
 
     <ImageView
         android:id="@+id/stopwatch_play_pause"
@@ -78,18 +77,18 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/big_margin"
-        android:padding="@dimen/normal_margin"
+        android:padding="@dimen/activity_margin"
         android:src="@drawable/ic_play_vector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/stopwatch_reset"
         android:layout_width="@dimen/stopwatch_button_small_size"
         android:layout_height="@dimen/stopwatch_button_small_size"
-        android:layout_toLeftOf="@+id/stopwatch_play_pause"
+        android:layout_toStartOf="@+id/stopwatch_play_pause"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:padding="@dimen/normal_margin"
         android:src="@drawable/ic_reset_vector"
@@ -97,7 +96,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/stopwatch_play_pause"
         app:layout_constraintEnd_toStartOf="@+id/stopwatch_play_pause"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/stopwatch_play_pause"/>
+        app:layout_constraintTop_toTopOf="@+id/stopwatch_play_pause" />
 
     <com.simplemobiletools.commons.views.MyTextView
         android:id="@+id/stopwatch_lap"
@@ -115,6 +114,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/stopwatch_play_pause"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/stopwatch_play_pause"
-        app:layout_constraintTop_toTopOf="@+id/stopwatch_play_pause"/>
+        app:layout_constraintTop_toTopOf="@+id/stopwatch_play_pause" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,7 @@
         android:id="@+id/add_time_zone_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/add_time_zone_checkbox"
+        android:layout_toStartOf="@+id/add_time_zone_checkbox"
         android:ellipsize="end"
         android:gravity="center_vertical"
         android:maxLines="1"
@@ -27,8 +27,8 @@
         android:layout_height="match_parent"
         android:layout_alignTop="@+id/add_time_zone_title"
         android:layout_alignBottom="@+id/add_time_zone_title"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/activity_margin"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/activity_margin"
         android:clickable="false"
         android:gravity="center"/>
 

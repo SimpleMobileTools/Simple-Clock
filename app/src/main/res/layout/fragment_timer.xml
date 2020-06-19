@@ -16,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/timer_constraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -80,6 +81,7 @@
                 tools:text="Default alarm" />
 
             <LinearLayout
+                android:id="@+id/timer_label_holder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -120,7 +122,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/big_margin"
-        android:padding="@dimen/normal_margin"
+        android:padding="@dimen/activity_margin"
         android:src="@drawable/ic_play_vector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -134,11 +136,11 @@
         android:padding="@dimen/normal_margin"
         android:src="@drawable/ic_reset_vector"
         android:visibility="gone"
-        tools:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/timer_play_pause"
         app:layout_constraintEnd_toStartOf="@+id/timer_play_pause"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/timer_play_pause" />
+        app:layout_constraintTop_toTopOf="@+id/timer_play_pause"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
