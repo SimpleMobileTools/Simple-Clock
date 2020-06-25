@@ -10,7 +10,7 @@
     <string name="lap">Γύρος</string>
     <string name="stopwatch_stopped">Το Χρονόμετρο έχει σταματήσει</string>
     <string name="timer_stopped">Ο Χρονοδιακόπτης έχει σταματήσει</string>
-    <string name="max_reminder_duration">Max reminder duration</string>
+    <string name="max_reminder_duration">Μέγιστη διάρκεια υπενθύμισης</string>
     <string name="time_expired">Ο Χρονοδιακόπτης έληξε</string>
     <string name="clock_and_date">Ώρα και ημερομηνία</string>
     <string name="use_text_shadow">Χρήση σκιάς κειμένου</string>
@@ -48,7 +48,7 @@
 
         Δεν περιέχει διαφημίσεις ή περιττές άδειες. Είναι πλήρως ανοιχτού κώδικα, παρέχει επίσης προσαρμόσιμα χρώματα.
 
-        <b>Check out the full suite of Simple Tools here:</b>
+        <b>Δείτε την πλήρη σειρά των Απλών Εργαλείων εδώ:</b>
         https://www.simplemobiletools.com
 
         <b>Facebook:</b>
