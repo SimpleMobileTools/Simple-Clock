@@ -314,9 +314,7 @@ fun Context.getHideAlarmPendingIntent(alarm: Alarm): PendingIntent {
 @SuppressLint("NewApi")
 fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): Notification {
     var soundUri = alarm.soundUri
-    if (soundUri == SILENT) {
-        soundUri = ""
-    } else {
+    if (soundUri != SILENT) {
         grantReadUriPermission(soundUri)
     }
 
@@ -350,12 +348,15 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
         .setPriority(Notification.PRIORITY_HIGH)
         .setDefaults(Notification.DEFAULT_LIGHTS)
         .setAutoCancel(true)
-        .setSound(Uri.parse(soundUri), AudioManager.STREAM_ALARM)
         .setChannelId(channelId)
         .addAction(R.drawable.ic_snooze_vector, getString(R.string.snooze), getSnoozePendingIntent(alarm))
         .addAction(R.drawable.ic_cross_vector, getString(R.string.dismiss), getHideAlarmPendingIntent(alarm))
 
-    builder.setVisibility(Notification.VISIBILITY_PUBLIC)
+    builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+
+    if (soundUri != SILENT) {
+        builder.setSound(Uri.parse(soundUri), AudioManager.STREAM_ALARM);
+    }
 
     if (alarm.vibrate) {
         val vibrateArray = LongArray(2) { 500 }

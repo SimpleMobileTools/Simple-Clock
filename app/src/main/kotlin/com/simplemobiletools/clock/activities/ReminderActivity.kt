@@ -1,12 +1,12 @@
 package com.simplemobiletools.clock.activities
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
-import android.os.Bundle
-import android.os.Handler
+import android.os.*
 import android.view.MotionEvent
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
@@ -17,6 +17,7 @@ import com.simplemobiletools.clock.helpers.getPassedSeconds
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.MINUTE_SECONDS
+import com.simplemobiletools.commons.helpers.SILENT
 import com.simplemobiletools.commons.helpers.isOreoPlus
 import kotlinx.android.synthetic.main.activity_reminder.*
 
@@ -30,6 +31,7 @@ class ReminderActivity : SimpleActivity() {
     private var didVibrate = false
     private var alarm: Alarm? = null
     private var mediaPlayer: MediaPlayer? = null
+    private var vibrator: Vibrator? = null;
     private var lastVolumeValue = 0.1f
     private var dragDownX = 0f
 
@@ -64,7 +66,7 @@ class ReminderActivity : SimpleActivity() {
         }, maxDuration * 1000L)
 
         setupButtons()
-        setupAudio()
+        setupEffects()
     }
 
     private fun setupButtons() {
@@ -155,27 +157,40 @@ class ReminderActivity : SimpleActivity() {
         }
     }
 
-    private fun setupAudio() {
+    private fun setupEffects() {
         if (!isAlarmReminder || !config.increaseVolumeGradually) {
             lastVolumeValue = 1f
         }
 
-        val soundUri = Uri.parse(if (alarm != null) alarm!!.soundUri else config.timerSoundUri)
-        try {
-            mediaPlayer = MediaPlayer().apply {
-                setAudioStreamType(AudioManager.STREAM_ALARM)
-                setDataSource(this@ReminderActivity, soundUri)
-                setVolume(lastVolumeValue, lastVolumeValue)
-                isLooping = true
-                prepare()
-                start()
+        val doVibrate = if (alarm != null) alarm!!.vibrate else config.timerVibrate;
+        if (doVibrate) {
+            val pattern = LongArray(2){ 500 };
+            vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vibrator?.vibrate(VibrationEffect.createWaveform(pattern, 0))
+            } else {
+                vibrator?.vibrate(pattern, 0);
             }
-        } catch (e: Exception) {
-            showErrorToast(e)
         }
 
-        if (config.increaseVolumeGradually) {
-            scheduleVolumeIncrease()
+        val soundUri = if (alarm != null) alarm!!.soundUri else config.timerSoundUri;
+        if (soundUri != SILENT) {
+            try {
+                mediaPlayer = MediaPlayer().apply {
+                    setAudioStreamType(AudioManager.STREAM_ALARM)
+                    setDataSource(this@ReminderActivity, Uri.parse(soundUri))
+                    setVolume(lastVolumeValue, lastVolumeValue)
+                    isLooping = true
+                    prepare()
+                    start()
+                }
+            } catch (e: Exception) {
+                showErrorToast(e)
+            }
+
+            if (config.increaseVolumeGradually) {
+                scheduleVolumeIncrease()
+            }
         }
     }
 
@@ -197,17 +212,19 @@ class ReminderActivity : SimpleActivity() {
         increaseVolumeHandler.removeCallbacksAndMessages(null)
         maxReminderDurationHandler.removeCallbacksAndMessages(null)
         swipeGuideFadeHandler.removeCallbacksAndMessages(null)
-        destroyPlayer()
+        destroyEffects()
     }
 
-    private fun destroyPlayer() {
+    private fun destroyEffects() {
         mediaPlayer?.stop()
         mediaPlayer?.release()
         mediaPlayer = null
+        vibrator?.cancel();
+        vibrator = null;
     }
 
     private fun snoozeAlarm() {
-        destroyPlayer()
+        destroyEffects()
         if (config.useSameSnooze) {
             setupAlarmClock(alarm!!, config.snoozeTime * MINUTE_SECONDS)
             finishActivity()
@@ -225,7 +242,7 @@ class ReminderActivity : SimpleActivity() {
             scheduleNextAlarm(alarm!!, false)
         }
 
-        destroyPlayer()
+        destroyEffects()
         finish()
         overridePendingTransition(0, 0)
     }
