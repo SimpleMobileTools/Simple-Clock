@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.3.0 *(2020-08-19)*
+----------------------------
+
+ * Fixed alarm not vibrating in some cases (by rien)
+ * Some minor translation and UI improvements
+
 Version 5.2.2 *(2020-05-28)*
 ----------------------------
 
