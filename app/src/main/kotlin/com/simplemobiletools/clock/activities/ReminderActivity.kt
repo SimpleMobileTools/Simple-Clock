@@ -31,7 +31,7 @@ class ReminderActivity : SimpleActivity() {
     private var didVibrate = false
     private var alarm: Alarm? = null
     private var mediaPlayer: MediaPlayer? = null
-    private var vibrator: Vibrator? = null;
+    private var vibrator: Vibrator? = null
     private var lastVolumeValue = 0.1f
     private var dragDownX = 0f
 
@@ -162,18 +162,18 @@ class ReminderActivity : SimpleActivity() {
             lastVolumeValue = 1f
         }
 
-        val doVibrate = if (alarm != null) alarm!!.vibrate else config.timerVibrate;
+        val doVibrate = if (alarm != null) alarm!!.vibrate else config.timerVibrate
         if (doVibrate) {
-            val pattern = LongArray(2){ 500 };
-            vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator;
+            val pattern = LongArray(2) { 500 }
+            vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 vibrator?.vibrate(VibrationEffect.createWaveform(pattern, 0))
             } else {
-                vibrator?.vibrate(pattern, 0);
+                vibrator?.vibrate(pattern, 0)
             }
         }
 
-        val soundUri = if (alarm != null) alarm!!.soundUri else config.timerSoundUri;
+        val soundUri = if (alarm != null) alarm!!.soundUri else config.timerSoundUri
         if (soundUri != SILENT) {
             try {
                 mediaPlayer = MediaPlayer().apply {
@@ -219,8 +219,8 @@ class ReminderActivity : SimpleActivity() {
         mediaPlayer?.stop()
         mediaPlayer?.release()
         mediaPlayer = null
-        vibrator?.cancel();
-        vibrator = null;
+        vibrator?.cancel()
+        vibrator = null
     }
 
     private fun snoozeAlarm() {

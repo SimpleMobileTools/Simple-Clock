@@ -355,7 +355,7 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
     builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
 
     if (soundUri != SILENT) {
-        builder.setSound(Uri.parse(soundUri), AudioManager.STREAM_ALARM);
+        builder.setSound(Uri.parse(soundUri), STREAM_ALARM)
     }
 
     if (alarm.vibrate) {
