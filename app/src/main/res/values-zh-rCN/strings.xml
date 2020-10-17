@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">简易时钟</string>
-    <string name="app_launcher_name">简易时钟</string>
+    <string name="app_launcher_name">时钟</string>
     <string name="time_zone">时区</string>
     <string name="vibrate">震动</string>
     <string name="label">标签</string>
@@ -33,7 +33,7 @@
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">结合了时钟、闹钟、秒表和定时器。</string>
     <string name="app_long_description">
-        這应用程序拥有多个跟时间相关的功能。
+        这应用程序拥有多个跟时间相关的功能。
 
         您可以在时钟显示其他地区的时间，或者使用简单却能自订的时钟小工具。小工具的字体颜色能夠自订，背景颜色和透明度也都可以。
 
