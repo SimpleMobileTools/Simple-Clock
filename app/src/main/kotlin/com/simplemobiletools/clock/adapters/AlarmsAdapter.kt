@@ -20,7 +20,6 @@ import java.util.*
 
 class AlarmsAdapter(activity: SimpleActivity, var alarms: ArrayList<Alarm>, val toggleAlarmInterface: ToggleAlarmInterface,
                     recyclerView: MyRecyclerView, itemClick: (Any) -> Unit) : MyRecyclerViewAdapter(activity, recyclerView, null, itemClick) {
-    private val adjustedPrimaryColor = activity.getAdjustedPrimaryColor()
 
     init {
         setupDragListener(true)
