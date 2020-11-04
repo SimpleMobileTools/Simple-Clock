@@ -80,7 +80,7 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
                 val bitmap = getMultiplyColoredBitmap(R.drawable.ic_clock_shadowed, widgetTextColor, context)
                 setImageViewBitmap(R.id.widget_next_alarm_image, bitmap)
             } else {
-                setImageViewBitmap(R.id.widget_next_alarm_image, context.resources.getColoredBitmap(R.drawable.ic_clock_vector, widgetTextColor))
+                setImageViewBitmap(R.id.widget_next_alarm_image, context.resources.getColoredBitmap(R.drawable.ic_alarm_vector, widgetTextColor))
             }
         }
     }
