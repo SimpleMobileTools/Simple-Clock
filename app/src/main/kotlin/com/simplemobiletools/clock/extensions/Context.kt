@@ -360,6 +360,7 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
         }
     }
 
+    val dismissIntent = getHideAlarmPendingIntent(alarm)
     val builder = NotificationCompat.Builder(this)
         .setContentTitle(label)
         .setContentText(getFormattedTime(getPassedSeconds(), false, false))
@@ -370,7 +371,8 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
         .setAutoCancel(true)
         .setChannelId(channelId)
         .addAction(R.drawable.ic_snooze_vector, getString(R.string.snooze), getSnoozePendingIntent(alarm))
-        .addAction(R.drawable.ic_cross_vector, getString(R.string.dismiss), getHideAlarmPendingIntent(alarm))
+        .addAction(R.drawable.ic_cross_vector, getString(R.string.dismiss), dismissIntent)
+        .setDeleteIntent(dismissIntent)
 
     builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
 
