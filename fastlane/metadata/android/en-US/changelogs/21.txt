@@ -1,0 +1,3 @@
+ * Allow creating alarms without any day set
+ * Fix last alarm or clock item not being visible at the bottom
+ * Added some other UX, stability and translation improvements
