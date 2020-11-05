@@ -110,6 +110,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                         }
 
                         alarm.label = view.edit_alarm_label.value
+                        alarm.isEnabled = true
 
                         var alarmId = alarm.id
                         if (alarm.id == 0) {

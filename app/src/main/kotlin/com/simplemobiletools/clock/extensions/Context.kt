@@ -336,7 +336,7 @@ fun Context.getHideAlarmPendingIntent(alarm: Alarm): PendingIntent {
 
 @SuppressLint("NewApi")
 fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): Notification {
-    var soundUri = alarm.soundUri
+    val soundUri = alarm.soundUri
     if (soundUri != SILENT) {
         grantReadUriPermission(soundUri)
     }
