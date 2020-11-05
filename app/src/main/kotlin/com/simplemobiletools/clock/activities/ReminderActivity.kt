@@ -238,7 +238,7 @@ class ReminderActivity : SimpleActivity() {
     }
 
     private fun finishActivity() {
-        if (alarm != null) {
+        if (alarm != null && alarm!!.days > 0) {
             scheduleNextAlarm(alarm!!, false)
         }
 

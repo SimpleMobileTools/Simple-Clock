@@ -80,17 +80,16 @@ fun formatTime(showSeconds: Boolean, use24HourFormat: Boolean, hours: Int, minut
     }
 }
 
-fun getTodayBit(): Int {
-    val calendar = Calendar.getInstance()
-    val dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
-    return 2.0.pow(dayOfWeek).toInt()
-}
-
-fun getNextDayBit(): Int {
+fun getTomorrowBit(): Int {
     val calendar = Calendar.getInstance()
     calendar.add(Calendar.DAY_OF_WEEK, 1)
     val dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
     return 2.0.pow(dayOfWeek).toInt()
+}
+
+fun getCurrentDayMinutes(): Int {
+    val calendar = Calendar.getInstance()
+    return calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE)
 }
 
 fun getAllTimeZones() = arrayListOf(

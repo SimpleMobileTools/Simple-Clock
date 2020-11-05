@@ -12,7 +12,7 @@ import com.simplemobiletools.clock.adapters.AlarmsAdapter
 import com.simplemobiletools.clock.dialogs.EditAlarmDialog
 import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.DEFAULT_ALARM_MINUTES
-import com.simplemobiletools.clock.helpers.getNextDayBit
+import com.simplemobiletools.clock.helpers.getTomorrowBit
 import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.toast
@@ -60,7 +60,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
             alarm_fab.setOnClickListener {
                 val newAlarm = context.createNewAlarm(DEFAULT_ALARM_MINUTES, 0)
                 newAlarm.isEnabled = true
-                newAlarm.days = getNextDayBit()
+                newAlarm.days = getTomorrowBit()
                 openEditAlarm(newAlarm)
             }
         }

@@ -81,20 +81,37 @@ fun Context.createNewAlarm(timeInMinutes: Int, weekDays: Int): Alarm {
 fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
     val calendar = Calendar.getInstance()
     calendar.firstDayOfWeek = Calendar.MONDAY
-    for (i in 0..7) {
-        val currentDay = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
-        val isCorrectDay = alarm.days and 2.0.pow(currentDay).toInt() != 0
-        val currentTimeInMinutes = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE)
-        if (isCorrectDay && (alarm.timeInMinutes > currentTimeInMinutes || i > 0)) {
-            val triggerInMinutes = alarm.timeInMinutes - currentTimeInMinutes + (i * DAY_MINUTES)
-            setupAlarmClock(alarm, triggerInMinutes * 60 - calendar.get(Calendar.SECOND))
+    val currentTimeInMinutes = getCurrentDayMinutes()
 
-            if (showToast) {
-                showRemainingTimeMessage(triggerInMinutes)
+    if (alarm.days == TODAY_BIT) {
+        val triggerInMinutes = alarm.timeInMinutes - currentTimeInMinutes
+        setupAlarmClock(alarm, triggerInMinutes * 60 - calendar.get(Calendar.SECOND))
+
+        if (showToast) {
+            showRemainingTimeMessage(triggerInMinutes)
+        }
+    } else if (alarm.days == TOMORROW_BIT) {
+        val triggerInMinutes = alarm.timeInMinutes - currentTimeInMinutes + DAY_MINUTES
+        setupAlarmClock(alarm, triggerInMinutes * 60 - calendar.get(Calendar.SECOND))
+
+        if (showToast) {
+            showRemainingTimeMessage(triggerInMinutes)
+        }
+    } else {
+        for (i in 0..7) {
+            val currentDay = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
+            val isCorrectDay = alarm.days and 2.0.pow(currentDay).toInt() != 0
+            if (isCorrectDay && (alarm.timeInMinutes > currentTimeInMinutes || i > 0)) {
+                val triggerInMinutes = alarm.timeInMinutes - currentTimeInMinutes + (i * DAY_MINUTES)
+                setupAlarmClock(alarm, triggerInMinutes * 60 - calendar.get(Calendar.SECOND))
+
+                if (showToast) {
+                    showRemainingTimeMessage(triggerInMinutes)
+                }
+                break
+            } else {
+                calendar.add(Calendar.DAY_OF_MONTH, 1)
             }
-            break
-        } else {
-            calendar.add(Calendar.DAY_OF_MONTH, 1)
         }
     }
 }
@@ -224,7 +241,10 @@ fun Context.showAlarmNotification(alarm: Alarm) {
     val notification = getAlarmNotification(pendingIntent, alarm)
     val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     notificationManager.notify(alarm.id, notification)
-    scheduleNextAlarm(alarm, false)
+
+    if (alarm.days > 0) {
+        scheduleNextAlarm(alarm, false)
+    }
 }
 
 @SuppressLint("NewApi")

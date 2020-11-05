@@ -11,6 +11,7 @@ import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.PICK_AUDIO_FILE_INTENT_ID
 import com.simplemobiletools.clock.helpers.TODAY_BIT
 import com.simplemobiletools.clock.helpers.TOMORROW_BIT
+import com.simplemobiletools.clock.helpers.getCurrentDayMinutes
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.commons.extensions.*
@@ -164,11 +165,6 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
             view.edit_alarm_dayless_label.text = "(${activity.getString(textId)})"
         }
         view.edit_alarm_dayless_label.beVisibleIf(alarm.days <= 0)
-    }
-
-    private fun getCurrentDayMinutes(): Int {
-        val calendar = Calendar.getInstance()
-        return calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE)
     }
 
     private fun getProperDayDrawable(selected: Boolean): Drawable {
