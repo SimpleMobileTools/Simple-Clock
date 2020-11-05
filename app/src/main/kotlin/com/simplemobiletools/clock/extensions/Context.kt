@@ -392,3 +392,11 @@ fun Context.checkAlarmsWithDeletedSoundUri(uri: String) {
         dbHelper.updateAlarm(it)
     }
 }
+
+fun Context.getAlarmSelectedDaysString(bitMask: Int): String {
+    return when (bitMask) {
+        TODAY_BIT -> getString(R.string.today)
+        TOMORROW_BIT -> getString(R.string.tomorrow)
+        else -> getSelectedDaysString(bitMask)
+    }
+}

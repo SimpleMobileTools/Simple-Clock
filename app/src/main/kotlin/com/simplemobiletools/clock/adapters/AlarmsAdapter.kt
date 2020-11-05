@@ -8,12 +8,15 @@ import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.dbHelper
+import com.simplemobiletools.clock.extensions.getAlarmSelectedDaysString
 import com.simplemobiletools.clock.extensions.getFormattedTime
 import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
 import com.simplemobiletools.commons.dialogs.ConfirmationDialog
-import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.extensions.beVisibleIf
+import com.simplemobiletools.commons.extensions.isVisible
+import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.views.MyRecyclerView
 import kotlinx.android.synthetic.main.item_alarm.view.*
 import java.util.*
@@ -90,7 +93,7 @@ class AlarmsAdapter(activity: SimpleActivity, var alarms: ArrayList<Alarm>, val 
             alarm_time.text = activity.getFormattedTime(alarm.timeInMinutes * 60, false, true)
             alarm_time.setTextColor(textColor)
 
-            alarm_days.text = activity.getSelectedDaysString(alarm.days)
+            alarm_days.text = activity.getAlarmSelectedDaysString(alarm.days)
             alarm_days.setTextColor(textColor)
 
             alarm_label.text = alarm.label
