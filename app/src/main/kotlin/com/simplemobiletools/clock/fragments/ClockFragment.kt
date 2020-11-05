@@ -40,7 +40,7 @@ class ClockFragment : Fragment() {
         super.onResume()
         setupDateTime()
 
-        val configTextColor = context!!.config.textColor
+        val configTextColor = requireContext().config.textColor
         if (storedTextColor != configTextColor) {
             (view.time_zones_list.adapter as? TimeZonesAdapter)?.updateTextColor(configTextColor)
         }
@@ -53,7 +53,7 @@ class ClockFragment : Fragment() {
     }
 
     private fun storeStateVariables() {
-        storedTextColor = context!!.config.textColor
+        storedTextColor = requireContext().config.textColor
     }
 
     private fun setupDateTime() {
@@ -67,7 +67,7 @@ class ClockFragment : Fragment() {
 
     private fun setupViews() {
         view.apply {
-            context!!.updateTextColors(clock_fragment)
+            requireContext().updateTextColors(clock_fragment)
             clock_fab.setOnClickListener {
                 fabClicked()
             }
@@ -80,9 +80,9 @@ class ClockFragment : Fragment() {
         val hours = (passedSeconds / 3600) % 24
         val minutes = (passedSeconds / 60) % 60
         val seconds = passedSeconds % 60
-        view.clock_time.text = context!!.getFormattedTime(passedSeconds, context!!.config.showSeconds, true)
+        view.clock_time.text = requireContext().getFormattedTime(passedSeconds, requireContext().config.showSeconds, true)
 
-        if (!context!!.config.use24HourFormat) {
+        if (!requireContext().config.use24HourFormat) {
             view.clock_time.textSize = resources.getDimension(R.dimen.clock_text_size_smaller) / resources.displayMetrics.density
         }
 
@@ -102,29 +102,29 @@ class ClockFragment : Fragment() {
 
     private fun updateDate() {
         calendar = Calendar.getInstance()
-        val formattedDate = context!!.getFormattedDate(calendar)
+        val formattedDate = requireContext().getFormattedDate(calendar)
         view.clock_date.text = formattedDate
         (view.time_zones_list.adapter as? TimeZonesAdapter)?.todayDateString = formattedDate
     }
 
     fun updateAlarm() {
         view.apply {
-            val nextAlarm = context!!.getNextAlarm()
+            val nextAlarm = requireContext().getNextAlarm()
             clock_alarm.beVisibleIf(nextAlarm.isNotEmpty())
             clock_alarm.text = nextAlarm
-            clock_alarm.colorLeftDrawable(context!!.config.textColor)
+            clock_alarm.colorLeftDrawable(requireContext().config.textColor)
         }
     }
 
     private fun updateTimeZones() {
-        val selectedTimeZones = context!!.config.selectedTimeZones
+        val selectedTimeZones = requireContext().config.selectedTimeZones
         view.time_zones_list.beVisibleIf(selectedTimeZones.isNotEmpty())
         if (selectedTimeZones.isEmpty()) {
             return
         }
 
         val selectedTimeZoneIDs = selectedTimeZones.map { it.toInt() }
-        val timeZones = context!!.getAllTimeZonesModified().filter { selectedTimeZoneIDs.contains(it.id) } as ArrayList<MyTimeZone>
+        val timeZones = requireContext().getAllTimeZonesModified().filter { selectedTimeZoneIDs.contains(it.id) } as ArrayList<MyTimeZone>
         val currAdapter = view.time_zones_list.adapter
         if (currAdapter == null) {
             TimeZonesAdapter(activity as SimpleActivity, timeZones, view.time_zones_list) {

@@ -46,8 +46,8 @@ class TimerFragment : Fragment() {
             timer_label.setText(config.timerLabel)
 
             requiredActivity.updateTextColors(timer_fragment)
-            timer_play_pause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, context!!.getAdjustedPrimaryColor())
-            timer_play_pause.applyColorFilter(if (context!!.getAdjustedPrimaryColor() == Color.WHITE) Color.BLACK else Color.WHITE)
+            timer_play_pause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, requireContext().getAdjustedPrimaryColor())
+            timer_play_pause.applyColorFilter(if (requireContext().getAdjustedPrimaryColor() == Color.WHITE) Color.BLACK else Color.WHITE)
             timer_reset.applyColorFilter(textColor)
 
             timer_initial_time.text = config.timerSeconds.getFormattedDuration()
@@ -96,20 +96,20 @@ class TimerFragment : Fragment() {
 
             timer_sound.setOnClickListener {
                 SelectAlarmSoundDialog(activity as SimpleActivity, config.timerSoundUri, AudioManager.STREAM_ALARM, PICK_AUDIO_FILE_INTENT_ID,
-                        ALARM_SOUND_TYPE_ALARM, true,
-                        onAlarmPicked = { sound ->
-                            if (sound != null) {
-                                updateAlarmSound(sound)
-                            }
-                        },
-                        onAlarmSoundDeleted = { sound ->
-                            if (config.timerSoundUri == sound.uri) {
-                                val defaultAlarm = context.getDefaultAlarmSound(ALARM_SOUND_TYPE_ALARM)
-                                updateAlarmSound(defaultAlarm)
-                            }
+                    ALARM_SOUND_TYPE_ALARM, true,
+                    onAlarmPicked = { sound ->
+                        if (sound != null) {
+                            updateAlarmSound(sound)
+                        }
+                    },
+                    onAlarmSoundDeleted = { sound ->
+                        if (config.timerSoundUri == sound.uri) {
+                            val defaultAlarm = context.getDefaultAlarmSound(ALARM_SOUND_TYPE_ALARM)
+                            updateAlarmSound(defaultAlarm)
+                        }
 
-                            context.checkAlarmsWithDeletedSoundUri(sound.uri)
-                        })
+                        context.checkAlarmsWithDeletedSoundUri(sound.uri)
+                    })
             }
 
             timer_label.onTextChangeListener { text ->

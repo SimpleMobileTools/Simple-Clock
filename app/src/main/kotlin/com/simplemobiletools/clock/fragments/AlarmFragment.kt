@@ -42,7 +42,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
         super.onResume()
         setupViews()
 
-        val configTextColor = context!!.config.textColor
+        val configTextColor = requireContext().config.textColor
         if (storedTextColor != configTextColor) {
             (view.alarms_list.adapter as AlarmsAdapter).updateTextColor(configTextColor)
         }
@@ -54,12 +54,12 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     }
 
     private fun storeStateVariables() {
-        storedTextColor = context!!.config.textColor
+        storedTextColor = requireContext().config.textColor
     }
 
     private fun setupViews() {
         view.apply {
-            context!!.updateTextColors(alarm_fragment)
+            requireContext().updateTextColors(alarm_fragment)
             alarm_fab.setOnClickListener {
                 val newAlarm = context.createNewAlarm(DEFAULT_ALARM_MINUTES, 0)
                 newAlarm.isEnabled = true
@@ -106,14 +106,14 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     }
 
     override fun alarmToggled(id: Int, isEnabled: Boolean) {
-        if (context!!.dbHelper.updateAlarmEnabledState(id, isEnabled)) {
+        if (requireContext().dbHelper.updateAlarmEnabledState(id, isEnabled)) {
             val alarm = alarms.firstOrNull { it.id == id } ?: return
             alarm.isEnabled = isEnabled
             checkAlarmState(alarm)
         } else {
-            activity!!.toast(R.string.unknown_error_occurred)
+            requireActivity().toast(R.string.unknown_error_occurred)
         }
-        context!!.updateWidgets()
+        requireContext().updateWidgets()
     }
 
     private fun checkAlarmState(alarm: Alarm) {

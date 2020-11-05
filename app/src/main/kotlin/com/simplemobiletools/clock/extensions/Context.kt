@@ -266,7 +266,6 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
         try {
             notificationManager.deleteNotificationChannel(channelId)
         } catch (e: Exception) {
-            e.printStackTrace()
         }
 
         val audioAttributes = AudioAttributes.Builder()
@@ -302,7 +301,7 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
         .setDefaults(Notification.DEFAULT_LIGHTS)
         .setCategory(Notification.CATEGORY_EVENT)
         .setAutoCancel(true)
-        .setSound(Uri.parse(soundUri), AudioManager.STREAM_ALARM)
+        .setSound(Uri.parse(soundUri), STREAM_ALARM)
         .setChannelId(channelId)
         .addAction(R.drawable.ic_cross_vector, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getHideTimerPendingIntent())
 
@@ -346,7 +345,7 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
         val audioAttributes = AudioAttributes.Builder()
             .setUsage(AudioAttributes.USAGE_ALARM)
             .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-            .setLegacyStreamType(AudioManager.STREAM_ALARM)
+            .setLegacyStreamType(STREAM_ALARM)
             .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
             .build()
 

@@ -17,7 +17,6 @@ import com.simplemobiletools.commons.dialogs.ConfirmationDialog
 import com.simplemobiletools.commons.extensions.beVisibleIf
 import com.simplemobiletools.commons.extensions.isVisible
 import com.simplemobiletools.commons.extensions.toast
-import com.simplemobiletools.commons.helpers.mydebug
 import com.simplemobiletools.commons.views.MyRecyclerView
 import kotlinx.android.synthetic.main.item_alarm.view.*
 import java.util.*

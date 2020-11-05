@@ -120,7 +120,7 @@ class StopwatchFragment : Fragment() {
         super.onResume()
         setupViews()
 
-        val configTextColor = context!!.config.textColor
+        val configTextColor = requireContext().config.textColor
         if (storedTextColor != configTextColor) {
             stopwatchAdapter.updateTextColor(configTextColor)
         }
@@ -141,7 +141,7 @@ class StopwatchFragment : Fragment() {
     }
 
     private fun storeStateVariables() {
-        storedTextColor = context!!.config.textColor
+        storedTextColor = requireContext().config.textColor
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -168,7 +168,7 @@ class StopwatchFragment : Fragment() {
             sorting = getInt(SORTING, SORT_BY_LAP or SORT_DESCENDING)
 
             val lapsToken = object : TypeToken<List<Lap>>() {}.type
-            laps = Gson().fromJson<ArrayList<Lap>>(getString(LAPS), lapsToken)
+            laps = Gson().fromJson(getString(LAPS), lapsToken)
 
             if (laps.isNotEmpty()) {
                 view.stopwatch_sorting_indicators_holder.beVisibleIf(laps.isNotEmpty())
@@ -183,11 +183,11 @@ class StopwatchFragment : Fragment() {
     }
 
     private fun setupViews() {
-        val adjustedPrimaryColor = context!!.getAdjustedPrimaryColor()
+        val adjustedPrimaryColor = requireContext().getAdjustedPrimaryColor()
         view.apply {
-            context!!.updateTextColors(stopwatch_fragment)
+            requireContext().updateTextColors(stopwatch_fragment)
             stopwatch_play_pause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, adjustedPrimaryColor)
-            stopwatch_reset.applyColorFilter(context!!.config.textColor)
+            stopwatch_reset.applyColorFilter(requireContext().config.textColor)
         }
 
         updateIcons()
@@ -196,7 +196,7 @@ class StopwatchFragment : Fragment() {
 
     private fun updateIcons() {
         val drawableId = if (isRunning) R.drawable.ic_pause_vector else R.drawable.ic_play_vector
-        val iconColor = if (context!!.getAdjustedPrimaryColor() == Color.WHITE) Color.BLACK else Color.WHITE
+        val iconColor = if (requireContext().getAdjustedPrimaryColor() == Color.WHITE) Color.BLACK else Color.WHITE
         view.stopwatch_play_pause.setImageDrawable(resources.getColoredDrawableWithColor(drawableId, iconColor))
     }
 
@@ -267,7 +267,7 @@ class StopwatchFragment : Fragment() {
     }
 
     private fun updateSortingIndicators() {
-        var bitmap = context!!.resources.getColoredBitmap(R.drawable.ic_sorting_triangle, context!!.getAdjustedPrimaryColor())
+        var bitmap = requireContext().resources.getColoredBitmap(R.drawable.ic_sorting_triangle, requireContext().getAdjustedPrimaryColor())
         view.apply {
             stopwatch_sorting_indicator_1.beInvisibleIf(sorting and SORT_BY_LAP == 0)
             stopwatch_sorting_indicator_2.beInvisibleIf(sorting and SORT_BY_LAP_TIME == 0)
@@ -293,7 +293,7 @@ class StopwatchFragment : Fragment() {
     }
 
     private fun checkHaptic(view: View) {
-        if (context!!.config.vibrateOnButtonPress) {
+        if (requireContext().config.vibrateOnButtonPress) {
             view.performHapticFeedback()
         }
     }
