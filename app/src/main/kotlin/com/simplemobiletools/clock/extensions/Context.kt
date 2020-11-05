@@ -230,7 +230,9 @@ fun Context.getNextAlarm(): String {
 
 fun Context.rescheduleEnabledAlarms() {
     dbHelper.getEnabledAlarms().forEach {
-        scheduleNextAlarm(it, false)
+        if (it.days != TODAY_BIT || it.timeInMinutes > getCurrentDayMinutes()) {
+            scheduleNextAlarm(it, false)
+        }
     }
 }
 
