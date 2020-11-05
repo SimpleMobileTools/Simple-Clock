@@ -50,6 +50,7 @@
             android:layout_marginTop="@dimen/normal_margin"
             android:clipToPadding="false"
             android:overScrollMode="ifContentScrolls"
+            android:paddingBottom="@dimen/fab_list_bottom_padding"
             android:scrollbars="none"
             android:visibility="gone"
             app:layoutManager="com.simplemobiletools.commons.views.MyLinearLayoutManager" />

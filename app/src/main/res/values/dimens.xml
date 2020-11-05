@@ -9,6 +9,7 @@
     <dimen name="min_widget_height">30dp</dimen>
     <dimen name="min_widget_width">180dp</dimen>
     <dimen name="min_widget_resize_width">110dp</dimen>
+    <dimen name="fab_list_bottom_padding">68dp</dimen>
 
     <dimen name="clock_text_size">70sp</dimen>
     <dimen name="clock_text_size_smaller">60sp</dimen>
