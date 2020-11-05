@@ -244,6 +244,9 @@ fun Context.showAlarmNotification(alarm: Alarm) {
 
     if (alarm.days > 0) {
         scheduleNextAlarm(alarm, false)
+    } else {
+        dbHelper.updateAlarmEnabledState(alarm.id, false)
+        updateWidgets()
     }
 }
 

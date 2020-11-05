@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
-import com.simplemobiletools.clock.extensions.config
-import com.simplemobiletools.clock.extensions.dbHelper
-import com.simplemobiletools.clock.extensions.getAlarmSelectedDaysString
-import com.simplemobiletools.clock.extensions.getFormattedTime
+import com.simplemobiletools.clock.extensions.*
+import com.simplemobiletools.clock.helpers.TODAY_BIT
+import com.simplemobiletools.clock.helpers.TOMORROW_BIT
+import com.simplemobiletools.clock.helpers.getCurrentDayMinutes
 import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
@@ -17,6 +17,7 @@ import com.simplemobiletools.commons.dialogs.ConfirmationDialog
 import com.simplemobiletools.commons.extensions.beVisibleIf
 import com.simplemobiletools.commons.extensions.isVisible
 import com.simplemobiletools.commons.extensions.toast
+import com.simplemobiletools.commons.helpers.mydebug
 import com.simplemobiletools.commons.views.MyRecyclerView
 import kotlinx.android.synthetic.main.item_alarm.view.*
 import java.util.*
@@ -112,9 +113,21 @@ class AlarmsAdapter(activity: SimpleActivity, var alarms: ArrayList<Alarm>, val 
                             toggleAlarmInterface.alarmToggled(alarm.id, alarm_switch.isChecked)
                         }
                     }
-                } else {
+                } else if (alarm.days == TODAY_BIT) {
+                    if (alarm.timeInMinutes <= getCurrentDayMinutes()) {
+                        alarm.days = TOMORROW_BIT
+                        alarm_days.text = resources.getString(R.string.tomorrow)
+                    }
+                    activity.dbHelper.updateAlarm(alarm)
+                    context.scheduleNextAlarm(alarm, true)
+                    toggleAlarmInterface.alarmToggled(alarm.id, alarm_switch.isChecked)
+                } else if (alarm.days == TOMORROW_BIT) {
+                    toggleAlarmInterface.alarmToggled(alarm.id, alarm_switch.isChecked)
+                } else if (alarm_switch.isChecked) {
                     activity.toast(R.string.no_days_selected)
                     alarm_switch.isChecked = false
+                } else {
+                    toggleAlarmInterface.alarmToggled(alarm.id, alarm_switch.isChecked)
                 }
             }
 
