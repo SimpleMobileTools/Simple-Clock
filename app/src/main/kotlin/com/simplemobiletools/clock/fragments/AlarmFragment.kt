@@ -12,11 +12,14 @@ import com.simplemobiletools.clock.adapters.AlarmsAdapter
 import com.simplemobiletools.clock.dialogs.EditAlarmDialog
 import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.DEFAULT_ALARM_MINUTES
+import com.simplemobiletools.clock.helpers.TODAY_BIT
+import com.simplemobiletools.clock.helpers.getCurrentDayMinutes
 import com.simplemobiletools.clock.helpers.getTomorrowBit
 import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.extensions.updateTextColors
+import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.models.AlarmSound
 import kotlinx.android.synthetic.main.fragment_alarm.view.*
 import java.util.*
@@ -70,6 +73,17 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
 
     private fun setupAlarms() {
         alarms = context?.dbHelper?.getAlarms() ?: return
+        if (context?.getNextAlarm()?.isEmpty() == true) {
+            alarms.forEach {
+                if (it.days == TODAY_BIT && it.isEnabled && it.timeInMinutes <= getCurrentDayMinutes()) {
+                    it.isEnabled = false
+                    ensureBackgroundThread {
+                        context?.dbHelper?.updateAlarmEnabledState(it.id, false)
+                    }
+                }
+            }
+        }
+
         val currAdapter = view.alarms_list.adapter
         if (currAdapter == null) {
             AlarmsAdapter(activity as SimpleActivity, alarms, this, view.alarms_list) {

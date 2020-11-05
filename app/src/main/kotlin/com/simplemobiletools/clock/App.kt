@@ -85,7 +85,7 @@ class App : Application(), LifecycleObserver {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: TimerState.Finish) {
         val pendingIntent = getOpenTimerTabIntent()
-        val notification = getTimerNotification(pendingIntent, false) //MAYBE IN FUTURE ADD TIME TO NOTIFICATION
+        val notification = getTimerNotification(pendingIntent, false)
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.notify(TIMER_NOTIF_ID, notification)
 
