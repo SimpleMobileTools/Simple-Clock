@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">Simple Clock</string>
+    <string name="app_launcher_name">Kello</string>
+    <string name="time_zone">Aikavyöhyke</string>
+    <string name="vibrate">Värinä</string>
+    <string name="label">Nimi</string>
+    <string name="no_days_selected">Ei päiviä valittuna</string>
+    <string name="timer">Ajastin</string>
+    <string name="lap">Väliaika</string>
+    <string name="stopwatch_stopped">Sekuntikello pysäytetty</string>
+    <string name="timer_stopped">Ajastin on pysäytetty</string>
+    <string name="max_reminder_duration">Herätyksen maksimikesto</string>
+    <string name="time_expired">Ajastimen aika päättynyt</string>
+    <string name="clock_and_date">Kello ja päivä</string>
+    <string name="use_text_shadow">Käytä tekstin varjoa</string>
+    <string name="swipe_right_to_dismiss">Pyyhkäise oikealle sammuttaaksesi, vasemmalle torkuttaaksesi.</string>
+ 
+    <!-- Settings -->
+    <string name="clock_tab">Kello</string>
+    <string name="alarm_tab">Herätyskello</string>
+    <string name="stopwatch_tab">Sekuntikello</string>
+    <string name="timer_tab">Ajastin</string>
+    <string name="show_seconds">Näytä sekunnit</string>
+    <string name="increase_volume_gradually">Lisää äänen voimakkuutta asteittain</string>
+ 
+    <!-- FAQ -->
+    <string name="faq_1_title">Kuinka vaihdan kierrosten lajittelujärjestystä sekuntikellonäkymässä?</string>
+    <string name="faq_1_text">Klikkaa vain saraketta, jonka perusteella haluat kierrokset lajiteltavan. Toisella klikkauksella voit vaihtaa nousevan tai laskevan järjestyksen.</string>
+ 
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Simple Clock - Näppärä, toimintorikas sovellus</string>
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Kellon, herätyskellon, sekuntikellon ja ajastimen yhdistelmä.</string>
+    <string name="app_long_description">
+        Sovelluksessa on useita ajastustoimintoja.
+ 
+        Voit valita näkyville muita aikavyöhykkeitä tai käyttää yksinkertaista, mutta mukautettavaa kellowidgetiä. Widgetin tekstin väriä voi vaihtaa, kuten myös taustaväriä ja läpinäkyvyyttä.
+ 
+        Herätyskello sisältää kaikki oletetut ominaisuudet kuten päivien valinnan, värinäasetuksen, hälytysäänen poiminnan, torkutuksen ja oman nimikkeen lisäämisen.
+ 
+        Sekuntikellolla mittaat helposti pidemmän ajanjakson tai yksittäisiä kierroksia. Voit lajitella kierrokset kierrosaikojen mukaan. Värinä varmistaa painalluksen myös silloin, kun et pysty katsomaan näyttöä.
+ 
+        Ajastin on helppo asettaa ilmoittamaan mistä tahansa tapahtumasta. Voit valita hälytysäänen ja kytkeä halutessasi värinän.
+ 
+        Lisäasetuksiin kuuluu muun muassa laitteen nukahtamisen estäminen silloin, kun sovellus on käynnissä etualalla.
+ 
+        Ei sisällä mainoksia eikä vaadi tarpeettomia käyttöoikeuksia. Sovellus on täysin avoin lähdekoodiltaan ja sen väritystä voi muuttaa.
+ 
+        <b>Katso myös muut yksinkertaiset Simple Tools-sovellukset täältä:</b>
+        https://www.simplemobiletools.com
+ 
+        <b>Facebook:</b>
+        https://www.facebook.com/simplemobiletools
+ 
+        <b>Reddit:</b>
+        https://www.reddit.com/r/SimpleMobileTools
+    </string>
+ 
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
