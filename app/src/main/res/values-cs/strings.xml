@@ -2,6 +2,8 @@
     <string name="app_name">Jednoduché hodiny</string>
     <string name="app_launcher_name">Hodiny</string>
     <string name="time_zone">Časové pásmo</string>
+    <string name="created_at">Created at</string>
+    <string name="time_of_day">Time of day</string>
     <string name="vibrate">Vibrovat</string>
     <string name="label">Štítek</string>
     <string name="no_days_selected">Nebyly označeny žádné dny</string>

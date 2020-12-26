@@ -1,6 +1,7 @@
 package com.simplemobiletools.clock.helpers
 
 import android.content.Context
+import com.simplemobiletools.clock.models.AlarmSort
 import com.simplemobiletools.clock.extensions.gson.gson
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.clock.models.StateWrapper
@@ -56,6 +57,11 @@ class Config(context: Context) : BaseConfig(context) {
     var timerLabel: String?
         get() = prefs.getString(TIMER_LABEL, null)
         set(label) = prefs.edit().putString(TIMER_LABEL, label).apply()
+
+    var alarmSort: AlarmSort
+        get() = AlarmSort.valueOf(prefs.getInt(ALARM_SORT, AlarmSort.default().value))
+                ?: AlarmSort.default()
+        set(alarmSort) = prefs.edit().putInt(ALARM_SORT, alarmSort.value).apply()
 
     var alarmMaxReminderSecs: Int
         get() = prefs.getInt(ALARM_MAX_REMINDER_SECS, DEFAULT_MAX_ALARM_REMINDER_SECS)

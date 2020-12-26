@@ -2,6 +2,8 @@
     <string name="app_name">Paprastas Laikrodis</string>
     <string name="app_launcher_name">Laikrodis</string>
     <string name="time_zone">Laiko juosta</string>
+    <string name="created_at">Created at</string>
+    <string name="time_of_day">Time of day</string>
     <string name="vibrate">Vibruoti</string>
     <string name="label">Etiketė</string>
     <string name="no_days_selected">Nepasirinkta nė vienos dienos</string>

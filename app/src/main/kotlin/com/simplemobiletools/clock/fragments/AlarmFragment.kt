@@ -1,14 +1,13 @@
 package com.simplemobiletools.clock.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.MainActivity
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.adapters.AlarmsAdapter
+import com.simplemobiletools.clock.dialogs.ChangeAlarmSortDialog
 import com.simplemobiletools.clock.dialogs.EditAlarmDialog
 import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.DEFAULT_ALARM_MINUTES
@@ -34,6 +33,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         storeStateVariables()
+        setHasOptionsMenu(true)
         view = inflater.inflate(R.layout.fragment_alarm, container, false) as ViewGroup
         return view
     }
@@ -51,6 +51,24 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     override fun onPause() {
         super.onPause()
         storeStateVariables()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
+        menuInflater.inflate(R.menu.menu_alarm, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.sort -> showSortingDialog()
+            else -> return super.onOptionsItemSelected(item)
+        }
+        return true
+    }
+
+    private fun showSortingDialog() {
+        ChangeAlarmSortDialog(activity as SimpleActivity) {
+            setupAlarms()
+        }
     }
 
     private fun storeStateVariables() {
@@ -72,7 +90,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     }
 
     private fun setupAlarms() {
-        alarms = context?.dbHelper?.getAlarms() ?: return
+        alarms = context?.dbHelper?.getAlarms(context?.config?.alarmSort) ?: return
         if (context?.getNextAlarm()?.isEmpty() == true) {
             alarms.forEach {
                 if (it.days == TODAY_BIT && it.isEnabled && it.timeInMinutes <= getCurrentDayMinutes()) {

@@ -2,6 +2,8 @@
     <string name="app_name">Простий Годинник</string>
     <string name="app_launcher_name">Годинник</string>
     <string name="time_zone">Часовий пояс</string>
+    <string name="created_at">Created at</string>
+    <string name="time_of_day">Time of day</string>
     <string name="vibrate">Вібрувати</string>
     <string name="label">Мітка</string>
     <string name="no_days_selected">Дні не обрано</string>

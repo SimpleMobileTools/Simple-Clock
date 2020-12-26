@@ -2,6 +2,8 @@
     <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Klocka</string>
     <string name="time_zone">Tidszon</string>
+    <string name="created_at">Created at</string>
+    <string name="time_of_day">Time of day</string>
     <string name="vibrate">Vibrera</string>
     <string name="label">Etikett</string>
     <string name="no_days_selected">Inga dagar har valts</string>
