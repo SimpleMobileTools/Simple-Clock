@@ -16,6 +16,7 @@ import com.simplemobiletools.clock.activities.ReminderActivity
 import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.ALARM_ID
 import com.simplemobiletools.clock.helpers.ALARM_NOTIF_ID
+import com.simplemobiletools.commons.extensions.showErrorToast
 import com.simplemobiletools.commons.helpers.isOreoPlus
 
 class AlarmReceiver : BroadcastReceiver() {
@@ -59,7 +60,11 @@ class AlarmReceiver : BroadcastReceiver() {
                     .setCategory(NotificationCompat.CATEGORY_ALARM)
                     .setFullScreenIntent(pendingIntent, true)
 
-                notificationManager.notify(ALARM_NOTIF_ID, builder.build())
+                try {
+                    notificationManager.notify(ALARM_NOTIF_ID, builder.build())
+                } catch (e: Exception) {
+                    context.showErrorToast(e)
+                }
             } else {
                 Intent(context, ReminderActivity::class.java).apply {
                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
