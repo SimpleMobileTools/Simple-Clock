@@ -45,7 +45,7 @@ class TimerFragment : Fragment() {
             timer_time.text = config.timerSeconds.getFormattedDuration()
             timer_label.setText(config.timerLabel)
 
-            requiredActivity.updateTextColors(timer_fragment)
+            activity?.updateTextColors(timer_fragment)
             timer_play_pause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, requireContext().getAdjustedPrimaryColor())
             timer_play_pause.applyColorFilter(if (requireContext().getAdjustedPrimaryColor() == Color.WHITE) Color.BLACK else Color.WHITE)
             timer_reset.applyColorFilter(textColor)
@@ -122,8 +122,8 @@ class TimerFragment : Fragment() {
 
     private fun stopTimer() {
         EventBus.getDefault().post(TimerState.Idle)
-        requiredActivity.hideTimerNotification()
-        view.timer_time.text = requiredActivity.config.timerSeconds.getFormattedDuration()
+        activity?.hideTimerNotification()
+        view.timer_time.text = activity?.config?.timerSeconds?.getFormattedDuration()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -159,7 +159,7 @@ class TimerFragment : Fragment() {
             R.drawable.ic_play_vector
         }
 
-        val iconColor = if (requiredActivity.getAdjustedPrimaryColor() == Color.WHITE) {
+        val iconColor = if (activity?.getAdjustedPrimaryColor() == Color.WHITE) {
             Color.BLACK
         } else {
             Color.WHITE
@@ -169,8 +169,8 @@ class TimerFragment : Fragment() {
     }
 
     fun updateAlarmSound(alarmSound: AlarmSound) {
-        requiredActivity.config.timerSoundTitle = alarmSound.title
-        requiredActivity.config.timerSoundUri = alarmSound.uri
+        activity?.config?.timerSoundTitle = alarmSound.title
+        activity?.config?.timerSoundUri = alarmSound.uri
         view.timer_sound.text = alarmSound.title
     }
 }
