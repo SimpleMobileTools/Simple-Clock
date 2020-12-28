@@ -7,7 +7,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.media.AudioAttributes
-import android.media.AudioManager
 import android.media.AudioManager.STREAM_ALARM
 import android.net.Uri
 import android.os.PowerManager
@@ -32,7 +31,6 @@ import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
 import java.util.*
 import kotlin.math.pow
-
 
 val Context.config: Config get() = Config.newInstance(applicationContext)
 
