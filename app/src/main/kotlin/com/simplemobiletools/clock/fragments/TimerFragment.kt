@@ -80,12 +80,12 @@ class TimerFragment : Fragment() {
                 stopTimer()
             }
 
+            timer_time.setOnClickListener {
+                changeDuration()
+            }
+
             timer_initial_time.setOnClickListener {
-                MyTimePickerDialogDialog(activity as SimpleActivity, config.timerSeconds) { seconds ->
-                    val timerSeconds = if (seconds <= 0) 10 else seconds
-                    config.timerSeconds = timerSeconds
-                    timer_initial_time.text = timerSeconds.getFormattedDuration()
-                }
+                changeDuration()
             }
 
             timer_vibrate_holder.setOnClickListener {
@@ -124,6 +124,19 @@ class TimerFragment : Fragment() {
         EventBus.getDefault().post(TimerState.Idle)
         activity?.hideTimerNotification()
         view.timer_time.text = activity?.config?.timerSeconds?.getFormattedDuration()
+    }
+
+    private fun changeDuration() {
+        MyTimePickerDialogDialog(activity as SimpleActivity, context!!.config.timerSeconds) { seconds ->
+            val timerSeconds = if (seconds <= 0) 10 else seconds
+            activity?.config?.timerSeconds = timerSeconds
+            val duration = timerSeconds.getFormattedDuration()
+            view.timer_initial_time.text = duration
+
+            if (view.timer_reset.isGone()) {
+                stopTimer()
+            }
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
