@@ -1,0 +1,2 @@
+ * Added some stability and translation improvements
+ * Require a Simple Thank You purchase for color customization
