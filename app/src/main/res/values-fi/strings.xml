@@ -3,23 +3,23 @@
     <string name="app_launcher_name">Kello</string>
     <string name="time_zone">Aikavyöhyke</string>
     <string name="vibrate">Värinä</string>
-    <string name="label">Nimi</string>
+    <string name="label">Tunniste</string>
     <string name="no_days_selected">Ei päiviä valittuna</string>
     <string name="timer">Ajastin</string>
-    <string name="lap">Väliaika</string>
+    <string name="lap">Kierrosaika</string>
     <string name="stopwatch_stopped">Sekuntikello pysäytetty</string>
     <string name="timer_stopped">Ajastin on pysäytetty</string>
     <string name="max_reminder_duration">Herätyksen maksimikesto</string>
     <string name="time_expired">Ajastimen aika päättynyt</string>
     <string name="clock_and_date">Kello ja päivä</string>
-    <string name="use_text_shadow">Käytä tekstin varjoa</string>
-    <string name="swipe_right_to_dismiss">Pyyhkäise oikealle sammuttaaksesi, vasemmalle torkuttaaksesi.</string>
+    <string name="use_text_shadow">Tekstin varjostus</string>
+    <string name="swipe_right_to_dismiss">Pyyhkäise oikealle sammuttaaksesi tai vasemmalle torkuttaaksesi.</string>
  
     <!-- Settings -->
-    <string name="clock_tab">Kello</string>
-    <string name="alarm_tab">Herätyskello</string>
-    <string name="stopwatch_tab">Sekuntikello</string>
-    <string name="timer_tab">Ajastin</string>
+    <string name="clock_tab">Kello-välilehti</string>
+    <string name="alarm_tab">Herätyskello-välilehti</string>
+    <string name="stopwatch_tab">Sekuntikello-välilehti</string>
+    <string name="timer_tab">Ajastin-välilehti</string>
     <string name="show_seconds">Näytä sekunnit</string>
     <string name="increase_volume_gradually">Lisää äänen voimakkuutta asteittain</string>
  
