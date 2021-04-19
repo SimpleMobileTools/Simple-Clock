@@ -29,7 +29,10 @@ import com.simplemobiletools.clock.receivers.HideAlarmReceiver
 import com.simplemobiletools.clock.receivers.HideTimerReceiver
 import com.simplemobiletools.clock.services.SnoozeService
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.*
+import com.simplemobiletools.commons.helpers.DAY_MINUTES
+import com.simplemobiletools.commons.helpers.SILENT
+import com.simplemobiletools.commons.helpers.isMarshmallowPlus
+import com.simplemobiletools.commons.helpers.isOreoPlus
 import java.util.*
 import kotlin.math.pow
 
@@ -241,7 +244,11 @@ fun Context.showAlarmNotification(alarm: Alarm) {
     val pendingIntent = getOpenAlarmTabIntent()
     val notification = getAlarmNotification(pendingIntent, alarm)
     val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-    notificationManager.notify(alarm.id, notification)
+    try {
+        notificationManager.notify(alarm.id, notification)
+    } catch (e: Exception) {
+        showErrorToast(e)
+    }
 
     if (alarm.days > 0) {
         scheduleNextAlarm(alarm, false)

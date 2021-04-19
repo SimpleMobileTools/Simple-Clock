@@ -117,7 +117,7 @@ class ClockFragment : Fragment() {
     }
 
     private fun updateTimeZones() {
-        val selectedTimeZones = requireContext().config.selectedTimeZones
+        val selectedTimeZones = context?.config?.selectedTimeZones ?: return
         view.time_zones_list.beVisibleIf(selectedTimeZones.isNotEmpty())
         if (selectedTimeZones.isEmpty()) {
             return
