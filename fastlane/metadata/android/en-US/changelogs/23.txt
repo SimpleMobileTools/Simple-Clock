@@ -1,0 +1,2 @@
+ * Allow sorting alarms by creation order or alarm time
+ * Added some stability and translation improvements

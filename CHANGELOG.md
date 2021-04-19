@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.5.1 *(2021-04-19)*
+----------------------------
+
+ * Allow sorting alarms by creation order or alarm time
+ * Added some stability and translation improvements
+
 Version 5.5.0 *(2020-12-29)*
 ----------------------------
 
