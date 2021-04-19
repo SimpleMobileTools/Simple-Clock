@@ -2,6 +2,8 @@
     <string name="app_name">Prosty Zegar</string>
     <string name="app_launcher_name">Zegar</string>
     <string name="time_zone">Strefa czasowa</string>
+    <string name="created_at">Created at</string>
+    <string name="time_of_day">Time of day</string>
     <string name="vibrate">Wibracje</string>
     <string name="label">Etykieta</string>
     <string name="no_days_selected">Nie wybrano dni</string>

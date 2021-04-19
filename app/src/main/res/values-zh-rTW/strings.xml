@@ -2,6 +2,8 @@
     <string name="app_name">簡易時鐘</string>
     <string name="app_launcher_name">簡易時鐘</string>
     <string name="time_zone">時區</string>
+    <string name="created_at">Created at</string>
+    <string name="time_of_day">Time of day</string>
     <string name="vibrate">震動</string>
     <string name="label">標籤</string>
     <string name="no_days_selected">未選擇哪一天</string>

@@ -2,6 +2,8 @@
     <string name="app_name">Semplice Orologio</string>
     <string name="app_launcher_name">Orologio</string>
     <string name="time_zone">Fuso orario</string>
+    <string name="created_at">Created at</string>
+    <string name="time_of_day">Time of day</string>
     <string name="vibrate">Vibrazione</string>
     <string name="label">Etichetta</string>
     <string name="no_days_selected">Nessun giorno selezionato</string>

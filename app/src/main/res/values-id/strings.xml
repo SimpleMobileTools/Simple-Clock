@@ -2,6 +2,8 @@
     <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Jam</string>
     <string name="time_zone">Zona waktu</string>
+    <string name="created_at">Created at</string>
+    <string name="time_of_day">Time of day</string>
     <string name="vibrate">Getar</string>
     <string name="label">Label</string>
     <string name="no_days_selected">Tidak ada hari yang dipilih</string>

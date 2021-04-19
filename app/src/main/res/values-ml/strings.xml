@@ -2,6 +2,8 @@
     <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">ക്ലോക്ക്</string>
     <string name="time_zone">സമയ മേഖല</string>
+    <string name="created_at">Created at</string>
+    <string name="time_of_day">Time of day</string>
     <string name="vibrate">വൈബ്രേറ്റുചെയ്യുക</string>
     <string name="label">അടിക്കുറിപ്പ് </string>
     <string name="no_days_selected">ദിവസങ്ങളൊന്നും തിരഞ്ഞെടുത്തിട്ടില്ല</string>

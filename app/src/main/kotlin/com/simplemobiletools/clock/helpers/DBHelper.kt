@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.text.TextUtils
+import com.simplemobiletools.clock.models.AlarmSort
 import com.simplemobiletools.clock.extensions.cancelAlarmClock
 import com.simplemobiletools.clock.extensions.createNewAlarm
 import com.simplemobiletools.clock.models.Alarm
@@ -106,12 +107,17 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
 
     fun getEnabledAlarms() = getAlarms().filter { it.isEnabled }
 
-    fun getAlarms(): ArrayList<Alarm> {
+    fun getAlarms(sort: AlarmSort? = null): ArrayList<Alarm> {
         val alarms = ArrayList<Alarm>()
         val cols = arrayOf(COL_ID, COL_TIME_IN_MINUTES, COL_DAYS, COL_IS_ENABLED, COL_VIBRATE, COL_SOUND_TITLE, COL_SOUND_URI, COL_LABEL)
+        val orderBy = when (sort) {
+            AlarmSort.CREATED_AT -> "$COL_ID ASC"
+            AlarmSort.TIME_OF_DAY -> "$COL_TIME_IN_MINUTES ASC"
+            else -> null
+        }
         var cursor: Cursor? = null
         try {
-            cursor = mDb.query(ALARMS_TABLE_NAME, cols, null, null, null, null, null)
+            cursor = mDb.query(ALARMS_TABLE_NAME, cols, null, null, null, null, orderBy)
             if (cursor?.moveToFirst() == true) {
                 do {
                     try {

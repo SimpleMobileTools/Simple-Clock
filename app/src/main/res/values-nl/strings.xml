@@ -2,6 +2,8 @@
     <string name="app_name">Eenvoudige Klok</string>
     <string name="app_launcher_name">Klok</string>
     <string name="time_zone">Tijdzone</string>
+    <string name="created_at">Created at</string>
+    <string name="time_of_day">Time of day</string>
     <string name="vibrate">Trillen</string>
     <string name="label">Label</string>
     <string name="no_days_selected">Geen dagen geselecteerd</string>

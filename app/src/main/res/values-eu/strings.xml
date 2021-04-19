@@ -2,6 +2,8 @@
     <string name="app_name">Ordulari sinplea</string>
     <string name="app_launcher_name">Ordularia</string>
     <string name="time_zone">Ordu eremua</string>
+    <string name="created_at">Created at</string>
+    <string name="time_of_day">Time of day</string>
     <string name="vibrate">Bibratu</string>
     <string name="label">Etiketa</string>
     <string name="no_days_selected">Ez duzu egunik hautatu</string>

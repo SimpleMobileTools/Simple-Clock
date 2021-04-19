@@ -2,6 +2,8 @@
     <string name="app_name">Sadə Saat</string>
     <string name="app_launcher_name">Saat</string>
     <string name="time_zone">Vaxt zonası</string>
+    <string name="created_at">Created at</string>
+    <string name="time_of_day">Time of day</string>
     <string name="vibrate">Titrət</string>
     <string name="label">Etiket</string>
     <string name="no_days_selected">Gün seçilməyib</string>

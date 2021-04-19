@@ -2,6 +2,8 @@
     <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Reloj</string>
     <string name="time_zone">Zona horaria</string>
+    <string name="created_at">Created at</string>
+    <string name="time_of_day">Time of day</string>
     <string name="vibrate">Vibrar</string>
     <string name="label">Etiqueta</string>
     <string name="no_days_selected">Ningún día seleccionado</string>
