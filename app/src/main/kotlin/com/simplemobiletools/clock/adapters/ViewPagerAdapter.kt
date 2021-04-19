@@ -38,6 +38,10 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
         else -> throw RuntimeException("Trying to fetch unknown fragment id $position")
     }
 
+    fun showAlarmSortDialog() {
+        (fragments[TAB_ALARM] as? AlarmFragment)?.showSortingDialog()
+    }
+
     fun updateClockTabAlarm() {
         (fragments[TAB_CLOCK] as? ClockFragment)?.updateAlarm()
     }

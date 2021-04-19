@@ -81,11 +81,17 @@ class MainActivity : SimpleActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
+        menu.apply {
+            findItem(R.id.sort).isVisible = view_pager.currentItem == TAB_ALARM
+            updateMenuItemColors(this)
+        }
+
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.sort -> getViewPagerAdapter()?.showAlarmSortDialog()
             R.id.settings -> launchSettings()
             R.id.about -> launchAbout()
             else -> return super.onOptionsItemSelected(item)
@@ -133,6 +139,7 @@ class MainActivity : SimpleActivity() {
         view_pager.adapter = ViewPagerAdapter(supportFragmentManager)
         view_pager.onPageChangeListener {
             main_tabs_holder.getTabAt(it)?.select()
+            invalidateOptionsMenu()
         }
 
         val tabToOpen = intent.getIntExtra(OPEN_TAB, config.lastUsedViewPagerPage)
