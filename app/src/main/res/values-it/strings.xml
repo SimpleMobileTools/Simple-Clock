@@ -2,8 +2,6 @@
     <string name="app_name">Semplice Orologio</string>
     <string name="app_launcher_name">Orologio</string>
     <string name="time_zone">Fuso orario</string>
-    <string name="created_at">Created at</string>
-    <string name="time_of_day">Time of day</string>
     <string name="vibrate">Vibrazione</string>
     <string name="label">Etichetta</string>
     <string name="no_days_selected">Nessun giorno selezionato</string>
@@ -16,6 +14,8 @@
     <string name="clock_and_date">Ora e data</string>
     <string name="use_text_shadow">Abilita l\'ombreggiatura del testo</string>
     <string name="swipe_right_to_dismiss">Scorri a destra per rimuovere, a sinistra per rinviare.</string>
+    <string name="sort_by_creation_order">Creation order</string>
+    <string name="sort_by_alarm_time">Alarm time</string>
 
     <!-- Settings -->
     <string name="clock_tab">Scheda orologio</string>

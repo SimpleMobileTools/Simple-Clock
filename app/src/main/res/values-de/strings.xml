@@ -2,8 +2,6 @@
     <string name="app_name">Schlichte Uhr</string>
     <string name="app_launcher_name">Uhr</string>
     <string name="time_zone">Zeitzone</string>
-    <string name="created_at">Erstellt am</string>
-    <string name="time_of_day">Tageszeit</string>
     <string name="vibrate">Vibration</string>
     <string name="label">Label</string>
     <string name="no_days_selected">Keine Tage ausgewählt</string>
@@ -16,6 +14,8 @@
     <string name="clock_and_date">Uhrzeit und Datum</string>
     <string name="use_text_shadow">Text mit Schlagschatten</string>
     <string name="swipe_right_to_dismiss">Nach rechts wischen um auszuschalten, nach links um zu schlummern.</string>
+    <string name="sort_by_creation_order">Creation order</string>
+    <string name="sort_by_alarm_time">Alarm time</string>
 
     <!-- Settings -->
     <string name="clock_tab">Uhr</string>

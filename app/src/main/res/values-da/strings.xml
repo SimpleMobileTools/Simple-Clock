@@ -2,8 +2,6 @@
     <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Ur</string>
     <string name="time_zone">Tidszone</string>
-    <string name="created_at">Created at</string>
-    <string name="time_of_day">Time of day</string>
     <string name="vibrate">Vibrer</string>
     <string name="label">Etiket</string>
     <string name="no_days_selected">Der er ikke valgt nogen dage</string>
@@ -16,6 +14,8 @@
     <string name="clock_and_date">Clock and date</string>
     <string name="use_text_shadow">Anvend tekstskygge</string>
     <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze.</string>
+    <string name="sort_by_creation_order">Creation order</string>
+    <string name="sort_by_alarm_time">Alarm time</string>
 
     <!-- Settings -->
     <string name="clock_tab">Ur</string>

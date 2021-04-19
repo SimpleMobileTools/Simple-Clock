@@ -2,8 +2,6 @@
     <string name="app_name">Jednoduché hodiny</string>
     <string name="app_launcher_name">Hodiny</string>
     <string name="time_zone">Časové pásmo</string>
-    <string name="created_at">Created at</string>
-    <string name="time_of_day">Time of day</string>
     <string name="vibrate">Vibrovat</string>
     <string name="label">Štítek</string>
     <string name="no_days_selected">Nebyly označeny žádné dny</string>
@@ -16,6 +14,8 @@
     <string name="clock_and_date">Hodiny a datum</string>
     <string name="use_text_shadow">Použít stínování písma</string>
     <string name="swipe_right_to_dismiss">Potáhněte vpravo pro zrušení, nebo vlevo pro odložení.</string>
+    <string name="sort_by_creation_order">Creation order</string>
+    <string name="sort_by_alarm_time">Alarm time</string>
 
     <!-- Settings -->
     <string name="clock_tab">Záložka hodin</string>

@@ -2,8 +2,6 @@
     <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Klocka</string>
     <string name="time_zone">Tidszon</string>
-    <string name="created_at">Created at</string>
-    <string name="time_of_day">Time of day</string>
     <string name="vibrate">Vibrera</string>
     <string name="label">Etikett</string>
     <string name="no_days_selected">Inga dagar har valts</string>
@@ -16,6 +14,8 @@
     <string name="clock_and_date">Klocka och datum</string>
     <string name="use_text_shadow">Använd textskugga</string>
     <string name="swipe_right_to_dismiss">Dra åt höger för att Stänga av eller åt vänster för att Snooza.</string>
+    <string name="sort_by_creation_order">Creation order</string>
+    <string name="sort_by_alarm_time">Alarm time</string>
 
     <!-- Settings -->
     <string name="clock_tab">Fliken Klocka</string>

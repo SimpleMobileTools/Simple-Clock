@@ -2,8 +2,6 @@
     <string name="app_name">Eenvoudige Klok</string>
     <string name="app_launcher_name">Klok</string>
     <string name="time_zone">Tijdzone</string>
-    <string name="created_at">Created at</string>
-    <string name="time_of_day">Time of day</string>
     <string name="vibrate">Trillen</string>
     <string name="label">Label</string>
     <string name="no_days_selected">Geen dagen geselecteerd</string>
@@ -16,6 +14,8 @@
     <string name="clock_and_date">Klok en datum</string>
     <string name="use_text_shadow">Tekstschaduw gebruiken</string>
     <string name="swipe_right_to_dismiss">Veeg rechts voor afzetten, of links voor snooze.</string>
+    <string name="sort_by_creation_order">Creation order</string>
+    <string name="sort_by_alarm_time">Alarm time</string>
 
     <!-- Settings -->
     <string name="clock_tab">Tab Klok</string>

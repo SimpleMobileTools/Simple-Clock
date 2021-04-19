@@ -2,8 +2,6 @@
     <string name="app_name">Sadə Saat</string>
     <string name="app_launcher_name">Saat</string>
     <string name="time_zone">Vaxt zonası</string>
-    <string name="created_at">Created at</string>
-    <string name="time_of_day">Time of day</string>
     <string name="vibrate">Titrət</string>
     <string name="label">Etiket</string>
     <string name="no_days_selected">Gün seçilməyib</string>
@@ -16,6 +14,8 @@
     <string name="clock_and_date">Saat və zaman</string>
     <string name="use_text_shadow">Mətn kölgəsini işlət</string>
     <string name="swipe_right_to_dismiss">Buraxmaq üçün sağa, Dondurmaq üçün sola sürüşdür.</string>
+    <string name="sort_by_creation_order">Creation order</string>
+    <string name="sort_by_alarm_time">Alarm time</string>
 
     <!-- Settings -->
     <string name="clock_tab">Saat bölməsi</string>

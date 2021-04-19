@@ -2,8 +2,6 @@
     <string name="app_name">Простий Годинник</string>
     <string name="app_launcher_name">Годинник</string>
     <string name="time_zone">Часовий пояс</string>
-    <string name="created_at">Created at</string>
-    <string name="time_of_day">Time of day</string>
     <string name="vibrate">Вібрувати</string>
     <string name="label">Мітка</string>
     <string name="no_days_selected">Дні не обрано</string>
@@ -16,6 +14,8 @@
     <string name="clock_and_date">Годинник і дата</string>
     <string name="use_text_shadow">Застосовувати ефект тіні у тексті</string>
     <string name="swipe_right_to_dismiss">Свайп вправо, щоб відхилити, або вліво, щоб відкласти.</string>
+    <string name="sort_by_creation_order">Creation order</string>
+    <string name="sort_by_alarm_time">Alarm time</string>
 
     <!-- Settings -->
     <string name="clock_tab">Годинник</string>

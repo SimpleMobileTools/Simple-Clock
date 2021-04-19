@@ -2,8 +2,6 @@
     <string name="app_name">简易时钟</string>
     <string name="app_launcher_name">时钟</string>
     <string name="time_zone">时区</string>
-    <string name="created_at">Created at</string>
-    <string name="time_of_day">Time of day</string>
     <string name="vibrate">震动</string>
     <string name="label">标签</string>
     <string name="no_days_selected">未选择哪一天</string>
@@ -16,6 +14,8 @@
     <string name="clock_and_date">时钟和日期</string>
     <string name="use_text_shadow">使用文字阴影</string>
     <string name="swipe_right_to_dismiss">右滑关闭，或者左滑贪睡。</string>
+    <string name="sort_by_creation_order">Creation order</string>
+    <string name="sort_by_alarm_time">Alarm time</string>
 
     <!-- Settings -->
     <string name="clock_tab">时钟页面</string>

@@ -2,8 +2,6 @@
     <string name="app_name">Jednostavan sat</string>
     <string name="app_launcher_name">Sat</string>
     <string name="time_zone">Vremenska zona</string>
-    <string name="created_at">Created at</string>
-    <string name="time_of_day">Time of day</string>
     <string name="vibrate">Vibriraj</string>
     <string name="label">Oznaka</string>
     <string name="no_days_selected">Nije odabran nijedan dan</string>
@@ -16,6 +14,8 @@
     <string name="clock_and_date">Datum i vrijeme</string>
     <string name="use_text_shadow">Upotrijebite sjenu teksta</string>
     <string name="swipe_right_to_dismiss">Prijeđite prstom udesno da bi odbacili ili ulijevo da bi odgodili.</string>
+    <string name="sort_by_creation_order">Creation order</string>
+    <string name="sort_by_alarm_time">Alarm time</string>
 
     <!-- Settings -->
     <string name="clock_tab">Kartica sata</string>

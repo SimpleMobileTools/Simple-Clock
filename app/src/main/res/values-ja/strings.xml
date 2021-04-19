@@ -2,8 +2,6 @@
     <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">時計</string>
     <string name="time_zone">タイムゾーン</string>
-    <string name="created_at">Created at</string>
-    <string name="time_of_day">Time of day</string>
     <string name="vibrate">バイブレーション</string>
     <string name="label">ラベル</string>
     <string name="no_days_selected">曜日が選択されていません</string>
@@ -16,6 +14,8 @@
     <string name="clock_and_date">時計と日付</string>
     <string name="use_text_shadow">文字に影を付ける</string>
     <string name="swipe_right_to_dismiss">右にスワイプして終了、または左にスワイプしてスヌーズ。</string>
+    <string name="sort_by_creation_order">Creation order</string>
+    <string name="sort_by_alarm_time">Alarm time</string>
 
     <!-- Settings -->
     <string name="clock_tab">時計</string>

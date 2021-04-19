@@ -2,8 +2,6 @@
     <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Klokke</string>
     <string name="time_zone">Tidssone</string>
-    <string name="created_at">Created at</string>
-    <string name="time_of_day">Time of day</string>
     <string name="vibrate">Vibrer</string>
     <string name="label">Påskrift</string>
     <string name="no_days_selected">Ingen dager valgte</string>
@@ -16,6 +14,8 @@
     <string name="clock_and_date">Klokke og dato</string>
     <string name="use_text_shadow">Bruk tekstskygge</string>
     <string name="swipe_right_to_dismiss">Sveip til høyre for å avvise eller til venstre for Snooze.</string>
+    <string name="sort_by_creation_order">Creation order</string>
+    <string name="sort_by_alarm_time">Alarm time</string>
 
     <!-- Settings -->
     <string name="clock_tab">Klokke</string>
