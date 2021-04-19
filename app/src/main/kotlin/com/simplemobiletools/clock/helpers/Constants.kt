@@ -9,7 +9,6 @@ const val SHOW_SECONDS = "show_seconds"
 const val SELECTED_TIME_ZONES = "selected_time_zones"
 const val EDITED_TIME_ZONE_TITLES = "edited_time_zone_titles"
 const val TIMER_SECONDS = "timer_seconds"
-const val TIMER_START_TIMESTAMP = "timer_timetamp"
 const val TIMER_STATE = "timer_state"
 const val TIMER_VIBRATE = "timer_vibrate"
 const val TIMER_SOUND_URI = "timer_sound_uri"
@@ -17,11 +16,11 @@ const val TIMER_SOUND_TITLE = "timer_sound_title"
 const val TIMER_CHANNEL_ID = "timer_channel_id"
 const val TIMER_LABEL = "timer_label"
 const val TIMER_MAX_REMINDER_SECS = "timer_max_reminder_secs"
-const val ALARM_SORT = "alarm_sort"
 const val ALARM_MAX_REMINDER_SECS = "alarm_max_reminder_secs"
 const val ALARM_LAST_CONFIG = "alarm_last_config"
 const val USE_TEXT_SHADOW = "use_text_shadow"
 const val INCREASE_VOLUME_GRADUALLY = "increase_volume_gradually"
+const val ALARMS_SORT_BY = "alarms_sort_by"
 
 const val TABS_COUNT = 4
 const val EDITED_TIME_ZONE_SEPARATOR = ":"
@@ -45,9 +44,14 @@ const val TAB_ALARM = 1
 const val TAB_STOPWATCH = 2
 const val TAB_TIMER = 3
 
+// stopwatch sorting
 const val SORT_BY_LAP = 1
 const val SORT_BY_LAP_TIME = 2
 const val SORT_BY_TOTAL_TIME = 4
+
+// alarm sorting
+const val SORT_BY_CREATION_ORDER = 0
+const val SORT_BY_ALARM_TIME = 1
 
 const val TODAY_BIT = -1
 const val TOMORROW_BIT = -2
