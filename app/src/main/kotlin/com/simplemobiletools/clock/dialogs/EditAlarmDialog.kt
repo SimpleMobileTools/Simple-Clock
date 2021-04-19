@@ -3,6 +3,7 @@ package com.simplemobiletools.clock.dialogs
 import android.app.TimePickerDialog
 import android.graphics.drawable.Drawable
 import android.media.AudioManager
+import android.media.RingtoneManager
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import com.simplemobiletools.clock.R
@@ -13,9 +14,9 @@ import com.simplemobiletools.clock.helpers.TODAY_BIT
 import com.simplemobiletools.clock.helpers.TOMORROW_BIT
 import com.simplemobiletools.clock.helpers.getCurrentDayMinutes
 import com.simplemobiletools.clock.models.Alarm
+import com.simplemobiletools.commons.dialogs.ConfirmationDialog
 import com.simplemobiletools.commons.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
 import com.simplemobiletools.commons.models.AlarmSound
 import kotlinx.android.synthetic.main.dialog_edit_alarm.view.*
 import java.util.*
@@ -36,18 +37,18 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
             edit_alarm_sound.colorLeftDrawable(textColor)
             edit_alarm_sound.text = alarm.soundTitle
             edit_alarm_sound.setOnClickListener {
-                SelectAlarmSoundDialog(activity, alarm.soundUri, AudioManager.STREAM_ALARM, PICK_AUDIO_FILE_INTENT_ID, ALARM_SOUND_TYPE_ALARM, true,
+                SelectAlarmSoundDialog(activity, alarm.soundUri, AudioManager.STREAM_ALARM, PICK_AUDIO_FILE_INTENT_ID, RingtoneManager.TYPE_ALARM, true,
                     onAlarmPicked = {
                         if (it != null) {
                             updateSelectedAlarmSound(it)
                         }
                     }, onAlarmSoundDeleted = {
-                        if (alarm.soundUri == it.uri) {
-                            val defaultAlarm = context.getDefaultAlarmSound(ALARM_SOUND_TYPE_ALARM)
-                            updateSelectedAlarmSound(defaultAlarm)
-                        }
-                        activity.checkAlarmsWithDeletedSoundUri(it.uri)
-                    })
+                    if (alarm.soundUri == it.uri) {
+                        val defaultAlarm = context.getDefaultAlarmSound(RingtoneManager.TYPE_ALARM)
+                        updateSelectedAlarmSound(defaultAlarm)
+                    }
+                    activity.checkAlarmsWithDeletedSoundUri(it.uri)
+                })
             }
 
             edit_alarm_vibrate.colorLeftDrawable(textColor)
@@ -101,6 +102,15 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
             .create().apply {
                 activity.setupDialogStuff(view, this) {
                     getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+                        if (!activity.config.wasAlarmWarningShown) {
+                            ConfirmationDialog(activity, messageId = R.string.alarm_warning, positive = R.string.ok, negative = 0) {
+                                activity.config.wasAlarmWarningShown = true
+                                it.performClick()
+                            }
+
+                            return@setOnClickListener
+                        }
+
                         if (alarm.days <= 0) {
                             alarm.days = if (alarm.timeInMinutes > getCurrentDayMinutes()) {
                                 TODAY_BIT
