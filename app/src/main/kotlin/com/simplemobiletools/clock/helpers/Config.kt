@@ -1,13 +1,13 @@
 package com.simplemobiletools.clock.helpers
 
 import android.content.Context
+import android.media.RingtoneManager
 import com.simplemobiletools.clock.extensions.gson.gson
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.clock.models.StateWrapper
 import com.simplemobiletools.clock.models.TimerState
+import com.simplemobiletools.commons.extensions.getDefaultAlarmSound
 import com.simplemobiletools.commons.extensions.getDefaultAlarmTitle
-import com.simplemobiletools.commons.extensions.getDefaultAlarmUri
-import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
 import com.simplemobiletools.commons.helpers.BaseConfig
 
 class Config(context: Context) : BaseConfig(context) {
@@ -42,11 +42,11 @@ class Config(context: Context) : BaseConfig(context) {
         set(timerVibrate) = prefs.edit().putBoolean(TIMER_VIBRATE, timerVibrate).apply()
 
     var timerSoundUri: String
-        get() = prefs.getString(TIMER_SOUND_URI, context.getDefaultAlarmUri(ALARM_SOUND_TYPE_ALARM).toString())!!
+        get() = prefs.getString(TIMER_SOUND_URI, context.getDefaultAlarmSound(RingtoneManager.TYPE_ALARM).uri)!!
         set(timerSoundUri) = prefs.edit().putString(TIMER_SOUND_URI, timerSoundUri).apply()
 
     var timerSoundTitle: String
-        get() = prefs.getString(TIMER_SOUND_TITLE, context.getDefaultAlarmTitle(ALARM_SOUND_TYPE_ALARM))!!
+        get() = prefs.getString(TIMER_SOUND_TITLE, context.getDefaultAlarmTitle(RingtoneManager.TYPE_ALARM))!!
         set(timerSoundTitle) = prefs.edit().putString(TIMER_SOUND_TITLE, timerSoundTitle).apply()
 
     var timerMaxReminderSecs: Int

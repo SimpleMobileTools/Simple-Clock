@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.media.AudioAttributes
 import android.media.AudioManager.STREAM_ALARM
+import android.media.RingtoneManager
 import android.net.Uri
 import android.os.PowerManager
 import android.text.SpannableString
@@ -72,7 +73,7 @@ fun Context.getAllTimeZonesModified(): ArrayList<MyTimeZone> {
 fun Context.getModifiedTimeZoneTitle(id: Int) = getAllTimeZonesModified().firstOrNull { it.id == id }?.title ?: getDefaultTimeZoneTitle(id)
 
 fun Context.createNewAlarm(timeInMinutes: Int, weekDays: Int): Alarm {
-    val defaultAlarmSound = getDefaultAlarmSound(ALARM_SOUND_TYPE_ALARM)
+    val defaultAlarmSound = getDefaultAlarmSound(RingtoneManager.TYPE_ALARM)
     return Alarm(0, timeInMinutes, weekDays, false, false, defaultAlarmSound.title, defaultAlarmSound.uri, "")
 }
 
@@ -406,7 +407,7 @@ fun Context.getReminderActivityIntent(): PendingIntent {
 }
 
 fun Context.checkAlarmsWithDeletedSoundUri(uri: String) {
-    val defaultAlarmSound = getDefaultAlarmSound(ALARM_SOUND_TYPE_ALARM)
+    val defaultAlarmSound = getDefaultAlarmSound(RingtoneManager.TYPE_ALARM)
     dbHelper.getAlarmsWithUri(uri).forEach {
         it.soundTitle = defaultAlarmSound.title
         it.soundUri = defaultAlarmSound.uri

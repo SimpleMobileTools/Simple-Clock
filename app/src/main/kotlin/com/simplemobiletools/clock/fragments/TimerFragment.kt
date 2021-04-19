@@ -2,6 +2,7 @@ package com.simplemobiletools.clock.fragments
 
 import android.graphics.Color
 import android.media.AudioManager
+import android.media.RingtoneManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +16,6 @@ import com.simplemobiletools.clock.helpers.PICK_AUDIO_FILE_INTENT_ID
 import com.simplemobiletools.clock.models.TimerState
 import com.simplemobiletools.commons.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.ALARM_SOUND_TYPE_ALARM
 import com.simplemobiletools.commons.models.AlarmSound
 import kotlinx.android.synthetic.main.fragment_timer.view.*
 import org.greenrobot.eventbus.EventBus
@@ -96,7 +96,7 @@ class TimerFragment : Fragment() {
 
             timer_sound.setOnClickListener {
                 SelectAlarmSoundDialog(activity as SimpleActivity, config.timerSoundUri, AudioManager.STREAM_ALARM, PICK_AUDIO_FILE_INTENT_ID,
-                    ALARM_SOUND_TYPE_ALARM, true,
+                    RingtoneManager.TYPE_ALARM, true,
                     onAlarmPicked = { sound ->
                         if (sound != null) {
                             updateAlarmSound(sound)
@@ -104,7 +104,7 @@ class TimerFragment : Fragment() {
                     },
                     onAlarmSoundDeleted = { sound ->
                         if (config.timerSoundUri == sound.uri) {
-                            val defaultAlarm = context.getDefaultAlarmSound(ALARM_SOUND_TYPE_ALARM)
+                            val defaultAlarm = context.getDefaultAlarmSound(RingtoneManager.TYPE_ALARM)
                             updateAlarmSound(defaultAlarm)
                         }
 
@@ -127,7 +127,7 @@ class TimerFragment : Fragment() {
     }
 
     private fun changeDuration() {
-        MyTimePickerDialogDialog(activity as SimpleActivity, context!!.config.timerSeconds) { seconds ->
+        MyTimePickerDialogDialog(activity as SimpleActivity, requireContext().config.timerSeconds) { seconds ->
             val timerSeconds = if (seconds <= 0) 10 else seconds
             activity?.config?.timerSeconds = timerSeconds
             val duration = timerSeconds.getFormattedDuration()
