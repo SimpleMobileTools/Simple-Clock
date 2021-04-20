@@ -14,8 +14,8 @@
     <string name="clock_and_date">Klok en datum</string>
     <string name="use_text_shadow">Tekstschaduw gebruiken</string>
     <string name="swipe_right_to_dismiss">Veeg rechts voor afzetten, of links voor snooze.</string>
-    <string name="sort_by_creation_order">Creation order</string>
-    <string name="sort_by_alarm_time">Alarm time</string>
+    <string name="sort_by_creation_order">Aanmaakvolgorde</string>
+    <string name="sort_by_alarm_time">Alarmtijd</string>
 
     <!-- Settings -->
     <string name="clock_tab">Tab Klok</string>
