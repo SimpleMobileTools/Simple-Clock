@@ -30,7 +30,7 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
     }
 
     private fun performUpdate(context: Context) {
-        val appWidgetManager = AppWidgetManager.getInstance(context)
+        val appWidgetManager = AppWidgetManager.getInstance(context) ?: return
         appWidgetManager.getAppWidgetIds(getComponentName(context)).forEach {
             RemoteViews(context.packageName, getProperLayout(context)).apply {
                 updateTexts(context, this)

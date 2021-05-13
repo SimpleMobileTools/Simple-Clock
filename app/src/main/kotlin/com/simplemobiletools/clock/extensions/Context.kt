@@ -160,7 +160,7 @@ fun Context.hideNotification(id: Int) {
 fun Context.hideTimerNotification() = hideNotification(TIMER_NOTIF_ID)
 
 fun Context.updateWidgets() {
-    val widgetsCnt = AppWidgetManager.getInstance(applicationContext).getAppWidgetIds(ComponentName(applicationContext, MyWidgetDateTimeProvider::class.java))
+    val widgetsCnt = AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(ComponentName(applicationContext, MyWidgetDateTimeProvider::class.java)) ?: return
     if (widgetsCnt.isNotEmpty()) {
         val ids = intArrayOf(R.xml.widget_date_time_info)
         Intent(applicationContext, MyWidgetDateTimeProvider::class.java).apply {
@@ -173,7 +173,7 @@ fun Context.updateWidgets() {
 
 @SuppressLint("NewApi")
 fun Context.scheduleNextWidgetUpdate() {
-    val widgetsCnt = AppWidgetManager.getInstance(applicationContext).getAppWidgetIds(ComponentName(applicationContext, MyWidgetDateTimeProvider::class.java))
+    val widgetsCnt = AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(ComponentName(applicationContext, MyWidgetDateTimeProvider::class.java)) ?: return
     if (widgetsCnt.isEmpty()) {
         return
     }
