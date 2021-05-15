@@ -14,8 +14,8 @@
     <string name="clock_and_date">Kello ja päivä</string>
     <string name="use_text_shadow">Tekstin varjostus</string>
     <string name="swipe_right_to_dismiss">Pyyhkäise oikealle sammuttaaksesi tai vasemmalle torkuttaaksesi.</string>
-    <string name="sort_by_creation_order">Creation order</string>
-    <string name="sort_by_alarm_time">Alarm time</string>
+    <string name="sort_by_creation_order">Luontijärjestys</string>
+    <string name="sort_by_alarm_time">Herätysaika</string>
  
     <!-- Settings -->
     <string name="clock_tab">Kello-välilehti</string>
