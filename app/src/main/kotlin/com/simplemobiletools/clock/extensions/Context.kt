@@ -20,7 +20,9 @@ import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.ReminderActivity
 import com.simplemobiletools.clock.activities.SnoozeReminderActivity
 import com.simplemobiletools.clock.activities.SplashActivity
+import com.simplemobiletools.clock.databases.AppDatabase
 import com.simplemobiletools.clock.helpers.*
+import com.simplemobiletools.clock.interfaces.TimerDao
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.clock.receivers.AlarmReceiver
@@ -39,6 +41,8 @@ import kotlin.math.pow
 val Context.config: Config get() = Config.newInstance(applicationContext)
 
 val Context.dbHelper: DBHelper get() = DBHelper.newInstance(applicationContext)
+val Context.timerDb: TimerDao get() = AppDatabase.getInstance(applicationContext).TimerDao()
+val Context.timerHelper: TimerHelper get() = TimerHelper(this)
 
 fun Context.getFormattedDate(calendar: Calendar): String {
     val dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7    // make sure index 0 means monday

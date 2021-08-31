@@ -1,7 +1,9 @@
 package com.simplemobiletools.clock.helpers
 
 import com.simplemobiletools.clock.models.MyTimeZone
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.TimeZone
 import kotlin.math.pow
 
 // shared preferences
@@ -55,6 +57,8 @@ const val SORT_BY_ALARM_TIME = 1
 
 const val TODAY_BIT = -1
 const val TOMORROW_BIT = -2
+
+const val DEFAULT_TIME = 300
 
 fun getDefaultTimeZoneTitle(id: Int) = getAllTimeZones().firstOrNull { it.id == id }?.title ?: ""
 
