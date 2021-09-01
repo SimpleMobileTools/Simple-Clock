@@ -1,8 +1,10 @@
 package com.simplemobiletools.clock.extensions
 
 import android.text.format.DateFormat
+import com.simplemobiletools.commons.extensions.getFormattedDuration
 import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.math.roundToInt
 
 fun Long.formatStopwatchTime(useLongerMSFormat: Boolean): String {
     val MSFormat = if (useLongerMSFormat) "%03d" else "%01d"
@@ -35,6 +37,10 @@ fun Long.timestampFormat(format: String = "dd. MM. yyyy"): String {
     calendar.timeInMillis = this
 
     return DateFormat.format(format, calendar).toString()
+}
+
+fun Long.getFormattedDuration(forceShowHours: Boolean = false): String {
+    return this.div(1000F).roundToInt().getFormattedDuration(forceShowHours)
 }
 
 val Long.secondsToMillis get() = TimeUnit.SECONDS.toMillis(this)

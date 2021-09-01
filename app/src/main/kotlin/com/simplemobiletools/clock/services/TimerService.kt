@@ -12,11 +12,15 @@ import android.os.IBinder
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.simplemobiletools.clock.R
-import com.simplemobiletools.clock.extensions.config
+import com.simplemobiletools.clock.extensions.getFormattedDuration
 import com.simplemobiletools.clock.extensions.getOpenTimerTabIntent
+import com.simplemobiletools.clock.extensions.timerHelper
 import com.simplemobiletools.clock.helpers.TIMER_RUNNING_NOTIF_ID
+import com.simplemobiletools.clock.models.TimerEvent
+import com.simplemobiletools.clock.models.TimerState
 import com.simplemobiletools.commons.extensions.getFormattedDuration
 import com.simplemobiletools.commons.helpers.isOreoPlus
+import kotlin.math.roundToInt
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -34,16 +38,41 @@ class TimerService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
-
-        val formattedDuration = config.timerSeconds.getFormattedDuration()
-        startForeground(TIMER_RUNNING_NOTIF_ID, notification(formattedDuration))
-
+        updateNotification()
+        startForeground(TIMER_RUNNING_NOTIF_ID, notification(getString(R.string.app_name), getString(R.string.timer_notification_msg), -1))
         return START_NOT_STICKY
+    }
+
+    private fun updateNotification() {
+        timerHelper.getTimers { timers ->
+            val runningTimers = timers.filter { it.state is TimerState.Running }
+            if (runningTimers.isNotEmpty()) {
+                val firstTimer = runningTimers.first()
+                val formattedDuration = (firstTimer.state as TimerState.Running).tick.getFormattedDuration()
+                val contextText = when {
+                    runningTimers.size > 1 -> {
+                        getString(R.string.timer_multiple_notification_msg, runningTimers.size)
+                    }
+                    firstTimer.label.isNotEmpty() -> {
+                        getString(R.string.timer_single_notification_label_msg, firstTimer.label)
+                    }
+                    else -> {
+                        getString(R.string.timer_single_notification_msg, runningTimers.size)
+                    }
+                }
+                startForeground(TIMER_RUNNING_NOTIF_ID, notification(formattedDuration, contextText, firstTimer.id!!))
+            }
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: TimerStopService) {
         stopService()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: TimerEvent.Refresh) {
+        updateNotification()
     }
 
     private fun stopService() {
@@ -60,7 +89,7 @@ class TimerService : Service() {
     }
 
     @TargetApi(Build.VERSION_CODES.O)
-    private fun notification(formattedDuration: String): Notification {
+    private fun notification(title: String, contentText: String, firstRunningTimerId: Long): Notification {
         val channelId = "simple_alarm_timer"
         val label = getString(R.string.timer)
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -73,15 +102,18 @@ class TimerService : Service() {
         }
 
         val builder = NotificationCompat.Builder(this)
-                .setContentTitle(label)
-                .setContentText(formattedDuration)
-                .setSmallIcon(R.drawable.ic_timer)
-                .setContentIntent(this.getOpenTimerTabIntent(0))
-                .setPriority(Notification.PRIORITY_DEFAULT)
-                .setSound(null)
-                .setOngoing(true)
-                .setAutoCancel(true)
-                .setChannelId(channelId)
+            .setContentTitle(title)
+            .setContentText(contentText)
+            .setSmallIcon(R.drawable.ic_timer)
+            .setPriority(Notification.PRIORITY_DEFAULT)
+            .setSound(null)
+            .setOngoing(true)
+            .setAutoCancel(true)
+            .setChannelId(channelId)
+
+        if (firstRunningTimerId != -1L) {
+            builder.setContentIntent(this.getOpenTimerTabIntent(firstRunningTimerId))
+        }
 
         builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
         return builder.build()

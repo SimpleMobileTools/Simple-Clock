@@ -9,7 +9,7 @@ import com.simplemobiletools.clock.models.Timer
 @Dao
 interface TimerDao {
 
-    @Query("SELECT * FROM timers")
+    @Query("SELECT * FROM timers ORDER BY createdAt DESC")
     fun getTimers(): List<Timer>
 
     @Query("SELECT * FROM timers WHERE id=:id")

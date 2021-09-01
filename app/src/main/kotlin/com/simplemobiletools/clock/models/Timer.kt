@@ -12,5 +12,5 @@ data class Timer(
     val soundUri: String,
     val soundTitle: String,
     val label: String,
-    val maxReminderSecs: String,
+    val createdAt: Long,
 )

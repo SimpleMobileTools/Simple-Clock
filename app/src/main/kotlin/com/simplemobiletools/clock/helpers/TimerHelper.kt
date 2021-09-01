@@ -43,14 +43,16 @@ class TimerHelper(val context: Context) {
     fun insertNewTimer(callback: () -> Unit = {}) {
         ensureBackgroundThread {
             timerDao.insertOrUpdateTimer(
-                Timer(id = null,
+                Timer(
+                    id = null,
                     seconds = DEFAULT_TIME,
                     TimerState.Idle,
                     false,
                     context.getDefaultAlarmSound(RingtoneManager.TYPE_ALARM).uri,
                     context.getDefaultAlarmTitle(RingtoneManager.TYPE_ALARM),
                     "",
-                    DEFAULT_MAX_TIMER_REMINDER_SECS.toString())
+                    System.currentTimeMillis(),
+                )
             )
 
             callback.invoke()

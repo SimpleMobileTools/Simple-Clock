@@ -17,6 +17,12 @@
     <string name="sort_by_creation_order">Aanmaakvolgorde</string>
     <string name="sort_by_alarm_time">Alarmtijd</string>
 
+    <!--Timer-->
+    <string name="timer_notification_msg">Timers are running</string>
+    <string name="timer_multiple_notification_msg">%d timers are running</string>
+    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
+    <string name="timer_single_notification_msg">%d timer is running</string>
+
     <!-- Settings -->
     <string name="clock_tab">Tab Klok</string>
     <string name="alarm_tab">Tab Alarm</string>

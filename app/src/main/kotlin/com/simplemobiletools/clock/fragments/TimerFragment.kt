@@ -100,17 +100,24 @@ class TimerFragment : Fragment() {
 
     private fun updateViews(position: Int) {
         activity?.runOnUiThread {
-            val timer = timerAdapter.getItemAt(position)
-            updateViewStates(timer.state)
+            if (timerAdapter.itemCount > 0) {
+                val timer = timerAdapter.getItemAt(position)
+                updateViewStates(timer.state)
+                view.timer_play_pause.beVisible()
+            } else {
+                view.timer_delete.beGone()
+                view.timer_play_pause.beGone()
+                view.timer_reset.beGone()
+            }
         }
     }
 
-    private fun refreshTimers(scrollToLast: Boolean = false) {
+    private fun refreshTimers(scrollToLatest: Boolean = false) {
         activity?.timerHelper?.getTimers { timers ->
             Log.d(TAG, "refreshTimers: $timers")
             timerAdapter.submitList(timers) {
-                if (scrollToLast) {
-                    view.timer_view_pager.currentItem = timers.lastIndex
+                if (scrollToLatest) {
+                    view.timer_view_pager.currentItem = 0
                 }
                 updateViews(timer_view_pager.currentItem)
             }
