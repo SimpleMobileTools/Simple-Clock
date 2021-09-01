@@ -112,7 +112,7 @@ fun getAllTimeZones() = arrayListOf(
     MyTimeZone(12, "GMT-06:00 Regina", "America/Regina"),
     MyTimeZone(13, "GMT-05:00 Bogota", "America/Bogota"),
     MyTimeZone(14, "GMT-05:00 New York", "America/New_York"),
-    MyTimeZone(15, "GMT-04:30 Caracas", "America/Caracas"),
+    MyTimeZone(15, "GMT-04:00 Caracas", "America/Caracas"),
     MyTimeZone(16, "GMT-04:00 Barbados", "America/Barbados"),
     MyTimeZone(17, "GMT-04:00 Halifax", "America/Halifax"),
     MyTimeZone(18, "GMT-04:00 Manaus", "America/Manaus"),
