@@ -2,6 +2,7 @@ package com.simplemobiletools.clock.fragments
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,13 +11,16 @@ import androidx.viewpager2.widget.ViewPager2
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.adapters.TimerAdapter
-import com.simplemobiletools.clock.dialogs.MyTimePickerDialogDialog
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.hideTimerNotification
+import com.simplemobiletools.clock.extensions.secondsToMillis
 import com.simplemobiletools.clock.extensions.timerHelper
 import com.simplemobiletools.clock.models.Timer
+import com.simplemobiletools.clock.models.TimerEvent
 import com.simplemobiletools.clock.models.TimerState
 import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.models.AlarmSound
+import kotlinx.android.synthetic.main.fragment_timer.timer_view_pager
 import kotlinx.android.synthetic.main.fragment_timer.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -24,7 +28,7 @@ import org.greenrobot.eventbus.ThreadMode
 
 class TimerFragment : Fragment() {
 
-    lateinit var view: ViewGroup
+    private lateinit var view: ViewGroup
     private lateinit var timerAdapter: TimerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +46,10 @@ class TimerFragment : Fragment() {
             timerAdapter = TimerAdapter(requireActivity() as SimpleActivity) {
                 refreshTimers()
             }
+
             timer_view_pager.adapter = timerAdapter
+            //set empty page transformer to disable item animations
+            timer_view_pager.setPageTransformer { _, _ -> }
             timer_view_pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     updateViews(position)
@@ -64,16 +71,13 @@ class TimerFragment : Fragment() {
             timer_play_pause.applyColorFilter(if (activity?.getAdjustedPrimaryColor() == Color.WHITE) Color.BLACK else Color.WHITE)
             timer_reset.applyColorFilter(textColor)
 
-
             timer_play_pause.setOnClickListener {
                 val timer = timerAdapter.getItemAt(timer_view_pager.currentItem)
                 when (val state = timer.state) {
-//                    is TimerState.Idle -> EventBus.getDefault().post(TimerState.Start(timer.seconds.secondsToMillis))
-//                    is TimerState.Paused -> EventBus.getDefault().post(TimerState.Start(state.tick))
-//                    is TimerState.Running -> EventBus.getDefault().post(TimerState.Pause(state.tick))
-//                    is TimerState.Finished -> EventBus.getDefault().post(TimerState.Start(timer.seconds.secondsToMillis))
-                    else -> {
-                    }
+                    is TimerState.Idle -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis))
+                    is TimerState.Paused -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, state.tick))
+                    is TimerState.Running -> EventBus.getDefault().post(TimerEvent.Pause(timer.id!!, state.tick))
+                    is TimerState.Finished -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis))
                 }
             }
 
@@ -95,67 +99,39 @@ class TimerFragment : Fragment() {
     }
 
     private fun updateViews(position: Int) {
-        val timer = timerAdapter.getItemAt(position)
-        //check if timer is running to update view
+        activity?.runOnUiThread {
+            val timer = timerAdapter.getItemAt(position)
+            updateViewStates(timer.state)
+        }
     }
 
     private fun refreshTimers(scrollToLast: Boolean = false) {
         activity?.timerHelper?.getTimers { timers ->
-            timerAdapter.submitList(timers)
-            activity?.runOnUiThread {
-                view.timer_delete.beVisibleIf(timers.size > 1)
+            Log.d(TAG, "refreshTimers: $timers")
+            timerAdapter.submitList(timers) {
                 if (scrollToLast) {
                     view.timer_view_pager.currentItem = timers.lastIndex
                 }
+                updateViews(timer_view_pager.currentItem)
             }
         }
     }
 
     private fun stopTimer(timer: Timer) {
-        EventBus.getDefault().post(TimerState.Idle)
+        EventBus.getDefault().post(TimerEvent.Reset(timer.id!!, timer.seconds.secondsToMillis))
         activity?.hideTimerNotification()
-//        view.timer_time.text = activity?.config?.timerSeconds?.getFormattedDuration()
-    }
-
-    private fun changeDuration() {
-        MyTimePickerDialogDialog(activity as SimpleActivity, requireContext().config.timerSeconds) { seconds ->
-            val timerSeconds = if (seconds <= 0) 10 else seconds
-            activity?.config?.timerSeconds = timerSeconds
-            val duration = timerSeconds.getFormattedDuration()
-//            view.timer_initial_time.text = duration
-
-//            if (view.timer_reset.isGone()) {
-//                stopTimer()
-//            }
-        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(state: TimerState.Idle) {
-//        view.timer_time.text = requiredActivity.config.timerSeconds.getFormattedDuration()
-        updateViewStates(state)
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(state: TimerState.Running) {
-//        view.timer_time.text = state.tick.div(1000F).roundToInt().getFormattedDuration()
-        updateViewStates(state)
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(state: TimerState.Paused) {
-        updateViewStates(state)
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(state: TimerState.Finished) {
-//        view.timer_time.text = 0.getFormattedDuration()
-        updateViewStates(state)
+    fun onMessageEvent(event: TimerEvent.Refresh) {
+        Log.d(TAG, "onMessageEvent: $event")
+        refreshTimers()
     }
 
     private fun updateViewStates(state: TimerState) {
         val resetPossible = state is TimerState.Running || state is TimerState.Paused || state is TimerState.Finished
         view.timer_reset.beVisibleIf(resetPossible)
+        view.timer_delete.beVisibleIf(!resetPossible && timerAdapter.itemCount > 1)
 
         val drawableId = if (state is TimerState.Running) {
             R.drawable.ic_pause_vector
@@ -171,10 +147,15 @@ class TimerFragment : Fragment() {
 
         view.timer_play_pause.setImageDrawable(resources.getColoredDrawableWithColor(drawableId, iconColor))
     }
-//
-//    fun updateAlarmSound(alarmSound: AlarmSound) {
-//        activity?.config?.timerSoundTitle = alarmSound.title
-//        activity?.config?.timerSoundUri = alarmSound.uri
-//        view.timer_sound.text = alarmSound.title
-//    }
+
+    fun updateAlarmSound(alarmSound: AlarmSound) {
+        val timer = timerAdapter.getItemAt(timer_view_pager.currentItem)
+        activity?.timerHelper?.insertOrUpdateTimer(timer.copy(soundTitle = alarmSound.title, soundUri = alarmSound.uri)) {
+            refreshTimers()
+        }
+    }
+
+    companion object {
+        private const val TAG = "TimerFragment"
+    }
 }

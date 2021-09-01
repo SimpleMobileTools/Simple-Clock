@@ -2,6 +2,7 @@ package com.simplemobiletools.clock.helpers
 
 import android.content.Context
 import android.media.RingtoneManager
+import android.util.Log
 import com.simplemobiletools.clock.extensions.timerDb
 import com.simplemobiletools.clock.models.Timer
 import com.simplemobiletools.clock.models.TimerState
@@ -12,15 +13,22 @@ import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 class TimerHelper(val context: Context) {
     private val timerDao = context.timerDb
 
-    fun getTimers(callback: (notes: List<Timer>) -> Unit) {
+    fun getTimers(callback: (timers: List<Timer>) -> Unit) {
         ensureBackgroundThread {
             callback.invoke(timerDao.getTimers())
         }
     }
 
+    fun getTimer(timerId: Long, callback: (timer: Timer) -> Unit) {
+        ensureBackgroundThread {
+            callback.invoke(timerDao.getTimer(timerId))
+        }
+    }
+
     fun insertOrUpdateTimer(timer: Timer, callback: () -> Unit = {}) {
         ensureBackgroundThread {
-            timerDao.insertOrUpdateTimer(timer)
+            val id = timerDao.insertOrUpdateTimer(timer)
+            Log.d(TAG, "insertOrUpdateTimer: $id")
             callback.invoke()
         }
     }
@@ -47,5 +55,9 @@ class TimerHelper(val context: Context) {
 
             callback.invoke()
         }
+    }
+
+    companion object {
+        private const val TAG = "TimerHelper"
     }
 }

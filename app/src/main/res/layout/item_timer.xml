@@ -1,111 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.simplemobiletools.commons.views.MyTextView
+        android:id="@+id/timer_time"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/normal_margin"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/small_margin"
+        android:textSize="@dimen/stopwatch_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="00:00" />
 
-        <com.simplemobiletools.commons.views.MyTextView
-            android:id="@+id/timer_time"
+    <com.simplemobiletools.commons.views.MyTextView
+        android:id="@+id/timer_initial_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_margin"
+        android:background="?attr/selectableItemBackground"
+        android:drawableStart="@drawable/ic_timer"
+        android:drawablePadding="@dimen/normal_margin"
+        android:padding="@dimen/activity_margin"
+        android:textSize="@dimen/bigger_text_size"
+        app:layout_constraintTop_toBottomOf="@+id/timer_time"
+        tools:text="05:00" />
+
+    <RelativeLayout
+        android:id="@+id/timer_vibrate_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:padding="@dimen/activity_margin"
+        app:layout_constraintTop_toBottomOf="@+id/timer_initial_time">
+
+        <com.simplemobiletools.commons.views.MySwitchCompat
+            android:id="@+id/timer_vibrate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/normal_margin"
-            android:background="?attr/selectableItemBackground"
-            android:gravity="center_horizontal"
-            android:padding="@dimen/small_margin"
-            android:textSize="@dimen/stopwatch_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="00:00" />
-
-        <com.simplemobiletools.commons.views.MyTextView
-            android:id="@+id/timer_initial_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_margin"
-            android:background="?attr/selectableItemBackground"
-            android:drawableStart="@drawable/ic_timer"
+            android:background="@null"
+            android:clickable="false"
+            android:drawableStart="@drawable/ic_vibrate_vector"
             android:drawablePadding="@dimen/normal_margin"
-            android:padding="@dimen/activity_margin"
-            android:textSize="@dimen/bigger_text_size"
-            app:layout_constraintTop_toBottomOf="@+id/timer_time"
-            tools:text="05:00" />
+            android:text="@string/vibrate"
+            android:textSize="@dimen/bigger_text_size" />
 
-        <RelativeLayout
-            android:id="@+id/timer_vibrate_holder"
+    </RelativeLayout>
+
+    <com.simplemobiletools.commons.views.MyTextView
+        android:id="@+id/timer_sound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:drawableStart="@drawable/ic_bell_vector"
+        android:drawablePadding="@dimen/normal_margin"
+        android:padding="@dimen/activity_margin"
+        android:textSize="@dimen/bigger_text_size"
+        app:layout_constraintTop_toBottomOf="@+id/timer_vibrate_holder"
+        tools:text="Default alarm" />
+
+    <LinearLayout
+        android:id="@+id/timer_label_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/activity_margin"
+        android:paddingTop="@dimen/medium_margin"
+        android:paddingEnd="@dimen/activity_margin"
+        android:paddingBottom="@dimen/medium_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timer_sound"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintVertical_chainStyle="spread_inside">
+
+        <ImageView
+            android:id="@+id/timer_label_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_label_vector" />
+
+        <com.simplemobiletools.commons.views.MyEditText
+            android:id="@+id/timer_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:padding="@dimen/activity_margin"
-            app:layout_constraintTop_toBottomOf="@+id/timer_initial_time">
+            android:layout_marginStart="10dp"
+            android:hint="@string/label"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/normal_text_size" />
+    </LinearLayout>
 
-            <com.simplemobiletools.commons.views.MySwitchCompat
-                android:id="@+id/timer_vibrate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:clickable="false"
-                android:drawableStart="@drawable/ic_vibrate_vector"
-                android:drawablePadding="@dimen/normal_margin"
-                android:text="@string/vibrate"
-                android:textSize="@dimen/bigger_text_size" />
-
-        </RelativeLayout>
-
-        <com.simplemobiletools.commons.views.MyTextView
-            android:id="@+id/timer_sound"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:drawableStart="@drawable/ic_bell_vector"
-            android:drawablePadding="@dimen/normal_margin"
-            android:padding="@dimen/activity_margin"
-            android:textSize="@dimen/bigger_text_size"
-            app:layout_constraintTop_toBottomOf="@+id/timer_vibrate_holder"
-            tools:text="Default alarm" />
-
-        <LinearLayout
-            android:id="@+id/timer_label_holder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="@dimen/activity_margin"
-            android:paddingTop="@dimen/medium_margin"
-            android:paddingEnd="@dimen/activity_margin"
-            android:paddingBottom="@dimen/medium_margin"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/timer_sound"
-            app:layout_constraintVertical_bias="0"
-            app:layout_constraintVertical_chainStyle="spread_inside">
-
-            <ImageView
-                android:id="@+id/timer_label_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_label_vector" />
-
-            <com.simplemobiletools.commons.views.MyEditText
-                android:id="@+id/timer_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:hint="@string/label"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:textCursorDrawable="@null"
-                android:textSize="@dimen/normal_text_size" />
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
-
-
+</androidx.constraintlayout.widget.ConstraintLayout>

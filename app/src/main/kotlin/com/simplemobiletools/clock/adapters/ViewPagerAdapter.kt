@@ -11,6 +11,7 @@ import com.simplemobiletools.clock.fragments.TimerFragment
 import com.simplemobiletools.clock.helpers.TABS_COUNT
 import com.simplemobiletools.clock.helpers.TAB_ALARM
 import com.simplemobiletools.clock.helpers.TAB_CLOCK
+import com.simplemobiletools.clock.helpers.TAB_TIMER
 import com.simplemobiletools.commons.models.AlarmSound
 
 class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
@@ -50,6 +51,6 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
     }
 
     fun updateTimerTabAlarmSound(alarmSound: AlarmSound) {
-//        (fragments[TAB_TIMER] as? TimerFragment)?.updateAlarmSound(alarmSound)
+        (fragments[TAB_TIMER] as? TimerFragment)?.updateAlarmSound(alarmSound)
     }
 }

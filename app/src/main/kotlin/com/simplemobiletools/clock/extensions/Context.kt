@@ -25,6 +25,7 @@ import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.clock.interfaces.TimerDao
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.clock.models.MyTimeZone
+import com.simplemobiletools.clock.models.Timer
 import com.simplemobiletools.clock.receivers.AlarmReceiver
 import com.simplemobiletools.clock.receivers.DateTimeWidgetUpdateReceiver
 import com.simplemobiletools.clock.receivers.HideAlarmReceiver
@@ -139,9 +140,10 @@ fun Context.getOpenAlarmTabIntent(): PendingIntent {
     return PendingIntent.getActivity(this, OPEN_ALARMS_TAB_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }
 
-fun Context.getOpenTimerTabIntent(): PendingIntent {
+fun Context.getOpenTimerTabIntent(timerId: Long): PendingIntent {
     val intent = getLaunchIntent() ?: Intent(this, SplashActivity::class.java)
     intent.putExtra(OPEN_TAB, TAB_TIMER)
+    intent.putExtra(TIMER_ID, timerId)
     return PendingIntent.getActivity(this, TIMER_NOTIF_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }
 
@@ -260,8 +262,8 @@ fun Context.showAlarmNotification(alarm: Alarm) {
 }
 
 @SuppressLint("NewApi")
-fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: Boolean): Notification {
-    var soundUri = config.timerSoundUri
+fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, addDeleteIntent: Boolean): Notification {
+    var soundUri = timer.soundUri
     if (soundUri == SILENT) {
         soundUri = ""
     } else {
@@ -292,7 +294,7 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
             lightColor = getAdjustedPrimaryColor()
             setSound(Uri.parse(soundUri), audioAttributes)
 
-            if (!config.timerVibrate) {
+            if (!timer.vibrate) {
                 vibrationPattern = longArrayOf(0L)
             }
 
@@ -321,7 +323,7 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
 
     builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
 
-    if (config.timerVibrate) {
+    if (timer.vibrate) {
         val vibrateArray = LongArray(2) { 500 }
         builder.setVibrate(vibrateArray)
     }

@@ -24,7 +24,7 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:padding="@dimen/normal_margin"
         android:src="@drawable/ic_reset_vector"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/timer_play_pause"
         app:layout_constraintEnd_toStartOf="@+id/timer_play_pause"
         app:layout_constraintStart_toStartOf="parent"

@@ -76,7 +76,7 @@ class TimerService : Service() {
                 .setContentTitle(label)
                 .setContentText(formattedDuration)
                 .setSmallIcon(R.drawable.ic_timer)
-                .setContentIntent(this.getOpenTimerTabIntent())
+                .setContentIntent(this.getOpenTimerTabIntent(0))
                 .setPriority(Notification.PRIORITY_DEFAULT)
                 .setSound(null)
                 .setOngoing(true)

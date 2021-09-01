@@ -12,6 +12,9 @@ interface TimerDao {
     @Query("SELECT * FROM timers")
     fun getTimers(): List<Timer>
 
+    @Query("SELECT * FROM timers WHERE id=:id")
+    fun getTimer(id: Long): Timer
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertOrUpdateTimer(timer: Timer): Long
 

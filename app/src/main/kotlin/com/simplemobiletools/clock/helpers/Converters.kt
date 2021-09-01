@@ -1,12 +1,11 @@
 package com.simplemobiletools.clock.helpers
 
 import androidx.room.TypeConverter
-import com.google.gson.Gson
+import com.simplemobiletools.clock.extensions.gson.gson
 import com.simplemobiletools.clock.models.StateWrapper
 import com.simplemobiletools.clock.models.TimerState
 
 class Converters {
-    private val gson = Gson()
 
     @TypeConverter
     fun jsonToTimerState(value: String): TimerState {
