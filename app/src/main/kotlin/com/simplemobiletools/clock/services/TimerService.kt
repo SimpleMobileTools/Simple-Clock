@@ -9,7 +9,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.IBinder
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.simplemobiletools.clock.R
@@ -20,9 +19,7 @@ import com.simplemobiletools.clock.helpers.INVALID_TIMER_ID
 import com.simplemobiletools.clock.helpers.TIMER_RUNNING_NOTIF_ID
 import com.simplemobiletools.clock.models.TimerEvent
 import com.simplemobiletools.clock.models.TimerState
-import com.simplemobiletools.commons.extensions.getFormattedDuration
 import com.simplemobiletools.commons.helpers.isOreoPlus
-import kotlin.math.roundToInt
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -114,16 +111,11 @@ class TimerService : Service() {
             .setChannelId(channelId)
 
         if (firstRunningTimerId != INVALID_TIMER_ID) {
-            Log.e(TAG, "notification: Setting content intent for $firstRunningTimerId" )
             builder.setContentIntent(this.getOpenTimerTabIntent(firstRunningTimerId))
         }
 
         builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
         return builder.build()
-    }
-
-    companion object {
-        private const val TAG = "TimerService"
     }
 }
 

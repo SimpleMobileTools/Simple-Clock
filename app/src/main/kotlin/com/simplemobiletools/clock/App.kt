@@ -5,7 +5,6 @@ import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
 import android.os.CountDownTimer
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
@@ -71,17 +70,14 @@ class App : Application(), LifecycleObserver {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: TimerEvent.Reset) {
-        Log.w(TAG, "onMessageEvent: $event")
         updateTimerState(event.timerId, TimerState.Idle)
         countDownTimers[event.timerId]?.cancel()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: TimerEvent.Start) {
-        Log.w(TAG, "onMessageEvent: $event")
         val countDownTimer = object : CountDownTimer(event.duration, 1000) {
             override fun onTick(tick: Long) {
-                Log.d(TAG, "onMessageEvent--> $tick")
                 updateTimerState(event.timerId, TimerState.Running(event.duration, tick))
             }
 
@@ -95,7 +91,6 @@ class App : Application(), LifecycleObserver {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: TimerEvent.Finish) {
-        Log.w(TAG, "onMessageEvent: $event")
         timerHelper.getTimer(event.timerId) { timer ->
             val pendingIntent = getOpenTimerTabIntent(event.timerId)
             val notification = getTimerNotification(timer, pendingIntent, false)
@@ -107,7 +102,6 @@ class App : Application(), LifecycleObserver {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: TimerEvent.Pause) {
-        Log.w(TAG, "onMessageEvent: $event")
         timerHelper.getTimer(event.timerId) { timer ->
             updateTimerState(event.timerId, TimerState.Paused(event.duration, (timer.state as TimerState.Running).tick))
             countDownTimers[event.timerId]?.cancel()
@@ -117,17 +111,9 @@ class App : Application(), LifecycleObserver {
     private fun updateTimerState(timerId: Long, state: TimerState) {
         timerHelper.getTimer(timerId) { timer ->
             val newTimer = timer.copy(state = state)
-            Log.w(TAG, "updateTimerState: $newTimer")
             timerHelper.insertOrUpdateTimer(newTimer) {
                 EventBus.getDefault().post(TimerEvent.Refresh(timerId))
-                timerHelper.getTimer(timerId) {
-                    Log.e(TAG, "updated timer $it")
-                }
             }
         }
-    }
-
-    companion object {
-        private const val TAG = "App"
     }
 }

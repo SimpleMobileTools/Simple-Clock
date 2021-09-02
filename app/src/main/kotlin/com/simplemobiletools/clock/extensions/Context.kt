@@ -13,7 +13,6 @@ import android.net.Uri
 import android.os.PowerManager
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
-import android.util.Log
 import android.widget.Toast
 import androidx.core.app.AlarmManagerCompat
 import androidx.core.app.NotificationCompat
@@ -21,7 +20,6 @@ import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.ReminderActivity
 import com.simplemobiletools.clock.activities.SnoozeReminderActivity
 import com.simplemobiletools.clock.activities.SplashActivity
-import com.simplemobiletools.clock.activities.printAllItems
 import com.simplemobiletools.clock.databases.AppDatabase
 import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.clock.interfaces.TimerDao
@@ -146,7 +144,6 @@ fun Context.getOpenTimerTabIntent(timerId: Long): PendingIntent {
     val intent = getLaunchIntent() ?: Intent(this, SplashActivity::class.java)
     intent.putExtra(OPEN_TAB, TAB_TIMER)
     intent.putExtra(TIMER_ID, timerId)
-    intent.extras?.printAllItems("getOpenTimerTabIntent")
     return PendingIntent.getActivity(this, TIMER_NOTIF_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }
 
@@ -263,7 +260,7 @@ fun Context.showAlarmNotification(alarm: Alarm) {
         scheduleNextAlarm(alarm, false)
     }
 }
-private const val TAG = "ALARMMMM"
+
 @SuppressLint("NewApi")
 fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, addDeleteIntent: Boolean): Notification {
     var soundUri = timer.soundUri
@@ -272,9 +269,6 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
     } else {
         grantReadUriPermission(soundUri)
     }
-
-    Log.w(TAG, "getTimerNotification: timerSOUNDURI=${timer.soundUri}")
-    Log.w(TAG, "getTimerNotification: soundUri=${soundUri}")
 
     val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     val channelId = timer.channelId ?: "simple_timer_channel_${soundUri}_${System.currentTimeMillis()}"

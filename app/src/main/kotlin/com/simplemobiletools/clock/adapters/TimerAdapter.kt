@@ -2,7 +2,6 @@ package com.simplemobiletools.clock.adapters
 
 import android.media.AudioManager
 import android.media.RingtoneManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,13 +20,24 @@ import com.simplemobiletools.commons.extensions.getDefaultAlarmSound
 import com.simplemobiletools.commons.extensions.getFormattedDuration
 import com.simplemobiletools.commons.extensions.onTextChangeListener
 import com.simplemobiletools.commons.models.AlarmSound
-import kotlin.math.roundToInt
 import kotlinx.android.synthetic.main.item_timer.view.*
 
 class TimerAdapter(
     private val activity: SimpleActivity,
     private val onRefresh: () -> Unit,
 ) : ListAdapter<Timer, TimerAdapter.TimerViewHolder>(diffUtil) {
+
+    companion object {
+        private val diffUtil = object : DiffUtil.ItemCallback<Timer>() {
+            override fun areItemsTheSame(oldItem: Timer, newItem: Timer): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: Timer, newItem: Timer): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TimerViewHolder {
         return TimerViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_timer, parent, false))
@@ -45,7 +55,6 @@ class TimerAdapter(
 
         init {
             itemView.timer_label.onTextChangeListener { text ->
-                Log.w(TAG, "timer_label")
                 updateTimer(getItemAt(adapterPosition).copy(label = text), false)
             }
 
@@ -79,7 +88,6 @@ class TimerAdapter(
                 }
 
                 timer_vibrate_holder.setOnClickListener {
-                    Log.w(TAG, "toggle")
                     timer_vibrate.toggle()
                     updateTimer(timer.copy(vibrate = timer_vibrate.isChecked), false)
                 }
@@ -127,34 +135,18 @@ class TimerAdapter(
     private fun changeDuration(timer: Timer) {
         MyTimePickerDialogDialog(activity, timer.seconds) { seconds ->
             val timerSeconds = if (seconds <= 0) 10 else seconds
-            Log.w(TAG, "changeDuration")
             updateTimer(timer.copy(seconds = timerSeconds))
         }
     }
 
     fun updateAlarmSound(timer: Timer, alarmSound: AlarmSound) {
-        Log.w(TAG, "updateAlarmSound: $timer")
         updateTimer(timer.copy(soundTitle = alarmSound.title, soundUri = alarmSound.uri, channelId = null))
     }
 
     private fun updateTimer(timer: Timer, refresh: Boolean = true) {
-        Log.w(TAG, "updateTimer: $timer")
         activity.timerHelper.insertOrUpdateTimer(timer){
             if (refresh) {
                 onRefresh.invoke()
-            }
-        }
-    }
-
-    companion object {
-        private const val TAG = "TimerAdapter"
-        private val diffUtil = object : DiffUtil.ItemCallback<Timer>() {
-            override fun areItemsTheSame(oldItem: Timer, newItem: Timer): Boolean {
-                return oldItem.id == newItem.id
-            }
-
-            override fun areContentsTheSame(oldItem: Timer, newItem: Timer): Boolean {
-                return oldItem == newItem
             }
         }
     }

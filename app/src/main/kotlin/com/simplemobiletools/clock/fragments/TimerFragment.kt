@@ -2,7 +2,6 @@ package com.simplemobiletools.clock.fragments
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,7 +52,6 @@ class TimerFragment : Fragment() {
             timer_view_pager.setPageTransformer { _, _ -> }
             timer_view_pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
-                    Log.i(TAG, "onPageSelected: $position")
                     updateViews(position)
                     indicator_view.setCurrentPosition(0)
                 }
@@ -115,24 +113,18 @@ class TimerFragment : Fragment() {
                 val timer = timerAdapter.getItemAt(position)
                 updateViewStates(timer.state)
                 view.timer_play_pause.beVisible()
-            } else {
-                Log.e(TAG, "updateViews: position $position is greater than adapter itemCount ${timerAdapter.itemCount}")
             }
         }
     }
 
     private fun refreshTimers(scrollToLatest: Boolean = false) {
         activity?.timerHelper?.getTimers { timers ->
-            Log.d(TAG, "refreshTimers: $timers")
             timerAdapter.submitList(timers) {
                 view.timer_view_pager.post {
-                    Log.e(TAG, "submitted list: timerPositionToScrollTo=$timerPositionToScrollTo")
                     if (timerPositionToScrollTo != INVALID_POSITION && timerAdapter.itemCount > timerPositionToScrollTo) {
-                        Log.e(TAG, "scrolling to position=$timerPositionToScrollTo")
                         view.timer_view_pager.setCurrentItem(timerPositionToScrollTo, false)
                         timerPositionToScrollTo = INVALID_POSITION
                     } else if (scrollToLatest) {
-                        Log.e(TAG, "scrolling to latest")
                         view.timer_view_pager.setCurrentItem(0, false)
                     }
                     updateViews(timer_view_pager.currentItem)
@@ -148,7 +140,6 @@ class TimerFragment : Fragment() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: TimerEvent.Refresh) {
-        Log.d(TAG, "onMessageEvent: $event")
         refreshTimers()
     }
 
@@ -180,25 +171,17 @@ class TimerFragment : Fragment() {
     }
 
     fun updatePosition(timerId: Long) {
-        Log.e(TAG, "updatePosition TIMER: $timerId")
         activity?.timerHelper?.getTimers { timers ->
             val position = timers.indexOfFirst { it.id == timerId }
-            Log.e(TAG, "updatePosition POSITION: $position")
             if (position != INVALID_POSITION) {
                 activity?.runOnUiThread {
                     if (timerAdapter.itemCount > position) {
-                        Log.e(TAG, "updatePosition now: $position")
                         view.timer_view_pager.setCurrentItem(position, false)
                     } else {
-                        Log.e(TAG, "updatePosition later: $position")
                         timerPositionToScrollTo = position
                     }
                 }
             }
         }
-    }
-
-    companion object {
-        private const val TAG = "TimerFragment"
     }
 }

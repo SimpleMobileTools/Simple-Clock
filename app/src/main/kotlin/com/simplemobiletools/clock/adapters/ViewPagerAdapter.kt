@@ -1,6 +1,5 @@
 package com.simplemobiletools.clock.adapters
 
-import android.util.Log
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -55,10 +54,7 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
         (fragments[TAB_TIMER] as? TimerFragment)?.updateAlarmSound(alarmSound)
     }
 
-    private val TAG = "ViewPagerAdapter"
-
     fun updateTimerPosition(timerId: Long) {
-        Log.e(TAG, "updateTimerPosition: $timerId")
         (fragments[TAB_TIMER] as? TimerFragment)?.updatePosition(timerId)
     }
 }

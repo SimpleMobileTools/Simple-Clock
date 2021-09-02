@@ -1,7 +1,6 @@
 package com.simplemobiletools.clock.helpers
 
 import android.content.Context
-import android.util.Log
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.timerDb
 import com.simplemobiletools.clock.models.Timer
@@ -24,8 +23,7 @@ class TimerHelper(val context: Context) {
 
     fun insertOrUpdateTimer(timer: Timer, callback: () -> Unit = {}) {
         ensureBackgroundThread {
-            val id = timerDao.insertOrUpdateTimer(timer)
-            Log.d(TAG, "insertOrUpdateTimer: $id")
+            timerDao.insertOrUpdateTimer(timer)
             callback.invoke()
         }
     }
@@ -56,9 +54,5 @@ class TimerHelper(val context: Context) {
 
             callback.invoke()
         }
-    }
-
-    companion object {
-        private const val TAG = "TimerHelper"
     }
 }

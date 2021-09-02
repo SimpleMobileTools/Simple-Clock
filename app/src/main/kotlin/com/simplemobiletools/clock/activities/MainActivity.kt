@@ -3,7 +3,6 @@ package com.simplemobiletools.clock.activities
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
@@ -24,7 +23,6 @@ import kotlinx.android.synthetic.main.activity_main.main_tabs_holder
 import kotlinx.android.synthetic.main.activity_main.view_pager
 
 class MainActivity : SimpleActivity() {
-    private val TAG = "MainActivity"
     private var storedTextColor = 0
     private var storedBackgroundColor = 0
     private var storedPrimaryColor = 0
@@ -32,7 +30,6 @@ class MainActivity : SimpleActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        intent.extras?.printAllItems("onCreate")
         appLaunched(BuildConfig.APPLICATION_ID)
         storeStateVariables()
         initFragments()
@@ -103,13 +100,11 @@ class MainActivity : SimpleActivity() {
     }
 
     override fun onNewIntent(intent: Intent) {
-        intent.extras?.printAllItems("onNewIntent")
         if (intent.extras?.containsKey(OPEN_TAB) == true) {
             val tabToOpen = intent.getIntExtra(OPEN_TAB, TAB_CLOCK)
             view_pager.setCurrentItem(tabToOpen, false)
             if (tabToOpen == TAB_TIMER) {
                 val timerId = intent.getLongExtra(TIMER_ID, INVALID_TIMER_ID)
-                Log.e(TAG, "onNewIntent: TIMER ID: $timerId")
                 (view_pager.adapter as ViewPagerAdapter).updateTimerPosition(timerId)
             }
         }
@@ -157,9 +152,7 @@ class MainActivity : SimpleActivity() {
         val tabToOpen = intent.getIntExtra(OPEN_TAB, config.lastUsedViewPagerPage)
         intent.removeExtra(OPEN_TAB)
         if (tabToOpen == TAB_TIMER) {
-            Log.e(TAG, "initFragments: TIMER")
             val timerId = intent.getLongExtra(TIMER_ID, INVALID_TIMER_ID)
-            Log.e(TAG, "initFragments: TIMER ID: $timerId")
             viewPagerAdapter.updateTimerPosition(timerId)
         }
         view_pager.currentItem = tabToOpen
@@ -211,11 +204,5 @@ class MainActivity : SimpleActivity() {
         )
 
         startAboutActivity(R.string.app_name, licenses, BuildConfig.VERSION_NAME, faqItems, true)
-    }
-}
-
-fun Bundle.printAllItems(where:String) {
-    for (key in keySet()) {
-        Log.e(where, "Item: key: $key - value: ${get(key)}")
     }
 }
