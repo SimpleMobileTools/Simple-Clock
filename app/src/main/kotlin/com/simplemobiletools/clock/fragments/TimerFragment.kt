@@ -53,9 +53,19 @@ class TimerFragment : Fragment() {
             timer_view_pager.setPageTransformer { _, _ -> }
             timer_view_pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
+                    Log.i(TAG, "onPageSelected: $position")
                     updateViews(position)
+                    indicator_view.setCurrentPosition(0)
                 }
             })
+
+            activity?.let {
+                val textColor = it.config.textColor
+                indicator_view.setSelectedDotColor(textColor)
+                indicator_view.setDotColor(textColor.adjustAlpha(0.5f))
+                indicator_view.attachToPager(timer_view_pager)
+            }
+
 
             timer_add.setOnClickListener {
                 activity?.hideKeyboard(it)
@@ -101,14 +111,12 @@ class TimerFragment : Fragment() {
 
     private fun updateViews(position: Int) {
         activity?.runOnUiThread {
-            if (timerAdapter.itemCount > 0) {
+            if (timerAdapter.itemCount > position) {
                 val timer = timerAdapter.getItemAt(position)
                 updateViewStates(timer.state)
                 view.timer_play_pause.beVisible()
             } else {
-                view.timer_delete.beGone()
-                view.timer_play_pause.beGone()
-                view.timer_reset.beGone()
+                Log.e(TAG, "updateViews: position $position is greater than adapter itemCount ${timerAdapter.itemCount}")
             }
         }
     }
@@ -117,15 +125,18 @@ class TimerFragment : Fragment() {
         activity?.timerHelper?.getTimers { timers ->
             Log.d(TAG, "refreshTimers: $timers")
             timerAdapter.submitList(timers) {
-                Log.e(TAG, "submitted list: timerPositionToScrollTo=$timerPositionToScrollTo")
-                if (timerPositionToScrollTo != INVALID_POSITION && timerAdapter.itemCount > timerPositionToScrollTo) {
-                    Log.e(TAG, "scrolling to position=$timerPositionToScrollTo")
-                    view.timer_view_pager.setCurrentItem(timerPositionToScrollTo, false)
-                    timerPositionToScrollTo = INVALID_POSITION
-                } else if (scrollToLatest) {
-                    view.timer_view_pager.setCurrentItem(0, false)
+                view.timer_view_pager.post {
+                    Log.e(TAG, "submitted list: timerPositionToScrollTo=$timerPositionToScrollTo")
+                    if (timerPositionToScrollTo != INVALID_POSITION && timerAdapter.itemCount > timerPositionToScrollTo) {
+                        Log.e(TAG, "scrolling to position=$timerPositionToScrollTo")
+                        view.timer_view_pager.setCurrentItem(timerPositionToScrollTo, false)
+                        timerPositionToScrollTo = INVALID_POSITION
+                    } else if (scrollToLatest) {
+                        Log.e(TAG, "scrolling to latest")
+                        view.timer_view_pager.setCurrentItem(0, false)
+                    }
+                    updateViews(timer_view_pager.currentItem)
                 }
-                updateViews(timer_view_pager.currentItem)
             }
         }
     }

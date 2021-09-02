@@ -1,13 +1,10 @@
 package com.simplemobiletools.clock.helpers
 
 import android.content.Context
-import android.media.RingtoneManager
 import android.util.Log
+import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.timerDb
 import com.simplemobiletools.clock.models.Timer
-import com.simplemobiletools.clock.models.TimerState
-import com.simplemobiletools.commons.extensions.getDefaultAlarmSound
-import com.simplemobiletools.commons.extensions.getDefaultAlarmTitle
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 
 class TimerHelper(val context: Context) {
@@ -42,17 +39,18 @@ class TimerHelper(val context: Context) {
 
     fun insertNewTimer(callback: () -> Unit = {}) {
         ensureBackgroundThread {
+            val config = context.config
             timerDao.insertOrUpdateTimer(
                 Timer(
                     id = null,
-//                    seconds = DEFAULT_TIME,
-                    seconds = 5,
-                    TimerState.Idle,
-                    false,
-                    context.getDefaultAlarmSound(RingtoneManager.TYPE_ALARM).uri,
-                    context.getDefaultAlarmTitle(RingtoneManager.TYPE_ALARM),
-                    "",
-                    System.currentTimeMillis(),
+                    seconds = config.timerSeconds,
+                    state = config.timerState,
+                    vibrate = config.timerVibrate,
+                    soundUri = config.timerSoundUri,
+                    soundTitle = config.timerSoundTitle,
+                    label = config.timerLabel ?: "",
+                    createdAt = System.currentTimeMillis(),
+                    channelId = config.timerChannelId,
                 )
             )
 
