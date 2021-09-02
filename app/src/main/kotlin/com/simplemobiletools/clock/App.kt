@@ -27,7 +27,7 @@ import org.greenrobot.eventbus.ThreadMode
 
 class App : Application(), LifecycleObserver {
 
-    private var timers = mutableMapOf<Long, CountDownTimer>()
+    private var countDownTimers = mutableMapOf<Long, CountDownTimer>()
 
     override fun onCreate() {
         super.onCreate()
@@ -62,7 +62,9 @@ class App : Application(), LifecycleObserver {
         timerHelper.getTimers { timers ->
             val runningTimers = timers.filter { it.state is TimerState.Running }
             runningTimers.forEach { timer ->
-                EventBus.getDefault().post(TimerEvent.Start(timer.id!!, (timer.state as TimerState.Running).tick))
+                if (countDownTimers[timer.id] == null) {
+                    EventBus.getDefault().post(TimerEvent.Start(timer.id!!, (timer.state as TimerState.Running).tick))
+                }
             }
         }
     }
@@ -71,7 +73,7 @@ class App : Application(), LifecycleObserver {
     fun onMessageEvent(event: TimerEvent.Reset) {
         Log.w(TAG, "onMessageEvent: $event")
         updateTimerState(event.timerId, TimerState.Idle)
-        timers[event.timerId]?.cancel()
+        countDownTimers[event.timerId]?.cancel()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -88,7 +90,7 @@ class App : Application(), LifecycleObserver {
                 EventBus.getDefault().post(TimerStopService)
             }
         }.start()
-        timers[event.timerId] = countDownTimer
+        countDownTimers[event.timerId] = countDownTimer
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -108,7 +110,7 @@ class App : Application(), LifecycleObserver {
         Log.w(TAG, "onMessageEvent: $event")
         timerHelper.getTimer(event.timerId) { timer ->
             updateTimerState(event.timerId, TimerState.Paused(event.duration, (timer.state as TimerState.Running).tick))
-            timers[event.timerId]?.cancel()
+            countDownTimers[event.timerId]?.cancel()
         }
     }
 

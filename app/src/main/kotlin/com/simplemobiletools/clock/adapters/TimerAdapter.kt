@@ -134,7 +134,7 @@ class TimerAdapter(
 
     fun updateAlarmSound(timer: Timer, alarmSound: AlarmSound) {
         Log.w(TAG, "updateAlarmSound: $timer")
-        updateTimer(timer.copy(soundTitle = alarmSound.title, soundUri = alarmSound.uri))
+        updateTimer(timer.copy(soundTitle = alarmSound.title, soundUri = alarmSound.uri, channelId = null))
     }
 
     private fun updateTimer(timer: Timer, refresh: Boolean = true) {

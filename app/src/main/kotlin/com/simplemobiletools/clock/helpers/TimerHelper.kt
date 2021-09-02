@@ -45,7 +45,8 @@ class TimerHelper(val context: Context) {
             timerDao.insertOrUpdateTimer(
                 Timer(
                     id = null,
-                    seconds = DEFAULT_TIME,
+//                    seconds = DEFAULT_TIME,
+                    seconds = 5,
                     TimerState.Idle,
                     false,
                     context.getDefaultAlarmSound(RingtoneManager.TYPE_ALARM).uri,

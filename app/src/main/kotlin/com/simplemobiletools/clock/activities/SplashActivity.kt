@@ -1,9 +1,7 @@
 package com.simplemobiletools.clock.activities
 
 import android.content.Intent
-import com.simplemobiletools.clock.helpers.OPEN_TAB
-import com.simplemobiletools.clock.helpers.TAB_ALARM
-import com.simplemobiletools.clock.helpers.TAB_CLOCK
+import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.commons.activities.BaseSplashActivity
 
 class SplashActivity : BaseSplashActivity() {
@@ -18,6 +16,7 @@ class SplashActivity : BaseSplashActivity() {
             intent.extras?.containsKey(OPEN_TAB) == true -> {
                 Intent(this, MainActivity::class.java).apply {
                     putExtra(OPEN_TAB, intent.getIntExtra(OPEN_TAB, TAB_CLOCK))
+                    putExtra(TIMER_ID, intent.getLongExtra(TIMER_ID, INVALID_TIMER_ID))
                     startActivity(this)
                 }
             }

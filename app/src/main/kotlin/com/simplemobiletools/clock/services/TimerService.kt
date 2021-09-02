@@ -9,12 +9,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.IBinder
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.getFormattedDuration
 import com.simplemobiletools.clock.extensions.getOpenTimerTabIntent
 import com.simplemobiletools.clock.extensions.timerHelper
+import com.simplemobiletools.clock.helpers.INVALID_TIMER_ID
 import com.simplemobiletools.clock.helpers.TIMER_RUNNING_NOTIF_ID
 import com.simplemobiletools.clock.models.TimerEvent
 import com.simplemobiletools.clock.models.TimerState
@@ -39,7 +41,7 @@ class TimerService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
         updateNotification()
-        startForeground(TIMER_RUNNING_NOTIF_ID, notification(getString(R.string.app_name), getString(R.string.timer_notification_msg), -1))
+        startForeground(TIMER_RUNNING_NOTIF_ID, notification(getString(R.string.app_name), getString(R.string.timer_notification_msg), INVALID_TIMER_ID))
         return START_NOT_STICKY
     }
 
@@ -111,12 +113,17 @@ class TimerService : Service() {
             .setAutoCancel(true)
             .setChannelId(channelId)
 
-        if (firstRunningTimerId != -1L) {
+        if (firstRunningTimerId != INVALID_TIMER_ID) {
+            Log.e(TAG, "notification: Setting content intent for $firstRunningTimerId" )
             builder.setContentIntent(this.getOpenTimerTabIntent(firstRunningTimerId))
         }
 
         builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
         return builder.build()
+    }
+
+    companion object {
+        private const val TAG = "TimerService"
     }
 }
 

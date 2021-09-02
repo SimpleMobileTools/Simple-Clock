@@ -27,9 +27,10 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
 class TimerFragment : Fragment() {
-
+    private val INVALID_POSITION = -1
     private lateinit var view: ViewGroup
     private lateinit var timerAdapter: TimerAdapter
+    private var timerPositionToScrollTo = INVALID_POSITION
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,8 +117,13 @@ class TimerFragment : Fragment() {
         activity?.timerHelper?.getTimers { timers ->
             Log.d(TAG, "refreshTimers: $timers")
             timerAdapter.submitList(timers) {
-                if (scrollToLatest) {
-                    view.timer_view_pager.currentItem = 0
+                Log.e(TAG, "submitted list: timerPositionToScrollTo=$timerPositionToScrollTo")
+                if (timerPositionToScrollTo != INVALID_POSITION && timerAdapter.itemCount > timerPositionToScrollTo) {
+                    Log.e(TAG, "scrolling to position=$timerPositionToScrollTo")
+                    view.timer_view_pager.setCurrentItem(timerPositionToScrollTo, false)
+                    timerPositionToScrollTo = INVALID_POSITION
+                } else if (scrollToLatest) {
+                    view.timer_view_pager.setCurrentItem(0, false)
                 }
                 updateViews(timer_view_pager.currentItem)
             }
@@ -159,6 +165,25 @@ class TimerFragment : Fragment() {
         val timer = timerAdapter.getItemAt(timer_view_pager.currentItem)
         activity?.timerHelper?.insertOrUpdateTimer(timer.copy(soundTitle = alarmSound.title, soundUri = alarmSound.uri)) {
             refreshTimers()
+        }
+    }
+
+    fun updatePosition(timerId: Long) {
+        Log.e(TAG, "updatePosition TIMER: $timerId")
+        activity?.timerHelper?.getTimers { timers ->
+            val position = timers.indexOfFirst { it.id == timerId }
+            Log.e(TAG, "updatePosition POSITION: $position")
+            if (position != INVALID_POSITION) {
+                activity?.runOnUiThread {
+                    if (timerAdapter.itemCount > position) {
+                        Log.e(TAG, "updatePosition now: $position")
+                        view.timer_view_pager.setCurrentItem(position, false)
+                    } else {
+                        Log.e(TAG, "updatePosition later: $position")
+                        timerPositionToScrollTo = position
+                    }
+                }
+            }
         }
     }
 

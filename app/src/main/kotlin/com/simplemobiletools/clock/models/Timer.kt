@@ -13,4 +13,5 @@ data class Timer(
     val soundTitle: String,
     val label: String,
     val createdAt: Long,
+    val channelId: String? = null,
 )
