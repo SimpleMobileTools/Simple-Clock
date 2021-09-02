@@ -37,7 +37,8 @@
 
         <activity
             android:name=".activities.MainActivity"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan"/>
 
         <activity
             android:name=".activities.ReminderActivity"
