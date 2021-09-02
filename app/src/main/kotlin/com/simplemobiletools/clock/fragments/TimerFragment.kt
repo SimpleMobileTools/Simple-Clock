@@ -53,7 +53,6 @@ class TimerFragment : Fragment() {
             timer_view_pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     updateViews(position)
-                    indicator_view.setCurrentPosition(0)
                 }
             })
 
@@ -145,8 +144,8 @@ class TimerFragment : Fragment() {
 
     private fun updateViewStates(state: TimerState) {
         val resetPossible = state is TimerState.Running || state is TimerState.Paused || state is TimerState.Finished
-        view.timer_reset.beVisibleIf(resetPossible)
-        view.timer_delete.beVisibleIf(!resetPossible && timerAdapter.itemCount > 1)
+        view.timer_reset.beInvisibleIf(!resetPossible)
+        view.timer_delete.beInvisibleIf(!(!resetPossible && timerAdapter.itemCount > 1))
 
         val drawableId = if (state is TimerState.Running) {
             R.drawable.ic_pause_vector
