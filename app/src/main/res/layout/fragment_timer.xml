@@ -6,87 +6,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/timer_view_pager"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="@dimen/medium_margin"
-        android:layout_marginBottom="@dimen/medium_margin"
+    <com.simplemobiletools.commons.views.MyRecyclerView
+        android:id="@+id/timers_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/timer_play_pause"
-        app:layout_constraintEnd_toStartOf="@id/indicator_view"
+        android:paddingBottom="@dimen/fab_list_bottom_padding"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_timer" />
 
-    <com.simplemobiletools.clock.views.pageindicator.PagerIndicator
-        android:id="@+id/indicator_view"
+    <com.simplemobiletools.commons.views.MyFloatingActionButton
+        android:id="@+id/timer_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/medium_margin"
-        app:layout_constraintBottom_toTopOf="@id/timer_play_pause"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05"
-        app:spi_orientation="vertical" />
-
-    <ImageView
-        android:id="@+id/timer_reset"
-        android:layout_width="@dimen/stopwatch_button_small_size"
-        android:layout_height="@dimen/stopwatch_button_small_size"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:padding="@dimen/normal_margin"
-        android:src="@drawable/ic_reset_vector"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/timer_play_pause"
-        app:layout_constraintEnd_toStartOf="@+id/timer_play_pause"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/timer_play_pause"
-        tools:visibility="gone" />
-
-    <ImageView
-        android:id="@+id/timer_delete"
-        android:layout_width="@dimen/stopwatch_button_small_size"
-        android:layout_height="@dimen/stopwatch_button_small_size"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:padding="@dimen/normal_margin"
-        android:src="@drawable/ic_delete_vector"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/timer_play_pause"
-        app:layout_constraintEnd_toStartOf="@+id/timer_play_pause"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/timer_play_pause"
-        tools:visibility="visible" />
-
-
-    <ImageView
-        android:id="@+id/timer_play_pause"
-        android:layout_width="@dimen/stopwatch_button_size"
-        android:layout_height="@dimen/stopwatch_button_size"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/big_margin"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:padding="@dimen/activity_margin"
-        android:src="@drawable/ic_play_vector"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/activity_margin"
+        android:contentDescription="@string/new_timer"
+        android:src="@drawable/ic_plus_vector"
+        app:backgroundTint="@color/color_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-    <ImageView
-        android:id="@+id/timer_add"
-        android:layout_width="@dimen/stopwatch_button_size"
-        android:layout_height="@dimen/stopwatch_button_size"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/big_margin"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:padding="@dimen/activity_margin"
-        android:src="@drawable/ic_add_vector"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/timer_play_pause" />
-
+        app:rippleColor="@color/pressed_item_foreground" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -22,6 +22,7 @@
     <string name="timer_multiple_notification_msg">%d timers are running</string>
     <string name="timer_single_notification_label_msg">Timer for %s is running</string>
     <string name="timer_single_notification_msg">%d timer is running</string>
+    <string name="new_timer">New Timer</string>
 
     <!-- Settings -->
     <string name="clock_tab">Saat sekmesi</string>

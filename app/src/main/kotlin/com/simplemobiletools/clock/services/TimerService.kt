@@ -49,15 +49,9 @@ class TimerService : Service() {
                 val firstTimer = runningTimers.first()
                 val formattedDuration = (firstTimer.state as TimerState.Running).tick.getFormattedDuration()
                 val contextText = when {
-                    runningTimers.size > 1 -> {
-                        getString(R.string.timer_multiple_notification_msg, runningTimers.size)
-                    }
-                    firstTimer.label.isNotEmpty() -> {
-                        getString(R.string.timer_single_notification_label_msg, firstTimer.label)
-                    }
-                    else -> {
-                        getString(R.string.timer_single_notification_msg, runningTimers.size)
-                    }
+                    runningTimers.size > 1 -> getString(R.string.timer_multiple_notification_msg, runningTimers.size)
+                    firstTimer.label.isNotEmpty() -> getString(R.string.timer_single_notification_label_msg, firstTimer.label)
+                    else -> getString(R.string.timer_single_notification_msg, runningTimers.size)
                 }
                 startForeground(TIMER_RUNNING_NOTIF_ID, notification(formattedDuration, contextText, firstTimer.id!!))
             }

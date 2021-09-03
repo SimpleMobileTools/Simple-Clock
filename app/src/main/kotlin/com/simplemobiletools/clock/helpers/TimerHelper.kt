@@ -51,7 +51,6 @@ class TimerHelper(val context: Context) {
                     channelId = config.timerChannelId,
                 )
             )
-
             callback.invoke()
         }
     }
