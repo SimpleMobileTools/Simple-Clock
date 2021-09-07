@@ -8,8 +8,11 @@ import androidx.fragment.app.Fragment
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.adapters.TimerAdapter
+import com.simplemobiletools.clock.dialogs.EditTimerDialog
 import com.simplemobiletools.clock.extensions.config
+import com.simplemobiletools.clock.extensions.createNewTimer
 import com.simplemobiletools.clock.extensions.timerHelper
+import com.simplemobiletools.clock.models.Timer
 import com.simplemobiletools.clock.models.TimerEvent
 import com.simplemobiletools.commons.extensions.hideKeyboard
 import com.simplemobiletools.commons.extensions.updateTextColors
@@ -27,6 +30,7 @@ class TimerFragment : Fragment() {
     private lateinit var timerAdapter: TimerAdapter
     private var timerPositionToScrollTo = INVALID_POSITION
     private var storedTextColor = 0
+    private var currentEditAlarmDialog: EditTimerDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +44,7 @@ class TimerFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         view = (inflater.inflate(R.layout.fragment_timer, container, false) as ViewGroup).apply {
-            timerAdapter = TimerAdapter(requireActivity() as SimpleActivity) {
-                refreshTimers()
-            }
+            timerAdapter = TimerAdapter(requireActivity() as SimpleActivity, ::refreshTimers, ::openEditTimer)
 
             storeStateVariables()
 
@@ -50,9 +52,9 @@ class TimerFragment : Fragment() {
             timers_list.itemAnimator = null
 
             timer_add.setOnClickListener {
-                activity?.hideKeyboard(it)
-                activity?.timerHelper?.insertNewTimer {
-                    refreshTimers(true)
+                activity?.run {
+                    hideKeyboard()
+                    openEditTimer(createNewTimer())
                 }
             }
 
@@ -74,7 +76,6 @@ class TimerFragment : Fragment() {
         super.onPause()
         storeStateVariables()
     }
-
 
     private fun refreshTimers(scrollToLatest: Boolean = false) {
         activity?.timerHelper?.getTimers { timers ->
@@ -101,7 +102,7 @@ class TimerFragment : Fragment() {
     }
 
     fun updateAlarmSound(alarmSound: AlarmSound) {
-        timerAdapter.updateAlarmSoundForSelectedTimer(alarmSound)
+        currentEditAlarmDialog?.updateAlarmSound(alarmSound)
     }
 
     fun updatePosition(timerId: Long) {
@@ -116,6 +117,13 @@ class TimerFragment : Fragment() {
                     }
                 }
             }
+        }
+    }
+
+    private fun openEditTimer(timer: Timer) {
+        currentEditAlarmDialog = EditTimerDialog(activity as SimpleActivity, timer) {
+            currentEditAlarmDialog = null
+            refreshTimers()
         }
     }
 }

@@ -1,8 +1,6 @@
 package com.simplemobiletools.clock.adapters
 
 import android.graphics.Color
-import android.media.AudioManager
-import android.media.RingtoneManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,19 +11,17 @@ import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.dialogs.MyTimePickerDialogDialog
 import com.simplemobiletools.clock.extensions.*
-import com.simplemobiletools.clock.helpers.PICK_AUDIO_FILE_INTENT_ID
 import com.simplemobiletools.clock.models.Timer
 import com.simplemobiletools.clock.models.TimerEvent
 import com.simplemobiletools.clock.models.TimerState
-import com.simplemobiletools.commons.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.models.AlarmSound
 import kotlinx.android.synthetic.main.item_timer.view.*
 import org.greenrobot.eventbus.EventBus
 
 class TimerAdapter(
     private val activity: SimpleActivity,
     private val onRefresh: () -> Unit,
+    private val onClick: (Timer) -> Unit,
 ) : ListAdapter<Timer, TimerAdapter.TimerViewHolder>(diffUtil) {
 
     companion object {
@@ -42,12 +38,7 @@ class TimerAdapter(
 
     private val config = activity.config
     private var textColor = config.textColor
-    private var primaryColor = config.primaryColor
     private var adjustedPrimaryColor = activity.getAdjustedPrimaryColor()
-    private var contrastColor = adjustedPrimaryColor.getContrastColor()
-    private var backgroundColor = config.backgroundColor
-
-    private var selectedTimer: Timer? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TimerViewHolder {
         return TimerViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_timer, parent, false))
@@ -62,29 +53,11 @@ class TimerAdapter(
         onRefresh.invoke()
     }
 
-    fun updatePrimaryColor(primaryColor: Int) {
-        this.primaryColor = primaryColor
-        adjustedPrimaryColor = activity.getAdjustedPrimaryColor()
-        contrastColor = adjustedPrimaryColor.getContrastColor()
-        onRefresh.invoke()
-    }
-
     inner class TimerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        init {
-            itemView.timer_label.onTextChangeListener { text ->
-                updateTimer(getItem(adapterPosition).copy(label = text), false)
-            }
-
-        }
 
         fun bind(timer: Timer) {
             itemView.apply {
                 post {
-                    timer_initial_time.colorLeftDrawable(textColor)
-                    timer_vibrate.colorLeftDrawable(textColor)
-                    timer_label_image.applyColorFilter(textColor)
-                    timer_sound.colorLeftDrawable(textColor)
                     timer_play_pause.background = activity.resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, adjustedPrimaryColor)
                     timer_play_pause.applyColorFilter(if (adjustedPrimaryColor == Color.WHITE) Color.BLACK else Color.WHITE)
                     timer_reset.applyColorFilter(textColor)
@@ -97,16 +70,6 @@ class TimerAdapter(
                     timer_label.setText(timer.label)
                 }
 
-                timer_initial_time.text = timer.seconds.getFormattedDuration()
-                timer_initial_time.setTextColor(textColor)
-
-                timer_vibrate.isChecked = timer.vibrate
-                timer_vibrate.setTextColor(textColor)
-                timer_vibrate.setColors(textColor, adjustedPrimaryColor, backgroundColor)
-                timer_vibrate_holder.setOnClickListener {
-                    timer_vibrate.toggle()
-                    updateTimer(timer.copy(vibrate = timer_vibrate.isChecked, channelId = null), false)
-                }
 
                 timer_time.setTextColor(textColor)
                 timer_time.text = when (timer.state) {
@@ -117,33 +80,6 @@ class TimerAdapter(
                 }
                 timer_time.setOnClickListener {
                     changeDuration(timer)
-                }
-
-                timer_initial_time.setTextColor(textColor)
-                timer_initial_time.setOnClickListener {
-                    changeDuration(timer)
-                }
-
-
-                timer_sound.text = timer.soundTitle
-                timer_sound.setTextColor(textColor)
-                timer_sound.setOnClickListener {
-                    selectedTimer = timer
-                    SelectAlarmSoundDialog(activity, timer.soundUri, AudioManager.STREAM_ALARM, PICK_AUDIO_FILE_INTENT_ID,
-                        RingtoneManager.TYPE_ALARM, true,
-                        onAlarmPicked = { sound ->
-                            if (sound != null) {
-                                updateAlarmSound(timer, sound)
-                            }
-                        },
-                        onAlarmSoundDeleted = { sound ->
-                            if (timer.soundUri == sound.uri) {
-                                val defaultAlarm = context.getDefaultAlarmSound(RingtoneManager.TYPE_ALARM)
-                                updateAlarmSound(timer, defaultAlarm)
-                            }
-
-                            context.checkAlarmsWithDeletedSoundUri(sound.uri)
-                        })
                 }
 
                 timer_delete.applyColorFilter(textColor)
@@ -167,7 +103,12 @@ class TimerAdapter(
                         is TimerState.Finished -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis))
                     }
                 }
+
                 updateViewStates(timer.state)
+
+                setOnClickListener {
+                    onClick.invoke(timer)
+                }
             }
         }
 
@@ -186,14 +127,6 @@ class TimerAdapter(
             val timerSeconds = if (seconds <= 0) 10 else seconds
             updateTimer(timer.copy(seconds = timerSeconds))
         }
-    }
-
-    fun updateAlarmSoundForSelectedTimer(alarmSound: AlarmSound) {
-        selectedTimer?.let { updateAlarmSound(it, alarmSound) }
-    }
-
-    fun updateAlarmSound(timer: Timer, alarmSound: AlarmSound) {
-        updateTimer(timer.copy(soundTitle = alarmSound.title, soundUri = alarmSound.uri, channelId = null))
     }
 
     private fun updateTimer(timer: Timer, refresh: Boolean = true) {

@@ -85,6 +85,10 @@ fun Context.createNewAlarm(timeInMinutes: Int, weekDays: Int): Alarm {
     return Alarm(0, timeInMinutes, weekDays, false, false, defaultAlarmSound.title, defaultAlarmSound.uri, "")
 }
 
+fun Context.createNewTimer(): Timer {
+    return Timer(null, config.timerSeconds, config.timerState, config.timerVibrate, config.timerSoundUri, config.timerSoundTitle, config.timerLabel ?: "", System.currentTimeMillis(), config.timerChannelId, )
+}
+
 fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
     val calendar = Calendar.getInstance()
     calendar.firstDayOfWeek = Calendar.MONDAY
@@ -166,7 +170,8 @@ fun Context.hideNotification(id: Int) {
 fun Context.hideTimerNotification() = hideNotification(TIMER_NOTIF_ID)
 
 fun Context.updateWidgets() {
-    val widgetsCnt = AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(ComponentName(applicationContext, MyWidgetDateTimeProvider::class.java)) ?: return
+    val widgetsCnt =
+        AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(ComponentName(applicationContext, MyWidgetDateTimeProvider::class.java)) ?: return
     if (widgetsCnt.isNotEmpty()) {
         val ids = intArrayOf(R.xml.widget_date_time_info)
         Intent(applicationContext, MyWidgetDateTimeProvider::class.java).apply {
@@ -179,7 +184,8 @@ fun Context.updateWidgets() {
 
 @SuppressLint("NewApi")
 fun Context.scheduleNextWidgetUpdate() {
-    val widgetsCnt = AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(ComponentName(applicationContext, MyWidgetDateTimeProvider::class.java)) ?: return
+    val widgetsCnt =
+        AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(ComponentName(applicationContext, MyWidgetDateTimeProvider::class.java)) ?: return
     if (widgetsCnt.isEmpty()) {
         return
     }

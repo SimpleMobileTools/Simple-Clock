@@ -5,13 +5,13 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "timers")
 data class Timer(
-    @PrimaryKey(autoGenerate = true) val id: Long?,
-    val seconds: Int,
+    @PrimaryKey(autoGenerate = true) var id: Long?,
+    var seconds: Int,
     val state: TimerState,
-    val vibrate: Boolean,
-    val soundUri: String,
-    val soundTitle: String,
-    val label: String,
-    val createdAt: Long,
-    val channelId: String? = null,
+    var vibrate: Boolean,
+    var soundUri: String,
+    var soundTitle: String,
+    var label: String,
+    var createdAt: Long,
+    var channelId: String? = null,
 )
