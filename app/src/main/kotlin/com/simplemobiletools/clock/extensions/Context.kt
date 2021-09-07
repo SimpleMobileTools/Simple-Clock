@@ -144,7 +144,7 @@ fun Context.getOpenAlarmTabIntent(): PendingIntent {
     return PendingIntent.getActivity(this, OPEN_ALARMS_TAB_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }
 
-fun Context.getOpenTimerTabIntent(timerId: Long): PendingIntent {
+fun Context.getOpenTimerTabIntent(timerId: Int): PendingIntent {
     val intent = getLaunchIntent() ?: Intent(this, SplashActivity::class.java)
     intent.putExtra(OPEN_TAB, TAB_TIMER)
     intent.putExtra(TIMER_ID, timerId)

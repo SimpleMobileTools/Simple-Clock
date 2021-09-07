@@ -104,7 +104,7 @@ class MainActivity : SimpleActivity() {
             val tabToOpen = intent.getIntExtra(OPEN_TAB, TAB_CLOCK)
             view_pager.setCurrentItem(tabToOpen, false)
             if (tabToOpen == TAB_TIMER) {
-                val timerId = intent.getLongExtra(TIMER_ID, INVALID_TIMER_ID)
+                val timerId = intent.getIntExtra(TIMER_ID, INVALID_TIMER_ID)
                 (view_pager.adapter as ViewPagerAdapter).updateTimerPosition(timerId)
             }
         }
@@ -152,7 +152,7 @@ class MainActivity : SimpleActivity() {
         val tabToOpen = intent.getIntExtra(OPEN_TAB, config.lastUsedViewPagerPage)
         intent.removeExtra(OPEN_TAB)
         if (tabToOpen == TAB_TIMER) {
-            val timerId = intent.getLongExtra(TIMER_ID, INVALID_TIMER_ID)
+            val timerId = intent.getIntExtra(TIMER_ID, INVALID_TIMER_ID)
             viewPagerAdapter.updateTimerPosition(timerId)
         }
         view_pager.currentItem = tabToOpen

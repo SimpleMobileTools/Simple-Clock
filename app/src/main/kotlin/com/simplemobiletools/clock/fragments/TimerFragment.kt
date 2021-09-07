@@ -44,7 +44,7 @@ class TimerFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         view = (inflater.inflate(R.layout.fragment_timer, container, false) as ViewGroup).apply {
-            timerAdapter = TimerAdapter(requireActivity() as SimpleActivity, ::refreshTimers, ::openEditTimer)
+            timerAdapter = TimerAdapter(requireActivity() as SimpleActivity, timers_list, ::refreshTimers, ::openEditTimer)
 
             storeStateVariables()
 
@@ -105,7 +105,7 @@ class TimerFragment : Fragment() {
         currentEditAlarmDialog?.updateAlarmSound(alarmSound)
     }
 
-    fun updatePosition(timerId: Long) {
+    fun updatePosition(timerId: Int) {
         activity?.timerHelper?.getTimers { timers ->
             val position = timers.indexOfFirst { it.id == timerId }
             if (position != INVALID_POSITION) {

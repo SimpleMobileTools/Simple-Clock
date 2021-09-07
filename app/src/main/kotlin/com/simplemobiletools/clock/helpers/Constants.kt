@@ -47,7 +47,7 @@ const val TAB_ALARM = 1
 const val TAB_STOPWATCH = 2
 const val TAB_TIMER = 3
 const val TIMER_ID = "timer_id"
-const val INVALID_TIMER_ID = -1L
+const val INVALID_TIMER_ID = -1
 
 // stopwatch sorting
 const val SORT_BY_LAP = 1

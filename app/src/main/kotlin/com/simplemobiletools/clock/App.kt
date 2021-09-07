@@ -26,7 +26,7 @@ import org.greenrobot.eventbus.ThreadMode
 
 class App : Application(), LifecycleObserver {
 
-    private var countDownTimers = mutableMapOf<Long, CountDownTimer>()
+    private var countDownTimers = mutableMapOf<Int, CountDownTimer>()
 
     override fun onCreate() {
         super.onCreate()
@@ -108,7 +108,7 @@ class App : Application(), LifecycleObserver {
         }
     }
 
-    private fun updateTimerState(timerId: Long, state: TimerState) {
+    private fun updateTimerState(timerId: Int, state: TimerState) {
         timerHelper.getTimer(timerId) { timer ->
             val newTimer = timer.copy(state = state)
             timerHelper.insertOrUpdateTimer(newTimer) {

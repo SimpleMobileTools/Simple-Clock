@@ -14,7 +14,7 @@ class TimerHelper(val context: Context) {
         }
     }
 
-    fun getTimer(timerId: Long, callback: (timer: Timer) -> Unit) {
+    fun getTimer(timerId: Int, callback: (timer: Timer) -> Unit) {
         ensureBackgroundThread {
             callback.invoke(timerDao.getTimer(timerId))
         }
@@ -27,9 +27,16 @@ class TimerHelper(val context: Context) {
         }
     }
 
-    fun deleteTimer(id: Long, callback: () -> Unit = {}) {
+    fun deleteTimer(id: Int, callback: () -> Unit = {}) {
         ensureBackgroundThread {
             timerDao.deleteTimer(id)
+            callback.invoke()
+        }
+    }
+
+    fun deleteTimers(timers: List<Timer>, callback: () -> Unit = {}) {
+        ensureBackgroundThread {
+            timerDao.deleteTimers(timers)
             callback.invoke()
         }
     }

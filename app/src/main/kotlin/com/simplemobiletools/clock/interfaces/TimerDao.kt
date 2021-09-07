@@ -1,9 +1,6 @@
 package com.simplemobiletools.clock.interfaces
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.simplemobiletools.clock.models.Timer
 
 @Dao
@@ -13,11 +10,14 @@ interface TimerDao {
     fun getTimers(): List<Timer>
 
     @Query("SELECT * FROM timers WHERE id=:id")
-    fun getTimer(id: Long): Timer
+    fun getTimer(id: Int): Timer
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertOrUpdateTimer(timer: Timer): Long
 
     @Query("DELETE FROM timers WHERE id=:id")
-    fun deleteTimer(id: Long)
+    fun deleteTimer(id: Int)
+
+    @Delete
+    fun deleteTimers(list: List<Timer>)
 }

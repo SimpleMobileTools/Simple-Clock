@@ -82,7 +82,7 @@ class TimerService : Service() {
     }
 
     @TargetApi(Build.VERSION_CODES.O)
-    private fun notification(title: String, contentText: String, firstRunningTimerId: Long): Notification {
+    private fun notification(title: String, contentText: String, firstRunningTimerId: Int): Notification {
         val channelId = "simple_alarm_timer"
         val label = getString(R.string.timer)
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
