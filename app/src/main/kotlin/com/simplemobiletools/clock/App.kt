@@ -14,7 +14,7 @@ import com.facebook.stetho.Stetho
 import com.simplemobiletools.clock.extensions.getOpenTimerTabIntent
 import com.simplemobiletools.clock.extensions.getTimerNotification
 import com.simplemobiletools.clock.extensions.timerHelper
-import com.simplemobiletools.clock.helpers.TIMER_NOTIF_ID
+import com.simplemobiletools.clock.helpers.INVALID_TIMER_ID
 import com.simplemobiletools.clock.models.TimerEvent
 import com.simplemobiletools.clock.models.TimerState
 import com.simplemobiletools.clock.services.TimerStopService
@@ -75,6 +75,14 @@ class App : Application(), LifecycleObserver {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: TimerEvent.Delete) {
+        countDownTimers[event.timerId]?.cancel()
+        timerHelper.deleteTimer(event.timerId){
+            EventBus.getDefault().post(TimerEvent.Refresh(INVALID_TIMER_ID))
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: TimerEvent.Start) {
         val countDownTimer = object : CountDownTimer(event.duration, 1000) {
             override fun onTick(tick: Long) {
@@ -95,7 +103,7 @@ class App : Application(), LifecycleObserver {
             val pendingIntent = getOpenTimerTabIntent(event.timerId)
             val notification = getTimerNotification(timer, pendingIntent, false)
             val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.notify(TIMER_NOTIF_ID, notification)
+            notificationManager.notify(event.timerId, notification)
             updateTimerState(event.timerId, TimerState.Finished)
         }
     }

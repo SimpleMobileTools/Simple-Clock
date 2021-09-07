@@ -148,7 +148,7 @@ fun Context.getOpenTimerTabIntent(timerId: Int): PendingIntent {
     val intent = getLaunchIntent() ?: Intent(this, SplashActivity::class.java)
     intent.putExtra(OPEN_TAB, TAB_TIMER)
     intent.putExtra(TIMER_ID, timerId)
-    return PendingIntent.getActivity(this, TIMER_NOTIF_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    return PendingIntent.getActivity(this, timerId, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }
 
 fun Context.getAlarmIntent(alarm: Alarm): PendingIntent {
@@ -167,7 +167,7 @@ fun Context.hideNotification(id: Int) {
     manager.cancel(id)
 }
 
-fun Context.hideTimerNotification() = hideNotification(TIMER_NOTIF_ID)
+fun Context.hideTimerNotification(timerId: Int) = hideNotification(timerId)
 
 fun Context.updateWidgets() {
     val widgetsCnt =
@@ -321,7 +321,7 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
         .setAutoCancel(true)
         .setSound(Uri.parse(soundUri), STREAM_ALARM)
         .setChannelId(channelId)
-        .addAction(R.drawable.ic_cross_vector, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getHideTimerPendingIntent())
+        .addAction(R.drawable.ic_cross_vector, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getHideTimerPendingIntent(timer.id!!))
 
     if (addDeleteIntent) {
         builder.setDeleteIntent(reminderActivityIntent)
@@ -339,9 +339,10 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
     return notification
 }
 
-fun Context.getHideTimerPendingIntent(): PendingIntent {
+fun Context.getHideTimerPendingIntent(timerId: Int): PendingIntent {
     val intent = Intent(this, HideTimerReceiver::class.java)
-    return PendingIntent.getBroadcast(this, TIMER_NOTIF_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    intent.putExtra(TIMER_ID, timerId)
+    return PendingIntent.getBroadcast(this, timerId, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }
 
 fun Context.getHideAlarmPendingIntent(alarm: Alarm): PendingIntent {

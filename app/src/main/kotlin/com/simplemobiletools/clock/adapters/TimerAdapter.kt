@@ -10,7 +10,6 @@ import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.getFormattedDuration
 import com.simplemobiletools.clock.extensions.hideTimerNotification
 import com.simplemobiletools.clock.extensions.secondsToMillis
-import com.simplemobiletools.clock.extensions.timerHelper
 import com.simplemobiletools.clock.models.Timer
 import com.simplemobiletools.clock.models.TimerEvent
 import com.simplemobiletools.clock.models.TimerState
@@ -93,9 +92,7 @@ class TimerAdapter(
             getItem(position)
         }
         removeSelectedItems(positions)
-        activity.timerHelper.deleteTimers(timersToRemove) {
-            onRefresh.invoke()
-        }
+        timersToRemove.forEach(::deleteTimer)
     }
 
     private fun setupView(view: View, timer: Timer) {
@@ -117,7 +114,7 @@ class TimerAdapter(
 
             timer_reset.applyColorFilter(textColor)
             timer_reset.setOnClickListener {
-                stopTimer(timer)
+                resetTimer(timer)
             }
 
             timer_play_pause.applyColorFilter(if (adjustedPrimaryColor == Color.WHITE) Color.BLACK else Color.WHITE)
@@ -139,8 +136,13 @@ class TimerAdapter(
         }
     }
 
-    private fun stopTimer(timer: Timer) {
+    private fun resetTimer(timer: Timer) {
         EventBus.getDefault().post(TimerEvent.Reset(timer.id!!, timer.seconds.secondsToMillis))
-        simpleActivity.hideTimerNotification()
+        simpleActivity.hideTimerNotification(timer.id!!)
+    }
+
+    private fun deleteTimer(timer: Timer) {
+        EventBus.getDefault().post(TimerEvent.Delete(timer.id!!))
+        simpleActivity.hideTimerNotification(timer.id!!)
     }
 }

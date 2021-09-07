@@ -38,7 +38,6 @@ const val OPEN_ALARMS_TAB_INTENT_ID = 9996
 const val UPDATE_WIDGET_INTENT_ID = 9997
 const val OPEN_APP_INTENT_ID = 9998
 const val ALARM_NOTIF_ID = 9998
-const val TIMER_NOTIF_ID = 9999
 const val TIMER_RUNNING_NOTIF_ID = 10000
 
 const val OPEN_TAB = "open_tab"
