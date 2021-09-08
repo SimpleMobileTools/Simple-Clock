@@ -12,6 +12,7 @@ import com.simplemobiletools.clock.dialogs.EditTimerDialog
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.createNewTimer
 import com.simplemobiletools.clock.extensions.timerHelper
+import com.simplemobiletools.clock.helpers.DisabledItemChangeAnimator
 import com.simplemobiletools.clock.models.Timer
 import com.simplemobiletools.clock.models.TimerEvent
 import com.simplemobiletools.commons.extensions.hideKeyboard
@@ -49,7 +50,7 @@ class TimerFragment : Fragment() {
             storeStateVariables()
 
             timers_list.adapter = timerAdapter
-            timers_list.itemAnimator = null
+            timers_list.itemAnimator = DisabledItemChangeAnimator()
 
             timer_add.setOnClickListener {
                 activity?.run {
@@ -81,11 +82,13 @@ class TimerFragment : Fragment() {
         activity?.timerHelper?.getTimers { timers ->
             timerAdapter.submitList(timers) {
                 view.timers_list.post {
-                    if (timerPositionToScrollTo != INVALID_POSITION && timerAdapter.itemCount > timerPositionToScrollTo) {
-                        view.timers_list.scrollToPosition(timerPositionToScrollTo)
-                        timerPositionToScrollTo = INVALID_POSITION
-                    } else if (scrollToLatest) {
-                        view.timers_list.scrollToPosition(timers.lastIndex)
+                    if (getView() != null) {
+                        if (timerPositionToScrollTo != INVALID_POSITION && timerAdapter.itemCount > timerPositionToScrollTo) {
+                            view.timers_list.scrollToPosition(timerPositionToScrollTo)
+                            timerPositionToScrollTo = INVALID_POSITION
+                        } else if (scrollToLatest) {
+                            view.timers_list.scrollToPosition(timers.lastIndex)
+                        }
                     }
                 }
             }

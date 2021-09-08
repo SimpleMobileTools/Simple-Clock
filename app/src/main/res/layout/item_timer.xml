@@ -21,7 +21,7 @@
             android:id="@+id/timer_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/stopwatch_text_size"
+            android:textSize="@dimen/alarm_text_size"
             app:layout_constraintEnd_toStartOf="@id/timer_reset"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -43,8 +43,8 @@
 
         <ImageView
             android:id="@+id/timer_reset"
-            android:layout_width="@dimen/stopwatch_button_small_size"
-            android:layout_height="@dimen/stopwatch_button_small_size"
+            android:layout_width="@dimen/timer_button_small_size"
+            android:layout_height="@dimen/timer_button_small_size"
             android:layout_marginStart="@dimen/bigger_margin"
             android:layout_marginEnd="@dimen/bigger_margin"
             android:background="?attr/selectableItemBackgroundBorderless"
@@ -59,8 +59,8 @@
 
         <ImageView
             android:id="@+id/timer_play_pause"
-            android:layout_width="@dimen/stopwatch_button_size"
-            android:layout_height="@dimen/stopwatch_button_size"
+            android:layout_width="@dimen/timer_button_size"
+            android:layout_height="@dimen/timer_button_size"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/bigger_margin"
