@@ -6,13 +6,13 @@ import android.content.Intent
 import com.simplemobiletools.clock.extensions.hideTimerNotification
 import com.simplemobiletools.clock.helpers.INVALID_TIMER_ID
 import com.simplemobiletools.clock.helpers.TIMER_ID
-import com.simplemobiletools.clock.models.TimerState
+import com.simplemobiletools.clock.models.TimerEvent
 import org.greenrobot.eventbus.EventBus
 
 class HideTimerReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val timerId = intent.getIntExtra(TIMER_ID, INVALID_TIMER_ID)
         context.hideTimerNotification(timerId)
-        EventBus.getDefault().post(TimerState.Idle)
+        EventBus.getDefault().post(TimerEvent.Reset(timerId, ))
     }
 }

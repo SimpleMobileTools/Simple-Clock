@@ -137,7 +137,7 @@ class TimerAdapter(
     }
 
     private fun resetTimer(timer: Timer) {
-        EventBus.getDefault().post(TimerEvent.Reset(timer.id!!, timer.seconds.secondsToMillis))
+        EventBus.getDefault().post(TimerEvent.Reset(timer.id!!))
         simpleActivity.hideTimerNotification(timer.id!!)
     }
 

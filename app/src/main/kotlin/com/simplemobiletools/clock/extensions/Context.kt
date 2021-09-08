@@ -311,7 +311,7 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
 
     val reminderActivityIntent = getReminderActivityIntent()
     val builder = NotificationCompat.Builder(this)
-        .setContentTitle(getString(R.string.timer))
+        .setContentTitle(if(timer.label.isEmpty()) getString(R.string.timer) else timer.label)
         .setContentText(getString(R.string.time_expired))
         .setSmallIcon(R.drawable.ic_timer)
         .setContentIntent(pendingIntent)
