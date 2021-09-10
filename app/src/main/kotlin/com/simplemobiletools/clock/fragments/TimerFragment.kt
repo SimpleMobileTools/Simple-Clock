@@ -45,23 +45,23 @@ class TimerFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         view = (inflater.inflate(R.layout.fragment_timer, container, false) as ViewGroup).apply {
-            timerAdapter = TimerAdapter(requireActivity() as SimpleActivity, timers_list, ::refreshTimers, ::openEditTimer)
-
             storeStateVariables()
-
-            timers_list.adapter = timerAdapter
             timers_list.itemAnimator = DisabledItemChangeAnimator()
-
             timer_add.setOnClickListener {
                 activity?.run {
                     hideKeyboard()
                     openEditTimer(createNewTimer())
                 }
             }
-
-            refreshTimers()
         }
+        initAdapter()
+        refreshTimers()
         return view
+    }
+
+    private fun initAdapter() {
+        timerAdapter = TimerAdapter(requireActivity() as SimpleActivity, view.timers_list, ::refreshTimers, ::openEditTimer)
+        view.timers_list.adapter = timerAdapter
     }
 
     override fun onResume() {
@@ -69,7 +69,9 @@ class TimerFragment : Fragment() {
         requireContext().updateTextColors(timer_fragment)
         val configTextColor = requireContext().config.textColor
         if (storedTextColor != configTextColor) {
-            (view.timers_list.adapter as TimerAdapter).updateTextColor(configTextColor)
+            initAdapter()
+            timerAdapter.updateTextColor(configTextColor)
+            refreshTimers()
         }
     }
 
