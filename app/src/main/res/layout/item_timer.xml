@@ -21,6 +21,7 @@
             android:id="@+id/timer_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:includeFontPadding="false"
             android:textSize="@dimen/alarm_text_size"
             app:layout_constraintEnd_toStartOf="@id/timer_reset"
             app:layout_constraintStart_toStartOf="parent"
