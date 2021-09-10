@@ -25,8 +25,8 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
 class TimerService : Service() {
-
     private val bus = EventBus.getDefault()
+    private var isStopping = false
 
     override fun onCreate() {
         super.onCreate()
@@ -37,6 +37,7 @@ class TimerService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
+        isStopping = false
         updateNotification()
         startForeground(TIMER_RUNNING_NOTIF_ID, notification(getString(R.string.app_name), getString(R.string.timer_notification_msg), INVALID_TIMER_ID))
         return START_NOT_STICKY
@@ -54,6 +55,8 @@ class TimerService : Service() {
                     else -> getString(R.string.timer_single_notification_msg, runningTimers.size)
                 }
                 startForeground(TIMER_RUNNING_NOTIF_ID, notification(formattedDuration, contextText, firstTimer.id!!))
+            } else {
+                stopService()
             }
         }
     }
@@ -65,10 +68,13 @@ class TimerService : Service() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: TimerEvent.Refresh) {
-        updateNotification()
+        if(!isStopping){
+            updateNotification()
+        }
     }
 
     private fun stopService() {
+        isStopping = true
         if (isOreoPlus()) {
             stopForeground(true)
         } else {
