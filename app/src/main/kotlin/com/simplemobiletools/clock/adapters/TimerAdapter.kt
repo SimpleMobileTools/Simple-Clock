@@ -1,6 +1,5 @@
 package com.simplemobiletools.clock.adapters
 
-import android.graphics.Color
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
@@ -117,7 +116,7 @@ class TimerAdapter(
                 resetTimer(timer)
             }
 
-            timer_play_pause.applyColorFilter(if (adjustedPrimaryColor == Color.WHITE) Color.BLACK else Color.WHITE)
+            timer_play_pause.applyColorFilter(textColor)
             timer_play_pause.setOnClickListener {
                 when (val state = timer.state) {
                     is TimerState.Idle -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis))
@@ -131,8 +130,7 @@ class TimerAdapter(
             val resetPossible = state is TimerState.Running || state is TimerState.Paused || state is TimerState.Finished
             timer_reset.beInvisibleIf(!resetPossible)
             val drawableId = if (state is TimerState.Running) R.drawable.ic_pause_vector else R.drawable.ic_play_vector
-            val iconColor = if (adjustedPrimaryColor == Color.WHITE) Color.BLACK else Color.WHITE
-            timer_play_pause.setImageDrawable(simpleActivity.resources.getColoredDrawableWithColor(drawableId, iconColor))
+            timer_play_pause.setImageDrawable(simpleActivity.resources.getColoredDrawableWithColor(drawableId, textColor))
         }
     }
 
