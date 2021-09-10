@@ -23,6 +23,7 @@ class EditTimerDialog(val activity: SimpleActivity, val timer: Timer, val callba
 
         view.apply {
 
+            edit_timer_initial_time.colorLeftDrawable(textColor)
             edit_timer_initial_time.text = timer.seconds.getFormattedDuration()
             edit_timer_initial_time.setTextColor(textColor)
             edit_timer_initial_time.setOnClickListener {
