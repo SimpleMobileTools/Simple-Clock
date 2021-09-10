@@ -15,8 +15,8 @@
     <string name="clock_and_date">Ώρα και ημερομηνία</string>
     <string name="use_text_shadow">Χρήση σκιάς κειμένου</string>
     <string name="swipe_right_to_dismiss">Σαρώστε δεξιά για απόρριψη ή αριστερά για αναβολή.</string>
-    <string name="sort_by_creation_order">Creation order</string>
-    <string name="sort_by_alarm_time">Alarm time</string>
+    <string name="sort_by_creation_order">Σειρά δημιουργίας</string>
+    <string name="sort_by_alarm_time">Ώρα Αφύπνισης</string>
 
     <!-- Settings -->
     <string name="clock_tab">Ετικέτα Ρολογιού</string>
