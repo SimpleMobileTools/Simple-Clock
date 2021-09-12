@@ -5,6 +5,7 @@ import android.media.RingtoneManager
 import com.simplemobiletools.clock.extensions.gson.gson
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.clock.models.StateWrapper
+import com.simplemobiletools.clock.models.Timer
 import com.simplemobiletools.clock.models.TimerState
 import com.simplemobiletools.commons.extensions.getDefaultAlarmSound
 import com.simplemobiletools.commons.extensions.getDefaultAlarmTitle
@@ -78,6 +79,12 @@ class Config(context: Context) : BaseConfig(context) {
             gson.fromJson(lastAlarm, Alarm::class.java)
         }
         set(alarm) = prefs.edit().putString(ALARM_LAST_CONFIG, gson.toJson(alarm)).apply()
+
+    var timerLastConfig: Timer?
+        get() = prefs.getString(TIMER_LAST_CONFIG, null)?.let { lastAlarm ->
+            gson.fromJson(lastAlarm, Timer::class.java)
+        }
+        set(alarm) = prefs.edit().putString(TIMER_LAST_CONFIG, gson.toJson(alarm)).apply()
 
     var timerChannelId: String?
         get() = prefs.getString(TIMER_CHANNEL_ID, null)

@@ -17,6 +17,17 @@
     <string name="sort_by_creation_order">Poradia vytvorenia</string>
     <string name="sort_by_alarm_time">Času budíka</string>
 
+    <!--Timer-->
+    <string name="timers_notification_msg">Sú spustené časovače</string>
+    <string name="timer_single_notification_label_msg">Beží časovač pre %s</string>
+    <string name="new_timer">Nový časovač</string>
+
+    <plurals name="timer_notification_msg">
+        <item quantity="one">Beží %d časovač</item>
+        <item quantity="few">Bežia %d časovače</item>
+        <item quantity="other">Beží %d časovačov</item>
+    </plurals>
+
     <!-- Settings -->
     <string name="clock_tab">Okno s časom</string>
     <string name="alarm_tab">Okno s budíkom</string>

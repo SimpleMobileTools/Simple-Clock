@@ -19,7 +19,8 @@ import com.simplemobiletools.commons.helpers.LICENSE_RTL
 import com.simplemobiletools.commons.helpers.LICENSE_STETHO
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.models.FAQItem
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.main_tabs_holder
+import kotlinx.android.synthetic.main.activity_main.view_pager
 
 class MainActivity : SimpleActivity() {
     private var storedTextColor = 0
@@ -30,7 +31,6 @@ class MainActivity : SimpleActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         appLaunched(BuildConfig.APPLICATION_ID)
-
         storeStateVariables()
         initFragments()
 
@@ -101,8 +101,14 @@ class MainActivity : SimpleActivity() {
 
     override fun onNewIntent(intent: Intent) {
         if (intent.extras?.containsKey(OPEN_TAB) == true) {
-            view_pager.setCurrentItem(intent.getIntExtra(OPEN_TAB, TAB_CLOCK), false)
+            val tabToOpen = intent.getIntExtra(OPEN_TAB, TAB_CLOCK)
+            view_pager.setCurrentItem(tabToOpen, false)
+            if (tabToOpen == TAB_TIMER) {
+                val timerId = intent.getIntExtra(TIMER_ID, INVALID_TIMER_ID)
+                (view_pager.adapter as ViewPagerAdapter).updateTimerPosition(timerId)
+            }
         }
+        super.onNewIntent(intent)
     }
 
     private fun storeStateVariables() {
@@ -136,7 +142,8 @@ class MainActivity : SimpleActivity() {
     private fun getViewPagerAdapter() = view_pager.adapter as? ViewPagerAdapter
 
     private fun initFragments() {
-        view_pager.adapter = ViewPagerAdapter(supportFragmentManager)
+        val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
+        view_pager.adapter = viewPagerAdapter
         view_pager.onPageChangeListener {
             main_tabs_holder.getTabAt(it)?.select()
             invalidateOptionsMenu()
@@ -144,6 +151,10 @@ class MainActivity : SimpleActivity() {
 
         val tabToOpen = intent.getIntExtra(OPEN_TAB, config.lastUsedViewPagerPage)
         intent.removeExtra(OPEN_TAB)
+        if (tabToOpen == TAB_TIMER) {
+            val timerId = intent.getIntExtra(TIMER_ID, INVALID_TIMER_ID)
+            viewPagerAdapter.updateTimerPosition(timerId)
+        }
         view_pager.currentItem = tabToOpen
         view_pager.offscreenPageLimit = TABS_COUNT - 1
         main_tabs_holder.onTabSelectionChanged(

@@ -11,10 +11,10 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.facebook.stetho.Stetho
-import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.getOpenTimerTabIntent
 import com.simplemobiletools.clock.extensions.getTimerNotification
-import com.simplemobiletools.clock.helpers.TIMER_NOTIF_ID
+import com.simplemobiletools.clock.extensions.timerHelper
+import com.simplemobiletools.clock.models.TimerEvent
 import com.simplemobiletools.clock.models.TimerState
 import com.simplemobiletools.clock.services.TimerStopService
 import com.simplemobiletools.clock.services.startTimerService
@@ -25,8 +25,7 @@ import org.greenrobot.eventbus.ThreadMode
 
 class App : Application(), LifecycleObserver {
 
-    private var timer: CountDownTimer? = null
-    private var lastTick = 0L
+    private var countDownTimers = mutableMapOf<Int, CountDownTimer>()
 
     override fun onCreate() {
         super.onCreate()
@@ -48,63 +47,80 @@ class App : Application(), LifecycleObserver {
     @RequiresApi(Build.VERSION_CODES.O)
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     private fun onAppBackgrounded() {
-        if (config.timerState is TimerState.Running) {
-            startTimerService(this)
+        timerHelper.getTimers { timers ->
+            if (timers.any { it.state is TimerState.Running }) {
+                startTimerService(this)
+            }
         }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     private fun onAppForegrounded() {
         EventBus.getDefault().post(TimerStopService)
+        timerHelper.getTimers { timers ->
+            val runningTimers = timers.filter { it.state is TimerState.Running }
+            runningTimers.forEach { timer ->
+                if (countDownTimers[timer.id] == null) {
+                    EventBus.getDefault().post(TimerEvent.Start(timer.id!!, (timer.state as TimerState.Running).tick))
+                }
+            }
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(state: TimerState.Idle) {
-        config.timerState = state
-        timer?.cancel()
+    fun onMessageEvent(event: TimerEvent.Reset) {
+        updateTimerState(event.timerId, TimerState.Idle)
+        countDownTimers[event.timerId]?.cancel()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(state: TimerState.Start) {
-        timer = object : CountDownTimer(state.duration, 1000) {
+    fun onMessageEvent(event: TimerEvent.Delete) {
+        countDownTimers[event.timerId]?.cancel()
+        timerHelper.deleteTimer(event.timerId){
+            EventBus.getDefault().post(TimerEvent.Refresh)
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: TimerEvent.Start) {
+        val countDownTimer = object : CountDownTimer(event.duration, 1000) {
             override fun onTick(tick: Long) {
-                lastTick = tick
-
-                val newState = TimerState.Running(state.duration, tick)
-                EventBus.getDefault().post(newState)
-                config.timerState = newState
+                updateTimerState(event.timerId, TimerState.Running(event.duration, tick))
             }
 
             override fun onFinish() {
-                EventBus.getDefault().post(TimerState.Finish(state.duration))
+                EventBus.getDefault().post(TimerEvent.Finish(event.timerId, event.duration))
                 EventBus.getDefault().post(TimerStopService)
             }
         }.start()
+        countDownTimers[event.timerId] = countDownTimer
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(event: TimerState.Finish) {
-        val pendingIntent = getOpenTimerTabIntent()
-        val notification = getTimerNotification(pendingIntent, false)
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.notify(TIMER_NOTIF_ID, notification)
-
-        EventBus.getDefault().post(TimerState.Finished)
+    fun onMessageEvent(event: TimerEvent.Finish) {
+        timerHelper.getTimer(event.timerId) { timer ->
+            val pendingIntent = getOpenTimerTabIntent(event.timerId)
+            val notification = getTimerNotification(timer, pendingIntent, false)
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.notify(event.timerId, notification)
+            updateTimerState(event.timerId, TimerState.Finished)
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(state: TimerState.Finished) {
-        config.timerState = state
+    fun onMessageEvent(event: TimerEvent.Pause) {
+        timerHelper.getTimer(event.timerId) { timer ->
+            updateTimerState(event.timerId, TimerState.Paused(event.duration, (timer.state as TimerState.Running).tick))
+            countDownTimers[event.timerId]?.cancel()
+        }
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(event: TimerState.Pause) {
-        EventBus.getDefault().post(TimerState.Paused(event.duration, lastTick))
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(state: TimerState.Paused) {
-        config.timerState = state
-        timer?.cancel()
+    private fun updateTimerState(timerId: Int, state: TimerState) {
+        timerHelper.getTimer(timerId) { timer ->
+            val newTimer = timer.copy(state = state)
+            timerHelper.insertOrUpdateTimer(newTimer) {
+                EventBus.getDefault().post(TimerEvent.Refresh)
+            }
+        }
     }
 }

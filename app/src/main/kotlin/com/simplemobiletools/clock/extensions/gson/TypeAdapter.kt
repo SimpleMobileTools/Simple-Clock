@@ -7,11 +7,8 @@ import com.simplemobiletools.clock.models.TimerState
 
 val timerStates = valueOf<TimerState>()
         .registerSubtype(TimerState.Idle::class.java)
-        .registerSubtype(TimerState.Start::class.java)
         .registerSubtype(TimerState.Running::class.java)
-        .registerSubtype(TimerState.Pause::class.java)
         .registerSubtype(TimerState.Paused::class.java)
-        .registerSubtype(TimerState.Finish::class.java)
         .registerSubtype(TimerState.Finished::class.java)
 
 inline fun <reified T : Any> valueOf(): RuntimeTypeAdapterFactory<T> = RuntimeTypeAdapterFactory.of(T::class.java)

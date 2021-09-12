@@ -1,7 +1,9 @@
 package com.simplemobiletools.clock.helpers
 
 import com.simplemobiletools.clock.models.MyTimeZone
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.TimeZone
 import kotlin.math.pow
 
 // shared preferences
@@ -18,6 +20,7 @@ const val TIMER_LABEL = "timer_label"
 const val TIMER_MAX_REMINDER_SECS = "timer_max_reminder_secs"
 const val ALARM_MAX_REMINDER_SECS = "alarm_max_reminder_secs"
 const val ALARM_LAST_CONFIG = "alarm_last_config"
+const val TIMER_LAST_CONFIG = "timer_last_config"
 const val USE_TEXT_SHADOW = "use_text_shadow"
 const val INCREASE_VOLUME_GRADUALLY = "increase_volume_gradually"
 const val ALARMS_SORT_BY = "alarms_sort_by"
@@ -35,7 +38,6 @@ const val OPEN_ALARMS_TAB_INTENT_ID = 9996
 const val UPDATE_WIDGET_INTENT_ID = 9997
 const val OPEN_APP_INTENT_ID = 9998
 const val ALARM_NOTIF_ID = 9998
-const val TIMER_NOTIF_ID = 9999
 const val TIMER_RUNNING_NOTIF_ID = 10000
 
 const val OPEN_TAB = "open_tab"
@@ -43,6 +45,8 @@ const val TAB_CLOCK = 0
 const val TAB_ALARM = 1
 const val TAB_STOPWATCH = 2
 const val TAB_TIMER = 3
+const val TIMER_ID = "timer_id"
+const val INVALID_TIMER_ID = -1
 
 // stopwatch sorting
 const val SORT_BY_LAP = 1
@@ -55,6 +59,8 @@ const val SORT_BY_ALARM_TIME = 1
 
 const val TODAY_BIT = -1
 const val TOMORROW_BIT = -2
+
+const val DEFAULT_TIME = 300
 
 fun getDefaultTimeZoneTitle(id: Int) = getAllTimeZones().firstOrNull { it.id == id }?.title ?: ""
 

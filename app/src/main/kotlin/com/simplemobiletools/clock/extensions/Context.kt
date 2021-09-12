@@ -20,9 +20,12 @@ import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.ReminderActivity
 import com.simplemobiletools.clock.activities.SnoozeReminderActivity
 import com.simplemobiletools.clock.activities.SplashActivity
+import com.simplemobiletools.clock.databases.AppDatabase
 import com.simplemobiletools.clock.helpers.*
+import com.simplemobiletools.clock.interfaces.TimerDao
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.clock.models.MyTimeZone
+import com.simplemobiletools.clock.models.Timer
 import com.simplemobiletools.clock.receivers.AlarmReceiver
 import com.simplemobiletools.clock.receivers.DateTimeWidgetUpdateReceiver
 import com.simplemobiletools.clock.receivers.HideAlarmReceiver
@@ -39,6 +42,8 @@ import kotlin.math.pow
 val Context.config: Config get() = Config.newInstance(applicationContext)
 
 val Context.dbHelper: DBHelper get() = DBHelper.newInstance(applicationContext)
+val Context.timerDb: TimerDao get() = AppDatabase.getInstance(applicationContext).TimerDao()
+val Context.timerHelper: TimerHelper get() = TimerHelper(this)
 
 fun Context.getFormattedDate(calendar: Calendar): String {
     val dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7    // make sure index 0 means monday
@@ -78,6 +83,10 @@ fun Context.getModifiedTimeZoneTitle(id: Int) = getAllTimeZonesModified().firstO
 fun Context.createNewAlarm(timeInMinutes: Int, weekDays: Int): Alarm {
     val defaultAlarmSound = getDefaultAlarmSound(RingtoneManager.TYPE_ALARM)
     return Alarm(0, timeInMinutes, weekDays, false, false, defaultAlarmSound.title, defaultAlarmSound.uri, "")
+}
+
+fun Context.createNewTimer(): Timer {
+    return Timer(null, config.timerSeconds, config.timerState, config.timerVibrate, config.timerSoundUri, config.timerSoundTitle, config.timerLabel ?: "", System.currentTimeMillis(), config.timerChannelId, )
 }
 
 fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
@@ -135,10 +144,11 @@ fun Context.getOpenAlarmTabIntent(): PendingIntent {
     return PendingIntent.getActivity(this, OPEN_ALARMS_TAB_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }
 
-fun Context.getOpenTimerTabIntent(): PendingIntent {
+fun Context.getOpenTimerTabIntent(timerId: Int): PendingIntent {
     val intent = getLaunchIntent() ?: Intent(this, SplashActivity::class.java)
     intent.putExtra(OPEN_TAB, TAB_TIMER)
-    return PendingIntent.getActivity(this, TIMER_NOTIF_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    intent.putExtra(TIMER_ID, timerId)
+    return PendingIntent.getActivity(this, timerId, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }
 
 fun Context.getAlarmIntent(alarm: Alarm): PendingIntent {
@@ -157,10 +167,11 @@ fun Context.hideNotification(id: Int) {
     manager.cancel(id)
 }
 
-fun Context.hideTimerNotification() = hideNotification(TIMER_NOTIF_ID)
+fun Context.hideTimerNotification(timerId: Int) = hideNotification(timerId)
 
 fun Context.updateWidgets() {
-    val widgetsCnt = AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(ComponentName(applicationContext, MyWidgetDateTimeProvider::class.java)) ?: return
+    val widgetsCnt =
+        AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(ComponentName(applicationContext, MyWidgetDateTimeProvider::class.java)) ?: return
     if (widgetsCnt.isNotEmpty()) {
         val ids = intArrayOf(R.xml.widget_date_time_info)
         Intent(applicationContext, MyWidgetDateTimeProvider::class.java).apply {
@@ -173,7 +184,8 @@ fun Context.updateWidgets() {
 
 @SuppressLint("NewApi")
 fun Context.scheduleNextWidgetUpdate() {
-    val widgetsCnt = AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(ComponentName(applicationContext, MyWidgetDateTimeProvider::class.java)) ?: return
+    val widgetsCnt =
+        AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(ComponentName(applicationContext, MyWidgetDateTimeProvider::class.java)) ?: return
     if (widgetsCnt.isEmpty()) {
         return
     }
@@ -256,8 +268,8 @@ fun Context.showAlarmNotification(alarm: Alarm) {
 }
 
 @SuppressLint("NewApi")
-fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: Boolean): Notification {
-    var soundUri = config.timerSoundUri
+fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, addDeleteIntent: Boolean): Notification {
+    var soundUri = timer.soundUri
     if (soundUri == SILENT) {
         soundUri = ""
     } else {
@@ -265,8 +277,8 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
     }
 
     val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-    val channelId = config.timerChannelId ?: "simple_timer_channel_${soundUri}_${System.currentTimeMillis()}"
-    config.timerChannelId = channelId
+    val channelId = timer.channelId ?: "simple_timer_channel_${soundUri}_${System.currentTimeMillis()}"
+    timerHelper.insertOrUpdateTimer(timer.copy(channelId = channelId))
 
     if (isOreoPlus()) {
         try {
@@ -288,7 +300,7 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
             lightColor = getAdjustedPrimaryColor()
             setSound(Uri.parse(soundUri), audioAttributes)
 
-            if (!config.timerVibrate) {
+            if (!timer.vibrate) {
                 vibrationPattern = longArrayOf(0L)
             }
 
@@ -299,7 +311,7 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
 
     val reminderActivityIntent = getReminderActivityIntent()
     val builder = NotificationCompat.Builder(this)
-        .setContentTitle(getString(R.string.timer))
+        .setContentTitle(if(timer.label.isEmpty()) getString(R.string.timer) else timer.label)
         .setContentText(getString(R.string.time_expired))
         .setSmallIcon(R.drawable.ic_timer)
         .setContentIntent(pendingIntent)
@@ -309,7 +321,7 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
         .setAutoCancel(true)
         .setSound(Uri.parse(soundUri), STREAM_ALARM)
         .setChannelId(channelId)
-        .addAction(R.drawable.ic_cross_vector, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getHideTimerPendingIntent())
+        .addAction(R.drawable.ic_cross_vector, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getHideTimerPendingIntent(timer.id!!))
 
     if (addDeleteIntent) {
         builder.setDeleteIntent(reminderActivityIntent)
@@ -317,7 +329,7 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
 
     builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
 
-    if (config.timerVibrate) {
+    if (timer.vibrate) {
         val vibrateArray = LongArray(2) { 500 }
         builder.setVibrate(vibrateArray)
     }
@@ -327,9 +339,10 @@ fun Context.getTimerNotification(pendingIntent: PendingIntent, addDeleteIntent: 
     return notification
 }
 
-fun Context.getHideTimerPendingIntent(): PendingIntent {
+fun Context.getHideTimerPendingIntent(timerId: Int): PendingIntent {
     val intent = Intent(this, HideTimerReceiver::class.java)
-    return PendingIntent.getBroadcast(this, TIMER_NOTIF_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    intent.putExtra(TIMER_ID, timerId)
+    return PendingIntent.getBroadcast(this, timerId, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }
 
 fun Context.getHideAlarmPendingIntent(alarm: Alarm): PendingIntent {
