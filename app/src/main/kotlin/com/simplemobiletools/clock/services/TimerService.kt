@@ -39,7 +39,7 @@ class TimerService : Service() {
         super.onStartCommand(intent, flags, startId)
         isStopping = false
         updateNotification()
-        startForeground(TIMER_RUNNING_NOTIF_ID, notification(getString(R.string.app_name), getString(R.string.timer_notification_msg), INVALID_TIMER_ID))
+        startForeground(TIMER_RUNNING_NOTIF_ID, notification(getString(R.string.app_name), getString(R.string.timers_notification_msg), INVALID_TIMER_ID))
         return START_NOT_STICKY
     }
 
@@ -50,9 +50,8 @@ class TimerService : Service() {
                 val firstTimer = runningTimers.first()
                 val formattedDuration = (firstTimer.state as TimerState.Running).tick.getFormattedDuration()
                 val contextText = when {
-                    runningTimers.size > 1 -> getString(R.string.timer_multiple_notification_msg, runningTimers.size)
                     firstTimer.label.isNotEmpty() -> getString(R.string.timer_single_notification_label_msg, firstTimer.label)
-                    else -> getString(R.string.timer_single_notification_msg, runningTimers.size)
+                    else -> resources.getQuantityString(R.plurals.timer_notification_msg, runningTimers.size, runningTimers.size)
                 }
                 startForeground(TIMER_RUNNING_NOTIF_ID, notification(formattedDuration, contextText, firstTimer.id!!))
             } else {
