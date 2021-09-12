@@ -23,6 +23,7 @@
     <string name="new_timer">New Timer</string>
 
     <plurals name="timer_notification_msg">
+        <item quantity="one">%d timer is running</item>
         <item quantity="other">%d timers are running</item>
     </plurals>
 
