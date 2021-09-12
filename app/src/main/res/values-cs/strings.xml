@@ -24,7 +24,7 @@
 
     <plurals name="timer_notification_msg">
         <item quantity="one">%d timer is running</item>
-        <item quantity="few">%d timers is running</item>
+        <item quantity="few">%d timers are running</item>
         <item quantity="other">%d timers are running</item>
     </plurals>
 
