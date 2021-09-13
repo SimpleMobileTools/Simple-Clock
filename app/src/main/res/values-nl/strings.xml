@@ -18,20 +18,20 @@
     <string name="sort_by_alarm_time">Alarmtijd</string>
 
     <!--Timer-->
-    <string name="timers_notification_msg">Timers are running</string>
-    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">New Timer</string>
+    <string name="timers_notification_msg">Timers lopen/string>
+    <string name="timer_single_notification_label_msg">Timer voor %s loopt</string>
+    <string name="new_timer">Nieuwe Timer</string>
 
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d timer loopt/item>
+        <item quantity="other">%d timers lopen</item>
     </plurals>
 
     <!-- Settings -->
     <string name="clock_tab">Tab Klok</string>
     <string name="alarm_tab">Tab Alarm</string>
     <string name="stopwatch_tab">Tab Stopwatch</string>
-    <string name="timer_tab">Tab Timer</string>
+    <string name="timer_tab">Tab Timers</string>
     <string name="show_seconds">Seconden tonen</string>
     <string name="increase_volume_gradually">Volume geleidelijk verhogen</string>
 
