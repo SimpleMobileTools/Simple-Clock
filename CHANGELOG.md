@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.6.0 *(2021-09-15)*
+----------------------------
+
+ * Allow creating multiple timers
+ * Added some UI and translation improvements
+
 Version 5.5.1 *(2021-04-19)*
 ----------------------------
 

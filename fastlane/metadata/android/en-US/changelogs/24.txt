@@ -1,0 +1,2 @@
+ * Allow creating multiple timers
+ * Added some UI and translation improvements
