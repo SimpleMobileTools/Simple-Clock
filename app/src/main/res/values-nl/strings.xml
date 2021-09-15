@@ -18,12 +18,12 @@
     <string name="sort_by_alarm_time">Alarmtijd</string>
 
     <!--Timer-->
-    <string name="timers_notification_msg">Timers lopen/string>
+    <string name="timers_notification_msg">Timers lopen</string>
     <string name="timer_single_notification_label_msg">Timer voor %s loopt</string>
     <string name="new_timer">Nieuwe Timer</string>
 
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer loopt/item>
+        <item quantity="one">%d timer loopt</item>
         <item quantity="other">%d timers lopen</item>
     </plurals>
 
