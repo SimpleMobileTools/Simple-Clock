@@ -1,6 +1,8 @@
 package com.simplemobiletools.clock.fragments
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,9 +20,8 @@ import com.simplemobiletools.clock.models.TimerEvent
 import com.simplemobiletools.commons.extensions.hideKeyboard
 import com.simplemobiletools.commons.extensions.updateTextColors
 import com.simplemobiletools.commons.models.AlarmSound
-import kotlinx.android.synthetic.main.fragment_timer.timer_fragment
-import kotlinx.android.synthetic.main.fragment_timer.view.timer_add
-import kotlinx.android.synthetic.main.fragment_timer.view.timers_list
+import kotlinx.android.synthetic.main.fragment_timer.*
+import kotlinx.android.synthetic.main.fragment_timer.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -54,8 +55,17 @@ class TimerFragment : Fragment() {
                 }
             }
         }
+
         initAdapter()
         refreshTimers()
+
+        // the initial timer is created asynchronously at first launch, make sure we show it once created
+        if (context?.config?.appRunCount == 1) {
+            Handler(Looper.getMainLooper()).postDelayed({
+                refreshTimers()
+            }, 1000)
+        }
+
         return view
     }
 
