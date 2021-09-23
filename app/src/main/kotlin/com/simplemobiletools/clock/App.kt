@@ -5,15 +5,15 @@ import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
 import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.facebook.stetho.Stetho
-import com.simplemobiletools.clock.extensions.getOpenTimerTabIntent
-import com.simplemobiletools.clock.extensions.getTimerNotification
-import com.simplemobiletools.clock.extensions.timerHelper
+import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.models.TimerEvent
 import com.simplemobiletools.clock.models.TimerState
 import com.simplemobiletools.clock.services.TimerStopService
@@ -76,7 +76,7 @@ class App : Application(), LifecycleObserver {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: TimerEvent.Delete) {
         countDownTimers[event.timerId]?.cancel()
-        timerHelper.deleteTimer(event.timerId){
+        timerHelper.deleteTimer(event.timerId) {
             EventBus.getDefault().post(TimerEvent.Refresh)
         }
     }
@@ -104,6 +104,9 @@ class App : Application(), LifecycleObserver {
             val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.notify(event.timerId, notification)
             updateTimerState(event.timerId, TimerState.Finished)
+            Handler(Looper.getMainLooper()).postDelayed({
+                hideNotification(event.timerId)
+            }, config.timerMaxReminderSecs * 1000L)
         }
     }
 
