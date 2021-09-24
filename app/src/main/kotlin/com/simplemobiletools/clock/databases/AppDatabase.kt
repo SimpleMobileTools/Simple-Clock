@@ -26,6 +26,7 @@ abstract class AppDatabase : RoomDatabase() {
                 synchronized(AppDatabase::class) {
                     if (db == null) {
                         db = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "app.db")
+                            .fallbackToDestructiveMigration()
                             .addCallback(object : Callback() {
                                 override fun onCreate(db: SupportSQLiteDatabase) {
                                     super.onCreate(db)
@@ -33,7 +34,6 @@ abstract class AppDatabase : RoomDatabase() {
                                 }
                             })
                             .build()
-                        db!!.openHelper.setWriteAheadLoggingEnabled(true)
                     }
                 }
             }
@@ -57,10 +57,6 @@ abstract class AppDatabase : RoomDatabase() {
                     )
                 )
             }
-        }
-
-        fun destroyInstance() {
-            db = null
         }
     }
 }
