@@ -86,6 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:hint="@string/label"
+                android:inputType="textCapSentences"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textCursorDrawable="@null"

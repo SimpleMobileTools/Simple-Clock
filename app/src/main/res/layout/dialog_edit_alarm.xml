@@ -97,6 +97,7 @@
             android:layout_marginTop="@dimen/small_margin"
             android:layout_toEndOf="@+id/edit_alarm_label_image"
             android:hint="@string/label"
+            android:inputType="textCapSentences"
             android:maxLines="1"
             android:singleLine="true"
             android:textCursorDrawable="@null"
