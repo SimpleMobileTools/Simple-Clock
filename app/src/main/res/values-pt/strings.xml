@@ -14,17 +14,17 @@
     <string name="clock_and_date">Relógio e data</string>
     <string name="use_text_shadow">Utilizar sombras</string>
     <string name="swipe_right_to_dismiss">Deslize à direita para descartar e à esquerda para suspender.</string>
-    <string name="sort_by_creation_order">Creation order</string>
-    <string name="sort_by_alarm_time">Alarm time</string>
+    <string name="sort_by_creation_order">Ordem de criação</string>
+    <string name="sort_by_alarm_time">Hora do alarme</string>
 
     <!--Timer-->
-    <string name="timers_notification_msg">Timers are running</string>
-    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">New Timer</string>
+    <string name="timers_notification_msg">Temporizadores em execução</string>
+    <string name="timer_single_notification_label_msg">Temporizador para %s está em execução</string>
+    <string name="new_timer">Novo temporizador</string>
 
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d temporizador em execução</item>
+        <item quantity="other">%d temporizadores em execução</item>
     </plurals>
 
     <!-- Settings -->
@@ -59,7 +59,7 @@
 
         Não contém anúncios nem permissões desnecessárias. Possui código totalmente aberto e oferece cores personalizáveis.
 
-        <b>Check out the full suite of Simple Tools here:</b>
+        <b>Consulte o conunto completo de aplicações Simple Tools aqui:</b>
         https://www.simplemobiletools.com
 
         <b>Facebook:</b>
