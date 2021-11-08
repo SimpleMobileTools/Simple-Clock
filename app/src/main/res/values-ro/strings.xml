@@ -14,7 +14,7 @@
     <string name="clock_and_date">Ceas şi dată</string>
     <string name="use_text_shadow">Utilizează umbră la text</string>
     <string name="swipe_right_to_dismiss">Glisează în dreapta pentru a înlătura, sau stânga pentru a amâna.</string>
-    <string name="sort_by_creation_order">Ordine de creere</string>
+    <string name="sort_by_creation_order">Data creării</string>
     <string name="sort_by_alarm_time">Ora alarmei</string>
 
     <!--Timer-->
@@ -41,7 +41,7 @@
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Clock - O aplicaţie multifunctională</string>
+    <string name="app_title">Simple Clock - O aplicaţie multifuncţională</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">O combinaţie de ceas, alarmă, cronometru şi temporizator.</string>
     <string name="app_long_description">
