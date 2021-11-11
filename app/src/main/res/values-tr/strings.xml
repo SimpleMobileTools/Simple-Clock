@@ -13,18 +13,18 @@
     <string name="time_expired">Zaman doldu</string>
     <string name="clock_and_date">Saat ve tarih</string>
     <string name="use_text_shadow">Metin gölgesi kullan</string>
-    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze.</string>
-    <string name="sort_by_creation_order">Creation order</string>
-    <string name="sort_by_alarm_time">Alarm time</string>
+    <string name="swipe_right_to_dismiss">Kapatmak için sağa, ertelemek için sola kaydırın.</string>
+    <string name="sort_by_creation_order">Oluşturma sırası</string>
+    <string name="sort_by_alarm_time">Alarm zamanı</string>
 
     <!--Timer-->
-    <string name="timers_notification_msg">Timers are running</string>
-    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">New Timer</string>
+    <string name="timers_notification_msg">Zamanlayıcılar çalışıyor</string>
+    <string name="timer_single_notification_label_msg">%s için zamanlayıcı çalışıyor</string>
+    <string name="new_timer">Yeni Zamanlayıcı</string>
 
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d zamanlayıcı çalışıyor</item>
+        <item quantity="other">%d zamanlayıcı çalışıyor</item>
     </plurals>
 
     <!-- Settings -->
@@ -37,7 +37,7 @@
 
     <!-- FAQ -->
     <string name="faq_1_title">Kronometre sekmesinde tur sıralamayı nasıl değiştirebilirim?</string>
-    <string name="faq_1_text">Sütunların herhangi birini tıklatarak, turların belirtilen sütuna göre sıralanmasını sağlayabilirsiniz. Ek tıklamalarla, artan ve azalan sıralama arasında geçiş yapabilirsiniz.</string>
+    <string name="faq_1_text">Sütunların herhangi birine tıklayarak, turların belirtilen sütuna göre sıralanmasını sağlayabilirsiniz. Ek tıklamalarla, artan ve azalan sıralama arasında geçiş yapabilirsiniz.</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
@@ -45,7 +45,7 @@
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Saat, alarm, kronometre ve zamanlayıcı bir arada.</string>
     <string name="app_long_description">
-        Uygulama zamanlama ile ilgili birçok işleve sahiptir.
+        Uygulama, zamanlama ile ilgili birçok işleve sahiptir.
 
         Saatte diğer saat dilimlerinden saat gösterme özelliğini etkinleştirebilir veya basit, ancak özelleştirilebilir saat widget\'ını kullanabilirsiniz. Widget\'ın metin renginin yanı sıra arka planın rengi ve alfa özelleştirilebilir.
 
@@ -59,7 +59,7 @@
 
         Reklam veya gereksiz izinler içermez. Tamamen açık kaynaktır, özelleştirilebilir renkler sunar.
 
-        <b>Check out the full suite of Simple Tools here:</b>
+        <b>Basit Araçlar paketinin tamamını buradan inceleyin:</b>
         https://www.simplemobiletools.com
 
         <b>Facebook:</b>
