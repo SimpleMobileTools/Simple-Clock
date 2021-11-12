@@ -14,10 +14,22 @@
     <string name="clock_and_date">Reloxo e data</string>
     <string name="use_text_shadow">Utilizar sombras</string>
     <string name="swipe_right_to_dismiss">Deslice á dereita para descartar e á esquerda para suspender.</string>
+    <string name="sort_by_creation_order">Creation order</string>
+    <string name="sort_by_alarm_time">Alarm time</string>
+
+    <!--Timer-->
+    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
+    <string name="new_timer">New Timer</string>
+
+    <plurals name="timer_notification_msg">
+        <item quantity="one">%d timer is running</item>
+        <item quantity="other">%d timers are running</item>
+    </plurals>
 
     <!-- Settings -->
     <string name="clock_tab">Reloxo</string>
-    <string name="alarm_tab">Alarma</string> 
+    <string name="alarm_tab">Alarma</string>
     <string name="stopwatch_tab">Cronómetro</string>
     <string name="timer_tab">Temporizador</string>
     <string name="show_seconds">Mostrar segundos</string>
@@ -45,7 +57,7 @@
 
         Outras funcionalidades inclúen, por exemplo, impedir que o dispositivo hiberne mentres o aplicativo estea en primeiro plano.
 
-        Non contén anuncios nin permisos innecesarios. Dispón dun tema escuro e é totalmente de código aberto. 
+        Non contén anuncios nin permisos innecesarios. Dispón dun tema escuro e é totalmente de código aberto.
 
         <b>Visita a páxina a través desta ligazón:</b>
         https://www.simplemobiletools.com
