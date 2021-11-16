@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Semplice Orologio</string>
     <string name="app_launcher_name">Orologio</string>
@@ -14,19 +15,16 @@
     <string name="clock_and_date">Ora e data</string>
     <string name="use_text_shadow">Abilita l\'ombreggiatura del testo</string>
     <string name="swipe_right_to_dismiss">Scorri a destra per rimuovere, a sinistra per rinviare.</string>
-    <string name="sort_by_creation_order">Creation order</string>
-    <string name="sort_by_alarm_time">Alarm time</string>
-
+    <string name="sort_by_creation_order">Ordine di creazione</string>
+    <string name="sort_by_alarm_time">Ora dell\'allarme</string>
     <!--Timer-->
-    <string name="timers_notification_msg">Timers are running</string>
-    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">New Timer</string>
-
+    <string name="timers_notification_msg">I contaminuti sono in funzione</string>
+    <string name="timer_single_notification_label_msg">Il contaminuti per %s è in funzione</string>
+    <string name="new_timer">Nuovo contaminuti</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d contaminuti è in funzione</item>
+        <item quantity="other">%d contaminuti sono in funzione</item>
     </plurals>
-
     <!-- Settings -->
     <string name="clock_tab">Scheda orologio</string>
     <string name="alarm_tab">Scheda sveglia</string>
@@ -34,14 +32,12 @@
     <string name="timer_tab">Scheda contaminuti</string>
     <string name="show_seconds">Mostra secondi</string>
     <string name="increase_volume_gradually">Incrementa il volume gradualmente</string>
-
     <!-- FAQ -->
     <string name="faq_1_title">Come posso cambiare l\'ordinamento dei giri nel cronometro?</string>
     <string name="faq_1_text">Premendo una volta su qualsiasi colonna, i giri verranno ordinati per tale colonna. Premendo nuovamente si potrà cambiare il tipo di ordinamento, ascendente o discendente.</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Clock - A flexible multifunctional app</string>
+    <string name="app_title">Orologio semplice: un\'app multifunzionale flessibile</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Un\'unione di orologio, sveglia, cronometro e timer.</string>
     <string name="app_long_description">
@@ -66,7 +62,6 @@
         <b>Reddit:</b>
         https://www.reddit.com/r/SimpleMobileTools
     </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
