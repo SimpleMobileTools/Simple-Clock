@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Schlichte Uhr</string>
     <string name="app_launcher_name">Uhr</string>
@@ -7,26 +8,23 @@
     <string name="no_days_selected">Keine Tage ausgewählt</string>
     <string name="timer">Timer</string>
     <string name="lap">Runde</string>
-    <string name="stopwatch_stopped">Die Stoppuhr wurde angehalten.</string>
-    <string name="timer_stopped">Der Timer wurde angehalten.</string>
+    <string name="stopwatch_stopped">Die Stoppuhr wurde angehalten</string>
+    <string name="timer_stopped">Der Timer wurde angehalten</string>
     <string name="max_reminder_duration">Maximale Zeitdauer der Erinnerungsfunktion</string>
     <string name="time_expired">Zeit abgelaufen</string>
     <string name="clock_and_date">Uhrzeit und Datum</string>
     <string name="use_text_shadow">Text mit Schlagschatten</string>
     <string name="swipe_right_to_dismiss">Nach rechts wischen um auszuschalten, nach links um zu schlummern.</string>
-    <string name="sort_by_creation_order">Creation order</string>
-    <string name="sort_by_alarm_time">Alarm time</string>
-
+    <string name="sort_by_creation_order">Erstellungsreihenfolge</string>
+    <string name="sort_by_alarm_time">Alarmzeit</string>
     <!--Timer-->
-    <string name="timers_notification_msg">Timers are running</string>
-    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">New Timer</string>
-
+    <string name="timers_notification_msg">Die Timer laufen</string>
+    <string name="timer_single_notification_label_msg">Timer für %s läuft</string>
+    <string name="new_timer">Neuer Timer</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d Timer wird ausgeführt</item>
+        <item quantity="other">%d Timer werden ausgeführt</item>
     </plurals>
-
     <!-- Settings -->
     <string name="clock_tab">Uhr</string>
     <string name="alarm_tab">Wecker</string>
@@ -34,14 +32,12 @@
     <string name="timer_tab">Timer</string>
     <string name="show_seconds">Sekunden anzeigen</string>
     <string name="increase_volume_gradually">Ansteigende Lautstärke</string>
-
     <!-- FAQ -->
     <string name="faq_1_title">Wie kann die Sortierung der Laschen der Stoppuhr geändert werden?</string>
     <string name="faq_1_text">Einfach auf eine der Spalten klicken, das wird die Sortierung entsprechend der Spalte anpassen. Weitere Klicks schalten zwischen auf- und absteigender Sortierung um.</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Clock - Eine flexible multifunktionale App</string>
+    <string name="app_title">Simple Clock – Eine flexible Multifunktionsanwendung</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Die Kombination einer Uhr, eines Alarms, einer Stoppuhr und eines Timers.</string>
     <string name="app_long_description">
@@ -68,7 +64,6 @@
         <b>Reddit:</b>
         https://www.reddit.com/r/SimpleMobileTools
     </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

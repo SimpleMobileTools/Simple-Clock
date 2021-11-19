@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Horloge</string>
@@ -13,37 +14,32 @@
     <string name="time_expired">Temps écoulé</string>
     <string name="clock_and_date">Date et heure</string>
     <string name="use_text_shadow">Texte ombragé</string>
-    <string name="swipe_right_to_dismiss">Balayez vers la droite pour arrêter ou vers la gauche pour répéter</string>
-    <string name="sort_by_creation_order">Creation order</string>
-    <string name="sort_by_alarm_time">Alarm time</string>
-
+    <string name="swipe_right_to_dismiss">Balayez vers la droite pour arrêter ou vers la gauche pour répéter.</string>
+    <string name="sort_by_creation_order">Ordre de création</string>
+    <string name="sort_by_alarm_time">Heure de l\'alarme</string>
     <!--Timer-->
-    <string name="timers_notification_msg">Timers are running</string>
-    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">New Timer</string>
-
+    <string name="timers_notification_msg">Les minuteries sont en marche</string>
+    <string name="timer_single_notification_label_msg">La minuterie de %s est en marche</string>
+    <string name="new_timer">Nouvelle minuterie</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d minuterie est en marche</item>
+        <item quantity="other">%d minuteries sont en marche</item>
     </plurals>
-
     <!-- Settings -->
     <string name="clock_tab">Horloge</string>
     <string name="alarm_tab">Réveil</string>
     <string name="stopwatch_tab">Chronomètre</string>
-    <string name="timer_tab">Minuteur</string>
+    <string name="timer_tab">Minuterie</string>
     <string name="show_seconds">Afficher les secondes</string>
     <string name="increase_volume_gradually">Augmenter progressivement le volume</string>
-
     <!-- FAQ -->
     <string name="faq_1_title">Comment changer l\'ordre de tri des temps dans l\'onglet chronomètre ?</string>
     <string name="faq_1_text">Il suffit d\'appuyer sur les colonnes, les temps seront alors triés selon la colonne sur laquelle vous avez appuyé. Appuyer de nouveau permet d\'inverser l\'ordre (croissant/décroissant).</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Clock - A flexible multifunctional app</string>
+    <string name="app_title">Simple Clock - Une application flexible et multifonctionnelle</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Une horloge qui fait aussi minuteur, chronomètre et réveil.</string>
+    <string name="app_short_description">Une horloge qui fait aussi minuterie, chronomètre et réveil.</string>
     <string name="app_long_description">
         Cette application propose plusieurs fonctions liées aux horaires.
 
@@ -68,7 +64,6 @@
         <b>Reddit:</b>
         https://www.reddit.com/r/SimpleMobileTools
     </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

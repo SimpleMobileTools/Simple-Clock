@@ -1,76 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Prosty Zegar</string>
+    <string name="app_name">Prosty zegar</string>
     <string name="app_launcher_name">Zegar</string>
     <string name="time_zone">Strefa czasowa</string>
-    <string name="vibrate">Wibracje</string>
+    <string name="vibrate">Wibracja</string>
     <string name="label">Etykieta</string>
     <string name="no_days_selected">Nie wybrano dni</string>
     <string name="timer">Minutnik</string>
     <string name="lap">Okrążenie</string>
     <string name="stopwatch_stopped">Stoper został zatrzymany</string>
     <string name="timer_stopped">Minutnik został zatrzymany</string>
-    <string name="max_reminder_duration">Maksymalny okres przypominania</string>
-    <string name="time_expired">Koniec czasu</string>
-    <string name="clock_and_date">Czas i data</string>
-    <string name="use_text_shadow">Wycieniuj tekst</string>
-    <string name="swipe_right_to_dismiss">Przeciągnij w prawo, aby wyłączyć, lub w lewo, aby włączyć drzemkę.</string>
-    <string name="sort_by_creation_order">Creation order</string>
-    <string name="sort_by_alarm_time">Alarm time</string>
-
+    <string name="max_reminder_duration">Maksymalny czas trwania przypomnienia</string>
+    <string name="time_expired">Czas minął</string>
+    <string name="clock_and_date">Zegar i data</string>
+    <string name="use_text_shadow">Używaj cieniowania tekstu</string>
+    <string name="swipe_right_to_dismiss">Przesuń w prawo, aby odrzucić, lub w lewo, aby odłożyć.</string>
+    <string name="sort_by_creation_order">Kolejność tworzenia</string>
+    <string name="sort_by_alarm_time">Czas alarmu</string>
     <!--Timer-->
-    <string name="timers_notification_msg">Timers are running</string>
-    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">New Timer</string>
-
+    <string name="timers_notification_msg">Minutniki są uruchomione</string>
+    <string name="timer_single_notification_label_msg">Minutnik dla %s jest uruchomiony</string>
+    <string name="new_timer">Nowy minutnik</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="few">%d timers are running</item>
-        <item quantity="many">%d timers are running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d minutnik jest uruchomiony</item>
+        <item quantity="few">%d minutniki są uruchomione</item>
+        <item quantity="many">%d minutników jest uruchomionych</item>
+        <item quantity="other">%d minutników jest uruchomionych</item>
     </plurals>
-
     <!-- Settings -->
-    <string name="clock_tab">Zegar</string>
-    <string name="alarm_tab">Alarm</string>
-    <string name="stopwatch_tab">Stoper</string>
-    <string name="timer_tab">Minutnik</string>
+    <string name="clock_tab">Karta zegara</string>
+    <string name="alarm_tab">Karta alarmu</string>
+    <string name="stopwatch_tab">Karta stopera</string>
+    <string name="timer_tab">Karta minutnika</string>
     <string name="show_seconds">Pokazuj sekundy</string>
     <string name="increase_volume_gradually">Zwiększaj głośność stopniowo</string>
-
     <!-- FAQ -->
-    <string name="faq_1_title">Jak mogę zmienić sortowanie okrążeń w sekcji stopera?</string>
-    <string name="faq_1_text">Po prostu kliknij na którąkolwiek kolumnę, co sprawi, że okrążenia będą posortowane według wybranej kolumny. Dzięki dodatkowym kliknięciom możesz przełączać się między rosnącym a malejącym sortowaniem.</string>
-
+    <string name="faq_1_title">Jak mogę zmienić sortowanie okrążeń w karcie stopera\?</string>
+    <string name="faq_1_text">Po prostu naciśnij dowolną kolumnę, co spowoduje, że okrążenia zostaną posortowane według danej kolumny. Za pomocą dodatkowych naciśnięć możesz przełączać się między sortowaniem rosnącym i malejącym.</string>
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Clock - A flexible multifunctional app</string>
+    <string name="app_title">Prosty zegar - Elastyczna aplikacja wielofunkcyjna</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Połączenie zegara, alarmu, stopera i minutnika.</string>
-    <string name="app_long_description">
-        Aplikacja posiada wiele funkcji związanych z mierzeniem czasu.
-
-        W zegarze możesz włączyć wyświetlanie godzin z innych stref czasowych lub użyć prostego, lecz personalizowanego widżetu zegara. Kolor tekstu widżetu może być zmieniany, tak samo jak kolor i alfa tła.
-
-        Alarm zawiera wszystkie spodziewane funkcje takie, jak wybieranie dni, przełączanie wibracji, wybieranie dzwonka, drzemka czy dodawanie własnej etykiety.
-
-        Ze stoperem możesz łatwo mierzyć dłuższe okresy czasu czy indywidualne okrążenia. Możesz sortować okrążenia według czasu okrążenia, zawiera także opcjonalne wibracje przy naciśnięciach przycisku, co pozwoli Tobie wiedzieć, że przycisk został naciśnięty, nawet jeżeli nie możesz spojrzeć na urządzenie.
-
-        Możesz łątwo ustawić minutnik, aby być powiadomiony o jakimś wydarzeniu. Możesz zmieniać jednocześnie jego dzwonek lub przełączać wibracje.
-
-        Dodatkowe funkcje zawierają na przykład zapobieganie urządzenia przed uśpieniem, kiedy aplikacja jest w tle.
-
-        Nie zawiera reklam oraz niekoniecznych uprawnień. Jest w pełni otwartoźródłowa i w pełni podatna na kolorowanie.
-
-        <b>Check out the full suite of Simple Tools here:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
+    <string name="app_short_description">Połączenie zegara, alarmu, stopera i minutnika</string>
+    <string name="app_long_description"> Aplikacja posiada wiele funkcji związanych z odmierzeniem czasu. W zegarze możesz włączyć wyświetlanie czasu z innych stref czasowych lub skorzystać z prostego, ale konfigurowalnego widżetu zegara. Kolor tekstu widżetu może być konfigurowany, tak samo jak kolor i przezroczystość tła. Alarm zawiera wszystkie oczekiwane funkcje, takie jak wybieranie dni, przełączanie wibracji, wybieranie dzwonka, drzemka czy dodawanie własnej etykiety. Ze stoperem możesz łatwo mierzyć dłuższe okresy lub pojedyncze okrążenia. Możesz sortować okrążenia według czasu okrążenia; zawiera także opcjonalne wibracje przy naciskaniu przycisków, aby po prostu poinformować Cię, że przycisk został naciśnięty, nawet jeżeli nie możesz spojrzeć na urządzenie. Możesz łatwo skonfigurować minutnik, aby otrzymywać powiadomienia o jakimś wydarzeniu. Możesz zarówno zmienić jego dzwonek, jak i włączyć wibracje. Dodatkowe funkcje obejmują na przykład zapobieganie przechodzeniu urządzenia w tryb uśpieniem, gdy aplikacja jest aktywna. Nie zawiera reklam ani niepotrzebnych uprawnień. Jest w pełni otwartoźródłowa, zapewnia konfigurowalną kolorystykę. <b>Sprawdź pełen zestaw od Simple Tools tutaj:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

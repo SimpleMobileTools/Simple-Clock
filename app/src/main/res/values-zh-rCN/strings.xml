@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">简易时钟</string>
     <string name="app_launcher_name">时钟</string>
@@ -14,19 +15,15 @@
     <string name="clock_and_date">时钟和日期</string>
     <string name="use_text_shadow">使用文字阴影</string>
     <string name="swipe_right_to_dismiss">右滑关闭，或者左滑贪睡。</string>
-    <string name="sort_by_creation_order">Creation order</string>
-    <string name="sort_by_alarm_time">Alarm time</string>
-
+    <string name="sort_by_creation_order">创建顺序</string>
+    <string name="sort_by_alarm_time">闹铃时间</string>
     <!--Timer-->
-    <string name="timers_notification_msg">Timers are running</string>
-    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">New Timer</string>
-
+    <string name="timers_notification_msg">计时器正在运行</string>
+    <string name="timer_single_notification_label_msg">%s 的计时器正在运行</string>
+    <string name="new_timer">新建计时器</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="other">%d 个计时器正在运行</item>
     </plurals>
-
     <!-- Settings -->
     <string name="clock_tab">时钟页面</string>
     <string name="alarm_tab">闹钟页面</string>
@@ -34,11 +31,9 @@
     <string name="timer_tab">定时器页面</string>
     <string name="show_seconds">显示秒数</string>
     <string name="increase_volume_gradually">音量渐增</string>
-
     <!-- FAQ -->
     <string name="faq_1_title">秒表页面分段的排序如何更改?</string>
     <string name="faq_1_text">只要点击任一栏位，就会依据选定的栏位做排序。再多点一下，还能切换递增或者递减顺序。</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
     <string name="app_title">简易时钟 - 一个灵活的多功能应用程序</string>
@@ -68,7 +63,6 @@
         <b>Reddit:</b>
         https://www.reddit.com/r/SimpleMobileTools
     </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
