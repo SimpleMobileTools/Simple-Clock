@@ -1,7 +1,9 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
@@ -67,16 +69,23 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.SimpleMobileTools:Simple-Commons:6cc19172f0'
-    implementation 'com.facebook.stetho:stetho:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
-    implementation 'com.shawnlin:number-picker:2.4.6'
     implementation "androidx.preference:preference-ktx:1.1.1"
     implementation "androidx.work:work-runtime-ktx:2.6.0"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
+
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
-    implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.room:room-runtime:2.3.0'
-    kapt 'androidx.room:room-compiler:2.3.0'
+
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    implementation 'com.github.SimpleMobileTools:Simple-Commons:6cc19172f0'
+    implementation 'com.facebook.stetho:stetho:1.5.0'
+    implementation 'com.shawnlin:number-picker:2.4.6'
+    implementation 'org.greenrobot:eventbus:3.2.0'
+
+
+
+
 }
