@@ -41,13 +41,12 @@
             app:layout_constraintTop_toBottomOf="@id/timer_time"
             tools:text="Cook rice" />
 
-
         <ImageView
             android:id="@+id/timer_reset"
             android:layout_width="@dimen/timer_button_small_size"
             android:layout_height="@dimen/timer_button_small_size"
             android:layout_marginStart="@dimen/bigger_margin"
-            android:layout_marginEnd="@dimen/bigger_margin"
+            android:layout_marginEnd="@dimen/medium_margin"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="@dimen/normal_margin"
             android:src="@drawable/ic_reset_vector"
@@ -57,7 +56,6 @@
             app:layout_constraintStart_toEndOf="@id/timer_time"
             app:layout_constraintTop_toTopOf="@id/timer_play_pause" />
 
-
         <ImageView
             android:id="@+id/timer_play_pause"
             android:layout_width="@dimen/timer_button_size"
@@ -65,7 +63,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/bigger_margin"
-            android:layout_marginEnd="@dimen/bigger_margin"
+            android:layout_marginEnd="@dimen/medium_margin"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="@dimen/activity_margin"
             android:src="@drawable/ic_play_vector"
