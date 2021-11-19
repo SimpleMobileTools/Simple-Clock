@@ -102,7 +102,7 @@ class TimerService : Service() {
         val builder = NotificationCompat.Builder(this)
             .setContentTitle(title)
             .setContentText(contentText)
-            .setSmallIcon(R.drawable.ic_timer)
+            .setSmallIcon(R.drawable.ic_hourglass_vector)
             .setPriority(Notification.PRIORITY_DEFAULT)
             .setSound(null)
             .setOngoing(true)

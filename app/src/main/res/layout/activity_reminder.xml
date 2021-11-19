@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/reminder_holder"
@@ -17,7 +16,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/time_expired"/>
+        tools:text="@string/time_expired" />
 
     <com.simplemobiletools.commons.views.MyTextView
         android:id="@+id/reminder_text"
@@ -28,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reminder_title"
-        tools:text="14:00"/>
+        tools:text="14:00" />
 
     <ImageView
         android:id="@+id/reminder_snooze"
@@ -41,7 +40,7 @@
         app:layout_constraintEnd_toStartOf="@+id/reminder_draggable"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/reminder_draggable"/>
+        app:layout_constraintTop_toTopOf="@+id/reminder_draggable" />
 
     <ImageView
         android:id="@+id/reminder_draggable_background"
@@ -55,7 +54,7 @@
         app:layout_constraintEnd_toStartOf="@+id/reminder_dismiss"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/reminder_snooze"
-        app:layout_constraintTop_toBottomOf="@+id/reminder_text"/>
+        app:layout_constraintTop_toBottomOf="@+id/reminder_text" />
 
     <ImageView
         android:id="@+id/reminder_draggable"
@@ -68,7 +67,7 @@
         app:layout_constraintEnd_toStartOf="@+id/reminder_dismiss"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/reminder_snooze"
-        app:layout_constraintTop_toBottomOf="@+id/reminder_text"/>
+        app:layout_constraintTop_toBottomOf="@+id/reminder_text" />
 
     <ImageView
         android:id="@+id/reminder_dismiss"
@@ -76,12 +75,12 @@
         android:layout_height="@dimen/reminder_background_min_size"
         android:clickable="false"
         android:padding="@dimen/activity_margin"
-        android:src="@drawable/ic_dismiss_alarm_big"
+        android:src="@drawable/ic_alarm_off_vector"
         app:layout_constraintBottom_toBottomOf="@+id/reminder_draggable"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/reminder_draggable"
-        app:layout_constraintTop_toTopOf="@+id/reminder_draggable"/>
+        app:layout_constraintTop_toTopOf="@+id/reminder_draggable" />
 
     <com.simplemobiletools.commons.views.MyTextView
         android:id="@+id/reminder_guide"
@@ -92,7 +91,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reminder_draggable"/>
+        app:layout_constraintTop_toBottomOf="@+id/reminder_draggable" />
 
     <ImageView
         android:id="@+id/reminder_stop"
@@ -104,6 +103,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -267,7 +267,7 @@ class StopwatchFragment : Fragment() {
     }
 
     private fun updateSortingIndicators() {
-        var bitmap = requireContext().resources.getColoredBitmap(R.drawable.ic_sorting_triangle, requireContext().getAdjustedPrimaryColor())
+        var bitmap = requireContext().resources.getColoredBitmap(R.drawable.ic_sorting_triangle_vector, requireContext().getAdjustedPrimaryColor())
         view.apply {
             stopwatch_sorting_indicator_1.beInvisibleIf(sorting and SORT_BY_LAP == 0)
             stopwatch_sorting_indicator_2.beInvisibleIf(sorting and SORT_BY_LAP_TIME == 0)

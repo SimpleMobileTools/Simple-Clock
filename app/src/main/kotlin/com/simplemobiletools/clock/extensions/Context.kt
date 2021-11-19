@@ -313,7 +313,7 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
     val builder = NotificationCompat.Builder(this)
         .setContentTitle(if(timer.label.isEmpty()) getString(R.string.timer) else timer.label)
         .setContentText(getString(R.string.time_expired))
-        .setSmallIcon(R.drawable.ic_timer)
+        .setSmallIcon(R.drawable.ic_hourglass_vector)
         .setContentIntent(pendingIntent)
         .setPriority(NotificationCompat.PRIORITY_MAX)
         .setDefaults(Notification.DEFAULT_LIGHTS)
