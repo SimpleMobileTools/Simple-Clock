@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_holder"
     android:layout_width="match_parent"
@@ -20,31 +19,35 @@
             android:id="@+id/tab_clock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@drawable/ic_clock_vector"/>
+            android:contentDescription="@string/clock_tab"
+            android:icon="@drawable/ic_clock_vector" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tab_alarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@drawable/ic_alarm_vector"/>
+            android:contentDescription="@string/alarm_tab"
+            android:icon="@drawable/ic_alarm_vector" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tab_stopwatch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@drawable/ic_stopwatch_vector"/>
+            android:contentDescription="@string/stopwatch_tab"
+            android:icon="@drawable/ic_stopwatch_vector" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tab_timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@drawable/ic_hourglass_vector"/>
+            android:contentDescription="@string/timer_tab"
+            android:icon="@drawable/ic_hourglass_vector" />
     </com.google.android.material.tabs.TabLayout>
 
     <com.duolingo.open.rtlviewpager.RtlViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/main_tabs_holder"/>
+        android:layout_below="@+id/main_tabs_holder" />
 
 </RelativeLayout>
