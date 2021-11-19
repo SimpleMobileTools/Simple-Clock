@@ -92,8 +92,8 @@ class TimerFragment : Fragment() {
 
     private fun refreshTimers(scrollToLatest: Boolean = false) {
         activity?.timerHelper?.getTimers { timers ->
-            activity?.runOnUiThread {
-                timerAdapter.submitList(timers) {
+            timerAdapter.submitList(timers) {
+                activity?.runOnUiThread {
                     if (getView() != null) {
                         if (timerPositionToScrollTo != INVALID_POSITION && timerAdapter.itemCount > timerPositionToScrollTo) {
                             view.timers_list.scrollToPosition(timerPositionToScrollTo)
