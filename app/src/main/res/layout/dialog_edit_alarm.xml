@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/edit_alarm_vibrate_holder"
             android:background="?attr/selectableItemBackground"
-            android:drawableStart="@drawable/ic_bell_vector"
+            android:drawableLeft="@drawable/ic_bell_vector"
             android:drawablePadding="@dimen/normal_margin"
             android:paddingStart="@dimen/activity_margin"
             android:paddingTop="@dimen/normal_margin"

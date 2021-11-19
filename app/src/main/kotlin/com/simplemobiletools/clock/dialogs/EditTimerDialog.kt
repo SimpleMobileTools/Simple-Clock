@@ -22,7 +22,6 @@ class EditTimerDialog(val activity: SimpleActivity, val timer: Timer, val callba
         updateAlarmTime()
 
         view.apply {
-
             edit_timer_initial_time.colorCompoundDrawable(textColor)
             edit_timer_initial_time.text = timer.seconds.getFormattedDuration()
             edit_timer_initial_time.setTextColor(textColor)
