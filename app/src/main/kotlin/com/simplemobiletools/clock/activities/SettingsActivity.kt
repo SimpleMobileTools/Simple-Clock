@@ -38,18 +38,40 @@ class SettingsActivity : SimpleActivity() {
         setupUseTextShadow()
         setupCustomizeWidgetColors()
         updateTextColors(settings_holder)
-        setupSectionColors()
-    }
 
-    private fun setupSectionColors() {
-        val adjustedPrimaryColor = getAdjustedPrimaryColor()
-        arrayListOf(clock_tab_label, alarm_tab_label, stopwatch_tab_label, timer_tab_label, widgets_label).forEach {
-            it.setTextColor(adjustedPrimaryColor)
+        arrayOf(
+            settings_color_customization_label,
+            settings_general_settings_label,
+            settings_clock_tab_label,
+            settings_alarm_tab_label,
+            settings_stopwatch_tab_label,
+            settings_timer_tab_label,
+            settings_widgets_label
+        ).forEach {
+            it.setTextColor(getAdjustedPrimaryColor())
+        }
+
+        arrayOf(
+            settings_color_customization_holder,
+            settings_general_settings_holder,
+            settings_clock_tab_holder,
+            settings_alarm_tab_holder,
+            settings_stopwatch_tab_holder,
+            settings_timer_tab_holder,
+            settings_widgets_holder
+        ).forEach {
+            it.background.applyColorFilter(baseConfig.backgroundColor.getContrastColor())
         }
     }
 
     private fun setupPurchaseThankYou() {
         settings_purchase_thank_you_holder.beGoneIf(isOrWasThankYouInstalled())
+
+        // make sure the corners at ripple fit the stroke rounded corners
+        if (settings_purchase_thank_you_holder.isGone()) {
+            settings_use_english_holder.background = resources.getDrawable(R.drawable.ripple_top_corners, theme)
+        }
+
         settings_purchase_thank_you_holder.setOnClickListener {
             launchPurchaseThankYouIntent()
         }
@@ -65,6 +87,11 @@ class SettingsActivity : SimpleActivity() {
     private fun setupUseEnglish() {
         settings_use_english_holder.beVisibleIf(config.wasUseEnglishToggled || Locale.getDefault().language != "en")
         settings_use_english.isChecked = config.useEnglish
+
+        if (settings_use_english_holder.isGone() && settings_purchase_thank_you_holder.isGone()) {
+            settings_prevent_phone_from_sleeping_holder.background = resources.getDrawable(R.drawable.ripple_top_corners, theme)
+        }
+
         settings_use_english_holder.setOnClickListener {
             settings_use_english.toggle()
             config.useEnglish = settings_use_english.isChecked
@@ -118,11 +145,23 @@ class SettingsActivity : SimpleActivity() {
     private fun setupUseSameSnooze() {
         settings_snooze_time_holder.beVisibleIf(config.useSameSnooze)
         settings_use_same_snooze.isChecked = config.useSameSnooze
+        checkSnoozeButtonBackgrounds()
         settings_use_same_snooze_holder.setOnClickListener {
             settings_use_same_snooze.toggle()
             config.useSameSnooze = settings_use_same_snooze.isChecked
             settings_snooze_time_holder.beVisibleIf(config.useSameSnooze)
+            checkSnoozeButtonBackgrounds()
         }
+    }
+
+    private fun checkSnoozeButtonBackgrounds() {
+        val backgroundId = if (settings_use_same_snooze.isChecked) {
+            R.drawable.ripple_background
+        } else {
+            R.drawable.ripple_bottom_corners
+        }
+
+        settings_use_same_snooze_holder.background = resources.getDrawable(backgroundId, theme)
     }
 
     private fun setupSnoozeTime() {
