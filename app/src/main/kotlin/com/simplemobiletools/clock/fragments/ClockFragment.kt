@@ -112,7 +112,7 @@ class ClockFragment : Fragment() {
             val nextAlarm = requireContext().getNextAlarm()
             clock_alarm.beVisibleIf(nextAlarm.isNotEmpty())
             clock_alarm.text = nextAlarm
-            clock_alarm.colorLeftDrawable(requireContext().config.textColor)
+            clock_alarm.colorCompoundDrawable(requireContext().config.textColor)
         }
     }
 

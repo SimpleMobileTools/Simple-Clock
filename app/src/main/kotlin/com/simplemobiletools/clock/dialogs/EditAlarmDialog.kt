@@ -34,7 +34,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                 TimePickerDialog(context, context.getDialogTheme(), timeSetListener, alarm.timeInMinutes / 60, alarm.timeInMinutes % 60, context.config.use24HourFormat).show()
             }
 
-            edit_alarm_sound.colorLeftDrawable(textColor)
+            edit_alarm_sound.colorCompoundDrawable(textColor)
             edit_alarm_sound.text = alarm.soundTitle
             edit_alarm_sound.setOnClickListener {
                 SelectAlarmSoundDialog(activity, alarm.soundUri, AudioManager.STREAM_ALARM, PICK_AUDIO_FILE_INTENT_ID, RingtoneManager.TYPE_ALARM, true,
@@ -51,7 +51,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                 })
             }
 
-            edit_alarm_vibrate.colorLeftDrawable(textColor)
+            edit_alarm_vibrate.colorCompoundDrawable(textColor)
             edit_alarm_vibrate.isChecked = alarm.vibrate
             edit_alarm_vibrate_holder.setOnClickListener {
                 edit_alarm_vibrate.toggle()
