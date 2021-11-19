@@ -19,8 +19,7 @@ import com.simplemobiletools.commons.helpers.LICENSE_RTL
 import com.simplemobiletools.commons.helpers.LICENSE_STETHO
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.models.FAQItem
-import kotlinx.android.synthetic.main.activity_main.main_tabs_holder
-import kotlinx.android.synthetic.main.activity_main.view_pager
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : SimpleActivity() {
     private var storedTextColor = 0
@@ -72,10 +71,6 @@ class MainActivity : SimpleActivity() {
         if (config.preventPhoneFromSleeping) {
             window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         }
-    }
-
-    override fun onStop() {
-        super.onStop()
         config.lastUsedViewPagerPage = view_pager.currentItem
     }
 

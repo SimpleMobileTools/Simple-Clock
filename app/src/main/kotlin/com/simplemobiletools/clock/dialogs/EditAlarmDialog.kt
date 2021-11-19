@@ -31,7 +31,14 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
 
         view.apply {
             edit_alarm_time.setOnClickListener {
-                TimePickerDialog(context, context.getDialogTheme(), timeSetListener, alarm.timeInMinutes / 60, alarm.timeInMinutes % 60, context.config.use24HourFormat).show()
+                TimePickerDialog(
+                    context,
+                    context.getDialogTheme(),
+                    timeSetListener,
+                    alarm.timeInMinutes / 60,
+                    alarm.timeInMinutes % 60,
+                    context.config.use24HourFormat
+                ).show()
             }
 
             edit_alarm_sound.colorCompoundDrawable(textColor)
@@ -43,15 +50,15 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                             updateSelectedAlarmSound(it)
                         }
                     }, onAlarmSoundDeleted = {
-                    if (alarm.soundUri == it.uri) {
-                        val defaultAlarm = context.getDefaultAlarmSound(RingtoneManager.TYPE_ALARM)
-                        updateSelectedAlarmSound(defaultAlarm)
-                    }
-                    activity.checkAlarmsWithDeletedSoundUri(it.uri)
-                })
+                        if (alarm.soundUri == it.uri) {
+                            val defaultAlarm = context.getDefaultAlarmSound(RingtoneManager.TYPE_ALARM)
+                            updateSelectedAlarmSound(defaultAlarm)
+                        }
+                        activity.checkAlarmsWithDeletedSoundUri(it.uri)
+                    })
             }
 
-            edit_alarm_vibrate.colorCompoundDrawable(textColor)
+            edit_alarm_vibrate_icon.setColorFilter(textColor)
             edit_alarm_vibrate.isChecked = alarm.vibrate
             edit_alarm_vibrate_holder.setOnClickListener {
                 edit_alarm_vibrate.toggle()

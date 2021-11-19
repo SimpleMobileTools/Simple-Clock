@@ -13,9 +13,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_margin"
+        android:paddingStart="@dimen/activity_margin"
         android:paddingTop="@dimen/medium_margin"
-        android:paddingBottom="@dimen/medium_margin">
+        android:paddingBottom="@dimen/activity_margin">
 
         <com.simplemobiletools.commons.views.MyTextView
             android:id="@+id/timer_time"

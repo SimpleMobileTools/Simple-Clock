@@ -10,8 +10,7 @@
         android:id="@+id/edit_timer_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/activity_margin">
-
+        android:layout_marginTop="@dimen/activity_margin">
 
         <com.simplemobiletools.commons.views.MyTextView
             android:id="@+id/edit_timer_initial_time"
@@ -33,16 +32,24 @@
             android:padding="@dimen/activity_margin"
             app:layout_constraintTop_toBottomOf="@+id/edit_timer_initial_time">
 
-            <com.simplemobiletools.commons.views.MySwitchCompat
+            <ImageView
+                android:id="@+id/edit_timer_vibrate_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/edit_timer_vibrate"
+                android:layout_alignBottom="@+id/edit_timer_vibrate"
+                android:src="@drawable/ic_vibrate_vector" />
+
+            <com.simplemobiletools.commons.views.MyAppCompatCheckbox
                 android:id="@+id/edit_timer_vibrate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/edit_timer_vibrate_icon"
                 android:background="@null"
                 android:clickable="false"
-                android:drawableStart="@drawable/ic_vibrate_vector"
-                android:drawablePadding="@dimen/normal_margin"
-                android:text="@string/vibrate"
-                android:textSize="@dimen/bigger_text_size" />
+                android:layoutDirection="rtl"
+                android:padding="@dimen/medium_margin"
+                android:text="@string/vibrate" />
 
         </RelativeLayout>
 

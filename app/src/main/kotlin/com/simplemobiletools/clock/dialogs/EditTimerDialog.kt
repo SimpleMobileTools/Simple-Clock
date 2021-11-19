@@ -30,7 +30,7 @@ class EditTimerDialog(val activity: SimpleActivity, val timer: Timer, val callba
                 changeDuration(timer)
             }
 
-            edit_timer_vibrate.colorCompoundDrawable(textColor)
+            edit_timer_vibrate_icon.setColorFilter(textColor)
             edit_timer_vibrate.isChecked = timer.vibrate
             edit_timer_vibrate.setTextColor(textColor)
             edit_timer_vibrate_holder.setOnClickListener {
@@ -72,7 +72,7 @@ class EditTimerDialog(val activity: SimpleActivity, val timer: Timer, val callba
                 activity.setupDialogStuff(view, this) {
                     getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
                         timer.label = view.edit_timer_label.value
-                        activity.timerHelper.insertOrUpdateTimer(timer){
+                        activity.timerHelper.insertOrUpdateTimer(timer) {
                             activity.config.timerLastConfig = timer
                             callback()
                             dismiss()
@@ -101,8 +101,8 @@ class EditTimerDialog(val activity: SimpleActivity, val timer: Timer, val callba
     private fun changeDuration(timer: Timer) {
         MyTimePickerDialogDialog(activity, timer.seconds) { seconds ->
             val timerSeconds = if (seconds <= 0) 10 else seconds
-           timer.seconds = timerSeconds
-           view.edit_timer_initial_time.text = timerSeconds.getFormattedDuration()
+            timer.seconds = timerSeconds
+            view.edit_timer_initial_time.text = timerSeconds.getFormattedDuration()
         }
     }
 
