@@ -1,6 +1,5 @@
 package com.simplemobiletools.clock.receivers
 
-import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -21,7 +20,6 @@ import com.simplemobiletools.commons.helpers.isOreoPlus
 
 class AlarmReceiver : BroadcastReceiver() {
 
-    @SuppressLint("NewApi")
     override fun onReceive(context: Context, intent: Intent) {
         val id = intent.getIntExtra(ALARM_ID, -1)
         val alarm = context.dbHelper.getAlarmWithId(id) ?: return
