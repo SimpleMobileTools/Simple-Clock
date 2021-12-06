@@ -1,2 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Lihtne kell</string>
+    <string name="app_launcher_name">Kell</string>
+    <string name="time_zone">Ajavöönd</string>
+    <string name="vibrate">Vibreeri</string>
+    <string name="label">Silt</string>
+    <string name="stopwatch_stopped">Stopper on kinni</string>
+    <string name="timer_stopped">Taimer on peatunud</string>
+    <string name="max_reminder_duration">Meeldetuletuse suurim kestus</string>
+    <string name="time_expired">Aeg on läbi</string>
+    <string name="clock_and_date">Kell ja kuupäev</string>
+    <string name="use_text_shadow">Kasuta tekstivarju</string>
+    <string name="sort_by_creation_order">Loomise järjekord</string>
+    <string name="sort_by_alarm_time">Äratuse aeg</string>
+    <string name="timer_single_notification_label_msg">%s taimer töötab</string>
+    <string name="new_timer">Uus taimer</string>
+    <plurals name="timer_notification_msg">
+        <item quantity="one">%d taimer töötab</item>
+        <item quantity="other">%d taimerit töötavad</item>
+    </plurals>
+    <string name="clock_tab">Kella vahekaart</string>
+    <string name="alarm_tab">Äratuskella vahekaart</string>
+    <string name="stopwatch_tab">Stopperi vahekaart</string>
+    <string name="timer_tab">Taimeri vahekaart</string>
+    <string name="increase_volume_gradually">Suurenda heli valjust järk-järgult</string>
+    <string name="app_title">Lihtne kell - paindlik multifunktsionaalne rakendus</string>
+    <string name="app_short_description">Pakub kella, äratuskella, stopperi ja taimeri kasutamise võimalusi.</string>
+    <string name="no_days_selected">Ühtegi päeva pole valitud</string>
+    <string name="timer">Taimer</string>
+    <string name="show_seconds">Näita sekundeid</string>
+    <string name="timers_notification_msg">Taimerid töötavad</string>
+</resources>
