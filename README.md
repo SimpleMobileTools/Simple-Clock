@@ -1,3 +1,5 @@
+<h4>ABANDONED: This app has been unpublished from Google Play due to the inability to make it work reliably enough. There are always more and more system and battery restrictions that limit background activities on Android, making apps like this unreliable. We do not want to produce low quality apps or be responsible for not ringing alarms etc leading to bigger problems so we decided to remove it from Google Play altogether. It will still be available on Github, but use it with caution.</h4>
+
 # Simple Clock
 <img alt="Logo" src="fastlane/metadata/android/en-US/images/icon.png" width="120" />
 
