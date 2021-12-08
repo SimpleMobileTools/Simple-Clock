@@ -77,7 +77,7 @@ class ReminderActivity : SimpleActivity() {
         }
     }
 
-    @SuppressLint("NewApi")
+    @SuppressLint("ClickableViewAccessibility")
     private fun setupAlarmButtons() {
         reminder_stop.beGone()
         reminder_draggable_background.startAnimation(AnimationUtils.loadAnimation(this, R.anim.pulsing_animation))

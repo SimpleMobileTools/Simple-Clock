@@ -1,6 +1,5 @@
 package com.simplemobiletools.clock.extensions
 
-import android.annotation.SuppressLint
 import android.app.*
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
@@ -182,7 +181,6 @@ fun Context.updateWidgets() {
     }
 }
 
-@SuppressLint("NewApi")
 fun Context.scheduleNextWidgetUpdate() {
     val widgetsCnt =
         AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(ComponentName(applicationContext, MyWidgetDateTimeProvider::class.java)) ?: return
@@ -267,7 +265,6 @@ fun Context.showAlarmNotification(alarm: Alarm) {
     }
 }
 
-@SuppressLint("NewApi")
 fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, addDeleteIntent: Boolean): Notification {
     var soundUri = timer.soundUri
     if (soundUri == SILENT) {
@@ -351,7 +348,6 @@ fun Context.getHideAlarmPendingIntent(alarm: Alarm): PendingIntent {
     return PendingIntent.getBroadcast(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }
 
-@SuppressLint("NewApi")
 fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): Notification {
     val soundUri = alarm.soundUri
     if (soundUri != SILENT) {
