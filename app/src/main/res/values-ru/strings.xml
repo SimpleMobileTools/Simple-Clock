@@ -39,7 +39,7 @@
     <string name="faq_1_text">Просто нажмите на любую из колонок, и круги отсортируются по этой колонке. Дополнительными нажатиями можно переключаться между сортировкой по возрастанию и по убыванию.</string>
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Clock - гибкое многофункциональное приложение</string>
+    <string name="app_title">Simple Clock - многофункциональное приложение</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Совмещает в себе часы, будильник, секундомер и таймер.</string>
     <string name="app_long_description">
