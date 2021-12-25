@@ -33,7 +33,7 @@
     <string name="stopwatch_tab">Stopper fül</string>
     <string name="timer_tab">Időzítő fül</string>
     <string name="show_seconds">Másodperc mutatása</string>
-    <string name="increase_volume_gradually">Hangerő lépésenkéni emelése</string>
+    <string name="increase_volume_gradually">Hangerő lépésenként emelése</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">Hogyan változtathatom meg a körök rendezését a stopperóra fülön?</string>
@@ -59,7 +59,7 @@
 
         Nem tartalmaz hirdetéseket vagy felesleges engedélyeket. Teljesen opensource, testreszabható színeket biztosít.
 
-        <b>Check out the full suite of Simple Tools here:</b>
+        <b>Itt tudhasz meg többet a teljes Simple Tools ökoszisztémáról:</b>
         https://www.simplemobiletools.com
 
         <b>Facebook:</b>
