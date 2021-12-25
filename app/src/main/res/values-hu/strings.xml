@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">Simple Clock</string>
+    <string name="app_launcher_name">Óra</string>
+    <string name="time_zone">Időzóna</string>
+    <string name="vibrate">Rezgés</string>
+    <string name="label">Címke</string>
+    <string name="no_days_selected">Nincs nap kiválasztva</string>
+    <string name="timer">Időzítő</string>
+    <string name="lap">Kör</string>
+    <string name="stopwatch_stopped">A stopper leállt</string>
+    <string name="timer_stopped">Az időzítő leállt</string>
+    <string name="max_reminder_duration">Maximum értesítő időtartam</string>
+    <string name="time_expired">Az idő lejárt</string>
+    <string name="clock_and_date">Idő és dátum</string>
+    <string name="use_text_shadow">Szövegárnyékolás</string>
+    <string name="swipe_right_to_dismiss">Jobbra mosás a kikapcsoláshoz, balra a némításhoz.</string>
+    <string name="sort_by_creation_order">Létrehozási sorrend</string>
+    <string name="sort_by_alarm_time">Ébresztő idő</string>
+
+    <!--Timer-->
+    <string name="timers_notification_msg">Az időzítő fut</string>
+    <string name="timer_single_notification_label_msg">A %s időzítő fut</string>
+    <string name="new_timer">Új időzítő</string>
+
+    <plurals name="timer_notification_msg">
+        <item quantity="one">%d időzítő fut</item>
+        <item quantity="other">%d időzítő fut</item>
+    </plurals>
+
+    <!-- Settings -->
+    <string name="clock_tab">Óra fül</string>
+    <string name="alarm_tab">Vekker fül</string>
+    <string name="stopwatch_tab">Stopper fül</string>
+    <string name="timer_tab">Időzítő fül</string>
+    <string name="show_seconds">Másodperc mutatása</string>
+    <string name="increase_volume_gradually">Hangerő lépésenkéni emelése</string>
+
+    <!-- FAQ -->
+    <string name="faq_1_title">Hogyan változtathatom meg a körök rendezését a stopperóra fülön?</string>
+    <string name="faq_1_text">Csak kattintson bármelyik oszlopra, ettől a körök az adott oszlop szerint lesznek rendezve. További kattintásokkal válthatsz a növekvő és csökkenő rendezés között.</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Simple Clock - Óra</string>
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Óra, ébresztő, stopperóra és időzítő kombinációja.</string>
+    <string name="app_long_description">
+        Az alkalmazás több időzítéssel kapcsolatos funkcióval rendelkezik.
+
+        Az óránál engedélyezheti más időzónák idejének megjelenítését, vagy használhatja az egyszerű, de testre szabható óra widgetet. A widget szövegének színe testre szabható, akárcsak a háttér színe és az áttetszése.
+
+        Az ébresztő tartalmazza az összes elvárt funkciót, mint a nap kiválasztása, rezgéskapcsolás, csengőhang kiválasztása, némítás vagy egyéni címke hozzáadása.
+
+        A stopperórával könnyedén mérhet hosszabb időtartamot vagy egyes köröket. A köröket köridő szerint rendezheti, tartalmaz opcionális rezgéseket is a gombnyomásra, csak hogy tudassa, hogy a gombot megnyomta, még akkor is, ha nem tud ránézni a készülékre.
+
+        Könnyedén beállíthat egy időzítőt, hogy értesítést kapjon valamilyen eseményről. A csengőhangját egyaránt megváltoztathatja, illetve a rezgéseket is bekapcsolhatja.
+
+        A további funkciók közé tartozik például a készülék elalvásának megakadályozása, amíg az alkalmazás előtérben van.
+
+        Nem tartalmaz hirdetéseket vagy felesleges engedélyeket. Teljesen opensource, testreszabható színeket biztosít.
+
+        <b>Check out the full suite of Simple Tools here:</b>
+        https://www.simplemobiletools.com
+
+        <b>Facebook:</b>
+        https://www.facebook.com/simplemobiletools
+
+        <b>Reddit:</b>
+        https://www.reddit.com/r/SimpleMobileTools
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
