@@ -7,14 +7,14 @@
     <string name="label">Silt</string>
     <string name="no_days_selected">Ühtegi päeva pole valitud</string>
     <string name="timer">Taimer</string>
-    <string name="lap">Lap</string>
+    <string name="lap">Ringi aeg</string>
     <string name="stopwatch_stopped">Stopper on kinni</string>
     <string name="timer_stopped">Taimer on peatunud</string>
     <string name="max_reminder_duration">Meeldetuletuse suurim kestus</string>
     <string name="time_expired">Aeg on läbi</string>
     <string name="clock_and_date">Kell ja kuupäev</string>
     <string name="use_text_shadow">Kasuta tekstivarju</string>
-    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze.</string>
+    <string name="swipe_right_to_dismiss">Katkestamiseks viipa paremale, uinumiseks viipa vasakule.</string>
     <string name="sort_by_creation_order">Loomise järjekord</string>
     <string name="sort_by_alarm_time">Äratuse aeg</string>
     <!--Timer-->
@@ -33,9 +33,8 @@
     <string name="show_seconds">Näita sekundeid</string>
     <string name="increase_volume_gradually">Suurenda heli valjust järk-järgult</string>
     <!-- FAQ -->
-    <string name="faq_1_title">How can I change lap sorting at the stopwatch tab?</string>
-    <string name="faq_1_text">Just click on any of the columns, that will make the laps be sorted by the given column. With additional clicks you can toggle between ascending and descending sorting.</string>
-
+    <string name="faq_1_title">Kuidas ma saan stoperis muuta ringiaegade sortimist\?</string>
+    <string name="faq_1_text">Klõpsi veerul ja sellega määrad, et sortimine toimub selle veeru alusel. Mitme klõpsuga saad vahetada, kas sortimine toimub kasvavas või kahanevas suunas.</string>
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
     <string name="app_title">Lihtne kell - paindlik multifunktsionaalne rakendus</string>
@@ -65,7 +64,6 @@
         <b>Reddit:</b>
         https://www.reddit.com/r/SimpleMobileTools
     </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
