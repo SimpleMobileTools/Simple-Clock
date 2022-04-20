@@ -135,7 +135,7 @@ fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
 }
 
 fun Context.showRemainingTimeMessage(totalMinutes: Int) {
-    val fullString = String.format(getString(R.string.alarm_goes_off_in), formatMinutesToTimeString(totalMinutes))
+    val fullString = String.format(getString(R.string.time_remaining), formatMinutesToTimeString(totalMinutes))
     toast(fullString, Toast.LENGTH_LONG)
 }
 
