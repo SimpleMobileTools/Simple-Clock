@@ -66,6 +66,7 @@
                 android:id="@+id/edit_alarm_vibrate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_margin"
                 android:layout_toEndOf="@+id/edit_alarm_vibrate_icon"
                 android:background="@null"
                 android:clickable="false"
