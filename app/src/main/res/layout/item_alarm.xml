@@ -53,7 +53,7 @@
             android:textSize="@dimen/bigger_text_size"
             tools:text="Good morning!" />
 
-        <com.simplemobiletools.commons.views.MySwitchCompat
+        <com.simplemobiletools.commons.views.MyAppCompatCheckbox
             android:id="@+id/alarm_switch"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
