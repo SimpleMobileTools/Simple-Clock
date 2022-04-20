@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.item_lap.view.*
 import java.util.*
 
 class StopwatchAdapter(activity: SimpleActivity, var laps: ArrayList<Lap>, recyclerView: MyRecyclerView, itemClick: (Any) -> Unit) :
-        MyRecyclerViewAdapter(activity, recyclerView, null, itemClick) {
+        MyRecyclerViewAdapter(activity, recyclerView, itemClick) {
     private var lastLapTimeView: TextView? = null
     private var lastTotalTimeView: TextView? = null
     private var lastLapId = 0

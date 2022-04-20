@@ -23,7 +23,7 @@ class TimerAdapter(
     recyclerView: MyRecyclerView,
     onRefresh: () -> Unit,
     onItemClick: (Timer) -> Unit,
-) : MyRecyclerViewListAdapter<Timer>(simpleActivity, recyclerView, diffUtil, null, onItemClick, onRefresh) {
+) : MyRecyclerViewListAdapter<Timer>(simpleActivity, recyclerView, diffUtil, onItemClick, onRefresh) {
 
     companion object {
         private val diffUtil = object : DiffUtil.ItemCallback<Timer>() {

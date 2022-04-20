@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.item_time_zone.view.*
 import java.util.*
 
 class TimeZonesAdapter(activity: SimpleActivity, var timeZones: ArrayList<MyTimeZone>, recyclerView: MyRecyclerView, itemClick: (Any) -> Unit) :
-        MyRecyclerViewAdapter(activity, recyclerView, null, itemClick) {
+    MyRecyclerViewAdapter(activity, recyclerView, itemClick) {
 
     var todayDateString = activity.getFormattedDate(Calendar.getInstance())
 
