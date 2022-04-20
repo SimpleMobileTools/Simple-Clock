@@ -48,7 +48,7 @@ class AlarmReceiver : BroadcastReceiver() {
                 val pendingIntent = PendingIntent.getActivity(context, 0, Intent(context, ReminderActivity::class.java).apply {
                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     putExtra(ALARM_ID, id)
-                }, PendingIntent.FLAG_UPDATE_CURRENT)
+                }, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
                 val builder = NotificationCompat.Builder(context, "Alarm")
                     .setSmallIcon(R.drawable.ic_alarm_vector)

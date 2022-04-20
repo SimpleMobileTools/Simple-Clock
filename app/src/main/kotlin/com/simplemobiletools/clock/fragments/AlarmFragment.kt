@@ -15,12 +15,12 @@ import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
+import com.simplemobiletools.commons.extensions.getProperTextColor
 import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.extensions.updateTextColors
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.models.AlarmSound
 import kotlinx.android.synthetic.main.fragment_alarm.view.*
-import java.util.*
 
 class AlarmFragment : Fragment(), ToggleAlarmInterface {
     private var alarms = ArrayList<Alarm>()
@@ -40,7 +40,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
         super.onResume()
         setupViews()
 
-        val configTextColor = requireContext().config.textColor
+        val configTextColor = requireContext().getProperTextColor()
         if (storedTextColor != configTextColor) {
             (view.alarms_list.adapter as AlarmsAdapter).updateTextColor(configTextColor)
         }
@@ -58,7 +58,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     }
 
     private fun storeStateVariables() {
-        storedTextColor = requireContext().config.textColor
+        storedTextColor = requireContext().getProperTextColor()
     }
 
     private fun setupViews() {

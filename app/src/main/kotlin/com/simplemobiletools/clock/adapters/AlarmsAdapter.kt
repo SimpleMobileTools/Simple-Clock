@@ -102,7 +102,7 @@ class AlarmsAdapter(
             alarm_label.beVisibleIf(alarm.label.isNotEmpty())
 
             alarm_switch.isChecked = alarm.isEnabled
-            alarm_switch.setColors(textColor, adjustedPrimaryColor, backgroundColor)
+            alarm_switch.setColors(textColor, properPrimaryColor, backgroundColor)
             alarm_switch.setOnClickListener {
                 if (alarm.days > 0) {
                     if (activity.config.wasAlarmWarningShown) {

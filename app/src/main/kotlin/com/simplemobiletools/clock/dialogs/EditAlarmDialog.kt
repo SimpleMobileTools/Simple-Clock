@@ -19,11 +19,10 @@ import com.simplemobiletools.commons.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.models.AlarmSound
 import kotlinx.android.synthetic.main.dialog_edit_alarm.view.*
-import java.util.*
 
 class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callback: (alarmId: Int) -> Unit) {
     private val view = activity.layoutInflater.inflate(R.layout.dialog_edit_alarm, null)
-    private val textColor = activity.config.textColor
+    private val textColor = activity.getProperTextColor()
 
     init {
         restoreLastAlarm()
@@ -33,7 +32,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
             edit_alarm_time.setOnClickListener {
                 TimePickerDialog(
                     context,
-                    context.getDialogTheme(),
+                    context.getTimePickerDialogTheme(),
                     timeSetListener,
                     alarm.timeInMinutes / 60,
                     alarm.timeInMinutes % 60,
@@ -82,7 +81,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                 val isDayChecked = alarm.days > 0 && alarm.days and pow != 0
                 day.background = getProperDayDrawable(isDayChecked)
 
-                day.setTextColor(if (isDayChecked) context.config.backgroundColor else textColor)
+                day.setTextColor(if (isDayChecked) context.getProperBackgroundColor() else textColor)
                 day.setOnClickListener {
                     if (alarm.days < 0) {
                         alarm.days = 0
@@ -95,7 +94,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                         alarm.days = alarm.days.removeBit(pow)
                     }
                     day.background = getProperDayDrawable(selectDay)
-                    day.setTextColor(if (selectDay) context.config.backgroundColor else textColor)
+                    day.setTextColor(if (selectDay) context.getProperBackgroundColor() else textColor)
                     checkDaylessAlarm()
                 }
 

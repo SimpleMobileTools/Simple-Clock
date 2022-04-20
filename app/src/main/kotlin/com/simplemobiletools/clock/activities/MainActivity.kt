@@ -42,22 +42,22 @@ class MainActivity : SimpleActivity() {
 
     override fun onResume() {
         super.onResume()
-        val configTextColor = config.textColor
+        val configTextColor = getProperTextColor()
         if (storedTextColor != configTextColor) {
             getInactiveTabIndexes(view_pager.currentItem).forEach {
                 main_tabs_holder.getTabAt(it)?.icon?.applyColorFilter(configTextColor)
             }
         }
 
-        val configBackgroundColor = config.backgroundColor
+        val configBackgroundColor = getProperBackgroundColor()
         if (storedBackgroundColor != configBackgroundColor) {
             main_tabs_holder.background = ColorDrawable(configBackgroundColor)
         }
 
-        val configPrimaryColor = config.primaryColor
+        val configPrimaryColor = getProperPrimaryColor()
         if (storedPrimaryColor != configPrimaryColor) {
-            main_tabs_holder.setSelectedTabIndicatorColor(getAdjustedPrimaryColor())
-            main_tabs_holder.getTabAt(view_pager.currentItem)?.icon?.applyColorFilter(getAdjustedPrimaryColor())
+            main_tabs_holder.setSelectedTabIndicatorColor(getProperPrimaryColor())
+            main_tabs_holder.getTabAt(view_pager.currentItem)?.icon?.applyColorFilter(getProperPrimaryColor())
         }
 
         if (config.preventPhoneFromSleeping) {
@@ -107,11 +107,9 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun storeStateVariables() {
-        config.apply {
-            storedTextColor = textColor
-            storedBackgroundColor = backgroundColor
-            storedPrimaryColor = primaryColor
-        }
+        storedTextColor = getProperTextColor()
+        storedBackgroundColor = getProperBackgroundColor()
+        storedPrimaryColor = getProperPrimaryColor()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {
@@ -154,11 +152,11 @@ class MainActivity : SimpleActivity() {
         view_pager.offscreenPageLimit = TABS_COUNT - 1
         main_tabs_holder.onTabSelectionChanged(
             tabUnselectedAction = {
-                it.icon?.applyColorFilter(config.textColor)
+                it.icon?.applyColorFilter(getProperTextColor())
             },
             tabSelectedAction = {
                 view_pager.currentItem = it.position
-                it.icon?.applyColorFilter(getAdjustedPrimaryColor())
+                it.icon?.applyColorFilter(getProperPrimaryColor())
             }
         )
 
@@ -167,15 +165,15 @@ class MainActivity : SimpleActivity() {
 
     private fun setupTabColors(lastUsedTab: Int) {
         main_tabs_holder.apply {
-            background = ColorDrawable(config.backgroundColor)
-            setSelectedTabIndicatorColor(getAdjustedPrimaryColor())
+            background = ColorDrawable(getProperBackgroundColor())
+            setSelectedTabIndicatorColor(getProperPrimaryColor())
             getTabAt(lastUsedTab)?.apply {
                 select()
-                icon?.applyColorFilter(getAdjustedPrimaryColor())
+                icon?.applyColorFilter(getProperPrimaryColor())
             }
 
             getInactiveTabIndexes(lastUsedTab).forEach {
-                getTabAt(it)?.icon?.applyColorFilter(config.textColor)
+                getTabAt(it)?.icon?.applyColorFilter(getProperTextColor())
             }
         }
     }

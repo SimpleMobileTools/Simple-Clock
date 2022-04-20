@@ -120,7 +120,7 @@ class StopwatchFragment : Fragment() {
         super.onResume()
         setupViews()
 
-        val configTextColor = requireContext().config.textColor
+        val configTextColor = requireContext().getProperTextColor()
         if (storedTextColor != configTextColor) {
             stopwatchAdapter.updateTextColor(configTextColor)
         }
@@ -141,7 +141,7 @@ class StopwatchFragment : Fragment() {
     }
 
     private fun storeStateVariables() {
-        storedTextColor = requireContext().config.textColor
+        storedTextColor = requireContext().getProperTextColor()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -183,11 +183,11 @@ class StopwatchFragment : Fragment() {
     }
 
     private fun setupViews() {
-        val adjustedPrimaryColor = requireContext().getAdjustedPrimaryColor()
+        val properPrimaryColor = requireContext().getProperPrimaryColor()
         view.apply {
             requireContext().updateTextColors(stopwatch_fragment)
-            stopwatch_play_pause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, adjustedPrimaryColor)
-            stopwatch_reset.applyColorFilter(requireContext().config.textColor)
+            stopwatch_play_pause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, properPrimaryColor)
+            stopwatch_reset.applyColorFilter(requireContext().getProperTextColor())
         }
 
         updateIcons()
@@ -196,7 +196,7 @@ class StopwatchFragment : Fragment() {
 
     private fun updateIcons() {
         val drawableId = if (isRunning) R.drawable.ic_pause_vector else R.drawable.ic_play_vector
-        val iconColor = if (requireContext().getAdjustedPrimaryColor() == Color.WHITE) Color.BLACK else Color.WHITE
+        val iconColor = if (requireContext().getProperPrimaryColor() == Color.WHITE) Color.BLACK else Color.WHITE
         view.stopwatch_play_pause.setImageDrawable(resources.getColoredDrawableWithColor(drawableId, iconColor))
     }
 
@@ -267,7 +267,7 @@ class StopwatchFragment : Fragment() {
     }
 
     private fun updateSortingIndicators() {
-        var bitmap = requireContext().resources.getColoredBitmap(R.drawable.ic_sorting_triangle_vector, requireContext().getAdjustedPrimaryColor())
+        var bitmap = requireContext().resources.getColoredBitmap(R.drawable.ic_sorting_triangle_vector, requireContext().getProperPrimaryColor())
         view.apply {
             stopwatch_sorting_indicator_1.beInvisibleIf(sorting and SORT_BY_LAP == 0)
             stopwatch_sorting_indicator_2.beInvisibleIf(sorting and SORT_BY_LAP_TIME == 0)

@@ -140,20 +140,20 @@ fun Context.setupAlarmClock(alarm: Alarm, triggerInSeconds: Int) {
 fun Context.getOpenAlarmTabIntent(): PendingIntent {
     val intent = getLaunchIntent() ?: Intent(this, SplashActivity::class.java)
     intent.putExtra(OPEN_TAB, TAB_ALARM)
-    return PendingIntent.getActivity(this, OPEN_ALARMS_TAB_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    return PendingIntent.getActivity(this, OPEN_ALARMS_TAB_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
 
 fun Context.getOpenTimerTabIntent(timerId: Int): PendingIntent {
     val intent = getLaunchIntent() ?: Intent(this, SplashActivity::class.java)
     intent.putExtra(OPEN_TAB, TAB_TIMER)
     intent.putExtra(TIMER_ID, timerId)
-    return PendingIntent.getActivity(this, timerId, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    return PendingIntent.getActivity(this, timerId, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
 
 fun Context.getAlarmIntent(alarm: Alarm): PendingIntent {
     val intent = Intent(this, AlarmReceiver::class.java)
     intent.putExtra(ALARM_ID, alarm.id)
-    return PendingIntent.getBroadcast(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    return PendingIntent.getBroadcast(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
 
 fun Context.cancelAlarmClock(alarm: Alarm) {
@@ -189,7 +189,7 @@ fun Context.scheduleNextWidgetUpdate() {
     }
 
     val intent = Intent(this, DateTimeWidgetUpdateReceiver::class.java)
-    val pendingIntent = PendingIntent.getBroadcast(this, UPDATE_WIDGET_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    val pendingIntent = PendingIntent.getBroadcast(this, UPDATE_WIDGET_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
     val triggerAtMillis = System.currentTimeMillis() + getMSTillNextMinute()
@@ -294,7 +294,7 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
         NotificationChannel(channelId, name, importance).apply {
             setBypassDnd(true)
             enableLights(true)
-            lightColor = getAdjustedPrimaryColor()
+            lightColor = getProperPrimaryColor()
             setSound(Uri.parse(soundUri), audioAttributes)
 
             if (!timer.vibrate) {
@@ -339,13 +339,13 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
 fun Context.getHideTimerPendingIntent(timerId: Int): PendingIntent {
     val intent = Intent(this, HideTimerReceiver::class.java)
     intent.putExtra(TIMER_ID, timerId)
-    return PendingIntent.getBroadcast(this, timerId, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    return PendingIntent.getBroadcast(this, timerId, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
 
 fun Context.getHideAlarmPendingIntent(alarm: Alarm): PendingIntent {
     val intent = Intent(this, HideAlarmReceiver::class.java)
     intent.putExtra(ALARM_ID, alarm.id)
-    return PendingIntent.getBroadcast(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    return PendingIntent.getBroadcast(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
 
 fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): Notification {
@@ -369,7 +369,7 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
         NotificationChannel(channelId, label, importance).apply {
             setBypassDnd(true)
             enableLights(true)
-            lightColor = getAdjustedPrimaryColor()
+            lightColor = getProperPrimaryColor()
             enableVibration(alarm.vibrate)
             setSound(Uri.parse(soundUri), audioAttributes)
             notificationManager.createNotificationChannel(this)
@@ -411,15 +411,15 @@ fun Context.getSnoozePendingIntent(alarm: Alarm): PendingIntent {
     val intent = Intent(this, snoozeClass).setAction("Snooze")
     intent.putExtra(ALARM_ID, alarm.id)
     return if (config.useSameSnooze) {
-        PendingIntent.getService(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        PendingIntent.getService(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
     } else {
-        PendingIntent.getActivity(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        PendingIntent.getActivity(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
     }
 }
 
 fun Context.getReminderActivityIntent(): PendingIntent {
     val intent = Intent(this, ReminderActivity::class.java)
-    return PendingIntent.getActivity(this, REMINDER_ACTIVITY_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    return PendingIntent.getActivity(this, REMINDER_ACTIVITY_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
 
 fun Context.checkAlarmsWithDeletedSoundUri(uri: String) {

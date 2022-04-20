@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.dialog_edit_timer.view.*
 
 class EditTimerDialog(val activity: SimpleActivity, val timer: Timer, val callback: () -> Unit) {
     private val view = activity.layoutInflater.inflate(R.layout.dialog_edit_timer, null)
-    private val textColor = activity.config.textColor
+    private val textColor = activity.getProperTextColor()
 
     init {
         restoreLastAlarm()

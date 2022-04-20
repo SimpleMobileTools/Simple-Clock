@@ -48,7 +48,7 @@ class SettingsActivity : SimpleActivity() {
             settings_timer_tab_label,
             settings_widgets_label
         ).forEach {
-            it.setTextColor(getAdjustedPrimaryColor())
+            it.setTextColor(getProperPrimaryColor())
         }
 
         arrayOf(
@@ -60,7 +60,7 @@ class SettingsActivity : SimpleActivity() {
             settings_timer_tab_holder,
             settings_widgets_holder
         ).forEach {
-            it.background.applyColorFilter(baseConfig.backgroundColor.getContrastColor())
+            it.background.applyColorFilter(getProperBackgroundColor().getContrastColor())
         }
     }
 

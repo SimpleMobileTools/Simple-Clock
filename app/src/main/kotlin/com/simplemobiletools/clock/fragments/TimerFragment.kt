@@ -17,6 +17,7 @@ import com.simplemobiletools.clock.extensions.timerHelper
 import com.simplemobiletools.clock.helpers.DisabledItemChangeAnimator
 import com.simplemobiletools.clock.models.Timer
 import com.simplemobiletools.clock.models.TimerEvent
+import com.simplemobiletools.commons.extensions.getProperTextColor
 import com.simplemobiletools.commons.extensions.hideKeyboard
 import com.simplemobiletools.commons.extensions.updateTextColors
 import com.simplemobiletools.commons.models.AlarmSound
@@ -77,7 +78,7 @@ class TimerFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         requireContext().updateTextColors(timer_fragment)
-        val configTextColor = requireContext().config.textColor
+        val configTextColor = requireContext().getProperTextColor()
         if (storedTextColor != configTextColor) {
             initAdapter()
             timerAdapter.updateTextColor(configTextColor)
@@ -108,7 +109,7 @@ class TimerFragment : Fragment() {
     }
 
     private fun storeStateVariables() {
-        storedTextColor = requireContext().config.textColor
+        storedTextColor = requireContext().getProperTextColor()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

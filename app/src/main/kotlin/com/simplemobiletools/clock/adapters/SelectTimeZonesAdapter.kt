@@ -7,15 +7,16 @@ import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.models.MyTimeZone
-import com.simplemobiletools.commons.extensions.getAdjustedPrimaryColor
+import com.simplemobiletools.commons.extensions.getProperBackgroundColor
+import com.simplemobiletools.commons.extensions.getProperPrimaryColor
+import com.simplemobiletools.commons.extensions.getProperTextColor
 import kotlinx.android.synthetic.main.item_add_time_zone.view.*
-import java.util.*
 
 class SelectTimeZonesAdapter(val activity: SimpleActivity, val timeZones: ArrayList<MyTimeZone>) : RecyclerView.Adapter<SelectTimeZonesAdapter.ViewHolder>() {
     private val config = activity.config
-    private val textColor = config.textColor
-    private val backgroundColor = config.backgroundColor
-    private val primaryColor = activity.getAdjustedPrimaryColor()
+    private val textColor = activity.getProperTextColor()
+    private val backgroundColor = activity.getProperBackgroundColor()
+    private val primaryColor = activity.getProperPrimaryColor()
     var selectedKeys = HashSet<Int>()
 
     init {

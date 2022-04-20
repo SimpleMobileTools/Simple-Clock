@@ -81,11 +81,12 @@ class ReminderActivity : SimpleActivity() {
     private fun setupAlarmButtons() {
         reminder_stop.beGone()
         reminder_draggable_background.startAnimation(AnimationUtils.loadAnimation(this, R.anim.pulsing_animation))
-        reminder_draggable_background.applyColorFilter(getAdjustedPrimaryColor())
+        reminder_draggable_background.applyColorFilter(getProperPrimaryColor())
 
-        reminder_dismiss.applyColorFilter(config.textColor)
-        reminder_draggable.applyColorFilter(config.textColor)
-        reminder_snooze.applyColorFilter(config.textColor)
+        val textColor = getProperTextColor()
+        reminder_dismiss.applyColorFilter(textColor)
+        reminder_draggable.applyColorFilter(textColor)
+        reminder_snooze.applyColorFilter(textColor)
 
         var minDragX = 0f
         var maxDragX = 0f
@@ -147,7 +148,7 @@ class ReminderActivity : SimpleActivity() {
     }
 
     private fun setupTimerButtons() {
-        reminder_stop.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, getAdjustedPrimaryColor())
+        reminder_stop.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, getProperPrimaryColor())
         arrayOf(reminder_snooze, reminder_draggable_background, reminder_draggable, reminder_dismiss).forEach {
             it.beGone()
         }
