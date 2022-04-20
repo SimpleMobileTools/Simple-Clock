@@ -18,7 +18,6 @@ import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.MINUTE_SECONDS
 import com.simplemobiletools.commons.helpers.SILENT
-import com.simplemobiletools.commons.helpers.isOreoPlus
 import kotlinx.android.synthetic.main.activity_reminder.*
 
 class ReminderActivity : SimpleActivity() {
@@ -127,9 +126,7 @@ class ReminderActivity : SimpleActivity() {
                             finishActivity()
                         }
 
-                        if (isOreoPlus()) {
-                            notificationManager.cancelAll()
-                        }
+                        notificationManager.cancelAll()
                     } else if (reminder_draggable.x <= minDragX + 50f) {
                         if (!didVibrate) {
                             reminder_draggable.performHapticFeedback()
@@ -137,9 +134,7 @@ class ReminderActivity : SimpleActivity() {
                             snoozeAlarm()
                         }
 
-                        if (isOreoPlus()) {
-                            notificationManager.cancelAll()
-                        }
+                        notificationManager.cancelAll()
                     }
                 }
             }

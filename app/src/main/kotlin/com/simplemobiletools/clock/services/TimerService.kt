@@ -17,7 +17,6 @@ import com.simplemobiletools.clock.helpers.INVALID_TIMER_ID
 import com.simplemobiletools.clock.helpers.TIMER_RUNNING_NOTIF_ID
 import com.simplemobiletools.clock.models.TimerEvent
 import com.simplemobiletools.clock.models.TimerState
-import com.simplemobiletools.commons.helpers.isOreoPlus
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -65,18 +64,14 @@ class TimerService : Service() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: TimerEvent.Refresh) {
-        if(!isStopping){
+        if (!isStopping) {
             updateNotification()
         }
     }
 
     private fun stopService() {
         isStopping = true
-        if (isOreoPlus()) {
-            stopForeground(true)
-        } else {
-            stopSelf()
-        }
+        stopForeground(true)
     }
 
     override fun onDestroy() {
@@ -88,12 +83,10 @@ class TimerService : Service() {
         val channelId = "simple_alarm_timer"
         val label = getString(R.string.timer)
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        if (isOreoPlus()) {
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            NotificationChannel(channelId, label, importance).apply {
-                setSound(null, null)
-                notificationManager.createNotificationChannel(this)
-            }
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        NotificationChannel(channelId, label, importance).apply {
+            setSound(null, null)
+            notificationManager.createNotificationChannel(this)
         }
 
         val builder = NotificationCompat.Builder(this)

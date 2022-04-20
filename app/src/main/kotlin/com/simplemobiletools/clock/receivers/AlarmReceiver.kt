@@ -16,7 +16,6 @@ import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.ALARM_ID
 import com.simplemobiletools.clock.helpers.ALARM_NOTIF_ID
 import com.simplemobiletools.commons.extensions.showErrorToast
-import com.simplemobiletools.commons.helpers.isOreoPlus
 
 class AlarmReceiver : BroadcastReceiver() {
 
@@ -30,45 +29,37 @@ class AlarmReceiver : BroadcastReceiver() {
                 context.hideNotification(id)
             }, context.config.alarmMaxReminderSecs * 1000L)
         } else {
-            if (isOreoPlus()) {
-                val audioAttributes = AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_ALARM)
-                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                    .build()
+            val audioAttributes = AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_ALARM)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build()
 
-                val notificationManager = context.getSystemService(NotificationManager::class.java)
-                if (notificationManager.getNotificationChannel("Alarm") == null) {
-                    NotificationChannel("Alarm", "Alarm", NotificationManager.IMPORTANCE_HIGH).apply {
-                        setBypassDnd(true)
-                        setSound(Uri.parse(alarm.soundUri), audioAttributes)
-                        notificationManager.createNotificationChannel(this)
-                    }
+            val notificationManager = context.getSystemService(NotificationManager::class.java)
+            if (notificationManager.getNotificationChannel("Alarm") == null) {
+                NotificationChannel("Alarm", "Alarm", NotificationManager.IMPORTANCE_HIGH).apply {
+                    setBypassDnd(true)
+                    setSound(Uri.parse(alarm.soundUri), audioAttributes)
+                    notificationManager.createNotificationChannel(this)
                 }
+            }
 
-                val pendingIntent = PendingIntent.getActivity(context, 0, Intent(context, ReminderActivity::class.java).apply {
-                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    putExtra(ALARM_ID, id)
-                }, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+            val pendingIntent = PendingIntent.getActivity(context, 0, Intent(context, ReminderActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                putExtra(ALARM_ID, id)
+            }, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
-                val builder = NotificationCompat.Builder(context, "Alarm")
-                    .setSmallIcon(R.drawable.ic_alarm_vector)
-                    .setContentTitle(context.getString(R.string.alarm))
-                    .setAutoCancel(true)
-                    .setPriority(NotificationCompat.PRIORITY_HIGH)
-                    .setCategory(NotificationCompat.CATEGORY_ALARM)
-                    .setFullScreenIntent(pendingIntent, true)
+            val builder = NotificationCompat.Builder(context, "Alarm")
+                .setSmallIcon(R.drawable.ic_alarm_vector)
+                .setContentTitle(context.getString(R.string.alarm))
+                .setAutoCancel(true)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setCategory(NotificationCompat.CATEGORY_ALARM)
+                .setFullScreenIntent(pendingIntent, true)
 
-                try {
-                    notificationManager.notify(ALARM_NOTIF_ID, builder.build())
-                } catch (e: Exception) {
-                    context.showErrorToast(e)
-                }
-            } else {
-                Intent(context, ReminderActivity::class.java).apply {
-                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    putExtra(ALARM_ID, id)
-                    context.startActivity(this)
-                }
+            try {
+                notificationManager.notify(ALARM_NOTIF_ID, builder.build())
+            } catch (e: Exception) {
+                context.showErrorToast(e)
             }
         }
     }

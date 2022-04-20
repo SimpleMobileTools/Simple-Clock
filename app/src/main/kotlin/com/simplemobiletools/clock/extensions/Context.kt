@@ -33,8 +33,6 @@ import com.simplemobiletools.clock.services.SnoozeService
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.DAY_MINUTES
 import com.simplemobiletools.commons.helpers.SILENT
-import com.simplemobiletools.commons.helpers.isMarshmallowPlus
-import com.simplemobiletools.commons.helpers.isOreoPlus
 import java.util.*
 import kotlin.math.pow
 
@@ -85,7 +83,17 @@ fun Context.createNewAlarm(timeInMinutes: Int, weekDays: Int): Alarm {
 }
 
 fun Context.createNewTimer(): Timer {
-    return Timer(null, config.timerSeconds, config.timerState, config.timerVibrate, config.timerSoundUri, config.timerSoundTitle, config.timerLabel ?: "", System.currentTimeMillis(), config.timerChannelId, )
+    return Timer(
+        null,
+        config.timerSeconds,
+        config.timerState,
+        config.timerVibrate,
+        config.timerSoundUri,
+        config.timerSoundTitle,
+        config.timerLabel ?: "",
+        System.currentTimeMillis(),
+        config.timerChannelId,
+    )
 }
 
 fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
@@ -193,11 +201,7 @@ fun Context.scheduleNextWidgetUpdate() {
 
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
     val triggerAtMillis = System.currentTimeMillis() + getMSTillNextMinute()
-
-    when {
-        isMarshmallowPlus() -> alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC, triggerAtMillis, pendingIntent)
-        else -> alarmManager.setExact(AlarmManager.RTC, triggerAtMillis, pendingIntent) //MAYBE RTC_WAKEUP
-    }
+    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC, triggerAtMillis, pendingIntent)
 }
 
 fun Context.getFormattedTime(passedSeconds: Int, showSeconds: Boolean, makeAmPmSmaller: Boolean): SpannableString {
@@ -277,38 +281,36 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
     val channelId = timer.channelId ?: "simple_timer_channel_${soundUri}_${System.currentTimeMillis()}"
     timerHelper.insertOrUpdateTimer(timer.copy(channelId = channelId))
 
-    if (isOreoPlus()) {
-        try {
-            notificationManager.deleteNotificationChannel(channelId)
-        } catch (e: Exception) {
+    try {
+        notificationManager.deleteNotificationChannel(channelId)
+    } catch (e: Exception) {
+    }
+
+    val audioAttributes = AudioAttributes.Builder()
+        .setUsage(AudioAttributes.USAGE_ALARM)
+        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+        .setLegacyStreamType(STREAM_ALARM)
+        .build()
+
+    val name = getString(R.string.timer)
+    val importance = NotificationManager.IMPORTANCE_HIGH
+    NotificationChannel(channelId, name, importance).apply {
+        setBypassDnd(true)
+        enableLights(true)
+        lightColor = getProperPrimaryColor()
+        setSound(Uri.parse(soundUri), audioAttributes)
+
+        if (!timer.vibrate) {
+            vibrationPattern = longArrayOf(0L)
         }
 
-        val audioAttributes = AudioAttributes.Builder()
-            .setUsage(AudioAttributes.USAGE_ALARM)
-            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-            .setLegacyStreamType(STREAM_ALARM)
-            .build()
-
-        val name = getString(R.string.timer)
-        val importance = NotificationManager.IMPORTANCE_HIGH
-        NotificationChannel(channelId, name, importance).apply {
-            setBypassDnd(true)
-            enableLights(true)
-            lightColor = getProperPrimaryColor()
-            setSound(Uri.parse(soundUri), audioAttributes)
-
-            if (!timer.vibrate) {
-                vibrationPattern = longArrayOf(0L)
-            }
-
-            enableVibration(true)
-            notificationManager.createNotificationChannel(this)
-        }
+        enableVibration(true)
+        notificationManager.createNotificationChannel(this)
     }
 
     val reminderActivityIntent = getReminderActivityIntent()
     val builder = NotificationCompat.Builder(this)
-        .setContentTitle(if(timer.label.isEmpty()) getString(R.string.timer) else timer.label)
+        .setContentTitle(if (timer.label.isEmpty()) getString(R.string.timer) else timer.label)
         .setContentText(getString(R.string.time_expired))
         .setSmallIcon(R.drawable.ic_hourglass_vector)
         .setContentIntent(pendingIntent)
@@ -318,7 +320,11 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
         .setAutoCancel(true)
         .setSound(Uri.parse(soundUri), STREAM_ALARM)
         .setChannelId(channelId)
-        .addAction(R.drawable.ic_cross_vector, getString(R.string.dismiss), if (addDeleteIntent) reminderActivityIntent else getHideTimerPendingIntent(timer.id!!))
+        .addAction(
+            R.drawable.ic_cross_vector,
+            getString(R.string.dismiss),
+            if (addDeleteIntent) reminderActivityIntent else getHideTimerPendingIntent(timer.id!!)
+        )
 
     if (addDeleteIntent) {
         builder.setDeleteIntent(reminderActivityIntent)
@@ -356,24 +362,22 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
 
     val channelId = "simple_alarm_channel_$soundUri"
     val label = if (alarm.label.isNotEmpty()) alarm.label else getString(R.string.alarm)
-    if (isOreoPlus()) {
-        val audioAttributes = AudioAttributes.Builder()
-            .setUsage(AudioAttributes.USAGE_ALARM)
-            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-            .setLegacyStreamType(STREAM_ALARM)
-            .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
-            .build()
+    val audioAttributes = AudioAttributes.Builder()
+        .setUsage(AudioAttributes.USAGE_ALARM)
+        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+        .setLegacyStreamType(STREAM_ALARM)
+        .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
+        .build()
 
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val importance = NotificationManager.IMPORTANCE_HIGH
-        NotificationChannel(channelId, label, importance).apply {
-            setBypassDnd(true)
-            enableLights(true)
-            lightColor = getProperPrimaryColor()
-            enableVibration(alarm.vibrate)
-            setSound(Uri.parse(soundUri), audioAttributes)
-            notificationManager.createNotificationChannel(this)
-        }
+    val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    val importance = NotificationManager.IMPORTANCE_HIGH
+    NotificationChannel(channelId, label, importance).apply {
+        setBypassDnd(true)
+        enableLights(true)
+        lightColor = getProperPrimaryColor()
+        enableVibration(alarm.vibrate)
+        setSound(Uri.parse(soundUri), audioAttributes)
+        notificationManager.createNotificationChannel(this)
     }
 
     val dismissIntent = getHideAlarmPendingIntent(alarm)
