@@ -28,7 +28,7 @@
 
         <activity
             android:name=".activities.SplashActivity"
-            android:exported="false"
+            android:exported="true"
             android:launchMode="singleTask"
             android:theme="@style/SplashTheme">
 
@@ -101,7 +101,7 @@
 
         <receiver
             android:name=".receivers.BootCompletedReceiver"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
