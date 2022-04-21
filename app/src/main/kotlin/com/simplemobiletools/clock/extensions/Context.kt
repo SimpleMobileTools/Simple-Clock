@@ -180,7 +180,7 @@ fun Context.updateWidgets() {
     val component = ComponentName(applicationContext, MyWidgetDateTimeProvider::class.java)
     val widgetIds = AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(component) ?: return
     if (widgetIds.isNotEmpty()) {
-        val ids = intArrayOf(R.xml.widget_date_time_info)
+        val ids = intArrayOf(R.xml.widget_digital_clock_info)
         Intent(applicationContext, MyWidgetDateTimeProvider::class.java).apply {
             action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
             putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)

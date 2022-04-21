@@ -119,7 +119,7 @@
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_date_time_info" />
+                android:resource="@xml/widget_digital_clock_info" />
         </receiver>
 
         <receiver
