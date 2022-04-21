@@ -16,6 +16,8 @@
     <string name="swipe_right_to_dismiss">Kapatmak için sağa, ertelemek için sola kaydırın.</string>
     <string name="sort_by_creation_order">Oluşturma sırası</string>
     <string name="sort_by_alarm_time">Alarm zamanı</string>
+    <string name="analog_clock">Analog clock</string>
+    <string name="digital_clock">Digital clock</string>
 
     <!--Timer-->
     <string name="timers_notification_msg">Zamanlayıcılar çalışıyor</string>

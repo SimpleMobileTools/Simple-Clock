@@ -17,6 +17,8 @@
     <string name="swipe_right_to_dismiss">Przesuń w prawo, aby odrzucić, lub w lewo, aby odłożyć.</string>
     <string name="sort_by_creation_order">Kolejność tworzenia</string>
     <string name="sort_by_alarm_time">Czas alarmu</string>
+    <string name="analog_clock">Analog clock</string>
+    <string name="digital_clock">Digital clock</string>
     <!--Timer-->
     <string name="timers_notification_msg">Minutniki są uruchomione</string>
     <string name="timer_single_notification_label_msg">Minutnik dla %s jest uruchomiony</string>

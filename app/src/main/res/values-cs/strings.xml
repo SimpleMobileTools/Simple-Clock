@@ -16,6 +16,8 @@
     <string name="swipe_right_to_dismiss">Potáhněte vpravo pro zrušení, nebo vlevo pro odložení.</string>
     <string name="sort_by_creation_order">Creation order</string>
     <string name="sort_by_alarm_time">Alarm time</string>
+    <string name="analog_clock">Analog clock</string>
+    <string name="digital_clock">Digital clock</string>
 
     <!--Timer-->
     <string name="timers_notification_msg">Timers are running</string>

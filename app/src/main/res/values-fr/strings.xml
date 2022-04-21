@@ -17,6 +17,8 @@
     <string name="swipe_right_to_dismiss">Balayez vers la droite pour arrêter ou vers la gauche pour répéter.</string>
     <string name="sort_by_creation_order">Ordre de création</string>
     <string name="sort_by_alarm_time">Heure de l\'alarme</string>
+    <string name="analog_clock">Analog clock</string>
+    <string name="digital_clock">Digital clock</string>
     <!--Timer-->
     <string name="timers_notification_msg">Les minuteries sont en marche</string>
     <string name="timer_single_notification_label_msg">La minuterie de %s est en marche</string>

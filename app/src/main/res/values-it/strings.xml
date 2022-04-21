@@ -17,6 +17,8 @@
     <string name="swipe_right_to_dismiss">Scorri a destra per rimuovere, a sinistra per rinviare.</string>
     <string name="sort_by_creation_order">Ordine di creazione</string>
     <string name="sort_by_alarm_time">Ora dell\'allarme</string>
+    <string name="analog_clock">Analog clock</string>
+    <string name="digital_clock">Digital clock</string>
     <!--Timer-->
     <string name="timers_notification_msg">I contaminuti sono in funzione</string>
     <string name="timer_single_notification_label_msg">Il contaminuti per %s è in funzione</string>

@@ -16,6 +16,8 @@
     <string name="swipe_right_to_dismiss">Veeg rechts voor afzetten, of links voor snooze.</string>
     <string name="sort_by_creation_order">Aanmaakvolgorde</string>
     <string name="sort_by_alarm_time">Alarmtijd</string>
+    <string name="analog_clock">Analog clock</string>
+    <string name="digital_clock">Digital clock</string>
 
     <!--Timer-->
     <string name="timers_notification_msg">Timers lopen</string>
