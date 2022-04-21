@@ -26,7 +26,6 @@ import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.clock.models.Timer
 import com.simplemobiletools.clock.receivers.AlarmReceiver
-import com.simplemobiletools.clock.receivers.DateTimeWidgetUpdateReceiver
 import com.simplemobiletools.clock.receivers.HideAlarmReceiver
 import com.simplemobiletools.clock.receivers.HideTimerReceiver
 import com.simplemobiletools.clock.services.SnoozeService
@@ -187,21 +186,6 @@ fun Context.updateWidgets() {
             sendBroadcast(this)
         }
     }
-}
-
-fun Context.scheduleNextWidgetUpdate() {
-    val widgetsCnt =
-        AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(ComponentName(applicationContext, MyWidgetDateTimeProvider::class.java)) ?: return
-    if (widgetsCnt.isEmpty()) {
-        return
-    }
-
-    val intent = Intent(this, DateTimeWidgetUpdateReceiver::class.java)
-    val pendingIntent = PendingIntent.getBroadcast(this, UPDATE_WIDGET_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-
-    val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-    val triggerAtMillis = System.currentTimeMillis() + getMSTillNextMinute()
-    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC, triggerAtMillis, pendingIntent)
 }
 
 fun Context.getFormattedTime(passedSeconds: Int, showSeconds: Boolean, makeAmPmSmaller: Boolean): SpannableString {

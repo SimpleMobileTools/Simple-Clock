@@ -97,8 +97,6 @@
 
         <receiver android:name=".receivers.HideAlarmReceiver" />
 
-        <receiver android:name=".receivers.DateTimeWidgetUpdateReceiver" />
-
         <receiver
             android:name=".receivers.BootCompletedReceiver"
             android:exported="true">

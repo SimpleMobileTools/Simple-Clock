@@ -11,21 +11,17 @@ import android.os.Bundle
 import android.widget.RemoteViews
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SplashActivity
-import com.simplemobiletools.clock.extensions.*
+import com.simplemobiletools.clock.extensions.config
+import com.simplemobiletools.clock.extensions.formatTo12HourFormat
+import com.simplemobiletools.clock.extensions.getFormattedDate
+import com.simplemobiletools.clock.extensions.getNextAlarm
 import com.simplemobiletools.commons.extensions.*
 import java.util.*
 
 class MyWidgetDateTimeProvider : AppWidgetProvider() {
-
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
         super.onUpdate(context, appWidgetManager, appWidgetIds)
         performUpdate(context)
-        context.scheduleNextWidgetUpdate()
-    }
-
-    override fun onEnabled(context: Context) {
-        super.onEnabled(context)
-        context.scheduleNextWidgetUpdate()
     }
 
     private fun performUpdate(context: Context) {
@@ -41,10 +37,8 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
     }
 
     private fun updateTexts(context: Context, views: RemoteViews) {
-        val timeText = context.getFormattedTime(getPassedSeconds(), false, false).toString()
         val nextAlarm = getFormattedNextAlarm(context)
         views.apply {
-            setText(R.id.widget_time, timeText)
             setText(R.id.widget_date, context.getFormattedDate(Calendar.getInstance()))
             setText(R.id.widget_next_alarm, nextAlarm)
             setVisibleIf(R.id.widget_alarm_holder, nextAlarm.isNotEmpty())
@@ -57,7 +51,7 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
 
         views.apply {
             applyColorFilter(R.id.widget_background, config.widgetBgColor)
-            setTextColor(R.id.widget_time, widgetTextColor)
+            setTextColor(R.id.widget_text_clock, widgetTextColor)
             setTextColor(R.id.widget_date, widgetTextColor)
             setTextColor(R.id.widget_next_alarm, widgetTextColor)
 

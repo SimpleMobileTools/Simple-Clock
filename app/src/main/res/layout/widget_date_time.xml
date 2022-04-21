@@ -24,8 +24,8 @@
         android:paddingBottom="@dimen/small_margin"
         tools:ignore="UnusedAttribute">
 
-        <TextView
-            android:id="@+id/widget_time"
+        <TextClock
+            android:id="@+id/widget_text_clock"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="4"
@@ -33,6 +33,8 @@
             android:autoSizeMinTextSize="2sp"
             android:autoSizeStepGranularity="1sp"
             android:autoSizeTextType="uniform"
+            android:format12Hour="h:mm"
+            android:format24Hour="k:mm"
             android:gravity="center"
             android:includeFontPadding="false"
             android:maxLines="1"
