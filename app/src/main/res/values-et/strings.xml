@@ -17,7 +17,7 @@
     <string name="swipe_right_to_dismiss">Katkestamiseks viipa paremale, uinumiseks viipa vasakule.</string>
     <string name="sort_by_creation_order">Loomise järjekord</string>
     <string name="sort_by_alarm_time">Äratuse aeg</string>
-    <string name="analog_clock">Analog clock</string>
+    <string name="analogue_clock">Analogue clock</string>
     <string name="digital_clock">Digital clock</string>
     <!--Timer-->
     <string name="timers_notification_msg">Taimerid töötavad</string>

@@ -17,7 +17,7 @@
     <string name="swipe_right_to_dismiss">Σαρώστε δεξιά για απόρριψη ή αριστερά για αναβολή.</string>
     <string name="sort_by_creation_order">Σειρά δημιουργίας</string>
     <string name="sort_by_alarm_time">Ώρα Αφύπνισης</string>
-    <string name="analog_clock">Analog clock</string>
+    <string name="analogue_clock">Analogue clock</string>
     <string name="digital_clock">Digital clock</string>
 
     <!--Timer-->

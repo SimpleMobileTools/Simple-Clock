@@ -16,7 +16,7 @@
     <string name="swipe_right_to_dismiss">Potiahnite vpravo na odstránenie, alebo vľavo na odloženie.</string>
     <string name="sort_by_creation_order">Poradia vytvorenia</string>
     <string name="sort_by_alarm_time">Času budíka</string>
-    <string name="analog_clock">Analógové hodiny</string>
+    <string name="analogue_clock">Analógové hodiny</string>
     <string name="digital_clock">Digitálne hodiny</string>
 
     <!--Timer-->
