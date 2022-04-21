@@ -29,7 +29,6 @@ class SettingsActivity : SimpleActivity() {
         setupAlarmMaxReminder()
         setupUseSameSnooze()
         setupSnoozeTime()
-        setupVibrate()
         setupTimerMaxReminder()
         setupIncreaseVolumeGradually()
         setupCustomizeWidgetColors()
@@ -39,7 +38,6 @@ class SettingsActivity : SimpleActivity() {
             settings_color_customization_label,
             settings_general_settings_label,
             settings_alarm_tab_label,
-            settings_stopwatch_tab_label,
             settings_timer_tab_label,
         ).forEach {
             it.setTextColor(getProperPrimaryColor())
@@ -49,7 +47,6 @@ class SettingsActivity : SimpleActivity() {
             settings_color_customization_holder,
             settings_general_settings_holder,
             settings_alarm_tab_holder,
-            settings_stopwatch_tab_holder,
             settings_timer_tab_holder,
         ).forEach {
             it.background.applyColorFilter(getProperBackgroundColor().getContrastColor())
@@ -146,14 +143,6 @@ class SettingsActivity : SimpleActivity() {
                 config.snoozeTime = it / MINUTE_SECONDS
                 updateSnoozeText()
             }
-        }
-    }
-
-    private fun setupVibrate() {
-        settings_vibrate.isChecked = config.vibrateOnButtonPress
-        settings_vibrate_holder.setOnClickListener {
-            settings_vibrate.toggle()
-            config.vibrateOnButtonPress = settings_vibrate.isChecked
         }
     }
 

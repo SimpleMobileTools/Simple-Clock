@@ -3,11 +3,9 @@ package com.simplemobiletools.clock
 import android.app.Application
 import android.app.NotificationManager
 import android.content.Context
-import android.os.Build
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
@@ -44,7 +42,6 @@ class App : Application(), LifecycleObserver {
         super.onTerminate()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     private fun onAppBackgrounded() {
         timerHelper.getTimers { timers ->

@@ -6,7 +6,10 @@ import android.content.Intent
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
-import android.os.*
+import android.os.Bundle
+import android.os.Handler
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.view.MotionEvent
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
@@ -162,11 +165,7 @@ class ReminderActivity : SimpleActivity() {
         if (doVibrate) {
             val pattern = LongArray(2) { 500 }
             vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                vibrator?.vibrate(VibrationEffect.createWaveform(pattern, 0))
-            } else {
-                vibrator?.vibrate(pattern, 0)
-            }
+            vibrator?.vibrate(VibrationEffect.createWaveform(pattern, 0))
         }
 
         val soundUri = if (alarm != null) alarm!!.soundUri else config.timerSoundUri

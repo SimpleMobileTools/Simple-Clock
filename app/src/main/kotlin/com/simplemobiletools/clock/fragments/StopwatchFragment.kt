@@ -15,7 +15,6 @@ import com.google.gson.reflect.TypeToken
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.adapters.StopwatchAdapter
-import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.formatStopwatchTime
 import com.simplemobiletools.clock.helpers.SORT_BY_LAP
 import com.simplemobiletools.clock.helpers.SORT_BY_LAP_TIME
@@ -55,32 +54,26 @@ class StopwatchFragment : Fragment() {
         view = (inflater.inflate(R.layout.fragment_stopwatch, container, false) as ViewGroup).apply {
             stopwatch_time.setOnClickListener {
                 togglePlayPause()
-                checkHaptic(this)
             }
 
             stopwatch_play_pause.setOnClickListener {
                 togglePlayPause()
-                checkHaptic(this)
             }
 
             stopwatch_reset.setOnClickListener {
                 resetStopwatch()
-                checkHaptic(this)
             }
 
             stopwatch_sorting_indicator_1.setOnClickListener {
                 changeSorting(SORT_BY_LAP)
-                checkHaptic(this)
             }
 
             stopwatch_sorting_indicator_2.setOnClickListener {
                 changeSorting(SORT_BY_LAP_TIME)
-                checkHaptic(this)
             }
 
             stopwatch_sorting_indicator_3.setOnClickListener {
                 changeSorting(SORT_BY_TOTAL_TIME)
-                checkHaptic(this)
             }
 
             stopwatch_lap.setOnClickListener {
@@ -100,7 +93,6 @@ class StopwatchFragment : Fragment() {
                 laps.add(0, lap)
                 lapTicks = 0
                 updateLaps()
-                checkHaptic(this)
             }
 
             stopwatchAdapter = StopwatchAdapter(activity as SimpleActivity, ArrayList(), stopwatch_list) {
@@ -290,12 +282,6 @@ class StopwatchFragment : Fragment() {
 
     private fun updateLaps() {
         stopwatchAdapter.updateItems(laps)
-    }
-
-    private fun checkHaptic(view: View) {
-        if (requireContext().config.vibrateOnButtonPress) {
-            view.performHapticFeedback()
-        }
     }
 
     private val updateRunnable = object : Runnable {
