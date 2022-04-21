@@ -5,6 +5,6 @@
     android:minWidth="110dp"
     android:minHeight="40dp"
     android:minResizeWidth="40dp"
-    android:previewImage="@drawable/img_digital_widget_preview"
+    android:previewImage="@drawable/img_analogue_widget_preview"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="86400000" />
