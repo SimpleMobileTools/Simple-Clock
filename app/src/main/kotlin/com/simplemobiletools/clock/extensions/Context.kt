@@ -177,11 +177,29 @@ fun Context.hideNotification(id: Int) {
 fun Context.hideTimerNotification(timerId: Int) = hideNotification(timerId)
 
 fun Context.updateWidgets() {
-    val component = ComponentName(applicationContext, MyWidgetDateTimeProvider::class.java)
+    updateDigitalWidgets()
+    updateAnalogueWidgets()
+}
+
+fun Context.updateDigitalWidgets() {
+    val component = ComponentName(applicationContext, MyDigitalTimeWidgetProvider::class.java)
     val widgetIds = AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(component) ?: return
     if (widgetIds.isNotEmpty()) {
         val ids = intArrayOf(R.xml.widget_digital_clock_info)
-        Intent(applicationContext, MyWidgetDateTimeProvider::class.java).apply {
+        Intent(applicationContext, MyDigitalTimeWidgetProvider::class.java).apply {
+            action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+            putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
+            sendBroadcast(this)
+        }
+    }
+}
+
+fun Context.updateAnalogueWidgets() {
+    val component = ComponentName(applicationContext, MyAnalogueTimeWidgetProvider::class.java)
+    val widgetIds = AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(component) ?: return
+    if (widgetIds.isNotEmpty()) {
+        val ids = intArrayOf(R.xml.widget_analogue_clock_info)
+        Intent(applicationContext, MyAnalogueTimeWidgetProvider::class.java).apply {
             action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
             putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
             sendBroadcast(this)

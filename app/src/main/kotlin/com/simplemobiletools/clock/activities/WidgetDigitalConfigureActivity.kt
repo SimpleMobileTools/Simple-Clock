@@ -9,17 +9,15 @@ import android.widget.SeekBar
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.getFormattedDate
-import com.simplemobiletools.clock.extensions.getFormattedTime
-import com.simplemobiletools.clock.helpers.MyWidgetDateTimeProvider
-import com.simplemobiletools.clock.helpers.getPassedSeconds
+import com.simplemobiletools.clock.helpers.MyDigitalTimeWidgetProvider
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.dialogs.WidgetLockedDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
-import kotlinx.android.synthetic.main.widget_config_date_time.*
+import kotlinx.android.synthetic.main.widget_config_digital.*
 import java.util.*
 
-class WidgetDateTimeConfigureActivity : SimpleActivity() {
+class WidgetDigitalConfigureActivity : SimpleActivity() {
     private var mBgAlpha = 0f
     private var mWidgetId = 0
     private var mBgColor = 0
@@ -31,7 +29,7 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
         useDynamicTheme = false
         super.onCreate(savedInstanceState)
         setResult(Activity.RESULT_CANCELED)
-        setContentView(R.layout.widget_config_date_time)
+        setContentView(R.layout.widget_config_digital)
         initVariables()
 
         val isCustomizingColors = intent.extras?.getBoolean(IS_CUSTOMIZING_COLORS) ?: false
@@ -41,12 +39,12 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
             finish()
         }
 
-        config_save.setOnClickListener { saveConfig() }
-        config_bg_color.setOnClickListener { pickBackgroundColor() }
-        config_text_color.setOnClickListener { pickTextColor() }
+        config_digital_save.setOnClickListener { saveConfig() }
+        config_digital_bg_color.setOnClickListener { pickBackgroundColor() }
+        config_digital_text_color.setOnClickListener { pickTextColor() }
 
         val primaryColor = getProperPrimaryColor()
-        config_bg_seekbar.setColors(mTextColor, primaryColor, primaryColor)
+        config_digital_bg_seekbar.setColors(mTextColor, primaryColor, primaryColor)
 
         if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
             mWidgetLockedDialog = WidgetLockedDialog(this) {
@@ -71,8 +69,8 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
         mBgAlpha = Color.alpha(mBgColor) / 255.toFloat()
         mBgColorWithoutTransparency = Color.rgb(Color.red(mBgColor), Color.green(mBgColor), Color.blue(mBgColor))
 
-        config_bg_seekbar.setOnSeekBarChangeListener(bgSeekbarChangeListener)
-        config_bg_seekbar.progress = (mBgAlpha * 100).toInt()
+        config_digital_bg_seekbar.setOnSeekBarChangeListener(bgSeekbarChangeListener)
+        config_digital_bg_seekbar.progress = (mBgAlpha * 100).toInt()
         updateBackgroundColor()
         updateCurrentDateTime()
 
@@ -81,11 +79,7 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
     }
 
     private fun updateCurrentDateTime() {
-        val calendar = Calendar.getInstance()
-        config_time.text = getFormattedTime(getPassedSeconds(), false, false).toString()
-        config_date.text = getFormattedDate(calendar)
-        config_time.setShadowLayer(1f, 0f, 1f, Color.BLACK)
-        config_date.setShadowLayer(1f, 0f, 1f, Color.BLACK)
+        config_digital_date.text = getFormattedDate(Calendar.getInstance())
     }
 
     private fun saveConfig() {
@@ -125,24 +119,24 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
     }
 
     private fun requestWidgetUpdate() {
-        Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE, null, this, MyWidgetDateTimeProvider::class.java).apply {
+        Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE, null, this, MyDigitalTimeWidgetProvider::class.java).apply {
             putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, intArrayOf(mWidgetId))
             sendBroadcast(this)
         }
     }
 
     private fun updateTextColor() {
-        config_text_color.setFillWithStroke(mTextColor, Color.BLACK)
-        config_save.setTextColor(mTextColor)
-        config_time.setTextColor(mTextColor)
-        config_date.setTextColor(mTextColor)
+        config_digital_text_color.setFillWithStroke(mTextColor, Color.BLACK)
+        config_digital_save.setTextColor(mTextColor)
+        config_digital_time.setTextColor(mTextColor)
+        config_digital_date.setTextColor(mTextColor)
     }
 
     private fun updateBackgroundColor() {
         mBgColor = mBgColorWithoutTransparency.adjustAlpha(mBgAlpha)
-        config_bg_color.setFillWithStroke(mBgColor, Color.BLACK)
-        config_background.applyColorFilter(mBgColor)
-        config_save.setBackgroundColor(mBgColor)
+        config_digital_bg_color.setFillWithStroke(mBgColor, Color.BLACK)
+        config_digital_background.applyColorFilter(mBgColor)
+        config_digital_save.setBackgroundColor(mBgColor)
     }
 
     private val bgSeekbarChangeListener = object : SeekBar.OnSeekBarChangeListener {

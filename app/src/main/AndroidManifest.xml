@@ -79,7 +79,16 @@
             android:theme="@style/Theme.Transparent" />
 
         <activity
-            android:name=".activities.WidgetDateTimeConfigureActivity"
+            android:name=".activities.WidgetDigitalConfigureActivity"
+            android:exported="true"
+            android:theme="@style/MyWidgetConfigTheme">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activities.WidgetAnalogueConfigureActivity"
             android:exported="true"
             android:theme="@style/MyWidgetConfigTheme">
             <intent-filter>
@@ -108,7 +117,7 @@
         </receiver>
 
         <receiver
-            android:name=".helpers.MyWidgetDateTimeProvider"
+            android:name=".helpers.MyDigitalTimeWidgetProvider"
             android:exported="true"
             android:label="@string/digital_clock">
 
@@ -120,6 +129,21 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_digital_clock_info" />
+        </receiver>
+
+        <receiver
+            android:name=".helpers.MyAnalogueTimeWidgetProvider"
+            android:exported="true"
+            android:label="@string/analogue_clock">
+
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_ENABLED" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_analogue_clock_info" />
         </receiver>
 
         <receiver

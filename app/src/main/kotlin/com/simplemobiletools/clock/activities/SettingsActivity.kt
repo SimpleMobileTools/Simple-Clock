@@ -178,7 +178,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun setupCustomizeWidgetColors() {
         settings_customize_widget_colors_holder.setOnClickListener {
-            Intent(this, WidgetDateTimeConfigureActivity::class.java).apply {
+            Intent(this, WidgetDigitalConfigureActivity::class.java).apply {
                 putExtra(IS_CUSTOMIZING_COLORS, true)
                 startActivity(this)
             }

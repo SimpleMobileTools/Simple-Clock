@@ -5,10 +5,8 @@
     <dimen name="reminder_background_min_size">70dp</dimen>
     <dimen name="lap_time_size">80dp</dimen>
     <dimen name="widget_alarm_icon_size">18dp</dimen>
-    <dimen name="widget_time_height">48dp</dimen>
-    <dimen name="min_widget_height">30dp</dimen>
-    <dimen name="min_widget_width">180dp</dimen>
-    <dimen name="min_widget_resize_width">110dp</dimen>
+    <dimen name="widget_digital_time_height">48dp</dimen>
+    <dimen name="widget_analogue_time_height">96dp</dimen>
     <dimen name="fab_list_bottom_padding">68dp</dimen>
     <dimen name="timer_button_small_size">50dp</dimen>
     <dimen name="timer_button_size">56dp</dimen>

@@ -20,7 +20,7 @@ import com.simplemobiletools.commons.extensions.setText
 import com.simplemobiletools.commons.extensions.setVisibleIf
 import java.util.*
 
-class MyWidgetDateTimeProvider : AppWidgetProvider() {
+class MyDigitalTimeWidgetProvider : AppWidgetProvider() {
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
         super.onUpdate(context, appWidgetManager, appWidgetIds)
         performUpdate(context)
