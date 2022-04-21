@@ -35,7 +35,6 @@ class SettingsActivity : SimpleActivity() {
         setupVibrate()
         setupTimerMaxReminder()
         setupIncreaseVolumeGradually()
-        setupUseTextShadow()
         setupCustomizeWidgetColors()
         updateTextColors(settings_holder)
 
@@ -46,7 +45,6 @@ class SettingsActivity : SimpleActivity() {
             settings_alarm_tab_label,
             settings_stopwatch_tab_label,
             settings_timer_tab_label,
-            settings_widgets_label
         ).forEach {
             it.setTextColor(getProperPrimaryColor())
         }
@@ -58,7 +56,6 @@ class SettingsActivity : SimpleActivity() {
             settings_alarm_tab_holder,
             settings_stopwatch_tab_holder,
             settings_timer_tab_holder,
-            settings_widgets_holder
         ).forEach {
             it.background.applyColorFilter(getProperBackgroundColor().getContrastColor())
         }
@@ -197,15 +194,6 @@ class SettingsActivity : SimpleActivity() {
         settings_increase_volume_gradually_holder.setOnClickListener {
             settings_increase_volume_gradually.toggle()
             config.increaseVolumeGradually = settings_increase_volume_gradually.isChecked
-        }
-    }
-
-    private fun setupUseTextShadow() {
-        settings_use_text_shadow.isChecked = config.useTextShadow
-        settings_use_text_shadow_holder.setOnClickListener {
-            settings_use_text_shadow.toggle()
-            config.useTextShadow = settings_use_text_shadow.isChecked
-            updateWidgets()
         }
     }
 

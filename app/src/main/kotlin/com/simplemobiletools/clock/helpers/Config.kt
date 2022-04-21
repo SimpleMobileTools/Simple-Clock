@@ -66,10 +66,6 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getInt(ALARM_MAX_REMINDER_SECS, DEFAULT_MAX_ALARM_REMINDER_SECS)
         set(alarmMaxReminderSecs) = prefs.edit().putInt(ALARM_MAX_REMINDER_SECS, alarmMaxReminderSecs).apply()
 
-    var useTextShadow: Boolean
-        get() = prefs.getBoolean(USE_TEXT_SHADOW, true)
-        set(useTextShadow) = prefs.edit().putBoolean(USE_TEXT_SHADOW, useTextShadow).apply()
-
     var increaseVolumeGradually: Boolean
         get() = prefs.getBoolean(INCREASE_VOLUME_GRADUALLY, true)
         set(increaseVolumeGradually) = prefs.edit().putBoolean(INCREASE_VOLUME_GRADUALLY, increaseVolumeGradually).apply()

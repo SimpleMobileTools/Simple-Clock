@@ -31,19 +31,13 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
     private fun performUpdate(context: Context) {
         val appWidgetManager = AppWidgetManager.getInstance(context) ?: return
         appWidgetManager.getAppWidgetIds(getComponentName(context)).forEach {
-            RemoteViews(context.packageName, getProperLayout(context)).apply {
+            RemoteViews(context.packageName, R.layout.widget_date_time).apply {
                 updateTexts(context, this)
                 updateColors(context, this)
                 setupAppOpenIntent(context, this)
                 appWidgetManager.updateAppWidget(it, this)
             }
         }
-    }
-
-    private fun getProperLayout(context: Context) = if (context.config.useTextShadow) {
-        R.layout.widget_date_time_with_shadow
-    } else {
-        R.layout.widget_date_time
     }
 
     private fun updateTexts(context: Context, views: RemoteViews) {
@@ -67,12 +61,8 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
             setTextColor(R.id.widget_date, widgetTextColor)
             setTextColor(R.id.widget_next_alarm, widgetTextColor)
 
-            if (context.config.useTextShadow) {
-                val bitmap = getMultiplyColoredBitmap(R.drawable.ic_clock_shadowed, widgetTextColor, context)
-                setImageViewBitmap(R.id.widget_next_alarm_image, bitmap)
-            } else {
-                setImageViewBitmap(R.id.widget_next_alarm_image, context.resources.getColoredBitmap(R.drawable.ic_alarm_vector, widgetTextColor))
-            }
+            val bitmap = getMultiplyColoredBitmap(R.drawable.ic_clock_shadowed, widgetTextColor, context)
+            setImageViewBitmap(R.id.widget_next_alarm_image, bitmap)
         }
     }
 

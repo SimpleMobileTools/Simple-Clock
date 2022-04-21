@@ -73,11 +73,8 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
         val calendar = Calendar.getInstance()
         config_time.text = getFormattedTime(getPassedSeconds(), false, false).toString()
         config_date.text = getFormattedDate(calendar)
-
-        if (config.useTextShadow) {
-            config_time.setShadowLayer(1f, 0f, 1f, Color.BLACK)
-            config_date.setShadowLayer(1f, 0f, 1f, Color.BLACK)
-        }
+        config_time.setShadowLayer(1f, 0f, 1f, Color.BLACK)
+        config_date.setShadowLayer(1f, 0f, 1f, Color.BLACK)
     }
 
     private fun saveConfig() {

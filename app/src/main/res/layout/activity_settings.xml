@@ -354,37 +354,5 @@
 
             </RelativeLayout>
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/settings_widgets_label"
-            style="@style/SettingsSectionLabelStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/widgets" />
-
-        <LinearLayout
-            android:id="@+id/settings_widgets_holder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/medium_margin"
-            android:background="@drawable/section_holder_stroke"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:id="@+id/settings_use_text_shadow_holder"
-                style="@style/SettingsHolderCheckboxStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ripple_all_corners">
-
-                <com.simplemobiletools.commons.views.MyAppCompatCheckbox
-                    android:id="@+id/settings_use_text_shadow"
-                    style="@style/SettingsCheckboxStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/use_text_shadow" />
-
-            </RelativeLayout>
-        </LinearLayout>
     </LinearLayout>
 </ScrollView>
