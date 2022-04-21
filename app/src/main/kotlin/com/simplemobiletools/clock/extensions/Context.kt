@@ -307,7 +307,7 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
             vibrationPattern = longArrayOf(0L)
         }
 
-        enableVibration(true)
+        enableVibration(timer.vibrate)
         notificationManager.createNotificationChannel(this)
     }
 
@@ -326,7 +326,11 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
         .addAction(
             R.drawable.ic_cross_vector,
             getString(R.string.dismiss),
-            if (addDeleteIntent) reminderActivityIntent else getHideTimerPendingIntent(timer.id!!)
+            if (addDeleteIntent) {
+                reminderActivityIntent
+            } else {
+                getHideTimerPendingIntent(timer.id!!)
+            }
         )
 
     if (addDeleteIntent) {
