@@ -70,6 +70,7 @@ class ClockFragment : Fragment() {
     private fun setupViews() {
         view.apply {
             requireContext().updateTextColors(clock_fragment)
+            clock_time.setTextColor(requireContext().getProperTextColor())
             clock_fab.setOnClickListener {
                 fabClicked()
             }
@@ -82,7 +83,6 @@ class ClockFragment : Fragment() {
         val hours = (passedSeconds / 3600) % 24
         val minutes = (passedSeconds / 60) % 60
         val seconds = passedSeconds % 60
-        view.clock_time.text = requireContext().getFormattedTime(passedSeconds, requireContext().config.showSeconds, true)
 
         if (!DateFormat.is24HourFormat(requireContext())) {
             view.clock_time.textSize = resources.getDimension(R.dimen.clock_text_size_smaller) / resources.displayMetrics.density

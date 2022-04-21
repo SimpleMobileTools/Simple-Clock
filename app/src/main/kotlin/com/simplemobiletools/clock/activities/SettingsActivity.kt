@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.config
-import com.simplemobiletools.clock.extensions.updateWidgets
 import com.simplemobiletools.clock.helpers.DEFAULT_MAX_ALARM_REMINDER_SECS
 import com.simplemobiletools.clock.helpers.DEFAULT_MAX_TIMER_REMINDER_SECS
 import com.simplemobiletools.commons.extensions.*
@@ -27,7 +26,6 @@ class SettingsActivity : SimpleActivity() {
         setupUseEnglish()
         setupPreventPhoneFromSleeping()
         setupSundayFirst()
-        setupShowSeconds()
         setupAlarmMaxReminder()
         setupUseSameSnooze()
         setupSnoozeTime()
@@ -40,7 +38,6 @@ class SettingsActivity : SimpleActivity() {
         arrayOf(
             settings_color_customization_label,
             settings_general_settings_label,
-            settings_clock_tab_label,
             settings_alarm_tab_label,
             settings_stopwatch_tab_label,
             settings_timer_tab_label,
@@ -51,7 +48,6 @@ class SettingsActivity : SimpleActivity() {
         arrayOf(
             settings_color_customization_holder,
             settings_general_settings_holder,
-            settings_clock_tab_holder,
             settings_alarm_tab_holder,
             settings_stopwatch_tab_holder,
             settings_timer_tab_holder,
@@ -108,14 +104,6 @@ class SettingsActivity : SimpleActivity() {
         settings_sunday_first_holder.setOnClickListener {
             settings_sunday_first.toggle()
             config.isSundayFirst = settings_sunday_first.isChecked
-        }
-    }
-
-    private fun setupShowSeconds() {
-        settings_show_seconds.isChecked = config.showSeconds
-        settings_show_seconds_holder.setOnClickListener {
-            settings_show_seconds.toggle()
-            config.showSeconds = settings_show_seconds.isChecked
         }
     }
 

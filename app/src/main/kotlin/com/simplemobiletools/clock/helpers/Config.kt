@@ -16,10 +16,6 @@ class Config(context: Context) : BaseConfig(context) {
         fun newInstance(context: Context) = Config(context)
     }
 
-    var showSeconds: Boolean
-        get() = prefs.getBoolean(SHOW_SECONDS, true)
-        set(showSeconds) = prefs.edit().putBoolean(SHOW_SECONDS, showSeconds).apply()
-
     var selectedTimeZones: Set<String>
         get() = prefs.getStringSet(SELECTED_TIME_ZONES, HashSet())!!
         set(selectedTimeZones) = prefs.edit().putStringSet(SELECTED_TIME_ZONES, selectedTimeZones).apply()

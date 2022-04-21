@@ -140,38 +140,6 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/settings_clock_tab_label"
-            style="@style/SettingsSectionLabelStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/clock_tab" />
-
-        <LinearLayout
-            android:id="@+id/settings_clock_tab_holder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/medium_margin"
-            android:background="@drawable/section_holder_stroke"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:id="@+id/settings_show_seconds_holder"
-                style="@style/SettingsHolderCheckboxStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ripple_all_corners">
-
-                <com.simplemobiletools.commons.views.MyAppCompatCheckbox
-                    android:id="@+id/settings_show_seconds"
-                    style="@style/SettingsCheckboxStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/show_seconds" />
-
-            </RelativeLayout>
-        </LinearLayout>
-
-        <TextView
             android:id="@+id/settings_alarm_tab_label"
             style="@style/SettingsSectionLabelStyle"
             android:layout_width="match_parent"

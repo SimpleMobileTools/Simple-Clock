@@ -7,7 +7,6 @@ import java.util.TimeZone
 import kotlin.math.pow
 
 // shared preferences
-const val SHOW_SECONDS = "show_seconds"
 const val SELECTED_TIME_ZONES = "selected_time_zones"
 const val EDITED_TIME_ZONE_TITLES = "edited_time_zone_titles"
 const val TIMER_SECONDS = "timer_seconds"
