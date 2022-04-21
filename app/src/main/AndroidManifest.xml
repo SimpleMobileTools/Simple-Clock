@@ -110,7 +110,7 @@
         <receiver
             android:name=".helpers.MyWidgetDateTimeProvider"
             android:exported="true"
-            android:label="@string/clock_and_date">
+            android:label="@string/digital_clock">
 
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
