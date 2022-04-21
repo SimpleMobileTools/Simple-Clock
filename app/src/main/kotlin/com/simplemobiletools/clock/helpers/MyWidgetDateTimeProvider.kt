@@ -8,15 +8,16 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.*
 import android.os.Bundle
-import android.text.format.DateFormat
 import android.widget.RemoteViews
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SplashActivity
 import com.simplemobiletools.clock.extensions.config
-import com.simplemobiletools.clock.extensions.formatTo12HourFormat
 import com.simplemobiletools.clock.extensions.getFormattedDate
 import com.simplemobiletools.clock.extensions.getNextAlarm
-import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.extensions.applyColorFilter
+import com.simplemobiletools.commons.extensions.getLaunchIntent
+import com.simplemobiletools.commons.extensions.setText
+import com.simplemobiletools.commons.extensions.setVisibleIf
 import java.util.*
 
 class MyWidgetDateTimeProvider : AppWidgetProvider() {
@@ -38,7 +39,7 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
     }
 
     private fun updateTexts(context: Context, views: RemoteViews) {
-        val nextAlarm = getFormattedNextAlarm(context)
+        val nextAlarm = context.getNextAlarm()
         views.apply {
             setText(R.id.widget_date, context.getFormattedDate(Calendar.getInstance()))
             setText(R.id.widget_next_alarm, nextAlarm)
@@ -68,40 +69,6 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
             putExtra(OPEN_TAB, TAB_CLOCK)
             val pendingIntent = PendingIntent.getActivity(context, OPEN_APP_INTENT_ID, this, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
             views.setOnClickPendingIntent(R.id.widget_date_time_holder, pendingIntent)
-        }
-    }
-
-    private fun getFormattedNextAlarm(context: Context): String {
-        val nextAlarm = context.getNextAlarm()
-        if (nextAlarm.isEmpty()) {
-            return ""
-        }
-
-        val isIn24HoursFormat = !nextAlarm.endsWith(".")
-        return when {
-            DateFormat.is24HourFormat(context) && !isIn24HoursFormat -> {
-                val dayTime = nextAlarm.split(" ")
-                val times = dayTime[1].split(":")
-                val hours = times[0].toInt()
-                val minutes = times[1].toInt()
-                val seconds = 0
-                val isAM = dayTime[2].startsWith("a", true)
-                val newHours = when {
-                    hours == 12 && isAM -> 0
-                    hours == 12 && !isAM -> 12
-                    !isAM -> hours + 12
-                    else -> hours
-                }
-                formatTime(false, true, newHours, minutes, seconds)
-            }
-            !DateFormat.is24HourFormat(context) && isIn24HoursFormat -> {
-                val times = nextAlarm.split(" ")[1].split(":")
-                val hours = times[0].toInt()
-                val minutes = times[1].toInt()
-                val seconds = 0
-                context.formatTo12HourFormat(false, hours, minutes, seconds)
-            }
-            else -> nextAlarm
         }
     }
 

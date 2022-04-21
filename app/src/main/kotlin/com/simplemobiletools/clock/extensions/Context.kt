@@ -177,9 +177,9 @@ fun Context.hideNotification(id: Int) {
 fun Context.hideTimerNotification(timerId: Int) = hideNotification(timerId)
 
 fun Context.updateWidgets() {
-    val widgetsCnt =
-        AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(ComponentName(applicationContext, MyWidgetDateTimeProvider::class.java)) ?: return
-    if (widgetsCnt.isNotEmpty()) {
+    val component = ComponentName(applicationContext, MyWidgetDateTimeProvider::class.java)
+    val widgetIds = AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(component) ?: return
+    if (widgetIds.isNotEmpty()) {
         val ids = intArrayOf(R.xml.widget_date_time_info)
         Intent(applicationContext, MyWidgetDateTimeProvider::class.java).apply {
             action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
