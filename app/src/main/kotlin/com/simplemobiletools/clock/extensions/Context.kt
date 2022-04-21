@@ -311,9 +311,15 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
         notificationManager.createNotificationChannel(this)
     }
 
+    val title = if (timer.label.isEmpty()) {
+        getString(R.string.timer)
+    } else {
+        timer.label
+    }
+
     val reminderActivityIntent = getReminderActivityIntent()
     val builder = NotificationCompat.Builder(this)
-        .setContentTitle(if (timer.label.isEmpty()) getString(R.string.timer) else timer.label)
+        .setContentTitle(title)
         .setContentText(getString(R.string.time_expired))
         .setSmallIcon(R.drawable.ic_hourglass_vector)
         .setContentIntent(pendingIntent)
@@ -368,7 +374,12 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
     }
 
     val channelId = "simple_alarm_channel_$soundUri"
-    val label = if (alarm.label.isNotEmpty()) alarm.label else getString(R.string.alarm)
+    val label = if (alarm.label.isNotEmpty()) {
+        alarm.label
+    } else {
+        getString(R.string.alarm)
+    }
+
     val audioAttributes = AudioAttributes.Builder()
         .setUsage(AudioAttributes.USAGE_ALARM)
         .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
