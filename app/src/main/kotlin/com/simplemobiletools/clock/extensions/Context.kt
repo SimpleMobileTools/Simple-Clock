@@ -11,6 +11,7 @@ import android.media.RingtoneManager
 import android.net.Uri
 import android.os.PowerManager
 import android.text.SpannableString
+import android.text.format.DateFormat
 import android.text.style.RelativeSizeSpan
 import android.widget.Toast
 import androidx.core.app.AlarmManagerCompat
@@ -189,7 +190,7 @@ fun Context.updateWidgets() {
 }
 
 fun Context.getFormattedTime(passedSeconds: Int, showSeconds: Boolean, makeAmPmSmaller: Boolean): SpannableString {
-    val use24HourFormat = config.use24HourFormat
+    val use24HourFormat = DateFormat.is24HourFormat(this)
     val hours = (passedSeconds / 3600) % 24
     val minutes = (passedSeconds / 60) % 60
     val seconds = passedSeconds % 60

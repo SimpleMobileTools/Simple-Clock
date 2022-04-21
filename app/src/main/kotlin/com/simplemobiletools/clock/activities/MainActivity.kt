@@ -14,7 +14,10 @@ import com.simplemobiletools.clock.extensions.getNextAlarm
 import com.simplemobiletools.clock.extensions.rescheduleEnabledAlarms
 import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.*
+import com.simplemobiletools.commons.helpers.LICENSE_NUMBER_PICKER
+import com.simplemobiletools.commons.helpers.LICENSE_RTL
+import com.simplemobiletools.commons.helpers.LICENSE_STETHO
+import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.models.FAQItem
 import kotlinx.android.synthetic.main.activity_main.*
 

@@ -2,6 +2,7 @@ package com.simplemobiletools.clock.fragments
 
 import android.os.Bundle
 import android.os.Handler
+import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -83,7 +84,7 @@ class ClockFragment : Fragment() {
         val seconds = passedSeconds % 60
         view.clock_time.text = requireContext().getFormattedTime(passedSeconds, requireContext().config.showSeconds, true)
 
-        if (!requireContext().config.use24HourFormat) {
+        if (!DateFormat.is24HourFormat(requireContext())) {
             view.clock_time.textSize = resources.getDimension(R.dimen.clock_text_size_smaller) / resources.displayMetrics.density
         }
 

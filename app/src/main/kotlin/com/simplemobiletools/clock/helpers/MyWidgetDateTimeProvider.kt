@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.*
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.widget.RemoteViews
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SplashActivity
@@ -78,7 +79,7 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
 
         val isIn24HoursFormat = !nextAlarm.endsWith(".")
         return when {
-            context.config.use24HourFormat && !isIn24HoursFormat -> {
+            DateFormat.is24HourFormat(context) && !isIn24HoursFormat -> {
                 val dayTime = nextAlarm.split(" ")
                 val times = dayTime[1].split(":")
                 val hours = times[0].toInt()
@@ -93,7 +94,7 @@ class MyWidgetDateTimeProvider : AppWidgetProvider() {
                 }
                 formatTime(false, true, newHours, minutes, seconds)
             }
-            !context.config.use24HourFormat && isIn24HoursFormat -> {
+            !DateFormat.is24HourFormat(context) && isIn24HoursFormat -> {
                 val times = nextAlarm.split(" ")[1].split(":")
                 val hours = times[0].toInt()
                 val minutes = times[1].toInt()

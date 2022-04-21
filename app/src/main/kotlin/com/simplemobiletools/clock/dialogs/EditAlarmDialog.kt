@@ -4,6 +4,7 @@ import android.app.TimePickerDialog
 import android.graphics.drawable.Drawable
 import android.media.AudioManager
 import android.media.RingtoneManager
+import android.text.format.DateFormat
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import com.simplemobiletools.clock.R
@@ -36,7 +37,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                     timeSetListener,
                     alarm.timeInMinutes / 60,
                     alarm.timeInMinutes % 60,
-                    context.config.use24HourFormat
+                    DateFormat.is24HourFormat(activity)
                 ).show()
             }
 
