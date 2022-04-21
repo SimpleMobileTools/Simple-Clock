@@ -195,15 +195,15 @@ fun Context.getFormattedTime(passedSeconds: Int, showSeconds: Boolean, makeAmPmS
     val minutes = (passedSeconds / 60) % 60
     val seconds = passedSeconds % 60
 
-    return if (!use24HourFormat) {
+    return if (use24HourFormat) {
+        val formattedTime = formatTime(showSeconds, use24HourFormat, hours, minutes, seconds)
+        SpannableString(formattedTime)
+    } else {
         val formattedTime = formatTo12HourFormat(showSeconds, hours, minutes, seconds)
         val spannableTime = SpannableString(formattedTime)
         val amPmMultiplier = if (makeAmPmSmaller) 0.4f else 1f
-        spannableTime.setSpan(RelativeSizeSpan(amPmMultiplier), spannableTime.length - 5, spannableTime.length, 0)
+        spannableTime.setSpan(RelativeSizeSpan(amPmMultiplier), spannableTime.length - 3, spannableTime.length, 0)
         spannableTime
-    } else {
-        val formattedTime = formatTime(showSeconds, use24HourFormat, hours, minutes, seconds)
-        SpannableString(formattedTime)
     }
 }
 
