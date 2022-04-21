@@ -13,10 +13,8 @@ import com.simplemobiletools.clock.extensions.getFormattedTime
 import com.simplemobiletools.clock.helpers.MyWidgetDateTimeProvider
 import com.simplemobiletools.clock.helpers.getPassedSeconds
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
-import com.simplemobiletools.commons.extensions.adjustAlpha
-import com.simplemobiletools.commons.extensions.applyColorFilter
-import com.simplemobiletools.commons.extensions.getProperPrimaryColor
-import com.simplemobiletools.commons.extensions.setFillWithStroke
+import com.simplemobiletools.commons.dialogs.WidgetLockedDialog
+import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import kotlinx.android.synthetic.main.widget_config_date_time.*
 import java.util.*
@@ -27,6 +25,7 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
     private var mBgColor = 0
     private var mTextColor = 0
     private var mBgColorWithoutTransparency = 0
+    private var mWidgetLockedDialog: WidgetLockedDialog? = null
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         useDynamicTheme = false
@@ -48,11 +47,23 @@ class WidgetDateTimeConfigureActivity : SimpleActivity() {
 
         val primaryColor = getProperPrimaryColor()
         config_bg_seekbar.setColors(mTextColor, primaryColor, primaryColor)
+
+        if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
+            mWidgetLockedDialog = WidgetLockedDialog(this) {
+                if (!isOrWasThankYouInstalled()) {
+                    finish()
+                }
+            }
+        }
     }
 
     override fun onResume() {
         super.onResume()
         window.decorView.setBackgroundColor(0)
+
+        if (mWidgetLockedDialog != null && isOrWasThankYouInstalled()) {
+            mWidgetLockedDialog?.dismissDialog()
+        }
     }
 
     private fun initVariables() {

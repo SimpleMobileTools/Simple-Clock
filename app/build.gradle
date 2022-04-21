@@ -63,7 +63,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.SimpleMobileTools:Simple-Commons:75f44f03fd'
+    implementation 'com.github.SimpleMobileTools:Simple-Commons:c47a13a8da'
     implementation 'com.facebook.stetho:stetho:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'com.shawnlin:number-picker:2.4.6'
