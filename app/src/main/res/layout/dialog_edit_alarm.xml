@@ -17,6 +17,7 @@
             android:layout_marginStart="@dimen/activity_margin"
             android:layout_marginTop="@dimen/activity_margin"
             android:background="?attr/selectableItemBackground"
+            android:includeFontPadding="false"
             android:padding="@dimen/tiny_margin"
             android:textSize="@dimen/alarm_text_size"
             tools:text="07:00" />
@@ -25,12 +26,10 @@
             android:id="@+id/edit_alarm_dayless_label"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignTop="@+id/edit_alarm_time"
-            android:layout_alignBottom="@+id/edit_alarm_time"
+            android:layout_alignBaseline="@+id/edit_alarm_time"
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_toEndOf="@+id/edit_alarm_time"
-            android:gravity="center_vertical"
-            android:textSize="@dimen/bigger_text_size"
+            android:textSize="@dimen/big_text_size"
             tools:text="@string/tomorrow" />
 
         <LinearLayout
@@ -52,7 +51,8 @@
             android:paddingStart="@dimen/activity_margin"
             android:paddingTop="@dimen/normal_margin"
             android:paddingEnd="@dimen/activity_margin"
-            android:paddingBottom="@dimen/normal_margin">
+            android:paddingBottom="@dimen/normal_margin"
+            android:textSize="@dimen/bigger_text_size">
 
             <ImageView
                 android:id="@+id/edit_alarm_vibrate_icon"
@@ -87,7 +87,7 @@
             android:paddingStart="@dimen/activity_margin"
             android:paddingTop="@dimen/normal_margin"
             android:paddingBottom="@dimen/normal_margin"
-            android:textSize="@dimen/normal_text_size"
+            android:textSize="@dimen/bigger_text_size"
             tools:text="Default alarm" />
 
         <ImageView
@@ -114,7 +114,7 @@
             android:maxLines="1"
             android:singleLine="true"
             android:textCursorDrawable="@null"
-            android:textSize="@dimen/normal_text_size" />
+            android:textSize="@dimen/bigger_text_size" />
 
     </RelativeLayout>
 </ScrollView>
