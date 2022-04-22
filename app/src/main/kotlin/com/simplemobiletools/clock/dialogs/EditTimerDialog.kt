@@ -58,7 +58,6 @@ class EditTimerDialog(val activity: SimpleActivity, val timer: Timer, val callba
                     })
             }
 
-
             edit_timer_label_image.applyColorFilter(textColor)
             edit_timer_label.setText(timer.label)
 
@@ -111,5 +110,4 @@ class EditTimerDialog(val activity: SimpleActivity, val timer: Timer, val callba
         timer.channelId = null
         view.edit_timer_sound.text = alarmSound.title
     }
-
 }

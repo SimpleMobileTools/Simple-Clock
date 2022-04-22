@@ -168,7 +168,12 @@ class ReminderActivity : SimpleActivity() {
             vibrator?.vibrate(VibrationEffect.createWaveform(pattern, 0))
         }
 
-        val soundUri = if (alarm != null) alarm!!.soundUri else config.timerSoundUri
+        val soundUri = if (alarm != null) {
+            alarm!!.soundUri
+        } else {
+            config.timerSoundUri
+        }
+
         if (soundUri != SILENT) {
             try {
                 mediaPlayer = MediaPlayer().apply {
@@ -179,12 +184,11 @@ class ReminderActivity : SimpleActivity() {
                     prepare()
                     start()
                 }
-            } catch (e: Exception) {
-                showErrorToast(e)
-            }
 
-            if (config.increaseVolumeGradually) {
-                scheduleVolumeIncrease()
+                if (config.increaseVolumeGradually) {
+                    scheduleVolumeIncrease()
+                }
+            } catch (e: Exception) {
             }
         }
     }

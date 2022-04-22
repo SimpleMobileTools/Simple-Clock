@@ -81,5 +81,4 @@ class Config(context: Context) : BaseConfig(context) {
     var timerChannelId: String?
         get() = prefs.getString(TIMER_CHANNEL_ID, null)
         set(id) = prefs.edit().putString(TIMER_CHANNEL_ID, id).apply()
-
 }
