@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Basit Saat</string>
     <string name="app_launcher_name">Saat</string>
@@ -16,19 +17,16 @@
     <string name="swipe_right_to_dismiss">Kapatmak için sağa, ertelemek için sola kaydırın.</string>
     <string name="sort_by_creation_order">Oluşturma sırası</string>
     <string name="sort_by_alarm_time">Alarm zamanı</string>
-    <string name="analogue_clock">Analogue clock</string>
-    <string name="digital_clock">Digital clock</string>
-
+    <string name="analogue_clock">Analog saat</string>
+    <string name="digital_clock">Dijital saat</string>
     <!--Timer-->
     <string name="timers_notification_msg">Zamanlayıcılar çalışıyor</string>
     <string name="timer_single_notification_label_msg">%s için zamanlayıcı çalışıyor</string>
     <string name="new_timer">Yeni Zamanlayıcı</string>
-
     <plurals name="timer_notification_msg">
         <item quantity="one">%d zamanlayıcı çalışıyor</item>
         <item quantity="other">%d zamanlayıcı çalışıyor</item>
     </plurals>
-
     <!-- Settings -->
     <string name="clock_tab">Saat sekmesi</string>
     <string name="alarm_tab">Alarm sekmesi</string>
@@ -36,11 +34,9 @@
     <string name="timer_tab">Zamanlayıcı sekmesi</string>
     <string name="show_seconds">Saniye göster</string>
     <string name="increase_volume_gradually">Sesi kademeli olarak artır</string>
-
     <!-- FAQ -->
     <string name="faq_1_title">Kronometre sekmesinde tur sıralamayı nasıl değiştirebilirim?</string>
     <string name="faq_1_text">Sütunların herhangi birine tıklayarak, turların belirtilen sütuna göre sıralanmasını sağlayabilirsiniz. Ek tıklamalarla, artan ve azalan sıralama arasında geçiş yapabilirsiniz.</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
     <string name="app_title">Basit Saat - Esnek, çok işlevli bir uygulama</string>
@@ -70,7 +66,6 @@
         <b>Reddit:</b>
         https://www.reddit.com/r/SimpleMobileTools
     </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
