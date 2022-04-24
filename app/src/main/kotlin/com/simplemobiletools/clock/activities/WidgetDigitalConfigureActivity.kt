@@ -126,7 +126,7 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
     }
 
     private fun updateTextColor() {
-        config_digital_text_color.setFillWithStroke(mTextColor, Color.BLACK)
+        config_digital_text_color.setFillWithStroke(mTextColor, mTextColor)
         config_digital_save.setTextColor(mTextColor)
         config_digital_time.setTextColor(mTextColor)
         config_digital_date.setTextColor(mTextColor)
@@ -134,9 +134,9 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
 
     private fun updateBackgroundColor() {
         mBgColor = mBgColorWithoutTransparency.adjustAlpha(mBgAlpha)
-        config_digital_bg_color.setFillWithStroke(mBgColor, Color.BLACK)
+        config_digital_bg_color.setFillWithStroke(mBgColor, mBgColor)
         config_digital_background.applyColorFilter(mBgColor)
-        config_digital_save.setBackgroundColor(mBgColor)
+        config_digital_save.background.applyColorFilter(mBgColor)
     }
 
     private val bgSeekbarChangeListener = object : SeekBar.OnSeekBarChangeListener {

@@ -27,13 +27,13 @@
             android:id="@+id/config_digital_time"
             android:layout_width="match_parent"
             android:layout_height="@dimen/widget_digital_time_height"
-            android:gravity="center_horizontal"
             android:format12Hour="h:mm"
             android:format24Hour="k:mm"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
             android:shadowColor="@android:color/black"
             android:shadowDy="1"
             android:shadowRadius="1"
-            android:includeFontPadding="false"
             android:textSize="@dimen/widget_time_text_size_small"
             tools:text="00:00" />
 
@@ -53,7 +53,8 @@
         android:id="@+id/config_digital_bg_color"
         android:layout_width="@dimen/widget_colorpicker_size"
         android:layout_height="@dimen/widget_colorpicker_size"
-        android:layout_above="@+id/config_digital_text_color" />
+        android:layout_above="@+id/config_digital_text_color"
+        android:layout_margin="@dimen/tiny_margin" />
 
     <RelativeLayout
         android:id="@+id/config_digital_seekbar_holder"
@@ -61,8 +62,9 @@
         android:layout_height="match_parent"
         android:layout_alignTop="@+id/config_digital_bg_color"
         android:layout_alignBottom="@+id/config_digital_bg_color"
+        android:layout_marginStart="@dimen/medium_margin"
         android:layout_toEndOf="@+id/config_digital_bg_color"
-        android:background="@android:color/white">
+        android:background="@drawable/widget_config_seekbar_background">
 
         <com.simplemobiletools.commons.views.MySeekBar
             android:id="@+id/config_digital_bg_seekbar"
@@ -71,13 +73,15 @@
             android:layout_centerVertical="true"
             android:paddingLeft="@dimen/activity_margin"
             android:paddingRight="@dimen/activity_margin" />
+
     </RelativeLayout>
 
     <ImageView
         android:id="@+id/config_digital_text_color"
         android:layout_width="@dimen/widget_colorpicker_size"
         android:layout_height="@dimen/widget_colorpicker_size"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/tiny_margin" />
 
     <Button
         android:id="@+id/config_digital_save"
@@ -85,6 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:background="@drawable/widget_config_seekbar_background"
         android:fontFamily="sans-serif-light"
         android:paddingLeft="@dimen/activity_margin"
         android:paddingRight="@dimen/activity_margin"

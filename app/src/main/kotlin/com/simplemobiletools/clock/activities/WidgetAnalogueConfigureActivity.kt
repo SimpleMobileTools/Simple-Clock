@@ -105,9 +105,9 @@ class WidgetAnalogueConfigureActivity : SimpleActivity() {
 
     private fun updateBackgroundColor() {
         mBgColor = mBgColorWithoutTransparency.adjustAlpha(mBgAlpha)
-        config_analogue_bg_color.setFillWithStroke(mBgColor, Color.BLACK)
+        config_analogue_bg_color.setFillWithStroke(mBgColor, mBgColor)
         config_analogue_background.applyColorFilter(mBgColor)
-        config_analogue_save.setBackgroundColor(mBgColor)
+        config_analogue_save.background.applyColorFilter(mBgColor)
     }
 
     private val bgSeekbarChangeListener = object : SeekBar.OnSeekBarChangeListener {
