@@ -32,6 +32,7 @@ import com.simplemobiletools.clock.receivers.HideTimerReceiver
 import com.simplemobiletools.clock.services.SnoozeService
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.DAY_MINUTES
+import com.simplemobiletools.commons.helpers.EVERY_DAY_BIT
 import com.simplemobiletools.commons.helpers.SILENT
 import java.util.*
 import kotlin.math.pow
@@ -457,6 +458,7 @@ fun Context.getAlarmSelectedDaysString(bitMask: Int): String {
     return when (bitMask) {
         TODAY_BIT -> getString(R.string.today)
         TOMORROW_BIT -> getString(R.string.tomorrow)
+        EVERY_DAY_BIT -> getString(R.string.every_day)
         else -> getSelectedDaysString(bitMask)
     }
 }
