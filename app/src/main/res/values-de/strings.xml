@@ -17,8 +17,8 @@
     <string name="swipe_right_to_dismiss">Nach rechts wischen um auszuschalten, nach links um zu schlummern.</string>
     <string name="sort_by_creation_order">Erstellungsreihenfolge</string>
     <string name="sort_by_alarm_time">Alarmzeit</string>
-    <string name="analogue_clock">Analogue clock</string>
-    <string name="digital_clock">Digital clock</string>
+    <string name="analogue_clock">Analoge Uhr</string>
+    <string name="digital_clock">Digitale Uhr</string>
     <!--Timer-->
     <string name="timers_notification_msg">Die Timer laufen</string>
     <string name="timer_single_notification_label_msg">Timer für %s läuft</string>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Klocka</string>
@@ -14,21 +15,18 @@
     <string name="clock_and_date">Klocka och datum</string>
     <string name="use_text_shadow">Använd textskugga</string>
     <string name="swipe_right_to_dismiss">Dra åt höger för att Stänga av eller åt vänster för att Snooza.</string>
-    <string name="sort_by_creation_order">Creation order</string>
-    <string name="sort_by_alarm_time">Alarm time</string>
-    <string name="analogue_clock">Analogue clock</string>
-    <string name="digital_clock">Digital clock</string>
-
+    <string name="sort_by_creation_order">Skapelse ordning</string>
+    <string name="sort_by_alarm_time">Alarm tid</string>
+    <string name="analogue_clock">Analog klocka</string>
+    <string name="digital_clock">Digital klocka</string>
     <!--Timer-->
-    <string name="timers_notification_msg">Timers are running</string>
-    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">New Timer</string>
-
+    <string name="timers_notification_msg">Timers är på</string>
+    <string name="timer_single_notification_label_msg">Timer för %s är på</string>
+    <string name="new_timer">Ny timer</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d timer är på</item>
+        <item quantity="other">%d timers är på</item>
     </plurals>
-
     <!-- Settings -->
     <string name="clock_tab">Fliken Klocka</string>
     <string name="alarm_tab">Fliken Alarm</string>
@@ -36,14 +34,12 @@
     <string name="timer_tab">Fliken Timer</string>
     <string name="show_seconds">Visa sekunder</string>
     <string name="increase_volume_gradually">Höj volymen gradvis</string>
-
     <!-- FAQ -->
-    <string name="faq_1_title">How can I change lap sorting at the stopwatch tab?</string>
-    <string name="faq_1_text">Just click on any of the columns, that will make the laps be sorted by the given column. With additional clicks you can toggle between ascending and descending sorting.</string>
-
+    <string name="faq_1_title">Hur kan jag ändra sortering av varv i fliken stoppur\?</string>
+    <string name="faq_1_text">Klicka bara på någon av kolumnerna för att sortera varven efter den aktuella kolumnen. Med ytterligare klick kan du växla mellan stigande och fallande sortering.</string>
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Clock - A flexible multifunctional app</string>
+    <string name="app_title">Simpel klocka - En flexibel multifunktionell app</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">En kombination av klocka, alarm, stoppur och timer.</string>
     <string name="app_long_description">
@@ -70,7 +66,6 @@
         <b>Reddit:</b>
         https://www.reddit.com/r/SimpleMobileTools
     </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
