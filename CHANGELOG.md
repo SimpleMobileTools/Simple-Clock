@@ -1,6 +1,16 @@
 Changelog
 ==========
 
+Version 5.7.0 *(2022-04-25)*
+----------------------------
+
+ * Increased the minimal required Android version to 10
+ * Added Material You theme support on Android 12+
+ * Added an analogue clock
+ * Redesigned the widget config screens
+ * Made the widget and alarms more reliable
+ * Added some stability, translation and UI improvements
+
 Version 5.6.1 *(2021-11-19)*
 ----------------------------
 
