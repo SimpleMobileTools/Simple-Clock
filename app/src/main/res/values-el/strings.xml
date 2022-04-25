@@ -6,35 +6,35 @@
     <string name="vibrate">Δόνηση</string>
     <string name="label">Ετικέτα</string>
     <string name="no_days_selected">Δεν έχουν επιλεγεί ημέρες</string>
-    <string name="timer">Χρονοδιακόπτης</string>
+    <string name="timer">Χρονόμετρο</string>
     <string name="lap">Γύρος</string>
-    <string name="stopwatch_stopped">Το Χρονόμετρο έχει σταματήσει</string>
-    <string name="timer_stopped">Ο Χρονοδιακόπτης έχει σταματήσει</string>
+    <string name="stopwatch_stopped">Ο χρονοδιακόπτης σταμάτησε</string>
+    <string name="timer_stopped">Το χρονόμετρο σταμάτησε</string>
     <string name="max_reminder_duration">Μέγιστη διάρκεια υπενθύμισης</string>
-    <string name="time_expired">Ο Χρονοδιακόπτης έληξε</string>
+    <string name="time_expired">Το Χρονόμετρο έληξε</string>
     <string name="clock_and_date">Ώρα και ημερομηνία</string>
     <string name="use_text_shadow">Χρήση σκιάς κειμένου</string>
-    <string name="swipe_right_to_dismiss">Σαρώστε δεξιά για απόρριψη ή αριστερά για αναβολή.</string>
+    <string name="swipe_right_to_dismiss">Σάρωση δεξιά για απόρριψη ή αριστερά για αναβολή.</string>
     <string name="sort_by_creation_order">Σειρά δημιουργίας</string>
     <string name="sort_by_alarm_time">Ώρα Αφύπνισης</string>
-    <string name="analogue_clock">Analogue clock</string>
-    <string name="digital_clock">Digital clock</string>
+    <string name="analogue_clock">Αναλογικό Ρολόι</string>
+    <string name="digital_clock">Ψηφιακό Ρολόι</string>
 
     <!--Timer-->
-    <string name="timers_notification_msg">Timers are running</string>
-    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">New Timer</string>
+    <string name="timers_notification_msg">Τα χρονόμετρα τρέχουν</string>
+    <string name="timer_single_notification_label_msg">Το χρονόμετρο για %s τρέχει</string>
+    <string name="new_timer">Νέο Χρονόμετρο</string>
 
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d χρονόμετρο τρέχει</item>
+        <item quantity="other">%d χρονόμετρα τρέχουν</item>
     </plurals>
 
     <!-- Settings -->
     <string name="clock_tab">Ετικέτα Ρολογιού</string>
     <string name="alarm_tab">Ετικέτα Αφύπνισης</string>
-    <string name="stopwatch_tab">Ετικέτα Χρονόμετρου</string>
-    <string name="timer_tab">Ετικέτα Χρονοδιακόπτη</string>
+    <string name="stopwatch_tab">Ετικέτα Χρονοδιακόπτη</string>
+    <string name="timer_tab">Ετικέτα Χρονόμετρου</string>
     <string name="show_seconds">Εμφάνιση δευτ/των</string>
     <string name="increase_volume_gradually">Σταδιακή αύξηση έντασης</string>
 
