@@ -22,6 +22,7 @@ const val ALARM_LAST_CONFIG = "alarm_last_config"
 const val TIMER_LAST_CONFIG = "timer_last_config"
 const val INCREASE_VOLUME_GRADUALLY = "increase_volume_gradually"
 const val ALARMS_SORT_BY = "alarms_sort_by"
+const val STOPWATCH_LAPS_SORT_BY = "stopwatch_laps_sort_by"
 
 const val TABS_COUNT = 4
 const val EDITED_TIME_ZONE_SEPARATOR = ":"

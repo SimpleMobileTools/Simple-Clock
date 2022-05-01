@@ -10,6 +10,7 @@ import com.simplemobiletools.clock.models.TimerState
 import com.simplemobiletools.commons.extensions.getDefaultAlarmSound
 import com.simplemobiletools.commons.extensions.getDefaultAlarmTitle
 import com.simplemobiletools.commons.helpers.BaseConfig
+import com.simplemobiletools.commons.helpers.SORT_DESCENDING
 
 class Config(context: Context) : BaseConfig(context) {
     companion object {
@@ -81,4 +82,8 @@ class Config(context: Context) : BaseConfig(context) {
     var timerChannelId: String?
         get() = prefs.getString(TIMER_CHANNEL_ID, null)
         set(id) = prefs.edit().putString(TIMER_CHANNEL_ID, id).apply()
+
+    var stopwatchLapsSort: Int
+        get() = prefs.getInt(STOPWATCH_LAPS_SORT_BY, SORT_BY_LAP or SORT_DESCENDING)
+        set(stopwatchLapsSort) = prefs.edit().putInt(STOPWATCH_LAPS_SORT_BY, stopwatchLapsSort).apply()
 }
