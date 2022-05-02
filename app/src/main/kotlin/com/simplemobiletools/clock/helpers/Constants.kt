@@ -1,9 +1,7 @@
 package com.simplemobiletools.clock.helpers
 
 import com.simplemobiletools.clock.models.MyTimeZone
-import java.util.Calendar
-import java.util.Date
-import java.util.TimeZone
+import java.util.*
 import kotlin.math.pow
 
 // shared preferences
@@ -35,7 +33,6 @@ const val PICK_AUDIO_FILE_INTENT_ID = 9994
 const val REMINDER_ACTIVITY_INTENT_ID = 9995
 const val OPEN_ALARMS_TAB_INTENT_ID = 9996
 const val OPEN_STOPWATCH_TAB_INTENT_ID = 9993
-const val UPDATE_WIDGET_INTENT_ID = 9997
 const val OPEN_APP_INTENT_ID = 9998
 const val ALARM_NOTIF_ID = 9998
 const val TIMER_RUNNING_NOTIF_ID = 10000
@@ -61,14 +58,7 @@ const val SORT_BY_ALARM_TIME = 1
 const val TODAY_BIT = -1
 const val TOMORROW_BIT = -2
 
-const val DEFAULT_TIME = 300
-
 fun getDefaultTimeZoneTitle(id: Int) = getAllTimeZones().firstOrNull { it.id == id }?.title ?: ""
-
-fun getMSTillNextMinute(): Long {
-    val calendar = Calendar.getInstance()
-    return 60000L - calendar.get(Calendar.MILLISECOND) - calendar.get(Calendar.SECOND) * 1000
-}
 
 fun getPassedSeconds(): Int {
     val calendar = Calendar.getInstance()
