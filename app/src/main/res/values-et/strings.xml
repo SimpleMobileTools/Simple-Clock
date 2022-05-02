@@ -7,6 +7,7 @@
     <string name="label">Silt</string>
     <string name="no_days_selected">Ühtegi päeva pole valitud</string>
     <string name="timer">Taimer</string>
+    <string name="stopwatch">Stopwatch</string>
     <string name="lap">Ringi aeg</string>
     <string name="stopwatch_stopped">Stopper on kinni</string>
     <string name="timer_stopped">Taimer on peatunud</string>

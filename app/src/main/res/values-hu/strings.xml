@@ -6,6 +6,7 @@
     <string name="label">Címke</string>
     <string name="no_days_selected">Nincs nap kiválasztva</string>
     <string name="timer">Időzítő</string>
+    <string name="stopwatch">Stopwatch</string>
     <string name="lap">Kör</string>
     <string name="stopwatch_stopped">A stopper leállt</string>
     <string name="timer_stopped">Az időzítő leállt</string>

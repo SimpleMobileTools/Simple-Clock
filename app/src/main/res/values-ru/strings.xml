@@ -7,6 +7,7 @@
     <string name="label">Метка</string>
     <string name="no_days_selected">Дни не выбраны</string>
     <string name="timer">Таймер</string>
+    <string name="stopwatch">Секундомер</string>
     <string name="lap">Круг</string>
     <string name="stopwatch_stopped">Секундомер остановлен</string>
     <string name="timer_stopped">Таймер остановлен</string>

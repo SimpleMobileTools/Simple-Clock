@@ -7,6 +7,7 @@
     <string name="label">Ετικέτα</string>
     <string name="no_days_selected">Δεν έχουν επιλεγεί ημέρες</string>
     <string name="timer">Χρονόμετρο</string>
+    <string name="stopwatch">Stopwatch</string>
     <string name="lap">Γύρος</string>
     <string name="stopwatch_stopped">Ο χρονοδιακόπτης σταμάτησε</string>
     <string name="timer_stopped">Το χρονόμετρο σταμάτησε</string>

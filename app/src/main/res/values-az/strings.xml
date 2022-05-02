@@ -6,6 +6,7 @@
     <string name="label">Etiket</string>
     <string name="no_days_selected">Gün seçilməyib</string>
     <string name="timer">Sayğac</string>
+    <string name="stopwatch">Stopwatch</string>
     <string name="lap">Dövrə</string>
     <string name="stopwatch_stopped">Saniyəölçən dayandı</string>
     <string name="timer_stopped">Sayğaç dayandı</string>

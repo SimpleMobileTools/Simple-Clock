@@ -6,6 +6,7 @@
     <string name="label">Etiqueta</string>
     <string name="no_days_selected">Ningún día seleccionado</string>
     <string name="timer">Temporizador</string>
+    <string name="stopwatch">Stopwatch</string>
     <string name="lap">Vuelta</string>
     <string name="stopwatch_stopped">El cronómetro s eha detenido</string>
     <string name="timer_stopped">El temporizador se ha detenido</string>

@@ -6,6 +6,7 @@
     <string name="label">Label</string>
     <string name="no_days_selected">No days selected</string>
     <string name="timer">Timer</string>
+    <string name="stopwatch">Stopwatch</string>
     <string name="lap">Lap</string>
     <string name="stopwatch_stopped">Stopwatch has been stopped</string>
     <string name="timer_stopped">Timer has been stopped</string>

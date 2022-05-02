@@ -7,6 +7,7 @@
     <string name="label">Etichetta</string>
     <string name="no_days_selected">Nessun giorno selezionato</string>
     <string name="timer">Contaminuti</string>
+    <string name="stopwatch">Stopwatch</string>
     <string name="lap">Parziale</string>
     <string name="stopwatch_stopped">Il cronometro è stato fermato</string>
     <string name="timer_stopped">Il contaminuti è stato fermato</string>

@@ -7,6 +7,7 @@
     <string name="label">Etikett</string>
     <string name="no_days_selected">Inga dagar har valts</string>
     <string name="timer">Timer</string>
+    <string name="stopwatch">Stopwatch</string>
     <string name="lap">Varv</string>
     <string name="stopwatch_stopped">Stoppuret har stoppats</string>
     <string name="timer_stopped">Timern har stoppats</string>
