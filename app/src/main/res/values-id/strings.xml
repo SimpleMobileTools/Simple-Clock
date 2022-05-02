@@ -6,6 +6,7 @@
     <string name="label">Label</string>
     <string name="no_days_selected">Tidak ada hari yang dipilih</string>
     <string name="timer">Timer</string>
+    <string name="stopwatch">Stopwatch</string>
     <string name="lap">Putaran</string>
     <string name="stopwatch_stopped">Stopwatch telah berhenti</string>
     <string name="timer_stopped">Timer telah berhenti</string>

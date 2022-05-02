@@ -12,9 +12,13 @@ import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.facebook.stetho.Stetho
 import com.simplemobiletools.clock.extensions.*
+import com.simplemobiletools.clock.helpers.Stopwatch
+import com.simplemobiletools.clock.helpers.Stopwatch.State
 import com.simplemobiletools.clock.models.TimerEvent
 import com.simplemobiletools.clock.models.TimerState
+import com.simplemobiletools.clock.services.StopwatchStopService
 import com.simplemobiletools.clock.services.TimerStopService
+import com.simplemobiletools.clock.services.startStopwatchService
 import com.simplemobiletools.clock.services.startTimerService
 import com.simplemobiletools.commons.extensions.checkUseEnglish
 import org.greenrobot.eventbus.EventBus
@@ -49,6 +53,9 @@ class App : Application(), LifecycleObserver {
                 startTimerService(this)
             }
         }
+        if (Stopwatch.state == State.RUNNING) {
+            startStopwatchService(this)
+        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
@@ -61,6 +68,9 @@ class App : Application(), LifecycleObserver {
                     EventBus.getDefault().post(TimerEvent.Start(timer.id!!, (timer.state as TimerState.Running).tick))
                 }
             }
+        }
+        if (Stopwatch.state == State.RUNNING) {
+            EventBus.getDefault().post(StopwatchStopService)
         }
     }
 

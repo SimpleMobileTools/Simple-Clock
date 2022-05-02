@@ -7,6 +7,7 @@
     <string name="label">Etykieta</string>
     <string name="no_days_selected">Nie wybrano dni</string>
     <string name="timer">Minutnik</string>
+    <string name="stopwatch">Stopwatch</string>
     <string name="lap">Okrążenie</string>
     <string name="stopwatch_stopped">Stoper został zatrzymany</string>
     <string name="timer_stopped">Minutnik został zatrzymany</string>

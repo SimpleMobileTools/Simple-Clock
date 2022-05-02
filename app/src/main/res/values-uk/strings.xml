@@ -6,6 +6,7 @@
     <string name="label">Мітка</string>
     <string name="no_days_selected">Дні не обрано</string>
     <string name="timer">Таймер</string>
+    <string name="stopwatch">Секундомір</string>
     <string name="lap">Інтервал</string>
     <string name="stopwatch_stopped">Секундомір зупинено</string>
     <string name="timer_stopped">Таймер зупинено</string>

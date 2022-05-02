@@ -6,6 +6,7 @@
     <string name="label">ラベル</string>
     <string name="no_days_selected">曜日が選択されていません</string>
     <string name="timer">タイマー</string>
+    <string name="stopwatch">Stopwatch</string>
     <string name="lap">ラップ</string>
     <string name="stopwatch_stopped">ストップウォッチが停止しました</string>
     <string name="timer_stopped">タイマーが停止しました</string>

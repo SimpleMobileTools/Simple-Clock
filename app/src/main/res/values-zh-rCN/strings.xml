@@ -7,6 +7,7 @@
     <string name="label">标签</string>
     <string name="no_days_selected">未选择哪一天</string>
     <string name="timer">定时器</string>
+    <string name="stopwatch">Stopwatch</string>
     <string name="lap">分段</string>
     <string name="stopwatch_stopped">秒表已停止</string>
     <string name="timer_stopped">定时器已停止</string>

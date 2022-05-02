@@ -6,6 +6,7 @@
     <string name="label">Oznaka</string>
     <string name="no_days_selected">Nije odabran nijedan dan</string>
     <string name="timer">Brojač</string>
+    <string name="stopwatch">Stopwatch</string>
     <string name="lap">Krug</string>
     <string name="stopwatch_stopped">Štoperica je zaustavljena</string>
     <string name="timer_stopped">Brojač je zaustavljen</string>

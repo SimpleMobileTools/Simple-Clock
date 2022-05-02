@@ -159,6 +159,12 @@ fun Context.getOpenTimerTabIntent(timerId: Int): PendingIntent {
     return PendingIntent.getActivity(this, timerId, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
 
+fun Context.getOpenStopwatchTabIntent(): PendingIntent {
+    val intent = getLaunchIntent() ?: Intent(this, SplashActivity::class.java)
+    intent.putExtra(OPEN_TAB, TAB_STOPWATCH)
+    return PendingIntent.getActivity(this, OPEN_STOPWATCH_TAB_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+}
+
 fun Context.getAlarmIntent(alarm: Alarm): PendingIntent {
     val intent = Intent(this, AlarmReceiver::class.java)
     intent.putExtra(ALARM_ID, alarm.id)

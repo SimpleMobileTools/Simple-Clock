@@ -6,6 +6,7 @@
     <string name="label">Štítek</string>
     <string name="no_days_selected">Nebyly označeny žádné dny</string>
     <string name="timer">Časovač</string>
+    <string name="stopwatch">Stopwatch</string>
     <string name="lap">Mezičas</string>
     <string name="stopwatch_stopped">Stopky byly zastaveny</string>
     <string name="timer_stopped">Časovač byl zastaven</string>

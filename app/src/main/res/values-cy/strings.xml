@@ -6,6 +6,7 @@
     <string name="label">Label</string>
     <string name="no_days_selected">Dim diwrnodau wedi\'u dewis</string>
     <string name="timer">Amserydd</string>
+    <string name="stopwatch">Stopwatch</string>
     <string name="lap">Lap</string>
     <string name="stopwatch_stopped">Cafodd y stopwats ei stopio</string>
     <string name="timer_stopped">Cafodd yr amserydd ei stopio</string>

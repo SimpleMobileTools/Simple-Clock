@@ -6,6 +6,7 @@
     <string name="label">Etiketa</string>
     <string name="no_days_selected">Ez duzu egunik hautatu</string>
     <string name="timer">Tenporizagailua</string>
+    <string name="stopwatch">Stopwatch</string>
     <string name="lap">Bira</string>
     <string name="stopwatch_stopped">Kronometroa gelditu da</string>
     <string name="timer_stopped">Tenporizagailua gelditu da</string>

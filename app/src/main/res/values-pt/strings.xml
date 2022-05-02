@@ -6,6 +6,7 @@
     <string name="label">Legenda</string>
     <string name="no_days_selected">Nenhum dia selecionado</string>
     <string name="timer">Temporizador</string>
+    <string name="stopwatch">Stopwatch</string>
     <string name="lap">Volta</string>
     <string name="stopwatch_stopped">Cronómetro parado</string>
     <string name="timer_stopped">Temporizador parado</string>
