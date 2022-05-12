@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Простий Годинник</string>
     <string name="app_launcher_name">Годинник</string>
@@ -15,23 +16,20 @@
     <string name="clock_and_date">Годинник і дата</string>
     <string name="use_text_shadow">Застосовувати ефект тіні у тексті</string>
     <string name="swipe_right_to_dismiss">Свайп вправо, щоб відхилити, або вліво, щоб відкласти.</string>
-    <string name="sort_by_creation_order">Creation order</string>
-    <string name="sort_by_alarm_time">Alarm time</string>
-    <string name="analogue_clock">Analogue clock</string>
-    <string name="digital_clock">Digital clock</string>
-
+    <string name="sort_by_creation_order">Порядок створення</string>
+    <string name="sort_by_alarm_time">Час будильника</string>
+    <string name="analogue_clock">Аналоговий годинник</string>
+    <string name="digital_clock">Цифровий годинник</string>
     <!--Timer-->
-    <string name="timers_notification_msg">Timers are running</string>
-    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">New Timer</string>
-
+    <string name="timers_notification_msg">Таймери працюють</string>
+    <string name="timer_single_notification_label_msg">Таймер для %s працює</string>
+    <string name="new_timer">Новий таймер</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="few">%d timers are running</item>
-        <item quantity="many">%d timers are running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d таймер працює</item>
+        <item quantity="few">%d таймера працюють</item>
+        <item quantity="many">%d таймерів працюють</item>
+        <item quantity="other">%d таймерів працюють</item>
     </plurals>
-
     <!-- Settings -->
     <string name="clock_tab">Годинник</string>
     <string name="alarm_tab">Будильник</string>
@@ -39,11 +37,9 @@
     <string name="timer_tab">Таймер</string>
     <string name="show_seconds">Показувати з точністю до секунд</string>
     <string name="increase_volume_gradually">Поступово підвищувати гучність</string>
-
     <!-- FAQ -->
     <string name="faq_1_title">Як я можу відсортувати інтервали часу у вкладці секундоміра?</string>
     <string name="faq_1_text">Просто натисність на будь-якій з колонок, так ви відсортуєте інтервали за значеннями у даній колонці. Додатково натиснувши, ви зміните сортування за зростанням чи спаданням.</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
     <string name="app_title">Simple Clock - A flexible multifunctional app</string>
@@ -73,7 +69,6 @@
         <b>Reddit:</b>
         https://www.reddit.com/r/SimpleMobileTools
     </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
