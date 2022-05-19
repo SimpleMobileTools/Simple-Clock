@@ -1,0 +1,16 @@
+L\'aplicació té múltiples funcions relacionades amb el temps. Al rellotge, podeu habilitar la visualització de les hores d\'altres zones horàries o utilitzar el giny de rellotge senzill però personalitzable. 
+
+Es pot personalitzar el color de text del giny, així com el color i l\'alfa del fons. L\'alarma té totes les funcions esperades, com ara la selecció del dia, la commutació de vibracions, la selecció de tons de trucada, posposar o afegir una etiqueta personalitzada. Amb el cronòmetre podeu mesurar fàcilment un període de temps més llarg, o voltes individuals. 
+
+Podeu ordenar les voltes per temps de volta, també conté vibracions opcionals a les pressions dels botons, només per fer-vos saber que el botó s\'ha premut, fins i tot si no podeu mirar el dispositiu. Podeu configurar fàcilment un temporitzador per rebre notificacions d\'algun esdeveniment. Podeu canviar tant el to del despertador com commutar les vibracions. 
+
+Les funcions addicionals inclouen, per exemple, evitar que el dispositiu s\'adormi mentre l\'aplicació està en primer pla. No conté anuncis ni permisos innecessaris. És totalment de codi obert, proporciona colors personalitzables. 
+
+<b>Consulteu el conjunt complet d\'eines simples aquí:</b>
+https://www.simplemobiletools.com
+
+<b>Facebook:</b>
+https://www.facebook.com/simplemobiletools
+
+<b>Reddit:</b>
+https://www.reddit.com/r/SimpleMobileTools
