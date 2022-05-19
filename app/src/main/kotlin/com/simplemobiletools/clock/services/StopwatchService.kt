@@ -5,7 +5,9 @@ import android.app.NotificationManager
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.simplemobiletools.clock.R
@@ -110,7 +112,9 @@ class StopwatchService : Service() {
 }
 
 fun startStopwatchService(context: Context) {
-    ContextCompat.startForegroundService(context, Intent(context, StopwatchService::class.java))
+    Handler(Looper.getMainLooper()).post {
+        ContextCompat.startForegroundService(context, Intent(context, StopwatchService::class.java))
+    }
 }
 
 object StopwatchStopService
