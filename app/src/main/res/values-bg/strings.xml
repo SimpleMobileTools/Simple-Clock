@@ -15,27 +15,40 @@
     <string name="time_expired">Времето изтече</string>
     <string name="clock_and_date">Час и дата</string>
     <string name="use_text_shadow">Използване на сянка на текста</string>
+    <string name="swipe_right_to_dismiss">Приплъзнете надясно за да отхвърлите или наляво, за да отложите.</string>
     <string name="sort_by_creation_order">Ред на създаване</string>
     <string name="sort_by_alarm_time">Време за алармата</string>
     <string name="analogue_clock">Аналогов часовник</string>
     <string name="digital_clock">Цифров часовник</string>
+    <!--Timer-->
     <string name="timers_notification_msg">Таймерите са включени</string>
     <string name="timer_single_notification_label_msg">Таймерът за %s е включен</string>
     <string name="new_timer">Нов таймер</string>
+    
     <plurals name="timer_notification_msg">
         <item quantity="one">%d таймер е включен</item>
         <item quantity="other">%d таймери са включени</item>
     </plurals>
+    <!-- Settings -->
     <string name="clock_tab">Часовник</string>
     <string name="alarm_tab">Аларма</string>
     <string name="stopwatch_tab">Секундомер</string>
     <string name="timer_tab">Таймер</string>
     <string name="show_seconds">Покажи секунди</string>
     <string name="increase_volume_gradually">Постепенно увеличавай звука</string>
+    <!-- FAQ -->
     <string name="faq_1_title">Как мога да променя сортирането на обиколките на секундомера\?</string>
-    <string name="app_title">Simple Clock - гъвкава мултифункционална програма</string>
-    <string name="app_long_description"> Програмата има множество функции във връзка с измерването на време. С часовника можете да включите показването на времена от други часови зони, или да използвате простия, но променим widget на часовник. Цветът на текста на widget-a може да бъде променян, както и цветът и alpha прозрачносста на фона. Алармата съдържа всички очаквани елементи като избор на ден, превключване на вибрации, избор на мелодия, отлагане или добавяне на персонализиран етикет. Със секундомера можете лесно да измерите по-дълъг период от време или индивидуални обиколки. Можете да сортирате обиколките по време, има също избор на вибрация при натискане на бутон, просто за да сте уведомени, че бутонът е натиснат, дори да не можете да погледнете устройството. Можете лесно да настроите таймер, за да бъдете известени при събитие. Можете да промените неговата мелодия а също и да го превключите на вибрация. Допълнителни екстри са например предотвратяването на заспиване на устройството докато приложението е във фонов режим. Не съдържа реклами нито ненужни разрешения. Напълно с отворен код е, има променими цветове. <b>Вижте пълната колекция на Simple Tools тук:</b> https://www.simplemobiletools.com <b>Фейсбук:</b> https://www.facebook.com/simplemobiletools <b>Редит:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <string name="faq_1_text">Просто кликнете на някоя от колонките, това ще ги сортира по тази колонка. С допълнителни кликвания можете да превключвате между възходящо и низходящо сортиране.</string>
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Simple Clock - гъвкава мултифункционална програма</string>
+    <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Комбинация от часовник, аларма, секундомер и таймер.</string>
-    <string name="swipe_right_to_dismiss">Приплъзнете надясно за да отхвърлите или наляво, за да отложите.</string>
+    <string name="app_long_description">
+        Програмата има множество функции във връзка с измерването на време. С часовника можете да включите показването на времена от други часови зони, или да използвате простия, но променим widget на часовник. Цветът на текста на widget-a може да бъде променян, както и цветът и alpha прозрачносста на фона. Алармата съдържа всички очаквани елементи като избор на ден, превключване на вибрации, избор на мелодия, отлагане или добавяне на персонализиран етикет. Със секундомера можете лесно да измерите по-дълъг период от време или индивидуални обиколки. Можете да сортирате обиколките по време, има също избор на вибрация при натискане на бутон, просто за да сте уведомени, че бутонът е натиснат, дори да не можете да погледнете устройството. Можете лесно да настроите таймер, за да бъдете известени при събитие. Можете да промените неговата мелодия а също и да го превключите на вибрация. Допълнителни екстри са например предотвратяването на заспиване на устройството докато приложението е във фонов режим. Не съдържа реклами нито ненужни разрешения. Напълно с отворен код е, има променими цветове. <b>Вижте пълната колекция на Simple Tools тук:</b> https://www.simplemobiletools.com <b>Фейсбук:</b> https://www.facebook.com/simplemobiletools <b>Редит:</b> https://www.reddit.com/r/SimpleMobileTools
+    </string>
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
 </resources>
