@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.7.1 *(2022-05-19)*
+----------------------------
+
+ * Make the date display on the widget more reliable
+ * Added some stability and translation improvements
+
 Version 5.7.0 *(2022-04-25)*
 ----------------------------
 

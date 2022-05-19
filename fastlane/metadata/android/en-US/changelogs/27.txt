@@ -1,0 +1,2 @@
+ * Make the date display on the widget more reliable
+ * Added some stability and translation improvements
