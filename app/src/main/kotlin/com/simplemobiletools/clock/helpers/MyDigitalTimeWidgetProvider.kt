@@ -27,7 +27,7 @@ class MyDigitalTimeWidgetProvider : AppWidgetProvider() {
     private fun performUpdate(context: Context) {
         val appWidgetManager = AppWidgetManager.getInstance(context) ?: return
         appWidgetManager.getAppWidgetIds(getComponentName(context)).forEach {
-            RemoteViews(context.packageName, R.layout.widget_date_time).apply {
+            RemoteViews(context.packageName, R.layout.widget_digital).apply {
                 updateTexts(context, this)
                 updateColors(context, this)
                 setupAppOpenIntent(context, this)
