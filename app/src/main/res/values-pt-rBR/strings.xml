@@ -1,40 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="stopwatch">Cronômetro</string>
-    <string name="max_reminder_duration">Duração máxima do lembrete</string>
     <string name="app_name">Relógio simples</string>
     <string name="app_launcher_name">Relógio</string>
     <string name="time_zone">Fuso horário</string>
-    <string name="app_short_description">Uma combinação de um relógio, alarme, cronômetro e temporizador.</string>
+    <string name="vibrate">Vibrar</string>
     <string name="label">Legenda</string>
     <string name="no_days_selected">Nenhum dia selecionado</string>
     <string name="timer">Temporizador</string>
+    <string name="stopwatch">Cronômetro</string>
     <string name="lap">Volta</string>
     <string name="stopwatch_stopped">O cronômetro foi parado</string>
     <string name="timer_stopped">O temporizador foi parado</string>
+    <string name="max_reminder_duration">Duração máxima do lembrete</string>
     <string name="time_expired">O tempo expirou</string>
     <string name="clock_and_date">Relógio e data</string>
-    <string name="show_seconds">Mostrar segundos</string>
-    <string name="increase_volume_gradually">Aumentar volume gradualmente</string>
-    <string name="faq_1_title">Como posso alterar a classificação das voltas na guia Cronômetro\?</string>
-    <string name="faq_1_text">Basta clicar em qualquer uma das colunas e isso fará com que as voltas sejam classificadas pela coluna especificada. Com cliques adicionais, você pode alternar a ordem de classificação entre crescente e decrescente.</string>
-    <string name="swipe_right_to_dismiss">Deslize para a direita para dispensar ou para a esquerda para adiar.</string>
-    <string name="app_title">Relógio simples - Um app multifuncional flexível</string>
     <string name="use_text_shadow">Usar sombra de texto</string>
-    <string name="analogue_clock">Relógio analógico</string>
+    <string name="swipe_right_to_dismiss">Deslize para a direita para dispensar ou para a esquerda para adiar.</string>
+    <string name="sort_by_creation_order">Ordem de criação</string>
     <string name="sort_by_alarm_time">Hora do alarme</string>
+    <string name="analogue_clock">Relógio analógico</string>
     <string name="digital_clock">Relógio digital</string>
+    <!--Timer-->
+    <string name="timers_notification_msg">Temporizadores em execução</string>
+    <string name="timer_single_notification_label_msg">O temporizador para %s está em execução</string>
     <string name="new_timer">Novo temporizador</string>
     <plurals name="timer_notification_msg">
         <item quantity="one">%d temporizador em execução</item>
         <item quantity="other">%d temporizadores em execução</item>
     </plurals>
-    <string name="sort_by_creation_order">Ordem de criação</string>
-    <string name="timers_notification_msg">Temporizadores em execução</string>
-    <string name="timer_single_notification_label_msg">O temporizador para %s está em execução</string>
+    <!-- Settings -->
     <string name="clock_tab">Guia Relógio</string>
     <string name="alarm_tab">Guia Alarme</string>
-    <string name="timer_tab">Guia Temporizador</string>
     <string name="stopwatch_tab">Guia Cronômetro</string>
-    <string name="vibrate">Vibrar</string>
+    <string name="timer_tab">Guia Temporizador</string>
+    <string name="show_seconds">Mostrar segundos</string>
+    <string name="increase_volume_gradually">Aumentar volume gradualmente</string>
+    <!-- FAQ -->
+    <string name="faq_1_title">Como posso alterar a classificação das voltas na guia Cronômetro\?</string>
+    <string name="faq_1_text">Basta clicar em qualquer uma das colunas e isso fará com que as voltas sejam classificadas pela coluna especificada. Com cliques adicionais, você pode alternar a ordem de classificação entre crescente e decrescente.</string>
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Relógio simples - Um app multifuncional flexível</string>
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Uma combinação de um relógio, alarme, cronômetro e temporizador.</string>
+    <string name="app_long_description">
+        The app has multiple functions related to timing.
+
+        At the clock you can enable displaying times from other timezones, or use the simple, but customizable clock widget. The text color of the widget can be customized, as well as the color and the alpha of the background.
+
+        The alarm contains all the expected features as day selecting, vibration toggling, ringtone selecting, snooze or adding a custom label.
+
+        With the stopwatch you can easily measure a longer period of time, or individual laps. You can sort the laps by lap time, it contains optional vibrations on button presses too, just to let you know that the button was pressed, even if you cannot look at the device.
+
+        You can easily setup a timer to be notified of some event. You can both change its ringtone, or toggle vibrations.
+
+        Additional features include for example preventing the device from falling asleep while the app is in foreground.
+
+        Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
+
+        <b>Check out the full suite of Simple Tools here:</b>
+        https://www.simplemobiletools.com
+
+        <b>Facebook:</b>
+        https://www.facebook.com/simplemobiletools
+
+        <b>Reddit:</b>
+        https://www.reddit.com/r/SimpleMobileTools
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
 </resources>
