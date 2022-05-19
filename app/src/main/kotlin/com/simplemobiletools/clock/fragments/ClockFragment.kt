@@ -18,6 +18,7 @@ import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.commons.extensions.beVisibleIf
 import com.simplemobiletools.commons.extensions.getProperTextColor
 import com.simplemobiletools.commons.extensions.updateTextColors
+import kotlinx.android.synthetic.main.fragment_clock.*
 import kotlinx.android.synthetic.main.fragment_clock.view.*
 import java.util.*
 
@@ -46,6 +47,8 @@ class ClockFragment : Fragment() {
         if (storedTextColor != configTextColor) {
             (view.time_zones_list.adapter as? TimeZonesAdapter)?.updateTextColor(configTextColor)
         }
+
+        view.clock_date.setTextColor(configTextColor)
     }
 
     override fun onPause() {
@@ -105,7 +108,6 @@ class ClockFragment : Fragment() {
     private fun updateDate() {
         calendar = Calendar.getInstance()
         val formattedDate = requireContext().getFormattedDate(calendar)
-        view.clock_date.text = formattedDate
         (view.time_zones_list.adapter as? TimeZonesAdapter)?.todayDateString = formattedDate
     }
 

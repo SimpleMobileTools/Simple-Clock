@@ -22,11 +22,13 @@
             android:textSize="@dimen/clock_text_size"
             tools:text="00:00:00" />
 
-        <com.simplemobiletools.commons.views.MyTextView
+        <TextClock
             android:id="@+id/clock_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/clock_time"
+            android:format12Hour="EEE, d MMM"
+            android:format24Hour="EEE, d MMM"
             android:gravity="center_horizontal"
             android:textSize="@dimen/big_text_size"
             tools:text="Mon, 1 January" />

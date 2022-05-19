@@ -44,7 +44,7 @@
             android:textSize="@dimen/normal_text_size"
             tools:text="00:00" />
 
-        <TextView
+        <TextClock
             android:id="@+id/widget_date"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -52,6 +52,8 @@
             android:autoSizeMinTextSize="2sp"
             android:autoSizeStepGranularity="1sp"
             android:autoSizeTextType="uniform"
+            android:format12Hour="EEE, d MMM"
+            android:format24Hour="EEE, d MMM"
             android:gravity="center"
             android:includeFontPadding="false"
             android:maxLines="1"

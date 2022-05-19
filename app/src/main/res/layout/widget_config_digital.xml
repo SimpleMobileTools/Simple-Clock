@@ -37,11 +37,13 @@
             android:textSize="@dimen/widget_time_text_size_small"
             tools:text="00:00" />
 
-        <TextView
+        <TextClock
             android:id="@+id/config_digital_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/config_digital_time"
+            android:format12Hour="EEE, d MMM"
+            android:format24Hour="EEE, d MMM"
             android:gravity="center_horizontal"
             android:includeFontPadding="false"
             android:paddingBottom="@dimen/small_margin"

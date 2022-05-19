@@ -8,14 +8,12 @@ import android.os.Bundle
 import android.widget.SeekBar
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.config
-import com.simplemobiletools.clock.extensions.getFormattedDate
 import com.simplemobiletools.clock.helpers.MyDigitalTimeWidgetProvider
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.dialogs.WidgetLockedDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import kotlinx.android.synthetic.main.widget_config_digital.*
-import java.util.*
 
 class WidgetDigitalConfigureActivity : SimpleActivity() {
     private var mBgAlpha = 0f
@@ -72,14 +70,9 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
         config_digital_bg_seekbar.setOnSeekBarChangeListener(bgSeekbarChangeListener)
         config_digital_bg_seekbar.progress = (mBgAlpha * 100).toInt()
         updateBackgroundColor()
-        updateCurrentDateTime()
 
         mTextColor = config.widgetTextColor
         updateTextColor()
-    }
-
-    private fun updateCurrentDateTime() {
-        config_digital_date.text = getFormattedDate(Calendar.getInstance())
     }
 
     private fun saveConfig() {
