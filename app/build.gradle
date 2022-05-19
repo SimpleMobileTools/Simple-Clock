@@ -16,8 +16,8 @@ android {
         applicationId "com.simplemobiletools.clock"
         minSdkVersion 29
         targetSdkVersion 31
-        versionCode 26
-        versionName "5.7.0"
+        versionCode 27
+        versionName "5.7.1"
         setProperty("archivesBaseName", "clock")
         vectorDrawables.useSupportLibrary = true
     }
