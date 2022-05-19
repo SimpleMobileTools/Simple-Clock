@@ -7,7 +7,7 @@
     <string name="label">Etiket</string>
     <string name="no_days_selected">Hiçbir gün seçilmedi</string>
     <string name="timer">Zamanlayıcı</string>
-    <string name="stopwatch">Stopwatch</string>
+    <string name="stopwatch">Kronometre</string>
     <string name="lap">Tur</string>
     <string name="stopwatch_stopped">Kronometre durduruldu</string>
     <string name="timer_stopped">Zamanlayıcı durduruldu</string>

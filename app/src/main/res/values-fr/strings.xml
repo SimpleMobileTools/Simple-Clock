@@ -7,7 +7,7 @@
     <string name="label">Titre</string>
     <string name="no_days_selected">Aucun jour sélectionné</string>
     <string name="timer">Minuterie</string>
-    <string name="stopwatch">Stopwatch</string>
+    <string name="stopwatch">Chronomètre</string>
     <string name="lap">Tour</string>
     <string name="stopwatch_stopped">Chronomètre arrêté</string>
     <string name="timer_stopped">La minuterie a été arrêtée</string>
