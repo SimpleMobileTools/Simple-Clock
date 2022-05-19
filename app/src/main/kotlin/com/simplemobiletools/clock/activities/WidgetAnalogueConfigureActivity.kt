@@ -12,7 +12,6 @@ import com.simplemobiletools.clock.helpers.MyAnalogueTimeWidgetProvider
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.dialogs.WidgetLockedDialog
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.DARK_GREY
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import kotlinx.android.synthetic.main.widget_config_analogue.*
 
@@ -39,7 +38,6 @@ class WidgetAnalogueConfigureActivity : SimpleActivity() {
 
         config_analogue_save.setOnClickListener { saveConfig() }
         config_analogue_bg_color.setOnClickListener { pickBackgroundColor() }
-        config_analogue_save.setTextColor(DARK_GREY)
 
         val primaryColor = getProperPrimaryColor()
         config_analogue_bg_seekbar.setColors(getProperTextColor(), primaryColor, primaryColor)

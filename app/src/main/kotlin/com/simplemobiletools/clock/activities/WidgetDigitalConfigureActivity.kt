@@ -45,7 +45,6 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
 
         val primaryColor = getProperPrimaryColor()
         config_digital_bg_seekbar.setColors(mTextColor, primaryColor, primaryColor)
-        config_digital_save.setTextColor(mTextColor)
 
         if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
             mWidgetLockedDialog = WidgetLockedDialog(this) {
