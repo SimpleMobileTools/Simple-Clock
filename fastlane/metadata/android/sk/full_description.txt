@@ -10,6 +10,15 @@ Viete si jednoducho nastaviť aj časovač, aby vám nič neuniklo. Viete zmeni�
 
 Ďalšie funkcie zahrňujú napríklad predídenie uspania zariadenia kým je apka v popredí.
 
+Apka je založená na Material dizajne a má prednastavenú tmavú tému, poskytuje výbornú používateľskú skúsenosť pre ľahké používanie. Chýbajúci prístup k internetu garantuje lepšie súkromie, bezpečnosť a stabilitu ako ostatné apky.
+
 Neobsahuje žiadne reklamy a nepotrebné oprávnenia. Je opensource, poskytuje možnosť zmeny farieb.
 
-Táto aplikácia je iba jednou zo skupiny aplikácií. Ostatné viete nájsť na https://www.simplemobiletools.com
+<b>Pozrite si celú sadu aplikácií na:</b>
+https://www.simplemobiletools.com
+
+<b>Facebook:</b>
+https://www.facebook.com/simplemobiletools
+
+<b>Reddit:</b>
+https://www.reddit.com/r/SimpleMobileTools
