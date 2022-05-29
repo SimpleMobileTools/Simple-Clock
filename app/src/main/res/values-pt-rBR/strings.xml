@@ -43,31 +43,7 @@
     <string name="app_title">Relógio simples - Um app multifuncional flexível</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Uma combinação de um relógio, alarme, cronômetro e temporizador.</string>
-    <string name="app_long_description">
-        The app has multiple functions related to timing.
-
-        At the clock you can enable displaying times from other timezones, or use the simple, but customizable clock widget. The text color of the widget can be customized, as well as the color and the alpha of the background.
-
-        The alarm contains all the expected features as day selecting, vibration toggling, ringtone selecting, snooze or adding a custom label.
-
-        With the stopwatch you can easily measure a longer period of time, or individual laps. You can sort the laps by lap time, it contains optional vibrations on button presses too, just to let you know that the button was pressed, even if you cannot look at the device.
-
-        You can easily setup a timer to be notified of some event. You can both change its ringtone, or toggle vibrations.
-
-        Additional features include for example preventing the device from falling asleep while the app is in foreground.
-
-        Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
-
-        <b>Check out the full suite of Simple Tools here:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
+    <string name="app_long_description"> Um aplicativo com múltiplas funções relacionadas ao tempo. No relógio, você pode ativar a exibição de horários de outros fusos horários, ou usar o simples, mas personalizável widget de relógio. A cor do texto do widget pode ser personalizada, assim como a cor e alfa do fundo. O alarme contém todos os recursos esperados como seleção do dia, alternância de vibração, seleção do toque, soneca ou adição de uma etiqueta personalizada. Com o cronômetro você pode medir um período de tempo ou voltas individuais. Você pode ordenar as voltas por tempo de volta, e também contém vibrações opcionais nos botões de pressão, apenas para que você saiba que o botão foi pressionado, caso você não consiga olhar para o dispositivo. Você pode facilmente configurar um temporizador para ser notificado de algum evento. Ambos podem mudar seu toque ou alternar as vibrações. Características adicionais incluem, por exemplo, evitar que o dispositivo adormeça enquanto o aplicativo estiver em primeiro plano. Não contém anúncios ou permissões desnecessárias. É totalmente opensource e fornece cores personalizáveis. <b>Confira a coleção completa de Simple Tools:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
