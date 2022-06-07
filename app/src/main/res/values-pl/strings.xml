@@ -17,8 +17,8 @@
     <string name="use_text_shadow">Używaj cieniowania tekstu</string>
     <string name="swipe_right_to_dismiss">Przesuń w prawo, aby odrzucić, lub w lewo, aby odłożyć.</string>
     <string name="sort_by_creation_order">Kolejność tworzenia</string>
-    <string name="sort_by_alarm_time">Czas alarmu</string>
-    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
+    <string name="sort_by_alarm_time">Godzina alarmu</string>
+    <string name="sort_by_day_and_alarm_time">Dzień i godzina alarmu</string>
     <string name="analogue_clock">Zegar analogowy</string>
     <string name="digital_clock">Zegar cyfrowy</string>
     <!--Timer-->
