@@ -17,6 +17,7 @@
     <string name="swipe_right_to_dismiss">Glisează în dreapta pentru a înlătura, sau stânga pentru a amâna.</string>
     <string name="sort_by_creation_order">Data creării</string>
     <string name="sort_by_alarm_time">Ora alarmei</string>
+    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
     <string name="analogue_clock">Analogue clock</string>
     <string name="digital_clock">Digital clock</string>
 

@@ -18,6 +18,7 @@
     <string name="swipe_right_to_dismiss">Приплъзнете надясно за да отхвърлите или наляво, за да отложите.</string>
     <string name="sort_by_creation_order">Ред на създаване</string>
     <string name="sort_by_alarm_time">Време за алармата</string>
+    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
     <string name="analogue_clock">Аналогов часовник</string>
     <string name="digital_clock">Цифров часовник</string>
     <!--Timer-->

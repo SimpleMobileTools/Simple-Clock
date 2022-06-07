@@ -18,6 +18,7 @@
     <string name="swipe_right_to_dismiss">Свайп вправо, щоб відхилити, або вліво, щоб відкласти.</string>
     <string name="sort_by_creation_order">Порядок створення</string>
     <string name="sort_by_alarm_time">Час будильника</string>
+    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
     <string name="analogue_clock">Аналоговий годинник</string>
     <string name="digital_clock">Цифровий годинник</string>
     <!--Timer-->

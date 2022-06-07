@@ -18,6 +18,7 @@
     <string name="swipe_right_to_dismiss">Dra åt höger för att Stänga av eller åt vänster för att Snooza.</string>
     <string name="sort_by_creation_order">Skapelse ordning</string>
     <string name="sort_by_alarm_time">Alarm tid</string>
+    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
     <string name="analogue_clock">Analog klocka</string>
     <string name="digital_clock">Digital klocka</string>
     <!--Timer-->

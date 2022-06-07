@@ -18,6 +18,7 @@
     <string name="swipe_right_to_dismiss">Deslize para a direita para dispensar ou para a esquerda para adiar.</string>
     <string name="sort_by_creation_order">Ordem de criação</string>
     <string name="sort_by_alarm_time">Hora do alarme</string>
+    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
     <string name="analogue_clock">Relógio analógico</string>
     <string name="digital_clock">Relógio digital</string>
     <!--Timer-->

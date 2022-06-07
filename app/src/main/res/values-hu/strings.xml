@@ -17,6 +17,7 @@
     <string name="swipe_right_to_dismiss">Jobbra mosás a kikapcsoláshoz, balra a némításhoz.</string>
     <string name="sort_by_creation_order">Létrehozási sorrend</string>
     <string name="sort_by_alarm_time">Ébresztő idő</string>
+    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
     <string name="analogue_clock">Analogue clock</string>
     <string name="digital_clock">Digital clock</string>
 
