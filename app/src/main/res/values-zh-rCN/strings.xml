@@ -18,7 +18,7 @@
     <string name="swipe_right_to_dismiss">右滑关闭，或者左滑贪睡。</string>
     <string name="sort_by_creation_order">创建顺序</string>
     <string name="sort_by_alarm_time">闹铃时间</string>
-    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
+    <string name="sort_by_day_and_alarm_time">天和闹铃时间</string>
     <string name="analogue_clock">指针式时钟</string>
     <string name="digital_clock">数字时钟</string>
     <!--Timer-->
