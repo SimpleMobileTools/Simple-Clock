@@ -18,7 +18,7 @@
     <string name="swipe_right_to_dismiss">Feu lliscar el dit cap a la dreta per ignorar, cap a l\'esquerra per posposar.</string>
     <string name="sort_by_creation_order">Ordre de creació</string>
     <string name="sort_by_alarm_time">Hora d\'alarma</string>
-    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
+    <string name="sort_by_day_and_alarm_time">Dia i hora d\'alarma</string>
     <string name="analogue_clock">Rellotge analògic</string>
     <string name="digital_clock">Rellotge digital</string>
     <!--Timer-->
