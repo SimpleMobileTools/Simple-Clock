@@ -18,7 +18,7 @@
     <string name="swipe_right_to_dismiss">Scorri a destra per rimuovere, a sinistra per rinviare.</string>
     <string name="sort_by_creation_order">Ordine di creazione</string>
     <string name="sort_by_alarm_time">Ora dell\'allarme</string>
-    <string name="sort_by_day_and_alarm_time">Giorno e Ora Sveglia</string>
+    <string name="sort_by_day_and_alarm_time">Giorno e ora sveglia</string>
     <string name="analogue_clock">Orologio analogico</string>
     <string name="digital_clock">Orologio digitale</string>
     <!--Timer-->
