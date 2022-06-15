@@ -54,6 +54,7 @@ const val SORT_BY_TOTAL_TIME = 4
 // alarm sorting
 const val SORT_BY_CREATION_ORDER = 0
 const val SORT_BY_ALARM_TIME = 1
+const val SORT_BY_DATE_AND_TIME = 2
 
 const val TODAY_BIT = -1
 const val TOMORROW_BIT = -2
