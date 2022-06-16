@@ -31,9 +31,7 @@ import com.simplemobiletools.clock.receivers.HideAlarmReceiver
 import com.simplemobiletools.clock.receivers.HideTimerReceiver
 import com.simplemobiletools.clock.services.SnoozeService
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.DAY_MINUTES
-import com.simplemobiletools.commons.helpers.EVERY_DAY_BIT
-import com.simplemobiletools.commons.helpers.SILENT
+import com.simplemobiletools.commons.helpers.*
 import java.util.*
 import kotlin.math.pow
 
@@ -467,4 +465,24 @@ fun Context.getAlarmSelectedDaysString(bitMask: Int): String {
         EVERY_DAY_BIT -> getString(R.string.every_day)
         else -> getSelectedDaysString(bitMask)
     }
+}
+
+fun Context.firstDayOrder(bitMask: Int): Int {
+    if (bitMask == TODAY_BIT) return -2
+    if (bitMask == TOMORROW_BIT) return -1
+
+    val dayBits = arrayListOf(MONDAY_BIT, TUESDAY_BIT, WEDNESDAY_BIT, THURSDAY_BIT, FRIDAY_BIT, SATURDAY_BIT, SUNDAY_BIT)
+
+    val sundayFirst = baseConfig.isSundayFirst
+    if (sundayFirst) {
+        dayBits.moveLastItemToFront()
+    }
+
+    dayBits.forEach { bit ->
+        if (bitMask and bit != 0) {
+            return if (bit == SUNDAY_BIT && sundayFirst) 0 else bit
+        }
+    }
+
+    return bitMask
 }

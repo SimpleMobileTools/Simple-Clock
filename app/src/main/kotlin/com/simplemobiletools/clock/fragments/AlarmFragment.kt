@@ -18,6 +18,7 @@ import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.getProperTextColor
 import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.extensions.updateTextColors
+import com.simplemobiletools.commons.helpers.SORT_BY_DATE_CREATED
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.models.AlarmSound
 import kotlinx.android.synthetic.main.fragment_alarm.view.*
@@ -77,12 +78,15 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
 
     private fun setupAlarms() {
         alarms = context?.dbHelper?.getAlarms() ?: return
-        alarms.sortBy {
-            if (requireContext().config.alarmSort == SORT_BY_ALARM_TIME) {
+
+        when (requireContext().config.alarmSort) {
+            SORT_BY_ALARM_TIME -> alarms.sortBy { it.timeInMinutes }
+            SORT_BY_DATE_CREATED -> alarms.sortBy { it.id }
+            SORT_BY_DATE_AND_TIME -> alarms.sortWith(compareBy<Alarm> {
+                requireContext().firstDayOrder(it.days)
+            }.thenBy {
                 it.timeInMinutes
-            } else {
-                it.id
-            }
+            })
         }
 
         if (context?.getNextAlarm()?.isEmpty() == true) {
