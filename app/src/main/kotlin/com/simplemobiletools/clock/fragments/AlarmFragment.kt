@@ -82,7 +82,11 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
         when (requireContext().config.alarmSort) {
             SORT_BY_ALARM_TIME -> alarms.sortBy { it.timeInMinutes }
             SORT_BY_DATE_CREATED -> alarms.sortBy { it.id }
-            SORT_BY_DATE_AND_TIME -> alarms.sortWith(compareBy<Alarm> { requireContext().firstDayOrder(it.days) }.thenBy { it.timeInMinutes })
+            SORT_BY_DATE_AND_TIME -> alarms.sortWith(compareBy<Alarm> {
+                requireContext().firstDayOrder(it.days)
+            }.thenBy {
+                it.timeInMinutes
+            })
         }
 
         if (context?.getNextAlarm()?.isEmpty() == true) {
