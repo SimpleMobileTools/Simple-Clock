@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_days_selected">נא לבחור ימים ולבצע שוב</string>
+    <string name="timer">טיימר</string>
+    <string name="max_reminder_duration">משך תזכורת מקסימלי</string>
+    <string name="time_expired">הזמן פג</string>
+    <string name="clock_and_date">שעון ותאריך</string>
+    <string name="use_text_shadow">השתמש בצל טקסט</string>
+    <string name="swipe_right_to_dismiss">החלק ימינה כדי לסגור, או שמאלה כדי להשהות.</string>
+    <string name="analogue_clock">שעון אנלוגי</string>
+    <string name="sort_by_day_and_alarm_time">התראה יום ושעה</string>
+    <string name="sort_by_alarm_time">התראה זמן</string>
+    <string name="digital_clock">שעון דיגיטלי</string>
+    <string name="timers_notification_msg">‏טיימר פועל</string>
+    <string name="timer_single_notification_label_msg">טיימר עבור %s פועל</string>
+    <plurals name="timer_notification_msg">
+        <item quantity="one">%d טיימר פועל</item>
+        <item quantity="two">%d טיימרים פועלים</item>
+        <item quantity="many">%d טיימר פועל</item>
+        <item quantity="other">%d טיימרים פועלים</item>
+    </plurals>
+    <string name="clock_tab">לשונית שעון</string>
+    <string name="alarm_tab">לשונית התראות</string>
+    <string name="stopwatch_tab">לשונית שעון עצר</string>
+    <string name="increase_volume_gradually">הגבר את עוצמת הקול בהדרגה</string>
+    <string name="app_title">‎שעון פשוט - אפליקציה רב תכליתית גמישה</string>
+    <string name="stopwatch">סטופר</string>
+    <string name="timer_stopped">הטיימר הופסק</string>
+    <string name="app_name">שעון פשוט</string>
+    <string name="app_launcher_name">שעון</string>
+    <string name="time_zone">אזור זמן</string>
+    <string name="vibrate">לנדנד</string>
+    <string name="label">תווית</string>
+    <string name="lap">הקפה</string>
+    <string name="stopwatch_stopped">שעון העצר הופסק</string>
+    <string name="sort_by_creation_order">סדר יצירה</string>
+    <string name="show_seconds">הצג שניות</string>
+    <string name="new_timer">טיימר חדש</string>
+    <string name="faq_1_title">כיצד אוכל לשנות את מיון ההקפה בכרטיסיית שעון העצר\?</string>
+    <string name="app_short_description">שילוב של שעון, מעורר, סטופר וטיימר.</string>
+    <string name="faq_1_text">פשוט לחץ על כל אחת מהעמודות, זה יגרום להקפות להיות ממוינות לפי העמודה הנתונה. בלחיצות נוספות תוכל לעבור בין מיון עולה ויורד.</string>
+    <string name="timer_tab">לשונית טיימר</string>
+    <string name="app_long_description"> לאפליקציה יש מספר פונקציות הקשורות לתזמון. בשעון אתה יכול לאפשר הצגת זמנים מאזורי זמן אחרים, או להשתמש בווידג\'ט השעון הפשוט אך הניתן להתאמה אישית. ניתן להתאים את צבע הטקסט של הווידג\'ט, כמו גם את הצבע של הרקע. ההתראה מכילה את כל התכונות הצפויות כמו בחירת יום, החלפת רטט, בחירת רינגטונים, נודניק או הוספת תווית מותאמת אישית. בעזרת שעון העצר תוכלו למדוד בקלות פרק זמן ארוך יותר, או הקפות בודדות. אתה יכול למיין את ההקפות לפי זמן ההקפה, הוא מכיל רעידות אופציונליות גם בלחיצות על הכפתורים, רק כדי ליידע אותך שהלחצן נלחץ, גם אם אינך יכול להסתכל על המכשיר. אתה יכול בקלות להגדיר טיימר כדי לקבל הודעה על אירוע כלשהו. אתה יכול גם לשנות את הרינגטון שלו, או להחליף את הרטטים. תכונות נוספות כוללות למשל מניעת הירדמות של המכשיר בזמן שהאפליקציה נמצאת בחזית. אינו מכיל פרסומות או הרשאות מיותרות. זה קוד פתוח לחלוטין, מספק צבעים הניתנים להתאמה אישית. <b>בדוק את החבילה המלאה של כלים פשוטים כאן:</b> https://www.simplemobiletools.com <b>פייסבוק:</b> https://www.facebook.com/simplemobiletools <b>Reddit :</b> https://www.reddit.com/r/SimpleMobileTools </string>
+</resources>

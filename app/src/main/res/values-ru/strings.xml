@@ -18,7 +18,7 @@
     <string name="swipe_right_to_dismiss">Смахивание вправо — скрыть, влево — отложить.</string>
     <string name="sort_by_creation_order">Порядок создания</string>
     <string name="sort_by_alarm_time">Время будильника</string>
-    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
+    <string name="sort_by_day_and_alarm_time">Дата и время будильника</string>
     <string name="analogue_clock">Аналоговые часы</string>
     <string name="digital_clock">Цифровые часы</string>
     <!--Timer-->
