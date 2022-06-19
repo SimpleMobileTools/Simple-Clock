@@ -20,7 +20,7 @@
     <string name="swipe_right_to_dismiss">Kapatmak için sağa, ertelemek için sola kaydırın.</string>
     <string name="sort_by_creation_order">Oluşturma sırası</string>
     <string name="sort_by_alarm_time">Alarm zamanı</string>
-    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
+    <string name="sort_by_day_and_alarm_time">Gün ve Alarm zamanı</string>
     <string name="analogue_clock">Analog saat</string>
     <string name="digital_clock">Dijital saat</string>
     <!--Timer-->

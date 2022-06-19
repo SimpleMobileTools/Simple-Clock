@@ -20,7 +20,7 @@
     <string name="swipe_right_to_dismiss">Balayez vers la droite pour arrêter ou vers la gauche pour répéter.</string>
     <string name="sort_by_creation_order">Ordre de création</string>
     <string name="sort_by_alarm_time">Heure de l\'alarme</string>
-    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
+    <string name="sort_by_day_and_alarm_time">Jour et heure de l\'alarme</string>
     <string name="analogue_clock">Horloge analogique</string>
     <string name="digital_clock">Horloge numérique</string>
     <!--Timer-->
