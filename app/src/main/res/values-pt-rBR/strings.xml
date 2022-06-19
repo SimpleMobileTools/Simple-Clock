@@ -6,6 +6,8 @@
     <string name="vibrate">Vibrar</string>
     <string name="label">Legenda</string>
     <string name="no_days_selected">Nenhum dia selecionado</string>
+    <string name="clock">Clock</string>
+    <string name="alarm">Alarm</string>
     <string name="timer">Temporizador</string>
     <string name="stopwatch">Cronômetro</string>
     <string name="lap">Volta</string>

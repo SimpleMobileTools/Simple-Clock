@@ -5,6 +5,8 @@
     <string name="vibrate">വൈബ്രേറ്റുചെയ്യുക</string>
     <string name="label">അടിക്കുറിപ്പ് </string>
     <string name="no_days_selected">ദിവസങ്ങളൊന്നും തിരഞ്ഞെടുത്തിട്ടില്ല</string>
+    <string name="clock">Clock</string>
+    <string name="alarm">Alarm</string>
     <string name="timer">ടൈമർ</string>
     <string name="stopwatch">Stopwatch</string>
     <string name="lap">ലാപ്‌</string>

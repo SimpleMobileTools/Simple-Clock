@@ -5,6 +5,8 @@
     <string name="vibrate">Värinä</string>
     <string name="label">Tunniste</string>
     <string name="no_days_selected">Ei päiviä valittuna</string>
+    <string name="clock">Clock</string>
+    <string name="alarm">Alarm</string>
     <string name="timer">Ajastin</string>
     <string name="stopwatch">Stopwatch</string>
     <string name="lap">Kierrosaika</string>

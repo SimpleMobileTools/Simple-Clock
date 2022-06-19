@@ -5,6 +5,8 @@
     <string name="vibrate">Vibrer</string>
     <string name="label">Etiket</string>
     <string name="no_days_selected">Der er ikke valgt nogen dage</string>
+    <string name="clock">Clock</string>
+    <string name="alarm">Alarm</string>
     <string name="timer">Æggeur</string>
     <string name="stopwatch">Stopwatch</string>
     <string name="lap">Mellemtid</string>

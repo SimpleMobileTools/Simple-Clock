@@ -6,6 +6,8 @@
     <string name="vibrate">Wibracja</string>
     <string name="label">Etykieta</string>
     <string name="no_days_selected">Nie wybrano dni</string>
+    <string name="clock">Clock</string>
+    <string name="alarm">Alarm</string>
     <string name="timer">Minutnik</string>
     <string name="stopwatch">Stoper</string>
     <string name="lap">Okrążenie</string>

@@ -6,6 +6,8 @@
     <string name="vibrate">Titret</string>
     <string name="label">Etiket</string>
     <string name="no_days_selected">Hiçbir gün seçilmedi</string>
+    <string name="clock">Clock</string>
+    <string name="alarm">Alarm</string>
     <string name="timer">Zamanlayıcı</string>
     <string name="stopwatch">Kronometre</string>
     <string name="lap">Tur</string>

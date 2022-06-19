@@ -6,6 +6,8 @@
     <string name="vibrate">震动</string>
     <string name="label">标签</string>
     <string name="no_days_selected">未选择哪一天</string>
+    <string name="clock">Clock</string>
+    <string name="alarm">Alarm</string>
     <string name="timer">定时器</string>
     <string name="stopwatch">秒表</string>
     <string name="lap">分段</string>

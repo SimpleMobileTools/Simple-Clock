@@ -6,6 +6,8 @@
     <string name="vibrate">Vibrera</string>
     <string name="label">Etikett</string>
     <string name="no_days_selected">Inga dagar har valts</string>
+    <string name="clock">Clock</string>
+    <string name="alarm">Alarm</string>
     <string name="timer">Timer</string>
     <string name="stopwatch">Stoppur</string>
     <string name="lap">Varv</string>

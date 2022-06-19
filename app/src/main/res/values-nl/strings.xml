@@ -5,6 +5,8 @@
     <string name="vibrate">Trillen</string>
     <string name="label">Label</string>
     <string name="no_days_selected">Geen dagen geselecteerd</string>
+    <string name="clock">Clock</string>
+    <string name="alarm">Alarm</string>
     <string name="timer">Timer</string>
     <string name="stopwatch">Stopwatch</string>
     <string name="lap">Ronde</string>

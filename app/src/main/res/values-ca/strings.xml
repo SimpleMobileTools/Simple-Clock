@@ -6,6 +6,8 @@
     <string name="vibrate">Vibra</string>
     <string name="label">Etiqueta</string>
     <string name="no_days_selected">No s\'ha seleccionat cap dia</string>
+    <string name="clock">Clock</string>
+    <string name="alarm">Alarm</string>
     <string name="timer">Temporitzador</string>
     <string name="stopwatch">Cronòmetre</string>
     <string name="lap">Volta</string>
