@@ -7,7 +7,7 @@
     <string name="label">Etikett</string>
     <string name="no_days_selected">Inga dagar har valts</string>
     <string name="timer">Timer</string>
-    <string name="stopwatch">Stopwatch</string>
+    <string name="stopwatch">Stoppur</string>
     <string name="lap">Varv</string>
     <string name="stopwatch_stopped">Stoppuret har stoppats</string>
     <string name="timer_stopped">Timern har stoppats</string>
@@ -16,9 +16,9 @@
     <string name="clock_and_date">Klocka och datum</string>
     <string name="use_text_shadow">Använd textskugga</string>
     <string name="swipe_right_to_dismiss">Dra åt höger för att Stänga av eller åt vänster för att Snooza.</string>
-    <string name="sort_by_creation_order">Skapelse ordning</string>
-    <string name="sort_by_alarm_time">Alarm tid</string>
-    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
+    <string name="sort_by_creation_order">Skapelseordning</string>
+    <string name="sort_by_alarm_time">Alarmtid</string>
+    <string name="sort_by_day_and_alarm_time">Dag och alarmtid</string>
     <string name="analogue_clock">Analog klocka</string>
     <string name="digital_clock">Digital klocka</string>
     <!--Timer-->
@@ -59,7 +59,7 @@
 
         Innehåller ingen reklam eller onödiga behörigheter. Den har helt öppen källkod och anpassningsbara färger.
 
-        <b>Check out the full suite of Simple Tools here:</b>
+        <b>Kolla in hela uppsättningen enkla verktyg här:</b>
         https://www.simplemobiletools.com
 
         <b>Facebook:</b>
