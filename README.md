@@ -15,7 +15,7 @@ Additional features include for example preventing the device from falling aslee
 
 Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
 
-<b>Check out the full suite of Simple Tools here:</b>  
+Check out the full suite of Simple Tools here:  
 https://www.simplemobiletools.com
 
 Facebook:  
