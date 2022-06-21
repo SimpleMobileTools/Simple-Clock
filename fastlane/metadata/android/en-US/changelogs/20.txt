@@ -1,2 +1,0 @@
- * Fixed alarm not vibrating in some cases (by rien)
- * Some minor translation and UI improvements
