@@ -1,0 +1,2 @@
+* Bazı kararlılık ve çeviri iyileştirmeleri eklendi
+ * Renk özelleştirmesi için Basit Teşekkürler'i satın almayı gerektir

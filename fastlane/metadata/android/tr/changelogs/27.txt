@@ -1,0 +1,2 @@
+* Widget üzerindeki tarih gösterimi daha güvenilir hale getirildi
+ * Bazı kararlılık ve çeviri iyileştirmeleri eklendi

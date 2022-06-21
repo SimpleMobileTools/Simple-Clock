@@ -1,0 +1,3 @@
+* Widget'ta yuvarlatılmış köşeler kullanıldı
+ * Kapatıldığında yeni alarmı uygun şekilde yeniden planla
+ * Diğer bazı kullanıcı arayüzü ve çeviri iyileştirmeleri eklendi

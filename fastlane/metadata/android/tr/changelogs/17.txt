@@ -1,0 +1,5 @@
+* Uygulama kapatıldığında zamanlayıcının durmadığından emin ol
+ * Widget'ı daha güvenilir hale getirmeyi dene
+ * Zamanlayıcıya bir etiket alanı eklendi
+ * Son kullanılan alarm ile ilgili değerleri hatırla, yenilerinde kullan
+ * Birkaç başka kullanıcı arayüzü ve çeviri iyileştirmesi

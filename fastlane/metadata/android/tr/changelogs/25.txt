@@ -1,0 +1,2 @@
+* Bazı ekranlar yeniden tasarlandı, Otomatik tema eklendi
+ * Bazı kararlılık, çeviri ve kullanıcı arayüzü iyileştirmeleri
