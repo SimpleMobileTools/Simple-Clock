@@ -1,13 +1,24 @@
-L'app ha diverse funzioni per la gestione del tempo.
+L'app orologio ha più funzioni legate alla tempistica. Questa app può essere usata come un widget per l'orologio o come sveglia. Puoi anche cambiare lo sfondo live in questa app. Questa app è fatta per aiutarti a regolare la tua vita quotidiana e dormire meglio. È inoltre possibile utilizzare il cronometro in questa applicazione per regolare il vostro tempo quando si cerca di tenere uno stile di vita sano o per qualsiasi altro scopo. Questa applicazione può anche essere posizionata sulla schermata iniziale per una facile navigazione.
 
-Si può controllare l'orario di altri fusi orari o usare il widget orologio, semplice ma personalizzabile. Tale widget può essere personalizzato come si vuole, sia nei colori che nella trasparenza dello sfondo.
+Come widget per l'orologio è possibile abilitare la visualizzazione di orari di altri fusi orari, o utilizzare il semplice, ma personalizzabile e ridimensionabile widget dell'orologio. Il colore del testo del widget dell'orologio può essere personalizzato, così come il colore e l'alpha dello sfondo. È inoltre possibile modificare lo sfondo live in questa applicazione. È inoltre possibile modificare la forma del widget dell'orologio secondo la vostra scelta e mostrarlo sulla schermata iniziale.
 
-La sveglia dispone di tutte le funzioni essenziali. Si può selezionare il giorno, attivare la vibrazione, scegliere la suoneria, rinviare la sveglia o aggiungere un'etichetta.
+L'allarme contiene tutte le funzionalità previste come la selezione del giorno, l'abilitazione della vibrazione, la selezione delle suonerie, lo snooze o l'aggiunta di un'etichetta personalizzata. Svegliarsi sarà un piacere. Supporta tutti gli allarmi che vuoi, quindi non ci saranno più scuse per non svegliarsi e dormire meglio :) Anche l'aumento graduale del volume è supportato, abilitato per impostazione predefinita. Un pulsante snooze personalizzabile è disponibile anche, nel caso in cui si avesse davvero un buon motivo per usarlo. La sveglia fornita da questa applicazione è il più semplice possibile. Devi semplicemente aggiungerla quante volte vuoi e accenderla. Durante questo, si può anche prendere aiuto da una guida costruita in questa sveglia per aiutarti a navigare attraverso questa applicazione per dormire meglio. Si può dormire meglio così questa applicazione può svegliarti all'ora impostata senza disturbare il vostro stile di vita. Questo allarme può essere posizionato sulla schermata iniziale per rendere più facile per accedervi, mentre si può lavorare ad altre cose sul dispositivo. L'obiettivo principale di mantenere la sveglia in questo widget dell'orologio è quello di aiutarvi a pianificare il vostro tempo in modo più efficace. 
 
-Con il cronometro si può misurare facilmente un lungo periodo di tempo, o singoli tempi parziali ordinabili. Si può attivare la vibrazione dei tasti per sapere se un pulsante è stato premuto, utile quando non si può guardare il dispositivo.
+Con il cronometro si può facilmente misurare un periodo di tempo più lungo, o singoli giri. È possibile ordinare i giri in diversi modi. Contiene vibrazioni opzionali alla pressione dei pulsanti, solo per farti sapere che il pulsante è stato premuto nel caso in cui tu non possa guardare il dispositivo per qualche motivo, o sia di fretta. Questo cronometro può aiutarti a rimetterti in forma se stai facendo yoga o facendo una corsa nel parco. È possibile mettere il cronometro sulla schermata iniziale in modo da poter accedere facilmente e modificarlo in base alle proprie esigenze senza aprire il menu e cercarlo.
 
-Fra le altre funzionalità incluse, c'è la possibilità di prevenire che il dispositivi vada in standby mentre l'applicazione è in primo piano.
+Puoi facilmente impostare un timer per essere avvisato di alcuni eventi. Puoi sia cambiare la suoneria, sia abilitare le vibrazioni. Non brucerai mai più quella pizza. Anche il conto alla rovescia del timer può essere messo in pausa, non solo fermato.
 
-L'applicazione non contiene pubblicità o permessi non necessari; è completamente opensource e la si può personalizzare con i propri colori preferiti.
+Altre funzionalità includono ad esempio prevenire il dispositivo di addormentarsi mentre l'applicazione è in primo piano o cambiare il formato di tempo tra 12 o 24 ore. Ultimo ma non meno importante è possibile decidere se la settimana deve iniziare la domenica, o lunedì.
 
-Questa è solamente una delle tante applicazioni della serie Simple Mobile Tools. Si possono trovare le altre su https://www.simplemobiletools.com
+Viene fornito con il material design e il tema scuro per impostazione predefinita, che offre una grande esperienza utente e un facile utilizzo. La mancanza di accesso a Internet ti dà più privacy, sicurezza e stabilità rispetto ad altre applicazioni. Il tema scuro in questo widget dell'orologio può aiutare a impostare la sveglia di notte senza accecare gli occhi con il colore forte del vostro allarme.
+
+Non contiene annunci o autorizzazioni non necessarie. È completamente opensource, fornisce colori personalizzabili e la scelta di scegliere tra diversi sfondi live. 
+
+<b>Scopri la suite completa di Simple Tools qui:</b>
+https://www.simplemobiletools.com
+
+Facebook:
+https://www.facebook.com/simplemobiletools
+
+Reddit:
+https://www.reddit.com/r/SimpleMobileTools
