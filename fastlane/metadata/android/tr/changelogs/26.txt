@@ -1,6 +1,0 @@
-* Gerekli en düşük Android sürümü 10'a yükseltildi
- * Android 12 ve üstünde Material You tema desteği eklendi
- * Analog saat widget'ı eklendi
- * Widget yapılandırma ekranları yeniden tasarlandı
- * Widget ve alarmlar daha güvenilir hale getirildi
- * Bazı kararlılık, çeviri ve kullanıcı arayüzü iyileştirmeleri eklendi
