@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
+import android.widget.ImageView
+import android.widget.TextView
 import com.simplemobiletools.clock.BuildConfig
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.adapters.ViewPagerAdapter
@@ -33,6 +35,7 @@ class MainActivity : SimpleActivity() {
         appLaunched(BuildConfig.APPLICATION_ID)
         storeStateVariables()
         initFragments()
+        setupTabs()
         updateWidgets()
 
         if (getNextAlarm().isEmpty()) {
@@ -65,6 +68,8 @@ class MainActivity : SimpleActivity() {
         if (config.preventPhoneFromSleeping) {
             window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         }
+
+        setupTabColors()
     }
 
     override fun onPause() {
@@ -150,34 +155,48 @@ class MainActivity : SimpleActivity() {
             val timerId = intent.getIntExtra(TIMER_ID, INVALID_TIMER_ID)
             viewPagerAdapter.updateTimerPosition(timerId)
         }
-        view_pager.currentItem = tabToOpen
+
         view_pager.offscreenPageLimit = TABS_COUNT - 1
+        view_pager.currentItem = tabToOpen
+    }
+
+    private fun setupTabs() {
+        main_tabs_holder.removeAllTabs()
+        val tabDrawables = arrayOf(R.drawable.ic_clock_vector, R.drawable.ic_alarm_vector, R.drawable.ic_stopwatch_vector, R.drawable.ic_hourglass_vector)
+        val tabLabels = arrayOf(R.string.clock, R.string.alarm, R.string.stopwatch, R.string.timer)
+
+        tabDrawables.forEachIndexed { i, drawableId ->
+            main_tabs_holder.newTab().setCustomView(R.layout.bottom_tablayout_item).apply {
+                customView?.findViewById<ImageView>(R.id.tab_item_icon)?.setImageDrawable(getDrawable(drawableId))
+                customView?.findViewById<TextView>(R.id.tab_item_label)?.setText(tabLabels[i])
+                main_tabs_holder.addTab(this)
+            }
+        }
+
         main_tabs_holder.onTabSelectionChanged(
             tabUnselectedAction = {
-                it.icon?.applyColorFilter(getProperTextColor())
+                updateBottomTabItemColors(it.customView, false)
             },
             tabSelectedAction = {
                 view_pager.currentItem = it.position
-                it.icon?.applyColorFilter(getProperPrimaryColor())
+                updateBottomTabItemColors(it.customView, true)
             }
         )
-
-        setupTabColors(tabToOpen)
     }
 
-    private fun setupTabColors(lastUsedTab: Int) {
-        main_tabs_holder.apply {
-            background = ColorDrawable(getProperBackgroundColor())
-            setSelectedTabIndicatorColor(getProperPrimaryColor())
-            getTabAt(lastUsedTab)?.apply {
-                select()
-                icon?.applyColorFilter(getProperPrimaryColor())
-            }
+    private fun setupTabColors() {
+        val activeView = main_tabs_holder.getTabAt(view_pager.currentItem)?.customView
+        updateBottomTabItemColors(activeView, true)
 
-            getInactiveTabIndexes(lastUsedTab).forEach {
-                getTabAt(it)?.icon?.applyColorFilter(getProperTextColor())
-            }
+        getInactiveTabIndexes(view_pager.currentItem).forEach { index ->
+            val inactiveView = main_tabs_holder.getTabAt(index)?.customView
+            updateBottomTabItemColors(inactiveView, false)
         }
+
+        main_tabs_holder.getTabAt(view_pager.currentItem)?.select()
+        val bottomBarColor = getBottomTabsBackgroundColor()
+        main_tabs_holder.setBackgroundColor(bottomBarColor)
+        updateNavigationBarColor(bottomBarColor)
     }
 
     private fun getInactiveTabIndexes(activeIndex: Int) = arrayListOf(0, 1, 2, 3).filter { it != activeIndex }
