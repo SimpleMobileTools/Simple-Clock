@@ -4,10 +4,8 @@
     <string name="app_launcher_name">Zegar</string>
     <string name="time_zone">Strefa czasowa</string>
     <string name="vibrate">Wibracja</string>
-    <string name="label">Etykieta</string>
     <string name="no_days_selected">Nie wybrano dni</string>
     <string name="clock">Zegar</string>
-    <string name="alarm">Alarm</string>
     <string name="timer">Minutnik</string>
     <string name="stopwatch">Stoper</string>
     <string name="lap">Okrążenie</string>

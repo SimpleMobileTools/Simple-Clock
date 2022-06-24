@@ -4,10 +4,8 @@
     <string name="app_launcher_name">Часы</string>
     <string name="time_zone">Часовой пояс</string>
     <string name="vibrate">Вибрация</string>
-    <string name="label">Метка</string>
     <string name="no_days_selected">Дни не выбраны</string>
     <string name="clock">Clock</string>
-    <string name="alarm">Alarm</string>
     <string name="timer">Таймер</string>
     <string name="stopwatch">Секундомер</string>
     <string name="lap">Круг</string>

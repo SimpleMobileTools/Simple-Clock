@@ -3,10 +3,8 @@
     <string name="app_launcher_name">Cloc</string>
     <string name="time_zone">Cylchfa amser</string>
     <string name="vibrate">Dirgrynu</string>
-    <string name="label">Label</string>
     <string name="no_days_selected">Dim diwrnodau wedi\'u dewis</string>
     <string name="clock">Clock</string>
-    <string name="alarm">Alarm</string>
     <string name="timer">Amserydd</string>
     <string name="stopwatch">Stopwatch</string>
     <string name="lap">Lap</string>

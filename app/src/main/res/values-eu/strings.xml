@@ -3,10 +3,8 @@
     <string name="app_launcher_name">Ordularia</string>
     <string name="time_zone">Ordu eremua</string>
     <string name="vibrate">Bibratu</string>
-    <string name="label">Etiketa</string>
     <string name="no_days_selected">Ez duzu egunik hautatu</string>
     <string name="clock">Clock</string>
-    <string name="alarm">Alarm</string>
     <string name="timer">Tenporizagailua</string>
     <string name="stopwatch">Stopwatch</string>
     <string name="lap">Bira</string>

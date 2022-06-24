@@ -4,10 +4,8 @@
     <string name="app_launcher_name">Orologio</string>
     <string name="time_zone">Fuso orario</string>
     <string name="vibrate">Vibrazione</string>
-    <string name="label">Etichetta</string>
     <string name="no_days_selected">Nessun giorno selezionato</string>
     <string name="clock">Clock</string>
-    <string name="alarm">Alarm</string>
     <string name="timer">Contaminuti</string>
     <string name="stopwatch">Cronometro</string>
     <string name="lap">Parziale</string>

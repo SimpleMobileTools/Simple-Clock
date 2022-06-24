@@ -4,10 +4,8 @@
     <string name="app_launcher_name">Hodiny</string>
     <string name="time_zone">Časové pásmo</string>
     <string name="vibrate">Vibrovat</string>
-    <string name="label">Štítek</string>
     <string name="no_days_selected">Nebyly označeny žádné dny</string>
     <string name="clock">Clock</string>
-    <string name="alarm">Alarm</string>
     <string name="timer">Časovač</string>
     <string name="stopwatch">Stopky</string>
     <string name="lap">Mezičas</string>

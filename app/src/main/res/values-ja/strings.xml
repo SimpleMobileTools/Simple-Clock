@@ -3,10 +3,8 @@
     <string name="app_launcher_name">時計</string>
     <string name="time_zone">タイムゾーン</string>
     <string name="vibrate">バイブレーション</string>
-    <string name="label">ラベル</string>
     <string name="no_days_selected">曜日が選択されていません</string>
     <string name="clock">Clock</string>
-    <string name="alarm">Alarm</string>
     <string name="timer">タイマー</string>
     <string name="stopwatch">Stopwatch</string>
     <string name="lap">ラップ</string>

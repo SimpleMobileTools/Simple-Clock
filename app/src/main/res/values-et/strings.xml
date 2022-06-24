@@ -4,10 +4,8 @@
     <string name="app_launcher_name">Kell</string>
     <string name="time_zone">Ajavöönd</string>
     <string name="vibrate">Vibreeri</string>
-    <string name="label">Silt</string>
     <string name="no_days_selected">Ühtegi päeva pole valitud</string>
     <string name="clock">Clock</string>
-    <string name="alarm">Alarm</string>
     <string name="timer">Taimer</string>
     <string name="stopwatch">Stopper</string>
     <string name="lap">Ringi aeg</string>

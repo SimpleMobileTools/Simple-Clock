@@ -4,10 +4,8 @@
     <string name="app_launcher_name">Clock</string>
     <string name="time_zone">Time zone</string>
     <string name="vibrate">Vibrate</string>
-    <string name="label">Label</string>
     <string name="no_days_selected">No days selected</string>
     <string name="clock">Clock</string>
-    <string name="alarm">Alarm</string>
     <string name="timer">Timer</string>
     <string name="stopwatch">Stopwatch</string>
     <string name="lap">Lap</string>

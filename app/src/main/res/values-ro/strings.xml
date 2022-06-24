@@ -3,10 +3,8 @@
     <string name="app_launcher_name">Ceas</string>
     <string name="time_zone">Fus Orar</string>
     <string name="vibrate">Vibrează</string>
-    <string name="label">Etichetă</string>
     <string name="no_days_selected">Nici o zi selectată</string>
     <string name="clock">Clock</string>
-    <string name="alarm">Alarm</string>
     <string name="timer">Temporizator</string>
     <string name="stopwatch">Stopwatch</string>
     <string name="lap">O tură</string>

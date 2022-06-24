@@ -3,10 +3,8 @@
     <string name="app_launcher_name">Óra</string>
     <string name="time_zone">Időzóna</string>
     <string name="vibrate">Rezgés</string>
-    <string name="label">Címke</string>
     <string name="no_days_selected">Nincs nap kiválasztva</string>
     <string name="clock">Clock</string>
-    <string name="alarm">Alarm</string>
     <string name="timer">Időzítő</string>
     <string name="stopwatch">Stopwatch</string>
     <string name="lap">Kör</string>

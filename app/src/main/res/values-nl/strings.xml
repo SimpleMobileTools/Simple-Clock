@@ -4,10 +4,8 @@
     <string name="app_launcher_name">Klok</string>
     <string name="time_zone">Tijdzone</string>
     <string name="vibrate">Trillen</string>
-    <string name="label">Label</string>
     <string name="no_days_selected">Geen dagen geselecteerd</string>
     <string name="clock">Klok</string>
-    <string name="alarm">Alarm</string>
     <string name="timer">Timer</string>
     <string name="stopwatch">Stopwatch</string>
     <string name="lap">Ronde</string>

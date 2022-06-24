@@ -3,10 +3,8 @@
     <string name="app_launcher_name">Saat</string>
     <string name="time_zone">Vaxt zonası</string>
     <string name="vibrate">Titrət</string>
-    <string name="label">Etiket</string>
     <string name="no_days_selected">Gün seçilməyib</string>
     <string name="clock">Clock</string>
-    <string name="alarm">Alarm</string>
     <string name="timer">Sayğac</string>
     <string name="stopwatch">Stopwatch</string>
     <string name="lap">Dövrə</string>

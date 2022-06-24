@@ -4,10 +4,8 @@
     <string name="app_launcher_name">שעון</string>
     <string name="time_zone">אזור זמן</string>
     <string name="vibrate">לנדנד</string>
-    <string name="label">תווית</string>
     <string name="no_days_selected">נא לבחור ימים ולבצע שוב</string>
     <string name="clock">Clock</string>
-    <string name="alarm">Alarm</string>
     <string name="timer">טיימר</string>
     <string name="stopwatch">סטופר</string>
     <string name="lap">הקפה</string>

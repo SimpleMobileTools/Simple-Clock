@@ -3,10 +3,8 @@
     <string name="app_launcher_name">Sat</string>
     <string name="time_zone">Vremenska zona</string>
     <string name="vibrate">Vibriraj</string>
-    <string name="label">Oznaka</string>
     <string name="no_days_selected">Nije odabran nijedan dan</string>
     <string name="clock">Clock</string>
-    <string name="alarm">Alarm</string>
     <string name="timer">Brojač</string>
     <string name="stopwatch">Stopwatch</string>
     <string name="lap">Krug</string>

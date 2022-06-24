@@ -4,10 +4,8 @@
     <string name="app_launcher_name">Reloxo</string>
     <string name="time_zone">Franxa horario</string>
     <string name="vibrate">Vibrar</string>
-    <string name="label">Etiqueta</string>
     <string name="no_days_selected">Ningún día seleccionado</string>
     <string name="clock">Clock</string>
-    <string name="alarm">Alarm</string>
     <string name="timer">Temporizador</string>
     <string name="stopwatch">Stopwatch</string>
     <string name="lap">Volta</string>
