@@ -1,2 +1,0 @@
-* Birden fazla zamanlayıcı oluşturmaya izin ver
- * Bazı kullanıcı arayüzü ve çeviri iyileştirmeleri eklendi
