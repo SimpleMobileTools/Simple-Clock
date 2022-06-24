@@ -1,1 +1,0 @@
-* Bazı fazladan istenmeyen izinler kaldırıldı
