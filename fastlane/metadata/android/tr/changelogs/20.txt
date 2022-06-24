@@ -1,2 +1,0 @@
-* Bazı durumlarda alarmın titrememesi düzeltildi (rien tarafından)
- * Bazı küçük çeviri ve kullanıcı arayüzü iyileştirmeleri
