@@ -1,6 +1,13 @@
 Changelog
 ==========
 
+Version 5.8.0 *(2022-06-24)*
+----------------------------
+
+ * Allow sorting alarms by both day and time
+ * Moved tabs at the bottom
+ * Added some stability, translation and UX improvements
+
 Version 5.7.1 *(2022-05-19)*
 ----------------------------
 
