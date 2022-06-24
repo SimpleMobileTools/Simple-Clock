@@ -1,3 +1,0 @@
-* Herhangi bir gün ayarlanmadan alarm oluşturmaya izin ver
- * Son alarm veya saat ögesinin altta görünmemesi düzeltildi
- * Diğer bazı kullanıcı deneyimi, kararlılık ve çeviri iyileştirmeleri eklendi
