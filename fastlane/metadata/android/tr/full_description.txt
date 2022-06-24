@@ -1,15 +1,24 @@
-Uygulama zamanlama ile ilgili birçok işleve sahiptir.
+Saat uygulamasının zamanla ilgili birden fazla işlevi vardır. Bu uygulama bir saat widget'ı veya bir çalar saat olarak kullanılabilir. Bu uygulamada canlı duvar kağıdını da değiştirebilirsiniz. Bu uygulama günlük hayatınızı düzenlemenize ve daha iyi uyumanıza yardımcı olmak için yapılmıştır. Sağlıklı yaşam tarzı veya başka herhangi bir amaç için koşarken zamanınızı saymak için bu uygulamadaki kronometreyi de kullanabilirsiniz. Bu uygulama, kolay gezinme için ana ekranınıza da yerleştirilebilir.
 
-Saatte diğer saat dilimlerinden saat gösterme özelliğini etkinleştirebilir veya basit, ancak özelleştirilebilir saat widget'ını kullanabilirsiniz. Widget'ın metin renginin yanı sıra arka planın rengi ve alfa özelleştirilebilir.
+Bir saat widget'ı olarak diğer saat dilimlerindeki zamanları görüntülemeyi etkinleştirebilir veya basit, ancak özelleştirilebilir ve yeniden boyutlandırılabilir saat widget'ını kullanabilirsiniz. Saat widget'ının metin renginin yanı sıra arka planın rengi ve saydamlığı da özelleştirilebilir. Bu uygulamada canlı duvar kağıdını da değiştirebilirsiniz. Ayrıca saat widget'ının şeklini seçiminize göre değiştirebilir ve ana ekranda gösterebilirsiniz.
 
-Alarm, gün seçme, titreşim açma/kapama, zil sesi seçme, erteleme veya özel etiket ekleme gibi beklenen tüm özellikleri içerir.
+Alarm, gün seçme, titreşim değiştirme, zil sesi seçme, erteleme veya özel bir etiket ekleme gibi beklenen tüm özellikleri içerir. Uyanmak bir zevk olacak. İstediğiniz kadar alarmı destekler, böylece uyanmamak ve daha iyi uyumak için artık bahaneniz kalmayacak :) Kademeli ses artışı da desteklenir, öntanımlı olarak etkindir. Kullanmak için gerçekten iyi bir nedeniniz olması durumunda özelleştirilebilir bir erteleme düğmesi de bulunmaktadır. Bu uygulama tarafından sağlanan çalar saat olabildiğince basittir. Yalnızca kaç kez istediğinizi eklemeniz ve etkinleştirmeniz gerekir. Bu sırada, daha iyi uyumak için bu uygulamada gezinmenize yardımcı olmak üzere bu çalar saat uygulamasında yerleşik bir kılavuzdan da yardım alabilirsiniz. Daha iyi uyuyabilirsiniz, böylece bu uygulama yaşam tarzınızı rahatsız etmeden sizi belirlenen saatte uyandırabilir. Bu alarm, aygıtınızdaki diğer şeyler üzerinde çalışırken alarma erişmenizi kolaylaştırmak için ana ekrana yerleştirilebilir. Alarmı bu saat widget'ında tutmanın temel amacı, zamanınızı daha etkili bir şekilde planlamanıza yardımcı olmaktır.
 
-Kronometre ile daha uzun süre veya bireysel turları kolayca ölçebilirsiniz. Turları tur zamanına göre sıralayabilirsiniz, düğmeye basıldığında isteğe bağlı titreşimleri de içerir, cihaza bakamıyor olsanız bile, düğmeye basıldığını bilmenizi sağlar.
+Kronometre ile daha uzun bir süreyi veya tek tek turları kolayca ölçebilirsiniz. Turları birkaç farklı şekilde sıralayabilirsiniz. Herhangi bir nedenle aygıta bakamamanız veya aceleniz olması durumunda düğmeye basıldığını size bildirmek için düğmeye basıldığında isteğe bağlı titreşimler de içerir. Bu kronometre, yoga yapıyorsanız veya parkta koşuyorsanız forma girmenize yardımcı olabilir. Kronometreyi ana ekrana koyabilirsiniz, böylece menüyü açıp bulmadan kolayca erişebilir ve ihtiyaçlarınıza göre değiştirebilirsiniz.
 
-Bazı etkinliklerden haberdar olmak için kolayca bir zamanlayıcı ayarlayabilirsiniz. Hem zil sesini değiştirebilir hem de titreşimleri açıp kapatabilirsiniz.
+Bazı olaylardan haberdar olmak için kolayca bir zamanlayıcı kurabilirsiniz. Zil sesini değiştirebilir veya titreşimleri açıp kapatabilirsiniz. O pizzayı bir daha asla yakmayacaksınız. Zamanlayıcı geri sayımı sadece durdurulmakla kalmaz, duraklatılabilir de.
 
-Ek özellikler, örneğin uygulama ön planda iken cihazın uykuya dalmasını önlemektir.
+Ek özellikler arasında, örneğin uygulama ön plandayken aygıtın uykuya dalmasını önlemek veya 12 veya 24 saatlik zaman biçimi arasında geçiş yapmak yer alır. Son olarak, haftanın Pazar günü mü yoksa Pazartesi günü mü başlayacağına karar verebilirsiniz.
 
-Reklam veya gereksiz izinler içermez. Tamamen açık kaynaktır, özelleştirilebilir renkler sunar.
+Öntanımlı olarak material tasarım ve koyu tema ile birlikte gelir, kolay kullanım için harika bir kullanıcı deneyimi sağlar. İnternet erişiminin olmaması size diğer uygulamalardan daha fazla gizlilik, güvenlik ve kararlılık sağlar. Bu saat widget'ındaki karanlık tema, mobil alarmınızın keskin rengiyle gözlerinizi kör etmeden gece çalar saatinizi ayarlamanıza yardımcı olabilir.
 
-Bu uygulama, daha büyük bir uygulama serisinden sadece bir parça. Geri kalanı https://www.simplemobiletools.com adresinde bulabilirsiniz
+Reklam veya gereksiz izinler içermez. Tamamen açık kaynaklıdır, özelleştirilebilir renkler ve farklı canlı duvar kağıtları arasından seçim yapma seçeneği sunar.
+
+<b>Basit Araçlar paketinin tamamını buradan inceleyin:</b>
+https://www.simplemobiletools.com
+
+Facebook:
+https://www.facebook.com/simplemobiletools
+
+Reddit:
+https://www.reddit.com/r/SimpleMobileTools
