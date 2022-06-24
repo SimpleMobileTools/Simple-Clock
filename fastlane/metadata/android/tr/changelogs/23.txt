@@ -1,2 +1,0 @@
-* Alarmların oluşturulma sırasına veya alarm zamanına göre sıralanmasına izin ver
- * Bazı kararlılık ve çeviri iyileştirmeleri eklendi
