@@ -1,3 +1,0 @@
-* Tüm alarmların yanlışlıkla açılıp kapanmasına neden olan bir hata düzeltildi
- * Android 8 ve üzerinde alarm erteleme ekranını düzgün şekilde görüntüle (coxtor tarafından)
- * Bazı kararlılık ve çeviri iyileştirmeleri
