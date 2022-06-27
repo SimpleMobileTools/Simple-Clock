@@ -20,7 +20,7 @@ class WidgetAnalogueConfigureActivity : SimpleActivity() {
     private var mWidgetId = 0
     private var mBgColor = 0
     private var mBgColorWithoutTransparency = 0
-    private var mWidgetLockedDialog: FeatureLockedDialog? = null
+    private var mFeatureLockedDialog: FeatureLockedDialog? = null
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         useDynamicTheme = false
@@ -43,7 +43,7 @@ class WidgetAnalogueConfigureActivity : SimpleActivity() {
         config_analogue_bg_seekbar.setColors(getProperTextColor(), primaryColor, primaryColor)
 
         if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
-            mWidgetLockedDialog = FeatureLockedDialog(this) {
+            mFeatureLockedDialog = FeatureLockedDialog(this) {
                 if (!isOrWasThankYouInstalled()) {
                     finish()
                 }
@@ -55,8 +55,8 @@ class WidgetAnalogueConfigureActivity : SimpleActivity() {
         super.onResume()
         window.decorView.setBackgroundColor(0)
 
-        if (mWidgetLockedDialog != null && isOrWasThankYouInstalled()) {
-            mWidgetLockedDialog?.dismissDialog()
+        if (mFeatureLockedDialog != null && isOrWasThankYouInstalled()) {
+            mFeatureLockedDialog?.dismissDialog()
         }
     }
 
