@@ -10,7 +10,7 @@ import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.helpers.MyAnalogueTimeWidgetProvider
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
-import com.simplemobiletools.commons.dialogs.WidgetLockedDialog
+import com.simplemobiletools.commons.dialogs.FeatureLockedDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import kotlinx.android.synthetic.main.widget_config_analogue.*
@@ -20,7 +20,7 @@ class WidgetAnalogueConfigureActivity : SimpleActivity() {
     private var mWidgetId = 0
     private var mBgColor = 0
     private var mBgColorWithoutTransparency = 0
-    private var mWidgetLockedDialog: WidgetLockedDialog? = null
+    private var mWidgetLockedDialog: FeatureLockedDialog? = null
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         useDynamicTheme = false
@@ -43,7 +43,7 @@ class WidgetAnalogueConfigureActivity : SimpleActivity() {
         config_analogue_bg_seekbar.setColors(getProperTextColor(), primaryColor, primaryColor)
 
         if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
-            mWidgetLockedDialog = WidgetLockedDialog(this) {
+            mWidgetLockedDialog = FeatureLockedDialog(this) {
                 if (!isOrWasThankYouInstalled()) {
                     finish()
                 }

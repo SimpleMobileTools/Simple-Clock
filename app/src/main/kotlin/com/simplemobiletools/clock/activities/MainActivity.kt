@@ -17,12 +17,10 @@ import com.simplemobiletools.clock.extensions.rescheduleEnabledAlarms
 import com.simplemobiletools.clock.extensions.updateWidgets
 import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.LICENSE_NUMBER_PICKER
-import com.simplemobiletools.commons.helpers.LICENSE_RTL
-import com.simplemobiletools.commons.helpers.LICENSE_STETHO
-import com.simplemobiletools.commons.helpers.ensureBackgroundThread
+import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.FAQItem
 import kotlinx.android.synthetic.main.activity_main.*
+import me.grantland.widget.AutofitHelper
 
 class MainActivity : SimpleActivity() {
     private var storedTextColor = 0
@@ -169,6 +167,7 @@ class MainActivity : SimpleActivity() {
             main_tabs_holder.newTab().setCustomView(R.layout.bottom_tablayout_item).apply {
                 customView?.findViewById<ImageView>(R.id.tab_item_icon)?.setImageDrawable(getDrawable(drawableId))
                 customView?.findViewById<TextView>(R.id.tab_item_label)?.setText(tabLabels[i])
+                AutofitHelper.create(customView?.findViewById(R.id.tab_item_label))
                 main_tabs_holder.addTab(this)
             }
         }
@@ -206,7 +205,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun launchAbout() {
-        val licenses = LICENSE_STETHO or LICENSE_NUMBER_PICKER or LICENSE_RTL
+        val licenses = LICENSE_STETHO or LICENSE_NUMBER_PICKER or LICENSE_RTL or LICENSE_AUTOFITTEXTVIEW
 
         val faqItems = arrayListOf(
             FAQItem(R.string.faq_1_title, R.string.faq_1_text),
