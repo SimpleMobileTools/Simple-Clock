@@ -11,10 +11,7 @@ import android.widget.TextView
 import com.simplemobiletools.clock.BuildConfig
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.adapters.ViewPagerAdapter
-import com.simplemobiletools.clock.extensions.config
-import com.simplemobiletools.clock.extensions.getNextAlarm
-import com.simplemobiletools.clock.extensions.rescheduleEnabledAlarms
-import com.simplemobiletools.clock.extensions.updateWidgets
+import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
@@ -140,7 +137,7 @@ class MainActivity : SimpleActivity() {
     private fun getViewPagerAdapter() = view_pager.adapter as? ViewPagerAdapter
 
     private fun initFragments() {
-        val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
+        val viewPagerAdapter = ViewPagerAdapter(this)
         view_pager.adapter = viewPagerAdapter
         view_pager.onPageChangeListener {
             main_tabs_holder.getTabAt(it)?.select()
