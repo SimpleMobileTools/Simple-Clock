@@ -5,7 +5,7 @@
     <string name="time_zone">Времева зона</string>
     <string name="vibrate">Вибрация</string>
     <string name="no_days_selected">Не е избран ден</string>
-    <string name="clock">Clock</string>
+    <string name="clock">Часовник</string>
     <string name="timer">Таймер</string>
     <string name="stopwatch">Секундомер</string>
     <string name="lap">Обиколка</string>
