@@ -18,7 +18,6 @@ import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.commons.extensions.beVisibleIf
 import com.simplemobiletools.commons.extensions.getProperTextColor
 import com.simplemobiletools.commons.extensions.updateTextColors
-import kotlinx.android.synthetic.main.fragment_clock.*
 import kotlinx.android.synthetic.main.fragment_clock.view.*
 import java.util.*
 
@@ -39,16 +38,14 @@ class ClockFragment : Fragment() {
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupDateTime()
+    }
+
     override fun onResume() {
         super.onResume()
         setupDateTime()
-
-        val configTextColor = requireContext().getProperTextColor()
-        if (storedTextColor != configTextColor) {
-            (view.time_zones_list.adapter as? TimeZonesAdapter)?.updateTextColor(configTextColor)
-        }
-
-        view.clock_date.setTextColor(configTextColor)
     }
 
     override fun onPause() {
@@ -72,13 +69,18 @@ class ClockFragment : Fragment() {
 
     private fun setupViews() {
         view.apply {
+            val configTextColor = requireContext().getProperTextColor()
             requireContext().updateTextColors(clock_fragment)
-            clock_time.setTextColor(requireContext().getProperTextColor())
+            clock_time.setTextColor(configTextColor)
             clock_fab.setOnClickListener {
                 fabClicked()
             }
 
             updateTimeZones()
+            if (storedTextColor != configTextColor) {
+                (time_zones_list.adapter as? TimeZonesAdapter)?.updateTextColor(configTextColor)
+            }
+            clock_date.setTextColor(configTextColor)
         }
     }
 

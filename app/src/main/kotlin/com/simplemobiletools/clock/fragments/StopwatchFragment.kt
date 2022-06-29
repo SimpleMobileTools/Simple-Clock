@@ -76,21 +76,16 @@ class StopwatchFragment : Fragment() {
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupViews()
+        setupStopwatch()
+    }
+
     override fun onResume() {
         super.onResume()
         setupViews()
-
-        val configTextColor = requireContext().getProperTextColor()
-        if (storedTextColor != configTextColor) {
-            stopwatchAdapter.updateTextColor(configTextColor)
-        }
-
-        Stopwatch.addUpdateListener(updateListener)
-        updateLaps()
-        view.stopwatch_sorting_indicators_holder.beVisibleIf(Stopwatch.laps.isNotEmpty())
-        if (Stopwatch.laps.isNotEmpty()) {
-            updateSorting(Lap.sorting)
-        }
+        setupStopwatch()
     }
 
     override fun onPause() {
@@ -105,10 +100,24 @@ class StopwatchFragment : Fragment() {
 
     private fun setupViews() {
         val properPrimaryColor = requireContext().getProperPrimaryColor()
+        val configTextColor = requireContext().getProperTextColor()
         view.apply {
             requireContext().updateTextColors(stopwatch_fragment)
             stopwatch_play_pause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, properPrimaryColor)
-            stopwatch_reset.applyColorFilter(requireContext().getProperTextColor())
+            stopwatch_reset.applyColorFilter(configTextColor)
+        }
+
+        if (storedTextColor != configTextColor) {
+            stopwatchAdapter.updateTextColor(configTextColor)
+        }
+    }
+
+    private fun setupStopwatch() {
+        Stopwatch.addUpdateListener(updateListener)
+        updateLaps()
+        view.stopwatch_sorting_indicators_holder.beVisibleIf(Stopwatch.laps.isNotEmpty())
+        if (Stopwatch.laps.isNotEmpty()) {
+            updateSorting(Lap.sorting)
         }
     }
 

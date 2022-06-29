@@ -75,15 +75,14 @@ class TimerFragment : Fragment() {
         view.timers_list.adapter = timerAdapter
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupViews()
+    }
+
     override fun onResume() {
         super.onResume()
-        requireContext().updateTextColors(timer_fragment)
-        val configTextColor = requireContext().getProperTextColor()
-        if (storedTextColor != configTextColor) {
-            initAdapter()
-            timerAdapter.updateTextColor(configTextColor)
-            refreshTimers()
-        }
+        setupViews()
     }
 
     override fun onPause() {
@@ -105,6 +104,16 @@ class TimerFragment : Fragment() {
                     }
                 }
             }
+        }
+    }
+
+    private fun setupViews() {
+        requireContext().updateTextColors(timer_fragment)
+        val configTextColor = requireContext().getProperTextColor()
+        if (storedTextColor != configTextColor) {
+            initAdapter()
+            timerAdapter.updateTextColor(configTextColor)
+            refreshTimers()
         }
     }
 

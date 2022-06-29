@@ -37,14 +37,14 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupViews()
+    }
+
     override fun onResume() {
         super.onResume()
         setupViews()
-
-        val configTextColor = requireContext().getProperTextColor()
-        if (storedTextColor != configTextColor) {
-            (view.alarms_list.adapter as AlarmsAdapter).updateTextColor(configTextColor)
-        }
     }
 
     override fun onPause() {
@@ -74,6 +74,10 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
         }
 
         setupAlarms()
+        val configTextColor = requireContext().getProperTextColor()
+        if (storedTextColor != configTextColor) {
+            (view.alarms_list.adapter as AlarmsAdapter).updateTextColor(configTextColor)
+        }
     }
 
     private fun setupAlarms() {
