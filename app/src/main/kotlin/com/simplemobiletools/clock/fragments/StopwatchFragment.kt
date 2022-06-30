@@ -80,6 +80,7 @@ class StopwatchFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         setupViews()
+        Stopwatch.addUpdateListener(updateListener)
         setupStopwatch()
     }
 
@@ -92,6 +93,10 @@ class StopwatchFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         storeStateVariables()
+    }
+
+    override fun onStop() {
+        super.onStop()
         Stopwatch.removeUpdateListener(updateListener)
     }
 
@@ -114,7 +119,6 @@ class StopwatchFragment : Fragment() {
     }
 
     private fun setupStopwatch() {
-        Stopwatch.addUpdateListener(updateListener)
         updateLaps()
         view.stopwatch_sorting_indicators_holder.beVisibleIf(Stopwatch.laps.isNotEmpty())
         if (Stopwatch.laps.isNotEmpty()) {
