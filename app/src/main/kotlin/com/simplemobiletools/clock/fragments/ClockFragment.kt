@@ -38,8 +38,8 @@ class ClockFragment : Fragment() {
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onStart() {
+        super.onStart()
         setupDateTime()
     }
 
@@ -103,7 +103,9 @@ class ClockFragment : Fragment() {
 
         updateHandler.postDelayed({
             passedSeconds++
-            updateCurrentTime()
+            if (isReady) {
+                updateCurrentTime()
+            }
         }, ONE_SECOND)
     }
 

@@ -37,8 +37,8 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onStart() {
+        super.onStart()
         setupViews()
     }
 

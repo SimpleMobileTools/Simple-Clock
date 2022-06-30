@@ -75,8 +75,8 @@ class TimerFragment : Fragment() {
         view.timers_list.adapter = timerAdapter
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onStart() {
+        super.onStart()
         setupViews()
     }
 

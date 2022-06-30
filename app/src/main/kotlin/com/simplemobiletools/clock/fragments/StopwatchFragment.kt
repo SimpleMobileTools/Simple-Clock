@@ -13,6 +13,7 @@ import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.adapters.StopwatchAdapter
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.formatStopwatchTime
+import com.simplemobiletools.clock.extensions.isReady
 import com.simplemobiletools.clock.helpers.SORT_BY_LAP
 import com.simplemobiletools.clock.helpers.SORT_BY_LAP_TIME
 import com.simplemobiletools.clock.helpers.SORT_BY_TOTAL_TIME
@@ -76,8 +77,8 @@ class StopwatchFragment : Fragment() {
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onStart() {
+        super.onStart()
         setupViews()
         setupStopwatch()
     }
@@ -199,6 +200,10 @@ class StopwatchFragment : Fragment() {
         }
 
         override fun onStateChanged(state: Stopwatch.State) {
+            if (!isReady) {
+                // avoid accessing context when fragment isn't attached
+                return
+            }
             updateIcons(state)
             view.stopwatch_lap.beVisibleIf(state == Stopwatch.State.RUNNING)
             view.stopwatch_reset.beVisibleIf(state != Stopwatch.State.STOPPED)
