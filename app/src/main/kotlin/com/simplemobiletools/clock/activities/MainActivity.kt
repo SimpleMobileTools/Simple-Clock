@@ -139,6 +139,7 @@ class MainActivity : SimpleActivity() {
     private fun initFragments() {
         val viewPagerAdapter = ViewPagerAdapter(this)
         view_pager.adapter = viewPagerAdapter
+        view_pager.offscreenPageLimit = TABS_COUNT - 1
         view_pager.onPageChangeListener {
             main_tabs_holder.getTabAt(it)?.select()
             invalidateOptionsMenu()
@@ -151,8 +152,7 @@ class MainActivity : SimpleActivity() {
             viewPagerAdapter.updateTimerPosition(timerId)
         }
 
-        view_pager.offscreenPageLimit = TABS_COUNT - 1
-        view_pager.currentItem = tabToOpen
+        view_pager.setCurrentItem(tabToOpen, false)
     }
 
     private fun setupTabs() {
