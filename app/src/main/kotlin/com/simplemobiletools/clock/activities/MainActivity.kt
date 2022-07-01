@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_IDLE
 import com.simplemobiletools.clock.BuildConfig
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.adapters.ViewPagerAdapter
@@ -18,8 +19,14 @@ import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.FAQItem
 import kotlinx.android.synthetic.main.activity_main.*
 import me.grantland.widget.AutofitHelper
+import kotlin.math.abs
+import kotlin.math.min
+import kotlin.math.roundToLong
 
 class MainActivity : SimpleActivity() {
+    private val SCROLL_DURATION = 120f
+    private val MAX_SETTLE_DURATION = 600f
+
     private var storedTextColor = 0
     private var storedBackgroundColor = 0
     private var storedPrimaryColor = 0
@@ -173,9 +180,13 @@ class MainActivity : SimpleActivity() {
             tabUnselectedAction = {
                 updateBottomTabItemColors(it.customView, false)
             },
-            tabSelectedAction = {
-                view_pager.currentItem = it.position
-                updateBottomTabItemColors(it.customView, true)
+            tabSelectedAction = { tab ->
+                if (!view_pager.isFakeDragging && view_pager.scrollState == SCROLL_STATE_IDLE) {
+                    val distance = abs(tab.position - view_pager.currentItem)
+                    val duration = min(MAX_SETTLE_DURATION, SCROLL_DURATION * distance).roundToLong()
+                    view_pager.smoothScrollToPosition(tab.position, duration = duration)
+                }
+                updateBottomTabItemColors(tab.customView, true)
             }
         )
     }
