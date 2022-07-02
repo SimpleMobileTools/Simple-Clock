@@ -1,37 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Jednostavan sat</string>
     <string name="app_launcher_name">Sat</string>
     <string name="time_zone">Vremenska zona</string>
     <string name="vibrate">Vibriraj</string>
     <string name="no_days_selected">Nije odabran nijedan dan</string>
-    <string name="clock">Clock</string>
+    <string name="clock">Sat</string>
     <string name="timer">Brojač</string>
-    <string name="stopwatch">Stopwatch</string>
-    <string name="lap">Krug</string>
+    <string name="stopwatch">Štoperica</string>
+    <string name="lap">Runda</string>
     <string name="stopwatch_stopped">Štoperica je zaustavljena</string>
     <string name="timer_stopped">Brojač je zaustavljen</string>
     <string name="max_reminder_duration">Maksimalno trajanje podsjetnika</string>
     <string name="time_expired">Vrijeme je isteklo</string>
     <string name="clock_and_date">Datum i vrijeme</string>
-    <string name="use_text_shadow">Upotrijebite sjenu teksta</string>
-    <string name="swipe_right_to_dismiss">Prijeđite prstom udesno da bi odbacili ili ulijevo da bi odgodili.</string>
-    <string name="sort_by_creation_order">Creation order</string>
-    <string name="sort_by_alarm_time">Alarm time</string>
-    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
-    <string name="analogue_clock">Analogue clock</string>
-    <string name="digital_clock">Digital clock</string>
-
+    <string name="use_text_shadow">Koristi sjenu teksta</string>
+    <string name="swipe_right_to_dismiss">Povuci prstom udesno za odbacivanje ili ulijevo za odgađanje.</string>
+    <string name="sort_by_creation_order">Redoslijed stvaranja</string>
+    <string name="sort_by_alarm_time">Vrijeme alarma</string>
+    <string name="sort_by_day_and_alarm_time">Dan i vrijeme alarma</string>
+    <string name="analogue_clock">Analogni sat</string>
+    <string name="digital_clock">Digitalni sat</string>
     <!--Timer-->
-    <string name="timers_notification_msg">Timers are running</string>
-    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">New Timer</string>
-
+    <string name="timers_notification_msg">Brojači su pokrenuti</string>
+    <string name="timer_single_notification_label_msg">Brojač za %s je pokrenut</string>
+    <string name="new_timer">Novi brojač</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="few">%d timers are running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d brojač je pokrenut</item>
+        <item quantity="few">%d brojača su pokrenuta</item>
+        <item quantity="other">%d brojača je pokrenuto</item>
     </plurals>
-
     <!-- Settings -->
     <string name="clock_tab">Kartica sata</string>
     <string name="alarm_tab">Kartica alarma</string>
@@ -39,41 +37,15 @@
     <string name="timer_tab">Kartica brojača</string>
     <string name="show_seconds">Prikaži sekunde</string>
     <string name="increase_volume_gradually">Postupno povećavaj glasnoću</string>
-
     <!-- FAQ -->
-    <string name="faq_1_title">Kako mogu promijeniti sortiranje krugova na kartici štoperice?</string>
-    <string name="faq_1_text">Jednostavno kliknite bilo koji od stupaca, time će krugovi biti razvrstani po danom stupcu. Uz dodatne klikove možete prebacivati između uzlaznog i silaznog sortiranja.</string>
-
+    <string name="faq_1_title">Kako mogu promijeniti razvrstavanje rundi na kartici štoperice\?</string>
+    <string name="faq_1_text">Jednostavno pritisni bilo koji stupac. Time će se runde razvrstati po zadanom stupcu. Dodatnim pritiskanjem stupca možeš mijenjati između uzlaznog i silaznog razvrstavanja.</string>
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Clock - A flexible multifunctional app</string>
+    <string name="app_title">Jednostavan sat – Multifunkcionalna aplikacija</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Kombinacija sata, alarma, štoperice i brojača.</string>
-    <string name="app_long_description">
-        Aplikacija ima više funkcija povezanih s vremenom.
-
-        Sat vam omogućuje prikaz vremena u nekoliko vremenskih zona. To uključuje jednostavan i prilagodljiv widget, gdje je moguće promijeniti boju fonta, pozadinu, kao i transparentnost.
-
-        Alarm sadrži sve očekivane značajke kao odabir dana, uključivanje/isključivanje vibracije, odabir zvona, odgodu ili dodavanje prilagođene oznake.
-
-        Štoperica mjeri bilo jedno vrijeme ili vrijeme kruga. Moguće je sortirati po trajanju kruga, a Vaš uređaj može vibrirati kod pritiska na gumb, kako bi Vas obavijestio da je gumb pritisnut bez gledanja na zaslon.
-
-        Jednostavno možete podesiti brojač koji će Vas obavijestiti o nekom događaju. Možete promijeniti i njegov zvuk zvona ili uključiti/isključiti vibracije.
-
-        Aplikacija također ima neke dodatne funkcije, kao što je sprečavanje spavanja uređaja sve dok se aplikacija nalazi u prvom planu.
-
-        Ne sadrži oglase ili nepotrebne dozvole. Aplikacije je otvorenog koda, pruža prilagodljive boje.
-
-        <b>Check out the full suite of Simple Tools here:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
+    <string name="app_long_description"> Aplikacija ima više funkcija povezanih s vremenom. Koristi sat za prikaz vremena raznih vremenskih zona ili koristi jednostavan i prilagodljiv widget sata. Boja fonta widgeta kao i transparentnost pozadine se mogu prilagoditi. Alarm sadrži sve očekivane značajke kao što su biranje dana, uključivanje/isključivanje vibracije, biranje zvona, odgodu ili dodavanje prilagođene oznake. Štoperica mjeri vrijeme ili pojedinačne runde. Runde se mogu razvrstati po trajanju. Postavi vibraciju uređaja za pritiskanje gumba, kao obavijest da je gumb pritisnut kad ne vidiš ekran. Postavi brojač za obavještavanje o nekom događaju. Promijeni zvuk zvona ili uključi/isključi vibracije. Aplikacija također ima neke dodatne funkcije, kao što je sprečavanje spavanja uređaja dok je aplikacija aktivna. Ne sadrži oglase ili nepotrebne dozvole. Aplikacije je otvorenog koda, pruža prilagodljive boje. <b>Pogledaj cijeli paket „Jednostavni alati” ovdje:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
