@@ -10,6 +10,7 @@ import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.helpers.Converters
 import com.simplemobiletools.clock.interfaces.TimerDao
 import com.simplemobiletools.clock.models.Timer
+import com.simplemobiletools.clock.models.TimerState
 import java.util.concurrent.Executors
 
 @Database(entities = [Timer::class], version = 1)
@@ -47,7 +48,7 @@ abstract class AppDatabase : RoomDatabase() {
                     Timer(
                         id = null,
                         seconds = config.timerSeconds,
-                        state = config.timerState,
+                        state = TimerState.Idle,
                         vibrate = config.timerVibrate,
                         soundUri = config.timerSoundUri,
                         soundTitle = config.timerSoundTitle,

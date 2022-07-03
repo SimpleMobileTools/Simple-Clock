@@ -8,7 +8,6 @@ import kotlin.math.pow
 const val SELECTED_TIME_ZONES = "selected_time_zones"
 const val EDITED_TIME_ZONE_TITLES = "edited_time_zone_titles"
 const val TIMER_SECONDS = "timer_seconds"
-const val TIMER_STATE = "timer_state"
 const val TIMER_VIBRATE = "timer_vibrate"
 const val TIMER_SOUND_URI = "timer_sound_uri"
 const val TIMER_SOUND_TITLE = "timer_sound_title"

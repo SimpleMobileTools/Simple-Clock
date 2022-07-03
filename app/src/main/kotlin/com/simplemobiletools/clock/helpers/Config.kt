@@ -29,12 +29,6 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getInt(TIMER_SECONDS, 300)
         set(lastTimerSeconds) = prefs.edit().putInt(TIMER_SECONDS, lastTimerSeconds).apply()
 
-    var timerState: TimerState
-        get() = prefs.getString(TIMER_STATE, null)?.let { state ->
-            gson.fromJson(state, StateWrapper::class.java)
-        }?.state ?: TimerState.Idle
-        set(state) = prefs.edit().putString(TIMER_STATE, gson.toJson(StateWrapper(state))).apply()
-
     var timerVibrate: Boolean
         get() = prefs.getBoolean(TIMER_VIBRATE, false)
         set(timerVibrate) = prefs.edit().putBoolean(TIMER_VIBRATE, timerVibrate).apply()

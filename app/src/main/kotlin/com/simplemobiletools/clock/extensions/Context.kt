@@ -26,6 +26,7 @@ import com.simplemobiletools.clock.interfaces.TimerDao
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.clock.models.Timer
+import com.simplemobiletools.clock.models.TimerState
 import com.simplemobiletools.clock.receivers.AlarmReceiver
 import com.simplemobiletools.clock.receivers.HideAlarmReceiver
 import com.simplemobiletools.clock.receivers.HideTimerReceiver
@@ -85,7 +86,7 @@ fun Context.createNewTimer(): Timer {
     return Timer(
         null,
         config.timerSeconds,
-        config.timerState,
+        TimerState.Idle,
         config.timerVibrate,
         config.timerSoundUri,
         config.timerSoundTitle,
