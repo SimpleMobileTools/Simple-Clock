@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.8.1 *(2022-07-03)*
+----------------------------
+
+ * Make alarms more reliable
+ * Adding many translation, stability and UX improvements
+
 Version 5.8.0 *(2022-06-24)*
 ----------------------------
 
