@@ -21,6 +21,8 @@ import com.simplemobiletools.clock.services.TimerStopService
 import com.simplemobiletools.clock.services.startStopwatchService
 import com.simplemobiletools.clock.services.startTimerService
 import com.simplemobiletools.commons.extensions.checkUseEnglish
+import com.simplemobiletools.commons.extensions.showErrorToast
+import com.simplemobiletools.commons.extensions.toast
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -109,7 +111,13 @@ class App : Application(), LifecycleObserver {
             val pendingIntent = getOpenTimerTabIntent(event.timerId)
             val notification = getTimerNotification(timer, pendingIntent, false)
             val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.notify(event.timerId, notification)
+
+            try {
+                notificationManager.notify(event.timerId, notification)
+            } catch (e: Exception) {
+                showErrorToast(e)
+            }
+
             updateTimerState(event.timerId, TimerState.Finished)
             Handler(Looper.getMainLooper()).postDelayed({
                 hideNotification(event.timerId)
