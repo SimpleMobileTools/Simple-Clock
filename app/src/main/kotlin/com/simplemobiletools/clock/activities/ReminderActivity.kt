@@ -1,6 +1,7 @@
 package com.simplemobiletools.clock.activities
 
 import android.annotation.SuppressLint
+import android.app.KeyguardManager
 import android.content.Context
 import android.content.Intent
 import android.media.AudioManager
@@ -12,6 +13,7 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.view.MotionEvent
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.*
@@ -244,5 +246,18 @@ class ReminderActivity : SimpleActivity() {
         destroyEffects()
         finish()
         overridePendingTransition(0, 0)
+    }
+
+    private fun showOverLockscreen() {
+        window.addFlags(
+            WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON or
+                WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD or
+                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
+                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+        )
+
+        setShowWhenLocked(true)
+        setTurnScreenOn(true)
+        (getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager).requestDismissKeyguard(this, null)
     }
 }

@@ -9,6 +9,7 @@ import android.content.Intent
 import android.media.AudioAttributes
 import android.net.Uri
 import android.os.Handler
+import android.os.PowerManager
 import androidx.core.app.NotificationCompat
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.ReminderActivity
@@ -43,11 +44,12 @@ class AlarmReceiver : BroadcastReceiver() {
                 }
             }
 
-            val pendingIntent = PendingIntent.getActivity(context, 0, Intent(context, ReminderActivity::class.java).apply {
+            val reminderActivityIntent = Intent(context, ReminderActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 putExtra(ALARM_ID, id)
-            }, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+            }
 
+            val pendingIntent = PendingIntent.getActivity(context, 0, reminderActivityIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
             val builder = NotificationCompat.Builder(context, "Alarm")
                 .setSmallIcon(R.drawable.ic_alarm_vector)
                 .setContentTitle(context.getString(R.string.alarm))
@@ -58,6 +60,10 @@ class AlarmReceiver : BroadcastReceiver() {
 
             try {
                 notificationManager.notify(ALARM_NOTIF_ID, builder.build())
+
+                val powerManager = context.getSystemService(Context.POWER_SERVICE) as PowerManager
+                val wakeLock = powerManager.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK or PowerManager.ACQUIRE_CAUSES_WAKEUP, "simpleClock:showAlarmLock")
+                wakeLock.acquire(10000)
             } catch (e: Exception) {
                 context.showErrorToast(e)
             }
