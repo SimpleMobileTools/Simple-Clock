@@ -22,7 +22,6 @@ import com.simplemobiletools.clock.services.startStopwatchService
 import com.simplemobiletools.clock.services.startTimerService
 import com.simplemobiletools.commons.extensions.checkUseEnglish
 import com.simplemobiletools.commons.extensions.showErrorToast
-import com.simplemobiletools.commons.extensions.toast
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
