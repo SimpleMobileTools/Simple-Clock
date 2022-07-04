@@ -42,37 +42,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">Nola aldatu daiteke biren sailkapena kronometroaren fitxan?</string>
     <string name="faq_1_text">Sakatu zutaberen bat, birak zutabe horren arabera sailkatzeko. Gehiagotan sakatuz ordena gorakor edo beherakorrean sailkatu dezakezu</string>
-
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Clock - A flexible multifunctional app</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Konbinatutako ordulari, alarma, kronometro eta tenporizagailua.</string>
-    <string name="app_long_description">
-        Aplikazio honek denborarekin zerikusia duten hainbat funtzio ditu.
-
-        Ordularian beste ordu eremuetako orduak aktibatu ditzakezu, edo trepeta sinplea baina pertsonalizagarria erabili. Trepetaren letra kolorea eta atzekaldearen kolorea eta alfa aldatu daitezke.
-
-        Alarmak espero diren ezaugarri guztiak ditu: egun hautaketa, bibrazioa (des)aktibatzea, doinu hautaketa edo etiketak gehitzea.
-
-        Kronometroarekin epe luze bat edo hainbat bira neurtu daitezke. Birak denboraren arabera sailkatu daitezke, aukerako bibrazioa dauka botoia sakatzerakoan, begiratu behar barik jakin dezazun botoia ondo sakatu duzula.
-
-        Erraza da tenporizagailuarekin gertaera ezberdinetaz jakinarazia izatea.
-
-        Gainontzeko ezaugarrien artean, ekiditzen du telefonoa lotara joatea aplikazioa aurrekaldean dagoen artean.
-
-        Ez dauka iragarkirik, ezta beharrezkoak ez diren baimenak. Iturri irekikoa da guztiz eta kolore pertsonalizagarriak ditu.
-
-        <b>Check out the full suite of Simple Tools here:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

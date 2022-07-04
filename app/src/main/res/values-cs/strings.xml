@@ -40,35 +40,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">Jak změním pořadí mezičasů na záložce se stopkami?</string>
     <string name="faq_1_text">Stačí se dotknout některého sloupce, to aktivuje řazení podle daného sloupce. Dalšími doteky na daný sloupec přepínáte mezi vzestupným a sestupným pořadím.</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Jednoduché hodiny - Multifunkční a flexibilní</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Kombinace hodin, budíku, stopek a časovače.</string>
-    <string name="app_long_description">
-        Aplikace obsahuje vícero funkcí spojených s časem.
-
-        Hodiny umí zobrazit i čas jiných časových pásem, resp. nabízejí jednoduchý, ale nastavitelný widget. Barvu textu widgetu lze přizpůsobit, stejně jako i barvu a průhlednost pozadí.
-
-        Budík obsahuje všechny očekávané funkce jako výběr dnů, přepínání vibrací, výběr melodie, odložení, jakož i přiřazení štítku.
-
-        Se stopkami dokážete jednoduše změřit časový interval včetně mezičasů. Mezičasy lze seřadit i podle doby trvání. Volitelně lze zapnout vibrace při stisku tlačítek, abyste měli jistotu, že jste je stiskli, i když se právě nemůžete dívat na displej.
-
-        Můžete si jednoduše nastavit i časovač, aby vám nic neuniklo. Můžete změnit jeho zvuk, nebo zapnout vibrace.
-
-        Další funkce zahrnují například zabránění uspání zařízení, když je aplikace v popředí.
-
-        Neobsahuje žádné reklamy, ani nepotřebná oprávnění. Má plně otevřený zdrojový kód a možnost změny barev.
-
-        <b>Check out the full suite of Simple Tools here:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

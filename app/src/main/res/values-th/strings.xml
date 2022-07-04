@@ -43,37 +43,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">How can I change lap sorting at the stopwatch tab?</string>
     <string name="faq_1_text">Just click on any of the columns, that will make the laps be sorted by the given column. With additional clicks you can toggle between ascending and descending sorting.</string>
-
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Clock - A flexible multifunctional app</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">A combination of a clock, alarm, stopwatch and timer.</string>
-    <string name="app_long_description">
-        The app has multiple functions related to timing.
-
-        At the clock you can enable displaying times from other timezones, or use the simple, but customizable clock widget. The text color of the widget can be customized, as well as the color and the alpha of the background.
-
-        The alarm contains all the expected features as day selecting, vibration toggling, ringtone selecting, snooze or adding a custom label.
-
-        With the stopwatch you can easily measure a longer period of time, or individual laps. You can sort the laps by lap time, it contains optional vibrations on button presses too, just to let you know that the button was pressed, even if you cannot look at the device.
-
-        You can easily setup a timer to be notified of some event. You can both change its ringtone, or toggle vibrations.
-
-        Additional features include for example preventing the device from falling asleep while the app is in foreground.
-
-        Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
-
-        <b>Check out the full suite of Simple Tools here:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

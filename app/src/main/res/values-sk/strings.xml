@@ -43,39 +43,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">Ako viem zmeniť poradie kôl na okne so stopkami?</string>
     <string name="faq_1_text">Stačí, ak kliknete na niektorý stĺpec, to aktivuje triedenie podľa daného stĺpca. Ďalším kliknutím na daný stĺpec viete prepínať zostupné a vzostupné triedenie.</string>
-
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Jednoduché hodinky: Flexibilné</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Kombinácia hodiniek, budíka, stopiek a časovača.</string>
-    <string name="app_long_description">
-        Apka obsahuje ivacero funkcií spojených s časom.
-
-        Hodinky vedia zobraziť aj čas iných časových pásiem, resp. ponúkajú jednoduchý, ale nastaviteľný widget. Farbu textu widgetu možno prispôsobiť, rovnako ako farbu a priehľadnosť pozadia.
-
-        Budík obsahuje všetky očakávané funkcie ako výber dní, prepínanie vibrácií, výber melódie, odloženie, ako aj pridanie štítka.
-
-        So stopkami viete jednoducho zmerať nejaký časový interval, alebo jednotlivé okruhy. Okruhy viete zoradiť aj podľa ich času. Stopky obsahujú nastaviteľné vibrácie pri stlačení tlačidiel, aby vás to uistilo v ich stlačenie, aj keď sa neviete práve pozrieť na displej.
-
-        Viete si jednoducho nastaviť aj časovač, aby vám nič neuniklo. Viete zmeniť jeho zvučku, alebo zapnúť vibrácie.
-
-        Ďalšie funkcie zahrňujú napríklad predídenie uspania zariadenia kým je apka v popredí.
-
-        Apka je založená na Material dizajne a má prednastavenú tmavú tému, poskytuje výbornú používateľskú skúsenosť pre ľahké používanie. Chýbajúci prístup k internetu garantuje lepšie súkromie, bezpečnosť a stabilitu ako ostatné apky.
-
-        Neobsahuje žiadne reklamy a nepotrebné oprávnenia. Je opensource, poskytuje možnosť zmeny farieb.
-
-        <b>Pozrite si celú sadu aplikácií na:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

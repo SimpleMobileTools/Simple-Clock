@@ -42,37 +42,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">Hogyan változtathatom meg a körök rendezését a stopperóra fülön?</string>
     <string name="faq_1_text">Csak kattintson bármelyik oszlopra, ettől a körök az adott oszlop szerint lesznek rendezve. További kattintásokkal válthatsz a növekvő és csökkenő rendezés között.</string>
-
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Clock - Óra</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Óra, ébresztő, stopperóra és időzítő kombinációja.</string>
-    <string name="app_long_description">
-        Az alkalmazás több időzítéssel kapcsolatos funkcióval rendelkezik.
-
-        Az óránál engedélyezheti más időzónák idejének megjelenítését, vagy használhatja az egyszerű, de testre szabható óra widgetet. A widget szövegének színe testre szabható, akárcsak a háttér színe és az áttetszése.
-
-        Az ébresztő tartalmazza az összes elvárt funkciót, mint a nap kiválasztása, rezgéskapcsolás, csengőhang kiválasztása, némítás vagy egyéni címke hozzáadása.
-
-        A stopperórával könnyedén mérhet hosszabb időtartamot vagy egyes köröket. A köröket köridő szerint rendezheti, tartalmaz opcionális rezgéseket is a gombnyomásra, csak hogy tudassa, hogy a gombot megnyomta, még akkor is, ha nem tud ránézni a készülékre.
-
-        Könnyedén beállíthat egy időzítőt, hogy értesítést kapjon valamilyen eseményről. A csengőhangját egyaránt megváltoztathatja, illetve a rezgéseket is bekapcsolhatja.
-
-        A további funkciók közé tartozik például a készülék elalvásának megakadályozása, amíg az alkalmazás előtérben van.
-
-        Nem tartalmaz hirdetéseket vagy felesleges engedélyeket. Teljesen opensource, testreszabható színeket biztosít.
-
-        <b>Itt tudhasz meg többet a teljes Simple Tools ökoszisztémáról:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

@@ -39,35 +39,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">¿Cómo puedo cambiar el orden de las vueltas en la pestaña de cronómetro?</string>
     <string name="faq_1_text">Solo toca cualquiera de las columnas, eso hará que las vueltas sean ordenados por la columna seleccionada. Con toques adicionales, puedes cambiar entre ordenar ascendente o descendentemente.</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Clock - Una app multifuncional</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Una combinación de reloj, alarma, cronómetro y temporizador.</string>
-    <string name="app_long_description">
-        Esta aplicación tiene multiples funciones relacionadas al tiempo.
-
-        En el reloj, puedes activar el mostrar horas de otras zonas horarias, o usar el simple, pero personalizable widget de reloj. El color de texto de widget puede ser personalizado, así como el color y transparencia del fondo.
-
-        La alarma contiene todas las características esperadas como seleccionar el día, alternación de la vibración, selección de tono, posponer o añadir una etiqueta personalizada.
-
-        Con el cronómetro, puedes fácilmente medir un largo periodo de tiempo, o vueltas individuales. Puedes ordenar als vueltas por tiempo de vuelta, Contiene vibraciones opcionales al presionar el botón también, para ahcerte saber que el botón fue presionado, incluso si no estás viendo el dispositivo.
-
-        Puedes fácilmente configurar un temporizador para notificarte de algún evento. Puedes cambiar su tono o vibración.
-
-        Características adicionales incluyen, por ejemplo, evitar que el dispositivo se bloquee mientras la aplicación esté en primer plano.
-
-        No contiene anuncios o permisos innecesarios. Es completamente de código abierto, provee colores personalizables.
-
-        <b>Mira la suite completa de herramientas Simples aquí:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

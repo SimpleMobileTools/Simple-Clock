@@ -40,12 +40,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">Kako mogu promijeniti razvrstavanje rundi na kartici štoperice\?</string>
     <string name="faq_1_text">Jednostavno pritisni bilo koji stupac. Time će se runde razvrstati po zadanom stupcu. Dodatnim pritiskanjem stupca možeš mijenjati između uzlaznog i silaznog razvrstavanja.</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Jednostavan sat – Multifunkcionalna aplikacija</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Kombinacija sata, alarma, štoperice i brojača.</string>
-    <string name="app_long_description"> Aplikacija ima više funkcija povezanih s vremenom. Koristi sat za prikaz vremena raznih vremenskih zona ili koristi jednostavan i prilagodljiv widget sata. Boja fonta widgeta kao i transparentnost pozadine se mogu prilagoditi. Alarm sadrži sve očekivane značajke kao što su biranje dana, uključivanje/isključivanje vibracije, biranje zvona, odgodu ili dodavanje prilagođene oznake. Štoperica mjeri vrijeme ili pojedinačne runde. Runde se mogu razvrstati po trajanju. Postavi vibraciju uređaja za pritiskanje gumba, kao obavijest da je gumb pritisnut kad ne vidiš ekran. Postavi brojač za obavještavanje o nekom događaju. Promijeni zvuk zvona ili uključi/isključi vibracije. Aplikacija također ima neke dodatne funkcije, kao što je sprečavanje spavanja uređaja dok je aplikacija aktivna. Ne sadrži oglase ili nepotrebne dozvole. Aplikacije je otvorenog koda, pruža prilagodljive boje. <b>Pogledaj cijeli paket „Jednostavni alati” ovdje:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

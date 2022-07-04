@@ -39,35 +39,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">Kronometre sekmesinde tur sıralamayı nasıl değiştirebilirim?</string>
     <string name="faq_1_text">Sütunların herhangi birine tıklayarak, turların belirtilen sütuna göre sıralanmasını sağlayabilirsiniz. Ek tıklamalarla, artan ve azalan sıralama arasında geçiş yapabilirsiniz.</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Basit Saat - Esnek, çok işlevli bir uygulama</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Saat, alarm, kronometre ve zamanlayıcı bir arada.</string>
-    <string name="app_long_description">
-        Uygulama, zamanlama ile ilgili birçok işleve sahiptir.
-
-        Saatte diğer saat dilimlerinden saat gösterme özelliğini etkinleştirebilir veya basit, ancak özelleştirilebilir saat widget\'ını kullanabilirsiniz. Widget\'ın metin renginin yanı sıra arka planın rengi ve alfa özelleştirilebilir.
-
-        Alarm, gün seçme, titreşim açma/kapama, zil sesi seçme, erteleme veya özel etiket ekleme gibi beklenen tüm özellikleri içerir.
-
-        Kronometre ile daha uzun süre veya bireysel turları kolayca ölçebilirsiniz. Turları tur zamanına göre sıralayabilirsiniz, düğmeye basıldığında isteğe bağlı titreşimleri de içerir, cihaza bakamıyor olsanız bile, düğmeye basıldığını bilmenizi sağlar.
-
-        Bazı etkinliklerden haberdar olmak için kolayca bir zamanlayıcı ayarlayabilirsiniz. Hem zil sesini değiştirebilir hem de titreşimleri açıp kapatabilirsiniz.
-
-        Ek özellikler, örneğin uygulama ön planda iken cihazın uykuya dalmasını önlemektir.
-
-        Reklam veya gereksiz izinler içermez. Tamamen açık kaynaktır, özelleştirilebilir renkler sunar.
-
-        <b>Basit Araçlar paketinin tamamını buradan inceleyin:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

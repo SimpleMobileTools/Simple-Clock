@@ -39,35 +39,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">Hoe kan ik rondetijden sorteren in de stopwatch?</string>
     <string name="faq_1_text">Klik op een van de kolommen om de rondetijden te sorteren op basis van die kolom. Klik nogmaals op dezelfde kolom om de sorteervolgorde om te keren.</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Eenvoudige Klok - Flexibel en multifunctioneel</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Een combinatie van een wereldklok, alarm, stopwatch en timer.</string>
-    <string name="app_long_description">
-        De app heeft verschillende functies gerelateerd aan tijd.
-
-        De wereldklok kan de tijden van verschillende steden tonen. Er is ook een eenvoudige, maar aan te passen widget. De tekstkleur van de widget kan worden aangepast, evenals de kleur en transparantie van de achtergrond.
-
-        Het alarm bevat alle te verwachten functies, zoals dagen kiezen, trillen, beltoon kiezen, alarm uitstellen of het toevoegen van een tekstlabel.
-
-        De stopwatch kan gemakkelijk een langere tijdsduur meten, of individuele rondes, die op tijd te sorteren zijn. Met de optie om bij het indrukken van knoppen te trillen hoeft er niet naar het toestel gekeken te worden voor feedback.
-
-        Timers zijn eenvoudig in te stellen om op de hoogte gebracht te worden van een gebeurtenis. het geluidssignaal en het trillen zijn aan te passen.
-
-        Verdere functies zijn bijvoorbeeld het voorkomen van de slaapstand zolang de app op de voorgrond blijft.
-
-        Bevat geen advertenties of onnodige machtigingen. Volledig open-source. Kleuren van de app kunnen worden aangepast.
-
-        <b>Probeer ook eens de andere apps van Simple Tools:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

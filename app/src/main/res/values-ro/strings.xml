@@ -42,37 +42,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">Cum pot schimba sortarea turelor în fila cronometrului?</string>
     <string name="faq_1_text">Doar apasă pe oricare coloana, asta o să facă ca turele să fie sortate după coloana selectată. Apăsările suplimentare o să comute între ordonare crescătoare şi descrescătoare.</string>
-
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Clock - O aplicaţie multifuncţională</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">O combinaţie de ceas, alarmă, cronometru şi temporizator.</string>
-    <string name="app_long_description">
-        Această aplicaţie are multiple funcţii de gestionare a timpului.
-
-        Ceasul poate afişa alte fusuri orare, precum şi un simplu widget customizabil. Culoarea textului widget-ului poate fi modificat, precum şi cea a fundalului împreună cu nivelul de transparenţă.
-
-        Alarma conţine toate funcţiile aşteptate, cum ar fi selectarea zilei, comutarea vibraţiei, selectarea tonului de alarmă, amânarea sau adăugarea unei etichete personalizate.
-
-        Cu ajutorul cronometrului poţi să măsori cu uşurinţă atât o peroadă mai lungă de timp cât şi tururi individuale. Poţi oricând sorta turele în funcţie de timp şi conţine opţiunea de vibrare la apăsare pentru a te anunţa că ai apăsat, chiar dacă nu te uiţi la ecran.
-
-        Poţi configura cu uşurinţă un temporizator pentru a fi notificat de un anumit eveniment. Poţi să schimbi tonul de alarmă şi să comuţi vibraţiile.
-
-        Printre caracteristicile suplimentare se numără, de exemplu, împiedicarea intrării dispozitivului în repaus cât timp aplicaţia este în prim-plan.
-
-        Nu conţine reclame sau permisiuni inutile. Codul sursă este complet open source şi oferă culori personalizabile.
-
-        <b>Consultaţi întreaga suită de aplicaţii Simple Tools aici:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

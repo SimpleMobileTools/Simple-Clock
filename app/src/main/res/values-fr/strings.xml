@@ -39,12 +39,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">Comment changer l\'ordre de tri des temps dans l\'onglet chronomètre \?</string>
     <string name="faq_1_text">Il suffit d\'appuyer sur les colonnes, les temps seront alors triés selon la colonne sur laquelle vous avez appuyé. Appuyer de nouveau permet d\'inverser l\'ordre (croissant/décroissant).</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Horloge simple – Une application flexible et multifonctionnelle</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Une horloge qui fait aussi minuterie, chronomètre et réveil.</string>
-    <string name="app_long_description"> Cette application propose plusieurs fonctions liées aux horaires. L\'horloge permet d\'afficher l\'heure sur plusieurs fuseaux horaires. Cette application comprend un widget simple et personnalisable, dans lequel il est possible de modifier les couleurs de la police d\'écriture et de l\'arrière-plan, ainsi que son opacité. Le réveil possède toutes les fonctions classiques : vibration, sonnerie, répétition et titre de l\'alarme. Le chronomètre permet de mesurer soit un temps unique, soit un temps par tour. Il est possible de trier les tours, et votre périphérique peut vibrer lors de l\'appui sur un bouton, pour vous informer que le bouton a été déclenché sans avoir à regarder l\'écran. Vous pouvez utiliser le minuteur pour être averti d\'un événement, soit par sonnerie, soit par vibration. L\'application possède aussi quelques fonctions supplémentaires, comme par exemple empêcher la mise en veille de l\'appareil tant que l\'application est en premier plan. L\'application ne contient ni publicité, ni autorisation inutile. Elle est totalement opensource et est également fournie avec des couleurs personnalisables. <b>Vous pouveez trouver toutes les applis Simple ici :</b> https://www.simplemobiletools.com <b>Facebook :</b> https://www.facebook.com/simplemobiletools <b>Reddit :</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

@@ -41,10 +41,8 @@
     <!-- FAQ -->
     <string name="faq_1_title">כיצד אוכל לשנות את מיון ההקפה בכרטיסיית שעון העצר\?</string>
     <string name="faq_1_text">פשוט לחץ על כל אחת מהעמודות, זה יגרום להקפות להיות ממוינות לפי העמודה הנתונה. בלחיצות נוספות תוכל לעבור בין מיון עולה ויורד.</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">שעון פשוט - אפליקציה רב תכליתית גמישה</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">שילוב של שעון, מעורר, סטופר וטיימר.</string>
-    <string name="app_long_description"> לאפליקציה יש מספר פונקציות הקשורות לתזמון. בשעון אתה יכול לאפשר הצגת זמנים מאזורי זמן אחרים, או להשתמש בווידג\'ט השעון הפשוט אך הניתן להתאמה אישית. ניתן להתאים את צבע הטקסט של הווידג\'ט, כמו גם את הצבע של הרקע. ההתראה מכילה את כל התכונות הצפויות כמו בחירת יום, החלפת רטט, בחירת רינגטונים, נודניק או הוספת תווית מותאמת אישית. בעזרת שעון העצר תוכלו למדוד בקלות פרק זמן ארוך יותר, או הקפות בודדות. אתה יכול למיין את ההקפות לפי זמן ההקפה, הוא מכיל רעידות אופציונליות גם בלחיצות על הכפתורים, רק כדי ליידע אותך שהלחצן נלחץ, גם אם אינך יכול להסתכל על המכשיר. אתה יכול בקלות להגדיר טיימר כדי לקבל הודעה על אירוע כלשהו. אתה יכול גם לשנות את הרינגטון שלו, או להחליף את הרטטים. תכונות נוספות כוללות למשל מניעת הירדמות של המכשיר בזמן שהאפליקציה נמצאת בחזית. אינו מכיל פרסומות או הרשאות מיותרות. זה קוד פתוח לחלוטין, מספק צבעים הניתנים להתאמה אישית. <b>בדוק את החבילה המלאה של כלים פשוטים כאן:</b> https://www.simplemobiletools.com <b>פייסבוק:</b> https://www.facebook.com/simplemobiletools <b>Reddit :</b> https://www.reddit.com/r/SimpleMobileTools </string>
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
 </resources>

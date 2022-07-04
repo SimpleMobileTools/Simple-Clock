@@ -41,12 +41,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">Jak mogę zmienić sortowanie okrążeń w karcie stopera\?</string>
     <string name="faq_1_text">Po prostu naciśnij dowolną kolumnę, co spowoduje, że okrążenia zostaną posortowane według danej kolumny. Za pomocą dodatkowych naciśnięć możesz przełączać się między sortowaniem rosnącym i malejącym.</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Prosty zegar - Elastyczna aplikacja wielofunkcyjna</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Połączenie zegara, alarmu, stopera i minutnika</string>
-    <string name="app_long_description"> Aplikacja posiada wiele funkcji związanych z odmierzeniem czasu. W zegarze możesz włączyć wyświetlanie czasu z innych stref czasowych lub skorzystać z prostego, ale konfigurowalnego widżetu zegara. Kolor tekstu widżetu może być konfigurowany, tak samo jak kolor i przezroczystość tła. Alarm zawiera wszystkie oczekiwane funkcje, takie jak wybieranie dni, przełączanie wibracji, wybieranie dzwonka, drzemka czy dodawanie własnej etykiety. Ze stoperem możesz łatwo mierzyć dłuższe okresy lub pojedyncze okrążenia. Możesz sortować okrążenia według czasu okrążenia; zawiera także opcjonalne wibracje przy naciskaniu przycisków, aby po prostu poinformować Cię, że przycisk został naciśnięty, nawet jeżeli nie możesz spojrzeć na urządzenie. Możesz łatwo skonfigurować minutnik, aby otrzymywać powiadomienia o jakimś wydarzeniu. Możesz zarówno zmienić jego dzwonek, jak i włączyć wibracje. Dodatkowe funkcje obejmują na przykład zapobieganie przechodzeniu urządzenia w tryb uśpieniem, gdy aplikacja jest aktywna. Nie zawiera reklam ani niepotrzebnych uprawnień. Jest w pełni otwartoźródłowa, zapewnia konfigurowalną kolorystykę. <b>Sprawdź pełen zestaw od Simple Tools tutaj:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

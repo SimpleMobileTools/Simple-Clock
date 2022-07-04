@@ -43,37 +43,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">Kaip aš galiu pakeisti etapų rikiavimą chronometro auselėje?</string>
     <string name="faq_1_text">Spustelėkite ant bet kurio stulpelio, tai surikiuos etapus pagal tą stulpelį. Su papildomais paspaudimais Jūs galite pasirinkti tarp rikiavimo mažėjančia arba didėjančia tvarka.</string>
-
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Clock - A flexible multifunctional app</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Laikrodžio, žadintuvo, chronometro ir laikmačio rinkinys.</string>
-    <string name="app_long_description">
-        Programėlė turi keletą funkcijų susijusių su laiko apskaita.
-
-        Laikrodyje Jūs galite pasirinkti laiko atvaizdavimą keliose laiko zonose, arba naudoti paprastą, bet tinkinamą laikrodžio skydelį. Teksto spalva skydelyje gali būti pasirenkama, taip pat kaip ir pagrindinė arba fono spalvos.
-
-        Žadintuvas turi visus pageidaujmus privalumus, kaip dienos pasirinkimas, vibracijos pasirinkimas, žadintuvo tono pasirinkimas, snaudimas arba tinkintos etiketės pridėjimas.
-
-        WSu chronometru Jūs galite pamatuoti ilgesnius laiko periodus, arba individualius etapus. Galite surikiuoti etapus pagal etapų laiką, chronometras taip pat turi vibracijas kai paspaudžiamas mygtukas, kad žinotumėte ar tikrai paspaudėte mygtuką, net kai negalite žiūrėti į savo įrenginį.
-
-        Jūs galite lengvai nustatyti laimatį kad žinotumėte tam tikro norimo etapo trukmę. Jūs taip pat galite nustatyti laikmačio skambėjimo toną, arba pasirinkti vibraciją.
-
-        Papildomi privalumai susideda iš pavyzdžiui iš neleidimo įrenginiui miegoti kol programėlė veikia fone.
-
-        Nėra jokių reklamų ar nereikalingų leidimų. Tai pilnai atviro kodo programėlė, leidžia keisti spalvas.
-
-        <b>Check out the full suite of Simple Tools here:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

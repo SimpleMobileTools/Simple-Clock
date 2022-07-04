@@ -42,37 +42,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">Hvordan kan jeg ændre sortering af mellemtider i stopuret?</string>
     <string name="faq_1_text">Klik på den kolonne der skal sorteres efter. Med flere klik kan du skifte mellem stigende og faldende rækkefølge.</string>
-
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Clock - A flexible multifunctional app</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">En kombination af ur, vækkeur, stopur og æggeur.</string>
-    <string name="app_long_description">
-        Appen har flere funktioner relateret til tider.
-
-        Uret kan sættes til at vise tider i andre tidszoner eller vise den simple widget. Widget\'ens tekstfarve kan ændres, og det kan baggrundens farve og alfa også.
-
-        Vækkeuret har alle de forventede funktioner såsom valg af ugedag(e), vibrering, valg af ringetone, udsættelse af alarm og oprettelse af en etiket.
-
-        Med stopuret kan du nemt måle en længere tidsperiode samt individuelle mellemtider. Du kan sortere mellemtider efter varighed, vælge vibration ved tryk på knapper for at tydeliggøre at knappen blev aktiveret selv hvis du ikke kan se på din enhed.
-
-        Du kan nemt opsætte en timer med æggeuret og blive underrettet efter et valgt tidsrum. Du kan vælge underretningslyd og til- eller fravælge vibration.
-
-        Ekstra funktioner omfatter også at forhindre enheden i at falde i søvn når appen er i forgrunden.
-
-        Indeholder ingen reklamer eller unødvendige tilladelser. Den er helt igennem open source, og du kan selv bestemme farverne.
-
-        <b>Check out the full suite of Simple Tools here:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

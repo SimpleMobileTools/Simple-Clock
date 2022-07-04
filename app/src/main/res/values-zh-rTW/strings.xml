@@ -42,37 +42,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">碼錶頁面分段的排序如何變更?</string>
     <string name="faq_1_text">只要點擊任一欄位，就會依選定的欄位做排序。再多點一下，還能切換遞增或遞減的排序。</string>
-
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">簡易時鐘 - 一個泛用的多功能應用程式</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">結合了時鐘、鬧鐘、碼錶和計時器。</string>
-    <string name="app_long_description">
-        這應用程式擁有多個跟時間相關的功能。
-
-        你可以在時鐘顯示其他地區的時間，或者使用簡單卻能自訂的時鐘小工具。小工具的字體顏色能夠自訂，背景顏色和透明度也都可以。
-
-        鬧鐘包含所有預期的功能，例如選擇哪一天、震動切換、鈴聲選擇、延遲或添加自訂標籤。
-
-        使用碼錶，你能夠輕易測量較長的時間或個別分段。你可以依分段時間來排序分段，也有按下按鈕震動的選項，讓你即使在無法看裝置的時候，也能知道按下按鈕了。
-
-        你能輕易設定計時器來提醒一些活動，還能改變它的鈴聲或切換震動。
-
-        附加功能包含像是，當程式在前景使用時防止手機進入睡眠。
-
-        不包含廣告及非必要的權限，而且完全開放原始碼，並提供自訂顏色。
-		
-        <b>Check out the full suite of Simple Tools here:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

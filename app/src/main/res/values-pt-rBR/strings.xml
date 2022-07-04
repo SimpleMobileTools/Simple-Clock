@@ -39,12 +39,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">Como posso alterar a classificação das voltas na guia Cronômetro\?</string>
     <string name="faq_1_text">Basta clicar em qualquer uma das colunas e isso fará com que as voltas sejam classificadas pela coluna especificada. Com cliques adicionais, você pode alternar a ordem de classificação entre crescente e decrescente.</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Relógio simples - Um app multifuncional flexível</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Uma combinação de um relógio, alarme, cronômetro e temporizador.</string>
-    <string name="app_long_description"> Um aplicativo com múltiplas funções relacionadas ao tempo. No relógio, você pode ativar a exibição de horários de outros fusos horários, ou usar o simples, mas personalizável widget de relógio. A cor do texto do widget pode ser personalizada, assim como a cor e alfa do fundo. O alarme contém todos os recursos esperados como seleção do dia, alternância de vibração, seleção do toque, soneca ou adição de uma etiqueta personalizada. Com o cronômetro você pode medir um período de tempo ou voltas individuais. Você pode ordenar as voltas por tempo de volta, e também contém vibrações opcionais nos botões de pressão, apenas para que você saiba que o botão foi pressionado, caso você não consiga olhar para o dispositivo. Você pode facilmente configurar um temporizador para ser notificado de algum evento. Ambos podem mudar seu toque ou alternar as vibrações. Características adicionais incluem, por exemplo, evitar que o dispositivo adormeça enquanto o aplicativo estiver em primeiro plano. Não contém anúncios ou permissões desnecessárias. É totalmente opensource e fornece cores personalizáveis. <b>Confira a coleção completa de Simple Tools:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
