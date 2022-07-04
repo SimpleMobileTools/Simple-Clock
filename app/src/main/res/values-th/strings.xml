@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Simple Clock</string>
-    <string name="app_launcher_name">Гадзіннік</string>
-    <string name="time_zone">Гадзінны пояс</string>
-    <string name="vibrate">Вібрацыя</string>
+    <string name="app_launcher_name">Clock</string>
+    <string name="time_zone">Time zone</string>
+    <string name="vibrate">Vibrate</string>
     <string name="no_days_selected">No days selected</string>
     <string name="clock">Clock</string>
-    <string name="timer">Таймер</string>
-    <string name="stopwatch">Секундамер</string>
-    <string name="lap">Круг</string>
-    <string name="stopwatch_stopped">Секундамер спынены</string>
-    <string name="timer_stopped">Таймер спынены</string>
+    <string name="timer">Timer</string>
+    <string name="stopwatch">Stopwatch</string>
+    <string name="lap">Lap</string>
+    <string name="stopwatch_stopped">Stopwatch has been stopped</string>
+    <string name="timer_stopped">Timer has been stopped</string>
     <string name="max_reminder_duration">Max reminder duration</string>
     <string name="time_expired">Time expired</string>
     <string name="clock_and_date">Clock and date</string>
@@ -21,24 +21,29 @@
     <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
     <string name="analogue_clock">Analogue clock</string>
     <string name="digital_clock">Digital clock</string>
+
     <!--Timer-->
     <string name="timers_notification_msg">Timers are running</string>
     <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">Новы таймер</string>
+    <string name="new_timer">New Timer</string>
+
     <plurals name="timer_notification_msg">
         <item quantity="one">%d timer is running</item>
         <item quantity="other">%d timers are running</item>
     </plurals>
+
     <!-- Settings -->
-    <string name="clock_tab">Гадзіннік</string>
-    <string name="alarm_tab">Будзільнік</string>
-    <string name="stopwatch_tab">Секундамер</string>
-    <string name="timer_tab">Таймер</string>
-    <string name="show_seconds">Паказваць секунды</string>
-    <string name="increase_volume_gradually">Паступова павялічваць гучнасць</string>
+    <string name="clock_tab">Clock tab</string>
+    <string name="alarm_tab">Alarm tab</string>
+    <string name="stopwatch_tab">Stopwatch tab</string>
+    <string name="timer_tab">Timer tab</string>
+    <string name="show_seconds">Show seconds</string>
+    <string name="increase_volume_gradually">Increase volume gradually</string>
+
     <!-- FAQ -->
     <string name="faq_1_title">How can I change lap sorting at the stopwatch tab?</string>
     <string name="faq_1_text">Just click on any of the columns, that will make the laps be sorted by the given column. With additional clicks you can toggle between ascending and descending sorting.</string>
+
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
     <string name="app_title">Simple Clock - A flexible multifunctional app</string>
@@ -68,6 +73,7 @@
         <b>Reddit:</b>
         https://www.reddit.com/r/SimpleMobileTools
     </string>
+
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
