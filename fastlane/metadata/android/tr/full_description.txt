@@ -14,7 +14,7 @@ Ek özellikler arasında, örneğin uygulama ön plandayken aygıtın uykuya dal
 
 Reklam veya gereksiz izinler içermez. Tamamen açık kaynaklıdır, özelleştirilebilir renkler ve farklı canlı duvar kağıtları arasından seçim yapma seçeneği sunar.
 
-<b>Basit Araçlar paketinin tamamını buradan inceleyin:</b>
+Basit Araçlar paketinin tamamını buradan inceleyin:
 https://www.simplemobiletools.com
 
 Facebook:
@@ -22,3 +22,6 @@ https://www.facebook.com/simplemobiletools
 
 Reddit:
 https://www.reddit.com/r/SimpleMobileTools
+
+Telegram:
+https://t.me/SimpleMobileTools
