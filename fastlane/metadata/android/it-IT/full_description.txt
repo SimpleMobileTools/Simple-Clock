@@ -1,4 +1,4 @@
-L'app dell'orologio ha più funzioni legate alla temporizzazione. Questa app può essere utilizzata come widget orologio o come sveglia. Puoi anche cambiare lo sfondo dal vivo in questa app. Questa app è realizzata per aiutarti a regolare la tua vita quotidiana e dormire meglio. Puoi anche utilizzare il cronometro in questa app per contare il tuo tempo quando corri per uno stile di vita sano o per qualsiasi altro scopo. Questa app può anche essere posizionata sulla schermata iniziale per una facile navigazione.
+L'app dell'orologio ha più funzioni legate alla temporizzazione. Questa app può essere utilizzata come widget orologio o come sveglia. Questa app è realizzata per aiutarti a regolare la tua vita quotidiana e dormire meglio. Puoi anche utilizzare il cronometro in questa app per contare il tuo tempo quando corri per uno stile di vita sano o per qualsiasi altro scopo. Questa app può anche essere posizionata sulla schermata iniziale per una facile navigazione.
 
 Come widget orologio è possibile abilitare la visualizzazione degli orari di altri fusi orari o utilizzare il widget orologio semplice ma personalizzabile e ridimensionabile. Il colore del testo del widget dell'orologio può essere personalizzato, così come il colore e l'alfa dello sfondo. Puoi anche cambiare lo sfondo dal vivo in questa app. Puoi anche modificare la forma del widget dell'orologio in base alla tua scelta e mostrarlo nella schermata principale.
 
@@ -14,5 +14,14 @@ Viene fornito con design dei materiali e tema scuro per impostazione predefinita
 
 Non contiene pubblicità o autorizzazioni non necessarie. È completamente opensource, offre colori personalizzabili e la possibilità di scegliere tra diversi sfondi live.
 
-<b> Dai un'occhiata alla suite completa di Simple Tools qui: </b>
+Dai un'occhiata alla suite completa di Simple Tools qui:
 https://www.simplemobiletools.com
+
+Facebook:
+https://www.facebook.com/simplemobiletools
+
+Reddit:
+https://www.reddit.com/r/SimpleMobileTools
+
+Telegram:
+https://t.me/SimpleMobileTools

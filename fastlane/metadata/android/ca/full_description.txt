@@ -14,7 +14,7 @@ De manera predeterminada, inclou el «material design» i un tema fosc, proporci
 
 No conté anuncis ni permisos innecessaris. És totalment de codi obert, proporciona colors personalitzables, i es poden triar diferents fons de pantalla en directe.
 
-<b>Consulteu el conjunt complet d'eines simples aquí:</b>
+Consulteu el conjunt complet d'eines simples aquí:
 https://www.simplemobiletools.com
 
 Facebook:

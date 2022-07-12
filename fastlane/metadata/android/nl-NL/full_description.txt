@@ -12,11 +12,14 @@ Verdere functies zijn bijvoorbeeld het voorkomen van de slaapstand zolang de app
 
 Bevat geen advertenties of onnodige machtigingen. Volledig open-source. Kleuren van de app kunnen worden aangepast.
 
-<b>Probeer ook eens de andere apps van Simple Tools:</b>
+Probeer ook eens de andere apps van Simple Tools:
 https://www.simplemobiletools.com
 
-<b>Facebook:</b>
+Facebook:
 https://www.facebook.com/simplemobiletools
 
-<b>Reddit:</b>
+Reddit:
 https://www.reddit.com/r/SimpleMobileTools
+
+Telegram:
+https://t.me/SimpleMobileTools

@@ -12,11 +12,14 @@ Gainontzeko ezaugarrien artean, ekiditzen du telefonoa lotara joatea aplikazioa 
 
 Ez dauka iragarkirik, ezta beharrezkoak ez diren baimenak. Iturri irekikoa da guztiz eta kolore pertsonalizagarriak ditu.
 
-<b>Check out the full suite of Simple Tools here:</b>
+Check out the full suite of Simple Tools here:
 https://www.simplemobiletools.com
 
-<b>Facebook:</b>
+Facebook:
 https://www.facebook.com/simplemobiletools
 
-<b>Reddit:</b>
+Reddit:
 https://www.reddit.com/r/SimpleMobileTools
+
+Telegram:
+https://t.me/SimpleMobileTools

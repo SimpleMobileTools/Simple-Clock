@@ -14,5 +14,14 @@
 
 広告や不要な権限は含まれていません。それは完全にオープンソースであり、カスタマイズ可能な色を提供し、さまざまなライブ壁紙から選択することができます。
 
-<b>ここでシンプルツールの完全なスイートを確認してください：</ b>
+ここでシンプルツールの完全なスイートを確認してください：
 https://www.simplemobiletools.com
+
+Facebook:
+https://www.facebook.com/simplemobiletools
+
+Reddit:
+https://www.reddit.com/r/SimpleMobileTools
+
+Telegram:
+https://t.me/SimpleMobileTools

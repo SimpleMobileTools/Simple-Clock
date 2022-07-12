@@ -14,5 +14,14 @@ Jest domyślnie wyposażony w materiałowy wygląd i ciemny motyw, zapewnia dosk
 
 Nie zawiera reklam ani niepotrzebnych uprawnień. Jest w pełni open source, zapewnia konfigurowalne kolory i wybór spośród różnych żywych tapet.
 
-<b> Zobacz pełny zestaw prostych narzędzi tutaj: </b>
+Zobacz pełny zestaw prostych narzędzi tutaj:
 https://www.simplemobiletools.com
+
+Facebook:
+https://www.facebook.com/simplemobiletools
+
+Reddit:
+https://www.reddit.com/r/SimpleMobileTools
+
+Telegram:
+https://t.me/SimpleMobileTools

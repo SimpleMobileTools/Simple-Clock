@@ -12,11 +12,14 @@
 
 Δεν περιέχει διαφημίσεις ή περιττές άδειες. Είναι πλήρως ανοιχτού κώδικα, παρέχει επίσης προσαρμόσιμα χρώματα.
 
-<b>Δείτε την πλήρη σειρά των Απλών Εργαλείων εδώ:</b>
+Δείτε την πλήρη σειρά των Απλών Εργαλείων εδώ:
 https://www.simplemobiletools.com
 
-<b>Facebook:</b>
+Facebook:
 https://www.facebook.com/simplemobiletools
 
-<b>Reddit:</b>
+Reddit:
 https://www.reddit.com/r/SimpleMobileTools
+
+Telegram:
+https://t.me/SimpleMobileTools

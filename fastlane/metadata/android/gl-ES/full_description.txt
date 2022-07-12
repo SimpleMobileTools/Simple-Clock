@@ -12,11 +12,14 @@ Outras funcionalidades inclúen, por exemplo, impedir que o dispositivo hiberne 
 
 Non contén anuncios nin permisos innecesarios. Dispón dun tema escuro e é totalmente de código aberto. 
 
-<b>Visita a páxina a través desta ligazón:</b>
+Visita a páxina a través desta ligazón:
 https://www.simplemobiletools.com
 
-<b>Facebook:</b>
+Facebook:
 https://www.facebook.com/simplemobiletools
 
-<b>Reddit:</b>
+Reddit:
 https://www.reddit.com/r/SimpleMobileTools
+
+Telegram:
+https://t.me/SimpleMobileTools

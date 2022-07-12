@@ -12,11 +12,14 @@ Ferramentas adicionais incluem a prevenção de repouso do dispositivo enquanto 
 
 Não contém anúncios nem permissões desnecessárias. Possui código totalmente aberto e oferece cores personalizáveis.
 
-<b>Confira todos os aplicativos da Simple Tools aqui:</b>
+Confira todos os aplicativos da Simple Tools aqui:
 https://www.simplemobiletools.com
 
-<b>Facebook:</b>
+Facebook:
 https://www.facebook.com/simplemobiletools
 
-<b>Reddit:</b>
+Reddit:
 https://www.reddit.com/r/SimpleMobileTools
+
+Telegram:
+https://t.me/SimpleMobileTools

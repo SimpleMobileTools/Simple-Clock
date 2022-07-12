@@ -12,11 +12,14 @@ Lisäasetuksiin kuuluu muun muassa laitteen nukahtamisen estäminen silloin, kun
 
 Ei sisällä mainoksia eikä vaadi tarpeettomia käyttöoikeuksia. Sovellus on täysin avoin lähdekoodiltaan ja sen väritystä voi muuttaa.
 
-<b>Katso myös muut yksinkertaiset Simple Tools-sovellukset täältä:</b>
+Katso myös muut yksinkertaiset Simple Tools-sovellukset täältä:
 https://www.simplemobiletools.com
 
-<b>Facebook:</b>
+Facebook:
 https://www.facebook.com/simplemobiletools
 
-<b>Reddit:</b>
+Reddit:
 https://www.reddit.com/r/SimpleMobileTools
+
+Telegram:
+https://t.me/SimpleMobileTools

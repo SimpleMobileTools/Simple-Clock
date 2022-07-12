@@ -1,4 +1,4 @@
-Apka obsahuje ivacero funkcií spojených s časom.
+Apka obsahuje viacero funkcií spojených s časom.
 
 Hodinky vedia zobraziť aj čas iných časových pásiem, resp. ponúkajú jednoduchý, ale nastaviteľný widget. Farbu textu widgetu možno prispôsobiť, rovnako ako farbu a priehľadnosť pozadia.
 
@@ -14,11 +14,14 @@ Apka je založená na Material dizajne a má prednastavenú tmavú tému, poskyt
 
 Neobsahuje žiadne reklamy a nepotrebné oprávnenia. Je opensource, poskytuje možnosť zmeny farieb.
 
-<b>Pozrite si celú sadu aplikácií na:</b>
+Pozrite si celú sadu aplikácií na:
 https://www.simplemobiletools.com
 
-<b>Facebook:</b>
+Facebook:
 https://www.facebook.com/simplemobiletools
 
-<b>Reddit:</b>
+Reddit:
 https://www.reddit.com/r/SimpleMobileTools
+
+Telegram:
+https://t.me/SimpleMobileTools
