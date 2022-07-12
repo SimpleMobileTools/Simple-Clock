@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Kello</string>
@@ -6,7 +7,7 @@
     <string name="no_days_selected">Ei päiviä valittuna</string>
     <string name="clock">Clock</string>
     <string name="timer">Ajastin</string>
-    <string name="stopwatch">Stopwatch</string>
+    <string name="stopwatch">Ajanotto</string>
     <string name="lap">Kierrosaika</string>
     <string name="stopwatch_stopped">Sekuntikello pysäytetty</string>
     <string name="timer_stopped">Ajastin on pysäytetty</string>
@@ -17,20 +18,17 @@
     <string name="swipe_right_to_dismiss">Pyyhkäise oikealle sammuttaaksesi tai vasemmalle torkuttaaksesi.</string>
     <string name="sort_by_creation_order">Luontijärjestys</string>
     <string name="sort_by_alarm_time">Herätysaika</string>
-    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
-    <string name="analogue_clock">Analogue clock</string>
-    <string name="digital_clock">Digital clock</string>
-
+    <string name="sort_by_day_and_alarm_time">Päivä ja Herätys aika</string>
+    <string name="analogue_clock">Analoginen kello</string>
+    <string name="digital_clock">Digitaalinen kello</string>
     <!--Timer-->
-    <string name="timers_notification_msg">Timers are running</string>
-    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">New Timer</string>
-
+    <string name="timers_notification_msg">Ajastimet ovat käynnissä</string>
+    <string name="timer_single_notification_label_msg">%s ajastin on käynnissä</string>
+    <string name="new_timer">Uusi Ajastin</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d ajastin on käynnissä</item>
+        <item quantity="other">%d ajastimet ovat käynnissä</item>
     </plurals>
-
     <!-- Settings -->
     <string name="clock_tab">Kello-välilehti</string>
     <string name="alarm_tab">Herätyskello-välilehti</string>
@@ -38,7 +36,6 @@
     <string name="timer_tab">Ajastin-välilehti</string>
     <string name="show_seconds">Näytä sekunnit</string>
     <string name="increase_volume_gradually">Lisää äänen voimakkuutta asteittain</string>
-
     <!-- FAQ -->
     <string name="faq_1_title">Kuinka vaihdan kierrosten lajittelujärjestystä sekuntikellonäkymässä?</string>
     <string name="faq_1_text">Klikkaa vain saraketta, jonka perusteella haluat kierrokset lajiteltavan. Toisella klikkauksella voit vaihtaa nousevan tai laskevan järjestyksen.</string>

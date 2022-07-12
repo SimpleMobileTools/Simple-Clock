@@ -5,9 +5,9 @@
     <string name="time_zone">Ζώνη ώρας</string>
     <string name="vibrate">Δόνηση</string>
     <string name="no_days_selected">Δεν έχουν επιλεγεί ημέρες</string>
-    <string name="clock">Clock</string>
+    <string name="clock">Ρολόι</string>
     <string name="timer">Χρονόμετρο</string>
-    <string name="stopwatch">Stopwatch</string>
+    <string name="stopwatch">Χρονομετρητής</string>
     <string name="lap">Γύρος</string>
     <string name="stopwatch_stopped">Ο χρονοδιακόπτης σταμάτησε</string>
     <string name="timer_stopped">Το χρονόμετρο σταμάτησε</string>
@@ -18,7 +18,7 @@
     <string name="swipe_right_to_dismiss">Σάρωση δεξιά για απόρριψη ή αριστερά για αναβολή.</string>
     <string name="sort_by_creation_order">Σειρά δημιουργίας</string>
     <string name="sort_by_alarm_time">Ώρα Αφύπνισης</string>
-    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
+    <string name="sort_by_day_and_alarm_time">Ημέρα και ώρα αφύπνισης</string>
     <string name="analogue_clock">Αναλογικό Ρολόι</string>
     <string name="digital_clock">Ψηφιακό Ρολόι</string>
 
