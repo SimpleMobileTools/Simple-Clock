@@ -1,0 +1,18 @@
+Aplikacja zegara ma wiele funkcji związanych z synchronizacją. Ta aplikacja może być używana jako widget zegara lub jako budzik. W tej aplikacji możesz także zmienić animowaną tapetę. Ta aplikacja została stworzona, aby pomóc Ci regulować codzienne życie i lepiej spać. Możesz także użyć stopera w tej aplikacji, aby policzyć czas biegania dla zdrowego stylu życia lub w jakimkolwiek innym celu. Tę aplikację można również umieścić na ekranie głównym, aby ułatwić nawigację.
+
+Jako widget zegara możesz włączyć wyświetlanie czasów z innych stref czasowych lub użyć prostego, ale konfigurowalnego i skalowalnego widgetu zegara. Można dostosować kolor tekstu widżetu zegara, a także kolor i alfa tła. W tej aplikacji możesz także zmienić animowaną tapetę. Możesz także zmienić kształt widżetu zegara zgodnie z własnym wyborem i wyświetlić go na ekranie głównym.
+
+Alarm zawiera wszystkie oczekiwane funkcje, takie jak wybór dnia, przełączanie wibracji, wybieranie dzwonka, drzemka lub dodawanie własnej etykiety. Budzenie się będzie przyjemnością. Obsługuje tyle alarmów, ile chcesz, więc nie będzie więcej wymówek, aby nie budzić się i lepiej spać :) Obsługiwane jest również stopniowe zwiększanie głośności, domyślnie włączone. Dostępny jest również konfigurowalny przycisk drzemki, na wypadek, gdybyś naprawdę miał dobry powód, aby go użyć. Budzik dostarczony przez tę aplikację jest tak prosty, jak to tylko możliwe. Musisz po prostu dodać, ile razy chcesz i włączyć je. W tym czasie możesz również skorzystać z przewodnika wbudowanego w tę aplikację budzika, który pomoże Ci poruszać się po tej aplikacji, aby lepiej spać. Możesz spać lepiej, więc ta aplikacja może Cię obudzić o ustalonej godzinie bez zakłócania Twojego stylu życia. Ten alarm można umieścić na ekranie głównym, aby ułatwić dostęp do niego, podczas gdy możesz pracować nad innymi rzeczami na urządzeniu. Głównym celem utrzymywania alarmu w tym widżecie zegara jest pomoc w efektywniejszym planowaniu czasu.
+
+Dzięki stoperowi możesz z łatwością mierzyć dłuższy okres czasu lub poszczególne okrążenia. Możesz sortować okrążenia na kilka różnych sposobów. Zawiera również opcjonalne wibracje po naciśnięciu przycisku, aby poinformować Cię, że przycisk został naciśnięty, na wypadek, gdybyś z jakiegoś powodu nie mógł patrzeć na urządzenie lub się spieszyłeś. Ten stoper może pomóc Ci w uzyskaniu formy podczas ćwiczeń jogi lub biegania w parku. Możesz umieścić stoper na ekranie głównym, aby mieć do niego łatwy dostęp i zmieniać go zgodnie ze swoimi potrzebami bez otwierania menu i znajdowania go.
+
+Możesz łatwo ustawić licznik czasu, aby otrzymywać powiadomienia o niektórych wydarzeniach. Możesz zmienić dzwonek lub przełączyć wibracje. Nigdy więcej nie spalisz tej pizzy. Odliczanie czasu można również wstrzymać, a nie tylko zatrzymać.
+
+Dodatkowe funkcje obejmują na przykład zapobieganie zasypianiu urządzenia, gdy aplikacja jest na pierwszym planie lub przełączanie między 12- lub 24-godzinnym formatem czasu. Wreszcie możesz zdecydować, czy tydzień ma zaczynać się w niedzielę, czy w poniedziałek.
+
+Jest domyślnie wyposażony w materiałowy wygląd i ciemny motyw, zapewnia doskonałe wrażenia użytkownika i łatwe użytkowanie. Brak dostępu do Internetu zapewnia większą prywatność, bezpieczeństwo i stabilność niż inne aplikacje. Ciemny motyw w tym widżecie zegara może pomóc w ustawieniu budzika w nocy bez oślepiania oczu ostrym kolorem alarmu telefonu komórkowego.
+
+Nie zawiera reklam ani niepotrzebnych uprawnień. Jest w pełni open source, zapewnia konfigurowalne kolory i wybór spośród różnych żywych tapet.
+
+<b> Zobacz pełny zestaw prostych narzędzi tutaj: </b>
+https://www.simplemobiletools.com

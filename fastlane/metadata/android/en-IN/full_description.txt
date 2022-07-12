@@ -1,0 +1,24 @@
+The app has multiple functions related to timing.
+
+At the clock you can enable displaying times from other timezones, or use the simple, but customizable and resizable clock widget. The text color of the widget can be customized, as well as the color and the alpha of the background.
+
+The alarm contains all the expected features as day selecting, vibration toggling, ringtone selecting, snooze or adding a custom label. Waking up will be a pleasure. It supports as many alarms as you want, so there won't be any more excuses for not waking up :) Gradual volume increasing is supported too, enabled by default. A customizable Snooze button is available too, just in case you really had a good reason for using it.
+
+With the stopwatch you can easily measure a longer period of time, or individual laps. You can sort the laps in a few different ways. It contains optional vibrations on button presses too, just to let you know that the button was pressed in case you cannot look at the device for some reason, or you are in a hurry.
+
+You can easily setup a timer to be notified of some events. You can both change its ringtone, or toggle vibrations. You will never burn that pizza again. The timer countdown can be paused too, not just stopped.
+
+Additional features include for example preventing the device from falling asleep while the app is in foreground or toggling between 12 or 24 hour time format. Last but not least you can decide if the week should start on Sunday, or Monday.
+
+It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
+
+Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
+
+<b>Check out the full suite of Simple Tools here:</b>
+https://www.simplemobiletools.com
+
+<b>Facebook:</b>
+https://www.facebook.com/simplemobiletools
+
+<b>Reddit:</b>
+https://www.reddit.com/r/SimpleMobileTools

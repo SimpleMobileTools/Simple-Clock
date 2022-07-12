@@ -12,4 +12,11 @@ Papildomi privalumai susideda iš pavyzdžiui iš neleidimo įrenginiui miegoti 
 
 Nėra jokių reklamų ar nereikalingų leidimų. Tai pilnai atviro kodo programėlė, leidžia keisti spalvas.
 
-Ši programėlė yra tik viena dalelė iš kelių mūsų programėlių. Jūs galite rasti likusias programėles čia https://www.simplemobiletools.com
+<b>Check out the full suite of Simple Tools here:</b>
+https://www.simplemobiletools.com
+
+<b>Facebook:</b>
+https://www.facebook.com/simplemobiletools
+
+<b>Reddit:</b>
+https://www.reddit.com/r/SimpleMobileTools

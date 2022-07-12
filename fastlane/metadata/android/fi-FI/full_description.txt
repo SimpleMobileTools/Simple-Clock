@@ -1,0 +1,22 @@
+Sovelluksessa on useita ajastustoimintoja.
+
+Voit valita näkyville muita aikavyöhykkeitä tai käyttää yksinkertaista, mutta mukautettavaa kellowidgetiä. Widgetin tekstin väriä voi vaihtaa, kuten myös taustaväriä ja läpinäkyvyyttä.
+
+Herätyskello sisältää kaikki oletetut ominaisuudet kuten päivien valinnan, värinäasetuksen, hälytysäänen poiminnan, torkutuksen ja oman nimikkeen lisäämisen.
+
+Sekuntikellolla mittaat helposti pidemmän ajanjakson tai yksittäisiä kierroksia. Voit lajitella kierrokset kierrosaikojen mukaan. Värinä varmistaa painalluksen myös silloin, kun et pysty katsomaan näyttöä.
+
+Ajastin on helppo asettaa ilmoittamaan mistä tahansa tapahtumasta. Voit valita hälytysäänen ja kytkeä halutessasi värinän.
+
+Lisäasetuksiin kuuluu muun muassa laitteen nukahtamisen estäminen silloin, kun sovellus on käynnissä etualalla.
+
+Ei sisällä mainoksia eikä vaadi tarpeettomia käyttöoikeuksia. Sovellus on täysin avoin lähdekoodiltaan ja sen väritystä voi muuttaa.
+
+<b>Katso myös muut yksinkertaiset Simple Tools-sovellukset täältä:</b>
+https://www.simplemobiletools.com
+
+<b>Facebook:</b>
+https://www.facebook.com/simplemobiletools
+
+<b>Reddit:</b>
+https://www.reddit.com/r/SimpleMobileTools
