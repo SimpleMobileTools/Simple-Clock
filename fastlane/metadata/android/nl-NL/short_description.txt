@@ -1,1 +1,1 @@
-Een combinatie van een wereldklok, alarm, stopwatch en timer.
+Een combinatie van een wereldklok met widget, alarm, stopwatch en timer.
