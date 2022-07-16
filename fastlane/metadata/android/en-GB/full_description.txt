@@ -1,6 +1,6 @@
-The clock app has multiple functions related to timing. This app can be used as a clock widget or as a alarm clock. You can also change live wallpaper in this app. This app is made to help you regulate your daily life and sleep better. You can also use the stopwatch in this app to count your time when you are running for healthy lifestyle or for any other purpose. This app can also be placed on your home screen for easy navigation.
+This clock app has multiple functions related to timing. It can be used as a clock widget or as a alarm clock. It is made to help you regulate your daily life and sleep better. You can also use the stopwatch in this app to count your time when you are running for healthy lifestyle or for any other purpose. This app can also be placed on your home screen for easy navigation.
 
-As a clock widget you can enable displaying times from other time zones, or use the simple, but customizable and resizable clock widget. The text color of the clock widget can be customized, as well as the color and the alpha of the background. You can also change the live wallpaper in this app. You can also change the shape of clock widget according to your choice and show it on the home screen.
+As a clock widget you can enable displaying times from other time zones, or use the simple, but customizable and resizable clock widget. The text color of the clock widget can be customized, as well as the color and the alpha of the background. You can also change the shape of clock widget according to your choice and show it on the home screen.
 
 The alarm contains all the expected features as day selecting, vibration toggling, ringtone selecting, snooze or adding a custom label. Waking up will be a pleasure. It supports as many alarms as you want, so there won't be any more excuses for not waking up and sleep better :) Gradual volume increasing is supported too, enabled by default. A customizable Snooze button is available too, just in case you really had a good reason for using it. The alarm clock provided by this app as simple as it can get. You simply have to add how many times you want and turn them on. During this, you can also take help from a guide built in this alarm clock app to help you navigate through this app to sleep better. You can sleep better so this app can wake you up on the set time without disturbing your lifestyle. This alarm can be placed on the home screen to make it easy for you to access the alarm while you can work on other things on your device. The main goal of keeping the alarm in this clock widget is to help you schedule your time more effectively. 
 
@@ -12,7 +12,9 @@ Additional features include for example preventing the device from falling aslee
 
 It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps. The dark theme in this clock widget can help you setting your alarm clock at night without blinding your eyes with sharp color of your mobile alarm.
 
-Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors, and choice to choose from different live wallpapers. 
+It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
+
+Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
 
 Check out the full suite of Simple Tools here:
 https://www.simplemobiletools.com
