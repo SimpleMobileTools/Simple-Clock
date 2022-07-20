@@ -12,8 +12,6 @@ Les característiques addicionals inclouen, per exemple, evitar que el dispositi
 
 De manera predeterminada, inclou el «material design» i un tema fosc, proporciona una gran experiència d'usuari per a un ús fàcil. La manca d'accés a Internet us ofereix més privadesa, seguretat i estabilitat que altres aplicacions. El tema fosc d'aquest giny de rellotge us pot ajudar a establir el rellotge d'alarma a la nit sense encegar els ulls amb un color llampant a l'alarma del mòbil.
 
-De manera predeterminada, inclou el «material design» i un tema fosc, proporciona una gran experiència d'usuari per a un ús fàcil. La manca d'accés a Internet us ofereix més privadesa, seguretat i estabilitat que altres aplicacions.
-
 No conté anuncis ni permisos innecessaris. És totalment de codi obert, proporciona colors personalitzables.
 
 Consulteu el conjunt complet d'eines simples aquí:
