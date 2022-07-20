@@ -2,47 +2,47 @@
 <resources>
     <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Clock</string>
-    <string name="time_zone">Time zone</string>
-    <string name="vibrate">Vibrate</string>
-    <string name="no_days_selected">No days selected</string>
+    <string name="time_zone">المنطقة الزمنية</string>
+    <string name="vibrate">يهتز</string>
+    <string name="no_days_selected">لا توجد أيام محددة</string>
     <string name="clock">Clock</string>
     <string name="timer">Timer</string>
-    <string name="stopwatch">Stopwatch</string>
-    <string name="lap">Lap</string>
-    <string name="stopwatch_stopped">Stopwatch has been stopped</string>
-    <string name="timer_stopped">Timer has been stopped</string>
-    <string name="max_reminder_duration">Max reminder duration</string>
-    <string name="time_expired">Time expired</string>
-    <string name="clock_and_date">Clock and date</string>
-    <string name="use_text_shadow">Use text shadow</string>
-    <string name="swipe_right_to_dismiss">Swipe right to Dismiss, or left to Snooze.</string>
-    <string name="sort_by_creation_order">Creation order</string>
-    <string name="sort_by_alarm_time">Alarm time</string>
-    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
-    <string name="analogue_clock">Analogue clock</string>
-    <string name="digital_clock">Digital clock</string>
-
+    <string name="stopwatch">ساعة التوقيف</string>
+    <string name="lap">اللفه</string>
+    <string name="stopwatch_stopped">تم إيقاف ساعة التوقيف</string>
+    <string name="timer_stopped">تم إيقاف الموقت</string>
+    <string name="max_reminder_duration">الحد الأقصى لمدة التذكير</string>
+    <string name="time_expired">انتهى الوقت</string>
+    <string name="clock_and_date">الساعة والتاريخ</string>
+    <string name="use_text_shadow">استخدم ظل النص</string>
+    <string name="swipe_right_to_dismiss">اسحب لليمين للرفض أو لليسار للغفوة.</string>
+    <string name="sort_by_creation_order">تسلسل الإنشاء</string>
+    <string name="sort_by_alarm_time">وقت التنبيه</string>
+    <string name="sort_by_day_and_alarm_time">اليوم ووقت التنبيه</string>
+    <string name="analogue_clock">ساعة تناظرية</string>
+    <string name="digital_clock">ساعة رقمية</string>
     <!--Timer-->
-    <string name="timers_notification_msg">Timers are running</string>
-    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">New Timer</string>
-
+    <string name="timers_notification_msg">أجهزة ضبط الوقت قيد التشغيل</string>
+    <string name="timer_single_notification_label_msg">عداد الوقت لـ %s قيد التشغيل</string>
+    <string name="new_timer">مؤقت جديد</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="zero">جهاز ضبط الوقت %d قيد التشغيل</item>
+        <item quantity="one">جهاز ضبط الوقت %d قيد التشغيل</item>
+        <item quantity="two">جهاز ضبط الوقت %d قيد التشغيل</item>
+        <item quantity="few">جهاز ضبط الوقت %d قيد التشغيل</item>
+        <item quantity="many">اجهزة ضبط الوقت %d قيد التشغيل</item>
+        <item quantity="other">جهاز ضبط الوقت %d قيد التشغيل</item>
     </plurals>
-
     <!-- Settings -->
     <string name="clock_tab">Clock tab</string>
     <string name="alarm_tab">Alarm tab</string>
-    <string name="stopwatch_tab">Stopwatch tab</string>
+    <string name="stopwatch_tab">تبويب ساعة الإيقاف</string>
     <string name="timer_tab">Timer tab</string>
-    <string name="show_seconds">Show seconds</string>
-    <string name="increase_volume_gradually">Increase volume gradually</string>
-
+    <string name="show_seconds">عرض الثواني</string>
+    <string name="increase_volume_gradually">زيادة الصوت تدريجيا</string>
     <!-- FAQ -->
-    <string name="faq_1_title">How can I change lap sorting at the stopwatch tab?</string>
-    <string name="faq_1_text">Just click on any of the columns, that will make the laps be sorted by the given column. With additional clicks you can toggle between ascending and descending sorting.</string>
+    <string name="faq_1_title">كيف يمكنني تغيير فرز اللفات في علامة التبويب ساعة التوقيت؟</string>
+    <string name="faq_1_text">ما عليك سوى النقر فوق أي من الأعمدة ، مما يجعل الدورات مرتبة حسب العمود المحدد. بنقرات إضافية ، يمكنك التبديل بين الفرز التصاعدي والتنازلي.</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
