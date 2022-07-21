@@ -1,1 +1,1 @@
-Simple Clock: alarma, cronòmetre
+Simple Clock
