@@ -1,4 +1,4 @@
-Ta aplikacja zegara ma wiele funkcji związanych z odmierzaniem czasu. Może być używana jako widżet zegara lub jako alarm. Ta aplikacja została stworzona, aby pomóc Ci regulować codzienne życie i lepiej spać. Możesz również użyć dostępnego w niej stopera, aby liczyć czas, kiedy biegasz, aby żyć zdrowo, lub w jakimkolwiek innym celu. Tę aplikację można także umieścić na ekranie głównym dla prostszej nawigacji.
+Ta aplikacja zegara ma wiele funkcji związanych z odmierzaniem czasu. Może być używana jako widżet zegara lub jako alarm. Została stworzona, aby pomóc Ci regulować codzienne życie i lepiej spać. Możesz również użyć dostępnego w niej stopera, aby liczyć czas, kiedy biegasz, aby żyć zdrowo, lub w jakimkolwiek innym celu. Tę aplikację można także umieścić na ekranie głównym dla prostszej nawigacji.
 
 W widżecie zegara możesz włączyć wyświetlanie czasu z innych stref czasowych lub skorzystać z prostego, ale konfigurowalnego widżetu zegara. Kolor tekstu widżetu może być konfigurowany, tak samo jak kolor i przezroczystość tła. Możesz również zmienić kształt widżetu zegara tak, jak chcesz, i pokazać go na ekranie głównym.
 
