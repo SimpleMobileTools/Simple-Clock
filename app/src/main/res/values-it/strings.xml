@@ -21,6 +21,8 @@
     <string name="sort_by_day_and_alarm_time">Giorno e ora sveglia</string>
     <string name="analogue_clock">Orologio analogico</string>
     <string name="digital_clock">Orologio digitale</string>
+    <string name="alarm_dismissed">Alarm dismissed</string>
+    <string name="alarm_snoozed">Alarm snoozed by %s</string>
     <!--Timer-->
     <string name="timers_notification_msg">I contaminuti sono in funzione</string>
     <string name="timer_single_notification_label_msg">Il contaminuti per %s è in funzione</string>

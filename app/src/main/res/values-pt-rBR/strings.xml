@@ -21,6 +21,8 @@
     <string name="sort_by_day_and_alarm_time">Dia e hora do alarme</string>
     <string name="analogue_clock">Relógio analógico</string>
     <string name="digital_clock">Relógio digital</string>
+    <string name="alarm_dismissed">Alarm dismissed</string>
+    <string name="alarm_snoozed">Alarm snoozed by %s</string>
     <!--Timer-->
     <string name="timers_notification_msg">Temporizadores em execução</string>
     <string name="timer_single_notification_label_msg">O temporizador para %s está em execução</string>

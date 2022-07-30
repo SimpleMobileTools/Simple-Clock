@@ -21,6 +21,8 @@
     <string name="sort_by_day_and_alarm_time">Ден и час на алармата</string>
     <string name="analogue_clock">Аналогов часовник</string>
     <string name="digital_clock">Цифров часовник</string>
+    <string name="alarm_dismissed">Alarm dismissed</string>
+    <string name="alarm_snoozed">Alarm snoozed by %s</string>
     <!--Timer-->
     <string name="timers_notification_msg">Таймерите са включени</string>
     <string name="timer_single_notification_label_msg">Таймерът за %s е включен</string>

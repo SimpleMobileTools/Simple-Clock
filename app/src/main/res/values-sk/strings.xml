@@ -20,6 +20,8 @@
     <string name="sort_by_day_and_alarm_time">Dňa a času budíka</string>
     <string name="analogue_clock">Analógové hodiny</string>
     <string name="digital_clock">Digitálne hodiny</string>
+    <string name="alarm_dismissed">Budík bol zastavený</string>
+    <string name="alarm_snoozed">Budík bol preložený o %s</string>
 
     <!--Timer-->
     <string name="timers_notification_msg">Sú spustené časovače</string>

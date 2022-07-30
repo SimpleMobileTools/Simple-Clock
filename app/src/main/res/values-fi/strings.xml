@@ -21,6 +21,8 @@
     <string name="sort_by_day_and_alarm_time">Päivä ja Herätys aika</string>
     <string name="analogue_clock">Analoginen kello</string>
     <string name="digital_clock">Digitaalinen kello</string>
+    <string name="alarm_dismissed">Alarm dismissed</string>
+    <string name="alarm_snoozed">Alarm snoozed by %s</string>
     <!--Timer-->
     <string name="timers_notification_msg">Ajastimet ovat käynnissä</string>
     <string name="timer_single_notification_label_msg">%s ajastin on käynnissä</string>

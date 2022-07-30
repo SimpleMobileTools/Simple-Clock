@@ -20,6 +20,8 @@
     <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
     <string name="analogue_clock">Analogue clock</string>
     <string name="digital_clock">Digital clock</string>
+    <string name="alarm_dismissed">Alarm dismissed</string>
+    <string name="alarm_snoozed">Alarm snoozed by %s</string>
 
     <!--Timer-->
     <string name="timers_notification_msg">Az időzítő fut</string>

@@ -21,6 +21,8 @@
     <string name="sort_by_day_and_alarm_time">Dag en tijd alarm</string>
     <string name="analogue_clock">Analoge klok</string>
     <string name="digital_clock">Digitale klok</string>
+    <string name="alarm_dismissed">Alarm dismissed</string>
+    <string name="alarm_snoozed">Alarm snoozed by %s</string>
     <!--Timer-->
     <string name="timers_notification_msg">Timers lopen</string>
     <string name="timer_single_notification_label_msg">Timer voor %s loopt</string>

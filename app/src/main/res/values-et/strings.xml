@@ -21,6 +21,8 @@
     <string name="sort_by_day_and_alarm_time">Päev ja äratuse aeg</string>
     <string name="analogue_clock">Sihverplaadiga kell</string>
     <string name="digital_clock">Numbritega kell</string>
+    <string name="alarm_dismissed">Alarm dismissed</string>
+    <string name="alarm_snoozed">Alarm snoozed by %s</string>
     <!--Timer-->
     <string name="timers_notification_msg">Taimerid töötavad</string>
     <string name="timer_single_notification_label_msg">%s taimer töötab</string>

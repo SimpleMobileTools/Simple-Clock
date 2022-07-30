@@ -21,6 +21,8 @@
     <string name="sort_by_day_and_alarm_time">Дзень і час будзільніка</string>
     <string name="analogue_clock">Аналагавы гадзіннік</string>
     <string name="digital_clock">Лічбавы гадзіннік</string>
+    <string name="alarm_dismissed">Alarm dismissed</string>
+    <string name="alarm_snoozed">Alarm snoozed by %s</string>
     <!--Timer-->
     <string name="timers_notification_msg">Таймеры запушчаны</string>
     <string name="timer_single_notification_label_msg">Таймер для %s запушчаны</string>
