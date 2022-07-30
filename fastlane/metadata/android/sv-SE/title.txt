@@ -1,1 +1,1 @@
-Simple Clock: Alarm, Stopwatch
+Simpel klocka
