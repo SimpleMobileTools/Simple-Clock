@@ -21,8 +21,8 @@
     <string name="sort_by_day_and_alarm_time">Ден и час на алармата</string>
     <string name="analogue_clock">Аналогов часовник</string>
     <string name="digital_clock">Цифров часовник</string>
-    <string name="alarm_dismissed">Alarm dismissed</string>
-    <string name="alarm_snoozed">Alarm snoozed by %s</string>
+    <string name="alarm_dismissed">Алармата е отхвърлена</string>
+    <string name="alarm_snoozed">Алармата е отложена от %s</string>
     <!--Timer-->
     <string name="timers_notification_msg">Таймерите са включени</string>
     <string name="timer_single_notification_label_msg">Таймерът за %s е включен</string>
@@ -34,7 +34,7 @@
     <!-- Settings -->
     <string name="clock_tab">Часовник</string>
     <string name="alarm_tab">Аларма</string>
-    <string name="stopwatch_tab">Секундомер</string>
+    <string name="stopwatch_tab">Таб \"Хронометър</string>
     <string name="timer_tab">Таймер</string>
     <string name="show_seconds">Покажи секунди</string>
     <string name="increase_volume_gradually">Постепенно увеличавай звука</string>
