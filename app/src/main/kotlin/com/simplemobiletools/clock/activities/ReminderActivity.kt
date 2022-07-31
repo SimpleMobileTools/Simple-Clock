@@ -33,6 +33,7 @@ class ReminderActivity : SimpleActivity() {
     private val swipeGuideFadeHandler = Handler()
     private var isAlarmReminder = false
     private var didVibrate = false
+    private var wasAlarmSnoozed = false
     private var alarm: Alarm? = null
     private var mediaPlayer: MediaPlayer? = null
     private var vibrator: Vibrator? = null
@@ -228,18 +229,20 @@ class ReminderActivity : SimpleActivity() {
         destroyEffects()
         if (config.useSameSnooze) {
             setupAlarmClock(alarm!!, config.snoozeTime * MINUTE_SECONDS)
+            wasAlarmSnoozed = true
             finishActivity()
         } else {
             showPickSecondsDialog(config.snoozeTime * MINUTE_SECONDS, true, cancelCallback = { finishActivity() }) {
                 config.snoozeTime = it / MINUTE_SECONDS
                 setupAlarmClock(alarm!!, it)
+                wasAlarmSnoozed = true
                 finishActivity()
             }
         }
     }
 
     private fun finishActivity() {
-        if (alarm != null && alarm!!.days > 0) {
+        if (!wasAlarmSnoozed && alarm != null && alarm!!.days > 0) {
             scheduleNextAlarm(alarm!!, false)
         }
 
