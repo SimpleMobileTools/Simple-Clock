@@ -15,14 +15,14 @@
     <string name="time_expired">Tijd verstreken</string>
     <string name="clock_and_date">Klok en datum</string>
     <string name="use_text_shadow">Tekstschaduw gebruiken</string>
-    <string name="swipe_right_to_dismiss">Veeg rechts voor afzetten, of links voor snooze.</string>
+    <string name="swipe_right_to_dismiss">Veeg naar rechts voor uitzetten, of naar links voor uitstellen.</string>
     <string name="sort_by_creation_order">Aanmaakvolgorde</string>
     <string name="sort_by_alarm_time">Alarmtijd</string>
     <string name="sort_by_day_and_alarm_time">Dag en tijd alarm</string>
     <string name="analogue_clock">Analoge klok</string>
     <string name="digital_clock">Digitale klok</string>
-    <string name="alarm_dismissed">Alarm dismissed</string>
-    <string name="alarm_snoozed">Alarm snoozed by %s</string>
+    <string name="alarm_dismissed">Alarm uitgezet</string>
+    <string name="alarm_snoozed">Alarm uitgesteld met %s</string>
     <!--Timer-->
     <string name="timers_notification_msg">Timers lopen</string>
     <string name="timer_single_notification_label_msg">Timer voor %s loopt</string>

@@ -21,8 +21,8 @@
     <string name="sort_by_day_and_alarm_time">Gün ve Alarm zamanı</string>
     <string name="analogue_clock">Analog saat</string>
     <string name="digital_clock">Dijital saat</string>
-    <string name="alarm_dismissed">Alarm dismissed</string>
-    <string name="alarm_snoozed">Alarm snoozed by %s</string>
+    <string name="alarm_dismissed">Alarm kapatıldı</string>
+    <string name="alarm_snoozed">Alarm %s ertelendi</string>
     <!--Timer-->
     <string name="timers_notification_msg">Zamanlayıcılar çalışıyor</string>
     <string name="timer_single_notification_label_msg">%s için zamanlayıcı çalışıyor</string>
