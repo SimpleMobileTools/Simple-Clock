@@ -10,8 +10,6 @@ Bazı olaylardan haberdar olmak için kolayca bir zamanlayıcı kurabilirsiniz. 
 
 Ek özellikler, örneğin uygulama ön plandayken cihazın uykuya dalmasını önlemeyi veya 12 veya 24 saatlik zaman formatı arasında geçiş yapmayı içerir. Son olarak, haftanın Pazar mı yoksa Pazartesi mi başlayacağına karar verebilirsiniz.
 
-Varsayılan olarak malzeme tasarımı ve koyu tema ile birlikte gelir, kolay kullanım için harika bir kullanıcı deneyimi sağlar. İnternet erişiminin olmaması size diğer uygulamalardan daha fazla gizlilik, güvenlik ve istikrar sağlar. Bu saat widget'ındaki karanlık tema, mobil alarmınızın keskin rengiyle gözlerinizi kör etmeden geceleri çalar saatinizi ayarlamanıza yardımcı olabilir.
-
 Hiçbir reklam veya gereksiz izinler içermez. Tamamen açık kaynaklıdır, özelleştirilebilir renkler ve farklı canlı duvar kağıtları arasından seçim yapma seçeneği sunar.
 
 Basit Araçlar paketinin tamamına buradan göz atın:
