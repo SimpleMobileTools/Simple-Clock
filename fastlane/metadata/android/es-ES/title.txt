@@ -1,1 +1,1 @@
-Reloj simple: cronómetro
+Reloj simple
