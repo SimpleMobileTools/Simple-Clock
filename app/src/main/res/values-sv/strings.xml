@@ -21,8 +21,8 @@
     <string name="sort_by_day_and_alarm_time">Dag och alarmtid</string>
     <string name="analogue_clock">Analog klocka</string>
     <string name="digital_clock">Digital klocka</string>
-    <string name="alarm_dismissed">Alarm dismissed</string>
-    <string name="alarm_snoozed">Alarm snoozed by %s</string>
+    <string name="alarm_dismissed">Alarmet har avvisats</string>
+    <string name="alarm_snoozed">Alarmet snoozar %s</string>
     <!--Timer-->
     <string name="timers_notification_msg">Timers är på</string>
     <string name="timer_single_notification_label_msg">Timer för %s är på</string>
