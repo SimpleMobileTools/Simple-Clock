@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Clock</string>
+    <string name="app_name">Простые часы</string>
     <string name="app_launcher_name">Часы</string>
     <string name="time_zone">Часовой пояс</string>
     <string name="vibrate">Вибрация</string>
     <string name="no_days_selected">Дни не выбраны</string>
-    <string name="clock">Clock</string>
+    <string name="clock">Часы</string>
     <string name="timer">Таймер</string>
     <string name="stopwatch">Секундомер</string>
     <string name="lap">Круг</string>
@@ -21,7 +21,7 @@
     <string name="sort_by_day_and_alarm_time">Дата и время будильника</string>
     <string name="analogue_clock">Аналоговые часы</string>
     <string name="digital_clock">Цифровые часы</string>
-    <string name="alarm_dismissed">Alarm dismissed</string>
+    <string name="alarm_dismissed">Сигнал тревоги снят</string>
     <string name="alarm_snoozed">Alarm snoozed by %s</string>
     <!--Timer-->
     <string name="timers_notification_msg">Таймеры запущены</string>
@@ -34,10 +34,10 @@
         <item quantity="other">%d таймеров запущено</item>
     </plurals>
     <!-- Settings -->
-    <string name="clock_tab">Часы</string>
-    <string name="alarm_tab">Будильник</string>
-    <string name="stopwatch_tab">Секундомер</string>
-    <string name="timer_tab">Таймер</string>
+    <string name="clock_tab">Вкладка Часы</string>
+    <string name="alarm_tab">Вкладка \"Сигнал тревоги</string>
+    <string name="stopwatch_tab">Вкладка \"Секундомер</string>
+    <string name="timer_tab">Вкладка Таймер</string>
     <string name="show_seconds">Показывать секунды</string>
     <string name="increase_volume_gradually">Увеличивать громкость постепенно</string>
     <!-- FAQ -->
