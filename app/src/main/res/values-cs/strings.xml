@@ -21,8 +21,8 @@
     <string name="sort_by_day_and_alarm_time">Dne a času budíku</string>
     <string name="analogue_clock">Analogové hodiny</string>
     <string name="digital_clock">Digitální hodiny</string>
-    <string name="alarm_dismissed">Alarm dismissed</string>
-    <string name="alarm_snoozed">Alarm snoozed by %s</string>
+    <string name="alarm_dismissed">Budík zrušen</string>
+    <string name="alarm_snoozed">Budík odložen na %s</string>
     <!--Timer-->
     <string name="timers_notification_msg">Časovače běží</string>
     <string name="timer_single_notification_label_msg">Časovač pro %s běží</string>
