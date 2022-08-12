@@ -21,8 +21,8 @@
     <string name="sort_by_day_and_alarm_time">Jour et heure de l\'alarme</string>
     <string name="analogue_clock">Horloge analogique</string>
     <string name="digital_clock">Horloge numérique</string>
-    <string name="alarm_dismissed">Alarm dismissed</string>
-    <string name="alarm_snoozed">Alarm snoozed by %s</string>
+    <string name="alarm_dismissed">Alarme ignorée</string>
+    <string name="alarm_snoozed">Alarme ignorée par %s</string>
     <!--Timer-->
     <string name="timers_notification_msg">Les minuteries sont en marche</string>
     <string name="timer_single_notification_label_msg">La minuterie de %s est en marche</string>
