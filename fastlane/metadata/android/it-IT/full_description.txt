@@ -10,9 +10,9 @@ Puoi facilmente impostare un timer per essere avvisato di alcuni eventi. Puoi si
 
 Altre caratteristiche includono, ad esempio, l'impedimento al dispositivo di addormentarsi mentre l'app è in primo piano o il passaggio dal formato 12 a 24 ore.
 
-Viene fornito con design dei materiali e tema scuro per impostazione predefinita, offre un'ottima esperienza utente per un facile utilizzo. La mancanza di accesso a Internet ti offre maggiore privacy, sicurezza e stabilità rispetto ad altre app. Il tema scuro in questo widget orologio può aiutarti a impostare la sveglia di notte senza accecare i tuoi occhi con i colori nitidi della tua sveglia mobile.
+È dotato di Material Design e tema scuro, per un'ottima esperienza utente dal facile utilizzo. L'assenza di accesso a Internet offre maggiore privacy, sicurezza e stabilità rispetto ad altre applicazioni. Il tema scuro del widget ti sarà comodo se dovrai impostare la sveglia di notte, senza che i colori luminosi ti accechino.
 
-Non contiene pubblicità o autorizzazioni non necessarie. È completamente opensource, offre colori personalizzabili e la possibilità di scegliere tra diversi sfondi live.
+Non contiene pubblicità o autorizzazioni non necessarie. Il codice sorgente è completamente aperto, fornisce colori personalizzabili.
 
 Dai un'occhiata alla suite completa di Simple Tools qui:
 https://www.simplemobiletools.com

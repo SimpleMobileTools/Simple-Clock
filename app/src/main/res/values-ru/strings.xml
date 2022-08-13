@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Clock</string>
+    <string name="app_name">Простые часы</string>
     <string name="app_launcher_name">Часы</string>
     <string name="time_zone">Часовой пояс</string>
     <string name="vibrate">Вибрация</string>
     <string name="no_days_selected">Дни не выбраны</string>
-    <string name="clock">Clock</string>
+    <string name="clock">Часы</string>
     <string name="timer">Таймер</string>
     <string name="stopwatch">Секундомер</string>
     <string name="lap">Круг</string>
@@ -21,8 +21,8 @@
     <string name="sort_by_day_and_alarm_time">Дата и время будильника</string>
     <string name="analogue_clock">Аналоговые часы</string>
     <string name="digital_clock">Цифровые часы</string>
-    <string name="alarm_dismissed">Alarm dismissed</string>
-    <string name="alarm_snoozed">Alarm snoozed by %s</string>
+    <string name="alarm_dismissed">Будильник отключён</string>
+    <string name="alarm_snoozed">Будильник отложен на %s</string>
     <!--Timer-->
     <string name="timers_notification_msg">Таймеры запущены</string>
     <string name="timer_single_notification_label_msg">Таймер для %s запущен</string>
