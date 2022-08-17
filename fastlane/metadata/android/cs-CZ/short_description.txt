@@ -1,1 +1,1 @@
-Kombinace hodin, budíku, stopek a časovače.
+Kombinace hezkého widgetu hodin, budíku, stopek a časovače
