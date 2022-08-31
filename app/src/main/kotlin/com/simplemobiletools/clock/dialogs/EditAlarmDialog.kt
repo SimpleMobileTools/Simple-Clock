@@ -103,12 +103,12 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
             }
         }
 
-        AlertDialog.Builder(activity)
+        activity.getAlertDialogBuilder()
             .setPositiveButton(R.string.ok, null)
             .setNegativeButton(R.string.cancel, null)
-            .create().apply {
-                activity.setupDialogStuff(view, this) {
-                    getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+            .apply {
+                activity.setupDialogStuff(view, this) { alertDialog ->
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
                         if (!activity.config.wasAlarmWarningShown) {
                             ConfirmationDialog(activity, messageId = R.string.alarm_warning, positive = R.string.ok, negative = 0) {
                                 activity.config.wasAlarmWarningShown = true
@@ -143,7 +143,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
 
                         activity.config.alarmLastConfig = alarm
                         callback(alarmId)
-                        dismiss()
+                        alertDialog.dismiss()
                     }
                 }
             }

@@ -1,6 +1,5 @@
 package com.simplemobiletools.clock.dialogs
 
-import androidx.appcompat.app.AlertDialog
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.config
@@ -9,6 +8,7 @@ import com.simplemobiletools.clock.extensions.getModifiedTimeZoneTitle
 import com.simplemobiletools.clock.helpers.EDITED_TIME_ZONE_SEPARATOR
 import com.simplemobiletools.clock.helpers.getDefaultTimeZoneTitle
 import com.simplemobiletools.clock.models.MyTimeZone
+import com.simplemobiletools.commons.extensions.getAlertDialogBuilder
 import com.simplemobiletools.commons.extensions.setupDialogStuff
 import com.simplemobiletools.commons.extensions.showKeyboard
 import com.simplemobiletools.commons.extensions.value
@@ -22,14 +22,14 @@ class EditTimeZoneDialog(val activity: SimpleActivity, val myTimeZone: MyTimeZon
             edit_time_zone_value.text = getDefaultTimeZoneTitle(myTimeZone.id)
         }
 
-        AlertDialog.Builder(activity)
-                .setPositiveButton(R.string.ok, { dialog, which -> dialogConfirmed(view.edit_time_zone_title.value) })
-                .setNegativeButton(R.string.cancel, null)
-                .create().apply {
-                    activity.setupDialogStuff(view, this) {
-                        showKeyboard(view.edit_time_zone_title)
-                    }
+        activity.getAlertDialogBuilder()
+            .setPositiveButton(R.string.ok) { dialog, which -> dialogConfirmed(view.edit_time_zone_title.value) }
+            .setNegativeButton(R.string.cancel, null)
+            .apply {
+                activity.setupDialogStuff(view, this) { alertDialog ->
+                    alertDialog.showKeyboard(view.edit_time_zone_title)
                 }
+            }
     }
 
     private fun dialogConfirmed(newTitle: String) {

@@ -1,8 +1,8 @@
 package com.simplemobiletools.clock.dialogs
 
-import androidx.appcompat.app.AlertDialog
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
+import com.simplemobiletools.commons.extensions.getAlertDialogBuilder
 import com.simplemobiletools.commons.extensions.getProperTextColor
 import com.simplemobiletools.commons.extensions.setupDialogStuff
 import kotlinx.android.synthetic.main.dialog_my_time_picker.view.*
@@ -24,10 +24,10 @@ class MyTimePickerDialogDialog(val activity: SimpleActivity, val initialSeconds:
             my_time_picker_seconds.value = initialSeconds % 60
         }
 
-        AlertDialog.Builder(activity)
+        activity.getAlertDialogBuilder()
             .setPositiveButton(R.string.ok) { dialog, which -> dialogConfirmed() }
             .setNegativeButton(R.string.cancel, null)
-            .create().apply {
+            .apply {
                 activity.setupDialogStuff(view, this)
             }
     }

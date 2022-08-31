@@ -193,7 +193,7 @@ class MainActivity : SimpleActivity() {
         }
 
         main_tabs_holder.getTabAt(view_pager.currentItem)?.select()
-        val bottomBarColor = getBottomTabsBackgroundColor()
+        val bottomBarColor = getBottomNavigationBackgroundColor()
         main_tabs_holder.setBackgroundColor(bottomBarColor)
         updateNavigationBarColor(bottomBarColor)
     }

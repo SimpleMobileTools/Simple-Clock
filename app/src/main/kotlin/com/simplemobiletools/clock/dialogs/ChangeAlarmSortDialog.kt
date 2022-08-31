@@ -1,13 +1,13 @@
 package com.simplemobiletools.clock.dialogs
 
 import android.view.View
-import androidx.appcompat.app.AlertDialog
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.helpers.SORT_BY_ALARM_TIME
 import com.simplemobiletools.clock.helpers.SORT_BY_CREATION_ORDER
 import com.simplemobiletools.clock.helpers.SORT_BY_DATE_AND_TIME
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
+import com.simplemobiletools.commons.extensions.getAlertDialogBuilder
 import com.simplemobiletools.commons.extensions.setupDialogStuff
 import kotlinx.android.synthetic.main.dialog_change_alarm_sort.view.*
 
@@ -22,10 +22,10 @@ class ChangeAlarmSortDialog(val activity: BaseSimpleActivity, val callback: () -
     }
 
     init {
-        AlertDialog.Builder(activity)
+        activity.getAlertDialogBuilder()
             .setPositiveButton(R.string.ok) { _, _ -> dialogConfirmed() }
             .setNegativeButton(R.string.cancel, null)
-            .create().apply {
+            .apply {
                 activity.setupDialogStuff(view, this, R.string.sort_by)
             }
     }
