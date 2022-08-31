@@ -62,6 +62,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/reminder_draggable" />
 
+        <com.simplemobiletools.commons.views.MyTextView
+            android:id="@+id/snooze_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/snooze"
+            app:layout_constraintEnd_toStartOf="@+id/reminder_draggable"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reminder_snooze" />
+
         <ImageView
             android:id="@+id/reminder_draggable_background"
             android:layout_width="@dimen/reminder_background_min_size"
@@ -101,6 +111,16 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/reminder_draggable"
             app:layout_constraintTop_toTopOf="@+id/reminder_draggable" />
+
+        <com.simplemobiletools.commons.views.MyTextView
+            android:id="@+id/dismiss_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dismiss"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/reminder_draggable"
+            app:layout_constraintTop_toBottomOf="@+id/reminder_dismiss" />
 
         <com.simplemobiletools.commons.views.MyTextView
             android:id="@+id/reminder_guide"
