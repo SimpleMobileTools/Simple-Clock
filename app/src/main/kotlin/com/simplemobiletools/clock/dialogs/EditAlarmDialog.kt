@@ -66,7 +66,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
             }
 
             edit_alarm_label_image.applyColorFilter(textColor)
-            edit_alarm_label.setText(alarm.label)
+            edit_alarm.setText(alarm.label)
 
             val dayLetters = activity.resources.getStringArray(R.array.week_day_letters).toList() as ArrayList<String>
             val dayIndexes = arrayListOf(0, 1, 2, 3, 4, 5, 6)
@@ -126,7 +126,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                             }
                         }
 
-                        alarm.label = view.edit_alarm_label.value
+                        alarm.label = view.edit_alarm.value
                         alarm.isEnabled = true
 
                         var alarmId = alarm.id

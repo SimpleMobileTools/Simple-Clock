@@ -59,8 +59,7 @@ class EditTimerDialog(val activity: SimpleActivity, val timer: Timer, val callba
             }
 
             edit_timer_label_image.applyColorFilter(textColor)
-            edit_timer_label.setText(timer.label)
-
+            edit_timer.setText(timer.label)
         }
 
         activity.getAlertDialogBuilder()
@@ -69,7 +68,7 @@ class EditTimerDialog(val activity: SimpleActivity, val timer: Timer, val callba
             .apply {
                 activity.setupDialogStuff(view, this) { alertDialog ->
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-                        timer.label = view.edit_timer_label.value
+                        timer.label = view.edit_timer.value
                         activity.timerHelper.insertOrUpdateTimer(timer) {
                             activity.config.timerLastConfig = timer
                             callback()

@@ -19,7 +19,7 @@ class EditTimeZoneDialog(val activity: SimpleActivity, val myTimeZone: MyTimeZon
     init {
         val view = activity.layoutInflater.inflate(R.layout.dialog_edit_time_zone, null).apply {
             edit_time_zone_title.setText(activity.getModifiedTimeZoneTitle(myTimeZone.id))
-            edit_time_zone_value.text = getDefaultTimeZoneTitle(myTimeZone.id)
+            edit_time_zone_label.setText(getDefaultTimeZoneTitle(myTimeZone.id))
         }
 
         activity.getAlertDialogBuilder()
