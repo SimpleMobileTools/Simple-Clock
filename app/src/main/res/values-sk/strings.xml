@@ -22,6 +22,10 @@
     <string name="digital_clock">Digitálne hodiny</string>
     <string name="alarm_dismissed">Budík bol zastavený</string>
     <string name="alarm_snoozed">Budík bol preložený o %s</string>
+    <string name="no_alarms_found">Nenašli sa žiadne budíky</string>
+    <string name="add_alarm">Pridať budík</string>
+    <string name="no_timers_found">Nenašli sa žiadne časovače</string>
+    <string name="add_timer">Pridať časovač</string>
 
     <!--Timer-->
     <string name="timers_notification_msg">Sú spustené časovače</string>

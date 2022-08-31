@@ -23,6 +23,10 @@
     <string name="digital_clock">Лічбавы гадзіннік</string>
     <string name="alarm_dismissed">Будзільнік адхілены</string>
     <string name="alarm_snoozed">Будзільнік адкладзены на %s</string>
+    <string name="no_alarms_found">No alarms found</string>
+    <string name="add_alarm">Add alarm</string>
+    <string name="no_timers_found">No timers found</string>
+    <string name="add_timer">Add timer</string>
     <!--Timer-->
     <string name="timers_notification_msg">Таймеры запушчаны</string>
     <string name="timer_single_notification_label_msg">Таймер для %s запушчаны</string>
