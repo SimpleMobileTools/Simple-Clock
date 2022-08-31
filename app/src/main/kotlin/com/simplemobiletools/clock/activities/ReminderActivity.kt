@@ -75,6 +75,11 @@ class ReminderActivity : SimpleActivity() {
         setupEffects()
     }
 
+    override fun onResume() {
+        super.onResume()
+        setupToolbar(reminder_toolbar)
+    }
+
     private fun setupButtons() {
         if (isAlarmReminder) {
             setupAlarmButtons()
