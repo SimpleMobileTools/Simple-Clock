@@ -3,8 +3,6 @@ package com.simplemobiletools.clock.activities
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
@@ -31,6 +29,8 @@ class MainActivity : SimpleActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         appLaunched(BuildConfig.APPLICATION_ID)
+        setupOptionsMenu()
+        refreshMenuItems()
         storeStateVariables()
         initFragments()
         setupTabs()
@@ -45,6 +45,7 @@ class MainActivity : SimpleActivity() {
 
     override fun onResume() {
         super.onResume()
+        setupToolbar(main_toolbar)
         val configTextColor = getProperTextColor()
         if (storedTextColor != configTextColor) {
             getInactiveTabIndexes(view_pager.currentItem).forEach {
@@ -79,24 +80,22 @@ class MainActivity : SimpleActivity() {
         config.lastUsedViewPagerPage = view_pager.currentItem
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
-        menu.apply {
-            findItem(R.id.sort).isVisible = view_pager.currentItem == TAB_ALARM
-            updateMenuItemColors(this)
+    private fun setupOptionsMenu() {
+        main_toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.sort -> getViewPagerAdapter()?.showAlarmSortDialog()
+                R.id.settings -> launchSettings()
+                R.id.about -> launchAbout()
+                else -> return@setOnMenuItemClickListener false
+            }
+            return@setOnMenuItemClickListener true
         }
-
-        return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.sort -> getViewPagerAdapter()?.showAlarmSortDialog()
-            R.id.settings -> launchSettings()
-            R.id.about -> launchAbout()
-            else -> return super.onOptionsItemSelected(item)
+    private fun refreshMenuItems() {
+        main_toolbar.menu.apply {
+            findItem(R.id.sort).isVisible = view_pager.currentItem == TAB_ALARM
         }
-        return true
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -144,7 +143,7 @@ class MainActivity : SimpleActivity() {
         view_pager.adapter = viewPagerAdapter
         view_pager.onPageChangeListener {
             main_tabs_holder.getTabAt(it)?.select()
-            invalidateOptionsMenu()
+            refreshMenuItems()
         }
 
         val tabToOpen = intent.getIntExtra(OPEN_TAB, config.lastUsedViewPagerPage)
