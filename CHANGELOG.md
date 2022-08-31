@@ -1,6 +1,13 @@
 Changelog
 ==========
 
+Version 5.9.0 *(2022-08-31)*
+----------------------------
+
+ * Lowered the minimal required OS version back to Android 6
+ * Added Monochrome icon and Language picker support on Android 13+
+ * Added some translation, stability and UX improvements
+
 Version 5.8.1 *(2022-07-03)*
 ----------------------------
 
