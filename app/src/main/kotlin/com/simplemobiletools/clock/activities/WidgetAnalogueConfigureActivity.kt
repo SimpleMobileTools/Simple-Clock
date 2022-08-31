@@ -3,6 +3,7 @@ package com.simplemobiletools.clock.activities
 import android.app.Activity
 import android.appwidget.AppWidgetManager
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.SeekBar
@@ -37,6 +38,7 @@ class WidgetAnalogueConfigureActivity : SimpleActivity() {
         }
 
         config_analogue_save.setOnClickListener { saveConfig() }
+        config_analogue_save.setTextColor(getProperPrimaryColor().getContrastColor())
         config_analogue_bg_color.setOnClickListener { pickBackgroundColor() }
 
         val primaryColor = getProperPrimaryColor()
@@ -53,8 +55,7 @@ class WidgetAnalogueConfigureActivity : SimpleActivity() {
 
     override fun onResume() {
         super.onResume()
-        window.decorView.setBackgroundColor(0)
-
+        setupToolbar(config_toolbar)
         if (mFeatureLockedDialog != null && isOrWasThankYouInstalled()) {
             mFeatureLockedDialog?.dismissDialog()
         }
@@ -107,6 +108,7 @@ class WidgetAnalogueConfigureActivity : SimpleActivity() {
         mBgColor = mBgColorWithoutTransparency.adjustAlpha(mBgAlpha)
         config_analogue_bg_color.setFillWithStroke(mBgColor, mBgColor)
         config_analogue_background.applyColorFilter(mBgColor)
+        config_analogue_save.backgroundTintList = ColorStateList.valueOf(getProperPrimaryColor())
     }
 
     private val bgSeekbarChangeListener = object : SeekBar.OnSeekBarChangeListener {

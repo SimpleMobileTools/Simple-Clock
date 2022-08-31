@@ -3,6 +3,7 @@ package com.simplemobiletools.clock.activities
 import android.app.Activity
 import android.appwidget.AppWidgetManager
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.SeekBar
@@ -55,8 +56,7 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
 
     override fun onResume() {
         super.onResume()
-        window.decorView.setBackgroundColor(0)
-
+        setupToolbar(config_toolbar)
         if (mFeatureLockedDialog != null && isOrWasThankYouInstalled()) {
             mFeatureLockedDialog?.dismissDialog()
         }
@@ -122,12 +122,14 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
         config_digital_text_color.setFillWithStroke(mTextColor, mTextColor)
         config_digital_time.setTextColor(mTextColor)
         config_digital_date.setTextColor(mTextColor)
+        config_digital_save.setTextColor(getProperPrimaryColor().getContrastColor())
     }
 
     private fun updateBackgroundColor() {
         mBgColor = mBgColorWithoutTransparency.adjustAlpha(mBgAlpha)
         config_digital_bg_color.setFillWithStroke(mBgColor, mBgColor)
         config_digital_background.applyColorFilter(mBgColor)
+        config_digital_save.backgroundTintList = ColorStateList.valueOf(getProperPrimaryColor())
     }
 
     private val bgSeekbarChangeListener = object : SeekBar.OnSeekBarChangeListener {
