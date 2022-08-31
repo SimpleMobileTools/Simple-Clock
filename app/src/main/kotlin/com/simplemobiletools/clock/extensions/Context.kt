@@ -290,31 +290,33 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
     val channelId = timer.channelId ?: "simple_timer_channel_${soundUri}_${System.currentTimeMillis()}"
     timerHelper.insertOrUpdateTimer(timer.copy(channelId = channelId))
 
-    try {
-        notificationManager.deleteNotificationChannel(channelId)
-    } catch (e: Exception) {
-    }
-
-    val audioAttributes = AudioAttributes.Builder()
-        .setUsage(AudioAttributes.USAGE_ALARM)
-        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-        .setLegacyStreamType(STREAM_ALARM)
-        .build()
-
-    val name = getString(R.string.timer)
-    val importance = NotificationManager.IMPORTANCE_HIGH
-    NotificationChannel(channelId, name, importance).apply {
-        setBypassDnd(true)
-        enableLights(true)
-        lightColor = getProperPrimaryColor()
-        setSound(Uri.parse(soundUri), audioAttributes)
-
-        if (!timer.vibrate) {
-            vibrationPattern = longArrayOf(0L)
+    if (isOreoPlus()) {
+        try {
+            notificationManager.deleteNotificationChannel(channelId)
+        } catch (e: Exception) {
         }
 
-        enableVibration(timer.vibrate)
-        notificationManager.createNotificationChannel(this)
+        val audioAttributes = AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_ALARM)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .setLegacyStreamType(STREAM_ALARM)
+            .build()
+
+        val name = getString(R.string.timer)
+        val importance = NotificationManager.IMPORTANCE_HIGH
+        NotificationChannel(channelId, name, importance).apply {
+            setBypassDnd(true)
+            enableLights(true)
+            lightColor = getProperPrimaryColor()
+            setSound(Uri.parse(soundUri), audioAttributes)
+
+            if (!timer.vibrate) {
+                vibrationPattern = longArrayOf(0L)
+            }
+
+            enableVibration(timer.vibrate)
+            notificationManager.createNotificationChannel(this)
+        }
     }
 
     val title = if (timer.label.isEmpty()) {
@@ -386,22 +388,24 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
         getString(R.string.alarm)
     }
 
-    val audioAttributes = AudioAttributes.Builder()
-        .setUsage(AudioAttributes.USAGE_ALARM)
-        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-        .setLegacyStreamType(STREAM_ALARM)
-        .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
-        .build()
+    if (isOreoPlus()) {
+        val audioAttributes = AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_ALARM)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .setLegacyStreamType(STREAM_ALARM)
+            .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
+            .build()
 
-    val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-    val importance = NotificationManager.IMPORTANCE_HIGH
-    NotificationChannel(channelId, label, importance).apply {
-        setBypassDnd(true)
-        enableLights(true)
-        lightColor = getProperPrimaryColor()
-        enableVibration(alarm.vibrate)
-        setSound(Uri.parse(soundUri), audioAttributes)
-        notificationManager.createNotificationChannel(this)
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val importance = NotificationManager.IMPORTANCE_HIGH
+        NotificationChannel(channelId, label, importance).apply {
+            setBypassDnd(true)
+            enableLights(true)
+            lightColor = getProperPrimaryColor()
+            enableVibration(alarm.vibrate)
+            setSound(Uri.parse(soundUri), audioAttributes)
+            notificationManager.createNotificationChannel(this)
+        }
     }
 
     val dismissIntent = getHideAlarmPendingIntent(alarm)

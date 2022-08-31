@@ -6,9 +6,7 @@ import android.app.NotificationManager
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.os.Handler
 import android.os.IBinder
-import android.os.Looper
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.simplemobiletools.clock.R
@@ -19,6 +17,7 @@ import com.simplemobiletools.clock.helpers.INVALID_TIMER_ID
 import com.simplemobiletools.clock.helpers.TIMER_RUNNING_NOTIF_ID
 import com.simplemobiletools.clock.models.TimerEvent
 import com.simplemobiletools.clock.models.TimerState
+import com.simplemobiletools.commons.helpers.isOreoPlus
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -52,10 +51,7 @@ class TimerService : Service() {
                     firstTimer.label.isNotEmpty() -> getString(R.string.timer_single_notification_label_msg, firstTimer.label)
                     else -> resources.getQuantityString(R.plurals.timer_notification_msg, runningTimers.size, runningTimers.size)
                 }
-
-                Handler(Looper.getMainLooper()).post {
-                    startForeground(TIMER_RUNNING_NOTIF_ID, notification(formattedDuration, contextText, firstTimer.id!!))
-                }
+                startForeground(TIMER_RUNNING_NOTIF_ID, notification(formattedDuration, contextText, firstTimer.id!!))
             } else {
                 stopService()
             }
@@ -76,7 +72,11 @@ class TimerService : Service() {
 
     private fun stopService() {
         isStopping = true
-        stopForeground(true)
+        if (isOreoPlus()) {
+            stopForeground(true)
+        } else {
+            stopSelf()
+        }
     }
 
     override fun onDestroy() {
@@ -88,10 +88,12 @@ class TimerService : Service() {
         val channelId = "simple_alarm_timer"
         val label = getString(R.string.timer)
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val importance = NotificationManager.IMPORTANCE_DEFAULT
-        NotificationChannel(channelId, label, importance).apply {
-            setSound(null, null)
-            notificationManager.createNotificationChannel(this)
+        if (isOreoPlus()) {
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            NotificationChannel(channelId, label, importance).apply {
+                setSound(null, null)
+                notificationManager.createNotificationChannel(this)
+            }
         }
 
         val builder = NotificationCompat.Builder(this)
@@ -114,9 +116,7 @@ class TimerService : Service() {
 }
 
 fun startTimerService(context: Context) {
-    Handler(Looper.getMainLooper()).post {
-        ContextCompat.startForegroundService(context, Intent(context, TimerService::class.java))
-    }
+    ContextCompat.startForegroundService(context, Intent(context, TimerService::class.java))
 }
 
 object TimerStopService
