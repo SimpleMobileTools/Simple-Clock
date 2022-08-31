@@ -119,9 +119,14 @@ class StopwatchFragment : Fragment() {
     }
 
     private fun togglePlayPause() {
-        Stopwatch.toggle(true)
+        (activity as SimpleActivity).handleNotificationPermission {
+            if (it) {
+                Stopwatch.toggle(true)
+            } else {
+                activity?.toast(R.string.no_post_notifications_permissions)
+            }
+        }
     }
-
 
     private fun updateDisplayedText(totalTime: Long, lapTime: Long, useLongerMSFormat: Boolean) {
         view.stopwatch_time.text = totalTime.formatStopwatchTime(useLongerMSFormat)

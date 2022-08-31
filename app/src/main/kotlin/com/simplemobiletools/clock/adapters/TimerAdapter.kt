@@ -118,11 +118,17 @@ class TimerAdapter(
 
             timer_play_pause.applyColorFilter(textColor)
             timer_play_pause.setOnClickListener {
-                when (val state = timer.state) {
-                    is TimerState.Idle -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis))
-                    is TimerState.Paused -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, state.tick))
-                    is TimerState.Running -> EventBus.getDefault().post(TimerEvent.Pause(timer.id!!, state.tick))
-                    is TimerState.Finished -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis))
+                (activity as SimpleActivity).handleNotificationPermission {
+                    if (it) {
+                        when (val state = timer.state) {
+                            is TimerState.Idle -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis))
+                            is TimerState.Paused -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, state.tick))
+                            is TimerState.Running -> EventBus.getDefault().post(TimerEvent.Pause(timer.id!!, state.tick))
+                            is TimerState.Finished -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis))
+                        }
+                    } else {
+                        activity.toast(R.string.no_post_notifications_permissions)
+                    }
                 }
             }
 

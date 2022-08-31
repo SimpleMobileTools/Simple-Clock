@@ -122,14 +122,20 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     }
 
     override fun alarmToggled(id: Int, isEnabled: Boolean) {
-        if (requireContext().dbHelper.updateAlarmEnabledState(id, isEnabled)) {
-            val alarm = alarms.firstOrNull { it.id == id } ?: return
-            alarm.isEnabled = isEnabled
-            checkAlarmState(alarm)
-        } else {
-            requireActivity().toast(R.string.unknown_error_occurred)
+        (activity as SimpleActivity).handleNotificationPermission {
+            if (it) {
+                if (requireContext().dbHelper.updateAlarmEnabledState(id, isEnabled)) {
+                    val alarm = alarms.firstOrNull { it.id == id } ?: return@handleNotificationPermission
+                    alarm.isEnabled = isEnabled
+                    checkAlarmState(alarm)
+                } else {
+                    requireActivity().toast(R.string.unknown_error_occurred)
+                }
+                requireContext().updateWidgets()
+            } else {
+                activity?.toast(R.string.no_post_notifications_permissions)
+            }
         }
-        requireContext().updateWidgets()
     }
 
     private fun checkAlarmState(alarm: Alarm) {

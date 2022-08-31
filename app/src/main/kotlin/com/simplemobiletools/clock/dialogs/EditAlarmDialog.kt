@@ -130,20 +130,26 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                         alarm.isEnabled = true
 
                         var alarmId = alarm.id
-                        if (alarm.id == 0) {
-                            alarmId = activity.dbHelper.insertAlarm(alarm)
-                            if (alarmId == -1) {
-                                activity.toast(R.string.unknown_error_occurred)
-                            }
-                        } else {
-                            if (!activity.dbHelper.updateAlarm(alarm)) {
-                                activity.toast(R.string.unknown_error_occurred)
+                        activity.handleNotificationPermission {
+                            if (it) {
+                                if (alarm.id == 0) {
+                                    alarmId = activity.dbHelper.insertAlarm(alarm)
+                                    if (alarmId == -1) {
+                                        activity.toast(R.string.unknown_error_occurred)
+                                    }
+                                } else {
+                                    if (!activity.dbHelper.updateAlarm(alarm)) {
+                                        activity.toast(R.string.unknown_error_occurred)
+                                    }
+                                }
+
+                                activity.config.alarmLastConfig = alarm
+                                callback(alarmId)
+                                alertDialog.dismiss()
+                            } else {
+                                activity.toast(R.string.no_post_notifications_permissions)
                             }
                         }
-
-                        activity.config.alarmLastConfig = alarm
-                        callback(alarmId)
-                        alertDialog.dismiss()
                     }
                 }
             }
