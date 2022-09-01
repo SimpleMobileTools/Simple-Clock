@@ -23,6 +23,7 @@ import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.MINUTE_SECONDS
 import com.simplemobiletools.commons.helpers.SILENT
+import com.simplemobiletools.commons.helpers.isOreoMr1Plus
 import com.simplemobiletools.commons.helpers.isOreoPlus
 import kotlinx.android.synthetic.main.activity_reminder.*
 
@@ -269,8 +270,10 @@ class ReminderActivity : SimpleActivity() {
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
         )
 
-        setShowWhenLocked(true)
-        setTurnScreenOn(true)
-        (getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager).requestDismissKeyguard(this, null)
+        if (isOreoMr1Plus()) {
+            setShowWhenLocked(true)
+            setTurnScreenOn(true)
+            (getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager).requestDismissKeyguard(this, null)
+        }
     }
 }
