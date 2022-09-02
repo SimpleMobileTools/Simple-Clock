@@ -23,16 +23,17 @@
     <string name="digital_clock">Orologio digitale</string>
     <string name="alarm_dismissed">Allarme disattivato</string>
     <string name="alarm_snoozed">Allarme posticipato da %s</string>
-    <string name="no_alarms_found">No alarms found</string>
-    <string name="add_alarm">Add alarm</string>
-    <string name="no_timers_found">No timers found</string>
-    <string name="add_timer">Add timer</string>
+    <string name="no_alarms_found">Nessun allarme trovato</string>
+    <string name="add_alarm">Aggiungi allarme</string>
+    <string name="no_timers_found">Nessun contaminuti trovato</string>
+    <string name="add_timer">Aggiungi contaminuti</string>
     <!--Timer-->
     <string name="timers_notification_msg">I contaminuti sono in funzione</string>
     <string name="timer_single_notification_label_msg">Il contaminuti per %s è in funzione</string>
     <string name="new_timer">Nuovo contaminuti</string>
     <plurals name="timer_notification_msg">
         <item quantity="one">%d contaminuti è in funzione</item>
+        <item quantity="many">%d contaminuti sono in funzione</item>
         <item quantity="other">%d contaminuti sono in funzione</item>
     </plurals>
     <!-- Settings -->
