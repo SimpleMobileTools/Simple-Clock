@@ -1,6 +1,11 @@
 Changelog
 ==========
 
+Version 5.9.2 *(2022-09-02)*
+----------------------------
+
+ * Adding some crashfixes on lower OS versions
+
 Version 5.9.1 *(2022-09-01)*
 ----------------------------
 
