@@ -21,8 +21,8 @@
     <string name="sort_by_day_and_alarm_time">Día y hora de la alarma</string>
     <string name="analogue_clock">Reloj analógico</string>
     <string name="digital_clock">Reloj digital</string>
-    <string name="alarm_dismissed">Alarm dismissed</string>
-    <string name="alarm_snoozed">Alarm snoozed by %s</string>
+    <string name="alarm_dismissed">Alarma desechada</string>
+    <string name="alarm_snoozed">Repetir alarma en %s</string>
     <string name="no_alarms_found">No alarms found</string>
     <string name="add_alarm">Add alarm</string>
     <string name="no_timers_found">No timers found</string>
