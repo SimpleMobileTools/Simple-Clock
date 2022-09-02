@@ -142,7 +142,11 @@ fun Context.showRemainingTimeMessage(totalMinutes: Int) {
 fun Context.setupAlarmClock(alarm: Alarm, triggerInSeconds: Int) {
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
     val targetMS = System.currentTimeMillis() + triggerInSeconds * 1000
-    AlarmManagerCompat.setAlarmClock(alarmManager, targetMS, getOpenAlarmTabIntent(), getAlarmIntent(alarm))
+    try {
+        AlarmManagerCompat.setAlarmClock(alarmManager, targetMS, getOpenAlarmTabIntent(), getAlarmIntent(alarm))
+    } catch (e: Exception) {
+        showErrorToast(e)
+    }
 }
 
 fun Context.getOpenAlarmTabIntent(): PendingIntent {

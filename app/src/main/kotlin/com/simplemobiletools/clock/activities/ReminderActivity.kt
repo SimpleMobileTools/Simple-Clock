@@ -21,10 +21,7 @@ import com.simplemobiletools.clock.helpers.ALARM_ID
 import com.simplemobiletools.clock.helpers.getPassedSeconds
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.MINUTE_SECONDS
-import com.simplemobiletools.commons.helpers.SILENT
-import com.simplemobiletools.commons.helpers.isOreoMr1Plus
-import com.simplemobiletools.commons.helpers.isOreoPlus
+import com.simplemobiletools.commons.helpers.*
 import kotlinx.android.synthetic.main.activity_reminder.*
 
 class ReminderActivity : SimpleActivity() {
@@ -176,7 +173,7 @@ class ReminderActivity : SimpleActivity() {
         }
 
         val doVibrate = if (alarm != null) alarm!!.vibrate else config.timerVibrate
-        if (doVibrate) {
+        if (doVibrate && isOreoPlus()) {
             val pattern = LongArray(2) { 500 }
             vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
             vibrator?.vibrate(VibrationEffect.createWaveform(pattern, 0))
