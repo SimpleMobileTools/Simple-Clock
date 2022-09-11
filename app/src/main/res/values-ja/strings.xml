@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">時計</string>
@@ -15,28 +16,25 @@
     <string name="clock_and_date">時計と日付</string>
     <string name="use_text_shadow">文字に影を付ける</string>
     <string name="swipe_right_to_dismiss">右にスワイプして終了、または左にスワイプしてスヌーズ。</string>
-    <string name="sort_by_creation_order">Creation order</string>
-    <string name="sort_by_alarm_time">Alarm time</string>
-    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
+    <string name="sort_by_creation_order">作成順</string>
+    <string name="sort_by_alarm_time">アラーム時刻</string>
+    <string name="sort_by_day_and_alarm_time">曜日とアラーム時刻</string>
     <string name="analogue_clock">Analogue clock</string>
     <string name="digital_clock">Digital clock</string>
     <string name="alarm_dismissed">Alarm dismissed</string>
     <string name="alarm_snoozed">Alarm snoozed by %s</string>
     <string name="no_alarms_found">No alarms found</string>
-    <string name="add_alarm">Add alarm</string>
+    <string name="add_alarm">アラームを追加</string>
     <string name="no_timers_found">No timers found</string>
-    <string name="add_timer">Add timer</string>
-
+    <string name="add_timer">タイマーを追加</string>
     <!--Timer-->
     <string name="timers_notification_msg">Timers are running</string>
     <string name="timer_single_notification_label_msg">Timer for %s is running</string>
     <string name="new_timer">New Timer</string>
-
     <plurals name="timer_notification_msg">
         <item quantity="one">%d timer is running</item>
         <item quantity="other">%d timers are running</item>
     </plurals>
-
     <!-- Settings -->
     <string name="clock_tab">時計</string>
     <string name="alarm_tab">アラーム</string>
@@ -44,7 +42,6 @@
     <string name="timer_tab">タイマー</string>
     <string name="show_seconds">秒を表示</string>
     <string name="increase_volume_gradually">音量を徐々に大きくする</string>
-
     <!-- FAQ -->
     <string name="faq_1_title">How can I change lap sorting at the stopwatch tab?</string>
     <string name="faq_1_text">Just click on any of the columns, that will make the laps be sorted by the given column. With additional clicks you can toggle between ascending and descending sorting.</string>

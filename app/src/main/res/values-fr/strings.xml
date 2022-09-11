@@ -23,16 +23,17 @@
     <string name="digital_clock">Horloge numérique</string>
     <string name="alarm_dismissed">Alarme ignorée</string>
     <string name="alarm_snoozed">Alarme ignorée par %s</string>
-    <string name="no_alarms_found">No alarms found</string>
-    <string name="add_alarm">Add alarm</string>
-    <string name="no_timers_found">No timers found</string>
-    <string name="add_timer">Add timer</string>
+    <string name="no_alarms_found">Aucune alarme trouvée</string>
+    <string name="add_alarm">Ajouter une alarme</string>
+    <string name="no_timers_found">Aucune minuterie trouvée</string>
+    <string name="add_timer">Ajouter une minuterie</string>
     <!--Timer-->
     <string name="timers_notification_msg">Les minuteries sont en marche</string>
     <string name="timer_single_notification_label_msg">La minuterie de %s est en marche</string>
     <string name="new_timer">Nouvelle minuterie</string>
     <plurals name="timer_notification_msg">
         <item quantity="one">%d minuterie est en marche</item>
+        <item quantity="many">%d minuteries sont en marche</item>
         <item quantity="other">%d minuteries sont en marche</item>
     </plurals>
     <!-- Settings -->
