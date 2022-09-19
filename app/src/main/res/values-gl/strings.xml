@@ -44,7 +44,7 @@
     <string name="increase_volume_gradually">Aumentar volume gradualmente</string>
     <!-- FAQ -->
     <string name="faq_1_title">Como podo cambiar a clasificación das voltas na guía Cronómetro?</string>
-    <string name="faq_1_text">Just click on any of the columns, that will make the laps be sorted by the given column. With additional clicks you can toggle between ascending and descending sorting.</string>
+    <string name="faq_1_text">So faga clic en calquera das columnas, iso fará que se ordenen pola columna dada. Con clics adicionais, pode alternar entre clasificación ascendente e descendente.</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
