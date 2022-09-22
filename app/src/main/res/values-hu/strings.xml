@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Óra</string>
@@ -6,7 +7,7 @@
     <string name="no_days_selected">Nincs nap kiválasztva</string>
     <string name="clock">Clock</string>
     <string name="timer">Időzítő</string>
-    <string name="stopwatch">Stopwatch</string>
+    <string name="stopwatch">stopperóra</string>
     <string name="lap">Kör</string>
     <string name="stopwatch_stopped">A stopper leállt</string>
     <string name="timer_stopped">Az időzítő leállt</string>
@@ -17,26 +18,23 @@
     <string name="swipe_right_to_dismiss">Jobbra mosás a kikapcsoláshoz, balra a némításhoz.</string>
     <string name="sort_by_creation_order">Létrehozási sorrend</string>
     <string name="sort_by_alarm_time">Ébresztő idő</string>
-    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
-    <string name="analogue_clock">Analogue clock</string>
-    <string name="digital_clock">Digital clock</string>
-    <string name="alarm_dismissed">Alarm dismissed</string>
-    <string name="alarm_snoozed">Alarm snoozed by %s</string>
-    <string name="no_alarms_found">No alarms found</string>
-    <string name="add_alarm">Add alarm</string>
-    <string name="no_timers_found">No timers found</string>
-    <string name="add_timer">Add timer</string>
-
+    <string name="sort_by_day_and_alarm_time">Nap és ébresztési idő</string>
+    <string name="analogue_clock">Analóg óra</string>
+    <string name="digital_clock">Digitális óra</string>
+    <string name="alarm_dismissed">Riasztás törölve</string>
+    <string name="alarm_snoozed">Az ébresztő %s-al elhalasztva</string>
+    <string name="no_alarms_found">Nincs riasztás</string>
+    <string name="add_alarm">Riasztás hozzáadása</string>
+    <string name="no_timers_found">Nincsenek időzitők</string>
+    <string name="add_timer">Időzítő hozzáadása</string>
     <!--Timer-->
-    <string name="timers_notification_msg">Az időzítő fut</string>
-    <string name="timer_single_notification_label_msg">A %s időzítő fut</string>
+    <string name="timers_notification_msg">Az időzítő megy</string>
+    <string name="timer_single_notification_label_msg">A %s időzítő elindult</string>
     <string name="new_timer">Új időzítő</string>
-
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d időzítő fut</item>
-        <item quantity="other">%d időzítő fut</item>
+        <item quantity="one">%d időzítő elindult</item>
+        <item quantity="other">%d időzítők elindultak</item>
     </plurals>
-
     <!-- Settings -->
     <string name="clock_tab">Óra fül</string>
     <string name="alarm_tab">Vekker fül</string>
@@ -44,7 +42,6 @@
     <string name="timer_tab">Időzítő fül</string>
     <string name="show_seconds">Másodperc mutatása</string>
     <string name="increase_volume_gradually">Hangerő lépésenként emelése</string>
-
     <!-- FAQ -->
     <string name="faq_1_title">Hogyan változtathatom meg a körök rendezését a stopperóra fülön?</string>
     <string name="faq_1_text">Csak kattintson bármelyik oszlopra, ettől a körök az adott oszlop szerint lesznek rendezve. További kattintásokkal válthatsz a növekvő és csökkenő rendezés között.</string>
