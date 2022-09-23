@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Clock</string>
+    <string name="app_name">Reloxo sinxelo</string>
     <string name="app_launcher_name">Reloxo</string>
     <string name="time_zone">Franxa horario</string>
     <string name="vibrate">Vibrar</string>
