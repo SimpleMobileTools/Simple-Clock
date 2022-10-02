@@ -1,1 +1,1 @@
-Egy gyönyörű óra widget, ébresztőóra, stopperóra, időzítő kombinációja
+Egy gyönyörű óramodul, ébresztőóra, stopperóra és időzítő kombinációja
