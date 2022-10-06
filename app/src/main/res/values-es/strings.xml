@@ -5,7 +5,7 @@
     <string name="time_zone">Zona horaria</string>
     <string name="vibrate">Vibrar</string>
     <string name="no_days_selected">Ningún día seleccionado</string>
-    <string name="clock">Clock</string>
+    <string name="clock">Reloj</string>
     <string name="timer">Temporizador</string>
     <string name="stopwatch">Cronómetro</string>
     <string name="lap">Vuelta</string>
@@ -14,7 +14,7 @@
     <string name="max_reminder_duration">Máxima duración de recordatorio</string>
     <string name="time_expired">Tiempo terminado</string>
     <string name="clock_and_date">Fecha y hora</string>
-    <string name="use_text_shadow">Usar sombra de texto</string>
+    <string name="use_text_shadow">Usar sombra en el texto</string>
     <string name="swipe_right_to_dismiss">Desliza a la derecha para descartar, o a la izquierda para posponer.</string>
     <string name="sort_by_creation_order">Orden de creación</string>
     <string name="sort_by_alarm_time">Hora de la alarma</string>
