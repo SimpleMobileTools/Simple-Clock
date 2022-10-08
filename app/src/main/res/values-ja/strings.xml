@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Clock</string>
+    <string name="app_name">Simple 時計</string>
     <string name="app_launcher_name">時計</string>
     <string name="time_zone">タイムゾーン</string>
     <string name="vibrate">バイブレーション</string>
@@ -19,8 +19,8 @@
     <string name="sort_by_creation_order">作成順</string>
     <string name="sort_by_alarm_time">アラーム時刻</string>
     <string name="sort_by_day_and_alarm_time">曜日とアラーム時刻</string>
-    <string name="analogue_clock">Analogue clock</string>
-    <string name="digital_clock">Digital clock</string>
+    <string name="analogue_clock">アナログ時計</string>
+    <string name="digital_clock">デジタル時計</string>
     <string name="alarm_dismissed">Alarm dismissed</string>
     <string name="alarm_snoozed">Alarm snoozed by %s</string>
     <string name="no_alarms_found">No alarms found</string>
@@ -30,7 +30,7 @@
     <!--Timer-->
     <string name="timers_notification_msg">Timers are running</string>
     <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">New Timer</string>
+    <string name="new_timer">新しいタイマー</string>
     <plurals name="timer_notification_msg">
         <item quantity="one">%d timer is running</item>
         <item quantity="other">%d timers are running</item>
