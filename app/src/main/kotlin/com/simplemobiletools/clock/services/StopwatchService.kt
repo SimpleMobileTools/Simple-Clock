@@ -17,6 +17,8 @@ import com.simplemobiletools.clock.helpers.STOPWATCH_RUNNING_NOTIF_ID
 import com.simplemobiletools.clock.helpers.Stopwatch
 import com.simplemobiletools.clock.helpers.Stopwatch.State
 import com.simplemobiletools.clock.helpers.Stopwatch.UpdateListener
+import com.simplemobiletools.commons.helpers.isNougatPlus
+import com.simplemobiletools.commons.helpers.isOreoPlus
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -70,10 +72,13 @@ class StopwatchService : Service() {
         val channelId = "simple_alarm_stopwatch"
         val label = getString(R.string.stopwatch)
         val importance = NotificationManager.IMPORTANCE_DEFAULT
-        NotificationChannel(channelId, label, importance).apply {
-            setSound(null, null)
-            notificationManager.createNotificationChannel(this)
+        if (isOreoPlus()) {
+            NotificationChannel(channelId, label, importance).apply {
+                setSound(null, null)
+                notificationManager.createNotificationChannel(this)
+            }
         }
+
         return NotificationCompat.Builder(this, channelId)
             .setContentTitle(title)
             .setContentText(contentText)
@@ -88,12 +93,8 @@ class StopwatchService : Service() {
 
     private fun updateNotification(totalTime: Long) {
         val formattedDuration = totalTime.getFormattedDuration()
-        notificationBuilder.setContentTitle(formattedDuration)
-            .setContentText(getString(R.string.stopwatch))
-        notificationManager.notify(
-            STOPWATCH_RUNNING_NOTIF_ID,
-            notificationBuilder.build()
-        )
+        notificationBuilder.setContentTitle(formattedDuration).setContentText(getString(R.string.stopwatch))
+        notificationManager.notify(STOPWATCH_RUNNING_NOTIF_ID, notificationBuilder.build())
     }
 
     private val updateListener = object : UpdateListener {
@@ -104,7 +105,7 @@ class StopwatchService : Service() {
         }
 
         override fun onStateChanged(state: State) {
-            if (state == State.STOPPED) {
+            if (state == State.STOPPED && isNougatPlus()) {
                 stopForeground(STOP_FOREGROUND_REMOVE)
             }
         }

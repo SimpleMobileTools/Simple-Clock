@@ -6,7 +6,9 @@ import android.app.NotificationManager
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.simplemobiletools.clock.R
@@ -51,7 +53,10 @@ class TimerService : Service() {
                     firstTimer.label.isNotEmpty() -> getString(R.string.timer_single_notification_label_msg, firstTimer.label)
                     else -> resources.getQuantityString(R.plurals.timer_notification_msg, runningTimers.size, runningTimers.size)
                 }
-                startForeground(TIMER_RUNNING_NOTIF_ID, notification(formattedDuration, contextText, firstTimer.id!!))
+
+                Handler(Looper.getMainLooper()).post {
+                    startForeground(TIMER_RUNNING_NOTIF_ID, notification(formattedDuration, contextText, firstTimer.id!!))
+                }
             } else {
                 stopService()
             }
@@ -116,7 +121,9 @@ class TimerService : Service() {
 }
 
 fun startTimerService(context: Context) {
-    ContextCompat.startForegroundService(context, Intent(context, TimerService::class.java))
+    Handler(Looper.getMainLooper()).post {
+        ContextCompat.startForegroundService(context, Intent(context, TimerService::class.java))
+    }
 }
 
 object TimerStopService
