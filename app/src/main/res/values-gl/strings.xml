@@ -9,14 +9,14 @@
     <string name="timer">Temporizador</string>
     <string name="stopwatch">Cronómetro</string>
     <string name="lap">Volta</string>
-    <string name="stopwatch_stopped">Cronómetro parado</string>
-    <string name="timer_stopped">Temporizador parado</string>
-    <string name="max_reminder_duration">Duración máxima do aviso</string>
+    <string name="stopwatch_stopped">O cronómetro detívose</string>
+    <string name="timer_stopped">O temporizador detívose</string>
+    <string name="max_reminder_duration">Duración máxima do recordatorio</string>
     <string name="time_expired">Tempo vencido</string>
     <string name="clock_and_date">Reloxo e data</string>
     <string name="use_text_shadow">Utilizar sombras</string>
     <string name="swipe_right_to_dismiss">Deslice á dereita para descartar e á esquerda para suspender.</string>
-    <string name="sort_by_creation_order">Orde de creación</string>
+    <string name="sort_by_creation_order">Orde da creación</string>
     <string name="sort_by_alarm_time">Hora dá alarma</string>
     <string name="sort_by_day_and_alarm_time">Día e hora dá alarma</string>
     <string name="analogue_clock">Reloxo analóxico</string>
@@ -24,7 +24,7 @@
     <string name="alarm_dismissed">Alarma descartada</string>
     <string name="alarm_snoozed">Alarma posposta por %s</string>
     <string name="no_alarms_found">Non se atoparon alarmas</string>
-    <string name="add_alarm">Add alarm</string>
+    <string name="add_alarm">Engadir alarma</string>
     <string name="no_timers_found">Non se atoparon temporizadores</string>
     <string name="add_timer">Engadir temporizador</string>
     <!--Timer-->
@@ -36,14 +36,14 @@
         <item quantity="other">%d temporizadores atopanse en execución</item>
     </plurals>
     <!-- Settings -->
-    <string name="clock_tab">Reloxo</string>
-    <string name="alarm_tab">Alarma</string>
-    <string name="stopwatch_tab">Cronómetro</string>
-    <string name="timer_tab">Temporizador</string>
-    <string name="show_seconds">Mostrar segundos</string>
-    <string name="increase_volume_gradually">Aumentar volume gradualmente</string>
+    <string name="clock_tab">Ficha do reloxo</string>
+    <string name="alarm_tab">Ficha da alarma</string>
+    <string name="stopwatch_tab">Ficha do cronómetro</string>
+    <string name="timer_tab">Ficha do temporizador</string>
+    <string name="show_seconds">Mostralos segundos</string>
+    <string name="increase_volume_gradually">Aumentalo volume gradualmente</string>
     <!-- FAQ -->
-    <string name="faq_1_title">Como podo cambiar a clasificación das voltas na guía Cronómetro?</string>
+    <string name="faq_1_title">Como podo cambiala clasificación das voltas na guía do cronómetro\?</string>
     <string name="faq_1_text">So faga clic en calquera das columnas, iso fará que se ordenen pola columna dada. Con clics adicionais, pode alternar entre clasificación ascendente e descendente.</string>
     <!--
         Haven't found some strings? There's more at

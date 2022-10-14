@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Clock</string>
+    <string name="app_name">Reloj Sencillo</string>
     <string name="app_launcher_name">Reloj</string>
     <string name="time_zone">Zona horaria</string>
     <string name="vibrate">Vibrar</string>
-    <string name="no_days_selected">Ningún día seleccionado</string>
+    <string name="no_days_selected">No hay días seleccionados</string>
     <string name="clock">Reloj</string>
     <string name="timer">Temporizador</string>
     <string name="stopwatch">Cronómetro</string>
     <string name="lap">Vuelta</string>
-    <string name="stopwatch_stopped">El cronómetro s eha detenido</string>
+    <string name="stopwatch_stopped">El cronómetro se ha detenido</string>
     <string name="timer_stopped">El temporizador se ha detenido</string>
-    <string name="max_reminder_duration">Máxima duración de recordatorio</string>
+    <string name="max_reminder_duration">Duración máxima del recordatorio</string>
     <string name="time_expired">Tiempo terminado</string>
     <string name="clock_and_date">Fecha y hora</string>
     <string name="use_text_shadow">Usar sombra en el texto</string>
