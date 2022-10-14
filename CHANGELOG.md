@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.9.4 *(2022-10-14)*
+----------------------------
+
+ * Changed the default digital widget colors to White text on transparent background
+ * Added some stability and translation improvements
+
 Version 5.9.3 *(2022-10-09)*
 ----------------------------
 
