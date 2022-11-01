@@ -5,11 +5,13 @@ import android.appwidget.AppWidgetManager
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.widget.SeekBar
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.helpers.MyDigitalTimeWidgetProvider
+import com.simplemobiletools.clock.helpers.SIMPLE_PHONE
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.dialogs.FeatureLockedDialog
 import com.simplemobiletools.commons.extensions.*
@@ -31,9 +33,15 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
         setContentView(R.layout.widget_config_digital)
         initVariables()
 
-        val isCustomizingColors = intent.extras?.getBoolean(IS_CUSTOMIZING_COLORS) ?: false
         mWidgetId = intent.extras?.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID) ?: AppWidgetManager.INVALID_APPWIDGET_ID
 
+        if (!config.wasInitialWidgetSetUp && Build.BRAND.equals(SIMPLE_PHONE, true)) {
+            saveConfig()
+            config.wasInitialWidgetSetUp = true
+            return
+        }
+
+        val isCustomizingColors = intent.extras?.getBoolean(IS_CUSTOMIZING_COLORS) ?: false
         if (mWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID && !isCustomizingColors) {
             finish()
         }

@@ -80,4 +80,8 @@ class Config(context: Context) : BaseConfig(context) {
     var stopwatchLapsSort: Int
         get() = prefs.getInt(STOPWATCH_LAPS_SORT_BY, SORT_BY_LAP or SORT_DESCENDING)
         set(stopwatchLapsSort) = prefs.edit().putInt(STOPWATCH_LAPS_SORT_BY, stopwatchLapsSort).apply()
+
+    var wasInitialWidgetSetUp: Boolean
+        get() = prefs.getBoolean(WAS_INITIAL_WIDGET_SET_UP, false)
+        set(wasInitialWidgetSetUp) = prefs.edit().putBoolean(WAS_INITIAL_WIDGET_SET_UP, wasInitialWidgetSetUp).apply()
 }

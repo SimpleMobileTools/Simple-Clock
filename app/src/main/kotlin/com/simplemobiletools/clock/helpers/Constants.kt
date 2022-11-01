@@ -20,6 +20,7 @@ const val TIMER_LAST_CONFIG = "timer_last_config"
 const val INCREASE_VOLUME_GRADUALLY = "increase_volume_gradually"
 const val ALARMS_SORT_BY = "alarms_sort_by"
 const val STOPWATCH_LAPS_SORT_BY = "stopwatch_laps_sort_by"
+const val WAS_INITIAL_WIDGET_SET_UP = "was_initial_widget_set_up"
 
 const val TABS_COUNT = 4
 const val EDITED_TIME_ZONE_SEPARATOR = ":"
@@ -27,6 +28,7 @@ const val ALARM_ID = "alarm_id"
 const val DEFAULT_ALARM_MINUTES = 480
 const val DEFAULT_MAX_ALARM_REMINDER_SECS = 300
 const val DEFAULT_MAX_TIMER_REMINDER_SECS = 60
+const val SIMPLE_PHONE = "Simple_Phone"
 
 const val PICK_AUDIO_FILE_INTENT_ID = 9994
 const val REMINDER_ACTIVITY_INTENT_ID = 9995
