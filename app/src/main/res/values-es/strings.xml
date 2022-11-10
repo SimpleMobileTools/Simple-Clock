@@ -23,7 +23,7 @@
     <string name="digital_clock">Reloj digital</string>
     <string name="alarm_dismissed">Alarma desechada</string>
     <string name="alarm_snoozed">Repetir alarma en %s</string>
-    <string name="no_alarms_found">No alarms found</string>
+    <string name="no_alarms_found">No se encontraron alarmas</string>
     <string name="add_alarm">Add alarm</string>
     <string name="no_timers_found">No timers found</string>
     <string name="add_timer">Add timer</string>
