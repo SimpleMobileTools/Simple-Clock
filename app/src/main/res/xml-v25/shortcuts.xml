@@ -1,0 +1,12 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_stopwatch_vector"
+        android:shortcutId="compose"
+        android:shortcutShortLabel="@string/startup">
+        <intent
+            android:action="FLAG_ACTIVITY_NEW_TASK"
+            android:targetClass="com.simplemobiletools.clock.App"
+            android:targetPackage="com.simplemobiletools.clock" />
+    </shortcut>
+</shortcuts>

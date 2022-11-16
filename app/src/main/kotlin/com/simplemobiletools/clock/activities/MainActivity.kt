@@ -106,6 +106,11 @@ class MainActivity : SimpleActivity() {
                 val timerId = intent.getIntExtra(TIMER_ID, INVALID_TIMER_ID)
                 (view_pager.adapter as ViewPagerAdapter).updateTimerPosition(timerId)
             }
+            if (tabToOpen == TAB_STOPWATCH) {
+                if (intent.getBooleanExtra(TOGGLE_STOPWATCH, false)) {
+                    (view_pager.adapter as ViewPagerAdapter).startStopWatch()
+                }
+            }
         }
         super.onNewIntent(intent)
     }
@@ -152,7 +157,9 @@ class MainActivity : SimpleActivity() {
             val timerId = intent.getIntExtra(TIMER_ID, INVALID_TIMER_ID)
             viewPagerAdapter.updateTimerPosition(timerId)
         }
-
+        if (tabToOpen == TAB_STOPWATCH) {
+            config.toggleStopWatch = intent.getBooleanExtra(TOGGLE_STOPWATCH, false)
+        }
         view_pager.offscreenPageLimit = TABS_COUNT - 1
         view_pager.currentItem = tabToOpen
     }

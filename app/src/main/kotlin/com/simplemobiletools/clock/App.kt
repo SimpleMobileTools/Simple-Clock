@@ -3,6 +3,11 @@ package com.simplemobiletools.clock
 import android.app.Application
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
+import android.content.pm.ShortcutInfo
+import android.content.pm.ShortcutManager
+import android.graphics.drawable.Icon
+import android.os.Build
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
@@ -11,8 +16,9 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.facebook.stetho.Stetho
+import com.simplemobiletools.clock.activities.SplashActivity
 import com.simplemobiletools.clock.extensions.*
-import com.simplemobiletools.clock.helpers.Stopwatch
+import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.clock.helpers.Stopwatch.State
 import com.simplemobiletools.clock.models.TimerEvent
 import com.simplemobiletools.clock.models.TimerState
@@ -40,6 +46,23 @@ class App : Application(), LifecycleObserver {
         }
 
         checkUseEnglish()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            val shortcutManager = getSystemService(ShortcutManager::class.java)
+            val intent = Intent(this, SplashActivity::class.java).apply {
+                putExtra(OPEN_TAB, TAB_STOPWATCH)
+                putExtra(TOGGLE_STOPWATCH, true)
+                action = "android.intent.action.TOGGLE_STOPWATCH"
+            }
+            val shortcut = ShortcutInfo.Builder(this, "id1")
+                .setShortLabel("Stopwatch")
+                .setLongLabel("Start Stopwatch")
+                .setIcon(Icon.createWithResource(this, R.drawable.ic_stopwatch_vector))
+                .setIntent(
+                    intent
+                )
+                .build()
+            shortcutManager.dynamicShortcuts = listOf(shortcut)
+        }
     }
 
     override fun onTerminate() {

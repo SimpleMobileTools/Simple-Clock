@@ -49,6 +49,10 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getString(TIMER_LABEL, null)
         set(label) = prefs.edit().putString(TIMER_LABEL, label).apply()
 
+    var toggleStopWatch: Boolean
+        get() = prefs.getBoolean(TOGGLE_STOPWATCH, false)
+        set(label) = prefs.edit().putBoolean(TOGGLE_STOPWATCH, label).apply()
+
     var alarmSort: Int
         get() = prefs.getInt(ALARMS_SORT_BY, SORT_BY_CREATION_ORDER)
         set(alarmSort) = prefs.edit().putInt(ALARMS_SORT_BY, alarmSort).apply()
