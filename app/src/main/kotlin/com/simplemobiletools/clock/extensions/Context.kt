@@ -79,7 +79,12 @@ fun Context.getModifiedTimeZoneTitle(id: Int) = getAllTimeZonesModified().firstO
 
 fun Context.createNewAlarm(timeInMinutes: Int, weekDays: Int): Alarm {
     val defaultAlarmSound = getDefaultAlarmSound(RingtoneManager.TYPE_ALARM)
-    return Alarm(0, timeInMinutes, weekDays, false, false, defaultAlarmSound.title, defaultAlarmSound.uri, "")
+    return Alarm(0, -1 , timeInMinutes, weekDays, false, false, defaultAlarmSound.title, defaultAlarmSound.uri, "")
+}
+
+fun Context.createNewUpcomingAlarm(alarm: Alarm): Alarm {
+    val defaultAlarmSound = getDefaultAlarmSound(RingtoneManager.TYPE_ALARM)
+    return Alarm(0, alarm.id, alarm.timeInMinutes - 30, alarm.days, alarm.isEnabled, false, defaultAlarmSound.title, defaultAlarmSound.uri, "")
 }
 
 fun Context.createNewTimer(): Timer {
@@ -177,6 +182,8 @@ fun Context.getAlarmIntent(alarm: Alarm): PendingIntent {
 fun Context.cancelAlarmClock(alarm: Alarm) {
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
     alarmManager.cancel(getAlarmIntent(alarm))
+    alarmManager.cancel(getAlarmIntent(alarm))
+   dbHelper.getAlarmWithId(alarm.pid)?.let {  alarmManager.cancel(getAlarmIntent(it)) }
 }
 
 fun Context.hideNotification(id: Int) {
@@ -268,8 +275,13 @@ fun Context.rescheduleEnabledAlarms() {
 fun Context.isScreenOn() = (getSystemService(Context.POWER_SERVICE) as PowerManager).isScreenOn
 
 fun Context.showAlarmNotification(alarm: Alarm) {
+
     val pendingIntent = getOpenAlarmTabIntent()
-    val notification = getAlarmNotification(pendingIntent, alarm)
+    var notification = getAlarmNotification(pendingIntent, alarm)
+    if (alarm.pid?.let { dbHelper.getAlarmWithParentId(it) } != null) {
+        notification = getUpcomingAlarmNotification(pendingIntent, alarm)
+    }
+
     val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     try {
         notificationManager.notify(alarm.id, notification)
@@ -436,6 +448,42 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
         val vibrateArray = LongArray(2) { 500 }
         builder.setVibrate(vibrateArray)
     }
+
+    val notification = builder.build()
+    notification.flags = notification.flags or Notification.FLAG_INSISTENT
+    return notification
+}
+
+fun Context.getUpcomingAlarmNotification(pendingIntent: PendingIntent, pAlarm: Alarm): Notification {
+    val channelId = "simple_alarm_channel"
+    val label = getString(R.string.upcoming_alarm)
+
+    if (isOreoPlus()) {
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val importance = NotificationManager.IMPORTANCE_HIGH
+
+        NotificationChannel(channelId, label, importance).apply {
+            setBypassDnd(true)
+            enableLights(true)
+            lightColor = getProperPrimaryColor()
+            notificationManager.createNotificationChannel(this)
+        }
+    }
+
+    val dismissParentAlarmIntent = getHideAlarmPendingIntent(pAlarm)
+    val builder = NotificationCompat.Builder(this)
+        .setContentTitle(label)
+        .setContentText("${R.string.upcoming_alarm} at ${getNextAlarm()}")
+        .setSmallIcon(R.drawable.ic_alarm_vector)
+        .setContentIntent(pendingIntent)
+        .setPriority(Notification.PRIORITY_HIGH)
+        .setDefaults(Notification.DEFAULT_LIGHTS)
+        .setAutoCancel(true)
+        .setTimeoutAfter(1800000)
+        .setChannelId(channelId)
+        .addAction(R.drawable.ic_snooze_vector, getString(R.string.dismiss) + getString(R.string.alarm), dismissParentAlarmIntent)
+
+    builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
 
     val notification = builder.build()
     notification.flags = notification.flags or Notification.FLAG_INSISTENT

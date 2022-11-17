@@ -6,17 +6,19 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.text.TextUtils
+import android.util.Log
 import com.simplemobiletools.clock.extensions.cancelAlarmClock
 import com.simplemobiletools.clock.extensions.createNewAlarm
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.getIntValue
+import com.simplemobiletools.commons.extensions.getIntValueOrNull
 import com.simplemobiletools.commons.extensions.getStringValue
 import com.simplemobiletools.commons.helpers.*
-import java.util.*
 
 class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
     private val ALARMS_TABLE_NAME = "contacts"  // wrong table name, ignore it
     private val COL_ID = "id"
+    private val COL_PID = "parent_id"
     private val COL_TIME_IN_MINUTES = "time_in_minutes"
     private val COL_DAYS = "days"
     private val COL_IS_ENABLED = "is_enabled"
@@ -28,7 +30,7 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
     private val mDb = writableDatabase
 
     companion object {
-        private const val DB_VERSION = 1
+        private const val DB_VERSION = 2
         const val DB_NAME = "alarms.db"
         var dbInstance: DBHelper? = null
 
@@ -41,12 +43,15 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS $ALARMS_TABLE_NAME ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_TIME_IN_MINUTES INTEGER, $COL_DAYS INTEGER, " +
-            "$COL_IS_ENABLED INTEGER, $COL_VIBRATE INTEGER, $COL_SOUND_TITLE TEXT, $COL_SOUND_URI TEXT, $COL_LABEL TEXT)")
+        db.execSQL("CREATE TABLE IF NOT EXISTS $ALARMS_TABLE_NAME ($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_PID INTEGER, $COL_TIME_IN_MINUTES INTEGER, $COL_DAYS INTEGER, $COL_IS_ENABLED INTEGER, $COL_VIBRATE INTEGER, $COL_SOUND_TITLE TEXT, $COL_SOUND_URI TEXT, $COL_LABEL TEXT)")
         insertInitialAlarms(db)
     }
 
-    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {}
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        if (oldVersion == 1 && newVersion == 2) {
+            db.execSQL("ALTER table $ALARMS_TABLE_NAME Add column $COL_PID INTEGER")
+        }
+    }
 
     private fun insertInitialAlarms(db: SQLiteDatabase) {
         val weekDays = MONDAY_BIT or TUESDAY_BIT or WEDNESDAY_BIT or THURSDAY_BIT or FRIDAY_BIT
@@ -88,7 +93,9 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
         mDb.delete(ALARMS_TABLE_NAME, selection, null)
     }
 
-    fun getAlarmWithId(id: Int) = getAlarms().firstOrNull { it.id == id }
+    fun getAlarmWithId(id: Int?) = getAlarms().firstOrNull { it.id == id }
+
+    fun getAlarmWithParentId(pid: Int) = getAlarms().firstOrNull { it.pid == pid }
 
     fun getAlarmsWithUri(uri: String) = getAlarms().filter { it.soundUri == uri }
 
@@ -116,6 +123,7 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
                 do {
                     try {
                         val id = cursor.getIntValue(COL_ID)
+                        val pid = cursor.getIntValue(COL_PID)
                         val timeInMinutes = cursor.getIntValue(COL_TIME_IN_MINUTES)
                         val days = cursor.getIntValue(COL_DAYS)
                         val isEnabled = cursor.getIntValue(COL_IS_ENABLED) == 1
@@ -124,9 +132,11 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
                         val soundUri = cursor.getStringValue(COL_SOUND_URI)
                         val label = cursor.getStringValue(COL_LABEL)
 
-                        val alarm = Alarm(id, timeInMinutes, days, isEnabled, vibrate, soundTitle, soundUri, label)
+                        Log.e("TAG", "getAlarms: this pid = $pid , id = $id ")
+                        val alarm = Alarm(id, pid, timeInMinutes, days, isEnabled, vibrate, soundTitle, soundUri, label)
                         alarms.add(alarm)
                     } catch (e: Exception) {
+                        Log.e("TAG", "getAlarms: $e", )
                         continue
                     }
                 } while (cursor.moveToNext())

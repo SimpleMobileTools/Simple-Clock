@@ -77,7 +77,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     }
 
     private fun setupAlarms() {
-        alarms = context?.dbHelper?.getAlarms() ?: return
+        alarms = ((context?.dbHelper?.getAlarms())?.filter { it.pid < 1 } ?: return) as ArrayList<Alarm>
 
         when (requireContext().config.alarmSort) {
             SORT_BY_ALARM_TIME -> alarms.sortBy { it.timeInMinutes }
@@ -141,6 +141,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     private fun checkAlarmState(alarm: Alarm) {
         if (alarm.isEnabled) {
             context?.scheduleNextAlarm(alarm, true)
+            context?.createNewUpcomingAlarm(alarm)?.let { context?.scheduleNextAlarm(it, true) }
         } else {
             context?.cancelAlarmClock(alarm)
         }
