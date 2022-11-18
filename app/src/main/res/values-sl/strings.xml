@@ -9,6 +9,7 @@
     <string name="clock">Ura</string>
     <string name="timer">Časovnik</string>
     <string name="stopwatch">Štoparica</string>
+    <string name="start_stopwatch">Start Stopwatch</string>
     <string name="stopwatch_stopped">Štoparica se je ustavila</string>
     <string name="timer_stopped">Časovnik je bil ustavljen</string>
     <string name="max_reminder_duration">Najdaljše trajanje opomnika</string>

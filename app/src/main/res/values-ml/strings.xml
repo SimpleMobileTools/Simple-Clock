@@ -8,6 +8,7 @@
     <string name="clock">ക്ലോക്ക്</string>
     <string name="timer">ടൈമർ</string>
     <string name="stopwatch">സ്റ്റോപ്പ് വാച്ച്</string>
+    <string name="start_stopwatch">Start Stopwatch</string>
     <string name="lap">ലാപ്‌</string>
     <string name="stopwatch_stopped">സ്റ്റോപ്പ് വാച്ച് നിർത്തിയിരിക്കുന്നു</string>
     <string name="timer_stopped">ടൈമർ നിർത്തിയിരിക്കുന്നു</string>

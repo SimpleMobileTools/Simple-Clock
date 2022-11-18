@@ -8,6 +8,7 @@
     <string name="clock">Гадзіннік</string>
     <string name="timer">Таймер</string>
     <string name="stopwatch">Секундамер</string>
+    <string name="start_stopwatch">Start Stopwatch</string>
     <string name="lap">Круг</string>
     <string name="stopwatch_stopped">Секундамер спынены</string>
     <string name="timer_stopped">Таймер спынены</string>

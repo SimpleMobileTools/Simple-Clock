@@ -8,6 +8,7 @@
     <string name="clock">Clock</string>
     <string name="timer">Taimer</string>
     <string name="stopwatch">Stopper</string>
+    <string name="start_stopwatch">Start Stopwatch</string>
     <string name="lap">Ringi aeg</string>
     <string name="stopwatch_stopped">Stopper on kinni</string>
     <string name="timer_stopped">Taimer on peatunud</string>

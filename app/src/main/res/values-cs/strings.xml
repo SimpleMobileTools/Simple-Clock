@@ -8,6 +8,7 @@
     <string name="clock">Hodiny</string>
     <string name="timer">Časovač</string>
     <string name="stopwatch">Stopky</string>
+    <string name="start_stopwatch">Start Stopwatch</string>
     <string name="lap">Mezičas</string>
     <string name="stopwatch_stopped">Stopky byly zastaveny</string>
     <string name="timer_stopped">Časovač byl zastaven</string>

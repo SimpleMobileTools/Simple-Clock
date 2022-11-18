@@ -9,6 +9,7 @@
     <string name="no_days_selected">کوئی دن نہیں چݨے اے</string>
     <string name="timer">سماں والا</string>
     <string name="stopwatch">Stopwatch</string>
+    <string name="start_stopwatch">Start Stopwatch</string>
     <string name="lap">لیپ</string>
     <string name="stopwatch_stopped">Stopwatch has been stopped</string>
     <string name="timer_stopped">Timer has been stopped</string>

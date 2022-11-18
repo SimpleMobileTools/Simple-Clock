@@ -8,6 +8,7 @@
     <string name="clock">Clock</string>
     <string name="timer">Ajastin</string>
     <string name="stopwatch">Ajanotto</string>
+    <string name="start_stopwatch">Start Stopwatch</string>
     <string name="lap">Kierrosaika</string>
     <string name="stopwatch_stopped">Sekuntikello pysäytetty</string>
     <string name="timer_stopped">Ajastin on pysäytetty</string>
