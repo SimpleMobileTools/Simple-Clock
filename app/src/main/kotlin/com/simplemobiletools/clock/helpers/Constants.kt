@@ -15,6 +15,7 @@ const val TIMER_CHANNEL_ID = "timer_channel_id"
 const val TIMER_LABEL = "timer_label"
 const val TIMER_MAX_REMINDER_SECS = "timer_max_reminder_secs"
 const val ALARM_MAX_REMINDER_SECS = "alarm_max_reminder_secs"
+const val UPCOMING_ALARM_MAX_REMINDER_SECS = "upcoming_alarm_max_reminder_secs"
 const val ALARM_LAST_CONFIG = "alarm_last_config"
 const val TIMER_LAST_CONFIG = "timer_last_config"
 const val INCREASE_VOLUME_GRADUALLY = "increase_volume_gradually"
@@ -27,6 +28,7 @@ const val EDITED_TIME_ZONE_SEPARATOR = ":"
 const val ALARM_ID = "alarm_id"
 const val DEFAULT_ALARM_MINUTES = 480
 const val DEFAULT_MAX_ALARM_REMINDER_SECS = 300
+const val DEFAULT_MAX_UPCOMING_ALARM_REMINDER_SECS = 1800
 const val DEFAULT_MAX_TIMER_REMINDER_SECS = 60
 const val SIMPLE_PHONE = "Simple_Phone"
 

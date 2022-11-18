@@ -84,7 +84,7 @@ fun Context.createNewAlarm(timeInMinutes: Int, weekDays: Int): Alarm {
 
 fun Context.createNewUpcomingAlarm(alarm: Alarm): Alarm {
     val defaultAlarmSound = getDefaultAlarmSound(RingtoneManager.TYPE_ALARM)
-    return Alarm(0, alarm.id, alarm.timeInMinutes - 30, alarm.days, alarm.isEnabled, false, defaultAlarmSound.title, defaultAlarmSound.uri, "")
+    return Alarm(0, alarm.id, alarm.timeInMinutes - DEFAULT_MAX_UPCOMING_ALARM_REMINDER_SECS/60, alarm.days, alarm.isEnabled, false, defaultAlarmSound.title, defaultAlarmSound.uri, "")
 }
 
 fun Context.createNewTimer(): Timer {
@@ -182,8 +182,7 @@ fun Context.getAlarmIntent(alarm: Alarm): PendingIntent {
 fun Context.cancelAlarmClock(alarm: Alarm) {
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
     alarmManager.cancel(getAlarmIntent(alarm))
-    alarmManager.cancel(getAlarmIntent(alarm))
-   dbHelper.getAlarmWithId(alarm.pid)?.let {  alarmManager.cancel(getAlarmIntent(it)) }
+    dbHelper.getAlarmWithParentId(alarm.id)?.let {  alarmManager.cancel(getAlarmIntent(it)) }
 }
 
 fun Context.hideNotification(id: Int) {
@@ -278,7 +277,8 @@ fun Context.showAlarmNotification(alarm: Alarm) {
 
     val pendingIntent = getOpenAlarmTabIntent()
     var notification = getAlarmNotification(pendingIntent, alarm)
-    if (alarm.pid?.let { dbHelper.getAlarmWithParentId(it) } != null) {
+
+    if (alarm.pid.let { dbHelper.getAlarmWithParentId(it) } != null) {
         notification = getUpcomingAlarmNotification(pendingIntent, alarm)
     }
 
@@ -481,7 +481,7 @@ fun Context.getUpcomingAlarmNotification(pendingIntent: PendingIntent, pAlarm: A
         .setAutoCancel(true)
         .setTimeoutAfter(1800000)
         .setChannelId(channelId)
-        .addAction(R.drawable.ic_snooze_vector, getString(R.string.dismiss) + getString(R.string.alarm), dismissParentAlarmIntent)
+        .addAction(R.drawable.ic_snooze_vector, resources.getString(R.string.dismiss) + " " + resources.getString(R.string.alarm), dismissParentAlarmIntent)
 
     builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
 

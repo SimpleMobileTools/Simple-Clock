@@ -101,6 +101,7 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
 
     private fun fillAlarmContentValues(alarm: Alarm): ContentValues {
         return ContentValues().apply {
+            put(COL_PID, alarm.pid)
             put(COL_TIME_IN_MINUTES, alarm.timeInMinutes)
             put(COL_DAYS, alarm.days)
             put(COL_IS_ENABLED, alarm.isEnabled)
@@ -115,7 +116,7 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
 
     fun getAlarms(): ArrayList<Alarm> {
         val alarms = ArrayList<Alarm>()
-        val cols = arrayOf(COL_ID, COL_TIME_IN_MINUTES, COL_DAYS, COL_IS_ENABLED, COL_VIBRATE, COL_SOUND_TITLE, COL_SOUND_URI, COL_LABEL)
+        val cols = arrayOf(COL_ID, COL_PID, COL_TIME_IN_MINUTES, COL_DAYS, COL_IS_ENABLED, COL_VIBRATE, COL_SOUND_TITLE, COL_SOUND_URI, COL_LABEL)
         var cursor: Cursor? = null
         try {
             cursor = mDb.query(ALARMS_TABLE_NAME, cols, null, null, null, null, null)
