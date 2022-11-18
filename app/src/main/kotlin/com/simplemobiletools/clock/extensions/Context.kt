@@ -273,12 +273,13 @@ fun Context.rescheduleEnabledAlarms() {
 
 fun Context.isScreenOn() = (getSystemService(Context.POWER_SERVICE) as PowerManager).isScreenOn
 
-fun Context.showAlarmNotification(alarm: Alarm) {
+fun Context.showAlarmNotification(alarm: Alarm, isUpcomingAlarm : Boolean) {
 
     val pendingIntent = getOpenAlarmTabIntent()
     var notification = getAlarmNotification(pendingIntent, alarm)
 
-    if (alarm.pid.let { dbHelper.getAlarmWithParentId(it) } != null) {
+    if (isUpcomingAlarm) {
+        dbHelper.getAlarmWithParentId(alarm.pid)
         notification = getUpcomingAlarmNotification(pendingIntent, alarm)
     }
 

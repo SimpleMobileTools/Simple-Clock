@@ -34,7 +34,7 @@ class AlarmReceiver : BroadcastReceiver() {
         }
 
         if (context.isScreenOn()) {
-            context.showAlarmNotification(alarm)
+            context.showAlarmNotification(alarm, isUpcomingAlarm)
             Handler().postDelayed({
                 context.hideNotification(id)
             }, alarmReminderSecs)
