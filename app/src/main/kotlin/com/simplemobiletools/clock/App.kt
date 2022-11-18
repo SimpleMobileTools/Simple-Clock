@@ -18,8 +18,13 @@ import androidx.lifecycle.ProcessLifecycleOwner
 import com.facebook.stetho.Stetho
 import com.simplemobiletools.clock.activities.SplashActivity
 import com.simplemobiletools.clock.extensions.*
-import com.simplemobiletools.clock.helpers.*
+import com.simplemobiletools.clock.helpers.OPEN_TAB
+import com.simplemobiletools.clock.helpers.Stopwatch
 import com.simplemobiletools.clock.helpers.Stopwatch.State
+import com.simplemobiletools.clock.helpers.TAB_STOPWATCH
+import com.simplemobiletools.clock.helpers.TOGGLE_STOPWATCH
+import com.simplemobiletools.clock.helpers.STOPWATCH_TOGGLE_ACTION
+import com.simplemobiletools.clock.helpers.STOPWATCH_SHORTCUT_ID
 import com.simplemobiletools.clock.models.TimerEvent
 import com.simplemobiletools.clock.models.TimerState
 import com.simplemobiletools.clock.services.StopwatchStopService
@@ -28,6 +33,7 @@ import com.simplemobiletools.clock.services.startStopwatchService
 import com.simplemobiletools.clock.services.startTimerService
 import com.simplemobiletools.commons.extensions.checkUseEnglish
 import com.simplemobiletools.commons.extensions.showErrorToast
+import com.simplemobiletools.commons.helpers.isNougatMR1Plus
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -46,16 +52,16 @@ class App : Application(), LifecycleObserver {
         }
 
         checkUseEnglish()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+        if (isNougatMR1Plus()) {
             val shortcutManager = getSystemService(ShortcutManager::class.java)
             val intent = Intent(this, SplashActivity::class.java).apply {
                 putExtra(OPEN_TAB, TAB_STOPWATCH)
                 putExtra(TOGGLE_STOPWATCH, true)
-                action = "android.intent.action.TOGGLE_STOPWATCH"
+                action = STOPWATCH_TOGGLE_ACTION
             }
-            val shortcut = ShortcutInfo.Builder(this, "id1")
-                .setShortLabel("Stopwatch")
-                .setLongLabel("Start Stopwatch")
+            val shortcut = ShortcutInfo.Builder(this, STOPWATCH_SHORTCUT_ID)
+                .setShortLabel(getString(R.string.stopwatch))
+                .setLongLabel(getString(R.string.start_stopwatch))
                 .setIcon(Icon.createWithResource(this, R.drawable.ic_stopwatch_vector))
                 .setIntent(
                     intent

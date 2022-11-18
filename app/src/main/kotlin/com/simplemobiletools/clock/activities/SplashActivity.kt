@@ -13,7 +13,7 @@ class SplashActivity : BaseSplashActivity() {
                     startActivity(this)
                 }
             }
-            intent?.action == "android.intent.action.TOGGLE_STOPWATCH" -> {
+            intent?.action == STOPWATCH_TOGGLE_ACTION -> {
                 Intent(this, MainActivity::class.java).apply {
                     putExtra(OPEN_TAB, TAB_STOPWATCH)
                     putExtra(TOGGLE_STOPWATCH, intent.getBooleanExtra(TOGGLE_STOPWATCH, false))

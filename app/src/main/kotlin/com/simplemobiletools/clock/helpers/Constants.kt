@@ -61,6 +61,10 @@ const val SORT_BY_DATE_AND_TIME = 2
 const val TODAY_BIT = -1
 const val TOMORROW_BIT = -2
 
+// stopwatch shortcut
+const val STOPWATCH_SHORTCUT_ID = "stopwatch_shortcut_id"
+const val STOPWATCH_TOGGLE_ACTION = "android.intent.action.TOGGLE_STOPWATCH"
+
 fun getDefaultTimeZoneTitle(id: Int) = getAllTimeZones().firstOrNull { it.id == id }?.title ?: ""
 
 fun getPassedSeconds(): Int {
