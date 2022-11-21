@@ -34,7 +34,7 @@
     <string name="new_timer">Temporitzador nou</string>
     <plurals name="timer_notification_msg">
         <item quantity="one">%d temporitzador en marxa</item>
-        <item quantity="other">%d temporitzadors en marxa</item>
+        <item quantity="other">%d de temporitzadors en marxa</item>
     </plurals>
     <!-- Settings -->
     <string name="clock_tab">Pestanya del rellotge</string>
