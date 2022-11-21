@@ -25,6 +25,8 @@
     <string name="alarm_snoozed">Alarm je odložen s strani %s</string>
     <string name="no_alarms_found">Ni alarmov</string>
     <string name="add_alarm">Dodajte alarm</string>
+    <string name="dismiss_alarm">Dismiss alarm</string>
+    <string name="upcoming_alarm">Upcoming alarm</string>
     <string name="no_timers_found">Ni časovnikov</string>
     <string name="add_timer">Dodajte časovnik</string>
     <string name="timers_notification_msg">Tečejo časovniki</string>

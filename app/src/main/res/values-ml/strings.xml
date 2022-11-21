@@ -25,6 +25,8 @@
     <string name="alarm_snoozed">അലാറം %s സ്‌നൂസ് ചെയ്‌തു</string>
     <string name="no_alarms_found">അലാറങ്ങളൊന്നും കണ്ടെത്തിയില്ല</string>
     <string name="add_alarm">പുതിയ അലാറം ചേർക്കുക</string>
+    <string name="dismiss_alarm">Dismiss alarm</string>
+    <string name="upcoming_alarm">Upcoming alarm</string>
     <string name="no_timers_found">ടൈമറുകളൊന്നും കണ്ടെത്തിയില്ല</string>
     <string name="add_timer">ടൈമർ ചേർക്കുക</string>
     <!--Timer-->

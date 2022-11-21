@@ -122,7 +122,7 @@ class AlarmsAdapter(
                     context.scheduleNextAlarm(alarm, true)
                     toggleAlarmInterface.alarmToggled(alarm.id, alarm_switch.isChecked)
 
-                    activity.dbHelper.getAlarmWithParentId(alarm.id)?.let { upcomingAlarm ->
+                    activity.dbHelper.getUpcomingAlarmWithParentId(alarm.id)?.let { upcomingAlarm ->
                         context.scheduleNextAlarm(alarm.copy().also {
                             it.id = upcomingAlarm.id
                             it.pid = alarm.id

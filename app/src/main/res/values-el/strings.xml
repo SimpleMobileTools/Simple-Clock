@@ -25,6 +25,8 @@
     <string name="alarm_snoozed">Η αφύμνιση σε αναμονή από %s</string>
     <string name="no_alarms_found">Δεν βρέθηκαν αφυπνίσεις</string>
     <string name="add_alarm">Προσθήκη αφύπνισης</string>
+    <string name="dismiss_alarm">Dismiss alarm</string>
+    <string name="upcoming_alarm">Upcoming alarm</string>
     <string name="no_timers_found">Δεν βρέθηκαν χρονόμετρα</string>
     <string name="add_timer">Προσθήκη χρονόμετρου</string>
 

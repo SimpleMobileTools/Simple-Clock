@@ -25,6 +25,8 @@
     <string name="alarm_snoozed">Alarm zurückgestellt von %s</string>
     <string name="no_alarms_found">Keine Alarme gefunden</string>
     <string name="add_alarm">Alarm hinzufügen</string>
+    <string name="dismiss_alarm">Dismiss alarm</string>
+    <string name="upcoming_alarm">Upcoming alarm</string>
     <string name="no_timers_found">Keine Timer gefunden</string>
     <string name="add_timer">Timer hinzufügen</string>
     <!--Timer-->

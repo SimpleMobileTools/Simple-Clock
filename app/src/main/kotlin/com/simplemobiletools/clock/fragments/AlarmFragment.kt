@@ -1,7 +1,6 @@
 package com.simplemobiletools.clock.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -141,28 +140,32 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
 
     private fun checkAlarmState(alarm: Alarm) {
         if (alarm.isEnabled) {
-            val upcomingAlarm = context?.dbHelper?.getAlarmWithParentId(alarm.id) ?: alarm.copy().also {
+            if (alarm.isDismissed) {
+                context?.dbHelper?.updateAlarmDismissState(alarm.id, isDismissed = false)
+            }
+            val upcomingAlarm = (context?.dbHelper?.getUpcomingAlarmWithParentId(alarm.id) ?: alarm.copy()).also {
                 it.pid = alarm.id
                 it.timeInMinutes = alarm.timeInMinutes - DEFAULT_MAX_UPCOMING_ALARM_REMINDER_SECS / 60
             }
             (activity as SimpleActivity).handleNotificationPermission {
                 if (it) {
-                    val alarmId = (activity as SimpleActivity).dbHelper.insertAlarm(upcomingAlarm)
-                    if (alarmId == -1) {
-                        (activity as SimpleActivity).toast(R.string.unknown_error_occurred)
-                    } else {
-                        upcomingAlarm.id = alarmId
+                    if (context?.dbHelper?.getUpcomingAlarmWithParentId(alarm.id) == null) {
+                        val alarmId = (activity as SimpleActivity).dbHelper.insertAlarm(upcomingAlarm)
+                        if (alarmId == -1) {
+                            (activity as SimpleActivity).toast(R.string.unknown_error_occurred)
+                        } else {
+                            upcomingAlarm.id = alarmId
+                        }
                     }
                 } else {
                     (activity as SimpleActivity).toast(R.string.no_post_notifications_permissions)
                 }
             }
-
             context?.scheduleNextAlarm(alarm, true)
             context?.scheduleNextAlarm(upcomingAlarm, false)
         } else {
             context?.cancelAlarmClock(alarm)
-            context?.dbHelper?.getAlarmWithParentId(alarm.id)?.let { context?.cancelAlarmClock(it) }
+            context?.dbHelper?.getUpcomingAlarmWithParentId(alarm.id)?.let { context?.cancelAlarmClock(it) }
         }
         (activity as? MainActivity)?.updateClockTabAlarm()
     }

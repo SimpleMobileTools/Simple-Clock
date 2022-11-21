@@ -25,6 +25,8 @@
     <string name="alarm_snoozed">Hälytys torkutettu %s:llä</string>
     <string name="no_alarms_found">Hälytyksiä ei löytynyt</string>
     <string name="add_alarm">Lisää hälytys</string>
+    <string name="dismiss_alarm">Dismiss alarm</string>
+    <string name="upcoming_alarm">Upcoming alarm</string>
     <string name="no_timers_found">Ajastimia ei löytynyt</string>
     <string name="add_timer">Lisää ajastin</string>
     <!--Timer-->
