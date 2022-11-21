@@ -8,7 +8,7 @@
     <string name="clock">时钟</string>
     <string name="timer">定时器</string>
     <string name="stopwatch">秒表</string>
-    <string name="start_stopwatch">Start Stopwatch</string>
+    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">分段</string>
     <string name="stopwatch_stopped">秒表已停止</string>
     <string name="timer_stopped">定时器已停止</string>

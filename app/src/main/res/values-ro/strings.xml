@@ -8,7 +8,7 @@
     <string name="clock">Ceas</string>
     <string name="timer">Temporizator</string>
     <string name="stopwatch">Cronometru</string>
-    <string name="start_stopwatch">Start Stopwatch</string>
+    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">Tură</string>
     <string name="stopwatch_stopped">Cronometrul a fost oprit</string>
     <string name="timer_stopped">Temporizatorul a fost oprit</string>

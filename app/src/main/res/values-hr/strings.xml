@@ -8,7 +8,7 @@
     <string name="clock">Sat</string>
     <string name="timer">Brojač</string>
     <string name="stopwatch">Štoperica</string>
-    <string name="start_stopwatch">Start Stopwatch</string>
+    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">Runda</string>
     <string name="stopwatch_stopped">Štoperica je zaustavljena</string>
     <string name="timer_stopped">Brojač je zaustavljen</string>

@@ -8,7 +8,7 @@
     <string name="clock">Clock</string>
     <string name="timer">Contaminuti</string>
     <string name="stopwatch">Cronometro</string>
-    <string name="start_stopwatch">Start Stopwatch</string>
+    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">Parziale</string>
     <string name="stopwatch_stopped">Il cronometro è stato fermato</string>
     <string name="timer_stopped">Il contaminuti è stato fermato</string>

@@ -7,7 +7,7 @@
     <string name="clock">Clock</string>
     <string name="timer">Sayğac</string>
     <string name="stopwatch">Stopwatch</string>
-    <string name="start_stopwatch">Start Stopwatch</string>
+    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">Dövrə</string>
     <string name="stopwatch_stopped">Saniyəölçən dayandı</string>
     <string name="timer_stopped">Sayğaç dayandı</string>

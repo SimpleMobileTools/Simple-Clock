@@ -8,7 +8,7 @@
     <string name="clock">Clock</string>
     <string name="timer">Időzítő</string>
     <string name="stopwatch">stopperóra</string>
-    <string name="start_stopwatch">Start Stopwatch</string>
+    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">Kör</string>
     <string name="stopwatch_stopped">A stopper leállt</string>
     <string name="timer_stopped">Az időzítő leállt</string>

@@ -1,7 +1,11 @@
 package com.simplemobiletools.clock.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.ShortcutInfo
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Icon
+import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.ImageView
@@ -69,7 +73,43 @@ class MainActivity : SimpleActivity() {
         }
 
         setupTabColors()
+        checkShortcuts()
     }
+
+    @SuppressLint("NewApi")
+    private fun checkShortcuts() {
+        val appIconColor = config.appIconColor
+        if (isNougatMR1Plus() && config.lastHandledShortcutColor != appIconColor) {
+            val launchDialpad = getLaunchStopwatchShortcut(appIconColor)
+
+            try {
+                shortcutManager.dynamicShortcuts = listOf(launchDialpad)
+                config.lastHandledShortcutColor = appIconColor
+            } catch (ignored: Exception) {
+            }
+        }
+    }
+
+    @SuppressLint("NewApi")
+    private fun getLaunchStopwatchShortcut(appIconColor: Int): ShortcutInfo {
+        val newEvent = getString(R.string.start_stopwatch)
+        val drawable = resources.getDrawable(R.drawable.shortcut_stopwatch)
+        (drawable as LayerDrawable).findDrawableByLayerId(R.id.shortcut_stopwatch_background).applyColorFilter(appIconColor)
+        val bmp = drawable.convertToBitmap()
+
+        val intent = Intent(this, SplashActivity::class.java).apply {
+            putExtra(OPEN_TAB, TAB_STOPWATCH)
+            putExtra(TOGGLE_STOPWATCH, true)
+            action = STOPWATCH_TOGGLE_ACTION
+        }
+        return ShortcutInfo.Builder(this, STOPWATCH_SHORTCUT_ID)
+            .setShortLabel(newEvent)
+            .setLongLabel(newEvent)
+            .setIcon(Icon.createWithBitmap(bmp))
+            .setIntent(intent)
+            .build()
+    }
+
 
     override fun onPause() {
         super.onPause()

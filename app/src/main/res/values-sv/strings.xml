@@ -8,7 +8,7 @@
     <string name="clock">Klocka</string>
     <string name="timer">Timer</string>
     <string name="stopwatch">Stoppur</string>
-    <string name="start_stopwatch">Start Stopwatch</string>
+    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">Varv</string>
     <string name="stopwatch_stopped">Stoppuret har stoppats</string>
     <string name="timer_stopped">Timern har stoppats</string>

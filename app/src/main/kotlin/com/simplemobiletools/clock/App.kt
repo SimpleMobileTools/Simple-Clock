@@ -51,23 +51,6 @@ class App : Application(), LifecycleObserver {
         }
 
         checkUseEnglish()
-        if (isNougatMR1Plus()) {
-            val shortcutManager = getSystemService(ShortcutManager::class.java)
-            val intent = Intent(this, SplashActivity::class.java).apply {
-                putExtra(OPEN_TAB, TAB_STOPWATCH)
-                putExtra(TOGGLE_STOPWATCH, true)
-                action = STOPWATCH_TOGGLE_ACTION
-            }
-            val shortcut = ShortcutInfo.Builder(this, STOPWATCH_SHORTCUT_ID)
-                .setShortLabel(getString(R.string.stopwatch))
-                .setLongLabel(getString(R.string.start_stopwatch))
-                .setIcon(Icon.createWithResource(this, R.drawable.ic_stopwatch_vector))
-                .setIntent(
-                    intent
-                )
-                .build()
-            shortcutManager.dynamicShortcuts = listOf(shortcut)
-        }
     }
 
     override fun onTerminate() {

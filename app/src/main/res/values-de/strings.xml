@@ -8,7 +8,7 @@
     <string name="clock">Clock</string>
     <string name="timer">Timer</string>
     <string name="stopwatch">Stoppuhr</string>
-    <string name="start_stopwatch">Start Stopwatch</string>
+    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">Runde</string>
     <string name="stopwatch_stopped">Die Stoppuhr wurde angehalten</string>
     <string name="timer_stopped">Der Timer wurde angehalten</string>
