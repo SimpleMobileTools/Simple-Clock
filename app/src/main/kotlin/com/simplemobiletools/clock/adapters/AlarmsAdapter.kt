@@ -7,9 +7,7 @@ import android.widget.RelativeLayout
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.*
-import com.simplemobiletools.clock.helpers.TODAY_BIT
-import com.simplemobiletools.clock.helpers.TOMORROW_BIT
-import com.simplemobiletools.clock.helpers.getCurrentDayMinutes
+import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
@@ -83,6 +81,8 @@ class AlarmsAdapter(
         alarms.removeAll(alarmsToRemove)
         removeSelectedItems(positions)
         activity.dbHelper.deleteAlarms(alarmsToRemove)
+        activity.dbHelper.deleteAlarms(activity.dbHelper.getUpcomingAlarms(alarmsToRemove))
+
     }
 
     private fun getSelectedItems() = alarms.filter { selectedKeys.contains(it.id) } as ArrayList<Alarm>
@@ -121,6 +121,14 @@ class AlarmsAdapter(
                     activity.dbHelper.updateAlarm(alarm)
                     context.scheduleNextAlarm(alarm, true)
                     toggleAlarmInterface.alarmToggled(alarm.id, alarm_switch.isChecked)
+
+                    activity.dbHelper.getAlarmWithParentId(alarm.id)?.let { upcomingAlarm ->
+                        context.scheduleNextAlarm(alarm.copy().also {
+                            it.id = upcomingAlarm.id
+                            it.pid = alarm.id
+                            it.timeInMinutes = alarm.timeInMinutes - context.config.upcomingAlarmMaxReminderSecs
+                        }, false)
+                    }
                 } else if (alarm.days == TOMORROW_BIT) {
                     toggleAlarmInterface.alarmToggled(alarm.id, alarm_switch.isChecked)
                 } else if (alarm_switch.isChecked) {

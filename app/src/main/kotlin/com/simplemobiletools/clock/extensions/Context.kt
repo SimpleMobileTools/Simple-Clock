@@ -13,6 +13,7 @@ import android.os.PowerManager
 import android.text.SpannableString
 import android.text.format.DateFormat
 import android.text.style.RelativeSizeSpan
+import android.util.Log
 import android.widget.Toast
 import androidx.core.app.AlarmManagerCompat
 import androidx.core.app.NotificationCompat
@@ -80,11 +81,6 @@ fun Context.getModifiedTimeZoneTitle(id: Int) = getAllTimeZonesModified().firstO
 fun Context.createNewAlarm(timeInMinutes: Int, weekDays: Int): Alarm {
     val defaultAlarmSound = getDefaultAlarmSound(RingtoneManager.TYPE_ALARM)
     return Alarm(0, -1 , timeInMinutes, weekDays, false, false, defaultAlarmSound.title, defaultAlarmSound.uri, "")
-}
-
-fun Context.createNewUpcomingAlarm(alarm: Alarm): Alarm {
-    val defaultAlarmSound = getDefaultAlarmSound(RingtoneManager.TYPE_ALARM)
-    return Alarm(0, alarm.id, alarm.timeInMinutes - DEFAULT_MAX_UPCOMING_ALARM_REMINDER_SECS/60, alarm.days, alarm.isEnabled, false, defaultAlarmSound.title, defaultAlarmSound.uri, "")
 }
 
 fun Context.createNewTimer(): Timer {
@@ -273,15 +269,12 @@ fun Context.rescheduleEnabledAlarms() {
 
 fun Context.isScreenOn() = (getSystemService(Context.POWER_SERVICE) as PowerManager).isScreenOn
 
-fun Context.showAlarmNotification(alarm: Alarm, isUpcomingAlarm : Boolean) {
-
+fun Context.showAlarmNotification(alarm: Alarm) {
+    Log.e("TAG", "showAlarmNotification: this Ran ${alarm.id}", )
     val pendingIntent = getOpenAlarmTabIntent()
     var notification = getAlarmNotification(pendingIntent, alarm)
-
-    if (isUpcomingAlarm) {
-        dbHelper.getAlarmWithParentId(alarm.pid)
-        notification = getUpcomingAlarmNotification(pendingIntent, alarm)
-    }
+    if(alarm.pid > 0)
+    dbHelper.getAlarmWithParentId(alarm.pid)?.let { notification = getUpcomingAlarmNotification(pendingIntent, it) }
 
     val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     try {
@@ -474,7 +467,7 @@ fun Context.getUpcomingAlarmNotification(pendingIntent: PendingIntent, pAlarm: A
     val dismissParentAlarmIntent = getHideAlarmPendingIntent(pAlarm)
     val builder = NotificationCompat.Builder(this)
         .setContentTitle(label)
-        .setContentText("${R.string.upcoming_alarm} at ${getNextAlarm()}")
+        .setContentText(getString(R.string.upcoming_alarm) + " at " + getNextAlarm())
         .setSmallIcon(R.drawable.ic_alarm_vector)
         .setContentIntent(pendingIntent)
         .setPriority(Notification.PRIORITY_HIGH)

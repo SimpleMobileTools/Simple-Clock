@@ -9,9 +9,9 @@ import android.text.TextUtils
 import android.util.Log
 import com.simplemobiletools.clock.extensions.cancelAlarmClock
 import com.simplemobiletools.clock.extensions.createNewAlarm
+import com.simplemobiletools.clock.extensions.dbHelper
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.getIntValue
-import com.simplemobiletools.commons.extensions.getIntValueOrNull
 import com.simplemobiletools.commons.extensions.getStringValue
 import com.simplemobiletools.commons.helpers.*
 
@@ -93,6 +93,16 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
         mDb.delete(ALARMS_TABLE_NAME, selection, null)
     }
 
+    fun getUpcomingAlarms(alarms: ArrayList<Alarm>) : ArrayList<Alarm>{
+        val upcomingAlarms = ArrayList<Alarm>()
+        try {
+            alarms.forEach {
+                getAlarmWithParentId(it.id)?.let { upcomingAlarm -> upcomingAlarms.add(upcomingAlarm) }
+            }
+        } catch (_: Exception) { }
+        return upcomingAlarms
+    }
+
     fun getAlarmWithId(id: Int?) = getAlarms().firstOrNull { it.id == id }
 
     fun getAlarmWithParentId(pid: Int) = getAlarms().firstOrNull { it.pid == pid }
@@ -132,12 +142,10 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
                         val soundTitle = cursor.getStringValue(COL_SOUND_TITLE)
                         val soundUri = cursor.getStringValue(COL_SOUND_URI)
                         val label = cursor.getStringValue(COL_LABEL)
-
-                        Log.e("TAG", "getAlarms: this pid = $pid , id = $id ")
                         val alarm = Alarm(id, pid, timeInMinutes, days, isEnabled, vibrate, soundTitle, soundUri, label)
                         alarms.add(alarm)
                     } catch (e: Exception) {
-                        Log.e("TAG", "getAlarms: $e", )
+                        Log.e("TAG", "getAlarms: $e")
                         continue
                     }
                 } while (cursor.moveToNext())
