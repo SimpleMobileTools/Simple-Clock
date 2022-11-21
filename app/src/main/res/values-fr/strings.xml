@@ -27,6 +27,7 @@
     <string name="add_alarm">Ajouter une alarme</string>
     <string name="dismiss_alarm">Dismiss alarm</string>
     <string name="upcoming_alarm">Upcoming alarm</string>
+    <string name="upcoming_alarm_at">Upcoming alarm at</string>
     <string name="no_timers_found">Aucune minuterie trouvée</string>
     <string name="add_timer">Ajouter une minuterie</string>
     <!--Timer-->

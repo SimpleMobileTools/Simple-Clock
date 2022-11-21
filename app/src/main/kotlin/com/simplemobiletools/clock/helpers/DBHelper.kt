@@ -6,7 +6,6 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.text.TextUtils
-import android.util.Log
 import com.simplemobiletools.clock.extensions.cancelAlarmClock
 import com.simplemobiletools.clock.extensions.createNewAlarm
 import com.simplemobiletools.clock.models.Alarm

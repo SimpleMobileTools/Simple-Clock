@@ -13,7 +13,6 @@ import android.os.PowerManager
 import android.text.SpannableString
 import android.text.format.DateFormat
 import android.text.style.RelativeSizeSpan
-import android.util.Log
 import android.widget.Toast
 import androidx.core.app.AlarmManagerCompat
 import androidx.core.app.NotificationCompat
@@ -477,7 +476,7 @@ fun Context.getUpcomingAlarmNotification(pendingIntent: PendingIntent, pAlarm: A
     val dismissParentAlarmIntent = getHideParentAlarmPendingIntent(pAlarm)
     val builder = NotificationCompat.Builder(this)
         .setContentTitle(label)
-        .setContentText(getString(R.string.upcoming_alarm) + " at " + getNextAlarm())
+        .setContentText(getString(R.string.upcoming_alarm_at) + getNextAlarm())
         .setSmallIcon(R.drawable.ic_alarm_vector)
         .setContentIntent(pendingIntent)
         .setPriority(Notification.PRIORITY_HIGH)

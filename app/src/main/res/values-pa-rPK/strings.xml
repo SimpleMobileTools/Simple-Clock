@@ -28,6 +28,7 @@
     <string name="add_alarm">نواں الارم پایو</string>
     <string name="dismiss_alarm">Dismiss alarm</string>
     <string name="upcoming_alarm">Upcoming alarm</string>
+    <string name="upcoming_alarm_at">Upcoming alarm at</string>
     <string name="no_timers_found">کوئی سماں والے نہیں لبھے</string>
     <string name="add_timer">سماں والا پایو</string>
     <string name="timers_notification_msg">سماں والے چالو کیتے جا رہے اے</string>

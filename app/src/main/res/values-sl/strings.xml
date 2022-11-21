@@ -27,6 +27,7 @@
     <string name="add_alarm">Dodajte alarm</string>
     <string name="dismiss_alarm">Dismiss alarm</string>
     <string name="upcoming_alarm">Upcoming alarm</string>
+    <string name="upcoming_alarm_at">Upcoming alarm at</string>
     <string name="no_timers_found">Ni časovnikov</string>
     <string name="add_timer">Dodajte časovnik</string>
     <string name="timers_notification_msg">Tečejo časovniki</string>

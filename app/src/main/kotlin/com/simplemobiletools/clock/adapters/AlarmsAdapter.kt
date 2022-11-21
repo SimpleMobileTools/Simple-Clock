@@ -7,7 +7,9 @@ import android.widget.RelativeLayout
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.*
-import com.simplemobiletools.clock.helpers.*
+import com.simplemobiletools.clock.helpers.TODAY_BIT
+import com.simplemobiletools.clock.helpers.TOMORROW_BIT
+import com.simplemobiletools.clock.helpers.getCurrentDayMinutes
 import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter

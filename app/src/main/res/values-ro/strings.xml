@@ -27,6 +27,7 @@
     <string name="add_alarm">Adaugă alarmă</string>
     <string name="dismiss_alarm">Dismiss alarm</string>
     <string name="upcoming_alarm">Upcoming alarm</string>
+    <string name="upcoming_alarm_at">Upcoming alarm at</string>
     <string name="no_timers_found">Nu au fost găsite temporizatoare</string>
     <string name="add_timer">Adaugă temporizator</string>
     <!--Timer-->

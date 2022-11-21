@@ -54,26 +54,29 @@ class AlarmReceiver : BroadcastReceiver() {
                         notificationManager.createNotificationChannel(this)
                     }
                 }
-
                 val pendingIntent = PendingIntent.getActivity(context, 0, Intent(context, ReminderActivity::class.java).apply {
                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     putExtra(ALARM_ID, id)
                 }, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
-                val builder =
-                    NotificationCompat.Builder(context, "Alarm").setSmallIcon(R.drawable.ic_alarm_vector).setContentTitle(context.getString(R.string.alarm))
-                        .setAutoCancel(true).setPriority(NotificationCompat.PRIORITY_HIGH).setCategory(NotificationCompat.CATEGORY_ALARM)
-                        .setFullScreenIntent(pendingIntent, true)
+                val builder = NotificationCompat.Builder(context, "Alarm")
+                    .setSmallIcon(R.drawable.ic_alarm_vector)
+                    .setContentTitle(context.getString(R.string.alarm))
+                    .setAutoCancel(true)
+                    .setPriority(NotificationCompat.PRIORITY_HIGH)
+                    .setCategory(NotificationCompat.CATEGORY_ALARM)
+                    .setFullScreenIntent(pendingIntent, true)
+
                 try {
                     notificationManager.notify(ALARM_NOTIF_ID, builder.build())
                 } catch (e: Exception) {
                     context.showErrorToast(e)
                 }
             } else {
-                    Intent(context, ReminderActivity::class.java).apply {
-                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        putExtra(ALARM_ID, id)
-                        context.startActivity(this)
+                Intent(context, ReminderActivity::class.java).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    putExtra(ALARM_ID, id)
+                    context.startActivity(this)
                 }
             }
         }

@@ -27,6 +27,7 @@
     <string name="add_alarm">添加闹钟</string>
     <string name="dismiss_alarm">Dismiss alarm</string>
     <string name="upcoming_alarm">Upcoming alarm</string>
+    <string name="upcoming_alarm_at">Upcoming alarm at</string>
     <string name="no_timers_found">未找到计时器</string>
     <string name="add_timer">添加计时器</string>
     <!--Timer-->

@@ -27,6 +27,7 @@
     <string name="add_alarm">Wekker toevoegen</string>
     <string name="dismiss_alarm">Dismiss alarm</string>
     <string name="upcoming_alarm">Upcoming alarm</string>
+    <string name="upcoming_alarm_at">Upcoming alarm at</string>
     <string name="no_timers_found">Geen timers</string>
     <string name="add_timer">Timer toevoegen</string>
     <!--Timer-->

@@ -27,6 +27,7 @@
     <string name="add_alarm">Häire lisamine</string>
     <string name="dismiss_alarm">Dismiss alarm</string>
     <string name="upcoming_alarm">Upcoming alarm</string>
+    <string name="upcoming_alarm_at">Upcoming alarm at</string>
     <string name="no_timers_found">Ei leitud taimereid</string>
     <string name="add_timer">Lisage taimer</string>
     <!--Timer-->
