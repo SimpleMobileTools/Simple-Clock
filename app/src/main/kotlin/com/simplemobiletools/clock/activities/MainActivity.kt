@@ -102,6 +102,7 @@ class MainActivity : SimpleActivity() {
             putExtra(TOGGLE_STOPWATCH, true)
             action = STOPWATCH_TOGGLE_ACTION
         }
+
         return ShortcutInfo.Builder(this, STOPWATCH_SHORTCUT_ID)
             .setShortLabel(newEvent)
             .setLongLabel(newEvent)
@@ -197,9 +198,11 @@ class MainActivity : SimpleActivity() {
             val timerId = intent.getIntExtra(TIMER_ID, INVALID_TIMER_ID)
             viewPagerAdapter.updateTimerPosition(timerId)
         }
+
         if (tabToOpen == TAB_STOPWATCH) {
-            config.toggleStopWatch = intent.getBooleanExtra(TOGGLE_STOPWATCH, false)
+            config.toggleStopwatch = intent.getBooleanExtra(TOGGLE_STOPWATCH, false)
         }
+
         view_pager.offscreenPageLimit = TABS_COUNT - 1
         view_pager.currentItem = tabToOpen
     }
