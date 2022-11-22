@@ -63,7 +63,7 @@ const val TOMORROW_BIT = -2
 
 // stopwatch shortcut
 const val STOPWATCH_SHORTCUT_ID = "stopwatch_shortcut_id"
-const val STOPWATCH_TOGGLE_ACTION = "android.intent.action.TOGGLE_STOPWATCH"
+const val STOPWATCH_TOGGLE_ACTION = "com.simplemobiletools.clock.TOGGLE_STOPWATCH"
 
 fun getDefaultTimeZoneTitle(id: Int) = getAllTimeZones().firstOrNull { it.id == id }?.title ?: ""
 
