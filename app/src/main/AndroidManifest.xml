@@ -39,6 +39,7 @@
             <intent-filter>
                 <action android:name="com.simplemobiletools.clock.TOGGLE_STOPWATCH" />
                 <action android:name="android.intent.action.SHOW_ALARMS" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
