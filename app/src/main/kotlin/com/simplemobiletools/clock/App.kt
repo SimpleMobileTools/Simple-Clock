@@ -3,10 +3,6 @@ package com.simplemobiletools.clock
 import android.app.Application
 import android.app.NotificationManager
 import android.content.Context
-import android.content.Intent
-import android.content.pm.ShortcutInfo
-import android.content.pm.ShortcutManager
-import android.graphics.drawable.Icon
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
@@ -15,15 +11,9 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.facebook.stetho.Stetho
-import com.simplemobiletools.clock.activities.SplashActivity
 import com.simplemobiletools.clock.extensions.*
-import com.simplemobiletools.clock.helpers.OPEN_TAB
 import com.simplemobiletools.clock.helpers.Stopwatch
 import com.simplemobiletools.clock.helpers.Stopwatch.State
-import com.simplemobiletools.clock.helpers.TAB_STOPWATCH
-import com.simplemobiletools.clock.helpers.TOGGLE_STOPWATCH
-import com.simplemobiletools.clock.helpers.STOPWATCH_TOGGLE_ACTION
-import com.simplemobiletools.clock.helpers.STOPWATCH_SHORTCUT_ID
 import com.simplemobiletools.clock.models.TimerEvent
 import com.simplemobiletools.clock.models.TimerState
 import com.simplemobiletools.clock.services.StopwatchStopService
@@ -32,7 +22,6 @@ import com.simplemobiletools.clock.services.startStopwatchService
 import com.simplemobiletools.clock.services.startTimerService
 import com.simplemobiletools.commons.extensions.checkUseEnglish
 import com.simplemobiletools.commons.extensions.showErrorToast
-import com.simplemobiletools.commons.helpers.isNougatMR1Plus
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
