@@ -4,9 +4,7 @@ import android.content.Context
 import android.media.RingtoneManager
 import com.simplemobiletools.clock.extensions.gson.gson
 import com.simplemobiletools.clock.models.Alarm
-import com.simplemobiletools.clock.models.StateWrapper
 import com.simplemobiletools.clock.models.Timer
-import com.simplemobiletools.clock.models.TimerState
 import com.simplemobiletools.commons.extensions.getDefaultAlarmSound
 import com.simplemobiletools.commons.extensions.getDefaultAlarmTitle
 import com.simplemobiletools.commons.helpers.BaseConfig
@@ -49,9 +47,9 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getString(TIMER_LABEL, null)
         set(label) = prefs.edit().putString(TIMER_LABEL, label).apply()
 
-    var toggleStopWatch: Boolean
+    var toggleStopwatch: Boolean
         get() = prefs.getBoolean(TOGGLE_STOPWATCH, false)
-        set(toggleStopWatch) = prefs.edit().putBoolean(TOGGLE_STOPWATCH, toggleStopWatch).apply()
+        set(toggleStopwatch) = prefs.edit().putBoolean(TOGGLE_STOPWATCH, toggleStopwatch).apply()
 
     var alarmSort: Int
         get() = prefs.getInt(ALARMS_SORT_BY, SORT_BY_CREATION_ORDER)
