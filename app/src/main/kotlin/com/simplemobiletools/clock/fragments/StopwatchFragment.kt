@@ -92,8 +92,8 @@ class StopwatchFragment : Fragment() {
             updateSorting(Lap.sorting)
         }
 
-        if (requireContext().config.toggleStopWatch) {
-            requireContext().config.toggleStopWatch = false
+        if (requireContext().config.toggleStopwatch) {
+            requireContext().config.toggleStopwatch = false
             startStopWatch()
         }
     }
