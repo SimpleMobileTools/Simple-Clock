@@ -51,7 +51,7 @@ class Config(context: Context) : BaseConfig(context) {
 
     var toggleStopWatch: Boolean
         get() = prefs.getBoolean(TOGGLE_STOPWATCH, false)
-        set(label) = prefs.edit().putBoolean(TOGGLE_STOPWATCH, label).apply()
+        set(toggleStopWatch) = prefs.edit().putBoolean(TOGGLE_STOPWATCH, toggleStopWatch).apply()
 
     var alarmSort: Int
         get() = prefs.getInt(ALARMS_SORT_BY, SORT_BY_CREATION_ORDER)
