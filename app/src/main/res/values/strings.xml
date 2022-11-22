@@ -8,6 +8,7 @@
     <string name="clock">Clock</string>
     <string name="timer">Timer</string>
     <string name="stopwatch">Stopwatch</string>
+    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">Lap</string>
     <string name="stopwatch_stopped">Stopwatch has been stopped</string>
     <string name="timer_stopped">Timer has been stopped</string>
@@ -53,4 +54,5 @@
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
     -->
+
 </resources>

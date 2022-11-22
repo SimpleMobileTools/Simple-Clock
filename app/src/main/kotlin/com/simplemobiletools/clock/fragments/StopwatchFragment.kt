@@ -91,6 +91,11 @@ class StopwatchFragment : Fragment() {
         if (Stopwatch.laps.isNotEmpty()) {
             updateSorting(Lap.sorting)
         }
+
+        if (requireContext().config.toggleStopwatch) {
+            requireContext().config.toggleStopwatch = false
+            startStopWatch()
+        }
     }
 
     override fun onPause() {
@@ -182,6 +187,12 @@ class StopwatchFragment : Fragment() {
                 bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
             }
             activeIndicator.setImageBitmap(bitmap)
+        }
+    }
+
+    fun startStopWatch() {
+        if (Stopwatch.state == Stopwatch.State.STOPPED) {
+            togglePlayPause()
         }
     }
 

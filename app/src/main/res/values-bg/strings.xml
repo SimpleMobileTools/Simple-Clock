@@ -8,6 +8,7 @@
     <string name="clock">Часовник</string>
     <string name="timer">Таймер</string>
     <string name="stopwatch">Секундомер</string>
+    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">Обиколка</string>
     <string name="stopwatch_stopped">Секундомерът е спрян</string>
     <string name="timer_stopped">Таймерът е спрян</string>

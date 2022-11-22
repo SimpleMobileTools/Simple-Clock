@@ -8,6 +8,7 @@
     <string name="clock">Saat</string>
     <string name="timer">Zamanlayıcı</string>
     <string name="stopwatch">Kronometre</string>
+    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">Tur</string>
     <string name="stopwatch_stopped">Kronometre durduruldu</string>
     <string name="timer_stopped">Zamanlayıcı durduruldu</string>
