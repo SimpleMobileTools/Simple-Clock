@@ -37,7 +37,7 @@
             android:theme="@style/SplashTheme">
 
             <intent-filter>
-                <action android:name="android.intent.action.TOGGLE_STOPWATCH" />
+                <action android:name="com.simplemobiletools.clock.TOGGLE_STOPWATCH" />
                 <action android:name="android.intent.action.SHOW_ALARMS" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
