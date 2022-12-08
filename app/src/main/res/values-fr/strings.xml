@@ -5,10 +5,10 @@
     <string name="time_zone">Fuseau horaire</string>
     <string name="vibrate">Vibrer</string>
     <string name="no_days_selected">Aucun jour sélectionné</string>
-    <string name="clock">Clock</string>
+    <string name="clock">Horloge</string>
     <string name="timer">Minuterie</string>
     <string name="stopwatch">Chronomètre</string>
-    <string name="start_stopwatch">Start stopwatch</string>
+    <string name="start_stopwatch">Démarrer le chronomètre</string>
     <string name="lap">Tour</string>
     <string name="stopwatch_stopped">Chronomètre arrêté</string>
     <string name="timer_stopped">La minuterie a été arrêtée</string>
