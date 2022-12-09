@@ -5,10 +5,10 @@
     <string name="time_zone">Fuso orario</string>
     <string name="vibrate">Vibrazione</string>
     <string name="no_days_selected">Nessun giorno selezionato</string>
-    <string name="clock">Clock</string>
+    <string name="clock">Orologio</string>
     <string name="timer">Contaminuti</string>
     <string name="stopwatch">Cronometro</string>
-    <string name="start_stopwatch">Start stopwatch</string>
+    <string name="start_stopwatch">Avvia il cronometro</string>
     <string name="lap">Parziale</string>
     <string name="stopwatch_stopped">Il cronometro è stato fermato</string>
     <string name="timer_stopped">Il contaminuti è stato fermato</string>
