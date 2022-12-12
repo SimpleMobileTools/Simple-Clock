@@ -125,6 +125,7 @@ class MainActivity : SimpleActivity() {
         main_toolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.sort -> getViewPagerAdapter()?.showAlarmSortDialog()
+                R.id.more_apps_from_us -> launchMoreAppsFromUsIntent()
                 R.id.settings -> launchSettings()
                 R.id.about -> launchAbout()
                 else -> return@setOnMenuItemClickListener false
@@ -136,6 +137,7 @@ class MainActivity : SimpleActivity() {
     private fun refreshMenuItems() {
         main_toolbar.menu.apply {
             findItem(R.id.sort).isVisible = view_pager.currentItem == TAB_ALARM
+            findItem(R.id.more_apps_from_us).isVisible = !resources.getBoolean(R.bool.hide_google_relations)
         }
     }
 
