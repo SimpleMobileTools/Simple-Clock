@@ -7,6 +7,7 @@
     <string name="clock">Clock</string>
     <string name="timer">Temporizador</string>
     <string name="stopwatch">Stopwatch</string>
+    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">Volta</string>
     <string name="stopwatch_stopped">Cronómetro parado</string>
     <string name="timer_stopped">Temporizador parado</string>

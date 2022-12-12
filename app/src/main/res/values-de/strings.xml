@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Schlichte Uhr</string>
+    <string name="app_name">Einfache Uhr</string>
     <string name="app_launcher_name">Uhr</string>
     <string name="time_zone">Zeitzone</string>
     <string name="vibrate">Vibration</string>
     <string name="no_days_selected">Keine Tage ausgewählt</string>
-    <string name="clock">Clock</string>
+    <string name="clock">Wecker</string>
     <string name="timer">Timer</string>
     <string name="stopwatch">Stoppuhr</string>
+    <string name="start_stopwatch">Stoppuhr starten</string>
     <string name="lap">Runde</string>
     <string name="stopwatch_stopped">Die Stoppuhr wurde angehalten</string>
     <string name="timer_stopped">Der Timer wurde angehalten</string>

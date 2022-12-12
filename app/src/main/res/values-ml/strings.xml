@@ -8,6 +8,7 @@
     <string name="clock">ക്ലോക്ക്</string>
     <string name="timer">ടൈമർ</string>
     <string name="stopwatch">സ്റ്റോപ്പ് വാച്ച്</string>
+    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">ലാപ്‌</string>
     <string name="stopwatch_stopped">സ്റ്റോപ്പ് വാച്ച് നിർത്തിയിരിക്കുന്നു</string>
     <string name="timer_stopped">ടൈമർ നിർത്തിയിരിക്കുന്നു</string>
@@ -15,7 +16,7 @@
     <string name="time_expired">സമയം കാലഹരണപ്പെട്ടു</string>
     <string name="clock_and_date">ക്ലോക്കും തീയതിയും</string>
     <string name="use_text_shadow">ടെക്സ്റ്റ് ഷാഡോ ഉപയോഗിക്കുക</string>
-    <string name="swipe_right_to_dismiss">നിരസിക്കുന്നതിന് വലത്തേക്ക് സ്വൈപ്പുചെയ്യുക, സ്‌നൂസ് ചെയ്യാൻ വലത്തേക്ക് സ്വൈപ്പ് ചെയ്യുക</string>
+    <string name="swipe_right_to_dismiss">നിരസിക്കുന്നതിന് വലത്തേക്ക് സ്വൈപ്പുചെയ്യുക, അല്ലെങ്കിൽ സ്‌നൂസ് ചെയ്യാൻ വലത്തേക്ക് സ്വൈപ്പ് ചെയ്യുക.</string>
     <string name="sort_by_creation_order">സൃഷ്ടി ക്രമം</string>
     <string name="sort_by_alarm_time">അലാറം സമയം</string>
     <string name="sort_by_day_and_alarm_time">ദിവസവും അലാറം സമയവും</string>

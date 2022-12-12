@@ -13,6 +13,7 @@ const val TIMER_SOUND_URI = "timer_sound_uri"
 const val TIMER_SOUND_TITLE = "timer_sound_title"
 const val TIMER_CHANNEL_ID = "timer_channel_id"
 const val TIMER_LABEL = "timer_label"
+const val TOGGLE_STOPWATCH = "toggle_stopwatch"
 const val TIMER_MAX_REMINDER_SECS = "timer_max_reminder_secs"
 const val ALARM_MAX_REMINDER_SECS = "alarm_max_reminder_secs"
 const val UPCOMING_ALARM_MAX_REMINDER_SECS = "upcoming_alarm_max_reminder_secs"
@@ -61,6 +62,10 @@ const val SORT_BY_DATE_AND_TIME = 2
 
 const val TODAY_BIT = -1
 const val TOMORROW_BIT = -2
+
+// stopwatch shortcut
+const val STOPWATCH_SHORTCUT_ID = "stopwatch_shortcut_id"
+const val STOPWATCH_TOGGLE_ACTION = "com.simplemobiletools.clock.TOGGLE_STOPWATCH"
 
 fun getDefaultTimeZoneTitle(id: Int) = getAllTimeZones().firstOrNull { it.id == id }?.title ?: ""
 

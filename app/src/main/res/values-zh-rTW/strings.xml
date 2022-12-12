@@ -7,6 +7,7 @@
     <string name="clock">Clock</string>
     <string name="timer">計時器</string>
     <string name="stopwatch">Stopwatch</string>
+    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">分段</string>
     <string name="stopwatch_stopped">碼錶已停止</string>
     <string name="timer_stopped">計時器已停止</string>

@@ -7,6 +7,7 @@
     <string name="clock">Clock</string>
     <string name="timer">Laikmatis</string>
     <string name="stopwatch">Stopwatch</string>
+    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">Etapas</string>
     <string name="stopwatch_stopped">Chronometras buvo sustabdytas</string>
     <string name="timer_stopped">Laikmatis buvo sustabdytas</string>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="lap">Krog</string>
     <string name="app_name">Enostavna ura</string>
     <string name="app_launcher_name">Ura</string>
     <string name="time_zone">Časovne cone</string>
@@ -9,6 +8,8 @@
     <string name="clock">Ura</string>
     <string name="timer">Časovnik</string>
     <string name="stopwatch">Štoparica</string>
+    <string name="start_stopwatch">Start stopwatch</string>
+    <string name="lap">Krog</string>
     <string name="stopwatch_stopped">Štoparica se je ustavila</string>
     <string name="timer_stopped">Časovnik je bil ustavljen</string>
     <string name="max_reminder_duration">Najdaljše trajanje opomnika</string>
@@ -30,8 +31,8 @@
     <string name="upcoming_alarm_at">Upcoming alarm at</string>
     <string name="no_timers_found">Ni časovnikov</string>
     <string name="add_timer">Dodajte časovnik</string>
+    <!-- Timer -->
     <string name="timers_notification_msg">Tečejo časovniki</string>
-    <string name="faq_1_text">Kliknite na izbrani stolpec, da se krogi razvrstijo stolpcu. Z dodatnimi kliki preklapljate med naraščajočim in padajočim razvrščanjem.</string>
     <string name="timer_single_notification_label_msg">Časovnik za %s teče</string>
     <string name="new_timer">Nov časovnik</string>
     <plurals name="timer_notification_msg">
@@ -40,11 +41,14 @@
         <item quantity="few">%d tečejo nekateri časovniki</item>
         <item quantity="other">%d tečejo drugi časovniki</item>
     </plurals>
+    <!-- Settings -->
     <string name="clock_tab">Zavihek ura</string>
     <string name="alarm_tab">Zavihek alarm</string>
     <string name="stopwatch_tab">Zavihek štoparice</string>
     <string name="timer_tab">Zavihek časovnik</string>
     <string name="show_seconds">Prikaži sekunde</string>
     <string name="increase_volume_gradually">Povečajte postopno glasnost</string>
+    <!-- FAQ -->
     <string name="faq_1_title">Kako spremenim razvrščanje krogov v zavihku štoparica\?</string>
+    <string name="faq_1_text">Kliknite na izbrani stolpec, da se krogi razvrstijo stolpcu. Z dodatnimi kliki preklapljate med naraščajočim in padajočim razvrščanjem.</string>
 </resources>

@@ -7,6 +7,7 @@
     <string name="clock">Clock</string>
     <string name="timer">Æggeur</string>
     <string name="stopwatch">Stopwatch</string>
+    <string name="start_stopwatch">Start stopwatch</string>
     <string name="lap">Mellemtid</string>
     <string name="stopwatch_stopped">Stopuret er standset</string>
     <string name="timer_stopped">Æggeuret er standset</string>
