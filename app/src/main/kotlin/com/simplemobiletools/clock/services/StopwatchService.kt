@@ -17,6 +17,7 @@ import com.simplemobiletools.clock.helpers.STOPWATCH_RUNNING_NOTIF_ID
 import com.simplemobiletools.clock.helpers.Stopwatch
 import com.simplemobiletools.clock.helpers.Stopwatch.State
 import com.simplemobiletools.clock.helpers.Stopwatch.UpdateListener
+import com.simplemobiletools.commons.extensions.showErrorToast
 import com.simplemobiletools.commons.helpers.isNougatPlus
 import com.simplemobiletools.commons.helpers.isOreoPlus
 import org.greenrobot.eventbus.EventBus
@@ -24,7 +25,6 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
 class StopwatchService : Service() {
-
     private val bus = EventBus.getDefault()
     private lateinit var notificationManager: NotificationManager
     private lateinit var notificationBuilder: NotificationCompat.Builder
@@ -114,7 +114,11 @@ class StopwatchService : Service() {
 
 fun startStopwatchService(context: Context) {
     Handler(Looper.getMainLooper()).post {
-        ContextCompat.startForegroundService(context, Intent(context, StopwatchService::class.java))
+        try {
+            ContextCompat.startForegroundService(context, Intent(context, StopwatchService::class.java))
+        } catch (e: Exception) {
+            context.showErrorToast(e)
+        }
     }
 }
 

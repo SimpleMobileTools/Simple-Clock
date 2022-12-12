@@ -19,6 +19,7 @@ import com.simplemobiletools.clock.helpers.INVALID_TIMER_ID
 import com.simplemobiletools.clock.helpers.TIMER_RUNNING_NOTIF_ID
 import com.simplemobiletools.clock.models.TimerEvent
 import com.simplemobiletools.clock.models.TimerState
+import com.simplemobiletools.commons.extensions.showErrorToast
 import com.simplemobiletools.commons.helpers.isOreoPlus
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -55,7 +56,11 @@ class TimerService : Service() {
                 }
 
                 Handler(Looper.getMainLooper()).post {
-                    startForeground(TIMER_RUNNING_NOTIF_ID, notification(formattedDuration, contextText, firstTimer.id!!))
+                    try {
+                        startForeground(TIMER_RUNNING_NOTIF_ID, notification(formattedDuration, contextText, firstTimer.id!!))
+                    } catch (e: Exception) {
+                        showErrorToast(e)
+                    }
                 }
             } else {
                 stopService()
@@ -122,7 +127,11 @@ class TimerService : Service() {
 
 fun startTimerService(context: Context) {
     Handler(Looper.getMainLooper()).post {
-        ContextCompat.startForegroundService(context, Intent(context, TimerService::class.java))
+        try {
+            ContextCompat.startForegroundService(context, Intent(context, TimerService::class.java))
+        } catch (e: Exception) {
+            context.showErrorToast(e)
+        }
     }
 }
 
