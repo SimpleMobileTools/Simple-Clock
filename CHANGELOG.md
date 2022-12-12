@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.9.5 *(2022-12-12)*
+----------------------------
+
+ * Added a Start Stopwatch shortcut
+ * Added some translation, stability and UX improvements
+
 Version 5.9.4 *(2022-10-14)*
 ----------------------------
 
