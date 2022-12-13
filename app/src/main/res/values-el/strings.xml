@@ -28,6 +28,7 @@
     <string name="add_alarm">Προσθήκη αφύπνισης</string>
     <string name="no_timers_found">Δεν βρέθηκαν χρονόμετρα</string>
     <string name="add_timer">Προσθήκη χρονόμετρου</string>
+    <string name="upcoming_alarm">Upcoming alarm</string>
 
     <!--Timer-->
     <string name="timers_notification_msg">Τα χρονόμετρα τρέχουν</string>
