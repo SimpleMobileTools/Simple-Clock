@@ -28,7 +28,7 @@
     <string name="add_alarm">Wekker toevoegen</string>
     <string name="no_timers_found">Geen timers</string>
     <string name="add_timer">Timer toevoegen</string>
-    <string name="upcoming_alarm">Upcoming alarm</string>
+    <string name="upcoming_alarm">Volgende wekker</string>
     <!--Timer-->
     <string name="timers_notification_msg">Timers lopen</string>
     <string name="timer_single_notification_label_msg">Timer voor %s loopt</string>
