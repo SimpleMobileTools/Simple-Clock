@@ -28,7 +28,7 @@
     <string name="add_alarm">Ajouter une alarme</string>
     <string name="no_timers_found">Aucune minuterie trouvée</string>
     <string name="add_timer">Ajouter une minuterie</string>
-    <string name="upcoming_alarm">Upcoming alarm</string>
+    <string name="upcoming_alarm">Alarme à venir</string>
     <!--Timer-->
     <string name="timers_notification_msg">Les minuteries sont en marche</string>
     <string name="timer_single_notification_label_msg">La minuterie de %s est en marche</string>
