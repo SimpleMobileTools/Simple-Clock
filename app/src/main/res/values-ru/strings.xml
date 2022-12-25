@@ -25,10 +25,10 @@
     <string name="alarm_dismissed">Будильник отключён</string>
     <string name="alarm_snoozed">Будильник отложен на %s</string>
     <string name="no_alarms_found">Будильники отсутствуют</string>
-    <string name="add_alarm">Add alarm</string>
+    <string name="add_alarm">Добавить будильник</string>
     <string name="no_timers_found">Таймеры отсутствуют</string>
-    <string name="add_timer">Add timer</string>
-    <string name="upcoming_alarm">Upcoming alarm</string>
+    <string name="add_timer">Добавить таймер</string>
+    <string name="upcoming_alarm">Предстоящий будильник</string>
     <!--Timer-->
     <string name="timers_notification_msg">Таймеры запущены</string>
     <string name="timer_single_notification_label_msg">Таймер для %s запущен</string>
@@ -45,7 +45,7 @@
     <string name="stopwatch_tab">Секундомер</string>
     <string name="timer_tab">Таймер</string>
     <string name="show_seconds">Показывать секунды</string>
-    <string name="increase_volume_gradually">Увеличивать громкость постепенно</string>
+    <string name="increase_volume_gradually">Нарастание громкости</string>
     <!-- FAQ -->
     <string name="faq_1_title">Как я могу изменить сортировку кругов во вкладке секундомера?</string>
     <string name="faq_1_text">Просто нажмите на любую из колонок, и круги отсортируются по этой колонке. Дополнительными нажатиями можно переключаться между сортировкой по возрастанию и по убыванию.</string>

@@ -5,7 +5,7 @@
     <string name="time_zone">Zeitzone</string>
     <string name="vibrate">Vibration</string>
     <string name="no_days_selected">Keine Tage ausgewählt</string>
-    <string name="clock">Wecker</string>
+    <string name="clock">Uhr</string>
     <string name="timer">Timer</string>
     <string name="stopwatch">Stoppuhr</string>
     <string name="start_stopwatch">Stoppuhr starten</string>
@@ -28,7 +28,7 @@
     <string name="add_alarm">Alarm hinzufügen</string>
     <string name="no_timers_found">Keine Timer gefunden</string>
     <string name="add_timer">Timer hinzufügen</string>
-    <string name="upcoming_alarm">Upcoming alarm</string>
+    <string name="upcoming_alarm">Bevorstehender Alarm</string>
     <!--Timer-->
     <string name="timers_notification_msg">Die Timer laufen</string>
     <string name="timer_single_notification_label_msg">Timer für %s läuft</string>
