@@ -55,7 +55,6 @@ class WidgetAnalogueConfigureActivity : SimpleActivity() {
 
     override fun onResume() {
         super.onResume()
-        setupToolbar(config_toolbar)
         if (mFeatureLockedDialog != null && isOrWasThankYouInstalled()) {
             mFeatureLockedDialog?.dismissDialog()
         }
@@ -63,6 +62,10 @@ class WidgetAnalogueConfigureActivity : SimpleActivity() {
 
     private fun initVariables() {
         mBgColor = config.widgetBgColor
+        if (mBgColor == resources.getColor(R.color.default_widget_bg_color) && config.isUsingSystemTheme) {
+            mBgColor = resources.getColor(R.color.you_primary_color, theme)
+        }
+
         mBgAlpha = Color.alpha(mBgColor) / 255.toFloat()
         mBgColorWithoutTransparency = Color.rgb(Color.red(mBgColor), Color.green(mBgColor), Color.blue(mBgColor))
 
