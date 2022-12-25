@@ -30,11 +30,15 @@ class MainActivity : SimpleActivity() {
     private var storedPrimaryColor = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        isMaterialActivity = true
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         appLaunched(BuildConfig.APPLICATION_ID)
         setupOptionsMenu()
         refreshMenuItems()
+
+        updateMaterialActivityViews(main_coordinator, main_holder)
+
         storeStateVariables()
         initFragments()
         setupTabs()
@@ -49,7 +53,7 @@ class MainActivity : SimpleActivity() {
 
     override fun onResume() {
         super.onResume()
-        setupToolbar(main_toolbar)
+        setupToolbar(main_toolbar, statusBarColor = getProperBackgroundColor())
         val configTextColor = getProperTextColor()
         if (storedTextColor != configTextColor) {
             getInactiveTabIndexes(view_pager.currentItem).forEach {
