@@ -115,7 +115,6 @@ class MainActivity : SimpleActivity() {
             .build()
     }
 
-
     override fun onPause() {
         super.onPause()
         storeStateVariables()
@@ -229,22 +228,22 @@ class MainActivity : SimpleActivity() {
 
         main_tabs_holder.onTabSelectionChanged(
             tabUnselectedAction = {
-                updateBottomTabItemColors(it.customView, false)
+                updateBottomTabItemColors(it.customView, false, getDeselectedTabDrawableIds()[it.position])
             },
             tabSelectedAction = {
                 view_pager.currentItem = it.position
-                updateBottomTabItemColors(it.customView, true)
+                updateBottomTabItemColors(it.customView, true, getSelectedTabDrawableIds()[it.position])
             }
         )
     }
 
     private fun setupTabColors() {
         val activeView = main_tabs_holder.getTabAt(view_pager.currentItem)?.customView
-        updateBottomTabItemColors(activeView, true)
+        updateBottomTabItemColors(activeView, true, getSelectedTabDrawableIds()[view_pager.currentItem])
 
         getInactiveTabIndexes(view_pager.currentItem).forEach { index ->
             val inactiveView = main_tabs_holder.getTabAt(index)?.customView
-            updateBottomTabItemColors(inactiveView, false)
+            updateBottomTabItemColors(inactiveView, false, getDeselectedTabDrawableIds()[index])
         }
 
         main_tabs_holder.getTabAt(view_pager.currentItem)?.select()
@@ -254,6 +253,20 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun getInactiveTabIndexes(activeIndex: Int) = arrayListOf(0, 1, 2, 3).filter { it != activeIndex }
+
+    private fun getSelectedTabDrawableIds() = arrayOf(
+        R.drawable.ic_clock_filled_vector,
+        R.drawable.ic_alarm_filled_vector,
+        R.drawable.ic_stopwatch_filled_vector,
+        R.drawable.ic_hourglass_filled_vector
+    )
+
+    private fun getDeselectedTabDrawableIds() = arrayOf(
+        R.drawable.ic_clock_vector,
+        R.drawable.ic_alarm_vector,
+        R.drawable.ic_stopwatch_vector,
+        R.drawable.ic_hourglass_vector
+    )
 
     private fun launchSettings() {
         startActivity(Intent(applicationContext, SettingsActivity::class.java))

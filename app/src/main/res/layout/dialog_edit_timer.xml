@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
-            android:drawableLeft="@drawable/ic_hourglass_vector"
+            android:drawableLeft="@drawable/ic_hourglass_small"
             android:drawablePadding="@dimen/normal_margin"
             android:padding="@dimen/activity_margin"
             android:textSize="@dimen/bigger_text_size"

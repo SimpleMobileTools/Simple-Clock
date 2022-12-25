@@ -40,7 +40,7 @@
             android:layout_below="@+id/clock_date"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/medium_margin"
-            android:drawableLeft="@drawable/ic_alarm_vector"
+            android:drawableLeft="@drawable/ic_clock_small"
             android:drawablePadding="@dimen/small_margin"
             android:gravity="center_horizontal"
             android:textSize="@dimen/big_text_size"
