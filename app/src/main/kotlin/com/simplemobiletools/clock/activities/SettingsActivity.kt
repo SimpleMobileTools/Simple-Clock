@@ -17,8 +17,12 @@ import kotlin.system.exitProcess
 
 class SettingsActivity : SimpleActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        isMaterialActivity = true
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+
+        updateMaterialActivityViews(settings_coordinator, settings_holder)
+        setupMaterialScrollListener(settings_nested_scrollview, settings_toolbar)
     }
 
     override fun onResume() {
@@ -40,41 +44,25 @@ class SettingsActivity : SimpleActivity() {
         updateTextColors(settings_holder)
 
         arrayOf(
-            settings_color_customization_label,
+            settings_color_customization_section_label,
             settings_general_settings_label,
             settings_alarm_tab_label,
             settings_timer_tab_label,
         ).forEach {
             it.setTextColor(getProperPrimaryColor())
         }
-
-        arrayOf(
-            settings_color_customization_holder,
-            settings_general_settings_holder,
-            settings_alarm_tab_holder,
-            settings_timer_tab_holder,
-        ).forEach {
-            it.background.applyColorFilter(getProperBackgroundColor().getContrastColor())
-        }
     }
 
     private fun setupPurchaseThankYou() {
         settings_purchase_thank_you_holder.beGoneIf(isOrWasThankYouInstalled())
-
-        // make sure the corners at ripple fit the stroke rounded corners
-        if (settings_purchase_thank_you_holder.isGone()) {
-            settings_use_english_holder.background = resources.getDrawable(R.drawable.ripple_top_corners, theme)
-            settings_language_holder.background = resources.getDrawable(R.drawable.ripple_top_corners, theme)
-        }
-
         settings_purchase_thank_you_holder.setOnClickListener {
             launchPurchaseThankYouIntent()
         }
     }
 
     private fun setupCustomizeColors() {
-        settings_customize_colors_label.text = getCustomizeColorsString()
-        settings_customize_colors_holder.setOnClickListener {
+        settings_color_customization_label.text = getCustomizeColorsString()
+        settings_color_customization_holder.setOnClickListener {
             handleCustomizeColorsClick()
         }
     }
@@ -92,11 +80,6 @@ class SettingsActivity : SimpleActivity() {
     private fun setupLanguage() {
         settings_language.text = Locale.getDefault().displayLanguage
         settings_language_holder.beVisibleIf(isTiramisuPlus())
-
-        if (settings_use_english_holder.isGone() && settings_language_holder.isGone() && settings_purchase_thank_you_holder.isGone()) {
-            settings_prevent_phone_from_sleeping_holder.background = resources.getDrawable(R.drawable.ripple_top_corners, theme)
-        }
-
         settings_language_holder.setOnClickListener {
             launchChangeAppLanguageIntent()
         }
@@ -131,23 +114,11 @@ class SettingsActivity : SimpleActivity() {
     private fun setupUseSameSnooze() {
         settings_snooze_time_holder.beVisibleIf(config.useSameSnooze)
         settings_use_same_snooze.isChecked = config.useSameSnooze
-        checkSnoozeButtonBackgrounds()
         settings_use_same_snooze_holder.setOnClickListener {
             settings_use_same_snooze.toggle()
             config.useSameSnooze = settings_use_same_snooze.isChecked
             settings_snooze_time_holder.beVisibleIf(config.useSameSnooze)
-            checkSnoozeButtonBackgrounds()
         }
-    }
-
-    private fun checkSnoozeButtonBackgrounds() {
-        val backgroundId = if (settings_use_same_snooze.isChecked) {
-            R.drawable.ripple_background
-        } else {
-            R.drawable.ripple_bottom_corners
-        }
-
-        settings_use_same_snooze_holder.background = resources.getDrawable(backgroundId, theme)
     }
 
     private fun setupSnoozeTime() {
@@ -191,7 +162,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupCustomizeWidgetColors() {
-        settings_customize_widget_colors_holder.setOnClickListener {
+        settings_widget_color_customization_holder.setOnClickListener {
             Intent(this, WidgetDigitalConfigureActivity::class.java).apply {
                 putExtra(IS_CUSTOMIZING_COLORS, true)
                 startActivity(this)
