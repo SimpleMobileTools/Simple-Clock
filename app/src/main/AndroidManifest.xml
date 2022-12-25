@@ -46,18 +46,21 @@
 
         <activity
             android:name=".activities.MainActivity"
+            android:configChanges="orientation"
             android:exported="false"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".activities.ReminderActivity"
+            android:configChanges="orientation"
             android:exported="false"
             android:launchMode="singleTask"
             android:showOnLockScreen="true" />
 
         <activity
             android:name=".activities.SettingsActivity"
+            android:configChanges="orientation"
             android:exported="true"
             android:label="@string/settings"
             android:parentActivityName=".activities.MainActivity">
@@ -70,24 +73,28 @@
 
         <activity
             android:name="com.simplemobiletools.commons.activities.AboutActivity"
+            android:configChanges="orientation"
             android:exported="false"
             android:label="@string/about"
             android:parentActivityName=".activities.MainActivity" />
 
         <activity
             android:name="com.simplemobiletools.commons.activities.CustomizationActivity"
+            android:configChanges="orientation"
             android:exported="false"
             android:label="@string/customize_colors"
             android:parentActivityName=".activities.SettingsActivity" />
 
         <activity
             android:name=".activities.SnoozeReminderActivity"
+            android:configChanges="orientation"
             android:exported="false"
             android:theme="@style/Theme.Transparent" />
 
         <activity
             android:name=".activities.WidgetDigitalConfigureActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/MyWidgetConfigTheme">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
@@ -97,6 +104,7 @@
         <activity
             android:name=".activities.WidgetAnalogueConfigureActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/MyWidgetConfigTheme">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
