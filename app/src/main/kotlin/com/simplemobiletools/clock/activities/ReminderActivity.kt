@@ -21,7 +21,10 @@ import com.simplemobiletools.clock.helpers.ALARM_ID
 import com.simplemobiletools.clock.helpers.getPassedSeconds
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.*
+import com.simplemobiletools.commons.helpers.MINUTE_SECONDS
+import com.simplemobiletools.commons.helpers.SILENT
+import com.simplemobiletools.commons.helpers.isOreoMr1Plus
+import com.simplemobiletools.commons.helpers.isOreoPlus
 import kotlinx.android.synthetic.main.activity_reminder.*
 
 class ReminderActivity : SimpleActivity() {
@@ -40,10 +43,12 @@ class ReminderActivity : SimpleActivity() {
     private var dragDownX = 0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        isMaterialActivity = true
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reminder)
         showOverLockscreen()
         updateTextColors(reminder_holder as ViewGroup)
+        updateStatusbarColor(getProperBackgroundColor())
 
         val id = intent.getIntExtra(ALARM_ID, -1)
         isAlarmReminder = id != -1
@@ -71,11 +76,6 @@ class ReminderActivity : SimpleActivity() {
 
         setupButtons()
         setupEffects()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        setupToolbar(reminder_toolbar)
     }
 
     private fun setupButtons() {

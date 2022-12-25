@@ -1,149 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/reminder_coordinator"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/reminder_holder"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/reminder_app_bar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <com.simplemobiletools.commons.views.MyTextView
+        android:id="@+id/reminder_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:textSize="@dimen/reminder_activity_title_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/time_expired" />
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/reminder_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/color_primary"
-            app:title="@string/app_launcher_name"
-            app:titleTextAppearance="@style/AppTheme.ActionBar.TitleTextStyle" />
+    <com.simplemobiletools.commons.views.MyTextView
+        android:id="@+id/reminder_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/activity_margin"
+        android:textSize="@dimen/reminder_activity_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reminder_title"
+        tools:text="14:00" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+    <ImageView
+        android:id="@+id/reminder_snooze"
+        android:layout_width="@dimen/reminder_background_min_size"
+        android:layout_height="@dimen/reminder_background_min_size"
+        android:clickable="false"
+        android:padding="@dimen/activity_margin"
+        android:src="@drawable/ic_snooze_vector"
+        app:layout_constraintBottom_toBottomOf="@+id/reminder_draggable"
+        app:layout_constraintEnd_toStartOf="@+id/reminder_draggable"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/reminder_draggable" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/reminder_holder"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <com.simplemobiletools.commons.views.MyTextView
+        android:id="@+id/snooze_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/snooze"
+        app:layout_constraintEnd_toStartOf="@+id/reminder_draggable"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reminder_snooze" />
 
-        <com.simplemobiletools.commons.views.MyTextView
-            android:id="@+id/reminder_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:textSize="@dimen/reminder_activity_title_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/time_expired" />
+    <ImageView
+        android:id="@+id/reminder_draggable_background"
+        android:layout_width="@dimen/reminder_background_min_size"
+        android:layout_height="@dimen/reminder_background_min_size"
+        android:layout_marginBottom="@dimen/activity_margin"
+        android:alpha="0.2"
+        android:padding="@dimen/medium_margin"
+        android:src="@drawable/pulsing_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/reminder_dismiss"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/reminder_snooze"
+        app:layout_constraintTop_toBottomOf="@+id/reminder_text" />
 
-        <com.simplemobiletools.commons.views.MyTextView
-            android:id="@+id/reminder_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/activity_margin"
-            android:textSize="@dimen/reminder_activity_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reminder_title"
-            tools:text="14:00" />
+    <ImageView
+        android:id="@+id/reminder_draggable"
+        android:layout_width="@dimen/reminder_background_min_size"
+        android:layout_height="@dimen/reminder_background_min_size"
+        android:layout_marginBottom="@dimen/activity_margin"
+        android:padding="@dimen/activity_margin"
+        android:src="@drawable/ic_alarm_vector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/reminder_dismiss"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/reminder_snooze"
+        app:layout_constraintTop_toBottomOf="@+id/reminder_text" />
 
-        <ImageView
-            android:id="@+id/reminder_snooze"
-            android:layout_width="@dimen/reminder_background_min_size"
-            android:layout_height="@dimen/reminder_background_min_size"
-            android:clickable="false"
-            android:padding="@dimen/activity_margin"
-            android:src="@drawable/ic_snooze_vector"
-            app:layout_constraintBottom_toBottomOf="@+id/reminder_draggable"
-            app:layout_constraintEnd_toStartOf="@+id/reminder_draggable"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/reminder_draggable" />
+    <ImageView
+        android:id="@+id/reminder_dismiss"
+        android:layout_width="@dimen/reminder_background_min_size"
+        android:layout_height="@dimen/reminder_background_min_size"
+        android:clickable="false"
+        android:padding="@dimen/activity_margin"
+        android:src="@drawable/ic_alarm_off_vector"
+        app:layout_constraintBottom_toBottomOf="@+id/reminder_draggable"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/reminder_draggable"
+        app:layout_constraintTop_toTopOf="@+id/reminder_draggable" />
 
-        <com.simplemobiletools.commons.views.MyTextView
-            android:id="@+id/snooze_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/snooze"
-            app:layout_constraintEnd_toStartOf="@+id/reminder_draggable"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reminder_snooze" />
+    <com.simplemobiletools.commons.views.MyTextView
+        android:id="@+id/dismiss_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dismiss"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/reminder_draggable"
+        app:layout_constraintTop_toBottomOf="@+id/reminder_dismiss" />
 
-        <ImageView
-            android:id="@+id/reminder_draggable_background"
-            android:layout_width="@dimen/reminder_background_min_size"
-            android:layout_height="@dimen/reminder_background_min_size"
-            android:layout_marginBottom="@dimen/activity_margin"
-            android:alpha="0.2"
-            android:padding="@dimen/medium_margin"
-            android:src="@drawable/pulsing_background"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/reminder_dismiss"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/reminder_snooze"
-            app:layout_constraintTop_toBottomOf="@+id/reminder_text" />
+    <com.simplemobiletools.commons.views.MyTextView
+        android:id="@+id/reminder_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        android:text="@string/swipe_right_to_dismiss"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reminder_draggable" />
 
-        <ImageView
-            android:id="@+id/reminder_draggable"
-            android:layout_width="@dimen/reminder_background_min_size"
-            android:layout_height="@dimen/reminder_background_min_size"
-            android:layout_marginBottom="@dimen/activity_margin"
-            android:padding="@dimen/activity_margin"
-            android:src="@drawable/ic_alarm_vector"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/reminder_dismiss"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/reminder_snooze"
-            app:layout_constraintTop_toBottomOf="@+id/reminder_text" />
+    <ImageView
+        android:id="@+id/reminder_stop"
+        android:layout_width="@dimen/stopwatch_button_size"
+        android:layout_height="@dimen/stopwatch_button_size"
+        android:layout_marginBottom="@dimen/big_margin"
+        android:padding="@dimen/normal_margin"
+        android:src="@drawable/ic_stop_vector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageView
-            android:id="@+id/reminder_dismiss"
-            android:layout_width="@dimen/reminder_background_min_size"
-            android:layout_height="@dimen/reminder_background_min_size"
-            android:clickable="false"
-            android:padding="@dimen/activity_margin"
-            android:src="@drawable/ic_alarm_off_vector"
-            app:layout_constraintBottom_toBottomOf="@+id/reminder_draggable"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/reminder_draggable"
-            app:layout_constraintTop_toTopOf="@+id/reminder_draggable" />
-
-        <com.simplemobiletools.commons.views.MyTextView
-            android:id="@+id/dismiss_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dismiss"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/reminder_draggable"
-            app:layout_constraintTop_toBottomOf="@+id/reminder_dismiss" />
-
-        <com.simplemobiletools.commons.views.MyTextView
-            android:id="@+id/reminder_guide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:alpha="0"
-            android:text="@string/swipe_right_to_dismiss"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reminder_draggable" />
-
-        <ImageView
-            android:id="@+id/reminder_stop"
-            android:layout_width="@dimen/stopwatch_button_size"
-            android:layout_height="@dimen/stopwatch_button_size"
-            android:layout_marginBottom="@dimen/big_margin"
-            android:padding="@dimen/normal_margin"
-            android:src="@drawable/ic_stop_vector"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
