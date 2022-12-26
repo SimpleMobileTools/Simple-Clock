@@ -7,6 +7,8 @@ import android.media.RingtoneManager
 import android.text.format.DateFormat
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.extensions.*
@@ -31,14 +33,34 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
 
         view.apply {
             edit_alarm_time.setOnClickListener {
-                TimePickerDialog(
-                    context,
-                    context.getTimePickerDialogTheme(),
-                    timeSetListener,
-                    alarm.timeInMinutes / 60,
-                    alarm.timeInMinutes % 60,
-                    DateFormat.is24HourFormat(activity)
-                ).show()
+                if (activity.config.isUsingSystemTheme) {
+                    val timeFormat = if (DateFormat.is24HourFormat(activity)) {
+                        TimeFormat.CLOCK_24H
+                    } else {
+                        TimeFormat.CLOCK_12H
+                    }
+
+                    val timePicker = MaterialTimePicker.Builder()
+                        .setTimeFormat(timeFormat)
+                        .setHour(alarm.timeInMinutes / 60)
+                        .setMinute(alarm.timeInMinutes % 60)
+                        .build()
+
+                    timePicker.addOnPositiveButtonClickListener {
+                        timePicked(timePicker.hour, timePicker.minute)
+                    }
+
+                    timePicker.show(activity.supportFragmentManager, "")
+                } else {
+                    TimePickerDialog(
+                        context,
+                        context.getTimePickerDialogTheme(),
+                        timeSetListener,
+                        alarm.timeInMinutes / 60,
+                        alarm.timeInMinutes % 60,
+                        DateFormat.is24HourFormat(activity)
+                    ).show()
+                }
             }
 
             edit_alarm_sound.colorCompoundDrawable(textColor)
@@ -169,7 +191,11 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
     }
 
     private val timeSetListener = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-        alarm.timeInMinutes = hourOfDay * 60 + minute
+        timePicked(hourOfDay, minute)
+    }
+
+    private fun timePicked(hours: Int, minutes: Int) {
+        alarm.timeInMinutes = hours * 60 + minutes
         updateAlarmTime()
     }
 
