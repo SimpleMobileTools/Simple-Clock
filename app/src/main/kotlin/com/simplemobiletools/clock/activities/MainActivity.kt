@@ -37,7 +37,7 @@ class MainActivity : SimpleActivity() {
         setupOptionsMenu()
         refreshMenuItems()
 
-        updateMaterialActivityViews(main_coordinator, main_holder)
+        updateMaterialActivityViews(main_coordinator, main_holder, useTransparentNavigation = false, useTopSearchMenu = false)
 
         storeStateVariables()
         initFragments()
