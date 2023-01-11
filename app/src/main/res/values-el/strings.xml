@@ -23,21 +23,21 @@
     <string name="analogue_clock">Αναλογικό Ρολόι</string>
     <string name="digital_clock">Ψηφιακό Ρολόι</string>
     <string name="alarm_dismissed">Η αφύπνιση απορρίφθηκε</string>
-    <string name="alarm_snoozed">Η αφύμνιση σε αναμονή από %s</string>
+    <string name="alarm_snoozed">Η αφύπνιση σε αναμονή από %s</string>
     <string name="no_alarms_found">Δεν βρέθηκαν αφυπνίσεις</string>
     <string name="add_alarm">Προσθήκη αφύπνισης</string>
     <string name="no_timers_found">Δεν βρέθηκαν χρονόμετρα</string>
     <string name="add_timer">Προσθήκη χρονόμετρου</string>
-    <string name="upcoming_alarm">Upcoming alarm</string>
+    <string name="upcoming_alarm">Επερχόμενη Αφύπνιση</string>
 
     <!--Timer-->
-    <string name="timers_notification_msg">Τα χρονόμετρα τρέχουν</string>
-    <string name="timer_single_notification_label_msg">Το χρονόμετρο για %s τρέχει</string>
+    <string name="timers_notification_msg">Τα χρονόμετρα σε λειτουργία</string>
+    <string name="timer_single_notification_label_msg">Το χρονόμετρο για %s σε λειτουργία</string>
     <string name="new_timer">Νέο Χρονόμετρο</string>
 
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d χρονόμετρο τρέχει</item>
-        <item quantity="other">%d χρονόμετρα τρέχουν</item>
+        <item quantity="one">%d χρονόμετρο σε λειτουργία</item>
+        <item quantity="other">%d χρονόμετρα σε λειτουργία</item>
     </plurals>
 
     <!-- Settings -->
