@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Clock</string>
+    <string name="app_name">Relógio Simples</string>
     <string name="app_launcher_name">Relógio</string>
     <string name="time_zone">Fuso horário</string>
     <string name="vibrate">Vibrar</string>
@@ -8,7 +8,7 @@
     <string name="clock">Relógio</string>
     <string name="timer">Temporizador</string>
     <string name="stopwatch">Cronómetro</string>
-    <string name="start_stopwatch">Parar cronómetro</string>
+    <string name="start_stopwatch">Iniciar cronómetro</string>
     <string name="lap">Volta</string>
     <string name="stopwatch_stopped">Cronómetro parado</string>
     <string name="timer_stopped">Temporizador parado</string>
@@ -23,10 +23,10 @@
     <string name="analogue_clock">Relógio analógico</string>
     <string name="digital_clock">Relógio digital</string>
     <string name="alarm_dismissed">Alarme descartado</string>
-    <string name="alarm_snoozed">Alarme silenciado durante %s</string>
-    <string name="no_alarms_found">Não existem alarmes</string>
+    <string name="alarm_snoozed">Alarme adiado por %s</string>
+    <string name="no_alarms_found">Nenhum alarme encontrado</string>
     <string name="add_alarm">Adicionar alarme</string>
-    <string name="no_timers_found">Não existem temporizadores</string>
+    <string name="no_timers_found">Nenhum temporizador encontrado</string>
     <string name="add_timer">Adicionar temporizador</string>
     <string name="upcoming_alarm">Próximo alarme</string>
     <!--Timer-->
