@@ -1,13 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Relógio</string>
     <string name="time_zone">Fuso horário</string>
     <string name="vibrate">Vibrar</string>
     <string name="no_days_selected">Nenhum dia selecionado</string>
-    <string name="clock">Clock</string>
+    <string name="clock">Relógio</string>
     <string name="timer">Temporizador</string>
-    <string name="stopwatch">Stopwatch</string>
-    <string name="start_stopwatch">Start stopwatch</string>
+    <string name="stopwatch">Cronómetro</string>
+    <string name="start_stopwatch">Parar cronómetro</string>
     <string name="lap">Volta</string>
     <string name="stopwatch_stopped">Cronómetro parado</string>
     <string name="timer_stopped">Temporizador parado</string>
@@ -18,27 +19,25 @@
     <string name="swipe_right_to_dismiss">Deslize à direita para descartar e à esquerda para suspender.</string>
     <string name="sort_by_creation_order">Ordem de criação</string>
     <string name="sort_by_alarm_time">Hora do alarme</string>
-    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
-    <string name="analogue_clock">Analogue clock</string>
-    <string name="digital_clock">Digital clock</string>
-    <string name="alarm_dismissed">Alarm dismissed</string>
-    <string name="alarm_snoozed">Alarm snoozed by %s</string>
-    <string name="no_alarms_found">No alarms found</string>
-    <string name="add_alarm">Add alarm</string>
-    <string name="no_timers_found">No timers found</string>
-    <string name="add_timer">Add timer</string>
-    <string name="upcoming_alarm">Upcoming alarm</string>
-
+    <string name="sort_by_day_and_alarm_time">Dia e hora do alarme</string>
+    <string name="analogue_clock">Relógio analógico</string>
+    <string name="digital_clock">Relógio digital</string>
+    <string name="alarm_dismissed">Alarme descartado</string>
+    <string name="alarm_snoozed">Alarme silenciado durante %s</string>
+    <string name="no_alarms_found">Não existem alarmes</string>
+    <string name="add_alarm">Adicionar alarme</string>
+    <string name="no_timers_found">Não existem temporizadores</string>
+    <string name="add_timer">Adicionar temporizador</string>
+    <string name="upcoming_alarm">Próximo alarme</string>
     <!--Timer-->
-    <string name="timers_notification_msg">Temporizadores em execução</string>
-    <string name="timer_single_notification_label_msg">Temporizador para %s está em execução</string>
+    <string name="timers_notification_msg">Temporizadores em curso</string>
+    <string name="timer_single_notification_label_msg">Temporizador para %s está em curso</string>
     <string name="new_timer">Novo temporizador</string>
-
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d temporizador em execução</item>
-        <item quantity="other">%d temporizadores em execução</item>
+        <item quantity="one">%d temporizador em curso</item>
+        <item quantity="many">%d temporizadores em curso</item>
+        <item quantity="other">%d temporizadores em curso</item>
     </plurals>
-
     <!-- Settings -->
     <string name="clock_tab">Relógio</string>
     <string name="alarm_tab">Alarme</string>
@@ -46,10 +45,9 @@
     <string name="timer_tab">Temporizador</string>
     <string name="show_seconds">Mostrar segundos</string>
     <string name="increase_volume_gradually">Aumentar volume gradualmente</string>
-
     <!-- FAQ -->
-    <string name="faq_1_title">Como posso alterar a classificação das voltas na guia Cronômetro?</string>
-    <string name="faq_1_text">Basta clicar em qualquer uma das colunas e isso fará com que as voltas sejam classificadas pela coluna especificada. Com cliques adicionais, você pode alternar a ordem de classificação entre crescente e decrescente.</string>
+    <string name="faq_1_title">Como posso alterar a ordem das voltas no Cronómetro\?</string>
+    <string name="faq_1_text">Basta clicar em qualquer uma das colunas e isso fará com que as voltas sejam ordenadas pela coluna especificada. Com cliques adicionais, pode alternar a ordem de entre crescente e decrescente.</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
