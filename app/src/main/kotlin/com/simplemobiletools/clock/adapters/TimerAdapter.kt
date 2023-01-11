@@ -16,6 +16,7 @@ import com.simplemobiletools.commons.adapters.MyRecyclerViewListAdapter
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.views.MyRecyclerView
 import kotlinx.android.synthetic.main.item_timer.view.*
+import me.grantland.widget.AutofitHelper
 import org.greenrobot.eventbus.EventBus
 
 class TimerAdapter(
@@ -103,6 +104,7 @@ class TimerAdapter(
             timer_label.setHintTextColor(textColor.adjustAlpha(0.7f))
             timer_label.text = timer.label
 
+            AutofitHelper.create(timer_time)
             timer_time.setTextColor(textColor)
             timer_time.text = when (timer.state) {
                 is TimerState.Finished -> 0.getFormattedDuration()
