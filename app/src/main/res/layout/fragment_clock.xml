@@ -11,22 +11,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextClock
-            android:id="@+id/clock_time"
+        <me.grantland.widget.AutofitLayout
+            android:id="@+id/autofit_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_margin"
-            android:format12Hour="h:mm:ss a"
-            android:format24Hour="k:mm:ss"
-            android:gravity="center_horizontal"
-            android:textSize="@dimen/clock_text_size"
-            tools:text="00:00:00" />
+            >
+            <TextClock
+                android:id="@+id/clock_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_margin"
+                android:format12Hour="h:mm:ss a"
+                android:format24Hour="k:mm:ss"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/clock_text_size"
+                tools:text="00:00:00"
+                android:maxLines="1" />
+        </me.grantland.widget.AutofitLayout>
 
         <TextClock
             android:id="@+id/clock_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/clock_time"
+            android:layout_below="@+id/autofit_layout"
             android:format12Hour="EEE, d MMM"
             android:format24Hour="EEE, d MMM"
             android:gravity="center_horizontal"

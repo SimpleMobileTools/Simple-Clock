@@ -20,6 +20,7 @@ import com.simplemobiletools.commons.extensions.getProperTextColor
 import com.simplemobiletools.commons.extensions.updateTextColors
 import kotlinx.android.synthetic.main.fragment_clock.*
 import kotlinx.android.synthetic.main.fragment_clock.view.*
+import me.grantland.widget.AutofitHelper
 import java.util.*
 
 class ClockFragment : Fragment() {
@@ -73,6 +74,7 @@ class ClockFragment : Fragment() {
     private fun setupViews() {
         view.apply {
             requireContext().updateTextColors(clock_fragment)
+            AutofitHelper.create(clock_time)
             clock_time.setTextColor(requireContext().getProperTextColor())
             clock_fab.setOnClickListener {
                 fabClicked()
