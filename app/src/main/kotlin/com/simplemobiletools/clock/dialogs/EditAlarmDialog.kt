@@ -44,6 +44,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                         .setTimeFormat(timeFormat)
                         .setHour(alarm.timeInMinutes / 60)
                         .setMinute(alarm.timeInMinutes % 60)
+                        .setInputMode(MaterialTimePicker.INPUT_MODE_CLOCK)
                         .build()
 
                     timePicker.addOnPositiveButtonClickListener {
