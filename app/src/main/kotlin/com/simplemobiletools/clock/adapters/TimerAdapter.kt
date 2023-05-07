@@ -13,6 +13,7 @@ import com.simplemobiletools.clock.models.Timer
 import com.simplemobiletools.clock.models.TimerEvent
 import com.simplemobiletools.clock.models.TimerState
 import com.simplemobiletools.commons.adapters.MyRecyclerViewListAdapter
+import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.views.MyRecyclerView
 import kotlinx.android.synthetic.main.item_timer.view.*
@@ -120,8 +121,8 @@ class TimerAdapter(
 
             timer_play_pause.applyColorFilter(textColor)
             timer_play_pause.setOnClickListener {
-                (activity as SimpleActivity).handleNotificationPermission {
-                    if (it) {
+                (activity as SimpleActivity).handleNotificationPermission { granted ->
+                    if (granted) {
                         when (val state = timer.state) {
                             is TimerState.Idle -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis))
                             is TimerState.Paused -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, state.tick))
@@ -129,7 +130,7 @@ class TimerAdapter(
                             is TimerState.Finished -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis))
                         }
                     } else {
-                        activity.toast(R.string.no_post_notifications_permissions)
+                        PermissionRequiredDialog(activity, R.string.allow_notifications_reminders)
                     }
                 }
             }
