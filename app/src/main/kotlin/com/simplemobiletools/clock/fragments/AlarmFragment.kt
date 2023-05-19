@@ -15,6 +15,7 @@ import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
+import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.commons.extensions.getProperTextColor
 import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.extensions.updateTextColors
@@ -122,8 +123,8 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     }
 
     override fun alarmToggled(id: Int, isEnabled: Boolean) {
-        (activity as SimpleActivity).handleNotificationPermission {
-            if (it) {
+        (activity as SimpleActivity).handleNotificationPermission { granted ->
+            if (granted) {
                 if (requireContext().dbHelper.updateAlarmEnabledState(id, isEnabled)) {
                     val alarm = alarms.firstOrNull { it.id == id } ?: return@handleNotificationPermission
                     alarm.isEnabled = isEnabled
@@ -133,7 +134,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
                 }
                 requireContext().updateWidgets()
             } else {
-                activity?.toast(R.string.no_post_notifications_permissions)
+                PermissionRequiredDialog(activity as SimpleActivity, R.string.allow_notifications_reminders)
             }
         }
     }

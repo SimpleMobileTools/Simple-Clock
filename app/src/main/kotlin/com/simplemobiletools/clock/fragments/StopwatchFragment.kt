@@ -18,6 +18,7 @@ import com.simplemobiletools.clock.helpers.SORT_BY_LAP_TIME
 import com.simplemobiletools.clock.helpers.SORT_BY_TOTAL_TIME
 import com.simplemobiletools.clock.helpers.Stopwatch
 import com.simplemobiletools.clock.models.Lap
+import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.SORT_DESCENDING
 import kotlinx.android.synthetic.main.fragment_stopwatch.view.*
@@ -124,11 +125,11 @@ class StopwatchFragment : Fragment() {
     }
 
     private fun togglePlayPause() {
-        (activity as SimpleActivity).handleNotificationPermission {
-            if (it) {
+        (activity as SimpleActivity).handleNotificationPermission { granted ->
+            if (granted) {
                 Stopwatch.toggle(true)
             } else {
-                activity?.toast(R.string.no_post_notifications_permissions)
+                PermissionRequiredDialog(activity as SimpleActivity, R.string.allow_notifications_reminders)
             }
         }
     }
