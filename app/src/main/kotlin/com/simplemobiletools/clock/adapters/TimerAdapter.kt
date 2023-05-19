@@ -113,9 +113,15 @@ class TimerAdapter(
                 is TimerState.Running -> timer.state.tick.getFormattedDuration()
             }
 
+            timer_stop.applyColorFilter(textColor)
+            timer_stop.setOnClickListener {
+                resetTimer(timer)
+            }
+
             timer_reset.applyColorFilter(textColor)
             timer_reset.setOnClickListener {
                 resetTimer(timer)
+                playTimer(timer)
             }
 
             timer_play_pause.applyColorFilter(textColor)
@@ -137,6 +143,7 @@ class TimerAdapter(
             val state = timer.state
             val resetPossible = state is TimerState.Running || state is TimerState.Paused || state is TimerState.Finished
             timer_reset.beInvisibleIf(!resetPossible)
+            timer_stop.beInvisibleIf(!resetPossible)
             val drawableId = if (state is TimerState.Running) R.drawable.ic_pause_vector else R.drawable.ic_play_vector
             timer_play_pause.setImageDrawable(simpleActivity.resources.getColoredDrawableWithColor(drawableId, textColor))
         }
@@ -144,6 +151,11 @@ class TimerAdapter(
 
     private fun resetTimer(timer: Timer) {
         EventBus.getDefault().post(TimerEvent.Reset(timer.id!!))
+        simpleActivity.hideTimerNotification(timer.id!!)
+    }
+
+    private fun playTimer(timer: Timer) {
+        EventBus.getDefault().post(TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis))
         simpleActivity.hideTimerNotification(timer.id!!)
     }
 
