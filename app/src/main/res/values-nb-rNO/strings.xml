@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Simple Clock</string>
     <string name="app_launcher_name">Klokke</string>
@@ -6,8 +7,8 @@
     <string name="no_days_selected">Ingen dager valgte</string>
     <string name="clock">Clock</string>
     <string name="timer">Timer</string>
-    <string name="stopwatch">Stopwatch</string>
-    <string name="start_stopwatch">Start stopwatch</string>
+    <string name="stopwatch">Stoppeklokke</string>
+    <string name="start_stopwatch">Start stoppeklokke</string>
     <string name="lap">Runde</string>
     <string name="stopwatch_stopped">Stoppeklokke er stoppet</string>
     <string name="timer_stopped">Timer er stoppet</string>
@@ -15,30 +16,27 @@
     <string name="time_expired">Tid utløpt</string>
     <string name="clock_and_date">Klokke og dato</string>
     <string name="use_text_shadow">Bruk tekstskygge</string>
-    <string name="swipe_right_to_dismiss">Sveip til høyre for å avvise eller til venstre for Snooze.</string>
-    <string name="sort_by_creation_order">Creation order</string>
-    <string name="sort_by_alarm_time">Alarm time</string>
-    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
-    <string name="analogue_clock">Analogue clock</string>
-    <string name="digital_clock">Digital clock</string>
-    <string name="alarm_dismissed">Alarm dismissed</string>
+    <string name="swipe_right_to_dismiss">Sveip til høyre for å slå av eller til venstre for Snooze (Slumre).</string>
+    <string name="sort_by_creation_order">Opprettelsesrekkefølge</string>
+    <string name="sort_by_alarm_time">Alarmtid</string>
+    <string name="sort_by_day_and_alarm_time">Dag og alarmtid</string>
+    <string name="analogue_clock">Analog klokke</string>
+    <string name="digital_clock">Digital klokke</string>
+    <string name="alarm_dismissed">Alarm slått av</string>
     <string name="alarm_snoozed">Alarm snoozed by %s</string>
-    <string name="no_alarms_found">No alarms found</string>
+    <string name="no_alarms_found">Ingen alarmer funnet</string>
     <string name="add_alarm">Add alarm</string>
-    <string name="no_timers_found">No timers found</string>
+    <string name="no_timers_found">Ingen timere funnet</string>
     <string name="add_timer">Add timer</string>
-    <string name="upcoming_alarm">Upcoming alarm</string>
-
+    <string name="upcoming_alarm">Kommende alarm</string>
     <!--Timer-->
-    <string name="timers_notification_msg">Timers are running</string>
-    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">New Timer</string>
-
+    <string name="timers_notification_msg">Timere er i gang</string>
+    <string name="timer_single_notification_label_msg">Timer for %s er i gang</string>
+    <string name="new_timer">Ny timer</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d timer er i gang</item>
+        <item quantity="other">%d timere er i gang</item>
     </plurals>
-
     <!-- Settings -->
     <string name="clock_tab">Klokke</string>
     <string name="alarm_tab">Alarm</string>
@@ -46,7 +44,6 @@
     <string name="timer_tab">Timer</string>
     <string name="show_seconds">Vis sekunder</string>
     <string name="increase_volume_gradually">Øk volum gradvis</string>
-
     <!-- FAQ -->
     <string name="faq_1_title">How can I change lap sorting at the stopwatch tab?</string>
     <string name="faq_1_text">Just click on any of the columns, that will make the laps be sorted by the given column. With additional clicks you can toggle between ascending and descending sorting.</string>
