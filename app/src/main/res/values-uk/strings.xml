@@ -40,7 +40,7 @@
         <item quantity="other">%d таймерів працюють</item>
     </plurals>
     <!-- Settings -->
-    <string name="clock_tab">Годинник</string>
+    <string name="clock_tab">Вкладка «Годинник»</string>
     <string name="alarm_tab">Будильник</string>
     <string name="stopwatch_tab">Секундомір</string>
     <string name="timer_tab">Таймер</string>
