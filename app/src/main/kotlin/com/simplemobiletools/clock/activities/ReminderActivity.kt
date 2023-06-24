@@ -168,8 +168,14 @@ class ReminderActivity : SimpleActivity() {
     }
 
     private fun setupEffects() {
+        val maxAlarmStreamVolume = try {
+            val audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+            audioManager.getStreamMaxVolume(AudioManager.STREAM_ALARM).toFloat().div(100)
+        } catch (t: Throwable) {
+            1f
+        }
         if (!isAlarmReminder || !config.increaseVolumeGradually) {
-            lastVolumeValue = 1f
+            lastVolumeValue = maxAlarmStreamVolume
         }
 
         val doVibrate = if (alarm != null) alarm!!.vibrate else config.timerVibrate
@@ -197,18 +203,18 @@ class ReminderActivity : SimpleActivity() {
                 }
 
                 if (config.increaseVolumeGradually) {
-                    scheduleVolumeIncrease()
+                    scheduleVolumeIncrease(maxAlarmStreamVolume)
                 }
             } catch (e: Exception) {
             }
         }
     }
 
-    private fun scheduleVolumeIncrease() {
+    private fun scheduleVolumeIncrease(maxVolume: Float) {
         increaseVolumeHandler.postDelayed({
-            lastVolumeValue = Math.min(lastVolumeValue + 0.1f, 1f)
+            lastVolumeValue = (lastVolumeValue + 0.1f).coerceAtMost(maxVolume)
             mediaPlayer?.setVolume(lastVolumeValue, lastVolumeValue)
-            scheduleVolumeIncrease()
+            scheduleVolumeIncrease(maxVolume)
         }, INCREASE_VOLUME_DELAY)
     }
 
