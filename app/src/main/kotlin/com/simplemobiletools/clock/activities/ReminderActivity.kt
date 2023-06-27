@@ -28,7 +28,8 @@ import com.simplemobiletools.commons.helpers.isOreoPlus
 import kotlinx.android.synthetic.main.activity_reminder.*
 
 class ReminderActivity : SimpleActivity() {
-    private val INCREASE_VOLUME_DELAY = 3000L
+    private val INCREASE_VOLUME_DELAY = 300L
+    private val MAX_VOL = 10f // max volume set to level 10
 
     private val increaseVolumeHandler = Handler()
     private val maxReminderDurationHandler = Handler()
@@ -37,6 +38,7 @@ class ReminderActivity : SimpleActivity() {
     private var didVibrate = false
     private var wasAlarmSnoozed = false
     private var alarm: Alarm? = null
+    private var audioManager: AudioManager? = null
     private var mediaPlayer: MediaPlayer? = null
     private var vibrator: Vibrator? = null
     private var lastVolumeValue = 0.1f
@@ -168,14 +170,10 @@ class ReminderActivity : SimpleActivity() {
     }
 
     private fun setupEffects() {
-        val maxAlarmStreamVolume = try {
-            val audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-            audioManager.getStreamMaxVolume(AudioManager.STREAM_ALARM).toFloat().div(100)
-        } catch (t: Throwable) {
-            1f
-        }
+        audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+
         if (!isAlarmReminder || !config.increaseVolumeGradually) {
-            lastVolumeValue = maxAlarmStreamVolume
+            lastVolumeValue = MAX_VOL
         }
 
         val doVibrate = if (alarm != null) alarm!!.vibrate else config.timerVibrate
@@ -203,7 +201,7 @@ class ReminderActivity : SimpleActivity() {
                 }
 
                 if (config.increaseVolumeGradually) {
-                    scheduleVolumeIncrease(maxAlarmStreamVolume)
+                    scheduleVolumeIncrease(MAX_VOL)
                 }
             } catch (e: Exception) {
             }
@@ -213,7 +211,7 @@ class ReminderActivity : SimpleActivity() {
     private fun scheduleVolumeIncrease(maxVolume: Float) {
         increaseVolumeHandler.postDelayed({
             lastVolumeValue = (lastVolumeValue + 0.1f).coerceAtMost(maxVolume)
-            mediaPlayer?.setVolume(lastVolumeValue, lastVolumeValue)
+            audioManager?.setStreamVolume(AudioManager.STREAM_ALARM, lastVolumeValue.toInt(), 0)
             scheduleVolumeIncrease(maxVolume)
         }, INCREASE_VOLUME_DELAY)
     }
