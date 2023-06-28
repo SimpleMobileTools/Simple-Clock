@@ -6,8 +6,6 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.media.AudioAttributes
-import android.net.Uri
 import android.os.Handler
 import androidx.core.app.NotificationCompat
 import com.simplemobiletools.clock.R
@@ -31,16 +29,12 @@ class AlarmReceiver : BroadcastReceiver() {
             }, context.config.alarmMaxReminderSecs * 1000L)
         } else {
             if (isOreoPlus()) {
-                val audioAttributes = AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_ALARM)
-                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                    .build()
 
-                val notificationManager = context.getSystemService(NotificationManager::class.java)
+                val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
                 if (notificationManager.getNotificationChannel("Alarm") == null) {
                     NotificationChannel("Alarm", "Alarm", NotificationManager.IMPORTANCE_HIGH).apply {
                         setBypassDnd(true)
-                        setSound(Uri.parse(alarm.soundUri), audioAttributes)
+                        setSound(null, null)
                         notificationManager.createNotificationChannel(this)
                     }
                 }
