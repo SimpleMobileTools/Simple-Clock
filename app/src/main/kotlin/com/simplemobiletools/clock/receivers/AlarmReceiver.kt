@@ -6,12 +6,15 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Handler
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.ReminderActivity
 import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.ALARM_ID
+import com.simplemobiletools.clock.helpers.ALARM_NOTIFICATION_CHANNEL_ID
 import com.simplemobiletools.clock.helpers.ALARM_NOTIF_ID
 import com.simplemobiletools.commons.extensions.showErrorToast
 import com.simplemobiletools.commons.helpers.isOreoPlus
@@ -31,8 +34,9 @@ class AlarmReceiver : BroadcastReceiver() {
             if (isOreoPlus()) {
 
                 val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-                if (notificationManager.getNotificationChannel("Alarm") == null) {
-                    NotificationChannel("Alarm", "Alarm", NotificationManager.IMPORTANCE_HIGH).apply {
+                if (notificationManager.getNotificationChannel(ALARM_NOTIFICATION_CHANNEL_ID) == null) {
+                    oldNotificationChannelCleanup(notificationManager) // cleans up previous notification channel that had sound properties
+                    NotificationChannel(ALARM_NOTIFICATION_CHANNEL_ID, "Alarm", NotificationManager.IMPORTANCE_HIGH).apply {
                         setBypassDnd(true)
                         setSound(null, null)
                         notificationManager.createNotificationChannel(this)
@@ -44,7 +48,7 @@ class AlarmReceiver : BroadcastReceiver() {
                     putExtra(ALARM_ID, id)
                 }, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
-                val builder = NotificationCompat.Builder(context, "Alarm")
+                val builder = NotificationCompat.Builder(context, ALARM_NOTIFICATION_CHANNEL_ID)
                     .setSmallIcon(R.drawable.ic_alarm_vector)
                     .setContentTitle(context.getString(R.string.alarm))
                     .setAutoCancel(true)
@@ -65,5 +69,10 @@ class AlarmReceiver : BroadcastReceiver() {
                 }
             }
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun oldNotificationChannelCleanup(notificationManager: NotificationManager) {
+        notificationManager.deleteNotificationChannel("Alarm")
     }
 }
