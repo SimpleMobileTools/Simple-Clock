@@ -384,11 +384,8 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
     if (soundUri != SILENT) {
         grantReadUriPermission(soundUri)
     }
-
-    val channelId = "simple_alarm_channel_$soundUri"
-    val label = if (alarm.label.isNotEmpty()) {
-        alarm.label
-    } else {
+    val channelId = "simple_alarm_channel_${soundUri}_${alarm.vibrate}"
+    val label = alarm.label.ifEmpty {
         getString(R.string.alarm)
     }
 
@@ -425,8 +422,7 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
         .addAction(R.drawable.ic_snooze_vector, getString(R.string.snooze), getSnoozePendingIntent(alarm))
         .addAction(R.drawable.ic_cross_vector, getString(R.string.dismiss), dismissIntent)
         .setDeleteIntent(dismissIntent)
-
-    builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+        .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
 
     if (soundUri != SILENT) {
         builder.setSound(Uri.parse(soundUri), STREAM_ALARM)
