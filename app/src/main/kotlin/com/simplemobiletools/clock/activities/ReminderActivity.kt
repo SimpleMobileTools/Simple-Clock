@@ -176,10 +176,10 @@ class ReminderActivity : SimpleActivity() {
         val doVibrate = alarm?.vibrate ?: config.timerVibrate
         if (doVibrate && isOreoPlus()) {
             val pattern = LongArray(2) { 500 }
-            vibrationHandler.post {
+            vibrationHandler.postDelayed({
                 vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                 vibrator?.vibrate(VibrationEffect.createWaveform(pattern, 0))
-            }
+            }, 500)
         }
 
         val soundUri = if (alarm != null) {

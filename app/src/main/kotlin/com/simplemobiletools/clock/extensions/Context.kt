@@ -184,6 +184,15 @@ fun Context.hideNotification(id: Int) {
     manager.cancel(id)
 }
 
+fun Context.deleteNotificationChannel(channelId: String) {
+    if (isOreoPlus()) {
+        try {
+            val manager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            manager.deleteNotificationChannel(channelId)
+        } catch (_: Throwable) {}
+    }
+}
+
 fun Context.hideTimerNotification(timerId: Int) = hideNotification(timerId)
 
 fun Context.updateWidgets() {
@@ -373,9 +382,11 @@ fun Context.getHideTimerPendingIntent(timerId: Int): PendingIntent {
     return PendingIntent.getBroadcast(this, timerId, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
 
-fun Context.getHideAlarmPendingIntent(alarm: Alarm): PendingIntent {
-    val intent = Intent(this, HideAlarmReceiver::class.java)
-    intent.putExtra(ALARM_ID, alarm.id)
+fun Context.getHideAlarmPendingIntent(alarm: Alarm, channelId: String): PendingIntent {
+    val intent = Intent(this, HideAlarmReceiver::class.java).apply {
+        putExtra(ALARM_ID, alarm.id)
+        putExtra(ALARM_NOTIFICATION_CHANNEL_ID, channelId)
+    }
     return PendingIntent.getBroadcast(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
 
@@ -397,6 +408,7 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
             .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
             .build()
 
+
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val importance = NotificationManager.IMPORTANCE_HIGH
         NotificationChannel(channelId, label, importance).apply {
@@ -409,7 +421,7 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
         }
     }
 
-    val dismissIntent = getHideAlarmPendingIntent(alarm)
+    val dismissIntent = getHideAlarmPendingIntent(alarm, channelId)
     val builder = NotificationCompat.Builder(this)
         .setContentTitle(label)
         .setContentText(getFormattedTime(getPassedSeconds(), false, false))
