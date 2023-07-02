@@ -145,7 +145,11 @@ fun Context.setupAlarmClock(alarm: Alarm, triggerInSeconds: Int) {
         AlarmManagerCompat.setAlarmClock(alarmManager, targetMS, getOpenAlarmTabIntent(), getAlarmIntent(alarm))
 
         // Trigger a notification to dismiss the alarm 5 minutes before the alarm if the screen is on
-        val dismissalTriggerTime = if (targetMS - System.currentTimeMillis() < (5.minutes.inWholeMilliseconds))(System.currentTimeMillis() + 500) else targetMS - (5.minutes.inWholeMilliseconds)
+        val dismissalTriggerTime = if (targetMS - System.currentTimeMillis() < (5.minutes.inWholeMilliseconds)) {
+            (System.currentTimeMillis() + 500)
+        } else {
+            targetMS - (5.minutes.inWholeMilliseconds)
+        }
         AlarmManagerCompat.setExactAndAllowWhileIdle(alarmManager, 0, dismissalTriggerTime, getEarlyAlarmDismissalIntent(alarm))
     } catch (e: Exception) {
         showErrorToast(e)
