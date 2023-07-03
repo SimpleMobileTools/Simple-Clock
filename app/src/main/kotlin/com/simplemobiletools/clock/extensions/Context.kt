@@ -184,6 +184,15 @@ fun Context.hideNotification(id: Int) {
     manager.cancel(id)
 }
 
+fun Context.deleteNotificationChannel(channelId: String) {
+    if (isOreoPlus()) {
+        try {
+            val manager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            manager.deleteNotificationChannel(channelId)
+        } catch (_: Throwable) {}
+    }
+}
+
 fun Context.hideTimerNotification(timerId: Int) = hideNotification(timerId)
 
 fun Context.updateWidgets() {
@@ -373,9 +382,11 @@ fun Context.getHideTimerPendingIntent(timerId: Int): PendingIntent {
     return PendingIntent.getBroadcast(this, timerId, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
 
-fun Context.getHideAlarmPendingIntent(alarm: Alarm): PendingIntent {
-    val intent = Intent(this, HideAlarmReceiver::class.java)
-    intent.putExtra(ALARM_ID, alarm.id)
+fun Context.getHideAlarmPendingIntent(alarm: Alarm, channelId: String): PendingIntent {
+    val intent = Intent(this, HideAlarmReceiver::class.java).apply {
+        putExtra(ALARM_ID, alarm.id)
+        putExtra(ALARM_NOTIFICATION_CHANNEL_ID, channelId)
+    }
     return PendingIntent.getBroadcast(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
 
@@ -384,11 +395,8 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
     if (soundUri != SILENT) {
         grantReadUriPermission(soundUri)
     }
-
-    val channelId = "simple_alarm_channel_$soundUri"
-    val label = if (alarm.label.isNotEmpty()) {
-        alarm.label
-    } else {
+    val channelId = "simple_alarm_channel_${soundUri}_${alarm.vibrate}"
+    val label = alarm.label.ifEmpty {
         getString(R.string.alarm)
     }
 
@@ -412,7 +420,7 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
         }
     }
 
-    val dismissIntent = getHideAlarmPendingIntent(alarm)
+    val dismissIntent = getHideAlarmPendingIntent(alarm, channelId)
     val builder = NotificationCompat.Builder(this)
         .setContentTitle(label)
         .setContentText(getFormattedTime(getPassedSeconds(), false, false))
@@ -425,8 +433,7 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
         .addAction(R.drawable.ic_snooze_vector, getString(R.string.snooze), getSnoozePendingIntent(alarm))
         .addAction(R.drawable.ic_cross_vector, getString(R.string.dismiss), dismissIntent)
         .setDeleteIntent(dismissIntent)
-
-    builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+        .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
 
     if (soundUri != SILENT) {
         builder.setSound(Uri.parse(soundUri), STREAM_ALARM)

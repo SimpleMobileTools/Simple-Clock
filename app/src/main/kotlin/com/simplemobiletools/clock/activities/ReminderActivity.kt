@@ -7,10 +7,7 @@ import android.content.Intent
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
-import android.os.Bundle
-import android.os.Handler
-import android.os.VibrationEffect
-import android.os.Vibrator
+import android.os.*
 import android.view.MotionEvent
 import android.view.ViewGroup
 import android.view.WindowManager
@@ -29,11 +26,11 @@ import kotlinx.android.synthetic.main.activity_reminder.*
 
 class ReminderActivity : SimpleActivity() {
     private val INCREASE_VOLUME_DELAY = 300L
-    private val MAX_VOL = 10f // max volume set to level 10
 
     private val increaseVolumeHandler = Handler()
     private val maxReminderDurationHandler = Handler()
     private val swipeGuideFadeHandler = Handler()
+    private val vibrationHandler = Handler(Looper.getMainLooper())
     private var isAlarmReminder = false
     private var didVibrate = false
     private var wasAlarmSnoozed = false
@@ -171,16 +168,18 @@ class ReminderActivity : SimpleActivity() {
 
     private fun setupEffects() {
         audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-
+        val maxVol = audioManager?.getStreamMaxVolume(AudioManager.STREAM_ALARM)?.toFloat() ?: 10f
         if (!isAlarmReminder || !config.increaseVolumeGradually) {
-            lastVolumeValue = MAX_VOL
+            lastVolumeValue = maxVol
         }
 
-        val doVibrate = if (alarm != null) alarm!!.vibrate else config.timerVibrate
+        val doVibrate = alarm?.vibrate ?: config.timerVibrate
         if (doVibrate && isOreoPlus()) {
             val pattern = LongArray(2) { 500 }
-            vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-            vibrator?.vibrate(VibrationEffect.createWaveform(pattern, 0))
+            vibrationHandler.postDelayed({
+                vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                vibrator?.vibrate(VibrationEffect.createWaveform(pattern, 0))
+            }, 500)
         }
 
         val soundUri = if (alarm != null) {
@@ -201,7 +200,7 @@ class ReminderActivity : SimpleActivity() {
                 }
 
                 if (config.increaseVolumeGradually) {
-                    scheduleVolumeIncrease(MAX_VOL)
+                    scheduleVolumeIncrease(maxVol)
                 }
             } catch (e: Exception) {
             }
@@ -226,6 +225,7 @@ class ReminderActivity : SimpleActivity() {
         increaseVolumeHandler.removeCallbacksAndMessages(null)
         maxReminderDurationHandler.removeCallbacksAndMessages(null)
         swipeGuideFadeHandler.removeCallbacksAndMessages(null)
+        vibrationHandler.removeCallbacksAndMessages(null)
         destroyEffects()
     }
 
