@@ -40,13 +40,10 @@ class DismissAlarmReceiver: BroadcastReceiver() {
 
     private fun removeTodayFromBitmask(bitmask: Int): Int {
         val calendar = Calendar.getInstance()
-        var dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) - Calendar.MONDAY  // This will give values from 0 (Monday) to 6 (Sunday)
+        calendar.firstDayOfWeek = Calendar.MONDAY
+        val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) - Calendar.MONDAY  // This will give values from 0 (Monday) to 6 (Sunday)
 
-        if (dayOfWeek < 0) {  // Adjust for Calendar.MONDAY being 2
-            dayOfWeek += 7
-        }
-
-        val todayBitmask = 1 shl dayOfWeek  // This will shift the number 1 to the left by dayOfWeek places, creating a bitmask for today
+        val todayBitmask = 1 shl dayOfWeek  // This will left shift 0000001 by dayOfWeek places, creating a bitmask for today
         return bitmask and todayBitmask.inv()  // This will return a new bitmask without today included
     }
 }
