@@ -408,7 +408,6 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
             .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
             .build()
 
-
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val importance = NotificationManager.IMPORTANCE_HIGH
         NotificationChannel(channelId, label, importance).apply {
