@@ -6,6 +6,7 @@ import android.app.NotificationManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.text.format.DateFormat
 import androidx.core.app.NotificationCompat
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.getDismissAlarmPendingIntent
@@ -41,7 +42,7 @@ class EarlyAlarmDismissalReceiver : BroadcastReceiver() {
         val contentIntent = context.getOpenAlarmTabIntent()
         val notification = NotificationCompat.Builder(context)
             .setContentTitle(context.getString(R.string.upcoming_alarm))
-            .setContentText(getNotificationTimeString(alarmTime))
+            .setContentText(getNotificationTimeString(alarmTime, context))
             .setSmallIcon(R.drawable.ic_alarm_vector)
             .setPriority(Notification.PRIORITY_LOW)
             .addAction(0, context.getString(R.string.dismiss), dismissIntent)
@@ -58,11 +59,16 @@ class EarlyAlarmDismissalReceiver : BroadcastReceiver() {
      * Gets the time at which the alarm is going to fire.
      * eg: "Sun 1:30 pm"
      */
-    private fun getNotificationTimeString(alarmTime: Int): String {
+    private fun getNotificationTimeString(alarmTime: Int, context: Context): String {
         val calendar = Calendar.getInstance()
         val triggerTime = ((alarmTime - getCurrentDayMinutes()) * 60) - calendar.get(Calendar.SECOND)
         val targetMs = System.currentTimeMillis() + (triggerTime * 1000)
-        val sdf = SimpleDateFormat("EEE h:mm a", Locale.getDefault())
+        val is24HourFormat = DateFormat.is24HourFormat(context)
+        val sdf = if (is24HourFormat) {
+            SimpleDateFormat("EEE HH:mm", Locale.getDefault())
+        } else {
+            SimpleDateFormat("EEE h:mm a", Locale.getDefault())
+        }
         return sdf.format(Date(targetMs))
     }
 
