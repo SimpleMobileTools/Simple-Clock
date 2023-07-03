@@ -14,7 +14,9 @@ class DismissAlarmReceiver: BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val alarmId = intent.getIntExtra(ALARM_ID, -1)
         val notificationId = intent.getIntExtra(NOTIFICATION_ID, -1)
-        if (alarmId == -1) return
+        if (alarmId == -1) {
+            return
+        }
 
         context.hideNotification(notificationId)
 
