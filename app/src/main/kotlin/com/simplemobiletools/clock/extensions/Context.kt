@@ -31,7 +31,9 @@ import com.simplemobiletools.clock.receivers.*
 import com.simplemobiletools.clock.services.SnoozeService
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.TimeZone
 import kotlin.math.pow
 import kotlin.time.Duration.Companion.minutes
 
@@ -144,11 +146,11 @@ fun Context.setupAlarmClock(alarm: Alarm, triggerInSeconds: Int) {
     try {
         AlarmManagerCompat.setAlarmClock(alarmManager, targetMS, getOpenAlarmTabIntent(), getAlarmIntent(alarm))
 
-        // Trigger a notification to dismiss the alarm 5 minutes before the alarm if the screen is on
-        val dismissalTriggerTime = if (targetMS - System.currentTimeMillis() < 5.minutes.inWholeMilliseconds) {
+        // show a notification to allow dismissing the alarm 10 minutes before it actually triggers
+        val dismissalTriggerTime = if (targetMS - System.currentTimeMillis() < 10.minutes.inWholeMilliseconds) {
             System.currentTimeMillis() + 500
         } else {
-            targetMS - 5.minutes.inWholeMilliseconds
+            targetMS - 10.minutes.inWholeMilliseconds
         }
         AlarmManagerCompat.setExactAndAllowWhileIdle(alarmManager, 0, dismissalTriggerTime, getEarlyAlarmDismissalIntent(alarm))
     } catch (e: Exception) {
