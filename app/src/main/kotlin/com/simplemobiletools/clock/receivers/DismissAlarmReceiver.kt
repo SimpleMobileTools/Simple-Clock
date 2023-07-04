@@ -8,9 +8,9 @@ import com.simplemobiletools.clock.helpers.ALARM_ID
 import com.simplemobiletools.clock.helpers.NOTIFICATION_ID
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
-import java.util.*
+import java.util.Calendar
 
-class DismissAlarmReceiver: BroadcastReceiver() {
+class DismissAlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val alarmId = intent.getIntExtra(ALARM_ID, -1)
         val notificationId = intent.getIntExtra(NOTIFICATION_ID, -1)
@@ -30,7 +30,6 @@ class DismissAlarmReceiver: BroadcastReceiver() {
                 }
             }
         }
-
     }
 
     private fun scheduleNextAlarm(alarm: Alarm, context: Context) {
@@ -43,7 +42,7 @@ class DismissAlarmReceiver: BroadcastReceiver() {
     private fun removeTodayFromBitmask(bitmask: Int): Int {
         val calendar = Calendar.getInstance()
         calendar.firstDayOfWeek = Calendar.MONDAY
-        val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) - Calendar.MONDAY  // This will give values from 0 (Monday) to 6 (Sunday)
+        val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) - Calendar.MONDAY
 
         val todayBitmask = 1 shl dayOfWeek  // This will left shift 0000001 by dayOfWeek places, creating a bitmask for today
         return bitmask and todayBitmask.inv()  // This will return a new bitmask without today included
