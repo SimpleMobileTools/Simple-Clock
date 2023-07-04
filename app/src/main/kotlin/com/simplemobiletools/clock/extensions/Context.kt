@@ -33,6 +33,9 @@ import com.simplemobiletools.clock.receivers.HideTimerReceiver
 import com.simplemobiletools.clock.services.SnoozeService
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.pow
 
@@ -264,6 +267,44 @@ fun Context.getNextAlarm(): String {
     val dayOfWeek = resources.getStringArray(R.array.week_days_short)[dayOfWeekIndex]
     val formatted = getFormattedTime(((milliseconds + offset) / 1000L).toInt(), false, false)
     return "$dayOfWeek $formatted"
+}
+
+suspend fun Context.getClosestEnabledAlarmString(): String = withContext(Dispatchers.IO) {
+    val enabledAlarms = dbHelper.getEnabledAlarms()
+    val nextAlarmList = enabledAlarms
+        .mapNotNull { getTimeUntilNextAlarm(it.timeInMinutes, it.days) }
+
+    if (nextAlarmList.isEmpty()) {
+        return@withContext ""
+    }
+
+    var closestAlarmTime = Int.MAX_VALUE
+    nextAlarmList.forEach { time ->
+        if (time < closestAlarmTime) {
+            closestAlarmTime = time
+        }
+    }
+
+    if (closestAlarmTime == Int.MAX_VALUE) {
+        return@withContext ""
+    }
+
+    val calendar = Calendar.getInstance().apply { firstDayOfWeek = Calendar.MONDAY }
+    calendar.add(Calendar.MINUTE, closestAlarmTime)
+    var dayOfWeekIndex = calendar.get(Calendar.DAY_OF_WEEK) - Calendar.MONDAY
+    if (dayOfWeekIndex < 0) {  // Adjust for Calendar.MONDAY being 2
+        dayOfWeekIndex += 7
+    }
+
+    val dayOfWeek = resources.getStringArray(R.array.week_days_short)[dayOfWeekIndex]
+    val pattern = if (DateFormat.is24HourFormat(this@getClosestEnabledAlarmString)) {
+        "HH:mm"
+    } else {
+        "h:mm a"
+    }
+
+    val formattedTime = SimpleDateFormat(pattern, Locale.getDefault()).format(calendar.time)
+    return@withContext "$dayOfWeek $formattedTime"
 }
 
 fun Context.rescheduleEnabledAlarms() {
