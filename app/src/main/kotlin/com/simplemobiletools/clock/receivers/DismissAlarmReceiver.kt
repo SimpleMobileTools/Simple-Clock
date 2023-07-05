@@ -46,7 +46,6 @@ class DismissAlarmReceiver : BroadcastReceiver() {
         calendar.firstDayOfWeek = Calendar.MONDAY
         val dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
         val todayBitmask = 2.0.pow(dayOfWeek).toInt()
-
         return bitmask.removeBit(todayBitmask)
     }
 }
