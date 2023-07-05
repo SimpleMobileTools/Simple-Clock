@@ -291,11 +291,7 @@ suspend fun Context.getClosestEnabledAlarmString(): String = withContext(Dispatc
 
     val calendar = Calendar.getInstance().apply { firstDayOfWeek = Calendar.MONDAY }
     calendar.add(Calendar.MINUTE, closestAlarmTime)
-    var dayOfWeekIndex = calendar.get(Calendar.DAY_OF_WEEK) - Calendar.MONDAY
-    if (dayOfWeekIndex < 0) {  // Adjust for Calendar.MONDAY being 2
-        dayOfWeekIndex += 7
-    }
-
+    val dayOfWeekIndex = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
     val dayOfWeek = resources.getStringArray(R.array.week_days_short)[dayOfWeekIndex]
     val pattern = if (DateFormat.is24HourFormat(this@getClosestEnabledAlarmString)) {
         "HH:mm"
