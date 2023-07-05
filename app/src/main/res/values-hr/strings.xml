@@ -29,6 +29,8 @@
     <string name="no_timers_found">Nema brojača vremena</string>
     <string name="add_timer">Dodaj brojač vremena</string>
     <string name="upcoming_alarm">Nadolazeći alarm</string>
+    <string name="early_alarm_dismissal">Early Alarm Dismissal</string>
+
     <!--Timer-->
     <string name="timers_notification_msg">Brojači su pokrenuti</string>
     <string name="timer_single_notification_label_msg">Brojač za %s je pokrenut</string>

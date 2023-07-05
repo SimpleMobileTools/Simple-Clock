@@ -16,6 +16,7 @@ import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.ALARM_ID
 import com.simplemobiletools.clock.helpers.ALARM_NOTIFICATION_CHANNEL_ID
 import com.simplemobiletools.clock.helpers.ALARM_NOTIF_ID
+import com.simplemobiletools.clock.helpers.EARLY_ALARM_NOTIF_ID
 import com.simplemobiletools.commons.extensions.showErrorToast
 import com.simplemobiletools.commons.helpers.isOreoPlus
 
@@ -24,6 +25,8 @@ class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val id = intent.getIntExtra(ALARM_ID, -1)
         val alarm = context.dbHelper.getAlarmWithId(id) ?: return
+
+        context.hideNotification(EARLY_ALARM_NOTIF_ID) // hide early dismissal notification if not already dismissed
 
         if (context.isScreenOn()) {
             context.showAlarmNotification(alarm)

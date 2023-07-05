@@ -124,6 +124,10 @@
 
         <receiver android:name=".receivers.HideAlarmReceiver" />
 
+        <receiver android:name=".receivers.DismissAlarmReceiver" />
+
+        <receiver android:name=".receivers.EarlyAlarmDismissalReceiver" />
+
         <receiver
             android:name=".receivers.BootCompletedReceiver"
             android:exported="true">
