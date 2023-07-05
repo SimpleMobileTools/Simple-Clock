@@ -98,7 +98,7 @@ class AlarmsAdapter(
             alarm_days.setTextColor(textColor)
 
             alarm_label.text = alarm.label
-            alarm_label.setTextColor(textColor)
+            alarm_label.setTextColor(textColor) //test
             alarm_label.beVisibleIf(alarm.label.isNotEmpty())
 
             alarm_switch.isChecked = alarm.isEnabled

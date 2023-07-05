@@ -9,6 +9,7 @@ import com.simplemobiletools.clock.helpers.NOTIFICATION_ID
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import java.util.Calendar
+import kotlin.math.pow
 
 class DismissAlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
@@ -42,9 +43,26 @@ class DismissAlarmReceiver : BroadcastReceiver() {
     private fun removeTodayFromBitmask(bitmask: Int): Int {
         val calendar = Calendar.getInstance()
         calendar.firstDayOfWeek = Calendar.MONDAY
-        val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) - Calendar.MONDAY
+        val dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
+        // boolean array with each day of the week set as per the bitmask provided
+        val daysOfWeek = BooleanArray(7) { value ->
+            var bitValue = bitmask
+            for (i in 0 until value) {
+                bitValue /= 2
+            }
+            bitValue % 2 == 1
+        }
 
-        val todayBitmask = 1 shl dayOfWeek  // This will left shift 0000001 by dayOfWeek places, creating a bitmask for today
-        return bitmask and todayBitmask.inv()  // This will return a new bitmask without today included
+        daysOfWeek[dayOfWeek] = false // remove today
+
+        // Convert the boolean array back to an integer (bitmask)
+        var updatedBitmask = 0
+        for (i in 0..6) {
+            if (daysOfWeek[i]) {
+                updatedBitmask += 2.0.pow(i).toInt()
+            }
+        }  // This will return a new bitmask without today included
+
+        return updatedBitmask
     }
 }
