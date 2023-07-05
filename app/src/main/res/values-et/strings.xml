@@ -29,7 +29,7 @@
     <string name="no_timers_found">Ei leitud taimereid</string>
     <string name="add_timer">Lisage taimer</string>
     <string name="upcoming_alarm">Järgmine äratus</string>
-    <string name="early_alarm_dismissal">Early Alarm Dismissal</string>
+    <string name="early_alarm_dismissal">Early alarm dismissal</string>
 
     <!--Timer-->
     <string name="timers_notification_msg">Taimerid töötavad</string>

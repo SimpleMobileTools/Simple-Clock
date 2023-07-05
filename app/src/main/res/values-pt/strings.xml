@@ -29,7 +29,7 @@
     <string name="no_timers_found">Nenhum temporizador encontrado</string>
     <string name="add_timer">Adicionar temporizador</string>
     <string name="upcoming_alarm">Próximo alarme</string>
-    <string name="early_alarm_dismissal">Early Alarm Dismissal</string>
+    <string name="early_alarm_dismissal">Early alarm dismissal</string>
 
     <!--Timer-->
     <string name="timers_notification_msg">Temporizadores em curso</string>

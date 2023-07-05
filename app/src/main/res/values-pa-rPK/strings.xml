@@ -32,7 +32,7 @@
     <string name="upcoming_alarm">Upcoming alarm</string>
     <string name="timers_notification_msg">سماں والے چالو کیتے جا رہے اے</string>
     <string name="timer_single_notification_label_msg">؜‫%s‬‬ ؜لئی سماں والا چالو کیتا جا رہا اے</string>
-    <string name="early_alarm_dismissal">Early Alarm Dismissal</string>
+    <string name="early_alarm_dismissal">Early alarm dismissal</string>
     <plurals name="timer_notification_msg">
         <item quantity="one">؜‫%d‬؜ سماں والا چالو کیتا جا رہا اے</item>
         <item quantity="other">؜‫%d‬؜ سماں والے چالو کیتے جا رہے اے</item>

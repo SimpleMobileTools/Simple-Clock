@@ -32,7 +32,7 @@
     <string name="timers_notification_msg">Тајмери раде</string>
     <string name="timer_single_notification_label_msg">Тајмер за %s је покренут</string>
     <string name="new_timer">Нови тајмер</string>
-    <string name="early_alarm_dismissal">Early Alarm Dismissal</string>
+    <string name="early_alarm_dismissal">Early alarm dismissal</string>
     <plurals name="timer_notification_msg">
         <item quantity="one">%d тајмер ради</item>
         <item quantity="few">%d тајмери раде</item>

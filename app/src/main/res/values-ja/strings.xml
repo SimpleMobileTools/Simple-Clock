@@ -29,7 +29,7 @@
     <string name="no_timers_found">タイマーが見つかりません</string>
     <string name="add_timer">タイマーを追加</string>
     <string name="upcoming_alarm">今後のアラーム</string>
-    <string name="early_alarm_dismissal">Early Alarm Dismissal</string>
+    <string name="early_alarm_dismissal">Early alarm dismissal</string>
 
     <!--Timer-->
     <string name="timers_notification_msg">タイマーが作動中</string>

@@ -29,7 +29,7 @@
     <string name="no_timers_found">Ni časovnikov</string>
     <string name="add_timer">Dodajte časovnik</string>
     <string name="upcoming_alarm">Upcoming alarm</string>
-    <string name="early_alarm_dismissal">Early Alarm Dismissal</string>
+    <string name="early_alarm_dismissal">Early alarm dismissal</string>
 
     <!-- Timer -->
     <string name="timers_notification_msg">Tečejo časovniki</string>
