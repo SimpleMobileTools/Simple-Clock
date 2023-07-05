@@ -1,7 +1,6 @@
 package com.simplemobiletools.clock.activities
 
 import android.annotation.SuppressLint
-import android.app.KeyguardManager
 import android.content.Context
 import android.content.Intent
 import android.media.AudioManager
@@ -18,10 +17,7 @@ import com.simplemobiletools.clock.helpers.ALARM_ID
 import com.simplemobiletools.clock.helpers.getPassedSeconds
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.MINUTE_SECONDS
-import com.simplemobiletools.commons.helpers.SILENT
-import com.simplemobiletools.commons.helpers.isOreoMr1Plus
-import com.simplemobiletools.commons.helpers.isOreoPlus
+import com.simplemobiletools.commons.helpers.*
 import kotlinx.android.synthetic.main.activity_reminder.*
 
 class ReminderActivity : SimpleActivity() {
@@ -112,6 +108,7 @@ class ReminderActivity : SimpleActivity() {
                     dragDownX = event.x
                     reminder_draggable_background.animate().alpha(0f)
                 }
+
                 MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                     dragDownX = 0f
                     if (!didVibrate) {
@@ -126,6 +123,7 @@ class ReminderActivity : SimpleActivity() {
                         }, 2000L)
                     }
                 }
+
                 MotionEvent.ACTION_MOVE -> {
                     reminder_draggable.x = Math.min(maxDragX, Math.max(minDragX, event.rawX - dragDownX))
                     if (reminder_draggable.x >= maxDragX - 50f) {
@@ -274,7 +272,6 @@ class ReminderActivity : SimpleActivity() {
         if (isOreoMr1Plus()) {
             setShowWhenLocked(true)
             setTurnScreenOn(true)
-            (getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager).requestDismissKeyguard(this, null)
         }
     }
 }
