@@ -37,7 +37,7 @@ class DismissAlarmReceiver : BroadcastReceiver() {
     private fun scheduleNextAlarm(alarm: Alarm, context: Context) {
         val oldBitmask = alarm.days
         alarm.days = removeTodayFromBitmask(oldBitmask)
-        context.scheduleNextAlarm(alarm, true)
+        context.scheduleNextAlarm(alarm, false)
         alarm.days = oldBitmask
     }
 

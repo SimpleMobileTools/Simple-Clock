@@ -10,6 +10,7 @@ import android.text.format.DateFormat
 import androidx.core.app.NotificationCompat
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.getDismissAlarmPendingIntent
+import com.simplemobiletools.clock.extensions.getNextAlarm
 import com.simplemobiletools.clock.extensions.getOpenAlarmTabIntent
 import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.commons.helpers.isOreoPlus
@@ -24,11 +25,10 @@ class EarlyAlarmDismissalReceiver : BroadcastReceiver() {
             return
         }
 
-        val alarmTime = intent.getIntExtra(ALARM_TIME, -1)
-        triggerEarlyDismissalNotification(context, alarmTime, alarmId)
+        triggerEarlyDismissalNotification(context, alarmId)
     }
 
-    private fun triggerEarlyDismissalNotification(context: Context, alarmTime: Int, alarmId: Int) {
+    private fun triggerEarlyDismissalNotification(context: Context, alarmId: Int) {
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (isOreoPlus()) {
             NotificationChannel(EARLY_ALARM_DISMISSAL_CHANNEL_ID, context.getString(R.string.early_alarm_dismissal), NotificationManager.IMPORTANCE_DEFAULT).apply {
@@ -42,7 +42,7 @@ class EarlyAlarmDismissalReceiver : BroadcastReceiver() {
         val contentIntent = context.getOpenAlarmTabIntent()
         val notification = NotificationCompat.Builder(context)
             .setContentTitle(context.getString(R.string.upcoming_alarm))
-            .setContentText(getNotificationTimeString(alarmTime, context))
+            .setContentText(context.getNextAlarm())
             .setSmallIcon(R.drawable.ic_alarm_vector)
             .setPriority(Notification.PRIORITY_LOW)
             .addAction(0, context.getString(R.string.dismiss), dismissIntent)
@@ -53,23 +53,6 @@ class EarlyAlarmDismissalReceiver : BroadcastReceiver() {
             .build()
 
         notificationManager.notify(EARLY_ALARM_NOTIF_ID, notification)
-    }
-
-    /**
-     * Gets the time at which the alarm is going to fire.
-     * eg: "Sun 1:30 pm"
-     */
-    private fun getNotificationTimeString(alarmTime: Int, context: Context): String {
-        val calendar = Calendar.getInstance()
-        val triggerTime = ((alarmTime - getCurrentDayMinutes()) * 60) - calendar.get(Calendar.SECOND)
-        val targetMs = System.currentTimeMillis() + (triggerTime * 1000)
-        val is24HourFormat = DateFormat.is24HourFormat(context)
-        val sdf = if (is24HourFormat) {
-            SimpleDateFormat("EEE HH:mm", Locale.getDefault())
-        } else {
-            SimpleDateFormat("EEE h:mm a", Locale.getDefault())
-        }
-        return sdf.format(Date(targetMs))
     }
 
 }

@@ -161,7 +161,6 @@ fun Context.setupAlarmClock(alarm: Alarm, triggerInSeconds: Int) {
 fun Context.getEarlyAlarmDismissalIntent(alarm: Alarm): PendingIntent {
     val intent = Intent(this, EarlyAlarmDismissalReceiver::class.java).apply {
         putExtra(ALARM_ID, alarm.id)
-        putExtra(ALARM_TIME, alarm.timeInMinutes)
     }
     return PendingIntent.getBroadcast(this, EARLY_ALARM_DISMISSAL_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
