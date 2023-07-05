@@ -29,6 +29,7 @@
     <string name="no_timers_found">No timers found</string>
     <string name="add_timer">Add timer</string>
     <string name="upcoming_alarm">Upcoming alarm</string>
+    <string name="early_alarm_dismissal">Early alarm dismissal</string>
     <!--Timer-->
     <string name="timers_notification_msg">Таймерите са включени</string>
     <string name="timer_single_notification_label_msg">Таймерът за %s е включен</string>

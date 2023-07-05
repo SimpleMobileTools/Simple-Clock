@@ -29,6 +29,8 @@
     <string name="no_timers_found">Nu au fost găsite temporizatoare</string>
     <string name="add_timer">Adaugă temporizator</string>
     <string name="upcoming_alarm">Upcoming alarm</string>
+    <string name="early_alarm_dismissal">Early alarm dismissal</string>
+
     <!--Timer-->
     <string name="timers_notification_msg">Temporizatoarele sunt pornite</string>
     <string name="timer_single_notification_label_msg">Temporizatorul de %s este pornit</string>

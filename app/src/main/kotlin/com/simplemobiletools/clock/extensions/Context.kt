@@ -27,17 +27,18 @@ import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.clock.models.Timer
 import com.simplemobiletools.clock.models.TimerState
-import com.simplemobiletools.clock.receivers.AlarmReceiver
-import com.simplemobiletools.clock.receivers.HideAlarmReceiver
-import com.simplemobiletools.clock.receivers.HideTimerReceiver
+import com.simplemobiletools.clock.receivers.*
 import com.simplemobiletools.clock.services.SnoozeService
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.TimeZone
 import kotlin.math.pow
+import kotlin.time.Duration.Companion.minutes
 
 val Context.config: Config get() = Config.newInstance(applicationContext)
 
@@ -147,9 +148,24 @@ fun Context.setupAlarmClock(alarm: Alarm, triggerInSeconds: Int) {
     val targetMS = System.currentTimeMillis() + triggerInSeconds * 1000
     try {
         AlarmManagerCompat.setAlarmClock(alarmManager, targetMS, getOpenAlarmTabIntent(), getAlarmIntent(alarm))
+
+        // show a notification to allow dismissing the alarm 10 minutes before it actually triggers
+        val dismissalTriggerTime = if (targetMS - System.currentTimeMillis() < 10.minutes.inWholeMilliseconds) {
+            System.currentTimeMillis() + 500
+        } else {
+            targetMS - 10.minutes.inWholeMilliseconds
+        }
+        AlarmManagerCompat.setExactAndAllowWhileIdle(alarmManager, 0, dismissalTriggerTime, getEarlyAlarmDismissalIntent(alarm))
     } catch (e: Exception) {
         showErrorToast(e)
     }
+}
+
+fun Context.getEarlyAlarmDismissalIntent(alarm: Alarm): PendingIntent {
+    val intent = Intent(this, EarlyAlarmDismissalReceiver::class.java).apply {
+        putExtra(ALARM_ID, alarm.id)
+    }
+    return PendingIntent.getBroadcast(this, EARLY_ALARM_DISMISSAL_INTENT_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
 
 fun Context.getOpenAlarmTabIntent(): PendingIntent {
@@ -425,6 +441,14 @@ fun Context.getHideAlarmPendingIntent(alarm: Alarm, channelId: String): PendingI
         putExtra(ALARM_NOTIFICATION_CHANNEL_ID, channelId)
     }
     return PendingIntent.getBroadcast(this, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+}
+
+fun Context.getDismissAlarmPendingIntent(alarmId: Int, notificationId: Int): PendingIntent {
+    val intent = Intent(this, DismissAlarmReceiver::class.java).apply {
+        putExtra(ALARM_ID, alarmId)
+        putExtra(NOTIFICATION_ID, notificationId)
+    }
+    return PendingIntent.getBroadcast(this, alarmId, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
 
 fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): Notification {

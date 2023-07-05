@@ -29,6 +29,8 @@
     <string name="no_timers_found">Nincsenek időzitők</string>
     <string name="add_timer">Időzítő hozzáadása</string>
     <string name="upcoming_alarm">Közelgő riasztás</string>
+    <string name="early_alarm_dismissal">Early alarm dismissal</string>
+
     <!--Timer-->
     <string name="timers_notification_msg">Az időzítő megy</string>
     <string name="timer_single_notification_label_msg">A(z) %s időzítő fut</string>
