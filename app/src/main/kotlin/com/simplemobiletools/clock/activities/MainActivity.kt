@@ -10,18 +10,18 @@ import android.os.Bundle
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.lifecycleScope
 import com.simplemobiletools.clock.BuildConfig
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.adapters.ViewPagerAdapter
-import com.simplemobiletools.clock.extensions.config
-import com.simplemobiletools.clock.extensions.getNextAlarm
-import com.simplemobiletools.clock.extensions.rescheduleEnabledAlarms
-import com.simplemobiletools.clock.extensions.updateWidgets
+import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.FAQItem
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import me.grantland.widget.AutofitHelper
 
 class MainActivity : SimpleActivity() {
@@ -44,8 +44,8 @@ class MainActivity : SimpleActivity() {
         setupTabs()
         updateWidgets()
 
-        if (getNextAlarm().isEmpty()) {
-            ensureBackgroundThread {
+        lifecycleScope.launch(Dispatchers.IO) {
+            if (getEnabledAlarms().isEmpty()) {
                 rescheduleEnabledAlarms()
             }
         }

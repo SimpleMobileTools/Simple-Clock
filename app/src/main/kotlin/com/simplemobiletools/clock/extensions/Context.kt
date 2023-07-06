@@ -270,25 +270,8 @@ fun Context.formatTo12HourFormat(showSeconds: Boolean, hours: Int, minutes: Int,
     return "${formatTime(showSeconds, false, newHours, minutes, seconds)} $appendable"
 }
 
-fun Context.getNextAlarm(): String {
-    val milliseconds = (getSystemService(Context.ALARM_SERVICE) as AlarmManager).nextAlarmClock?.triggerTime ?: return ""
-    val calendar = Calendar.getInstance()
-    val isDaylightSavingActive = TimeZone.getDefault().inDaylightTime(Date())
-    var offset = calendar.timeZone.rawOffset
-    if (isDaylightSavingActive) {
-        offset += TimeZone.getDefault().dstSavings
-    }
-
-    calendar.timeInMillis = milliseconds
-    val dayOfWeekIndex = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
-    val dayOfWeek = resources.getStringArray(R.array.week_days_short)[dayOfWeekIndex]
-    val formatted = getFormattedTime(((milliseconds + offset) / 1000L).toInt(), false, false)
-    return "$dayOfWeek $formatted"
-}
-
 suspend fun Context.getClosestEnabledAlarmString(): String = withContext(Dispatchers.IO) {
-    val enabledAlarms = dbHelper.getEnabledAlarms()
-    val nextAlarmList = enabledAlarms
+    val nextAlarmList = getEnabledAlarms()
         .mapNotNull { getTimeUntilNextAlarm(it.timeInMinutes, it.days) }
 
     if (nextAlarmList.isEmpty()) {
@@ -318,6 +301,10 @@ suspend fun Context.getClosestEnabledAlarmString(): String = withContext(Dispatc
 
     val formattedTime = SimpleDateFormat(pattern, Locale.getDefault()).format(calendar.time)
     return@withContext "$dayOfWeek $formattedTime"
+}
+
+suspend fun Context.getEnabledAlarms(): List<Alarm> = withContext(Dispatchers.IO) {
+    return@withContext dbHelper.getEnabledAlarms()
 }
 
 fun Context.rescheduleEnabledAlarms() {

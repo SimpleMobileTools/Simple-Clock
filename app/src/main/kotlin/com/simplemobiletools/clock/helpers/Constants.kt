@@ -1,7 +1,13 @@
 package com.simplemobiletools.clock.helpers
 
+import android.content.BroadcastReceiver
 import com.simplemobiletools.clock.models.MyTimeZone
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 import java.util.*
+import kotlin.coroutines.CoroutineContext
 import kotlin.math.pow
 
 // shared preferences
@@ -237,3 +243,16 @@ fun getTimeDifferenceInMinutes(currentTimeInMinutes: Int, alarmTimeInMinutes: In
     }
 }
 
+fun BroadcastReceiver.goAsync(
+    context: CoroutineContext = (Dispatchers.Main.immediate + SupervisorJob()),
+    block: suspend CoroutineScope.() -> Unit
+) {
+    val pendingResult = goAsync()
+    CoroutineScope(SupervisorJob()).launch(context) {
+        try {
+            block()
+        } finally {
+            pendingResult.finish()
+        }
+    }
+}
