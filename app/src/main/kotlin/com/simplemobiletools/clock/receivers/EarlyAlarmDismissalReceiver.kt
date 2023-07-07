@@ -14,45 +14,49 @@ import com.simplemobiletools.clock.extensions.getOpenAlarmTabIntent
 import com.simplemobiletools.clock.helpers.ALARM_ID
 import com.simplemobiletools.clock.helpers.EARLY_ALARM_DISMISSAL_CHANNEL_ID
 import com.simplemobiletools.clock.helpers.EARLY_ALARM_NOTIF_ID
-import com.simplemobiletools.clock.helpers.goAsync
 import com.simplemobiletools.commons.helpers.isOreoPlus
 
 class EarlyAlarmDismissalReceiver : BroadcastReceiver() {
 
-    override fun onReceive(context: Context, intent: Intent) = goAsync {
+    override fun onReceive(context: Context, intent: Intent)  {
         val alarmId = intent.getIntExtra(ALARM_ID, -1)
         if (alarmId == -1) {
-            return@goAsync
+            return
         }
 
         triggerEarlyDismissalNotification(context, alarmId)
     }
 
-    private suspend fun triggerEarlyDismissalNotification(context: Context, alarmId: Int) {
-        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        if (isOreoPlus()) {
-            NotificationChannel(EARLY_ALARM_DISMISSAL_CHANNEL_ID, context.getString(R.string.early_alarm_dismissal), NotificationManager.IMPORTANCE_DEFAULT).apply {
-                setBypassDnd(true)
-                setSound(null, null)
-                notificationManager.createNotificationChannel(this)
+    private fun triggerEarlyDismissalNotification(context: Context, alarmId: Int) {
+        context.getClosestEnabledAlarmString { alarmString ->
+            val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            if (isOreoPlus()) {
+                NotificationChannel(
+                    EARLY_ALARM_DISMISSAL_CHANNEL_ID,
+                    context.getString(R.string.early_alarm_dismissal),
+                    NotificationManager.IMPORTANCE_DEFAULT
+                ).apply {
+                    setBypassDnd(true)
+                    setSound(null, null)
+                    notificationManager.createNotificationChannel(this)
+                }
             }
+            val dismissIntent = context.getDismissAlarmPendingIntent(alarmId, EARLY_ALARM_NOTIF_ID)
+            val contentIntent = context.getOpenAlarmTabIntent()
+            val notification = NotificationCompat.Builder(context)
+                .setContentTitle(context.getString(R.string.upcoming_alarm))
+                .setContentText(alarmString)
+                .setSmallIcon(R.drawable.ic_alarm_vector)
+                .setPriority(Notification.PRIORITY_LOW)
+                .addAction(0, context.getString(R.string.dismiss), dismissIntent)
+                .setContentIntent(contentIntent)
+                .setSound(null)
+                .setAutoCancel(true)
+                .setChannelId(EARLY_ALARM_DISMISSAL_CHANNEL_ID)
+                .build()
+
+            notificationManager.notify(EARLY_ALARM_NOTIF_ID, notification)
         }
-
-        val dismissIntent = context.getDismissAlarmPendingIntent(alarmId, EARLY_ALARM_NOTIF_ID)
-        val contentIntent = context.getOpenAlarmTabIntent()
-        val notification = NotificationCompat.Builder(context)
-            .setContentTitle(context.getString(R.string.upcoming_alarm))
-            .setContentText(context.getClosestEnabledAlarmString())
-            .setSmallIcon(R.drawable.ic_alarm_vector)
-            .setPriority(Notification.PRIORITY_LOW)
-            .addAction(0, context.getString(R.string.dismiss), dismissIntent)
-            .setContentIntent(contentIntent)
-            .setSound(null)
-            .setAutoCancel(true)
-            .setChannelId(EARLY_ALARM_DISMISSAL_CHANNEL_ID)
-            .build()
-
-        notificationManager.notify(EARLY_ALARM_NOTIF_ID, notification)
     }
 
 }

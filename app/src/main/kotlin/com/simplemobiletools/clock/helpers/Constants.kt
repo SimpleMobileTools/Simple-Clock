@@ -1,13 +1,12 @@
 package com.simplemobiletools.clock.helpers
 
-import android.content.BroadcastReceiver
+import android.os.Handler
+import android.os.Looper
 import com.simplemobiletools.clock.models.MyTimeZone
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
+import com.simplemobiletools.commons.helpers.isOnMainThread
 import java.util.*
-import kotlin.coroutines.CoroutineContext
+import java.util.concurrent.Callable
+import java.util.concurrent.Executors
 import kotlin.math.pow
 
 // shared preferences
@@ -243,16 +242,39 @@ fun getTimeDifferenceInMinutes(currentTimeInMinutes: Int, alarmTimeInMinutes: In
     }
 }
 
-fun BroadcastReceiver.goAsync(
-    context: CoroutineContext = (Dispatchers.Main.immediate + SupervisorJob()),
-    block: suspend CoroutineScope.() -> Unit
+/**
+ * Runs tasks that you want on a background thread and returns the result or error
+ * @param task: Callable to add code that should execute on a background thread
+ * @param callback: Gives back the result from the task after it has completed executing on the Main thread
+ * @param onError: Gives the error thrown if any by the Callable on the Main thread
+ */
+fun <T> ensureBackgroundThreadWithResult(
+    task: Callable<T>,
+    callback: (T) -> Unit,
+    onError: ((Throwable) -> Unit)? = null
 ) {
-    val pendingResult = goAsync()
-    CoroutineScope(SupervisorJob()).launch(context) {
+    val executor = if (isOnMainThread()) {
+        Executors.newSingleThreadExecutor()
+    } else {
+        Executors.newFixedThreadPool(1)
+    }
+
+    val handler = Handler(Looper.getMainLooper())
+
+    val future = executor.submit(task)
+
+    executor.submit {
         try {
-            block()
+            val result = future.get()
+            handler.post {
+                callback(result)
+            }
+        } catch (t: Throwable) {
+            handler.post {
+                onError?.invoke(t)
+            }
         } finally {
-            pendingResult.finish()
+            executor.shutdown()
         }
     }
 }

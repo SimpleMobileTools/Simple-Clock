@@ -42,17 +42,10 @@ class MyDigitalTimeWidgetProvider : AppWidgetProvider() {
     }
 
     private fun updateTexts(context: Context, views: RemoteViews) {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val nextAlarm = context.getClosestEnabledAlarmString()
-                withContext(Dispatchers.Main.immediate) {
-                    views.apply {
-                        setText(R.id.widget_next_alarm, nextAlarm)
-                        setVisibleIf(R.id.widget_alarm_holder, nextAlarm.isNotEmpty())
-                    }
-                }
-            } finally {
-                cancel()
+        context.getClosestEnabledAlarmString { nextAlarm ->
+            views.apply {
+                setText(R.id.widget_next_alarm, nextAlarm)
+                setVisibleIf(R.id.widget_alarm_holder, nextAlarm.isNotEmpty())
             }
         }
     }

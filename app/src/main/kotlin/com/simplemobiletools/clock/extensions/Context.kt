@@ -270,41 +270,58 @@ fun Context.formatTo12HourFormat(showSeconds: Boolean, hours: Int, minutes: Int,
     return "${formatTime(showSeconds, false, newHours, minutes, seconds)} $appendable"
 }
 
-suspend fun Context.getClosestEnabledAlarmString(): String = withContext(Dispatchers.IO) {
-    val nextAlarmList = getEnabledAlarms()
-        .mapNotNull { getTimeUntilNextAlarm(it.timeInMinutes, it.days) }
-
-    if (nextAlarmList.isEmpty()) {
-        return@withContext ""
-    }
-
-    var closestAlarmTime = Int.MAX_VALUE
-    nextAlarmList.forEach { time ->
-        if (time < closestAlarmTime) {
-            closestAlarmTime = time
+fun Context.getClosestEnabledAlarmString(result: (String) -> Unit) {
+    getEnabledAlarms { enabledAlarms ->
+        if (enabledAlarms == null) {
+            result.invoke("")
+            return@getEnabledAlarms
         }
-    }
 
-    if (closestAlarmTime == Int.MAX_VALUE) {
-        return@withContext ""
-    }
+        val nextAlarmList = enabledAlarms
+            .mapNotNull { getTimeUntilNextAlarm(it.timeInMinutes, it.days) }
 
-    val calendar = Calendar.getInstance().apply { firstDayOfWeek = Calendar.MONDAY }
-    calendar.add(Calendar.MINUTE, closestAlarmTime)
-    val dayOfWeekIndex = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
-    val dayOfWeek = resources.getStringArray(R.array.week_days_short)[dayOfWeekIndex]
-    val pattern = if (DateFormat.is24HourFormat(this@getClosestEnabledAlarmString)) {
-        "HH:mm"
-    } else {
-        "h:mm a"
-    }
+        if (nextAlarmList.isEmpty()) {
+             result.invoke("")
+        }
 
-    val formattedTime = SimpleDateFormat(pattern, Locale.getDefault()).format(calendar.time)
-    return@withContext "$dayOfWeek $formattedTime"
+        var closestAlarmTime = Int.MAX_VALUE
+        nextAlarmList.forEach { time ->
+            if (time < closestAlarmTime) {
+                closestAlarmTime = time
+            }
+        }
+
+        if (closestAlarmTime == Int.MAX_VALUE) {
+            result.invoke("")
+        }
+
+        val calendar = Calendar.getInstance().apply { firstDayOfWeek = Calendar.MONDAY }
+        calendar.add(Calendar.MINUTE, closestAlarmTime)
+        val dayOfWeekIndex = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
+        val dayOfWeek = resources.getStringArray(R.array.week_days_short)[dayOfWeekIndex]
+        val pattern = if (DateFormat.is24HourFormat(this)) {
+            "HH:mm"
+        } else {
+            "h:mm a"
+        }
+
+        val formattedTime = SimpleDateFormat(pattern, Locale.getDefault()).format(calendar.time)
+        result.invoke("$dayOfWeek $formattedTime")
+    }
 }
 
-suspend fun Context.getEnabledAlarms(): List<Alarm> = withContext(Dispatchers.IO) {
-    return@withContext dbHelper.getEnabledAlarms()
+fun Context.getEnabledAlarms(enabledAlarms: (List<Alarm>?) -> Unit) {
+    ensureBackgroundThreadWithResult(
+        task = {
+            dbHelper.getEnabledAlarms()
+        },
+        callback = { alarms ->
+            enabledAlarms.invoke(alarms)
+        },
+        onError = {
+            enabledAlarms.invoke(null)
+        }
+    )
 }
 
 fun Context.rescheduleEnabledAlarms() {

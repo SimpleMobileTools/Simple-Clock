@@ -44,9 +44,11 @@ class MainActivity : SimpleActivity() {
         setupTabs()
         updateWidgets()
 
-        lifecycleScope.launch(Dispatchers.IO) {
-            if (getEnabledAlarms().isEmpty()) {
-                rescheduleEnabledAlarms()
+        getEnabledAlarms { enabledAlarms ->
+            if (enabledAlarms.isNullOrEmpty()) {
+                ensureBackgroundThread {
+                    rescheduleEnabledAlarms()
+                }
             }
         }
     }

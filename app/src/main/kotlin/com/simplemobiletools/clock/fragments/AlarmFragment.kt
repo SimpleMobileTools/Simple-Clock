@@ -21,6 +21,7 @@ import com.simplemobiletools.commons.extensions.getProperTextColor
 import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.extensions.updateTextColors
 import com.simplemobiletools.commons.helpers.SORT_BY_DATE_CREATED
+import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.models.AlarmSound
 import kotlinx.android.synthetic.main.fragment_alarm.view.*
 import kotlinx.coroutines.Dispatchers
@@ -91,12 +92,14 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
                 it.timeInMinutes
             })
         }
-        lifecycleScope.launch(Dispatchers.IO) {
-            if (context?.getEnabledAlarms()?.isEmpty() == true) {
+        context?.getEnabledAlarms { enabledAlarms ->
+            if (enabledAlarms.isNullOrEmpty()) {
                 alarms.forEach {
                     if (it.days == TODAY_BIT && it.isEnabled && it.timeInMinutes <= getCurrentDayMinutes()) {
                         it.isEnabled = false
-                        context?.dbHelper?.updateAlarmEnabledState(it.id, false)
+                        ensureBackgroundThread {
+                            context?.dbHelper?.updateAlarmEnabledState(it.id, false)
+                        }
                     }
                 }
             }
