@@ -268,7 +268,7 @@ fun Context.formatTo12HourFormat(showSeconds: Boolean, hours: Int, minutes: Int,
     return "${formatTime(showSeconds, false, newHours, minutes, seconds)} $appendable"
 }
 
-fun Context.getClosestEnabledAlarmString(callback: (String) -> Unit) {
+fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
     getEnabledAlarms { enabledAlarms ->
         if (enabledAlarms == null) {
             callback("")
@@ -308,7 +308,7 @@ fun Context.getClosestEnabledAlarmString(callback: (String) -> Unit) {
     }
 }
 
-fun Context.getEnabledAlarms(callback: (List<Alarm>?) -> Unit) {
+fun Context.getEnabledAlarms(callback: (result: List<Alarm>?) -> Unit) {
     ensureBackgroundThread {
         val alarms = dbHelper.getEnabledAlarms()
         Handler(Looper.getMainLooper()).post {
