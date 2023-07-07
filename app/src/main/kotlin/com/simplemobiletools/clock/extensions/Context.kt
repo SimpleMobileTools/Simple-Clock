@@ -33,13 +33,9 @@ import com.simplemobiletools.clock.receivers.*
 import com.simplemobiletools.clock.services.SnoozeService
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
 import java.util.Locale
-import java.util.TimeZone
 import kotlin.math.pow
 import kotlin.time.Duration.Companion.minutes
 
@@ -272,10 +268,10 @@ fun Context.formatTo12HourFormat(showSeconds: Boolean, hours: Int, minutes: Int,
     return "${formatTime(showSeconds, false, newHours, minutes, seconds)} $appendable"
 }
 
-fun Context.getClosestEnabledAlarmString(result: (String) -> Unit) {
+fun Context.getClosestEnabledAlarmString(callback: (String) -> Unit) {
     getEnabledAlarms { enabledAlarms ->
         if (enabledAlarms == null) {
-            result.invoke("")
+            callback("")
             return@getEnabledAlarms
         }
 
@@ -283,7 +279,7 @@ fun Context.getClosestEnabledAlarmString(result: (String) -> Unit) {
             .mapNotNull { getTimeUntilNextAlarm(it.timeInMinutes, it.days) }
 
         if (nextAlarmList.isEmpty()) {
-             result.invoke("")
+             callback("")
         }
 
         var closestAlarmTime = Int.MAX_VALUE
@@ -294,7 +290,7 @@ fun Context.getClosestEnabledAlarmString(result: (String) -> Unit) {
         }
 
         if (closestAlarmTime == Int.MAX_VALUE) {
-            result.invoke("")
+            callback("")
         }
 
         val calendar = Calendar.getInstance().apply { firstDayOfWeek = Calendar.MONDAY }
@@ -308,15 +304,15 @@ fun Context.getClosestEnabledAlarmString(result: (String) -> Unit) {
         }
 
         val formattedTime = SimpleDateFormat(pattern, Locale.getDefault()).format(calendar.time)
-        result.invoke("$dayOfWeek $formattedTime")
+        callback("$dayOfWeek $formattedTime")
     }
 }
 
-fun Context.getEnabledAlarms(enabledAlarms: (List<Alarm>?) -> Unit) {
+fun Context.getEnabledAlarms(callback: (List<Alarm>?) -> Unit) {
     ensureBackgroundThread {
         val alarms = dbHelper.getEnabledAlarms()
         Handler(Looper.getMainLooper()).post {
-            enabledAlarms.invoke(alarms)
+            callback(alarms)
         }
     }
 }
