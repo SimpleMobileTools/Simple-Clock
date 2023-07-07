@@ -1,12 +1,9 @@
 package com.simplemobiletools.clock.helpers
 
-import android.os.Handler
-import android.os.Looper
+import com.simplemobiletools.clock.extensions.isBitSet
 import com.simplemobiletools.clock.models.MyTimeZone
-import com.simplemobiletools.commons.helpers.isOnMainThread
+import com.simplemobiletools.commons.extensions.addBit
 import java.util.*
-import java.util.concurrent.Callable
-import java.util.concurrent.Executors
 import kotlin.math.pow
 
 // shared preferences
@@ -229,7 +226,16 @@ fun getTimeUntilNextAlarm(alarmTimeInMinutes: Int, days: Int): Int? {
 }
 
 fun isAlarmEnabledForDay(day: Int, alarmDays: Int): Boolean {
-    return ((alarmDays shr day) and 1) == 1
+    val bit = createBit(day)
+    return alarmDays.isBitSet(bit)
+}
+
+fun createBit(day: Int): Int {
+    var bit = 1
+    repeat(day) {
+        bit = bit.addBit(bit)
+    }
+    return bit
 }
 
 fun getTimeDifferenceInMinutes(currentTimeInMinutes: Int, alarmTimeInMinutes: Int, daysUntilAlarm: Int): Int {
