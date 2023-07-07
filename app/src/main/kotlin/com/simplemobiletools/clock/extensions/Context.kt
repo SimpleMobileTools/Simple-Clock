@@ -9,6 +9,8 @@ import android.media.AudioAttributes
 import android.media.AudioManager.STREAM_ALARM
 import android.media.RingtoneManager
 import android.net.Uri
+import android.os.Handler
+import android.os.Looper
 import android.os.PowerManager
 import android.text.SpannableString
 import android.text.format.DateFormat
@@ -311,17 +313,12 @@ fun Context.getClosestEnabledAlarmString(result: (String) -> Unit) {
 }
 
 fun Context.getEnabledAlarms(enabledAlarms: (List<Alarm>?) -> Unit) {
-    ensureBackgroundThreadWithResult(
-        task = {
-            dbHelper.getEnabledAlarms()
-        },
-        callback = { alarms ->
+    ensureBackgroundThread {
+        val alarms = dbHelper.getEnabledAlarms()
+        Handler(Looper.getMainLooper()).post {
             enabledAlarms.invoke(alarms)
-        },
-        onError = {
-            enabledAlarms.invoke(null)
         }
-    )
+    }
 }
 
 fun Context.rescheduleEnabledAlarms() {
