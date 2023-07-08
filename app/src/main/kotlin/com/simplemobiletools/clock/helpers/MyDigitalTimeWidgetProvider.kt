@@ -12,11 +12,16 @@ import android.widget.RemoteViews
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SplashActivity
 import com.simplemobiletools.clock.extensions.config
-import com.simplemobiletools.clock.extensions.getNextAlarm
+import com.simplemobiletools.clock.extensions.getClosestEnabledAlarmString
 import com.simplemobiletools.commons.extensions.applyColorFilter
 import com.simplemobiletools.commons.extensions.getLaunchIntent
 import com.simplemobiletools.commons.extensions.setText
 import com.simplemobiletools.commons.extensions.setVisibleIf
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MyDigitalTimeWidgetProvider : AppWidgetProvider() {
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
@@ -37,10 +42,11 @@ class MyDigitalTimeWidgetProvider : AppWidgetProvider() {
     }
 
     private fun updateTexts(context: Context, views: RemoteViews) {
-        val nextAlarm = context.getNextAlarm()
-        views.apply {
-            setText(R.id.widget_next_alarm, nextAlarm)
-            setVisibleIf(R.id.widget_alarm_holder, nextAlarm.isNotEmpty())
+        context.getClosestEnabledAlarmString { nextAlarm ->
+            views.apply {
+                setText(R.id.widget_next_alarm, nextAlarm)
+                setVisibleIf(R.id.widget_alarm_holder, nextAlarm.isNotEmpty())
+            }
         }
     }
 

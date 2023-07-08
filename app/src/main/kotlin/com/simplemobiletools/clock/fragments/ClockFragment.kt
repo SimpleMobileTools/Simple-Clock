@@ -18,7 +18,6 @@ import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.commons.extensions.beVisibleIf
 import com.simplemobiletools.commons.extensions.getProperTextColor
 import com.simplemobiletools.commons.extensions.updateTextColors
-import kotlinx.android.synthetic.main.fragment_clock.*
 import kotlinx.android.synthetic.main.fragment_clock.view.*
 import java.util.*
 
@@ -113,10 +112,11 @@ class ClockFragment : Fragment() {
 
     fun updateAlarm() {
         view.apply {
-            val nextAlarm = requireContext().getNextAlarm()
-            clock_alarm.beVisibleIf(nextAlarm.isNotEmpty())
-            clock_alarm.text = nextAlarm
-            clock_alarm.colorCompoundDrawable(requireContext().getProperTextColor())
+            requireContext().getClosestEnabledAlarmString { nextAlarm ->
+                clock_alarm.beVisibleIf(nextAlarm.isNotEmpty())
+                clock_alarm.text = nextAlarm
+                clock_alarm.colorCompoundDrawable(requireContext().getProperTextColor())
+            }
         }
     }
 

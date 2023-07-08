@@ -13,10 +13,7 @@ import android.widget.TextView
 import com.simplemobiletools.clock.BuildConfig
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.adapters.ViewPagerAdapter
-import com.simplemobiletools.clock.extensions.config
-import com.simplemobiletools.clock.extensions.getNextAlarm
-import com.simplemobiletools.clock.extensions.rescheduleEnabledAlarms
-import com.simplemobiletools.clock.extensions.updateWidgets
+import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
@@ -44,9 +41,11 @@ class MainActivity : SimpleActivity() {
         setupTabs()
         updateWidgets()
 
-        if (getNextAlarm().isEmpty()) {
-            ensureBackgroundThread {
-                rescheduleEnabledAlarms()
+        getEnabledAlarms { enabledAlarms ->
+            if (enabledAlarms.isNullOrEmpty()) {
+                ensureBackgroundThread {
+                    rescheduleEnabledAlarms()
+                }
             }
         }
     }

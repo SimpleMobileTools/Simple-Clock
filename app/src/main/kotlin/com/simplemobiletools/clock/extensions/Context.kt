@@ -9,6 +9,8 @@ import android.media.AudioAttributes
 import android.media.AudioManager.STREAM_ALARM
 import android.media.RingtoneManager
 import android.net.Uri
+import android.os.Handler
+import android.os.Looper
 import android.os.PowerManager
 import android.text.SpannableString
 import android.text.format.DateFormat
@@ -31,9 +33,9 @@ import com.simplemobiletools.clock.receivers.*
 import com.simplemobiletools.clock.services.SnoozeService
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
+import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
-import java.util.TimeZone
+import java.util.Locale
 import kotlin.math.pow
 import kotlin.time.Duration.Companion.minutes
 
@@ -205,7 +207,8 @@ fun Context.deleteNotificationChannel(channelId: String) {
         try {
             val manager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             manager.deleteNotificationChannel(channelId)
-        } catch (_: Throwable) {}
+        } catch (_: Throwable) {
+        }
     }
 }
 
@@ -266,20 +269,53 @@ fun Context.formatTo12HourFormat(showSeconds: Boolean, hours: Int, minutes: Int,
     return "${formatTime(showSeconds, false, newHours, minutes, seconds)} $appendable"
 }
 
-fun Context.getNextAlarm(): String {
-    val milliseconds = (getSystemService(Context.ALARM_SERVICE) as AlarmManager).nextAlarmClock?.triggerTime ?: return ""
-    val calendar = Calendar.getInstance()
-    val isDaylightSavingActive = TimeZone.getDefault().inDaylightTime(Date())
-    var offset = calendar.timeZone.rawOffset
-    if (isDaylightSavingActive) {
-        offset += TimeZone.getDefault().dstSavings
-    }
+fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
+    getEnabledAlarms { enabledAlarms ->
+        if (enabledAlarms.isNullOrEmpty()) {
+            callback("")
+            return@getEnabledAlarms
+        }
 
-    calendar.timeInMillis = milliseconds
-    val dayOfWeekIndex = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
-    val dayOfWeek = resources.getStringArray(R.array.week_days_short)[dayOfWeekIndex]
-    val formatted = getFormattedTime(((milliseconds + offset) / 1000L).toInt(), false, false)
-    return "$dayOfWeek $formatted"
+        val nextAlarmList = enabledAlarms
+            .mapNotNull { getTimeUntilNextAlarm(it.timeInMinutes, it.days) }
+
+        if (nextAlarmList.isEmpty()) {
+            callback("")
+        }
+
+        var closestAlarmTime = Int.MAX_VALUE
+        nextAlarmList.forEach { time ->
+            if (time < closestAlarmTime) {
+                closestAlarmTime = time
+            }
+        }
+
+        if (closestAlarmTime == Int.MAX_VALUE) {
+            callback("")
+        }
+
+        val calendar = Calendar.getInstance().apply { firstDayOfWeek = Calendar.MONDAY }
+        calendar.add(Calendar.MINUTE, closestAlarmTime)
+        val dayOfWeekIndex = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
+        val dayOfWeek = resources.getStringArray(R.array.week_days_short)[dayOfWeekIndex]
+        val pattern = if (DateFormat.is24HourFormat(this)) {
+            "HH:mm"
+        } else {
+            "h:mm a"
+        }
+
+        val formattedTime = SimpleDateFormat(pattern, Locale.getDefault()).format(calendar.time)
+        callback("$dayOfWeek $formattedTime")
+    }
+}
+
+fun Context.getEnabledAlarms(callback: (result: List<Alarm>?) -> Unit) {
+    ensureBackgroundThread {
+        val alarms = dbHelper.getEnabledAlarms()
+        Handler(Looper.getMainLooper()).post {
+            callback(alarms)
+        }
+    }
 }
 
 fun Context.rescheduleEnabledAlarms() {

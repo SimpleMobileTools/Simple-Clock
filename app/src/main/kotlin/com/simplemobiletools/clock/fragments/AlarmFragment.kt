@@ -89,13 +89,14 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
                 it.timeInMinutes
             })
         }
-
-        if (context?.getNextAlarm()?.isEmpty() == true) {
-            alarms.forEach {
-                if (it.days == TODAY_BIT && it.isEnabled && it.timeInMinutes <= getCurrentDayMinutes()) {
-                    it.isEnabled = false
-                    ensureBackgroundThread {
-                        context?.dbHelper?.updateAlarmEnabledState(it.id, false)
+        context?.getEnabledAlarms { enabledAlarms ->
+            if (enabledAlarms.isNullOrEmpty()) {
+                alarms.forEach {
+                    if (it.days == TODAY_BIT && it.isEnabled && it.timeInMinutes <= getCurrentDayMinutes()) {
+                        it.isEnabled = false
+                        ensureBackgroundThread {
+                            context?.dbHelper?.updateAlarmEnabledState(it.id, false)
+                        }
                     }
                 }
             }
