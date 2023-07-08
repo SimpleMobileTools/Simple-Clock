@@ -207,7 +207,8 @@ fun Context.deleteNotificationChannel(channelId: String) {
         try {
             val manager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             manager.deleteNotificationChannel(channelId)
-        } catch (_: Throwable) {}
+        } catch (_: Throwable) {
+        }
     }
 }
 
@@ -270,7 +271,7 @@ fun Context.formatTo12HourFormat(showSeconds: Boolean, hours: Int, minutes: Int,
 
 fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
     getEnabledAlarms { enabledAlarms ->
-        if (enabledAlarms == null) {
+        if (enabledAlarms.isNullOrEmpty()) {
             callback("")
             return@getEnabledAlarms
         }
@@ -279,7 +280,7 @@ fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
             .mapNotNull { getTimeUntilNextAlarm(it.timeInMinutes, it.days) }
 
         if (nextAlarmList.isEmpty()) {
-             callback("")
+            callback("")
         }
 
         var closestAlarmTime = Int.MAX_VALUE
