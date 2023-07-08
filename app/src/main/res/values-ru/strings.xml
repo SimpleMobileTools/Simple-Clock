@@ -16,7 +16,7 @@
     <string name="time_expired">Время вышло</string>
     <string name="clock_and_date">Часы и дата</string>
     <string name="use_text_shadow">Использовать затенение текста</string>
-    <string name="swipe_right_to_dismiss">Смахивание вправо — скрыть, влево — отложить.</string>
+    <string name="swipe_right_to_dismiss">Смахивание вправо — отключить, влево — отложить.</string>
     <string name="sort_by_creation_order">Порядок создания</string>
     <string name="sort_by_alarm_time">Время будильника</string>
     <string name="sort_by_day_and_alarm_time">Дата и время будильника</string>
@@ -29,8 +29,7 @@
     <string name="no_timers_found">Таймеры отсутствуют</string>
     <string name="add_timer">Добавить таймер</string>
     <string name="upcoming_alarm">Предстоящий будильник</string>
-    <string name="early_alarm_dismissal">Early alarm dismissal</string>
-
+    <string name="early_alarm_dismissal">Досрочное отключение будильника</string>
     <!--Timer-->
     <string name="timers_notification_msg">Таймеры запущены</string>
     <string name="timer_single_notification_label_msg">Таймер для %s запущен</string>
