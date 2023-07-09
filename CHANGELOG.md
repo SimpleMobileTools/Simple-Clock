@@ -4,6 +4,11 @@ Changelog
 Version 5.10.2 *(2023-07-09)*
 ----------------------------
 
+ * Fixed next alarm displaying on the widget
+
+Version 5.10.2 *(2023-07-09)*
+----------------------------
+
  * Allow dismissing upcoming alarms early
  * Fixed wrong alarm being shown as next in some cases
  * Fixed duplicate alarm sound on some devices
