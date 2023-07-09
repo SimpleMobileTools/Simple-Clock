@@ -1,6 +1,14 @@
 Changelog
 ==========
 
+Version 5.10.2 *(2023-07-09)*
+----------------------------
+
+ * Allow dismissing upcoming alarms early
+ * Fixed wrong alarm being shown as next in some cases
+ * Fixed duplicate alarm sound on some devices
+ * Added some UI, translation and stability improvements
+
 Version 5.10.1 *(2023-03-25)*
 ----------------------------
 
