@@ -17,11 +17,6 @@ import com.simplemobiletools.commons.extensions.applyColorFilter
 import com.simplemobiletools.commons.extensions.getLaunchIntent
 import com.simplemobiletools.commons.extensions.setText
 import com.simplemobiletools.commons.extensions.setVisibleIf
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MyDigitalTimeWidgetProvider : AppWidgetProvider() {
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
@@ -31,22 +26,22 @@ class MyDigitalTimeWidgetProvider : AppWidgetProvider() {
 
     private fun performUpdate(context: Context) {
         val appWidgetManager = AppWidgetManager.getInstance(context) ?: return
-        appWidgetManager.getAppWidgetIds(getComponentName(context)).forEach {
-            RemoteViews(context.packageName, R.layout.widget_digital).apply {
-                updateTexts(context, this)
-                updateColors(context, this)
-                setupAppOpenIntent(context, this)
-                appWidgetManager.updateAppWidget(it, this)
+        context.getClosestEnabledAlarmString { nextAlarm ->
+            appWidgetManager.getAppWidgetIds(getComponentName(context)).forEach {
+                RemoteViews(context.packageName, R.layout.widget_digital).apply {
+                    updateTexts(context, this, nextAlarm)
+                    updateColors(context, this)
+                    setupAppOpenIntent(context, this)
+                    appWidgetManager.updateAppWidget(it, this)
+                }
             }
         }
     }
 
-    private fun updateTexts(context: Context, views: RemoteViews) {
-        context.getClosestEnabledAlarmString { nextAlarm ->
-            views.apply {
-                setText(R.id.widget_next_alarm, nextAlarm)
-                setVisibleIf(R.id.widget_alarm_holder, nextAlarm.isNotEmpty())
-            }
+    private fun updateTexts(context: Context, views: RemoteViews, nextAlarm: String) {
+        views.apply {
+            setText(R.id.widget_next_alarm, nextAlarm)
+            setVisibleIf(R.id.widget_alarm_holder, nextAlarm.isNotEmpty())
         }
     }
 
