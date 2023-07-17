@@ -130,7 +130,7 @@ class TimerAdapter(
                             is TimerState.Finished -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis))
                         }
                     } else {
-                        PermissionRequiredDialog(activity, R.string.allow_notifications_reminders)
+                        PermissionRequiredDialog(activity, R.string.allow_notifications_reminders, { activity.openNotificationSettings() })
                     }
                 }
             }

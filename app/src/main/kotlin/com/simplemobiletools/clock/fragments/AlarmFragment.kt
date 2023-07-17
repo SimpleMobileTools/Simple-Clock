@@ -17,12 +17,15 @@ import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.commons.extensions.getProperTextColor
+import com.simplemobiletools.commons.extensions.openNotificationSettings
 import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.extensions.updateTextColors
 import com.simplemobiletools.commons.helpers.SORT_BY_DATE_CREATED
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.models.AlarmSound
-import kotlinx.android.synthetic.main.fragment_alarm.view.*
+import kotlinx.android.synthetic.main.fragment_alarm.view.alarm_fab
+import kotlinx.android.synthetic.main.fragment_alarm.view.alarm_fragment
+import kotlinx.android.synthetic.main.fragment_alarm.view.alarms_list
 
 class AlarmFragment : Fragment(), ToggleAlarmInterface {
     private var alarms = ArrayList<Alarm>()
@@ -135,7 +138,10 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
                 }
                 requireContext().updateWidgets()
             } else {
-                PermissionRequiredDialog(activity as SimpleActivity, R.string.allow_notifications_reminders)
+                PermissionRequiredDialog(
+                    activity as SimpleActivity,
+                    R.string.allow_notifications_reminders,
+                    { (activity as SimpleActivity).openNotificationSettings() })
             }
         }
     }

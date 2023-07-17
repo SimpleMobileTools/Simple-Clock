@@ -129,7 +129,10 @@ class StopwatchFragment : Fragment() {
             if (granted) {
                 Stopwatch.toggle(true)
             } else {
-                PermissionRequiredDialog(activity as SimpleActivity, R.string.allow_notifications_reminders)
+                PermissionRequiredDialog(
+                    activity as SimpleActivity,
+                    R.string.allow_notifications_reminders,
+                    { (activity as SimpleActivity).openNotificationSettings() })
             }
         }
     }

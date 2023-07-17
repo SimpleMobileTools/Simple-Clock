@@ -171,7 +171,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                                 callback(alarmId)
                                 alertDialog.dismiss()
                             } else {
-                                PermissionRequiredDialog(activity, R.string.allow_notifications_reminders)
+                                PermissionRequiredDialog(activity, R.string.allow_notifications_reminders, { activity.openNotificationSettings() })
                             }
                         }
                     }
