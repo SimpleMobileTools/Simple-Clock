@@ -22,12 +22,12 @@
     <string name="sort_by_day_and_alarm_time">Päev ja äratuse aeg</string>
     <string name="analogue_clock">Sihverplaadiga kell</string>
     <string name="digital_clock">Numbritega kell</string>
-    <string name="alarm_dismissed">Häire lükati tagasi</string>
-    <string name="alarm_snoozed">Häire nuusutas %s</string>
-    <string name="no_alarms_found">Ei häiresignaalid leitud</string>
-    <string name="add_alarm">Häire lisamine</string>
-    <string name="no_timers_found">Ei leitud taimereid</string>
-    <string name="add_timer">Lisage taimer</string>
+    <string name="alarm_dismissed">Äratus on tühistatud</string>
+    <string name="alarm_snoozed">%s lükkas äratuse edasi</string>
+    <string name="no_alarms_found">Äratusi ei leidu</string>
+    <string name="add_alarm">Lisa äratus</string>
+    <string name="no_timers_found">Taimereid ei leidu</string>
+    <string name="add_timer">Lisa taimer</string>
     <string name="upcoming_alarm">Järgmine äratus</string>
     <string name="early_alarm_dismissal">Lõpeta äratus enneaegselt</string>
     <!--Timer-->
@@ -46,7 +46,7 @@
     <string name="show_seconds">Näita sekundeid</string>
     <string name="increase_volume_gradually">Suurenda heli valjust järk-järgult</string>
     <!-- FAQ -->
-    <string name="faq_1_title">Kuidas ma saan stoperis muuta ringiaegade sortimist\?</string>
+    <string name="faq_1_title">Kuidas ma saan stopperis muuta ringiaegade sortimist\?</string>
     <string name="faq_1_text">Klõpsi veerul ja sellega määrad, et sortimine toimub selle veeru alusel. Mitme klõpsuga saad vahetada, kas sortimine toimub kasvavas või kahanevas suunas.</string>
     <!--
         Haven't found some strings? There's more at
