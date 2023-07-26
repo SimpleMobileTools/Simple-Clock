@@ -19,7 +19,7 @@ import com.simplemobiletools.commons.extensions.beVisibleIf
 import com.simplemobiletools.commons.extensions.getProperTextColor
 import com.simplemobiletools.commons.extensions.updateTextColors
 import kotlinx.android.synthetic.main.fragment_clock.view.*
-import java.util.*
+import java.util.Calendar
 
 class ClockFragment : Fragment() {
     private val ONE_SECOND = 1000L
@@ -111,8 +111,8 @@ class ClockFragment : Fragment() {
     }
 
     fun updateAlarm() {
-        view.apply {
-            requireContext().getClosestEnabledAlarmString { nextAlarm ->
+        context?.getClosestEnabledAlarmString { nextAlarm ->
+            view.apply {
                 clock_alarm.beVisibleIf(nextAlarm.isNotEmpty())
                 clock_alarm.text = nextAlarm
                 clock_alarm.colorCompoundDrawable(requireContext().getProperTextColor())
