@@ -55,6 +55,8 @@
 
         <activity
             android:name=".activities.ReminderActivity"
+            android:excludeFromRecents="true"
+            android:taskAffinity=".ReminderActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:launchMode="singleTask"
