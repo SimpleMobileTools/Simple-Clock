@@ -1,7 +1,7 @@
 Changelog
 ==========
 
-Version 5.10.2 *(2023-07-09)*
+Version 5.10.3 *(2023-07-09)*
 ----------------------------
 
  * Fixed next alarm displaying on the widget
