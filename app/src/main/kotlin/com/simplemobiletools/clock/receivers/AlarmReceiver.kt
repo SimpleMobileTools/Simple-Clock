@@ -59,11 +59,7 @@ class AlarmReceiver : BroadcastReceiver() {
                     .setAutoCancel(true)
                     .setPriority(NotificationCompat.PRIORITY_HIGH)
                     .setCategory(NotificationCompat.CATEGORY_ALARM)
-                    .also {
-                        if (context.canUseFullScreenIntent()) {
-                            it.setFullScreenIntent(pendingIntent, true)
-                        }
-                    }
+                    .setFullScreenIntent(pendingIntent, true)
 
                 try {
                     notificationManager.notify(ALARM_NOTIF_ID, builder.build())

@@ -18,10 +18,6 @@ fun BaseSimpleActivity.handleFullScreenNotificationsPermission(callback: (grante
                     textId = R.string.allow_full_screen_notifications_reminders,
                     positiveActionCallback = {
                         openFullScreenIntentSettings(BuildConfig.APPLICATION_ID)
-                    },
-                    negativeActionCallback = {
-                        // It is not critical to have full screen intents, so we should allow users to continue using the app
-                        callback(true)
                     }
                 )
             }
