@@ -7,9 +7,12 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" android:maxSdkVersion="32" />
+    <uses-permission
+        android:name="android.permission.SCHEDULE_EXACT_ALARM"
+        android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
@@ -55,12 +58,12 @@
 
         <activity
             android:name=".activities.ReminderActivity"
-            android:excludeFromRecents="true"
-            android:taskAffinity=".ReminderActivity"
             android:configChanges="orientation"
+            android:excludeFromRecents="true"
             android:exported="false"
             android:launchMode="singleTask"
-            android:showOnLockScreen="true" />
+            android:showOnLockScreen="true"
+            android:taskAffinity=".ReminderActivity" />
 
         <activity
             android:name=".activities.SettingsActivity"
@@ -117,9 +120,17 @@
 
         <service android:name=".services.SnoozeService" />
 
-        <service android:name=".services.TimerService" />
+        <service
+            android:name=".services.TimerService"
+            android:foregroundServiceType="specialUse">
+            <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE" android:value="Used to notify the user that timers are running"/>
+        </service>
 
-        <service android:name=".services.StopwatchService" />
+        <service
+            android:name=".services.StopwatchService"
+            android:foregroundServiceType="specialUse">
+            <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE" android:value="Used to notify the user that stopwatch is running"/>
+        </service>
 
         <receiver android:name=".receivers.AlarmReceiver" />
 
