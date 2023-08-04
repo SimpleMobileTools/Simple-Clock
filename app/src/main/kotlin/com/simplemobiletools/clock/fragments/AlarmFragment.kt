@@ -127,10 +127,10 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     }
 
     override fun alarmToggled(id: Int, isEnabled: Boolean) {
-        (activity as SimpleActivity).handleNotificationPermission { granted ->
+        (activity as SimpleActivity).handleFullScreenNotificationsPermission { granted ->
             if (granted) {
                 if (requireContext().dbHelper.updateAlarmEnabledState(id, isEnabled)) {
-                    val alarm = alarms.firstOrNull { it.id == id } ?: return@handleNotificationPermission
+                    val alarm = alarms.firstOrNull { it.id == id } ?: return@handleFullScreenNotificationsPermission
                     alarm.isEnabled = isEnabled
                     checkAlarmState(alarm)
                 } else {

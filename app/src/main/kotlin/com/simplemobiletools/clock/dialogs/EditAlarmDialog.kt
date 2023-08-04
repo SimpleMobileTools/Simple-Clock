@@ -154,7 +154,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                         alarm.isEnabled = true
 
                         var alarmId = alarm.id
-                        activity.handleNotificationPermission { granted ->
+                        activity.handleFullScreenNotificationsPermission { granted ->
                             if (granted) {
                                 if (alarm.id == 0) {
                                     alarmId = activity.dbHelper.insertAlarm(alarm)
