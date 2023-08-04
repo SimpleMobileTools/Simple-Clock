@@ -1,5 +1,6 @@
 package com.simplemobiletools.clock.receivers
 
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -17,6 +18,7 @@ import com.simplemobiletools.clock.helpers.ALARM_ID
 import com.simplemobiletools.clock.helpers.ALARM_NOTIFICATION_CHANNEL_ID
 import com.simplemobiletools.clock.helpers.ALARM_NOTIF_ID
 import com.simplemobiletools.clock.helpers.EARLY_ALARM_NOTIF_ID
+import com.simplemobiletools.commons.extensions.canUseFullScreenIntent
 import com.simplemobiletools.commons.extensions.showErrorToast
 import com.simplemobiletools.commons.helpers.isOreoPlus
 
@@ -57,7 +59,11 @@ class AlarmReceiver : BroadcastReceiver() {
                     .setAutoCancel(true)
                     .setPriority(NotificationCompat.PRIORITY_HIGH)
                     .setCategory(NotificationCompat.CATEGORY_ALARM)
-                    .setFullScreenIntent(pendingIntent, true)
+                    .also {
+                        if (context.canUseFullScreenIntent()) {
+                            it.setFullScreenIntent(pendingIntent, true)
+                        }
+                    }
 
                 try {
                     notificationManager.notify(ALARM_NOTIF_ID, builder.build())
