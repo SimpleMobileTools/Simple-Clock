@@ -1,9 +1,11 @@
 package com.simplemobiletools.clock.extensions
 
+import com.simplemobiletools.clock.BuildConfig
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.commons.extensions.canUseFullScreenIntent
+import com.simplemobiletools.commons.extensions.openFullScreenIntentSettings
 
 fun BaseSimpleActivity.handleFullScreenNotificationsPermission(callback: (granted: Boolean) -> Unit) {
     handleNotificationPermission { granted ->
@@ -15,7 +17,7 @@ fun BaseSimpleActivity.handleFullScreenNotificationsPermission(callback: (grante
                     activity = this,
                     textId = R.string.allow_full_screen_notifications_reminders,
                     positiveActionCallback = {
-                        callback(true)
+                        openFullScreenIntentSettings(BuildConfig.APPLICATION_ID)
                     },
                     negativeActionCallback = {
                         // It is not critical to have full screen intents, so we should allow users to continue using the app
