@@ -3,7 +3,6 @@ package com.simplemobiletools.clock.dialogs
 import android.media.AudioManager
 import android.media.RingtoneManager
 import androidx.appcompat.app.AlertDialog
-import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.databinding.DialogEditTimerBinding
 import com.simplemobiletools.clock.extensions.*

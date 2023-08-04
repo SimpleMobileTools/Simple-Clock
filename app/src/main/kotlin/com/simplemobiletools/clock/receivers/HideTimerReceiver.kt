@@ -13,6 +13,6 @@ class HideTimerReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val timerId = intent.getIntExtra(TIMER_ID, INVALID_TIMER_ID)
         context.hideTimerNotification(timerId)
-        EventBus.getDefault().post(TimerEvent.Reset(timerId, ))
+        EventBus.getDefault().post(TimerEvent.Reset(timerId))
     }
 }

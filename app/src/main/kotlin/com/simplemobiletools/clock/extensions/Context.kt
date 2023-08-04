@@ -490,7 +490,11 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
         .setDefaults(Notification.DEFAULT_LIGHTS)
         .setAutoCancel(true)
         .setChannelId(channelId)
-        .addAction(com.simplemobiletools.commons.R.drawable.ic_snooze_vector, getString(com.simplemobiletools.commons.R.string.snooze), getSnoozePendingIntent(alarm))
+        .addAction(
+            com.simplemobiletools.commons.R.drawable.ic_snooze_vector,
+            getString(com.simplemobiletools.commons.R.string.snooze),
+            getSnoozePendingIntent(alarm)
+        )
         .addAction(com.simplemobiletools.commons.R.drawable.ic_cross_vector, getString(com.simplemobiletools.commons.R.string.dismiss), dismissIntent)
         .setDeleteIntent(dismissIntent)
         .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)

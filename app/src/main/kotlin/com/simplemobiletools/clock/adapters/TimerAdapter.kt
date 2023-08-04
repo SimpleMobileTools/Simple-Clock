@@ -143,8 +143,11 @@ class TimerAdapter(
             val state = timer.state
             val resetPossible = state is TimerState.Running || state is TimerState.Paused || state is TimerState.Finished
             timerReset.beInvisibleIf(!resetPossible)
-            val drawableId =
-                if (state is TimerState.Running) com.simplemobiletools.commons.R.drawable.ic_pause_vector else com.simplemobiletools.commons.R.drawable.ic_play_vector
+            val drawableId = if (state is TimerState.Running) {
+                com.simplemobiletools.commons.R.drawable.ic_pause_vector
+            } else {
+                com.simplemobiletools.commons.R.drawable.ic_play_vector
+            }
             timerPlayPause.setImageDrawable(simpleActivity.resources.getColoredDrawableWithColor(drawableId, textColor))
         }
     }
