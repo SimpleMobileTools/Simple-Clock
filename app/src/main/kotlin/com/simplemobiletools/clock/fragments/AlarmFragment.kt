@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.MainActivity
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.adapters.AlarmsAdapter
+import com.simplemobiletools.clock.databinding.FragmentAlarmBinding
 import com.simplemobiletools.clock.dialogs.ChangeAlarmSortDialog
 import com.simplemobiletools.clock.dialogs.EditAlarmDialog
 import com.simplemobiletools.clock.extensions.*
@@ -23,9 +23,6 @@ import com.simplemobiletools.commons.extensions.updateTextColors
 import com.simplemobiletools.commons.helpers.SORT_BY_DATE_CREATED
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.models.AlarmSound
-import kotlinx.android.synthetic.main.fragment_alarm.view.alarm_fab
-import kotlinx.android.synthetic.main.fragment_alarm.view.alarm_fragment
-import kotlinx.android.synthetic.main.fragment_alarm.view.alarms_list
 
 class AlarmFragment : Fragment(), ToggleAlarmInterface {
     private var alarms = ArrayList<Alarm>()
@@ -33,12 +30,12 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
 
     private var storedTextColor = 0
 
-    lateinit var view: ViewGroup
+    private lateinit var binding: FragmentAlarmBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         storeStateVariables()
-        view = inflater.inflate(R.layout.fragment_alarm, container, false) as ViewGroup
-        return view
+        binding = FragmentAlarmBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onResume() {
@@ -47,7 +44,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
 
         val configTextColor = requireContext().getProperTextColor()
         if (storedTextColor != configTextColor) {
-            (view.alarms_list.adapter as AlarmsAdapter).updateTextColor(configTextColor)
+            (binding.alarmsList.adapter as AlarmsAdapter).updateTextColor(configTextColor)
         }
     }
 
@@ -67,10 +64,10 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     }
 
     private fun setupViews() {
-        view.apply {
-            requireContext().updateTextColors(alarm_fragment)
-            alarm_fab.setOnClickListener {
-                val newAlarm = context.createNewAlarm(DEFAULT_ALARM_MINUTES, 0)
+        binding.apply {
+            requireContext().updateTextColors(alarmFragment)
+            alarmFab.setOnClickListener {
+                val newAlarm = root.context.createNewAlarm(DEFAULT_ALARM_MINUTES, 0)
                 newAlarm.isEnabled = true
                 newAlarm.days = getTomorrowBit()
                 openEditAlarm(newAlarm)
@@ -105,12 +102,12 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
             }
         }
 
-        val currAdapter = view.alarms_list.adapter
+        val currAdapter = binding.alarmsList.adapter
         if (currAdapter == null) {
-            AlarmsAdapter(activity as SimpleActivity, alarms, this, view.alarms_list) {
+            AlarmsAdapter(activity as SimpleActivity, alarms, this, binding.alarmsList) {
                 openEditAlarm(it as Alarm)
             }.apply {
-                view.alarms_list.adapter = this
+                binding.alarmsList.adapter = this
             }
         } else {
             (currAdapter as AlarmsAdapter).updateItems(alarms)
@@ -134,13 +131,13 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
                     alarm.isEnabled = isEnabled
                     checkAlarmState(alarm)
                 } else {
-                    requireActivity().toast(R.string.unknown_error_occurred)
+                    requireActivity().toast(com.simplemobiletools.commons.R.string.unknown_error_occurred)
                 }
                 requireContext().updateWidgets()
             } else {
                 PermissionRequiredDialog(
                     activity as SimpleActivity,
-                    R.string.allow_notifications_reminders,
+                    com.simplemobiletools.commons.R.string.allow_notifications_reminders,
                     { (activity as SimpleActivity).openNotificationSettings() })
             }
         }

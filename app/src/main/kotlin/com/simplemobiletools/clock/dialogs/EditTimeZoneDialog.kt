@@ -1,7 +1,7 @@
 package com.simplemobiletools.clock.dialogs
 
-import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
+import com.simplemobiletools.clock.databinding.DialogEditTimeZoneBinding
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.getEditedTimeZonesMap
 import com.simplemobiletools.clock.extensions.getModifiedTimeZoneTitle
@@ -12,22 +12,21 @@ import com.simplemobiletools.commons.extensions.getAlertDialogBuilder
 import com.simplemobiletools.commons.extensions.setupDialogStuff
 import com.simplemobiletools.commons.extensions.showKeyboard
 import com.simplemobiletools.commons.extensions.value
-import kotlinx.android.synthetic.main.dialog_edit_time_zone.view.*
 
 class EditTimeZoneDialog(val activity: SimpleActivity, val myTimeZone: MyTimeZone, val callback: () -> Unit) {
 
     init {
-        val view = activity.layoutInflater.inflate(R.layout.dialog_edit_time_zone, null).apply {
-            edit_time_zone_title.setText(activity.getModifiedTimeZoneTitle(myTimeZone.id))
-            edit_time_zone_label.setText(getDefaultTimeZoneTitle(myTimeZone.id))
+        val binding = DialogEditTimeZoneBinding.inflate(activity.layoutInflater).apply {
+            editTimeZoneTitle.setText(activity.getModifiedTimeZoneTitle(myTimeZone.id))
+            editTimeZoneLabel.setText(getDefaultTimeZoneTitle(myTimeZone.id))
         }
 
         activity.getAlertDialogBuilder()
-            .setPositiveButton(R.string.ok) { dialog, which -> dialogConfirmed(view.edit_time_zone_title.value) }
-            .setNegativeButton(R.string.cancel, null)
+            .setPositiveButton(com.simplemobiletools.commons.R.string.ok) { dialog, which -> dialogConfirmed(binding.editTimeZoneTitle.value) }
+            .setNegativeButton(com.simplemobiletools.commons.R.string.cancel, null)
             .apply {
-                activity.setupDialogStuff(view, this) { alertDialog ->
-                    alertDialog.showKeyboard(view.edit_time_zone_title)
+                activity.setupDialogStuff(binding.root, this) { alertDialog ->
+                    alertDialog.showKeyboard(binding.editTimeZoneTitle)
                 }
             }
     }

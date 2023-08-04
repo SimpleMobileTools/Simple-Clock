@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
+import com.simplemobiletools.clock.databinding.ItemTimeZoneBinding
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.getFormattedDate
 import com.simplemobiletools.clock.extensions.getFormattedTime
@@ -13,8 +14,9 @@ import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
 import com.simplemobiletools.commons.extensions.beGone
 import com.simplemobiletools.commons.extensions.beVisible
 import com.simplemobiletools.commons.views.MyRecyclerView
-import kotlinx.android.synthetic.main.item_time_zone.view.*
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.TimeZone
 
 class TimeZonesAdapter(activity: SimpleActivity, var timeZones: ArrayList<MyTimeZone>, recyclerView: MyRecyclerView, itemClick: (Any) -> Unit) :
     MyRecyclerViewAdapter(activity, recyclerView, itemClick) {
@@ -51,7 +53,9 @@ class TimeZonesAdapter(activity: SimpleActivity, var timeZones: ArrayList<MyTime
 
     override fun onActionModeDestroyed() {}
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = createViewHolder(R.layout.item_time_zone, parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return createViewHolder(ItemTimeZoneBinding.inflate(layoutInflater, parent, false).root)
+    }
 
     override fun onBindViewHolder(holder: MyRecyclerViewAdapter.ViewHolder, position: Int) {
         val timeZone = timeZones[position]
@@ -105,20 +109,20 @@ class TimeZonesAdapter(activity: SimpleActivity, var timeZones: ArrayList<MyTime
         val formattedDate = activity.getFormattedDate(calendar)
 
         val isSelected = selectedKeys.contains(timeZone.id)
-        view.apply {
-            time_zone_frame.isSelected = isSelected
-            time_zone_title.text = timeZone.title
-            time_zone_title.setTextColor(textColor)
+        ItemTimeZoneBinding.bind(view).apply {
+            timeZoneFrame.isSelected = isSelected
+            timeZoneTitle.text = timeZone.title
+            timeZoneTitle.setTextColor(textColor)
 
-            time_zone_time.text = formattedTime
-            time_zone_time.setTextColor(textColor)
+            timeZoneTime.text = formattedTime
+            timeZoneTime.setTextColor(textColor)
 
             if (formattedDate != todayDateString) {
-                time_zone_date.beVisible()
-                time_zone_date.text = formattedDate
-                time_zone_date.setTextColor(textColor)
+                timeZoneDate.beVisible()
+                timeZoneDate.text = formattedDate
+                timeZoneDate.setTextColor(textColor)
             } else {
-                time_zone_date.beGone()
+                timeZoneDate.beGone()
             }
         }
     }

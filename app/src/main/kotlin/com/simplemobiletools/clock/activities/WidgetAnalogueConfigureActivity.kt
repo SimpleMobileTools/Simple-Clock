@@ -7,14 +7,13 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.SeekBar
-import com.simplemobiletools.clock.R
+import com.simplemobiletools.clock.databinding.WidgetConfigAnalogueBinding
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.helpers.MyAnalogueTimeWidgetProvider
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.dialogs.FeatureLockedDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
-import kotlinx.android.synthetic.main.widget_config_analogue.*
 
 class WidgetAnalogueConfigureActivity : SimpleActivity() {
     private var mBgAlpha = 0f
@@ -22,12 +21,14 @@ class WidgetAnalogueConfigureActivity : SimpleActivity() {
     private var mBgColor = 0
     private var mBgColorWithoutTransparency = 0
     private var mFeatureLockedDialog: FeatureLockedDialog? = null
+    private lateinit var binding: WidgetConfigAnalogueBinding
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         useDynamicTheme = false
         super.onCreate(savedInstanceState)
         setResult(Activity.RESULT_CANCELED)
-        setContentView(R.layout.widget_config_analogue)
+        binding = WidgetConfigAnalogueBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         initVariables()
 
         val isCustomizingColors = intent.extras?.getBoolean(IS_CUSTOMIZING_COLORS) ?: false
@@ -37,12 +38,12 @@ class WidgetAnalogueConfigureActivity : SimpleActivity() {
             finish()
         }
 
-        config_analogue_save.setOnClickListener { saveConfig() }
-        config_analogue_save.setTextColor(getProperPrimaryColor().getContrastColor())
-        config_analogue_bg_color.setOnClickListener { pickBackgroundColor() }
+        binding.configAnalogueSave.setOnClickListener { saveConfig() }
+        binding.configAnalogueSave.setTextColor(getProperPrimaryColor().getContrastColor())
+        binding.configAnalogueBgColor.setOnClickListener { pickBackgroundColor() }
 
         val primaryColor = getProperPrimaryColor()
-        config_analogue_bg_seekbar.setColors(getProperTextColor(), primaryColor, primaryColor)
+        binding.configAnalogueBgSeekbar.setColors(getProperTextColor(), primaryColor, primaryColor)
 
         if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
             mFeatureLockedDialog = FeatureLockedDialog(this) {
@@ -62,15 +63,15 @@ class WidgetAnalogueConfigureActivity : SimpleActivity() {
 
     private fun initVariables() {
         mBgColor = config.widgetBgColor
-        if (mBgColor == resources.getColor(R.color.default_widget_bg_color) && config.isUsingSystemTheme) {
-            mBgColor = resources.getColor(R.color.you_primary_color, theme)
+        if (mBgColor == resources.getColor(com.simplemobiletools.commons.R.color.default_widget_bg_color) && config.isUsingSystemTheme) {
+            mBgColor = resources.getColor(com.simplemobiletools.commons.R.color.you_primary_color, theme)
         }
 
         mBgAlpha = Color.alpha(mBgColor) / 255.toFloat()
         mBgColorWithoutTransparency = Color.rgb(Color.red(mBgColor), Color.green(mBgColor), Color.blue(mBgColor))
 
-        config_analogue_bg_seekbar.setOnSeekBarChangeListener(bgSeekbarChangeListener)
-        config_analogue_bg_seekbar.progress = (mBgAlpha * 100).toInt()
+        binding.configAnalogueBgSeekbar.setOnSeekBarChangeListener(bgSeekbarChangeListener)
+        binding.configAnalogueBgSeekbar.progress = (mBgAlpha * 100).toInt()
         updateBackgroundColor()
     }
 
@@ -109,9 +110,9 @@ class WidgetAnalogueConfigureActivity : SimpleActivity() {
 
     private fun updateBackgroundColor() {
         mBgColor = mBgColorWithoutTransparency.adjustAlpha(mBgAlpha)
-        config_analogue_bg_color.setFillWithStroke(mBgColor, mBgColor)
-        config_analogue_background.applyColorFilter(mBgColor)
-        config_analogue_save.backgroundTintList = ColorStateList.valueOf(getProperPrimaryColor())
+        binding.configAnalogueBgColor.setFillWithStroke(mBgColor, mBgColor)
+        binding.configAnalogueBackground.applyColorFilter(mBgColor)
+        binding.configAnalogueSave.backgroundTintList = ColorStateList.valueOf(getProperPrimaryColor())
     }
 
     private val bgSeekbarChangeListener = object : SeekBar.OnSeekBarChangeListener {

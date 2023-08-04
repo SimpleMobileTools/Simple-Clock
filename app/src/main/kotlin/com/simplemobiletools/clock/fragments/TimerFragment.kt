@@ -7,9 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.adapters.TimerAdapter
+import com.simplemobiletools.clock.databinding.FragmentTimerBinding
 import com.simplemobiletools.clock.dialogs.EditTimerDialog
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.createNewTimer
@@ -21,15 +21,13 @@ import com.simplemobiletools.commons.extensions.getProperTextColor
 import com.simplemobiletools.commons.extensions.hideKeyboard
 import com.simplemobiletools.commons.extensions.updateTextColors
 import com.simplemobiletools.commons.models.AlarmSound
-import kotlinx.android.synthetic.main.fragment_timer.*
-import kotlinx.android.synthetic.main.fragment_timer.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
 class TimerFragment : Fragment() {
     private val INVALID_POSITION = -1
-    private lateinit var view: ViewGroup
+    private lateinit var binding: FragmentTimerBinding
     private lateinit var timerAdapter: TimerAdapter
     private var timerPositionToScrollTo = INVALID_POSITION
     private var storedTextColor = 0
@@ -46,10 +44,10 @@ class TimerFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        view = (inflater.inflate(R.layout.fragment_timer, container, false) as ViewGroup).apply {
+        binding = FragmentTimerBinding.inflate(inflater, container, false).apply {
             storeStateVariables()
-            timers_list.itemAnimator = DisabledItemChangeAnimator()
-            timer_add.setOnClickListener {
+            timersList.itemAnimator = DisabledItemChangeAnimator()
+            timerAdd.setOnClickListener {
                 activity?.run {
                     hideKeyboard()
                     openEditTimer(createNewTimer())
@@ -67,17 +65,17 @@ class TimerFragment : Fragment() {
             }, 1000)
         }
 
-        return view
+        return binding.root
     }
 
     private fun initAdapter() {
-        timerAdapter = TimerAdapter(requireActivity() as SimpleActivity, view.timers_list, ::refreshTimers, ::openEditTimer)
-        view.timers_list.adapter = timerAdapter
+        timerAdapter = TimerAdapter(requireActivity() as SimpleActivity, binding.timersList, ::refreshTimers, ::openEditTimer)
+        binding.timersList.adapter = timerAdapter
     }
 
     override fun onResume() {
         super.onResume()
-        requireContext().updateTextColors(timer_fragment)
+        requireContext().updateTextColors(binding.root)
         val configTextColor = requireContext().getProperTextColor()
         if (storedTextColor != configTextColor) {
             initAdapter()
@@ -97,10 +95,10 @@ class TimerFragment : Fragment() {
                 timerAdapter.submitList(timers) {
                     getView()?.post {
                         if (timerPositionToScrollTo != INVALID_POSITION && timerAdapter.itemCount > timerPositionToScrollTo) {
-                            view.timers_list.scrollToPosition(timerPositionToScrollTo)
+                            binding.timersList.scrollToPosition(timerPositionToScrollTo)
                             timerPositionToScrollTo = INVALID_POSITION
                         } else if (scrollToLatest) {
-                            view.timers_list.scrollToPosition(timers.lastIndex)
+                            binding.timersList.scrollToPosition(timers.lastIndex)
                         }
                     }
                 }
@@ -127,7 +125,7 @@ class TimerFragment : Fragment() {
             if (position != INVALID_POSITION) {
                 activity?.runOnUiThread {
                     if (timerAdapter.itemCount > position) {
-                        view.timers_list.scrollToPosition(position)
+                        binding.timersList.scrollToPosition(position)
                     } else {
                         timerPositionToScrollTo = position
                     }

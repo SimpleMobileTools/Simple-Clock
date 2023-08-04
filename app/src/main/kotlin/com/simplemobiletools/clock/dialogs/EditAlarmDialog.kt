@@ -11,6 +11,7 @@ import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
+import com.simplemobiletools.clock.databinding.DialogEditAlarmBinding
 import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.PICK_AUDIO_FILE_INTENT_ID
 import com.simplemobiletools.clock.helpers.TODAY_BIT
@@ -22,18 +23,17 @@ import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.commons.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.models.AlarmSound
-import kotlinx.android.synthetic.main.dialog_edit_alarm.view.*
 
 class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callback: (alarmId: Int) -> Unit) {
-    private val view = activity.layoutInflater.inflate(R.layout.dialog_edit_alarm, null)
+    private val binding = DialogEditAlarmBinding.inflate(activity.layoutInflater)
     private val textColor = activity.getProperTextColor()
 
     init {
         restoreLastAlarm()
         updateAlarmTime()
 
-        view.apply {
-            edit_alarm_time.setOnClickListener {
+        binding.apply {
+            editAlarmTime.setOnClickListener {
                 if (activity.config.isUsingSystemTheme) {
                     val timeFormat = if (DateFormat.is24HourFormat(activity)) {
                         TimeFormat.CLOCK_24H
@@ -55,8 +55,8 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                     timePicker.show(activity.supportFragmentManager, "")
                 } else {
                     TimePickerDialog(
-                        context,
-                        context.getTimePickerDialogTheme(),
+                        root.context,
+                        root.context.getTimePickerDialogTheme(),
                         timeSetListener,
                         alarm.timeInMinutes / 60,
                         alarm.timeInMinutes % 60,
@@ -65,9 +65,9 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                 }
             }
 
-            edit_alarm_sound.colorCompoundDrawable(textColor)
-            edit_alarm_sound.text = alarm.soundTitle
-            edit_alarm_sound.setOnClickListener {
+            editAlarmSound.colorCompoundDrawable(textColor)
+            editAlarmSound.text = alarm.soundTitle
+            editAlarmSound.setOnClickListener {
                 SelectAlarmSoundDialog(activity, alarm.soundUri, AudioManager.STREAM_ALARM, PICK_AUDIO_FILE_INTENT_ID, RingtoneManager.TYPE_ALARM, true,
                     onAlarmPicked = {
                         if (it != null) {
@@ -75,24 +75,24 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                         }
                     }, onAlarmSoundDeleted = {
                         if (alarm.soundUri == it.uri) {
-                            val defaultAlarm = context.getDefaultAlarmSound(RingtoneManager.TYPE_ALARM)
+                            val defaultAlarm = root.context.getDefaultAlarmSound(RingtoneManager.TYPE_ALARM)
                             updateSelectedAlarmSound(defaultAlarm)
                         }
                         activity.checkAlarmsWithDeletedSoundUri(it.uri)
                     })
             }
 
-            edit_alarm_vibrate_icon.setColorFilter(textColor)
-            edit_alarm_vibrate.isChecked = alarm.vibrate
-            edit_alarm_vibrate_holder.setOnClickListener {
-                edit_alarm_vibrate.toggle()
-                alarm.vibrate = edit_alarm_vibrate.isChecked
+            editAlarmVibrateIcon.setColorFilter(textColor)
+            editAlarmVibrate.isChecked = alarm.vibrate
+            editAlarmVibrateHolder.setOnClickListener {
+                editAlarmVibrate.toggle()
+                alarm.vibrate = editAlarmVibrate.isChecked
             }
 
-            edit_alarm_label_image.applyColorFilter(textColor)
-            edit_alarm.setText(alarm.label)
+            editAlarmLabelImage.applyColorFilter(textColor)
+            editAlarm.setText(alarm.label)
 
-            val dayLetters = activity.resources.getStringArray(R.array.week_day_letters).toList() as ArrayList<String>
+            val dayLetters = activity.resources.getStringArray(com.simplemobiletools.commons.R.array.week_day_letters).toList() as ArrayList<String>
             val dayIndexes = arrayListOf(0, 1, 2, 3, 4, 5, 6)
             if (activity.config.isSundayFirst) {
                 dayIndexes.moveLastItemToFront()
@@ -100,13 +100,13 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
 
             dayIndexes.forEach {
                 val pow = Math.pow(2.0, it.toDouble()).toInt()
-                val day = activity.layoutInflater.inflate(R.layout.alarm_day, edit_alarm_days_holder, false) as TextView
+                val day = activity.layoutInflater.inflate(R.layout.alarm_day, editAlarmDaysHolder, false) as TextView
                 day.text = dayLetters[it]
 
                 val isDayChecked = alarm.days > 0 && alarm.days and pow != 0
                 day.background = getProperDayDrawable(isDayChecked)
 
-                day.setTextColor(if (isDayChecked) context.getProperBackgroundColor() else textColor)
+                day.setTextColor(if (isDayChecked) root.context.getProperBackgroundColor() else textColor)
                 day.setOnClickListener {
                     if (alarm.days < 0) {
                         alarm.days = 0
@@ -119,22 +119,27 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                         alarm.days = alarm.days.removeBit(pow)
                     }
                     day.background = getProperDayDrawable(selectDay)
-                    day.setTextColor(if (selectDay) context.getProperBackgroundColor() else textColor)
+                    day.setTextColor(if (selectDay) root.context.getProperBackgroundColor() else textColor)
                     checkDaylessAlarm()
                 }
 
-                edit_alarm_days_holder.addView(day)
+                editAlarmDaysHolder.addView(day)
             }
         }
 
         activity.getAlertDialogBuilder()
-            .setPositiveButton(R.string.ok, null)
-            .setNegativeButton(R.string.cancel, null)
+            .setPositiveButton(com.simplemobiletools.commons.R.string.ok, null)
+            .setNegativeButton(com.simplemobiletools.commons.R.string.cancel, null)
             .apply {
-                activity.setupDialogStuff(view, this) { alertDialog ->
+                activity.setupDialogStuff(binding.root, this) { alertDialog ->
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
                         if (!activity.config.wasAlarmWarningShown) {
-                            ConfirmationDialog(activity, messageId = R.string.alarm_warning, positive = R.string.ok, negative = 0) {
+                            ConfirmationDialog(
+                                activity,
+                                messageId = com.simplemobiletools.commons.R.string.alarm_warning,
+                                positive = com.simplemobiletools.commons.R.string.ok,
+                                negative = 0
+                            ) {
                                 activity.config.wasAlarmWarningShown = true
                                 it.performClick()
                             }
@@ -150,7 +155,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                             }
                         }
 
-                        alarm.label = view.edit_alarm.value
+                        alarm.label = binding.editAlarm.value
                         alarm.isEnabled = true
 
                         var alarmId = alarm.id
@@ -159,11 +164,11 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                                 if (alarm.id == 0) {
                                     alarmId = activity.dbHelper.insertAlarm(alarm)
                                     if (alarmId == -1) {
-                                        activity.toast(R.string.unknown_error_occurred)
+                                        activity.toast(com.simplemobiletools.commons.R.string.unknown_error_occurred)
                                     }
                                 } else {
                                     if (!activity.dbHelper.updateAlarm(alarm)) {
-                                        activity.toast(R.string.unknown_error_occurred)
+                                        activity.toast(com.simplemobiletools.commons.R.string.unknown_error_occurred)
                                     }
                                 }
 
@@ -171,7 +176,10 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                                 callback(alarmId)
                                 alertDialog.dismiss()
                             } else {
-                                PermissionRequiredDialog(activity, R.string.allow_notifications_reminders, { activity.openNotificationSettings() })
+                                PermissionRequiredDialog(
+                                    activity,
+                                    com.simplemobiletools.commons.R.string.allow_notifications_reminders,
+                                    { activity.openNotificationSettings() })
                             }
                         }
                     }
@@ -202,21 +210,21 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
     }
 
     private fun updateAlarmTime() {
-        view.edit_alarm_time.text = activity.getFormattedTime(alarm.timeInMinutes * 60, false, true)
+        binding.editAlarmTime.text = activity.getFormattedTime(alarm.timeInMinutes * 60, false, true)
         checkDaylessAlarm()
     }
 
     private fun checkDaylessAlarm() {
         if (alarm.days <= 0) {
             val textId = if (alarm.timeInMinutes > getCurrentDayMinutes()) {
-                R.string.today
+                com.simplemobiletools.commons.R.string.today
             } else {
-                R.string.tomorrow
+                com.simplemobiletools.commons.R.string.tomorrow
             }
 
-            view.edit_alarm_dayless_label.text = "(${activity.getString(textId)})"
+            binding.editAlarmDaylessLabel.text = "(${activity.getString(textId)})"
         }
-        view.edit_alarm_dayless_label.beVisibleIf(alarm.days <= 0)
+        binding.editAlarmDaylessLabel.beVisibleIf(alarm.days <= 0)
     }
 
     private fun getProperDayDrawable(selected: Boolean): Drawable {
@@ -229,6 +237,6 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
     fun updateSelectedAlarmSound(alarmSound: AlarmSound) {
         alarm.soundTitle = alarmSound.title
         alarm.soundUri = alarmSound.uri
-        view.edit_alarm_sound.text = alarmSound.title
+        binding.editAlarmSound.text = alarmSound.title
     }
 }

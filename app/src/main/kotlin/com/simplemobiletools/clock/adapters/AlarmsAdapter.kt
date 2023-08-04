@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
+import com.simplemobiletools.clock.databinding.ItemAlarmBinding
 import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.TODAY_BIT
 import com.simplemobiletools.clock.helpers.TOMORROW_BIT
@@ -18,7 +19,6 @@ import com.simplemobiletools.commons.extensions.beVisibleIf
 import com.simplemobiletools.commons.extensions.isVisible
 import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.views.MyRecyclerView
-import kotlinx.android.synthetic.main.item_alarm.view.*
 
 class AlarmsAdapter(
     activity: SimpleActivity, var alarms: ArrayList<Alarm>, val toggleAlarmInterface: ToggleAlarmInterface,
@@ -55,7 +55,9 @@ class AlarmsAdapter(
 
     override fun onActionModeDestroyed() {}
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = createViewHolder(R.layout.item_alarm, parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return createViewHolder(ItemAlarmBinding.inflate(layoutInflater, parent, false).root)
+    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val alarm = alarms[position]
@@ -89,50 +91,55 @@ class AlarmsAdapter(
 
     private fun setupView(view: View, alarm: Alarm) {
         val isSelected = selectedKeys.contains(alarm.id)
-        view.apply {
-            alarm_frame.isSelected = isSelected
-            alarm_time.text = activity.getFormattedTime(alarm.timeInMinutes * 60, false, true)
-            alarm_time.setTextColor(textColor)
+        ItemAlarmBinding.bind(view).apply {
+            alarmFrame.isSelected = isSelected
+            alarmTime.text = activity.getFormattedTime(alarm.timeInMinutes * 60, false, true)
+            alarmTime.setTextColor(textColor)
 
-            alarm_days.text = activity.getAlarmSelectedDaysString(alarm.days)
-            alarm_days.setTextColor(textColor)
+            alarmDays.text = activity.getAlarmSelectedDaysString(alarm.days)
+            alarmDays.setTextColor(textColor)
 
-            alarm_label.text = alarm.label
-            alarm_label.setTextColor(textColor)
-            alarm_label.beVisibleIf(alarm.label.isNotEmpty())
+            alarmLabel.text = alarm.label
+            alarmLabel.setTextColor(textColor)
+            alarmLabel.beVisibleIf(alarm.label.isNotEmpty())
 
-            alarm_switch.isChecked = alarm.isEnabled
-            alarm_switch.setColors(textColor, properPrimaryColor, backgroundColor)
-            alarm_switch.setOnClickListener {
+            alarmSwitch.isChecked = alarm.isEnabled
+            alarmSwitch.setColors(textColor, properPrimaryColor, backgroundColor)
+            alarmSwitch.setOnClickListener {
                 if (alarm.days > 0) {
                     if (activity.config.wasAlarmWarningShown) {
-                        toggleAlarmInterface.alarmToggled(alarm.id, alarm_switch.isChecked)
+                        toggleAlarmInterface.alarmToggled(alarm.id, alarmSwitch.isChecked)
                     } else {
-                        ConfirmationDialog(activity, messageId = R.string.alarm_warning, positive = R.string.ok, negative = 0) {
+                        ConfirmationDialog(
+                            activity,
+                            messageId = com.simplemobiletools.commons.R.string.alarm_warning,
+                            positive = com.simplemobiletools.commons.R.string.ok,
+                            negative = 0
+                        ) {
                             activity.config.wasAlarmWarningShown = true
-                            toggleAlarmInterface.alarmToggled(alarm.id, alarm_switch.isChecked)
+                            toggleAlarmInterface.alarmToggled(alarm.id, alarmSwitch.isChecked)
                         }
                     }
                 } else if (alarm.days == TODAY_BIT) {
                     if (alarm.timeInMinutes <= getCurrentDayMinutes()) {
                         alarm.days = TOMORROW_BIT
-                        alarm_days.text = resources.getString(R.string.tomorrow)
+                        alarmDays.text = resources.getString(com.simplemobiletools.commons.R.string.tomorrow)
                     }
                     activity.dbHelper.updateAlarm(alarm)
-                    context.scheduleNextAlarm(alarm, true)
-                    toggleAlarmInterface.alarmToggled(alarm.id, alarm_switch.isChecked)
+                    root.context.scheduleNextAlarm(alarm, true)
+                    toggleAlarmInterface.alarmToggled(alarm.id, alarmSwitch.isChecked)
                 } else if (alarm.days == TOMORROW_BIT) {
-                    toggleAlarmInterface.alarmToggled(alarm.id, alarm_switch.isChecked)
-                } else if (alarm_switch.isChecked) {
+                    toggleAlarmInterface.alarmToggled(alarm.id, alarmSwitch.isChecked)
+                } else if (alarmSwitch.isChecked) {
                     activity.toast(R.string.no_days_selected)
-                    alarm_switch.isChecked = false
+                    alarmSwitch.isChecked = false
                 } else {
-                    toggleAlarmInterface.alarmToggled(alarm.id, alarm_switch.isChecked)
+                    toggleAlarmInterface.alarmToggled(alarm.id, alarmSwitch.isChecked)
                 }
             }
 
-            val layoutParams = alarm_switch.layoutParams as RelativeLayout.LayoutParams
-            layoutParams.addRule(RelativeLayout.ALIGN_BOTTOM, if (alarm_label.isVisible()) alarm_label.id else alarm_days.id)
+            val layoutParams = alarmSwitch.layoutParams as RelativeLayout.LayoutParams
+            layoutParams.addRule(RelativeLayout.ALIGN_BOTTOM, if (alarmLabel.isVisible()) alarmLabel.id else alarmLabel.id)
         }
     }
 }

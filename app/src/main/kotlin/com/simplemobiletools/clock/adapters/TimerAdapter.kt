@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
+import com.simplemobiletools.clock.databinding.ItemTimerBinding
 import com.simplemobiletools.clock.extensions.getFormattedDuration
 import com.simplemobiletools.clock.extensions.hideTimerNotification
 import com.simplemobiletools.clock.extensions.secondsToMillis
@@ -16,7 +17,6 @@ import com.simplemobiletools.commons.adapters.MyRecyclerViewListAdapter
 import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.views.MyRecyclerView
-import kotlinx.android.synthetic.main.item_timer.view.*
 import me.grantland.widget.AutofitHelper
 import org.greenrobot.eventbus.EventBus
 
@@ -78,7 +78,9 @@ class TimerAdapter(
 
     override fun onActionModeDestroyed() {}
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = createViewHolder(R.layout.item_timer, parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return createViewHolder(ItemTimerBinding.inflate(layoutInflater, parent, false).root)
+    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindView(getItem(position), true, true) { itemView, _ ->
@@ -97,30 +99,30 @@ class TimerAdapter(
     }
 
     private fun setupView(view: View, timer: Timer) {
-        view.apply {
+        ItemTimerBinding.bind(view).apply {
             val isSelected = selectedKeys.contains(timer.id)
-            timer_frame.isSelected = isSelected
+            timerFrame.isSelected = isSelected
 
-            timer_label.setTextColor(textColor)
-            timer_label.setHintTextColor(textColor.adjustAlpha(0.7f))
-            timer_label.text = timer.label
+            timerLabel.setTextColor(textColor)
+            timerLabel.setHintTextColor(textColor.adjustAlpha(0.7f))
+            timerLabel.text = timer.label
 
-            AutofitHelper.create(timer_time)
-            timer_time.setTextColor(textColor)
-            timer_time.text = when (timer.state) {
+            AutofitHelper.create(timerTime)
+            timerTime.setTextColor(textColor)
+            timerTime.text = when (timer.state) {
                 is TimerState.Finished -> 0.getFormattedDuration()
                 is TimerState.Idle -> timer.seconds.getFormattedDuration()
                 is TimerState.Paused -> timer.state.tick.getFormattedDuration()
                 is TimerState.Running -> timer.state.tick.getFormattedDuration()
             }
 
-            timer_reset.applyColorFilter(textColor)
-            timer_reset.setOnClickListener {
+            timerReset.applyColorFilter(textColor)
+            timerReset.setOnClickListener {
                 resetTimer(timer)
             }
 
-            timer_play_pause.applyColorFilter(textColor)
-            timer_play_pause.setOnClickListener {
+            timerPlayPause.applyColorFilter(textColor)
+            timerPlayPause.setOnClickListener {
                 (activity as SimpleActivity).handleNotificationPermission { granted ->
                     if (granted) {
                         when (val state = timer.state) {
@@ -130,16 +132,20 @@ class TimerAdapter(
                             is TimerState.Finished -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis))
                         }
                     } else {
-                        PermissionRequiredDialog(activity, R.string.allow_notifications_reminders, { activity.openNotificationSettings() })
+                        PermissionRequiredDialog(
+                            activity,
+                            com.simplemobiletools.commons.R.string.allow_notifications_reminders,
+                            { activity.openNotificationSettings() })
                     }
                 }
             }
 
             val state = timer.state
             val resetPossible = state is TimerState.Running || state is TimerState.Paused || state is TimerState.Finished
-            timer_reset.beInvisibleIf(!resetPossible)
-            val drawableId = if (state is TimerState.Running) R.drawable.ic_pause_vector else R.drawable.ic_play_vector
-            timer_play_pause.setImageDrawable(simpleActivity.resources.getColoredDrawableWithColor(drawableId, textColor))
+            timerReset.beInvisibleIf(!resetPossible)
+            val drawableId =
+                if (state is TimerState.Running) com.simplemobiletools.commons.R.drawable.ic_pause_vector else com.simplemobiletools.commons.R.drawable.ic_play_vector
+            timerPlayPause.setImageDrawable(simpleActivity.resources.getColoredDrawableWithColor(drawableId, textColor))
         }
     }
 

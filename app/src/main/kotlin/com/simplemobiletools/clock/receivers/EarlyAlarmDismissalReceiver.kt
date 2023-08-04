@@ -48,7 +48,7 @@ class EarlyAlarmDismissalReceiver : BroadcastReceiver() {
                 .setContentText(alarmString)
                 .setSmallIcon(R.drawable.ic_alarm_vector)
                 .setPriority(Notification.PRIORITY_LOW)
-                .addAction(0, context.getString(R.string.dismiss), dismissIntent)
+                .addAction(0, context.getString(com.simplemobiletools.commons.R.string.dismiss), dismissIntent)
                 .setContentIntent(contentIntent)
                 .setSound(null)
                 .setAutoCancel(true)
