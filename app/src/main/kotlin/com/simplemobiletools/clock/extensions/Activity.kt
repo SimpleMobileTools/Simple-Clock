@@ -7,13 +7,12 @@ import com.simplemobiletools.commons.extensions.canUseFullScreenIntent
 import com.simplemobiletools.commons.extensions.openFullScreenIntentSettings
 
 fun BaseSimpleActivity.handleFullScreenNotificationsPermission(
-    fullScreenNotificationsDeniedCallback: () -> Unit = {},
-    notificationsCallback: (granted: Boolean) -> Unit,
+    notificationsCallback: (granted: Boolean, fullScreenGranted: Boolean) -> Unit,
 ) {
     handleNotificationPermission { granted ->
         if (granted) {
             if (canUseFullScreenIntent()) {
-                notificationsCallback(true)
+                notificationsCallback(true, true)
             } else {
                 PermissionRequiredDialog(
                     activity = this,
@@ -22,12 +21,12 @@ fun BaseSimpleActivity.handleFullScreenNotificationsPermission(
                         openFullScreenIntentSettings(BuildConfig.APPLICATION_ID)
                     },
                     negativeActionCallback = {
-                        fullScreenNotificationsDeniedCallback()
+                        notificationsCallback(true, false)
                     }
                 )
             }
         } else {
-            notificationsCallback(false)
+            notificationsCallback(false, false)
         }
     }
 }

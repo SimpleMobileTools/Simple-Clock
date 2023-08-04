@@ -124,28 +124,25 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     }
 
     override fun alarmToggled(id: Int, isEnabled: Boolean) {
-        (activity as SimpleActivity).handleFullScreenNotificationsPermission(
-            notificationsCallback = { granted ->
-                if (granted) {
-                    if (requireContext().dbHelper.updateAlarmEnabledState(id, isEnabled)) {
-                        val alarm = alarms.firstOrNull { it.id == id } ?: return@handleFullScreenNotificationsPermission
-                        alarm.isEnabled = isEnabled
-                        checkAlarmState(alarm)
-                    } else {
-                        requireActivity().toast(com.simplemobiletools.commons.R.string.unknown_error_occurred)
-                    }
-                    requireContext().updateWidgets()
+        (activity as SimpleActivity).handleFullScreenNotificationsPermission { granted, fullScreenGranted ->
+            if (granted && fullScreenGranted) {
+                if (requireContext().dbHelper.updateAlarmEnabledState(id, isEnabled)) {
+                    val alarm = alarms.firstOrNull { it.id == id } ?: return@handleFullScreenNotificationsPermission
+                    alarm.isEnabled = isEnabled
+                    checkAlarmState(alarm)
                 } else {
-                    PermissionRequiredDialog(
-                        activity as SimpleActivity,
-                        com.simplemobiletools.commons.R.string.allow_notifications_reminders,
-                        { (activity as SimpleActivity).openNotificationSettings() })
+                    requireActivity().toast(com.simplemobiletools.commons.R.string.unknown_error_occurred)
                 }
-            },
-            fullScreenNotificationsDeniedCallback = {
+                requireContext().updateWidgets()
+            } else if (!fullScreenGranted) {
                 setupAlarms()
+            } else {
+                PermissionRequiredDialog(
+                    activity as SimpleActivity,
+                    com.simplemobiletools.commons.R.string.allow_notifications_reminders,
+                    { (activity as SimpleActivity).openNotificationSettings() })
             }
-        )
+        }
     }
 
     private fun checkAlarmState(alarm: Alarm) {
