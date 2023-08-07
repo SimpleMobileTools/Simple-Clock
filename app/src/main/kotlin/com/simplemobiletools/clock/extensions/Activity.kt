@@ -5,14 +5,15 @@ import com.simplemobiletools.commons.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.commons.extensions.canUseFullScreenIntent
 import com.simplemobiletools.commons.extensions.openFullScreenIntentSettings
+import com.simplemobiletools.commons.extensions.openNotificationSettings
 
 fun BaseSimpleActivity.handleFullScreenNotificationsPermission(
-    notificationsCallback: (granted: Boolean, fullScreenGranted: Boolean) -> Unit,
+    notificationsCallback: (granted: Boolean) -> Unit,
 ) {
     handleNotificationPermission { granted ->
         if (granted) {
             if (canUseFullScreenIntent()) {
-                notificationsCallback(true, true)
+                notificationsCallback(true)
             } else {
                 PermissionRequiredDialog(
                     activity = this,
@@ -21,12 +22,21 @@ fun BaseSimpleActivity.handleFullScreenNotificationsPermission(
                         openFullScreenIntentSettings(BuildConfig.APPLICATION_ID)
                     },
                     negativeActionCallback = {
-                        notificationsCallback(true, false)
+                        notificationsCallback(false)
                     }
                 )
             }
         } else {
-            notificationsCallback(false, false)
+            PermissionRequiredDialog(
+                activity = this,
+                textId = com.simplemobiletools.commons.R.string.allow_notifications_reminders,
+                positiveActionCallback = {
+                    openNotificationSettings()
+                },
+                negativeActionCallback = {
+                    notificationsCallback(false)
+                }
+            )
         }
     }
 }

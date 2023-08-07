@@ -15,9 +15,7 @@ import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
-import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.commons.extensions.getProperTextColor
-import com.simplemobiletools.commons.extensions.openNotificationSettings
 import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.extensions.updateTextColors
 import com.simplemobiletools.commons.helpers.SORT_BY_DATE_CREATED
@@ -124,8 +122,8 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     }
 
     override fun alarmToggled(id: Int, isEnabled: Boolean) {
-        (activity as SimpleActivity).handleFullScreenNotificationsPermission { granted, fullScreenGranted ->
-            if (granted && fullScreenGranted) {
+        (activity as SimpleActivity).handleFullScreenNotificationsPermission { granted ->
+            if (granted) {
                 if (requireContext().dbHelper.updateAlarmEnabledState(id, isEnabled)) {
                     val alarm = alarms.firstOrNull { it.id == id } ?: return@handleFullScreenNotificationsPermission
                     alarm.isEnabled = isEnabled
@@ -134,13 +132,8 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
                     requireActivity().toast(com.simplemobiletools.commons.R.string.unknown_error_occurred)
                 }
                 requireContext().updateWidgets()
-            } else if (!fullScreenGranted) {
-                setupAlarms()
             } else {
-                PermissionRequiredDialog(
-                    activity as SimpleActivity,
-                    com.simplemobiletools.commons.R.string.allow_notifications_reminders,
-                    { (activity as SimpleActivity).openNotificationSettings() })
+                setupAlarms()
             }
         }
     }

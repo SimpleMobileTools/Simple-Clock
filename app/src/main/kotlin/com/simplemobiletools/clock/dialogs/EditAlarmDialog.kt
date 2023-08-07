@@ -19,7 +19,6 @@ import com.simplemobiletools.clock.helpers.TOMORROW_BIT
 import com.simplemobiletools.clock.helpers.getCurrentDayMinutes
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.dialogs.ConfirmationDialog
-import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.commons.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.models.AlarmSound
@@ -159,7 +158,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                         alarm.isEnabled = true
 
                         var alarmId = alarm.id
-                        activity.handleFullScreenNotificationsPermission { granted, _ ->
+                        activity.handleFullScreenNotificationsPermission { granted ->
                             if (granted) {
                                 if (alarm.id == 0) {
                                     alarmId = activity.dbHelper.insertAlarm(alarm)
@@ -175,11 +174,6 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
                                 activity.config.alarmLastConfig = alarm
                                 callback(alarmId)
                                 alertDialog.dismiss()
-                            } else {
-                                PermissionRequiredDialog(
-                                    activity,
-                                    com.simplemobiletools.commons.R.string.allow_notifications_reminders,
-                                    { activity.openNotificationSettings() })
                             }
                         }
                     }
