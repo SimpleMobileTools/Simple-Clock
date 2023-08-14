@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Ordulari sinplea</string>
     <string name="app_launcher_name">Ordularia</string>
@@ -6,8 +7,8 @@
     <string name="no_days_selected">Ez duzu egunik hautatu</string>
     <string name="clock">Clock</string>
     <string name="timer">Tenporizagailua</string>
-    <string name="stopwatch">Stopwatch</string>
-    <string name="start_stopwatch">Start stopwatch</string>
+    <string name="stopwatch">Kronometroa</string>
+    <string name="start_stopwatch">Abiarazi kronometroa</string>
     <string name="lap">Bira</string>
     <string name="stopwatch_stopped">Kronometroa gelditu da</string>
     <string name="timer_stopped">Tenporizagailua gelditu da</string>
@@ -16,41 +17,37 @@
     <string name="clock_and_date">Erlojua eta data</string>
     <string name="use_text_shadow">Erabili testu itzala</string>
     <string name="swipe_right_to_dismiss">Pasatu eskumara desaktibatzeko edo ezkerrera ahazteko.</string>
-    <string name="sort_by_creation_order">Creation order</string>
-    <string name="sort_by_alarm_time">Alarm time</string>
-    <string name="sort_by_day_and_alarm_time">Day and Alarm time</string>
-    <string name="analogue_clock">Analogue clock</string>
-    <string name="digital_clock">Digital clock</string>
-    <string name="alarm_dismissed">Alarm dismissed</string>
-    <string name="alarm_snoozed">Alarm snoozed by %s</string>
-    <string name="no_alarms_found">No alarms found</string>
-    <string name="add_alarm">Add alarm</string>
-    <string name="no_timers_found">No timers found</string>
-    <string name="add_timer">Add timer</string>
-    <string name="upcoming_alarm">Upcoming alarm</string>
-    <string name="early_alarm_dismissal">Early alarm dismissal</string>
-
+    <string name="sort_by_creation_order">Sorkuntza ordena</string>
+    <string name="sort_by_alarm_time">Alarma ordua</string>
+    <string name="sort_by_day_and_alarm_time">Eguna eta alarma-ordua</string>
+    <string name="analogue_clock">Erloju analogikoa</string>
+    <string name="digital_clock">Erloju digitala</string>
+    <string name="alarm_dismissed">Alarma baztertu da</string>
+    <string name="alarm_snoozed">Jo alarma berriro %s barru</string>
+    <string name="no_alarms_found">Ez da alarmarik aurkitu</string>
+    <string name="add_alarm">Gehitu alarma</string>
+    <string name="no_timers_found">Ez da tenporizadorerik aurkitu</string>
+    <string name="add_timer">Gehitu tenporizadorea</string>
+    <string name="upcoming_alarm">Datorren alarma</string>
+    <string name="early_alarm_dismissal">Alarmaren irteera goiztiarra</string>
     <!--Timer-->
-    <string name="timers_notification_msg">Timers are running</string>
-    <string name="timer_single_notification_label_msg">Timer for %s is running</string>
-    <string name="new_timer">New Timer</string>
-
+    <string name="timers_notification_msg">Tenporizadoreak martxan daude</string>
+    <string name="timer_single_notification_label_msg">%s-ren tenporizadorea martxan da</string>
+    <string name="new_timer">Tenporizadore berria</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d tenporizadorea martxan dago</item>
+        <item quantity="other">%d tenporizadore martxan daude</item>
     </plurals>
-
     <!-- Settings -->
-    <string name="clock_tab">Erloju fitxa</string>
-    <string name="alarm_tab">Alarma fitxa</string>
-    <string name="stopwatch_tab">Kronometro fitxa</string>
-    <string name="timer_tab">Tenporizagailu fitxa</string>
-    <string name="show_seconds">Erakutsi segunduak</string>
+    <string name="clock_tab">Erlojuaren fitxa</string>
+    <string name="alarm_tab">Alarmaren fitxa</string>
+    <string name="stopwatch_tab">Kronometroaren fitxa</string>
+    <string name="timer_tab">Tenporizadorearen fitxa</string>
+    <string name="show_seconds">Erakutsi segundoak</string>
     <string name="increase_volume_gradually">Bolumena gradualki igo</string>
-
     <!-- FAQ -->
-    <string name="faq_1_title">Nola aldatu daiteke biren sailkapena kronometroaren fitxan?</string>
-    <string name="faq_1_text">Sakatu zutaberen bat, birak zutabe horren arabera sailkatzeko. Gehiagotan sakatuz ordena gorakor edo beherakorrean sailkatu dezakezu</string>
+    <string name="faq_1_title">Nola alda dezaket biren ordena kronometroaren fitxan\?</string>
+    <string name="faq_1_text">Sakatu zutaberen bat, birak zutabe horren arabera ordenatzeko. Gehiagotan sakatuz ordena gorakor edo beherakorrean sailka dezakezu</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Jednoduché hodinky</string>
     <string name="app_launcher_name">Hodinky</string>
@@ -29,18 +30,15 @@
     <string name="add_timer">Pridať časovač</string>
     <string name="upcoming_alarm">Nadchádzajúci budík</string>
     <string name="early_alarm_dismissal">Predčasné zrušenie budíka</string>
-
     <!--Timer-->
     <string name="timers_notification_msg">Sú spustené časovače</string>
     <string name="timer_single_notification_label_msg">Beží časovač pre %s</string>
     <string name="new_timer">Nový časovač</string>
-
     <plurals name="timer_notification_msg">
         <item quantity="one">Beží %d časovač</item>
         <item quantity="few">Bežia %d časovače</item>
         <item quantity="other">Beží %d časovačov</item>
     </plurals>
-
     <!-- Settings -->
     <string name="clock_tab">Okno s časom</string>
     <string name="alarm_tab">Okno s budíkom</string>
@@ -48,7 +46,6 @@
     <string name="timer_tab">Okno s časovačom</string>
     <string name="show_seconds">Zobraziť sekundy</string>
     <string name="increase_volume_gradually">Zvyšovať hlasitosť postupne</string>
-
     <!-- FAQ -->
     <string name="faq_1_title">Ako viem zmeniť poradie kôl na okne so stopkami?</string>
     <string name="faq_1_text">Stačí, ak kliknete na niektorý stĺpec, to aktivuje triedenie podľa daného stĺpca. Ďalším kliknutím na daný stĺpec viete prepínať zostupné a vzostupné triedenie.</string>
