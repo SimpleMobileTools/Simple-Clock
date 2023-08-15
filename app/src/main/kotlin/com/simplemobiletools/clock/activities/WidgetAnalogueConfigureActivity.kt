@@ -21,13 +21,12 @@ class WidgetAnalogueConfigureActivity : SimpleActivity() {
     private var mBgColor = 0
     private var mBgColorWithoutTransparency = 0
     private var mFeatureLockedDialog: FeatureLockedDialog? = null
-    private lateinit var binding: WidgetConfigAnalogueBinding
+    private val binding: WidgetConfigAnalogueBinding by viewBinding(WidgetConfigAnalogueBinding::inflate)
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         useDynamicTheme = false
         super.onCreate(savedInstanceState)
         setResult(Activity.RESULT_CANCELED)
-        binding = WidgetConfigAnalogueBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initVariables()
 

@@ -11,7 +11,7 @@ import com.simplemobiletools.commons.extensions.getAlertDialogBuilder
 import com.simplemobiletools.commons.extensions.setupDialogStuff
 
 class ChangeAlarmSortDialog(val activity: BaseSimpleActivity, val callback: () -> Unit) {
-    private var binding = DialogChangeAlarmSortBinding.inflate(activity.layoutInflater).apply {
+    private val binding = DialogChangeAlarmSortBinding.inflate(activity.layoutInflater).apply {
         val activeRadioButton = when (activity.config.alarmSort) {
             SORT_BY_ALARM_TIME -> sortingDialogRadioAlarmTime
             SORT_BY_DATE_AND_TIME -> sortingDialogRadioDayAndTime

@@ -35,12 +35,11 @@ class ReminderActivity : SimpleActivity() {
     private var vibrator: Vibrator? = null
     private var lastVolumeValue = 0.1f
     private var dragDownX = 0f
-    private lateinit var binding: ActivityReminderBinding
+    private val binding: ActivityReminderBinding by viewBinding(ActivityReminderBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
         super.onCreate(savedInstanceState)
-        binding = ActivityReminderBinding.inflate(layoutInflater)
         setContentView(binding.root)
         showOverLockscreen()
         updateTextColors(binding.root)
