@@ -25,13 +25,10 @@ import com.simplemobiletools.commons.helpers.SORT_DESCENDING
 
 class StopwatchFragment : Fragment() {
 
-    private var storedTextColor = 0
-
     lateinit var stopwatchAdapter: StopwatchAdapter
     private lateinit var binding: FragmentStopwatchBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        storeStateVariables()
         val sorting = requireContext().config.stopwatchLapsSort
         Lap.sorting = sorting
         binding = FragmentStopwatchBinding.inflate(inflater, container, false).apply {
@@ -81,11 +78,6 @@ class StopwatchFragment : Fragment() {
         super.onResume()
         setupViews()
 
-        val configTextColor = requireContext().getProperTextColor()
-        if (storedTextColor != configTextColor) {
-            stopwatchAdapter.updateTextColor(configTextColor)
-        }
-
         Stopwatch.addUpdateListener(updateListener)
         updateLaps()
         binding.stopwatchSortingIndicatorsHolder.beVisibleIf(Stopwatch.laps.isNotEmpty())
@@ -101,12 +93,7 @@ class StopwatchFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        storeStateVariables()
         Stopwatch.removeUpdateListener(updateListener)
-    }
-
-    private fun storeStateVariables() {
-        storedTextColor = requireContext().getProperTextColor()
     }
 
     private fun setupViews() {
@@ -202,7 +189,12 @@ class StopwatchFragment : Fragment() {
     }
 
     private fun updateLaps() {
-        stopwatchAdapter.updateItems(Stopwatch.laps)
+        stopwatchAdapter.apply {
+            updatePrimaryColor()
+            updateBackgroundColor(requireContext().getProperBackgroundColor())
+            updateTextColor(requireContext().getProperTextColor())
+            updateItems(Stopwatch.laps)
+        }
     }
 
     private val updateListener = object : Stopwatch.UpdateListener {

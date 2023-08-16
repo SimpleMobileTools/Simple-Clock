@@ -17,6 +17,7 @@ import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.getPassedSeconds
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.commons.extensions.beVisibleIf
+import com.simplemobiletools.commons.extensions.getProperBackgroundColor
 import com.simplemobiletools.commons.extensions.getProperTextColor
 import com.simplemobiletools.commons.extensions.updateTextColors
 import java.util.Calendar
@@ -28,12 +29,9 @@ class ClockFragment : Fragment() {
     private var calendar = Calendar.getInstance()
     private val updateHandler = Handler()
 
-    private var storedTextColor = 0
-
     private lateinit var binding: FragmentClockBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        storeStateVariables()
         binding = FragmentClockBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -42,22 +40,12 @@ class ClockFragment : Fragment() {
         super.onResume()
         setupDateTime()
 
-        val configTextColor = requireContext().getProperTextColor()
-        if (storedTextColor != configTextColor) {
-            (binding.timeZonesList.adapter as? TimeZonesAdapter)?.updateTextColor(configTextColor)
-        }
-
-        binding.clockDate.setTextColor(configTextColor)
+        binding.clockDate.setTextColor(requireContext().getProperTextColor())
     }
 
     override fun onPause() {
         super.onPause()
         updateHandler.removeCallbacksAndMessages(null)
-        storeStateVariables()
-    }
-
-    private fun storeStateVariables() {
-        storedTextColor = requireContext().getProperTextColor()
     }
 
     private fun setupDateTime() {
@@ -139,7 +127,12 @@ class ClockFragment : Fragment() {
                 this@ClockFragment.binding.timeZonesList.adapter = this
             }
         } else {
-            (currAdapter as TimeZonesAdapter).updateItems(timeZones)
+            (currAdapter as TimeZonesAdapter).apply {
+                updatePrimaryColor()
+                updateBackgroundColor(requireContext().getProperBackgroundColor())
+                updateTextColor(requireContext().getProperTextColor())
+                updateItems(timeZones)
+            }
         }
     }
 

@@ -15,6 +15,7 @@ import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
+import com.simplemobiletools.commons.extensions.getProperBackgroundColor
 import com.simplemobiletools.commons.extensions.getProperTextColor
 import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.extensions.updateTextColors
@@ -26,12 +27,9 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     private var alarms = ArrayList<Alarm>()
     private var currentEditAlarmDialog: EditAlarmDialog? = null
 
-    private var storedTextColor = 0
-
     private lateinit var binding: FragmentAlarmBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        storeStateVariables()
         binding = FragmentAlarmBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -39,26 +37,12 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     override fun onResume() {
         super.onResume()
         setupViews()
-
-        val configTextColor = requireContext().getProperTextColor()
-        if (storedTextColor != configTextColor) {
-            (binding.alarmsList.adapter as AlarmsAdapter).updateTextColor(configTextColor)
-        }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        storeStateVariables()
     }
 
     fun showSortingDialog() {
         ChangeAlarmSortDialog(activity as SimpleActivity) {
             setupAlarms()
         }
-    }
-
-    private fun storeStateVariables() {
-        storedTextColor = requireContext().getProperTextColor()
     }
 
     private fun setupViews() {
@@ -108,7 +92,12 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
                 binding.alarmsList.adapter = this
             }
         } else {
-            (currAdapter as AlarmsAdapter).updateItems(alarms)
+            (currAdapter as AlarmsAdapter).apply {
+                updatePrimaryColor()
+                updateBackgroundColor(requireContext().getProperBackgroundColor())
+                updateTextColor(requireContext().getProperTextColor())
+                updateItems(alarms)
+            }
         }
     }
 

@@ -17,6 +17,7 @@ import com.simplemobiletools.clock.extensions.timerHelper
 import com.simplemobiletools.clock.helpers.DisabledItemChangeAnimator
 import com.simplemobiletools.clock.models.Timer
 import com.simplemobiletools.clock.models.TimerEvent
+import com.simplemobiletools.commons.extensions.getProperBackgroundColor
 import com.simplemobiletools.commons.extensions.getProperTextColor
 import com.simplemobiletools.commons.extensions.hideKeyboard
 import com.simplemobiletools.commons.extensions.updateTextColors
@@ -30,7 +31,6 @@ class TimerFragment : Fragment() {
     private lateinit var binding: FragmentTimerBinding
     private lateinit var timerAdapter: TimerAdapter
     private var timerPositionToScrollTo = INVALID_POSITION
-    private var storedTextColor = 0
     private var currentEditAlarmDialog: EditTimerDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +45,6 @@ class TimerFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentTimerBinding.inflate(inflater, container, false).apply {
-            storeStateVariables()
             timersList.itemAnimator = DisabledItemChangeAnimator()
             timerAdd.setOnClickListener {
                 activity?.run {
@@ -55,7 +54,7 @@ class TimerFragment : Fragment() {
             }
         }
 
-        initAdapter()
+        initOrUpdateAdapter()
         refreshTimers()
 
         // the initial timer is created asynchronously at first launch, make sure we show it once created
@@ -68,25 +67,22 @@ class TimerFragment : Fragment() {
         return binding.root
     }
 
-    private fun initAdapter() {
-        timerAdapter = TimerAdapter(requireActivity() as SimpleActivity, binding.timersList, ::refreshTimers, ::openEditTimer)
-        binding.timersList.adapter = timerAdapter
+    private fun initOrUpdateAdapter() {
+        if (this::timerAdapter.isInitialized) {
+            timerAdapter.updatePrimaryColor()
+            timerAdapter.updateBackgroundColor(requireContext().getProperBackgroundColor())
+            timerAdapter.updateTextColor(requireContext().getProperTextColor())
+        } else {
+            timerAdapter = TimerAdapter(requireActivity() as SimpleActivity, binding.timersList, ::refreshTimers, ::openEditTimer)
+            binding.timersList.adapter = timerAdapter
+        }
     }
 
     override fun onResume() {
         super.onResume()
         requireContext().updateTextColors(binding.root)
-        val configTextColor = requireContext().getProperTextColor()
-        if (storedTextColor != configTextColor) {
-            initAdapter()
-            timerAdapter.updateTextColor(configTextColor)
-            refreshTimers()
-        }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        storeStateVariables()
+        initOrUpdateAdapter()
+        refreshTimers()
     }
 
     private fun refreshTimers(scrollToLatest: Boolean = false) {
@@ -104,10 +100,6 @@ class TimerFragment : Fragment() {
                 }
             }
         }
-    }
-
-    private fun storeStateVariables() {
-        storedTextColor = requireContext().getProperTextColor()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
