@@ -50,8 +50,8 @@ fun Context.getFormattedDate(calendar: Calendar): String {
     val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
     val month = calendar.get(Calendar.MONTH)
 
-    val dayString = resources.getStringArray(R.array.week_days_short)[dayOfWeek]
-    val monthString = resources.getStringArray(R.array.months)[month]
+    val dayString = resources.getStringArray(com.simplemobiletools.commons.R.array.week_days_short)[dayOfWeek]
+    val monthString = resources.getStringArray(com.simplemobiletools.commons.R.array.months)[month]
     return "$dayString, $dayOfMonth $monthString"
 }
 
@@ -138,7 +138,7 @@ fun Context.scheduleNextAlarm(alarm: Alarm, showToast: Boolean) {
 }
 
 fun Context.showRemainingTimeMessage(totalMinutes: Int) {
-    val fullString = String.format(getString(R.string.time_remaining), formatMinutesToTimeString(totalMinutes))
+    val fullString = String.format(getString(com.simplemobiletools.commons.R.string.time_remaining), formatMinutesToTimeString(totalMinutes))
     toast(fullString, Toast.LENGTH_LONG)
 }
 
@@ -264,7 +264,7 @@ fun Context.getFormattedTime(passedSeconds: Int, showSeconds: Boolean, makeAmPmS
 }
 
 fun Context.formatTo12HourFormat(showSeconds: Boolean, hours: Int, minutes: Int, seconds: Int): String {
-    val appendable = getString(if (hours >= 12) R.string.p_m else R.string.a_m)
+    val appendable = getString(if (hours >= 12) com.simplemobiletools.commons.R.string.p_m else com.simplemobiletools.commons.R.string.a_m)
     val newHours = if (hours == 0 || hours == 12) 12 else hours % 12
     return "${formatTime(showSeconds, false, newHours, minutes, seconds)} $appendable"
 }
@@ -297,7 +297,7 @@ fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
         val calendar = Calendar.getInstance().apply { firstDayOfWeek = Calendar.MONDAY }
         calendar.add(Calendar.MINUTE, closestAlarmTime)
         val dayOfWeekIndex = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
-        val dayOfWeek = resources.getStringArray(R.array.week_days_short)[dayOfWeekIndex]
+        val dayOfWeek = resources.getStringArray(com.simplemobiletools.commons.R.array.week_days_short)[dayOfWeekIndex]
         val pattern = if (DateFormat.is24HourFormat(this)) {
             "HH:mm"
         } else {
@@ -403,8 +403,8 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
         .setSound(Uri.parse(soundUri), STREAM_ALARM)
         .setChannelId(channelId)
         .addAction(
-            R.drawable.ic_cross_vector,
-            getString(R.string.dismiss),
+            com.simplemobiletools.commons.R.drawable.ic_cross_vector,
+            getString(com.simplemobiletools.commons.R.string.dismiss),
             if (addDeleteIntent) {
                 reminderActivityIntent
             } else {
@@ -457,7 +457,7 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
     }
     val channelId = "simple_alarm_channel_${soundUri}_${alarm.vibrate}"
     val label = alarm.label.ifEmpty {
-        getString(R.string.alarm)
+        getString(com.simplemobiletools.commons.R.string.alarm)
     }
 
     if (isOreoPlus()) {
@@ -490,8 +490,12 @@ fun Context.getAlarmNotification(pendingIntent: PendingIntent, alarm: Alarm): No
         .setDefaults(Notification.DEFAULT_LIGHTS)
         .setAutoCancel(true)
         .setChannelId(channelId)
-        .addAction(R.drawable.ic_snooze_vector, getString(R.string.snooze), getSnoozePendingIntent(alarm))
-        .addAction(R.drawable.ic_cross_vector, getString(R.string.dismiss), dismissIntent)
+        .addAction(
+            com.simplemobiletools.commons.R.drawable.ic_snooze_vector,
+            getString(com.simplemobiletools.commons.R.string.snooze),
+            getSnoozePendingIntent(alarm)
+        )
+        .addAction(com.simplemobiletools.commons.R.drawable.ic_cross_vector, getString(com.simplemobiletools.commons.R.string.dismiss), dismissIntent)
         .setDeleteIntent(dismissIntent)
         .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
 
@@ -536,9 +540,9 @@ fun Context.checkAlarmsWithDeletedSoundUri(uri: String) {
 
 fun Context.getAlarmSelectedDaysString(bitMask: Int): String {
     return when (bitMask) {
-        TODAY_BIT -> getString(R.string.today)
-        TOMORROW_BIT -> getString(R.string.tomorrow)
-        EVERY_DAY_BIT -> getString(R.string.every_day)
+        TODAY_BIT -> getString(com.simplemobiletools.commons.R.string.today)
+        TOMORROW_BIT -> getString(com.simplemobiletools.commons.R.string.tomorrow)
+        EVERY_DAY_BIT -> getString(com.simplemobiletools.commons.R.string.every_day)
         else -> getSelectedDaysString(bitMask)
     }
 }

@@ -18,7 +18,7 @@ import com.simplemobiletools.commons.helpers.isOreoPlus
 
 class EarlyAlarmDismissalReceiver : BroadcastReceiver() {
 
-    override fun onReceive(context: Context, intent: Intent)  {
+    override fun onReceive(context: Context, intent: Intent) {
         val alarmId = intent.getIntExtra(ALARM_ID, -1)
         if (alarmId == -1) {
             return
@@ -48,7 +48,7 @@ class EarlyAlarmDismissalReceiver : BroadcastReceiver() {
                 .setContentText(alarmString)
                 .setSmallIcon(R.drawable.ic_alarm_vector)
                 .setPriority(Notification.PRIORITY_LOW)
-                .addAction(0, context.getString(R.string.dismiss), dismissIntent)
+                .addAction(0, context.getString(com.simplemobiletools.commons.R.string.dismiss), dismissIntent)
                 .setContentIntent(contentIntent)
                 .setSound(null)
                 .setAutoCancel(true)

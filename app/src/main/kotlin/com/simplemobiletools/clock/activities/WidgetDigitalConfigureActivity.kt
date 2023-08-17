@@ -8,7 +8,7 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.widget.SeekBar
-import com.simplemobiletools.clock.R
+import com.simplemobiletools.clock.databinding.WidgetConfigDigitalBinding
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.helpers.MyDigitalTimeWidgetProvider
 import com.simplemobiletools.clock.helpers.SIMPLE_PHONE
@@ -16,7 +16,6 @@ import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.dialogs.FeatureLockedDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
-import kotlinx.android.synthetic.main.widget_config_digital.*
 
 class WidgetDigitalConfigureActivity : SimpleActivity() {
     private var mBgAlpha = 0f
@@ -25,12 +24,13 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
     private var mTextColor = 0
     private var mBgColorWithoutTransparency = 0
     private var mFeatureLockedDialog: FeatureLockedDialog? = null
+    private val binding: WidgetConfigDigitalBinding by viewBinding(WidgetConfigDigitalBinding::inflate)
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         useDynamicTheme = false
         super.onCreate(savedInstanceState)
         setResult(Activity.RESULT_CANCELED)
-        setContentView(R.layout.widget_config_digital)
+        setContentView(binding.root)
         initVariables()
 
         mWidgetId = intent.extras?.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID) ?: AppWidgetManager.INVALID_APPWIDGET_ID
@@ -46,12 +46,12 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
             finish()
         }
 
-        config_digital_save.setOnClickListener { saveConfig() }
-        config_digital_bg_color.setOnClickListener { pickBackgroundColor() }
-        config_digital_text_color.setOnClickListener { pickTextColor() }
+        binding.configDigitalSave.setOnClickListener { saveConfig() }
+        binding.configDigitalBgColor.setOnClickListener { pickBackgroundColor() }
+        binding.configDigitalTextColor.setOnClickListener { pickTextColor() }
 
         val primaryColor = getProperPrimaryColor()
-        config_digital_bg_seekbar.setColors(mTextColor, primaryColor, primaryColor)
+        binding.configDigitalBgSeekbar.setColors(mTextColor, primaryColor, primaryColor)
 
         if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
             mFeatureLockedDialog = FeatureLockedDialog(this) {
@@ -74,13 +74,13 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
         mBgAlpha = Color.alpha(mBgColor) / 255.toFloat()
         mBgColorWithoutTransparency = Color.rgb(Color.red(mBgColor), Color.green(mBgColor), Color.blue(mBgColor))
 
-        config_digital_bg_seekbar.setOnSeekBarChangeListener(bgSeekbarChangeListener)
-        config_digital_bg_seekbar.progress = (mBgAlpha * 100).toInt()
+        binding.configDigitalBgSeekbar.setOnSeekBarChangeListener(bgSeekbarChangeListener)
+        binding.configDigitalBgSeekbar.progress = (mBgAlpha * 100).toInt()
         updateBackgroundColor()
 
         mTextColor = config.widgetTextColor
-        if (mTextColor == resources.getColor(R.color.default_widget_text_color) && config.isUsingSystemTheme) {
-            mTextColor = resources.getColor(R.color.you_primary_color, theme)
+        if (mTextColor == resources.getColor(com.simplemobiletools.commons.R.color.default_widget_text_color) && config.isUsingSystemTheme) {
+            mTextColor = resources.getColor(com.simplemobiletools.commons.R.color.you_primary_color, theme)
         }
 
         updateTextColor()
@@ -130,17 +130,17 @@ class WidgetDigitalConfigureActivity : SimpleActivity() {
     }
 
     private fun updateTextColor() {
-        config_digital_text_color.setFillWithStroke(mTextColor, mTextColor)
-        config_digital_time.setTextColor(mTextColor)
-        config_digital_date.setTextColor(mTextColor)
-        config_digital_save.setTextColor(getProperPrimaryColor().getContrastColor())
+        binding.configDigitalTextColor.setFillWithStroke(mTextColor, mTextColor)
+        binding.configDigitalTime.setTextColor(mTextColor)
+        binding.configDigitalDate.setTextColor(mTextColor)
+        binding.configDigitalSave.setTextColor(getProperPrimaryColor().getContrastColor())
     }
 
     private fun updateBackgroundColor() {
         mBgColor = mBgColorWithoutTransparency.adjustAlpha(mBgAlpha)
-        config_digital_bg_color.setFillWithStroke(mBgColor, mBgColor)
-        config_digital_background.applyColorFilter(mBgColor)
-        config_digital_save.backgroundTintList = ColorStateList.valueOf(getProperPrimaryColor())
+        binding.configDigitalBgColor.setFillWithStroke(mBgColor, mBgColor)
+        binding.configDigitalBackground.applyColorFilter(mBgColor)
+        binding.configDigitalSave.backgroundTintList = ColorStateList.valueOf(getProperPrimaryColor())
     }
 
     private val bgSeekbarChangeListener = object : SeekBar.OnSeekBarChangeListener {

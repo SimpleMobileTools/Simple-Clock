@@ -53,7 +53,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
                 val builder = NotificationCompat.Builder(context, ALARM_NOTIFICATION_CHANNEL_ID)
                     .setSmallIcon(R.drawable.ic_alarm_vector)
-                    .setContentTitle(context.getString(R.string.alarm))
+                    .setContentTitle(context.getString(com.simplemobiletools.commons.R.string.alarm))
                     .setAutoCancel(true)
                     .setPriority(NotificationCompat.PRIORITY_HIGH)
                     .setCategory(NotificationCompat.CATEGORY_ALARM)

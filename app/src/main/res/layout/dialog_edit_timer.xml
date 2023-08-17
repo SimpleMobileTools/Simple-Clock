@@ -19,6 +19,7 @@
             android:background="?attr/selectableItemBackground"
             android:drawableLeft="@drawable/ic_hourglass_small"
             android:drawablePadding="@dimen/normal_margin"
+            android:gravity="center_vertical"
             android:padding="@dimen/activity_margin"
             android:textSize="@dimen/bigger_text_size"
             app:layout_constraintTop_toTopOf="parent"
@@ -29,7 +30,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
-            android:padding="@dimen/activity_margin"
+            android:paddingStart="@dimen/activity_margin"
+            android:paddingTop="@dimen/medium_margin"
+            android:paddingEnd="@dimen/activity_margin"
+            android:paddingBottom="@dimen/medium_margin"
             app:layout_constraintTop_toBottomOf="@+id/edit_timer_initial_time">
 
             <ImageView
@@ -62,6 +66,7 @@
             android:background="?attr/selectableItemBackground"
             android:drawableLeft="@drawable/ic_bell_vector"
             android:drawablePadding="@dimen/normal_margin"
+            android:gravity="center_vertical"
             android:padding="@dimen/activity_margin"
             android:textSize="@dimen/bigger_text_size"
             app:layout_constraintTop_toBottomOf="@+id/edit_timer_vibrate_holder"

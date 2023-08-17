@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
 import com.simplemobiletools.clock.adapters.StopwatchAdapter
+import com.simplemobiletools.clock.databinding.FragmentStopwatchBinding
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.extensions.formatStopwatchTime
 import com.simplemobiletools.clock.helpers.SORT_BY_LAP
@@ -21,74 +22,65 @@ import com.simplemobiletools.clock.models.Lap
 import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.SORT_DESCENDING
-import kotlinx.android.synthetic.main.fragment_stopwatch.view.*
 
 class StopwatchFragment : Fragment() {
 
-    private var storedTextColor = 0
-
     lateinit var stopwatchAdapter: StopwatchAdapter
-    lateinit var view: ViewGroup
+    private lateinit var binding: FragmentStopwatchBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        storeStateVariables()
         val sorting = requireContext().config.stopwatchLapsSort
         Lap.sorting = sorting
-        view = (inflater.inflate(R.layout.fragment_stopwatch, container, false) as ViewGroup).apply {
-            stopwatch_time.setOnClickListener {
+        binding = FragmentStopwatchBinding.inflate(inflater, container, false).apply {
+            stopwatchTime.setOnClickListener {
                 togglePlayPause()
             }
 
-            stopwatch_play_pause.setOnClickListener {
+            stopwatchPlayPause.setOnClickListener {
                 togglePlayPause()
             }
 
-            stopwatch_reset.setOnClickListener {
+            stopwatchReset.setOnClickListener {
                 resetStopwatch()
             }
 
-            stopwatch_sorting_indicator_1.setOnClickListener {
+            stopwatchSortingIndicator1.setOnClickListener {
                 changeSorting(SORT_BY_LAP)
             }
 
-            stopwatch_sorting_indicator_2.setOnClickListener {
+            stopwatchSortingIndicator2.setOnClickListener {
                 changeSorting(SORT_BY_LAP_TIME)
             }
 
-            stopwatch_sorting_indicator_3.setOnClickListener {
+            stopwatchSortingIndicator3.setOnClickListener {
                 changeSorting(SORT_BY_TOTAL_TIME)
             }
 
-            stopwatch_lap.setOnClickListener {
-                stopwatch_sorting_indicators_holder.beVisible()
+            stopwatchLap.setOnClickListener {
+                stopwatchSortingIndicatorsHolder.beVisible()
                 Stopwatch.lap()
                 updateLaps()
             }
 
-            stopwatchAdapter = StopwatchAdapter(activity as SimpleActivity, ArrayList(), stopwatch_list) {
+            stopwatchAdapter = StopwatchAdapter(activity as SimpleActivity, ArrayList(), stopwatchList) {
                 if (it is Int) {
                     changeSorting(it)
                 }
             }
-            stopwatch_list.adapter = stopwatchAdapter
+            stopwatchList.adapter = stopwatchAdapter
         }
 
         updateSortingIndicators(sorting)
-        return view
+        return binding.root
     }
 
     override fun onResume() {
         super.onResume()
         setupViews()
 
-        val configTextColor = requireContext().getProperTextColor()
-        if (storedTextColor != configTextColor) {
-            stopwatchAdapter.updateTextColor(configTextColor)
-        }
-
         Stopwatch.addUpdateListener(updateListener)
         updateLaps()
-        view.stopwatch_sorting_indicators_holder.beVisibleIf(Stopwatch.laps.isNotEmpty())
+        binding.stopwatchSortingIndicatorsHolder.beVisibleIf(Stopwatch.laps.isNotEmpty())
         if (Stopwatch.laps.isNotEmpty()) {
             updateSorting(Lap.sorting)
         }
@@ -101,27 +93,23 @@ class StopwatchFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        storeStateVariables()
         Stopwatch.removeUpdateListener(updateListener)
-    }
-
-    private fun storeStateVariables() {
-        storedTextColor = requireContext().getProperTextColor()
     }
 
     private fun setupViews() {
         val properPrimaryColor = requireContext().getProperPrimaryColor()
-        view.apply {
-            requireContext().updateTextColors(stopwatch_fragment)
-            stopwatch_play_pause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, properPrimaryColor)
-            stopwatch_reset.applyColorFilter(requireContext().getProperTextColor())
+        binding.apply {
+            requireContext().updateTextColors(stopwatchFragment)
+            stopwatchPlayPause.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, properPrimaryColor)
+            stopwatchReset.applyColorFilter(requireContext().getProperTextColor())
         }
     }
 
     private fun updateIcons(state: Stopwatch.State) {
-        val drawableId = if (state == Stopwatch.State.RUNNING) R.drawable.ic_pause_vector else R.drawable.ic_play_vector
+        val drawableId =
+            if (state == Stopwatch.State.RUNNING) com.simplemobiletools.commons.R.drawable.ic_pause_vector else com.simplemobiletools.commons.R.drawable.ic_play_vector
         val iconColor = if (requireContext().getProperPrimaryColor() == Color.WHITE) Color.BLACK else Color.WHITE
-        view.stopwatch_play_pause.setImageDrawable(resources.getColoredDrawableWithColor(drawableId, iconColor))
+        binding.stopwatchPlayPause.setImageDrawable(resources.getColoredDrawableWithColor(drawableId, iconColor))
     }
 
     private fun togglePlayPause() {
@@ -131,14 +119,14 @@ class StopwatchFragment : Fragment() {
             } else {
                 PermissionRequiredDialog(
                     activity as SimpleActivity,
-                    R.string.allow_notifications_reminders,
+                    com.simplemobiletools.commons.R.string.allow_notifications_reminders,
                     { (activity as SimpleActivity).openNotificationSettings() })
             }
         }
     }
 
     private fun updateDisplayedText(totalTime: Long, lapTime: Long, useLongerMSFormat: Boolean) {
-        view.stopwatch_time.text = totalTime.formatStopwatchTime(useLongerMSFormat)
+        binding.stopwatchTime.text = totalTime.formatStopwatchTime(useLongerMSFormat)
         if (Stopwatch.laps.isNotEmpty() && lapTime != -1L) {
             stopwatchAdapter.updateLastField(lapTime, totalTime)
         }
@@ -148,11 +136,11 @@ class StopwatchFragment : Fragment() {
         Stopwatch.reset()
 
         updateLaps()
-        view.apply {
-            stopwatch_reset.beGone()
-            stopwatch_lap.beGone()
-            stopwatch_time.text = 0L.formatStopwatchTime(false)
-            stopwatch_sorting_indicators_holder.beInvisible()
+        binding.apply {
+            stopwatchReset.beGone()
+            stopwatchLap.beGone()
+            stopwatchTime.text = 0L.formatStopwatchTime(false)
+            stopwatchSortingIndicatorsHolder.beInvisible()
         }
     }
 
@@ -174,15 +162,15 @@ class StopwatchFragment : Fragment() {
 
     private fun updateSortingIndicators(sorting: Int) {
         var bitmap = requireContext().resources.getColoredBitmap(R.drawable.ic_sorting_triangle_vector, requireContext().getProperPrimaryColor())
-        view.apply {
-            stopwatch_sorting_indicator_1.beInvisibleIf(sorting and SORT_BY_LAP == 0)
-            stopwatch_sorting_indicator_2.beInvisibleIf(sorting and SORT_BY_LAP_TIME == 0)
-            stopwatch_sorting_indicator_3.beInvisibleIf(sorting and SORT_BY_TOTAL_TIME == 0)
+        binding.apply {
+            stopwatchSortingIndicator1.beInvisibleIf(sorting and SORT_BY_LAP == 0)
+            stopwatchSortingIndicator2.beInvisibleIf(sorting and SORT_BY_LAP_TIME == 0)
+            stopwatchSortingIndicator3.beInvisibleIf(sorting and SORT_BY_TOTAL_TIME == 0)
 
             val activeIndicator = when {
-                sorting and SORT_BY_LAP != 0 -> stopwatch_sorting_indicator_1
-                sorting and SORT_BY_LAP_TIME != 0 -> stopwatch_sorting_indicator_2
-                else -> stopwatch_sorting_indicator_3
+                sorting and SORT_BY_LAP != 0 -> stopwatchSortingIndicator1
+                sorting and SORT_BY_LAP_TIME != 0 -> stopwatchSortingIndicator2
+                else -> stopwatchSortingIndicator3
             }
 
             if (sorting and SORT_DESCENDING == 0) {
@@ -201,7 +189,12 @@ class StopwatchFragment : Fragment() {
     }
 
     private fun updateLaps() {
-        stopwatchAdapter.updateItems(Stopwatch.laps)
+        stopwatchAdapter.apply {
+            updatePrimaryColor()
+            updateBackgroundColor(requireContext().getProperBackgroundColor())
+            updateTextColor(requireContext().getProperTextColor())
+            updateItems(Stopwatch.laps)
+        }
     }
 
     private val updateListener = object : Stopwatch.UpdateListener {
@@ -211,8 +204,8 @@ class StopwatchFragment : Fragment() {
 
         override fun onStateChanged(state: Stopwatch.State) {
             updateIcons(state)
-            view.stopwatch_lap.beVisibleIf(state == Stopwatch.State.RUNNING)
-            view.stopwatch_reset.beVisibleIf(state != Stopwatch.State.STOPPED)
+            binding.stopwatchLap.beVisibleIf(state == Stopwatch.State.RUNNING)
+            binding.stopwatchReset.beVisibleIf(state != Stopwatch.State.STOPPED)
         }
     }
 }

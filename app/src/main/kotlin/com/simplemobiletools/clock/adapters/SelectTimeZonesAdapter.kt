@@ -3,14 +3,13 @@ package com.simplemobiletools.clock.adapters
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
+import com.simplemobiletools.clock.databinding.ItemAddTimeZoneBinding
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.models.MyTimeZone
 import com.simplemobiletools.commons.extensions.getProperBackgroundColor
 import com.simplemobiletools.commons.extensions.getProperPrimaryColor
 import com.simplemobiletools.commons.extensions.getProperTextColor
-import kotlinx.android.synthetic.main.item_add_time_zone.view.*
 
 class SelectTimeZonesAdapter(val activity: SimpleActivity, val timeZones: ArrayList<MyTimeZone>) : RecyclerView.Adapter<SelectTimeZonesAdapter.ViewHolder>() {
     private val config = activity.config
@@ -41,8 +40,7 @@ class SelectTimeZonesAdapter(val activity: SimpleActivity, val timeZones: ArrayL
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = activity.layoutInflater.inflate(R.layout.item_add_time_zone, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(ItemAddTimeZoneBinding.inflate(activity.layoutInflater, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -51,16 +49,16 @@ class SelectTimeZonesAdapter(val activity: SimpleActivity, val timeZones: ArrayL
 
     override fun getItemCount() = timeZones.size
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(private val binding: ItemAddTimeZoneBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindView(myTimeZone: MyTimeZone, textColor: Int, primaryColor: Int, backgroundColor: Int): View {
             val isSelected = selectedKeys.contains(myTimeZone.id)
-            itemView.apply {
-                add_time_zone_checkbox.isChecked = isSelected
-                add_time_zone_title.text = myTimeZone.title
-                add_time_zone_title.setTextColor(textColor)
+            binding.apply {
+                addTimeZoneCheckbox.isChecked = isSelected
+                addTimeZoneTitle.text = myTimeZone.title
+                addTimeZoneTitle.setTextColor(textColor)
 
-                add_time_zone_checkbox.setColors(textColor, primaryColor, backgroundColor)
-                add_time_zone_holder.setOnClickListener {
+                addTimeZoneCheckbox.setColors(textColor, primaryColor, backgroundColor)
+                addTimeZoneHolder.setOnClickListener {
                     viewClicked(myTimeZone)
                 }
             }

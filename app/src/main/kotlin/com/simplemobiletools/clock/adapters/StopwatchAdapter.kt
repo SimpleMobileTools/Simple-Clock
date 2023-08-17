@@ -4,8 +4,8 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.activities.SimpleActivity
+import com.simplemobiletools.clock.databinding.ItemLapBinding
 import com.simplemobiletools.clock.extensions.formatStopwatchTime
 import com.simplemobiletools.clock.helpers.SORT_BY_LAP
 import com.simplemobiletools.clock.helpers.SORT_BY_LAP_TIME
@@ -13,11 +13,9 @@ import com.simplemobiletools.clock.helpers.SORT_BY_TOTAL_TIME
 import com.simplemobiletools.clock.models.Lap
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
 import com.simplemobiletools.commons.views.MyRecyclerView
-import kotlinx.android.synthetic.main.item_lap.view.*
-import java.util.*
 
 class StopwatchAdapter(activity: SimpleActivity, var laps: ArrayList<Lap>, recyclerView: MyRecyclerView, itemClick: (Any) -> Unit) :
-        MyRecyclerViewAdapter(activity, recyclerView, itemClick) {
+    MyRecyclerViewAdapter(activity, recyclerView, itemClick) {
     private var lastLapTimeView: TextView? = null
     private var lastTotalTimeView: TextView? = null
     private var lastLapId = 0
@@ -40,7 +38,9 @@ class StopwatchAdapter(activity: SimpleActivity, var laps: ArrayList<Lap>, recyc
 
     override fun onActionModeDestroyed() {}
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = createViewHolder(R.layout.item_lap, parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return createViewHolder(ItemLapBinding.inflate(layoutInflater, parent, false).root)
+    }
 
     override fun onBindViewHolder(holder: MyRecyclerViewAdapter.ViewHolder, position: Int) {
         val lap = laps[position]
@@ -66,28 +66,28 @@ class StopwatchAdapter(activity: SimpleActivity, var laps: ArrayList<Lap>, recyc
     }
 
     private fun setupView(view: View, lap: Lap) {
-        view.apply {
-            lap_order.text = lap.id.toString()
-            lap_order.setTextColor(textColor)
-            lap_order.setOnClickListener {
+        ItemLapBinding.bind(view).apply {
+            lapOrder.text = lap.id.toString()
+            lapOrder.setTextColor(textColor)
+            lapOrder.setOnClickListener {
                 itemClick(SORT_BY_LAP)
             }
 
-            lap_lap_time.text = lap.lapTime.formatStopwatchTime(false)
-            lap_lap_time.setTextColor(textColor)
-            lap_lap_time.setOnClickListener {
+            lapLapTime.text = lap.lapTime.formatStopwatchTime(false)
+            lapLapTime.setTextColor(textColor)
+            lapLapTime.setOnClickListener {
                 itemClick(SORT_BY_LAP_TIME)
             }
 
-            lap_total_time.text = lap.totalTime.formatStopwatchTime(false)
-            lap_total_time.setTextColor(textColor)
-            lap_total_time.setOnClickListener {
+            lapTotalTime.text = lap.totalTime.formatStopwatchTime(false)
+            lapTotalTime.setTextColor(textColor)
+            lapTotalTime.setOnClickListener {
                 itemClick(SORT_BY_TOTAL_TIME)
             }
 
             if (lap.id > lastLapId) {
-                lastLapTimeView = lap_lap_time
-                lastTotalTimeView = lap_total_time
+                lastLapTimeView = lapLapTime
+                lastTotalTimeView = lapTotalTime
                 lastLapId = lap.id
             }
         }

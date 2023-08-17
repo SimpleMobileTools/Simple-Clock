@@ -2,7 +2,8 @@ package com.simplemobiletools.clock.extensions
 
 import android.text.format.DateFormat
 import com.simplemobiletools.commons.extensions.getFormattedDuration
-import java.util.*
+import java.util.Calendar
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
 
@@ -21,10 +22,12 @@ fun Long.formatStopwatchTime(useLongerMSFormat: Boolean): String {
             val format = "%02d:%02d:%02d.$MSFormat"
             String.format(format, hours, minutes, seconds, ms)
         }
+
         minutes > 0 -> {
             val format = "%02d:%02d.$MSFormat"
             String.format(format, minutes, seconds, ms)
         }
+
         else -> {
             val format = "%d.$MSFormat"
             String.format(format, seconds, ms)

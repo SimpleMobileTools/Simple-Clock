@@ -8,17 +8,16 @@ import android.media.MediaPlayer
 import android.net.Uri
 import android.os.*
 import android.view.MotionEvent
-import android.view.ViewGroup
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import com.simplemobiletools.clock.R
+import com.simplemobiletools.clock.databinding.ActivityReminderBinding
 import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.ALARM_ID
 import com.simplemobiletools.clock.helpers.getPassedSeconds
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
-import kotlinx.android.synthetic.main.activity_reminder.*
 
 class ReminderActivity : SimpleActivity() {
     private val INCREASE_VOLUME_DELAY = 300L
@@ -36,13 +35,14 @@ class ReminderActivity : SimpleActivity() {
     private var vibrator: Vibrator? = null
     private var lastVolumeValue = 0.1f
     private var dragDownX = 0f
+    private val binding: ActivityReminderBinding by viewBinding(ActivityReminderBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_reminder)
+        setContentView(binding.root)
         showOverLockscreen()
-        updateTextColors(reminder_holder as ViewGroup)
+        updateTextColors(binding.root)
         updateStatusbarColor(getProperBackgroundColor())
 
         val id = intent.getIntExtra(ALARM_ID, -1)
@@ -53,7 +53,7 @@ class ReminderActivity : SimpleActivity() {
 
         val label = if (isAlarmReminder) {
             if (alarm!!.label.isEmpty()) {
-                getString(R.string.alarm)
+                getString(com.simplemobiletools.commons.R.string.alarm)
             } else {
                 alarm!!.label
             }
@@ -61,8 +61,8 @@ class ReminderActivity : SimpleActivity() {
             getString(R.string.timer)
         }
 
-        reminder_title.text = label
-        reminder_text.text = if (isAlarmReminder) getFormattedTime(getPassedSeconds(), false, false) else getString(R.string.time_expired)
+        binding.reminderTitle.text = label
+        binding.reminderText.text = if (isAlarmReminder) getFormattedTime(getPassedSeconds(), false, false) else getString(R.string.time_expired)
 
         val maxDuration = if (isAlarmReminder) config.alarmMaxReminderSecs else config.timerMaxReminderSecs
         maxReminderDurationHandler.postDelayed({
@@ -83,52 +83,52 @@ class ReminderActivity : SimpleActivity() {
 
     @SuppressLint("ClickableViewAccessibility")
     private fun setupAlarmButtons() {
-        reminder_stop.beGone()
-        reminder_draggable_background.startAnimation(AnimationUtils.loadAnimation(this, R.anim.pulsing_animation))
-        reminder_draggable_background.applyColorFilter(getProperPrimaryColor())
+        binding.reminderStop.beGone()
+        binding.reminderDraggableBackground.startAnimation(AnimationUtils.loadAnimation(this, R.anim.pulsing_animation))
+        binding.reminderDraggableBackground.applyColorFilter(getProperPrimaryColor())
 
         val textColor = getProperTextColor()
-        reminder_dismiss.applyColorFilter(textColor)
-        reminder_draggable.applyColorFilter(textColor)
-        reminder_snooze.applyColorFilter(textColor)
+        binding.reminderDismiss.applyColorFilter(textColor)
+        binding.reminderDraggable.applyColorFilter(textColor)
+        binding.reminderSnooze.applyColorFilter(textColor)
 
         var minDragX = 0f
         var maxDragX = 0f
         var initialDraggableX = 0f
 
-        reminder_dismiss.onGlobalLayout {
-            minDragX = reminder_snooze.left.toFloat()
-            maxDragX = reminder_dismiss.left.toFloat()
-            initialDraggableX = reminder_draggable.left.toFloat()
+        binding.reminderDismiss.onGlobalLayout {
+            minDragX = binding.reminderSnooze.left.toFloat()
+            maxDragX = binding.reminderDismiss.left.toFloat()
+            initialDraggableX = binding.reminderDraggable.left.toFloat()
         }
 
-        reminder_draggable.setOnTouchListener { v, event ->
+        binding.reminderDraggable.setOnTouchListener { v, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     dragDownX = event.x
-                    reminder_draggable_background.animate().alpha(0f)
+                    binding.reminderDraggableBackground.animate().alpha(0f)
                 }
 
                 MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                     dragDownX = 0f
                     if (!didVibrate) {
-                        reminder_draggable.animate().x(initialDraggableX).withEndAction {
-                            reminder_draggable_background.animate().alpha(0.2f)
+                        binding.reminderDraggable.animate().x(initialDraggableX).withEndAction {
+                            binding.reminderDraggableBackground.animate().alpha(0.2f)
                         }
 
-                        reminder_guide.animate().alpha(1f).start()
+                        binding.reminderGuide.animate().alpha(1f).start()
                         swipeGuideFadeHandler.removeCallbacksAndMessages(null)
                         swipeGuideFadeHandler.postDelayed({
-                            reminder_guide.animate().alpha(0f).start()
+                            binding.reminderGuide.animate().alpha(0f).start()
                         }, 2000L)
                     }
                 }
 
                 MotionEvent.ACTION_MOVE -> {
-                    reminder_draggable.x = Math.min(maxDragX, Math.max(minDragX, event.rawX - dragDownX))
-                    if (reminder_draggable.x >= maxDragX - 50f) {
+                    binding.reminderDraggable.x = Math.min(maxDragX, Math.max(minDragX, event.rawX - dragDownX))
+                    if (binding.reminderDraggable.x >= maxDragX - 50f) {
                         if (!didVibrate) {
-                            reminder_draggable.performHapticFeedback()
+                            binding.reminderDraggable.performHapticFeedback()
                             didVibrate = true
                             finishActivity()
                         }
@@ -136,9 +136,9 @@ class ReminderActivity : SimpleActivity() {
                         if (isOreoPlus()) {
                             notificationManager.cancelAll()
                         }
-                    } else if (reminder_draggable.x <= minDragX + 50f) {
+                    } else if (binding.reminderDraggable.x <= minDragX + 50f) {
                         if (!didVibrate) {
-                            reminder_draggable.performHapticFeedback()
+                            binding.reminderDraggable.performHapticFeedback()
                             didVibrate = true
                             snoozeAlarm()
                         }
@@ -154,12 +154,12 @@ class ReminderActivity : SimpleActivity() {
     }
 
     private fun setupTimerButtons() {
-        reminder_stop.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, getProperPrimaryColor())
-        arrayOf(reminder_snooze, reminder_draggable_background, reminder_draggable, reminder_dismiss).forEach {
+        binding.reminderStop.background = resources.getColoredDrawableWithColor(R.drawable.circle_background_filled, getProperPrimaryColor())
+        arrayOf(binding.reminderSnooze, binding.reminderDraggableBackground, binding.reminderDraggable, binding.reminderDismiss).forEach {
             it.beGone()
         }
 
-        reminder_stop.setOnClickListener {
+        binding.reminderStop.setOnClickListener {
             finishActivity()
         }
     }

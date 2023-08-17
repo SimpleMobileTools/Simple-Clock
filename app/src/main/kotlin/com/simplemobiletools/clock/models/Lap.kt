@@ -16,11 +16,13 @@ data class Lap(val id: Int, var lapTime: Long, var totalTime: Long) : Comparable
                 id > other.id -> 1
                 else -> -1
             }
+
             sorting and SORT_BY_LAP_TIME != 0 -> when {
                 lapTime == other.lapTime -> 0
                 lapTime > other.lapTime -> 1
                 else -> -1
             }
+
             else -> when {
                 totalTime == other.totalTime -> 0
                 totalTime > other.totalTime -> 1
