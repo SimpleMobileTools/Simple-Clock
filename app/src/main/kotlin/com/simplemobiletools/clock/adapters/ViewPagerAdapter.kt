@@ -15,8 +15,14 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
     private val fragments = HashMap<Int, Fragment>()
 
     override fun getItem(position: Int): Fragment {
-        val fragment = getFragment(position)
-        fragments[position] = fragment
+        return getFragment(position)
+    }
+
+    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+        val fragment = super.instantiateItem(container, position)
+        if (fragment is Fragment) {
+            fragments[position] = fragment
+        }
         return fragment
     }
 
