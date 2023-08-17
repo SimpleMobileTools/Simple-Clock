@@ -96,7 +96,7 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
                 updatePrimaryColor()
                 updateBackgroundColor(requireContext().getProperBackgroundColor())
                 updateTextColor(requireContext().getProperTextColor())
-                updateItems(alarms)
+                updateItems(this@AlarmFragment.alarms)
             }
         }
     }
