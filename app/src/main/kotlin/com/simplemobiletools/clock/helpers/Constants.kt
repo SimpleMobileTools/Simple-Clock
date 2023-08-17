@@ -227,18 +227,7 @@ fun getTimeUntilNextAlarm(alarmTimeInMinutes: Int, days: Int): Int? {
     }
 }
 
-fun isAlarmEnabledForDay(day: Int, alarmDays: Int): Boolean {
-    val bit = createBit(day)
-    return alarmDays.isBitSet(bit)
-}
-
-fun createBit(day: Int): Int {
-    var bit = 1
-    repeat(day) {
-        bit = bit.addBit(bit)
-    }
-    return bit
-}
+fun isAlarmEnabledForDay(day: Int, alarmDays: Int) = alarmDays.isBitSet(day)
 
 fun getTimeDifferenceInMinutes(currentTimeInMinutes: Int, alarmTimeInMinutes: Int, daysUntilAlarm: Int): Int {
     val minutesInADay = 24 * 60
