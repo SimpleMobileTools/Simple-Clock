@@ -1,16 +1,16 @@
 package com.simplemobiletools.clock.helpers
 
-import android.os.Handler
-import android.os.Looper
 import android.os.SystemClock
 import com.simplemobiletools.clock.models.Lap
+import java.util.Timer
+import java.util.TimerTask
 import java.util.concurrent.CopyOnWriteArraySet
 
 private const val UPDATE_INTERVAL = 10L
 
 object Stopwatch {
 
-    private val updateHandler = Handler(Looper.getMainLooper())
+    private var updateTimer = Timer()
     private var uptimeAtStart = 0L
     private var totalTicks = 0
     private var currentTicks = 0    // ticks that reset at pause
@@ -27,7 +27,7 @@ object Stopwatch {
     private var updateListeners = CopyOnWriteArraySet<UpdateListener>()
 
     fun reset() {
-        updateHandler.removeCallbacksAndMessages(null)
+        updateTimer.cancel()
         state = State.STOPPED
         currentTicks = 0
         totalTicks = 0
@@ -39,7 +39,7 @@ object Stopwatch {
     fun toggle(setUptimeAtStart: Boolean) {
         if (state != State.RUNNING) {
             state = State.RUNNING
-            updateHandler.post(updateRunnable)
+            updateTimer = buildUpdateTimer()
             if (setUptimeAtStart) {
                 uptimeAtStart = SystemClock.uptimeMillis()
             }
@@ -47,7 +47,7 @@ object Stopwatch {
             state = State.PAUSED
             val prevSessionsMS = (totalTicks - currentTicks) * UPDATE_INTERVAL
             val totalDuration = SystemClock.uptimeMillis() - uptimeAtStart + prevSessionsMS
-            updateHandler.removeCallbacksAndMessages(null)
+            updateTimer.cancel()
             currentTicks = 0
             totalTicks--
             for (listener in updateListeners) {
@@ -97,23 +97,26 @@ object Stopwatch {
         updateListeners.remove(updateListener)
     }
 
-    private val updateRunnable = object : Runnable {
-        override fun run() {
-            if (state == State.RUNNING) {
-                if (totalTicks % 10 == 0) {
-                    for (listener in updateListeners) {
-                        listener.onUpdate(
-                            totalTicks * UPDATE_INTERVAL,
-                            lapTicks * UPDATE_INTERVAL,
-                            false
-                        )
+    private fun buildUpdateTimer(): Timer {
+        return Timer().apply {
+            scheduleAtFixedRate(object : TimerTask() {
+                override fun run() {
+                    if (state == State.RUNNING) {
+                        if (totalTicks % 10 == 0) {
+                            for (listener in updateListeners) {
+                                listener.onUpdate(
+                                    totalTicks * UPDATE_INTERVAL,
+                                    lapTicks * UPDATE_INTERVAL,
+                                    false
+                                )
+                            }
+                        }
+                        totalTicks++
+                        currentTicks++
+                        lapTicks++
                     }
                 }
-                totalTicks++
-                currentTicks++
-                lapTicks++
-                updateHandler.postAtTime(this, uptimeAtStart + currentTicks * UPDATE_INTERVAL)
-            }
+            }, 0, UPDATE_INTERVAL)
         }
     }
 
