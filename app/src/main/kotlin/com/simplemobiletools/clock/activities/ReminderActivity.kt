@@ -22,8 +22,8 @@ import com.simplemobiletools.commons.helpers.*
 class ReminderActivity : SimpleActivity() {
     private val INCREASE_VOLUME_DELAY = 300L
 
-    private val increaseVolumeHandler = Handler()
-    private val maxReminderDurationHandler = Handler()
+    private val increaseVolumeHandler = Handler(Looper.getMainLooper())
+    private val maxReminderDurationHandler = Handler(Looper.getMainLooper())
     private val swipeGuideFadeHandler = Handler()
     private val vibrationHandler = Handler(Looper.getMainLooper())
     private var isAlarmReminder = false
@@ -198,19 +198,19 @@ class ReminderActivity : SimpleActivity() {
                 }
 
                 if (config.increaseVolumeGradually) {
-                    scheduleVolumeIncrease(maxVol)
+                    scheduleVolumeIncrease(maxVol, 0)
                 }
             } catch (e: Exception) {
             }
         }
     }
 
-    private fun scheduleVolumeIncrease(maxVolume: Float) {
+    private fun scheduleVolumeIncrease(maxVolume: Float, delay: Long) {
         increaseVolumeHandler.postDelayed({
             lastVolumeValue = (lastVolumeValue + 0.1f).coerceAtMost(maxVolume)
             audioManager?.setStreamVolume(AudioManager.STREAM_ALARM, lastVolumeValue.toInt(), 0)
-            scheduleVolumeIncrease(maxVolume)
-        }, INCREASE_VOLUME_DELAY)
+            scheduleVolumeIncrease(maxVolume, INCREASE_VOLUME_DELAY)
+        }, delay)
     }
 
     override fun onNewIntent(intent: Intent?) {
