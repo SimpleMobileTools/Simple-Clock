@@ -194,7 +194,6 @@ class ReminderActivity : SimpleActivity() {
                 mediaPlayer = MediaPlayer().apply {
                     setAudioStreamType(AudioManager.STREAM_ALARM)
                     setDataSource(this@ReminderActivity, Uri.parse(soundUri))
-                    setVolume(lastVolumeValue, lastVolumeValue)
                     isLooping = true
                     prepare()
                     start()
