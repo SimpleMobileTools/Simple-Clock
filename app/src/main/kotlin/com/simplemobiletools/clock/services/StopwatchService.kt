@@ -9,6 +9,7 @@ import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
 import androidx.core.app.NotificationCompat
+import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
 import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.extensions.getFormattedDuration
@@ -18,7 +19,6 @@ import com.simplemobiletools.clock.helpers.Stopwatch
 import com.simplemobiletools.clock.helpers.Stopwatch.State
 import com.simplemobiletools.clock.helpers.Stopwatch.UpdateListener
 import com.simplemobiletools.commons.extensions.showErrorToast
-import com.simplemobiletools.commons.helpers.isNougatPlus
 import com.simplemobiletools.commons.helpers.isOreoPlus
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -54,15 +54,15 @@ class StopwatchService : Service() {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         bus.unregister(this)
         Stopwatch.removeUpdateListener(updateListener)
+        super.onDestroy()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: StopwatchStopService) {
         isStopping = true
-        stopForeground(true)
+        stopForegroundService()
     }
 
     private fun getServiceNotificationBuilder(
@@ -98,17 +98,29 @@ class StopwatchService : Service() {
     }
 
     private val updateListener = object : UpdateListener {
+        private val MIN_NOTIFICATION_UPDATE_INTERVAL = 500L
+        private var lastUpdateTime = 0L
         override fun onUpdate(totalTime: Long, lapTime: Long, useLongerMSFormat: Boolean) {
-            if (!isStopping) {
+            if (!isStopping && shouldNotificationBeUpdated()) {
+                lastUpdateTime = System.currentTimeMillis()
                 updateNotification(totalTime)
             }
         }
 
         override fun onStateChanged(state: State) {
-            if (state == State.STOPPED && isNougatPlus()) {
-                stopForeground(STOP_FOREGROUND_REMOVE)
+            if (state == State.STOPPED) {
+                stopForegroundService()
             }
         }
+
+        private fun shouldNotificationBeUpdated(): Boolean {
+            return (System.currentTimeMillis() - lastUpdateTime) > MIN_NOTIFICATION_UPDATE_INTERVAL
+        }
+    }
+
+    private fun stopForegroundService() {
+        ServiceCompat.stopForeground(this@StopwatchService, ServiceCompat.STOP_FOREGROUND_REMOVE)
+        stopSelf()
     }
 }
 
