@@ -20,7 +20,9 @@ import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
 
 class ReminderActivity : SimpleActivity() {
-    private val INCREASE_VOLUME_DELAY = 300L
+    companion object {
+        private const val INCREASE_VOLUME_DELAY = 300L
+    }
 
     private val increaseVolumeHandler = Handler(Looper.getMainLooper())
     private val maxReminderDurationHandler = Handler(Looper.getMainLooper())
@@ -33,6 +35,7 @@ class ReminderActivity : SimpleActivity() {
     private var audioManager: AudioManager? = null
     private var mediaPlayer: MediaPlayer? = null
     private var vibrator: Vibrator? = null
+    private var initialAlarmVolume: Int? = null
     private var lastVolumeValue = 0.1f
     private var dragDownX = 0f
     private val binding: ActivityReminderBinding by viewBinding(ActivityReminderBinding::inflate)
@@ -198,6 +201,7 @@ class ReminderActivity : SimpleActivity() {
                 }
 
                 if (config.increaseVolumeGradually) {
+                    initialAlarmVolume = audioManager?.getStreamVolume(AudioManager.STREAM_ALARM)
                     scheduleVolumeIncrease(maxVol, 0)
                 }
             } catch (e: Exception) {
@@ -211,6 +215,12 @@ class ReminderActivity : SimpleActivity() {
             audioManager?.setStreamVolume(AudioManager.STREAM_ALARM, lastVolumeValue.toInt(), 0)
             scheduleVolumeIncrease(maxVolume, INCREASE_VOLUME_DELAY)
         }, delay)
+    }
+
+    private fun resetVolumeToInitialValue() {
+        initialAlarmVolume?.apply {
+            audioManager?.setStreamVolume(AudioManager.STREAM_ALARM, this, 0)
+        }
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -228,6 +238,10 @@ class ReminderActivity : SimpleActivity() {
     }
 
     private fun destroyEffects() {
+        if (config.increaseVolumeGradually) {
+            resetVolumeToInitialValue()
+        }
+
         mediaPlayer?.stop()
         mediaPlayer?.release()
         mediaPlayer = null
