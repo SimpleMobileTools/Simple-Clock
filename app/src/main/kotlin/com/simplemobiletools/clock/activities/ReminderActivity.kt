@@ -21,6 +21,7 @@ import com.simplemobiletools.commons.helpers.*
 
 class ReminderActivity : SimpleActivity() {
     companion object {
+        private const val MIN_ALARM_VOLUME_FOR_INCREASING_ALARMS = 1
         private const val INCREASE_VOLUME_DELAY = 300L
     }
 
@@ -36,7 +37,6 @@ class ReminderActivity : SimpleActivity() {
     private var mediaPlayer: MediaPlayer? = null
     private var vibrator: Vibrator? = null
     private var initialAlarmVolume: Int? = null
-    private var lastVolumeValue = 0.1f
     private var dragDownX = 0f
     private val binding: ActivityReminderBinding by viewBinding(ActivityReminderBinding::inflate)
 
@@ -169,10 +169,7 @@ class ReminderActivity : SimpleActivity() {
 
     private fun setupEffects() {
         audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        val maxVol = audioManager?.getStreamMaxVolume(AudioManager.STREAM_ALARM)?.toFloat() ?: 10f
-        if (!isAlarmReminder || !config.increaseVolumeGradually) {
-            lastVolumeValue = maxVol
-        }
+        initialAlarmVolume = audioManager?.getStreamVolume(AudioManager.STREAM_ALARM) ?: 7
 
         val doVibrate = alarm?.vibrate ?: config.timerVibrate
         if (doVibrate && isOreoPlus()) {
@@ -200,19 +197,18 @@ class ReminderActivity : SimpleActivity() {
                 }
 
                 if (config.increaseVolumeGradually) {
-                    initialAlarmVolume = audioManager?.getStreamVolume(AudioManager.STREAM_ALARM)
-                    scheduleVolumeIncrease(maxVol, 0)
+                    scheduleVolumeIncrease(MIN_ALARM_VOLUME_FOR_INCREASING_ALARMS.toFloat(), initialAlarmVolume!!.toFloat(), 0)
                 }
             } catch (e: Exception) {
             }
         }
     }
 
-    private fun scheduleVolumeIncrease(maxVolume: Float, delay: Long) {
+    private fun scheduleVolumeIncrease(lastVolume: Float, maxVolume: Float, delay: Long) {
         increaseVolumeHandler.postDelayed({
-            lastVolumeValue = (lastVolumeValue + 0.1f).coerceAtMost(maxVolume)
-            audioManager?.setStreamVolume(AudioManager.STREAM_ALARM, lastVolumeValue.toInt(), 0)
-            scheduleVolumeIncrease(maxVolume, INCREASE_VOLUME_DELAY)
+            val newLastVolume = (lastVolume + 0.1f).coerceAtMost(maxVolume)
+            audioManager?.setStreamVolume(AudioManager.STREAM_ALARM, newLastVolume.toInt(), 0)
+            scheduleVolumeIncrease(newLastVolume, maxVolume, INCREASE_VOLUME_DELAY)
         }, delay)
     }
 
