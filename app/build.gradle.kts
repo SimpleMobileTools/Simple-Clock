@@ -1,6 +1,6 @@
-import java.io.FileInputStream
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.kotlin.konan.properties.Properties
+import java.io.FileInputStream
 
 plugins {
     alias(libs.plugins.android)
@@ -93,7 +93,6 @@ android {
 dependencies {
     implementation(libs.simple.tools.commons)
 
-//    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation(libs.bundles.lifecycle)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.preference)
