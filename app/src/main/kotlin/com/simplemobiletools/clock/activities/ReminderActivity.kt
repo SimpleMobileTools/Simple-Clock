@@ -14,6 +14,7 @@ import com.simplemobiletools.clock.R
 import com.simplemobiletools.clock.databinding.ActivityReminderBinding
 import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.ALARM_ID
+import com.simplemobiletools.clock.helpers.ALARM_NOTIF_ID
 import com.simplemobiletools.clock.helpers.getPassedSeconds
 import com.simplemobiletools.clock.models.Alarm
 import com.simplemobiletools.commons.extensions.*
@@ -39,6 +40,7 @@ class ReminderActivity : SimpleActivity() {
     private var initialAlarmVolume: Int? = null
     private var dragDownX = 0f
     private val binding: ActivityReminderBinding by viewBinding(ActivityReminderBinding::inflate)
+    private var finished = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
@@ -229,7 +231,13 @@ class ReminderActivity : SimpleActivity() {
         maxReminderDurationHandler.removeCallbacksAndMessages(null)
         swipeGuideFadeHandler.removeCallbacksAndMessages(null)
         vibrationHandler.removeCallbacksAndMessages(null)
-        destroyEffects()
+        if (!finished) {
+            finishActivity()
+            notificationManager.cancel(ALARM_NOTIF_ID)
+        } else {
+            destroyEffects()
+        }
+
     }
 
     private fun destroyEffects() {
@@ -265,6 +273,7 @@ class ReminderActivity : SimpleActivity() {
             scheduleNextAlarm(alarm!!, false)
         }
 
+        finished = true
         destroyEffects()
         finish()
         overridePendingTransition(0, 0)
