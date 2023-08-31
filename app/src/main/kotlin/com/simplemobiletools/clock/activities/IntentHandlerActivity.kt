@@ -76,9 +76,6 @@ class IntentHandlerActivity : SimpleActivity() {
         days?.forEach {
             weekDays += getBitForCalendarDay(it)
         }
-        if (weekDays == 0) {
-            weekDays = getTomorrowBit()
-        }
         val soundToUse = ringtone?.let {
             if (it == AlarmClock.VALUE_RINGTONE_SILENT) {
                 AlarmSound(0, getString(com.simplemobiletools.commons.R.string.no_sound), SILENT)
