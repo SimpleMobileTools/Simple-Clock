@@ -87,14 +87,22 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
         }
         context?.getEnabledAlarms { enabledAlarms ->
             if (enabledAlarms.isNullOrEmpty()) {
+                val removedAlarms = mutableListOf<Alarm>()
                 alarms.forEach {
                     if (it.days == TODAY_BIT && it.isEnabled && it.timeInMinutes <= getCurrentDayMinutes()) {
                         it.isEnabled = false
                         ensureBackgroundThread {
-                            context?.dbHelper?.updateAlarmEnabledState(it.id, false)
+                            if (it.oneShot) {
+                                it.isEnabled = false
+                                context?.dbHelper?.deleteAlarms(arrayListOf(it))
+                                removedAlarms.add(it)
+                            } else {
+                                context?.dbHelper?.updateAlarmEnabledState(it.id, false)
+                            }
                         }
                     }
                 }
+                alarms.removeAll(removedAlarms)
             }
         }
 
@@ -131,6 +139,10 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
                     val alarm = alarms.firstOrNull { it.id == id } ?: return@handleFullScreenNotificationsPermission
                     alarm.isEnabled = isEnabled
                     checkAlarmState(alarm)
+                    if (!alarm.isEnabled && alarm.oneShot) {
+                        requireContext().dbHelper.deleteAlarms(arrayListOf(alarm))
+                        setupAlarms()
+                    }
                 } else {
                     requireActivity().toast(com.simplemobiletools.commons.R.string.unknown_error_occurred)
                 }

@@ -8,5 +8,6 @@ data class Alarm(
     var vibrate: Boolean,
     var soundTitle: String,
     var soundUri: String,
-    var label: String
+    var label: String,
+    var oneShot: Boolean = false
 )

@@ -21,7 +21,12 @@ class HideAlarmReceiver : BroadcastReceiver() {
         ensureBackgroundThread {
             val alarm = context.dbHelper.getAlarmWithId(id)
             if (alarm != null && alarm.days < 0) {
-                context.dbHelper.updateAlarmEnabledState(alarm.id, false)
+                if (alarm.oneShot) {
+                    alarm.isEnabled = false
+                    context.dbHelper.deleteAlarms(arrayListOf(alarm))
+                } else {
+                    context.dbHelper.updateAlarmEnabledState(alarm.id, false)
+                }
                 context.updateWidgets()
             }
         }

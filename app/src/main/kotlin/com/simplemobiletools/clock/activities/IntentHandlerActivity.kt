@@ -142,6 +142,7 @@ class IntentHandlerActivity : SimpleActivity() {
                 } else {
                     TOMORROW_BIT
                 }
+                newAlarm.oneShot = true
             }
 
             ensureBackgroundThread {

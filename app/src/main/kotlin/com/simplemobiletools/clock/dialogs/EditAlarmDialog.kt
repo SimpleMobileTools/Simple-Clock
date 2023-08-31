@@ -157,6 +157,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val onDism
 
                         alarm.label = binding.editAlarm.value
                         alarm.isEnabled = true
+                        alarm.oneShot = false
 
                         var alarmId = alarm.id
                         activity.handleFullScreenNotificationsPermission { granted ->
