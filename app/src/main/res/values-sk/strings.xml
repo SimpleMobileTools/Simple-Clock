@@ -23,6 +23,9 @@
     <string name="analogue_clock">Analógové hodiny</string>
     <string name="digital_clock">Digitálne hodiny</string>
     <string name="alarm_dismissed">Budík bol zastavený</string>
+    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
+    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
+    <string name="alarm_created">Alarm created</string>
     <string name="alarm_snoozed">Budík bol preložený o %s</string>
     <string name="no_alarms_found">Nenašli sa žiadne budíky</string>
     <string name="add_alarm">Pridať budík</string>

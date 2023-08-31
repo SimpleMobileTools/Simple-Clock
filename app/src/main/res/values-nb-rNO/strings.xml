@@ -23,6 +23,9 @@
     <string name="analogue_clock">Analog klokke</string>
     <string name="digital_clock">Digital klokke</string>
     <string name="alarm_dismissed">Alarm slått av</string>
+    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
+    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
+    <string name="alarm_created">Alarm created</string>
     <string name="alarm_snoozed">Alarm - Slumre %s</string>
     <string name="no_alarms_found">Ingen alarmer funnet</string>
     <string name="add_alarm">Add alarm</string>

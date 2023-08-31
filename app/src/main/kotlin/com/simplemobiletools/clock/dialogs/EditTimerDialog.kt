@@ -12,7 +12,7 @@ import com.simplemobiletools.commons.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.models.AlarmSound
 
-class EditTimerDialog(val activity: SimpleActivity, val timer: Timer, val callback: () -> Unit) {
+class EditTimerDialog(val activity: SimpleActivity, val timer: Timer, val callback: (id: Long) -> Unit) {
     private val binding = DialogEditTimerBinding.inflate(activity.layoutInflater)
     private val textColor = activity.getProperTextColor()
 
@@ -70,7 +70,7 @@ class EditTimerDialog(val activity: SimpleActivity, val timer: Timer, val callba
                         timer.label = binding.editTimer.value
                         activity.timerHelper.insertOrUpdateTimer(timer) {
                             activity.config.timerLastConfig = timer
-                            callback()
+                            callback(it)
                             alertDialog.dismiss()
                         }
                     }

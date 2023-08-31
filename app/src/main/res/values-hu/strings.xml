@@ -23,6 +23,9 @@
     <string name="analogue_clock">Analóg óra</string>
     <string name="digital_clock">Digitális óra</string>
     <string name="alarm_dismissed">Riasztás eltüntetve</string>
+    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
+    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
+    <string name="alarm_created">Alarm created</string>
     <string name="alarm_snoozed">Az ébresztés ennyivel elhalasztva: %s</string>
     <string name="no_alarms_found">Nincsenek riasztások</string>
     <string name="add_alarm">Riasztás hozzáadása</string>

@@ -15,6 +15,7 @@ import com.simplemobiletools.clock.extensions.*
 import com.simplemobiletools.clock.helpers.*
 import com.simplemobiletools.clock.interfaces.ToggleAlarmInterface
 import com.simplemobiletools.clock.models.Alarm
+import com.simplemobiletools.clock.models.AlarmEvent
 import com.simplemobiletools.commons.extensions.getProperBackgroundColor
 import com.simplemobiletools.commons.extensions.getProperTextColor
 import com.simplemobiletools.commons.extensions.toast
@@ -22,6 +23,9 @@ import com.simplemobiletools.commons.extensions.updateTextColors
 import com.simplemobiletools.commons.helpers.SORT_BY_DATE_CREATED
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.models.AlarmSound
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class AlarmFragment : Fragment(), ToggleAlarmInterface {
     private var alarms = ArrayList<Alarm>()
@@ -32,6 +36,16 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentAlarmBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onDestroy() {
+        EventBus.getDefault().unregister(this)
+        super.onDestroy()
     }
 
     override fun onResume() {
@@ -138,5 +152,10 @@ class AlarmFragment : Fragment(), ToggleAlarmInterface {
 
     fun updateAlarmSound(alarmSound: AlarmSound) {
         currentEditAlarmDialog?.updateSelectedAlarmSound(alarmSound)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: AlarmEvent.Refresh) {
+        setupAlarms()
     }
 }

@@ -16,14 +16,26 @@ class TimerHelper(val context: Context) {
 
     fun getTimer(timerId: Int, callback: (timer: Timer) -> Unit) {
         ensureBackgroundThread {
+            callback.invoke(timerDao.getTimer(timerId)!!)
+        }
+    }
+
+    fun tryGetTimer(timerId: Int, callback: (timer: Timer?) -> Unit) {
+        ensureBackgroundThread {
             callback.invoke(timerDao.getTimer(timerId))
         }
     }
 
-    fun insertOrUpdateTimer(timer: Timer, callback: () -> Unit = {}) {
+    fun findTimers(seconds: Int, label: String, callback: (timers: List<Timer>) -> Unit) {
         ensureBackgroundThread {
-            timerDao.insertOrUpdateTimer(timer)
-            callback.invoke()
+            callback.invoke(timerDao.findTimers(seconds, label))
+        }
+    }
+
+    fun insertOrUpdateTimer(timer: Timer, callback: (id: Long) -> Unit = {}) {
+        ensureBackgroundThread {
+            val id = timerDao.insertOrUpdateTimer(timer)
+            callback.invoke(id)
         }
     }
 

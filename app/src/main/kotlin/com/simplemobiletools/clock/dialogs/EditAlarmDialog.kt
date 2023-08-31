@@ -23,7 +23,7 @@ import com.simplemobiletools.commons.dialogs.SelectAlarmSoundDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.models.AlarmSound
 
-class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callback: (alarmId: Int) -> Unit) {
+class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val onDismiss: () -> Unit = {}, val callback: (alarmId: Int) -> Unit) {
     private val binding = DialogEditAlarmBinding.inflate(activity.layoutInflater)
     private val textColor = activity.getProperTextColor()
 
@@ -127,6 +127,7 @@ class EditAlarmDialog(val activity: SimpleActivity, val alarm: Alarm, val callba
         }
 
         activity.getAlertDialogBuilder()
+            .setOnDismissListener { onDismiss() }
             .setPositiveButton(com.simplemobiletools.commons.R.string.ok, null)
             .setNegativeButton(com.simplemobiletools.commons.R.string.cancel, null)
             .apply {
