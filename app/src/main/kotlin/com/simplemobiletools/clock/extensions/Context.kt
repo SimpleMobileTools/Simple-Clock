@@ -195,6 +195,7 @@ fun Context.getAlarmIntent(alarm: Alarm): PendingIntent {
 fun Context.cancelAlarmClock(alarm: Alarm) {
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
     alarmManager.cancel(getAlarmIntent(alarm))
+    alarmManager.cancel(getEarlyAlarmDismissalIntent(alarm))
 }
 
 fun Context.hideNotification(id: Int) {
