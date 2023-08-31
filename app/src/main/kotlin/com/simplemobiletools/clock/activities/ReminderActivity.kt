@@ -261,8 +261,15 @@ class ReminderActivity : SimpleActivity() {
     }
 
     private fun finishActivity() {
-        if (!wasAlarmSnoozed && alarm != null && alarm!!.days > 0) {
-            scheduleNextAlarm(alarm!!, false)
+        if (!wasAlarmSnoozed && alarm != null) {
+            if (alarm!!.days > 0) {
+                scheduleNextAlarm(alarm!!, false)
+            }
+
+            if (alarm!!.days < 0) {
+                dbHelper.updateAlarmEnabledState(alarm!!.id, false)
+                updateWidgets()
+            }
         }
 
         destroyEffects()
