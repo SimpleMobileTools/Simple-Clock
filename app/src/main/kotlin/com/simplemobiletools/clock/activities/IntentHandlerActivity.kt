@@ -72,8 +72,6 @@ class IntentHandlerActivity : SimpleActivity() {
         val skipUi = getBooleanExtra(AlarmClock.EXTRA_SKIP_UI, false)
         val defaultAlarmSound = getDefaultAlarmSound(RingtoneManager.TYPE_ALARM)
 
-        // TODO: Find existing alarm and reuse
-
         var weekDays = 0
         days?.forEach {
             weekDays += getBitForCalendarDay(it)
@@ -97,6 +95,33 @@ class IntentHandlerActivity : SimpleActivity() {
                 }
             }
         } ?: defaultAlarmSound
+
+        // We don't want to accidentally edit existing alarm, so allow reuse only when skipping UI
+        if (hasExtra(AlarmClock.EXTRA_HOUR) && skipUi) {
+            var daysToCompare = weekDays
+            val timeInMinutes = hour * 60 + minute
+            if (weekDays <= 0) {
+                daysToCompare = if (timeInMinutes > getCurrentDayMinutes()) {
+                    TODAY_BIT
+                } else {
+                    TOMORROW_BIT
+                }
+            }
+            val existingAlarm = dbHelper.getAlarms().firstOrNull {
+                it.days == daysToCompare
+                    && it.vibrate == vibrate
+                    && it.soundTitle == soundToUse.title
+                    && it.soundUri == soundToUse.uri
+                    && it.label == (message ?: "")
+                    && it.timeInMinutes == timeInMinutes
+            }
+
+            if (existingAlarm != null && !existingAlarm.isEnabled) {
+                existingAlarm.isEnabled = true
+                startAlarm(existingAlarm)
+                finish()
+            }
+        }
 
         val newAlarm = createNewAlarm(DEFAULT_ALARM_MINUTES, 0)
         newAlarm.isEnabled = true
@@ -163,7 +188,9 @@ class IntentHandlerActivity : SimpleActivity() {
                 val existingTimer = it.firstOrNull { it.state is TimerState.Idle }
 
                 // We don't want to accidentally edit existing timer, so allow reuse only when skipping UI
-                if (existingTimer != null && skipUi) {
+                if (existingTimer != null
+                    && skipUi
+                    && (existingTimer.state is TimerState.Idle || (existingTimer.state is TimerState.Finished && !existingTimer.oneShot))) {
                     startTimer(existingTimer)
                 } else {
                     createAndStartNewTimer()
