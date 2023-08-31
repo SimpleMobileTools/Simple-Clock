@@ -265,6 +265,7 @@ class ReminderActivity : SimpleActivity() {
             if (alarm!!.days > 0) {
                 scheduleNextAlarm(alarm!!, false)
             }
+
             if (alarm!!.days < 0) {
                 dbHelper.updateAlarmEnabledState(alarm!!.id, false)
                 updateWidgets()
