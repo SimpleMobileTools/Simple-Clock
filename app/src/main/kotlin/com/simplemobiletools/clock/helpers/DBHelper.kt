@@ -49,10 +49,8 @@ class DBHelper private constructor(val context: Context) : SQLiteOpenHelper(cont
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        var version = oldVersion
-        if (version == 1 && newVersion > version) {
+        if (oldVersion == 1 && newVersion > oldVersion) {
             db.execSQL("ALTER TABLE $ALARMS_TABLE_NAME ADD COLUMN $COL_ONE_SHOT INTEGER NOT NULL DEFAULT 0")
-            version++
         }
     }
 
