@@ -5,7 +5,7 @@
     <string name="time_zone">Часовий пояс</string>
     <string name="vibrate">Вібрувати</string>
     <string name="no_days_selected">Дні не обрано</string>
-    <string name="clock">Clock</string>
+    <string name="clock">Годинник</string>
     <string name="timer">Таймер</string>
     <string name="stopwatch">Секундомір</string>
     <string name="start_stopwatch">Запустити секундомір</string>
@@ -25,9 +25,9 @@
     <string name="alarm_dismissed">Будильник вимкнено</string>
     <string name="alarm_snoozed">Будильник відкладено %s</string>
     <string name="no_alarms_found">Немає будильників</string>
-    <string name="add_alarm">Add alarm</string>
+    <string name="add_alarm">Додати будильник</string>
     <string name="no_timers_found">Таймерів не знайдено</string>
-    <string name="add_timer">Add timer</string>
+    <string name="add_timer">Додати таймер</string>
     <string name="upcoming_alarm">Майбутній будильник</string>
     <string name="early_alarm_dismissal">Відхилення раннього будильника</string>
     <!--Timer-->
