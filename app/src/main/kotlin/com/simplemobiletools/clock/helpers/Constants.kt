@@ -2,7 +2,7 @@ package com.simplemobiletools.clock.helpers
 
 import com.simplemobiletools.clock.extensions.isBitSet
 import com.simplemobiletools.clock.models.MyTimeZone
-import com.simplemobiletools.commons.extensions.addBit
+import com.simplemobiletools.commons.helpers.*
 import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
@@ -74,6 +74,16 @@ const val TOMORROW_BIT = -2
 const val STOPWATCH_SHORTCUT_ID = "stopwatch_shortcut_id"
 const val STOPWATCH_TOGGLE_ACTION = "com.simplemobiletools.clock.TOGGLE_STOPWATCH"
 
+val DAY_BIT_MAP = mapOf(
+    Calendar.SUNDAY to SUNDAY_BIT,
+    Calendar.MONDAY to MONDAY_BIT,
+    Calendar.TUESDAY to TUESDAY_BIT,
+    Calendar.WEDNESDAY to WEDNESDAY_BIT,
+    Calendar.THURSDAY to THURSDAY_BIT,
+    Calendar.FRIDAY to FRIDAY_BIT,
+    Calendar.SATURDAY to SATURDAY_BIT,
+)
+
 fun getDefaultTimeZoneTitle(id: Int) = getAllTimeZones().firstOrNull { it.id == id }?.title ?: ""
 
 fun getPassedSeconds(): Int {
@@ -103,6 +113,16 @@ fun getTomorrowBit(): Int {
     calendar.add(Calendar.DAY_OF_WEEK, 1)
     val dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
     return 2.0.pow(dayOfWeek).toInt()
+}
+
+fun getTodayBit(): Int {
+    val calendar = Calendar.getInstance()
+    val dayOfWeek = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
+    return 2.0.pow(dayOfWeek).toInt()
+}
+
+fun getBitForCalendarDay(day: Int): Int {
+    return DAY_BIT_MAP[day] ?: 0
 }
 
 fun getCurrentDayMinutes(): Int {

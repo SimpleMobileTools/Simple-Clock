@@ -23,6 +23,9 @@
     <string name="analogue_clock">Erloju analogikoa</string>
     <string name="digital_clock">Erloju digitala</string>
     <string name="alarm_dismissed">Alarma baztertu da</string>
+    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
+    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
+    <string name="alarm_created">Alarm created</string>
     <string name="alarm_snoozed">Jo alarma berriro %s barru</string>
     <string name="no_alarms_found">Ez da alarmarik aurkitu</string>
     <string name="add_alarm">Gehitu alarma</string>

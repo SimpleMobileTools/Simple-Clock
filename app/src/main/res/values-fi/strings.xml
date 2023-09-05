@@ -23,6 +23,9 @@
     <string name="analogue_clock">Analoginen kello</string>
     <string name="digital_clock">Digitaalinen kello</string>
     <string name="alarm_dismissed">Herätys lopetettiin</string>
+    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
+    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
+    <string name="alarm_created">Alarm created</string>
     <string name="alarm_snoozed">Herätys torkutettiin %s</string>
     <string name="no_alarms_found">Herätyksiä ei ole</string>
     <string name="add_alarm">Lisää herätys</string>

@@ -7,6 +7,7 @@ import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.*
+import android.provider.AlarmClock
 import android.view.MotionEvent
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
@@ -220,7 +221,16 @@ class ReminderActivity : SimpleActivity() {
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        finishActivity()
+        if (intent?.action == AlarmClock.ACTION_SNOOZE_ALARM) {
+            val durationMinutes = intent.getIntExtra(AlarmClock.EXTRA_ALARM_SNOOZE_DURATION, -1)
+            if (durationMinutes == -1) {
+                snoozeAlarm()
+            } else {
+                snoozeAlarm(durationMinutes)
+            }
+        } else {
+            finishActivity()
+        }
     }
 
     override fun onDestroy() {
@@ -244,9 +254,13 @@ class ReminderActivity : SimpleActivity() {
         vibrator = null
     }
 
-    private fun snoozeAlarm() {
+    private fun snoozeAlarm(overrideSnoozeDuration: Int? = null) {
         destroyEffects()
-        if (config.useSameSnooze) {
+        if (overrideSnoozeDuration != null) {
+            setupAlarmClock(alarm!!, overrideSnoozeDuration * MINUTE_SECONDS)
+            wasAlarmSnoozed = true
+            finishActivity()
+        } else if (config.useSameSnooze) {
             setupAlarmClock(alarm!!, config.snoozeTime * MINUTE_SECONDS)
             wasAlarmSnoozed = true
             finishActivity()
@@ -262,12 +276,17 @@ class ReminderActivity : SimpleActivity() {
 
     private fun finishActivity() {
         if (!wasAlarmSnoozed && alarm != null) {
+            cancelAlarmClock(alarm!!)
             if (alarm!!.days > 0) {
                 scheduleNextAlarm(alarm!!, false)
             }
-
             if (alarm!!.days < 0) {
-                dbHelper.updateAlarmEnabledState(alarm!!.id, false)
+                if (alarm!!.oneShot) {
+                    alarm!!.isEnabled = false
+                    dbHelper.deleteAlarms(arrayListOf(alarm!!))
+                } else {
+                    dbHelper.updateAlarmEnabledState(alarm!!.id, false)
+                }
                 updateWidgets()
             }
         }

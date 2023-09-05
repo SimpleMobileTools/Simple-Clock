@@ -23,6 +23,9 @@
     <string name="analogue_clock">Αναλογικό Ρολόι</string>
     <string name="digital_clock">Ψηφιακό Ρολόι</string>
     <string name="alarm_dismissed">Η αφύπνιση απορρίφθηκε</string>
+    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
+    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
+    <string name="alarm_created">Alarm created</string>
     <string name="alarm_snoozed">Η αφύπνιση σε αναμονή από %s</string>
     <string name="no_alarms_found">Δεν βρέθηκαν αφυπνίσεις</string>
     <string name="add_alarm">Προσθήκη αφύπνισης</string>

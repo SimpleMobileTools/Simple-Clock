@@ -27,7 +27,12 @@ class DismissAlarmReceiver : BroadcastReceiver() {
                 context.cancelAlarmClock(alarm)
                 scheduleNextAlarm(alarm, context)
                 if (alarm.days < 0) {
-                    context.dbHelper.updateAlarmEnabledState(alarm.id, false)
+                    if (alarm.oneShot) {
+                        alarm.isEnabled = false
+                        context.dbHelper.deleteAlarms(arrayListOf(alarm))
+                    } else {
+                        context.dbHelper.updateAlarmEnabledState(alarm.id, false)
+                    }
                     context.updateWidgets()
                 }
             }

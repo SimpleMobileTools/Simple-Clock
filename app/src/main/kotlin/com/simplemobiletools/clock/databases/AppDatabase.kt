@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.simplemobiletools.clock.extensions.config
 import com.simplemobiletools.clock.helpers.Converters
@@ -13,7 +14,7 @@ import com.simplemobiletools.clock.models.Timer
 import com.simplemobiletools.clock.models.TimerState
 import java.util.concurrent.Executors
 
-@Database(entities = [Timer::class], version = 1)
+@Database(entities = [Timer::class], version = 2)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
@@ -28,6 +29,7 @@ abstract class AppDatabase : RoomDatabase() {
                     if (db == null) {
                         db = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "app.db")
                             .fallbackToDestructiveMigration()
+                            .addMigrations(MIGRATION_1_2)
                             .addCallback(object : Callback() {
                                 override fun onCreate(db: SupportSQLiteDatabase) {
                                     super.onCreate(db)
@@ -57,6 +59,12 @@ abstract class AppDatabase : RoomDatabase() {
                         channelId = config.timerChannelId,
                     )
                 )
+            }
+        }
+
+        private val MIGRATION_1_2 = object : Migration(1, 2) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE `timers` ADD COLUMN `oneShot` INTEGER NOT NULL DEFAULT 0")
             }
         }
     }

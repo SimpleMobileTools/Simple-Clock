@@ -14,4 +14,5 @@ data class Timer(
     var label: String,
     var createdAt: Long,
     var channelId: String? = null,
+    var oneShot: Boolean = false
 )

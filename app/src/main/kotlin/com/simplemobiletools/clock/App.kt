@@ -135,8 +135,14 @@ class App : Application(), LifecycleObserver {
     private fun updateTimerState(timerId: Int, state: TimerState) {
         timerHelper.getTimer(timerId) { timer ->
             val newTimer = timer.copy(state = state)
-            timerHelper.insertOrUpdateTimer(newTimer) {
-                EventBus.getDefault().post(TimerEvent.Refresh)
+            if (newTimer.oneShot && state is TimerState.Idle) {
+                timerHelper.deleteTimer(newTimer.id!!) {
+                    EventBus.getDefault().post(TimerEvent.Refresh)
+                }
+            } else {
+                timerHelper.insertOrUpdateTimer(newTimer) {
+                    EventBus.getDefault().post(TimerEvent.Refresh)
+                }
             }
         }
     }

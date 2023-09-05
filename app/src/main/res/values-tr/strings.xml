@@ -23,6 +23,9 @@
     <string name="analogue_clock">Analog saat</string>
     <string name="digital_clock">Dijital saat</string>
     <string name="alarm_dismissed">Alarm kapatıldı</string>
+    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
+    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
+    <string name="alarm_created">Alarm created</string>
     <string name="alarm_snoozed">Alarm %s ertelendi</string>
     <string name="no_alarms_found">Alarm bulunamadı</string>
     <string name="add_alarm">Alarm ekle</string>

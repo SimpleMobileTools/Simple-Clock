@@ -23,6 +23,9 @@
     <string name="analogue_clock">Analogna ura</string>
     <string name="digital_clock">Digitalna ura</string>
     <string name="alarm_dismissed">Prekinjen alarm</string>
+    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
+    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
+    <string name="alarm_created">Alarm created</string>
     <string name="alarm_snoozed">Alarm je odložen s strani %s</string>
     <string name="no_alarms_found">Ni alarmov</string>
     <string name="add_alarm">Dodajte alarm</string>
