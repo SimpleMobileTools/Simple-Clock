@@ -47,7 +47,7 @@
     <string name="increase_volume_gradually">Bolumena gradualki igo</string>
     <!-- FAQ -->
     <string name="faq_1_title">Nola alda dezaket biren ordena kronometroaren fitxan\?</string>
-    <string name="faq_1_text">Sakatu zutaberen bat, birak zutabe horren arabera ordenatzeko. Gehiagotan sakatuz ordena gorakor edo beherakorrean sailka dezakezu</string>
+    <string name="faq_1_text">Sakatu zutaberen bat, birak zutabe horren arabera ordenatzeko. Gehiagotan sakatuz ordena gorakor edo beherakorrean sailka dezakezu.</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
