@@ -23,9 +23,9 @@
     <string name="analogue_clock">Analoge klok</string>
     <string name="digital_clock">Digitale klok</string>
     <string name="alarm_dismissed">Wekker uitgezet</string>
-    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
-    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
-    <string name="alarm_created">Alarm created</string>
+    <string name="select_timer_to_dismiss">Timer uitzetten</string>
+    <string name="select_alarm_to_dismiss">Wekker uitzetten</string>
+    <string name="alarm_created">Wekker ingesteld</string>
     <string name="alarm_snoozed">Wekker uitgesteld met %s</string>
     <string name="no_alarms_found">Geen wekkers</string>
     <string name="add_alarm">Wekker toevoegen</string>
