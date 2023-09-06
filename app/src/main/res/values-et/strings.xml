@@ -23,9 +23,9 @@
     <string name="analogue_clock">Sihverplaadiga kell</string>
     <string name="digital_clock">Numbritega kell</string>
     <string name="alarm_dismissed">Äratus on tühistatud</string>
-    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
-    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
-    <string name="alarm_created">Alarm created</string>
+    <string name="select_timer_to_dismiss">Vali eemaldatav taimer</string>
+    <string name="select_alarm_to_dismiss">Vali eemaldatav äratus</string>
+    <string name="alarm_created">Äratus on loodud</string>
     <string name="alarm_snoozed">%s lükkas äratuse edasi</string>
     <string name="no_alarms_found">Äratusi ei leidu</string>
     <string name="add_alarm">Lisa äratus</string>
