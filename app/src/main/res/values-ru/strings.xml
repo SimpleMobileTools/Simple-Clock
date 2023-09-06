@@ -23,9 +23,9 @@
     <string name="analogue_clock">Аналоговые часы</string>
     <string name="digital_clock">Цифровые часы</string>
     <string name="alarm_dismissed">Будильник отключён</string>
-    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
-    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
-    <string name="alarm_created">Alarm created</string>
+    <string name="select_timer_to_dismiss">Выберите таймер для отключения</string>
+    <string name="select_alarm_to_dismiss">Выберите будильник для отключения</string>
+    <string name="alarm_created">Будильник создан</string>
     <string name="alarm_snoozed">Будильник отложен на %s</string>
     <string name="no_alarms_found">Будильники отсутствуют</string>
     <string name="add_alarm">Добавить будильник</string>
