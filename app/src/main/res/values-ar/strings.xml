@@ -23,9 +23,9 @@
     <string name="analogue_clock">ساعة تناظرية</string>
     <string name="digital_clock">ساعة رقمية</string>
     <string name="alarm_dismissed">تم تجاهل المنبه</string>
-    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
-    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
-    <string name="alarm_created">Alarm created</string>
+    <string name="select_timer_to_dismiss">حدد موقت لرفضه</string>
+    <string name="select_alarm_to_dismiss">حدد منبه لتجاهله</string>
+    <string name="alarm_created">تم إنشاء التنبيه</string>
     <string name="alarm_snoozed">إنذار غفوة من قبل %s</string>
     <string name="no_alarms_found">لم يتم العثور على منبهات</string>
     <string name="add_alarm">Add alarm</string>
