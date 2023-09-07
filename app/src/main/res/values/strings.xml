@@ -60,4 +60,8 @@
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
     -->
 
+    <!-- HVA added. -->
+    <string name="and" translatable="false">and</string>
+    <string name="next_alarm_text" translatable="false">Next alarm at</string>
+
 </resources>

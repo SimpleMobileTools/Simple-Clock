@@ -195,7 +195,6 @@ fun Context.getAlarmIntent(alarm: Alarm): PendingIntent {
 fun Context.cancelAlarmClock(alarm: Alarm) {
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
     alarmManager.cancel(getAlarmIntent(alarm))
-    alarmManager.cancel(getEarlyAlarmDismissalIntent(alarm))
 }
 
 fun Context.hideNotification(id: Int) {
@@ -277,8 +276,12 @@ fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
             return@getEnabledAlarms
         }
 
+        var alarmLabel = ""
         val nextAlarmList = enabledAlarms
-            .mapNotNull { getTimeUntilNextAlarm(it.timeInMinutes, it.days) }
+            .mapNotNull {
+                alarmLabel = it.label
+                getTimeUntilNextAlarm(it.timeInMinutes, it.days)
+            }
 
         if (nextAlarmList.isEmpty()) {
             callback("")
@@ -295,10 +298,14 @@ fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
             callback("")
         }
 
+        val today = Calendar.getInstance().apply { firstDayOfWeek = Calendar.MONDAY }
         val calendar = Calendar.getInstance().apply { firstDayOfWeek = Calendar.MONDAY }
         calendar.add(Calendar.MINUTE, closestAlarmTime)
         val dayOfWeekIndex = (calendar.get(Calendar.DAY_OF_WEEK) + 5) % 7
-        val dayOfWeek = resources.getStringArray(com.simplemobiletools.commons.R.array.week_days_short)[dayOfWeekIndex]
+        val isToday = calendar.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR) &&
+            calendar.get(Calendar.YEAR) == today.get(Calendar.YEAR)
+        val dayOfWeek = if (isToday) getString(com.simplemobiletools.commons.R.string.today)
+        else resources.getStringArray(com.simplemobiletools.commons.R.array.week_days_short)[dayOfWeekIndex]
         val pattern = if (DateFormat.is24HourFormat(this)) {
             "HH:mm"
         } else {
@@ -306,7 +313,46 @@ fun Context.getClosestEnabledAlarmString(callback: (result: String) -> Unit) {
         }
 
         val formattedTime = SimpleDateFormat(pattern, Locale.getDefault()).format(calendar.time)
-        callback("$dayOfWeek $formattedTime")
+        callback("$dayOfWeek $formattedTime - $alarmLabel")
+    }
+}
+
+fun Context.getRemainedTimeClosestEnabledAlarmString(callback: (result: String) -> Unit) {
+    getEnabledAlarms { enabledAlarms ->
+        if (enabledAlarms.isNullOrEmpty()) {
+            callback("")
+            return@getEnabledAlarms
+        }
+
+        var minutesUntilNextAlarm = 0
+        val nextAlarmList = enabledAlarms
+            .mapNotNull {
+                minutesUntilNextAlarm = getTimeUntilNextAlarm(it.timeInMinutes, it.days)!!
+                getTimeUntilNextAlarm(it.timeInMinutes, it.days)
+            }
+
+        if (nextAlarmList.isEmpty()) {
+            callback("")
+        }
+
+        var closestAlarmTime = Int.MAX_VALUE
+        nextAlarmList.forEach { time ->
+            if (time < closestAlarmTime) {
+                closestAlarmTime = time
+            }
+        }
+
+        if (closestAlarmTime == Int.MAX_VALUE) {
+            callback("")
+        }
+
+        val hoursUntilNextAlarm = minutesUntilNextAlarm / 60
+        val timeUntilNextAlarmString = if (minutesUntilNextAlarm < 60) resources.getQuantityString(com.simplemobiletools.commons.R.plurals.by_minutes, minutesUntilNextAlarm, minutesUntilNextAlarm)
+        else resources.getQuantityString(com.simplemobiletools.commons.R.plurals.by_hours,
+            hoursUntilNextAlarm,
+            hoursUntilNextAlarm) + " " + resources.getString(R.string.and) + " " + resources.getQuantityString(com.simplemobiletools.commons.R.plurals.by_minutes,
+            minutesUntilNextAlarm - (hoursUntilNextAlarm * 60), minutesUntilNextAlarm - (hoursUntilNextAlarm * 60))
+        callback(resources.getString(R.string.next_alarm_text) + " " + timeUntilNextAlarmString)
     }
 }
 

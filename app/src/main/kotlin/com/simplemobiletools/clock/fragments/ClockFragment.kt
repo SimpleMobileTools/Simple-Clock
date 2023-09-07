@@ -89,6 +89,7 @@ class ClockFragment : Fragment() {
         updateHandler.postDelayed({
             passedSeconds++
             updateCurrentTime()
+            updateAlarm()
         }, ONE_SECOND)
     }
 
@@ -104,6 +105,13 @@ class ClockFragment : Fragment() {
                 clockAlarm.beVisibleIf(nextAlarm.isNotEmpty())
                 clockAlarm.text = nextAlarm
                 clockAlarm.colorCompoundDrawable(requireContext().getProperTextColor())
+            }
+        }
+        context?.getRemainedTimeClosestEnabledAlarmString { remainingTime ->
+            binding.apply {
+                remainingTimeNextAlarm.beVisibleIf(remainingTime.isNotEmpty())
+                remainingTimeNextAlarm.text = remainingTime
+                remainingTimeNextAlarm.colorCompoundDrawable(requireContext().getProperTextColor())
             }
         }
     }
