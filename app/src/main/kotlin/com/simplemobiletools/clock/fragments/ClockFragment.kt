@@ -78,6 +78,14 @@ class ClockFragment : Fragment() {
             binding.clockTime.textSize = resources.getDimension(R.dimen.clock_text_size_smaller) / resources.displayMetrics.density
         }
 
+        if (context?.config?.areSecondsVisible == true) {
+            binding.clockTime.format12Hour = "h:mm:ss a"
+            binding.clockTime.format24Hour = "h:mm:ss"
+        } else {
+            binding.clockTime.format12Hour = "h:mm a"
+            binding.clockTime.format24Hour = "h:mm"
+        }
+
         if (seconds == 0) {
             if (hours == 0 && minutes == 0) {
                 updateDate()

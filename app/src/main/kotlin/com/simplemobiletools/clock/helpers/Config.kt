@@ -86,4 +86,8 @@ class Config(context: Context) : BaseConfig(context) {
     var wasInitialWidgetSetUp: Boolean
         get() = prefs.getBoolean(WAS_INITIAL_WIDGET_SET_UP, false)
         set(wasInitialWidgetSetUp) = prefs.edit().putBoolean(WAS_INITIAL_WIDGET_SET_UP, wasInitialWidgetSetUp).apply()
+
+    var areSecondsVisible: Boolean
+        get() = prefs.getBoolean(ARE_SECONDS_VISIBLE, true)
+        set(areSecondsVisible) = prefs.edit().putBoolean(ARE_SECONDS_VISIBLE, areSecondsVisible).apply()
 }

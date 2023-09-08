@@ -36,6 +36,7 @@ class SettingsActivity : SimpleActivity() {
         setupLanguage()
         setupPreventPhoneFromSleeping()
         setupSundayFirst()
+        setupShowSeconds()
         setupAlarmMaxReminder()
         setupUseSameSnooze()
         setupSnoozeTime()
@@ -99,6 +100,14 @@ class SettingsActivity : SimpleActivity() {
         binding.settingsSundayFirstHolder.setOnClickListener {
             binding.settingsSundayFirst.toggle()
             config.isSundayFirst = binding.settingsSundayFirst.isChecked
+        }
+    }
+
+    private fun setupShowSeconds() {
+        binding.settingsShowSeconds.isChecked = config.areSecondsVisible
+        binding.settingsShowSecondsHolder.setOnClickListener {
+            binding.settingsShowSeconds.toggle()
+            config.areSecondsVisible = binding.settingsShowSeconds.isChecked
         }
     }
 
