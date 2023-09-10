@@ -34,12 +34,12 @@
     <string name="upcoming_alarm">Próxima alarma</string>
     <string name="early_alarm_dismissal">Desbotar alarma anticipadamente</string>
     <!--Timer-->
-    <string name="timers_notification_msg">Os temporizadores atopanse traballando</string>
-    <string name="timer_single_notification_label_msg">O temporizador para %s atopase traballando</string>
+    <string name="timers_notification_msg">Hai temporizadores activos</string>
+    <string name="timer_single_notification_label_msg">O temporizador para %s está funcionando</string>
     <string name="new_timer">Novo temporizador</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d temporizador atopase en execución</item>
-        <item quantity="other">%d temporizadores atopanse en execución</item>
+        <item quantity="one">%d temporizador activado</item>
+        <item quantity="other">%d temporizadores activados</item>
     </plurals>
     <!-- Settings -->
     <string name="clock_tab">Ficha do reloxo</string>
@@ -49,7 +49,7 @@
     <string name="show_seconds">Mostralos segundos</string>
     <string name="increase_volume_gradually">Aumentalo volume gradualmente</string>
     <!-- FAQ -->
-    <string name="faq_1_title">Como podo cambiala clasificación das voltas na guía do cronómetro\?</string>
+    <string name="faq_1_title">Como podo cambiala clasificación das voltas na ficha do cronómetro\?</string>
     <string name="faq_1_text">So faga clic en calquera das columnas, iso fará que se ordenen pola columna dada. Con clics adicionais, pode alternar entre clasificación ascendente e descendente.</string>
     <!--
         Haven't found some strings? There's more at
