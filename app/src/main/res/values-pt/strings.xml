@@ -23,9 +23,9 @@
     <string name="analogue_clock">Relógio analógico</string>
     <string name="digital_clock">Relógio digital</string>
     <string name="alarm_dismissed">Alarme descartado</string>
-    <string name="select_timer_to_dismiss">Select timer to dismiss</string>
-    <string name="select_alarm_to_dismiss">Select alarm to dismiss</string>
-    <string name="alarm_created">Alarm created</string>
+    <string name="select_timer_to_dismiss">Selecione o temporizador a descartar</string>
+    <string name="select_alarm_to_dismiss">Selecione o alarme a descartar</string>
+    <string name="alarm_created">Alarme criado</string>
     <string name="alarm_snoozed">Alarme adiado por %s</string>
     <string name="no_alarms_found">Nenhum alarme encontrado</string>
     <string name="add_alarm">Adicionar alarme</string>
@@ -33,7 +33,6 @@
     <string name="add_timer">Adicionar temporizador</string>
     <string name="upcoming_alarm">Próximo alarme</string>
     <string name="early_alarm_dismissal">Early alarm dismissal</string>
-
     <!--Timer-->
     <string name="timers_notification_msg">Temporizadores em curso</string>
     <string name="timer_single_notification_label_msg">Temporizador para %s está em curso</string>
