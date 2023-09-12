@@ -17,9 +17,9 @@ kotlinx-coroutines = "1.7.3"
 #NumberPicker
 numberpicker = "2.4.13"
 #Room
-room = "2.6.0-alpha02"
+room = "2.6.0-beta01"
 #Simple tools
-simple-commons = "b80b717ad3"
+simple-commons = "25d031dc00"
 #Stetho
 stetho = "1.6.0"
 #Gradle
