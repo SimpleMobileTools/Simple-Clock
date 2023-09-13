@@ -6,12 +6,17 @@ plugins {
     alias(libs.plugins.android)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.ksp)
+    base
 }
 
 val keystorePropertiesFile: File = rootProject.file("keystore.properties")
 val keystoreProperties = Properties()
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+}
+
+base {
+    archivesName.set("clock")
 }
 
 android {
@@ -23,7 +28,6 @@ android {
         targetSdk = project.libs.versions.app.build.targetSDK.get().toInt()
         versionName = project.libs.versions.app.version.versionName.get()
         versionCode = project.libs.versions.app.version.versionCode.get().toInt()
-        setProperty("archivesBaseName", "clock")
         ksp {
             arg("room.schemaLocation", "$projectDir/schemas")
         }
