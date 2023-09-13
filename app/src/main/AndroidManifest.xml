@@ -76,7 +76,7 @@
 
         <activity
             android:name=".activities.ReminderActivity"
-            android:configChanges="orientation"
+            android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:exported="false"
             android:launchMode="singleTask"
