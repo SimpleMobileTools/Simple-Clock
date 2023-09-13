@@ -149,6 +149,21 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/settings_always_show_fullscreen_holder"
+                style="@style/SettingsHolderCheckboxStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.simplemobiletools.commons.views.MyAppCompatCheckbox
+                    android:id="@+id/settings_always_show_fullscreen"
+                    style="@style/SettingsCheckboxStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_on_unlocked" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/settings_sunday_first_holder"
                 style="@style/SettingsHolderCheckboxStyle"
                 android:layout_width="match_parent"

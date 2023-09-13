@@ -35,6 +35,7 @@ class SettingsActivity : SimpleActivity() {
         setupUseEnglish()
         setupLanguage()
         setupPreventPhoneFromSleeping()
+        setupAlwaysShowFullscreen()
         setupSundayFirst()
         setupAlarmMaxReminder()
         setupUseSameSnooze()
@@ -91,6 +92,16 @@ class SettingsActivity : SimpleActivity() {
         binding.settingsPreventPhoneFromSleepingHolder.setOnClickListener {
             binding.settingsPreventPhoneFromSleeping.toggle()
             config.preventPhoneFromSleeping = binding.settingsPreventPhoneFromSleeping.isChecked
+        }
+    }
+
+    private fun setupAlwaysShowFullscreen() {
+        binding.apply {
+            settingsAlwaysShowFullscreen.isChecked = config.alwaysShowFullscreen
+            settingsAlwaysShowFullscreenHolder.setOnClickListener {
+                settingsAlwaysShowFullscreen.toggle()
+                config.alwaysShowFullscreen = settingsAlwaysShowFullscreen.isChecked
+            }
         }
     }
 

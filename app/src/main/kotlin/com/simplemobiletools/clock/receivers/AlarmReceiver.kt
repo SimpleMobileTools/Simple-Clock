@@ -28,7 +28,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
         context.hideNotification(EARLY_ALARM_NOTIF_ID) // hide early dismissal notification if not already dismissed
 
-        if (context.isScreenOn()) {
+        if (context.isScreenOn() && !context.config.alwaysShowFullscreen) {
             context.showAlarmNotification(alarm)
             Handler().postDelayed({
                 context.hideNotification(id)

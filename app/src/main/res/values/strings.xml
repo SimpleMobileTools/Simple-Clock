@@ -13,6 +13,7 @@
     <string name="stopwatch_stopped">Stopwatch has been stopped</string>
     <string name="timer_stopped">Timer has been stopped</string>
     <string name="max_reminder_duration">Max reminder duration</string>
+    <string name="show_on_unlocked">Full screen alarm while unlocked</string>
     <string name="time_expired">Time expired</string>
     <string name="clock_and_date">Clock and date</string>
     <string name="use_text_shadow">Use text shadow</string>
