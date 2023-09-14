@@ -199,13 +199,13 @@ class StopwatchFragment : Fragment() {
 
     private val updateListener = object : Stopwatch.UpdateListener {
         override fun onUpdate(totalTime: Long, lapTime: Long, useLongerMSFormat: Boolean) {
-            activity?.run {
+            activity?.runOnUiThread {
                 updateDisplayedText(totalTime, lapTime, useLongerMSFormat)
             }
         }
 
         override fun onStateChanged(state: Stopwatch.State) {
-            activity?.run {
+            activity?.runOnUiThread {
                 updateIcons(state)
                 binding.stopwatchLap.beVisibleIf(state == Stopwatch.State.RUNNING)
                 binding.stopwatchReset.beVisibleIf(state != Stopwatch.State.STOPPED)
