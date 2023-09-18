@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.11.1 *(2023-09-18)*
+----------------------------
+
+ * Fixed some alarm related glitches
+ * Added some UI, translation and stability improvements
+
 Version 5.11.0 *(2023-09-13)*
 ----------------------------
 
