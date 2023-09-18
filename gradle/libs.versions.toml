@@ -19,7 +19,7 @@ numberpicker = "2.4.13"
 #Room
 room = "2.6.0-beta01"
 #Simple tools
-simple-commons = "25d031dc00"
+simple-commons = "257a2ab069"
 #Stetho
 stetho = "1.6.0"
 #Gradle
