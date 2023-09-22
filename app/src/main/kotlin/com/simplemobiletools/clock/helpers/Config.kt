@@ -4,6 +4,7 @@ import android.content.Context
 import android.media.RingtoneManager
 import com.simplemobiletools.clock.extensions.gson.gson
 import com.simplemobiletools.clock.models.Alarm
+import com.simplemobiletools.clock.models.ObfuscatedTimer
 import com.simplemobiletools.clock.models.Timer
 import com.simplemobiletools.commons.extensions.getDefaultAlarmSound
 import com.simplemobiletools.commons.extensions.getDefaultAlarmTitle
@@ -70,10 +71,18 @@ class Config(context: Context) : BaseConfig(context) {
         set(alarm) = prefs.edit().putString(ALARM_LAST_CONFIG, gson.toJson(alarm)).apply()
 
     var timerLastConfig: Timer?
-        get() = prefs.getString(TIMER_LAST_CONFIG, null)?.let { lastAlarm ->
-            gson.fromJson(lastAlarm, Timer::class.java)
+        get() = prefs.getString(TIMER_LAST_CONFIG, null)?.let { lastTimer ->
+            try {
+                if (lastTimer.contains("\"b\"")) {
+                    gson.fromJson(lastTimer, ObfuscatedTimer::class.java).toTimer()
+                } else {
+                    gson.fromJson(lastTimer, Timer::class.java)
+                }
+            } catch (e: Exception) {
+                null
+            }
         }
-        set(alarm) = prefs.edit().putString(TIMER_LAST_CONFIG, gson.toJson(alarm)).apply()
+        set(timer) = prefs.edit().putString(TIMER_LAST_CONFIG, gson.toJson(timer)).apply()
 
     var timerChannelId: String?
         get() = prefs.getString(TIMER_CHANNEL_ID, null)
