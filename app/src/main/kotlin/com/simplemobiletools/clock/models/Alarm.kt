@@ -1,5 +1,8 @@
 package com.simplemobiletools.clock.models
 
+import androidx.annotation.Keep
+
+@Keep
 data class Alarm(
     var id: Int,
     var timeInMinutes: Int,
@@ -11,3 +14,18 @@ data class Alarm(
     var label: String,
     var oneShot: Boolean = false
 )
+
+@Keep
+data class ObfuscatedAlarm(
+    var a: Int,
+    var b: Int,
+    var c: Int,
+    var d: Boolean,
+    var e: Boolean,
+    var f: String,
+    var g: String,
+    var h: String,
+    var i: Boolean = false
+) {
+    fun toAlarm() = Alarm(a, b, c, d, e, f, g, h, i)
+}
