@@ -6,52 +6,52 @@
     <string name="vibrate">Vibrer</string>
     <string name="no_days_selected">Aucun jour sélectionné</string>
     <string name="clock">Horloge</string>
-    <string name="timer">Minuterie</string>
+    <string name="timer">Minuteur</string>
     <string name="stopwatch">Chronomètre</string>
     <string name="start_stopwatch">Démarrer le chronomètre</string>
     <string name="lap">Tour</string>
-    <string name="stopwatch_stopped">Chronomètre arrêté</string>
-    <string name="timer_stopped">La minuterie a été arrêtée</string>
+    <string name="stopwatch_stopped">Le chronomètre a été arrêté</string>
+    <string name="timer_stopped">Le minuteur a été arrêté</string>
     <string name="max_reminder_duration">Durée maximale du rappel</string>
-    <string name="time_expired">Temps écoulé</string>
-    <string name="clock_and_date">Date et heure</string>
-    <string name="use_text_shadow">Texte ombragé</string>
-    <string name="swipe_right_to_dismiss">Balayez vers la droite pour arrêter ou vers la gauche pour répéter.</string>
+    <string name="time_expired">Le temps est écoulé</string>
+    <string name="clock_and_date">Horloge et date</string>
+    <string name="use_text_shadow">Utiliser l\'ombre du texte</string>
+    <string name="swipe_right_to_dismiss">Balayez vers la droite pour rejeter ou vers la gauche pour répéter.</string>
     <string name="sort_by_creation_order">Ordre de création</string>
     <string name="sort_by_alarm_time">Heure de l\'alarme</string>
     <string name="sort_by_day_and_alarm_time">Jour et heure de l\'alarme</string>
     <string name="analogue_clock">Horloge analogique</string>
     <string name="digital_clock">Horloge numérique</string>
-    <string name="alarm_dismissed">Alarme ignorée</string>
-    <string name="select_timer_to_dismiss">Sélectionnez la minuterie à désactiver</string>
-    <string name="select_alarm_to_dismiss">Sélectionnez l\'alarme à désactiver</string>
-    <string name="alarm_created">Alarme créée</string>
-    <string name="alarm_snoozed">Alarme ignorée par %s</string>
-    <string name="no_alarms_found">Aucune alarme trouvée</string>
+    <string name="alarm_dismissed">Alarme rejetée</string>
+    <string name="select_timer_to_dismiss">Sélectionnez le minuteur à ignorer</string>
+    <string name="select_alarm_to_dismiss">Sélectionnez l\'alarme à ignorer</string>
+    <string name="alarm_created">L\'alarme a été créée</string>
+    <string name="alarm_snoozed">Alarme reportée de %s</string>
+    <string name="no_alarms_found">Aucune alarme n\'a été trouvée</string>
     <string name="add_alarm">Ajouter une alarme</string>
-    <string name="no_timers_found">Aucune minuterie trouvée</string>
-    <string name="add_timer">Ajouter une minuterie</string>
+    <string name="no_timers_found">Aucun minuteur n\'a été trouvé</string>
+    <string name="add_timer">Ajouter un minuteur</string>
     <string name="upcoming_alarm">Alarme à venir</string>
-    <string name="early_alarm_dismissal">Rejet d\'alarme rapide</string>
+    <string name="early_alarm_dismissal">Rejet d\'alarme précoce</string>
     <!--Timer-->
-    <string name="timers_notification_msg">Les minuteries sont en marche</string>
-    <string name="timer_single_notification_label_msg">La minuterie de %s est en marche</string>
-    <string name="new_timer">Nouvelle minuterie</string>
+    <string name="timers_notification_msg">Les minuteurs sont en cours d\'exécution</string>
+    <string name="timer_single_notification_label_msg">Le minuteur pour %s est en cours d\'exécution</string>
+    <string name="new_timer">Nouveau minuteur</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d minuterie est en marche</item>
-        <item quantity="many">%d minuteries sont en marche</item>
-        <item quantity="other">%d minuteries sont en marche</item>
+        <item quantity="one">%d minuteur est en cours d’exécution</item>
+        <item quantity="many">%d minuteurs sont en cours d\'exécution</item>
+        <item quantity="other">%d minuteurs sont en cours d\'exécution</item>
     </plurals>
     <!-- Settings -->
-    <string name="clock_tab">Horloge</string>
-    <string name="alarm_tab">Réveil</string>
-    <string name="stopwatch_tab">Chronomètre</string>
-    <string name="timer_tab">Minuterie</string>
+    <string name="clock_tab">Onglet horloge</string>
+    <string name="alarm_tab">Onglet alarme</string>
+    <string name="stopwatch_tab">Onglet chronomètre</string>
+    <string name="timer_tab">Onglet minuteur</string>
     <string name="show_seconds">Afficher les secondes</string>
     <string name="increase_volume_gradually">Augmenter progressivement le volume</string>
     <!-- FAQ -->
-    <string name="faq_1_title">Comment changer l\'ordre de tri des temps dans l\'onglet chronomètre \?</string>
-    <string name="faq_1_text">Il suffit d\'appuyer sur les colonnes, les temps seront alors triés selon la colonne sur laquelle vous avez appuyé. Appuyer de nouveau permet d\'inverser l\'ordre (croissant/décroissant).</string>
+    <string name="faq_1_title">Comment puis-je modifier le tri des tours dans l\'onglet chronomètre \?</string>
+    <string name="faq_1_text">Cliquez simplement sur l’une des colonnes afin de trier les tours selon la colonne donnée. Par des clics supplémentaires, vous basculerez entre les tris croissant et décroissant.</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
