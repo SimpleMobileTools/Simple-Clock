@@ -33,16 +33,5 @@ data class ObfuscatedTimer(
     var i: String? = null,
     var j: Boolean = false
 ) {
-    fun toTimer(): Timer = Timer(
-        a,
-        b,
-        TimerState.Idle,
-        d,
-        e,
-        f,
-        g,
-        h,
-        i,
-        j
-    )
+    fun toTimer() = Timer(a, b, TimerState.Idle, d, e, f, g, h, i, j)
 }
